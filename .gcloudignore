@@ -1,0 +1,13 @@
+.gcloudignore
+.git/
+**/__pycache__/
+*.pyc
+*.sqlite3
+catalog/*
+!catalog/ja-all-sets.jsonl
+!catalog/ja-all-available.jsonl
+!catalog/ptcg-jp-candidates.jsonl
+!catalog/ptcg-jp-reference.jsonl
+examples/
+scripts/
+tests/

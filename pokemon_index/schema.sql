@@ -1,0 +1,153 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS source_policy (
+  source TEXT PRIMARY KEY,
+  rights_reference TEXT NOT NULL,
+  ingest_allowed INTEGER NOT NULL CHECK (ingest_allowed IN (0, 1)),
+  display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
+  cross_source_use_allowed INTEGER NOT NULL CHECK (cross_source_use_allowed IN (0, 1)),
+  seller_analytics_allowed INTEGER NOT NULL CHECK (seller_analytics_allowed IN (0, 1)),
+  retention_days INTEGER NOT NULL CHECK (retention_days > 0),
+  listing_ttl_hours INTEGER NOT NULL CHECK (listing_ttl_hours > 0),
+  expires_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS card (
+  card_id TEXT PRIMARY KEY,
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  collector_number TEXT NOT NULL,
+  variant TEXT NOT NULL DEFAULT 'standard',
+  name TEXT NOT NULL,
+  rarity TEXT,
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
+  match_eligible INTEGER NOT NULL DEFAULT 1 CHECK (match_eligible IN (0, 1)),
+  attributes_json TEXT NOT NULL DEFAULT '{}',
+  UNIQUE(language, set_code, collector_number, variant)
+);
+
+CREATE TABLE IF NOT EXISTS catalog_set (
+  set_code TEXT PRIMARY KEY,
+  name_ja TEXT,
+  release_date_ja TEXT,
+  official_card_count INTEGER NOT NULL CHECK (official_card_count >= 0),
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1))
+);
+
+CREATE TABLE IF NOT EXISTS card_reference (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  set_code TEXT,
+  collector_number TEXT,
+  name TEXT NOT NULL,
+  rarity TEXT,
+  attributes_json TEXT NOT NULL,
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
+  PRIMARY KEY(source, native_id)
+);
+
+CREATE TABLE IF NOT EXISTS priceable_unit (
+  unit_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  grade_company TEXT NOT NULL,
+  grade_value TEXT NOT NULL,
+  condition_bucket TEXT NOT NULL,
+  UNIQUE(card_id, grade_company, grade_value, condition_bucket)
+);
+
+CREATE TABLE IF NOT EXISTS listing (
+  source TEXT NOT NULL REFERENCES source_policy(source),
+  native_id TEXT NOT NULL,
+  title TEXT NOT NULL,
+  url TEXT NOT NULL,
+  seller_native_id TEXT,
+  unit_id TEXT REFERENCES priceable_unit(unit_id),
+  resolution_method TEXT NOT NULL CHECK (resolution_method IN ('exact', 'explicit', 'unresolved', 'human')),
+  first_seen TEXT NOT NULL,
+  last_seen TEXT NOT NULL,
+  current_status TEXT NOT NULL,
+  current_price_minor INTEGER,
+  currency TEXT NOT NULL,
+  PRIMARY KEY(source, native_id)
+);
+
+CREATE TABLE IF NOT EXISTS observation (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  observed_at TEXT NOT NULL,
+  title TEXT NOT NULL,
+  url TEXT NOT NULL,
+  seller_native_id TEXT,
+  status TEXT NOT NULL CHECK (status IN ('on_sale', 'trading', 'sold_out', 'gone')),
+  price_minor INTEGER CHECK (price_minor IS NULL OR price_minor >= 0),
+  currency TEXT NOT NULL,
+  evidence_ref TEXT NOT NULL,
+  poll_reason TEXT NOT NULL CHECK (poll_reason IN ('discovery', 'tracking', 'panel', 'auction_end')),
+  native_created TEXT,
+  native_updated TEXT,
+  PRIMARY KEY(source, native_id, observed_at),
+  FOREIGN KEY(source, native_id) REFERENCES listing(source, native_id)
+);
+
+CREATE TABLE IF NOT EXISTS raw_item_blob (
+  source TEXT NOT NULL REFERENCES source_policy(source),
+  native_id TEXT NOT NULL,
+  observed_at TEXT NOT NULL,
+  endpoint TEXT NOT NULL,
+  sha256 TEXT NOT NULL,
+  payload_json TEXT NOT NULL,
+  PRIMARY KEY(source, native_id, observed_at)
+);
+
+CREATE TABLE IF NOT EXISTS resolution_record (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  unit_id TEXT REFERENCES priceable_unit(unit_id),
+  method TEXT NOT NULL CHECK (method IN ('exact', 'explicit', 'unresolved', 'human')),
+  rule_version TEXT NOT NULL,
+  resolved_at TEXT NOT NULL,
+  reviewer TEXT,
+  reason TEXT,
+  FOREIGN KEY(source, native_id) REFERENCES listing(source, native_id)
+);
+
+CREATE TABLE IF NOT EXISTS landed_quote (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  destination TEXT NOT NULL,
+  currency TEXT NOT NULL,
+  components_json TEXT NOT NULL,
+  total_minor INTEGER NOT NULL CHECK (total_minor >= 0),
+  quoted_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  evidence_ref TEXT NOT NULL,
+  assumptions_json TEXT NOT NULL,
+  PRIMARY KEY(source, native_id, destination, quoted_at),
+  FOREIGN KEY(source, native_id) REFERENCES listing(source, native_id)
+);
+
+CREATE TABLE IF NOT EXISTS verified_sale (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  settled_at TEXT NOT NULL,
+  paid_minor INTEGER NOT NULL CHECK (paid_minor >= 0),
+  currency TEXT NOT NULL,
+  evidence_ref TEXT NOT NULL,
+  PRIMARY KEY(source, native_id, settled_at),
+  FOREIGN KEY(source, native_id) REFERENCES listing(source, native_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_card_search ON card(language, set_code, collector_number);
+CREATE INDEX IF NOT EXISTS idx_card_reference_identity ON card_reference(set_code, collector_number);
+CREATE INDEX IF NOT EXISTS idx_listing_unit ON listing(unit_id, current_status);
+CREATE INDEX IF NOT EXISTS idx_observation_time ON observation(observed_at);
+CREATE INDEX IF NOT EXISTS idx_raw_item_time ON raw_item_blob(source, observed_at);
+CREATE INDEX IF NOT EXISTS idx_resolution_item ON resolution_record(source, native_id, resolved_at);
+CREATE INDEX IF NOT EXISTS idx_quote_expiry ON landed_quote(expires_at);

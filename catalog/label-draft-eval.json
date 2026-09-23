@@ -1,0 +1,84 @@
+{
+  "report_type": "AI draft agreement diagnostic; not human-verified accuracy",
+  "sample_count": 68,
+  "catalog_cards": 3621,
+  "counts": {
+    "abstain_label_auto_accepted": 0,
+    "card_identity_candidates": 40,
+    "covered_finish_agreement": 0,
+    "covered_finish_auto_accepted": 0,
+    "covered_finish_disagreement": 0,
+    "covered_identity_agreement": 28,
+    "covered_identity_auto_accepted": 28,
+    "covered_identity_candidates": 34,
+    "covered_identity_disagreement": 0,
+    "finish_labeled_candidates": 0,
+    "finish_labeled_in_catalog": 0,
+    "grade_claim_agreement": 13,
+    "grade_claim_auto_accepted": 13,
+    "grade_claim_candidates": 22,
+    "grade_claim_disagreement": 0,
+    "identity_candidates_in_catalog": 34,
+    "identity_candidates_outside_catalog": 6,
+    "label_abstain": 14,
+    "label_partial": 54,
+    "resolved_grade_agreement": 28,
+    "resolved_grade_comparisons": 28,
+    "resolver_abstained": 40,
+    "resolver_auto_accepted": 28
+  },
+  "by_proposed_set": {
+    "M2": {
+      "auto_accepted": 1,
+      "in_catalog": 2,
+      "samples": 2
+    },
+    "M2a": {
+      "auto_accepted": 1,
+      "in_catalog": 4,
+      "samples": 5
+    },
+    "S6a": {
+      "samples": 6
+    },
+    "S8b": {
+      "auto_accepted": 2,
+      "in_catalog": 2,
+      "samples": 2
+    },
+    "SV1a": {
+      "auto_accepted": 6,
+      "in_catalog": 6,
+      "samples": 7
+    },
+    "SV2a": {
+      "auto_accepted": 4,
+      "in_catalog": 5,
+      "samples": 9
+    },
+    "SV3": {
+      "auto_accepted": 6,
+      "in_catalog": 6,
+      "samples": 7
+    },
+    "SV4a": {
+      "auto_accepted": 1,
+      "in_catalog": 1,
+      "samples": 2
+    },
+    "SV8": {
+      "auto_accepted": 7,
+      "in_catalog": 8,
+      "samples": 8
+    },
+    "unknown": {
+      "samples": 20
+    }
+  },
+  "interpretation": [
+    "Card identity means Japanese set code plus collector number, excluding finish.",
+    "The current draft has no independently evidenced set+number+finish labels, so finish precision is unmeasured.",
+    "The resolver sees listing titles only; the draft annotator also inspected descriptions.",
+    "Human adjudication and a held-out sample are required before reporting precision or recall."
+  ]
+}

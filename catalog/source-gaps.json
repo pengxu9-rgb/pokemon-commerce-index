@@ -1,0 +1,8 @@
+{
+  "S6a": {
+    "reason": "Pinned TCGdex data-asia/S/S6a card sources contain zh-tw names but no ja names; Japanese set API has zero card briefs.",
+    "source_files": "https://github.com/tcgdex/cards-database/tree/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S6a",
+    "api_checked": "https://api.tcgdex.net/v2/ja/sets/s6a",
+    "resolution": "Do not import as Japanese; seek a separately licensed Japanese metadata source or curate from authorized first-party data."
+  }
+}

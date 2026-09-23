@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>日文 Pokémon 卡片真人复核</title>
+  <link rel="stylesheet" href="/review_ui.css">
+  <script src="/review_ui.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">内部复核工作台 · 本机运行</div>
+      <h1>卡片与版本人工复核</h1>
+      <p>两位审核员独立看商品文字和卡面图；分歧由第三人裁决。这里不显示 AI 草稿或匹配器预测。</p>
+      <div id="status" class="status">读取进度中…</div>
+    </header>
+
+    <section class="session">
+      <label>审核员 ID <input id="reviewer" autocomplete="off" placeholder="例如 alice_01"></label>
+      <label>工作模式
+        <select id="mode"><option value="review">独立审核</option><option value="adjudicate">第三人裁决</option></select>
+      </label>
+      <button id="start" type="button">进入工作台</button>
+      <span id="message" role="status"></span>
+    </section>
+
+    <section id="workspace" hidden>
+      <div class="item-head">
+        <span id="item-key" class="eyebrow"></span>
+        <span id="review-progress"></span>
+      </div>
+      <h2 id="title"></h2>
+      <a id="listing-link" target="_blank" rel="noopener noreferrer">打开原 listing</a>
+      <h3>商品描述</h3>
+      <pre id="description"></pre>
+      <div class="photos-head">
+        <h3>卡面证据</h3>
+        <button id="load-images" type="button">加载记录中的图片</button>
+      </div>
+      <p id="photo-note" class="note"></p>
+      <div id="images" class="images"></div>
+
+      <div id="prior-reviews" hidden>
+        <h3>两位审核员的独立判断</h3>
+        <div id="review-comparison" class="comparison"></div>
+      </div>
+
+      <form id="label-form">
+        <h3 id="form-heading">填写独立判断</h3>
+        <div class="grid">
+          <label>是否单卡商品
+            <select name="single_card" required>
+              <option value="uncertain">不确定</option><option value="yes">是</option><option value="no">否，打包或多卡</option>
+            </select>
+          </label>
+          <label>语言
+            <select name="language"><option value="unknown">不确定</option><option value="ja">日文</option><option value="en">英文</option><option value="ko">韩文</option><option value="zh">中文</option></select>
+          </label>
+          <label>卡组代码 <input name="set_code" placeholder="SV2a"></label>
+          <label>卡号 <input name="number" placeholder="185/165"></label>
+          <label>卡面版本
+            <select name="variant">
+              <option value="unknown">无法确认</option>
+              <option value="normal">普通</option><option value="holo">闪卡 Holo</option>
+              <option value="reverse">反闪 Reverse</option>
+              <option value="reverse_pokeball">Poké Ball reverse</option>
+              <option value="reverse_masterball">Master Ball reverse</option>
+              <option value="reverse_energy">Energy reverse</option>
+              <option value="reverse_duskball">Dusk Ball reverse</option>
+              <option value="reverse_friendball">Friend Ball reverse</option>
+              <option value="reverse_loveball">Love Ball reverse</option>
+              <option value="reverse_quickball">Quick Ball reverse</option>
+              <option value="reverse_team-rocket">Team Rocket reverse</option>
+            </select>
+          </label>
+          <label>评级机构
+            <select name="grade_company"><option value="">未评级或无法确认</option><option>PSA</option><option>BGS</option><option>CGC</option><option>ARS</option><option>PGC</option><option>OTHER</option></select>
+          </label>
+          <label>评级分数 <input name="grade_value" placeholder="例如 10"></label>
+        </div>
+        <label class="checkbox"><input type="checkbox" name="image_seen">我实际看到了可判定这张卡的卡面图片</label>
+        <p class="note">如果图片无法打开、看不清工艺，版本必须保持“无法确认”。仅凭稀有度、价格或目录默认版本不算看图证据。</p>
+        <label>证据说明 <textarea name="evidence_notes" rows="4" placeholder="写明卡号、工艺、评级的证据位于哪张图片或哪段文字"></textarea></label>
+        <label id="reason-wrap" hidden>裁决理由 <textarea name="reason" rows="3" placeholder="说明如何处理两人分歧，至少 10 个字符"></textarea></label>
+        <button id="submit" type="submit">提交并查看下一条</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,219 @@
+{
+  "sets": 16,
+  "source_files": 2628,
+  "parsed_source_files": 2628,
+  "priceable_printings": 3621,
+  "variant_counts": {
+    "holo": 1100,
+    "normal": 1527,
+    "reverse": 375,
+    "reverse_duskball": 15,
+    "reverse_energy": 118,
+    "reverse_friendball": 11,
+    "reverse_loveball": 18,
+    "reverse_masterball": 257,
+    "reverse_pokeball": 173,
+    "reverse_quickball": 17,
+    "reverse_team-rocket": 9,
+    "standard": 1
+  },
+  "display_approved": false,
+  "set_coverage": [
+    {
+      "set_id": "M1L",
+      "source_files": 92,
+      "parsed": 92,
+      "printings": 92,
+      "variant_counts": {
+        "normal": 52,
+        "holo": 40
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M1S",
+      "source_files": 92,
+      "parsed": 92,
+      "printings": 92,
+      "variant_counts": {
+        "normal": 52,
+        "holo": 40
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M2",
+      "source_files": 116,
+      "parsed": 116,
+      "printings": 116,
+      "variant_counts": {
+        "normal": 64,
+        "holo": 52
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M2a",
+      "source_files": 250,
+      "parsed": 250,
+      "printings": 486,
+      "variant_counts": {
+        "normal": 166,
+        "reverse_energy": 118,
+        "reverse": 28,
+        "holo": 84,
+        "reverse_loveball": 18,
+        "reverse_friendball": 11,
+        "reverse_team-rocket": 9,
+        "reverse_pokeball": 20,
+        "reverse_quickball": 17,
+        "reverse_duskball": 15
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M3",
+      "source_files": 117,
+      "parsed": 117,
+      "printings": 117,
+      "variant_counts": {
+        "normal": 64,
+        "holo": 53
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M4",
+      "source_files": 120,
+      "parsed": 120,
+      "printings": 120,
+      "variant_counts": {
+        "normal": 67,
+        "holo": 53
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M5",
+      "source_files": 118,
+      "parsed": 118,
+      "printings": 118,
+      "variant_counts": {
+        "normal": 65,
+        "holo": 53
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M6",
+      "source_files": 113,
+      "parsed": 113,
+      "printings": 113,
+      "variant_counts": {
+        "normal": 60,
+        "holo": 53
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "M6a",
+      "source_files": 176,
+      "parsed": 176,
+      "printings": 176,
+      "variant_counts": {
+        "normal": 101,
+        "holo": 75
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "S8b",
+      "source_files": 285,
+      "parsed": 285,
+      "printings": 395,
+      "variant_counts": {
+        "normal": 140,
+        "reverse": 110,
+        "holo": 145
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV1a",
+      "source_files": 103,
+      "parsed": 103,
+      "printings": 103,
+      "variant_counts": {
+        "normal": 59,
+        "holo": 44
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV2a",
+      "source_files": 210,
+      "parsed": 210,
+      "printings": 516,
+      "variant_counts": {
+        "normal": 128,
+        "reverse_pokeball": 153,
+        "reverse_masterball": 153,
+        "holo": 82
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV3",
+      "source_files": 141,
+      "parsed": 141,
+      "printings": 141,
+      "variant_counts": {
+        "normal": 90,
+        "holo": 51
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV4a",
+      "source_files": 320,
+      "parsed": 320,
+      "printings": 413,
+      "variant_counts": {
+        "normal": 131,
+        "reverse": 93,
+        "holo": 189
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV8",
+      "source_files": 138,
+      "parsed": 138,
+      "printings": 138,
+      "variant_counts": {
+        "normal": 86,
+        "holo": 51,
+        "standard": 1
+      },
+      "errors": 0
+    },
+    {
+      "set_id": "SV8a",
+      "source_files": 237,
+      "parsed": 237,
+      "printings": 485,
+      "variant_counts": {
+        "normal": 202,
+        "reverse_masterball": 104,
+        "reverse": 144,
+        "holo": 35
+      },
+      "errors": 0
+    }
+  ],
+  "target_scope": "Selected modern and historical Japanese sets for early matching tests; not all TCGdex Japanese sets",
+  "target_sets": 17,
+  "missing_target_sets": [
+    "S6a"
+  ]
+}
