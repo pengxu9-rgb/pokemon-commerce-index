@@ -1,0 +1,15 @@
+{
+  "source": "ptcg-jp-reference.jsonl and ptcg-jp-gaps.jsonl",
+  "scope": "internal set-and-number discovery candidates; finish unresolved",
+  "multi_record_groups": 525,
+  "new_candidates": 462,
+  "candidate_sets": 31,
+  "excluded_name_conflicts": 51,
+  "excluded_whole_conflicting_sets": 12,
+  "conflicting_set_codes": [
+    "MG",
+    "SA"
+  ],
+  "display_approved": false,
+  "match_eligible": false
+}
