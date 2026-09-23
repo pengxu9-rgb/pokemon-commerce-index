@@ -6,6 +6,9 @@
 catalog/*
 !catalog/ja-all-sets.jsonl
 !catalog/ja-all-available.jsonl
+!catalog/en-physical-sets.jsonl
+!catalog/en-physical-cards.jsonl
+!catalog/en-physical-ambiguous.jsonl
 !catalog/ptcg-jp-candidates.jsonl
 !catalog/ptcg-jp-multi-record-candidates.jsonl
 !catalog/ptcg-jp-reference.jsonl

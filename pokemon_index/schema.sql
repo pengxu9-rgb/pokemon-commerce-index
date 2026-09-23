@@ -38,6 +38,18 @@ CREATE TABLE IF NOT EXISTS catalog_set (
   display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1))
 );
 
+CREATE TABLE IF NOT EXISTS catalog_set_localized (
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  name TEXT,
+  release_date TEXT,
+  official_card_count INTEGER NOT NULL CHECK (official_card_count >= 0),
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
+  PRIMARY KEY(language, set_code)
+);
+
 CREATE TABLE IF NOT EXISTS card_reference (
   source TEXT NOT NULL,
   native_id TEXT NOT NULL,

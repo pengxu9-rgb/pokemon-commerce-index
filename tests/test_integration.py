@@ -150,6 +150,17 @@ class GateDecisionTests(unittest.TestCase):
 
 
 class CatalogAdapterTests(unittest.TestCase):
+    def test_english_source_uses_global_directory_and_language(self):
+        source = '''const card = { name: { en: "Exeggcute" }, variants: [
+            { type: "normal", stamp: ["30th anniversary"] }
+        ] };'''
+        rows = tcgdex_source.parse_card_source(
+            source, set_id="30th", official_count=128,
+            path="data/Mega Evolution/30th Celebration/001.ts",
+            revision="a" * 40, language="en", source_directory="30th Celebration")
+        self.assertEqual((rows[0]["language"], rows[0]["collector_number"], rows[0]["variant"]),
+                         ("en", "001/128", "normal_30th_anniversary"))
+
     def test_legacy_first_edition_and_unlimited_are_distinct_printings(self):
         source = '''const card = { name: { ja: "カクナ" }, variants: [
             { type: "normal", stamp: ["1st edition"] },

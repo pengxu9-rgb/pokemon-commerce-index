@@ -22,7 +22,8 @@
 - 卡片目录逐条记录 `rights_reference` 和是否准许展示。旧数据库经 `init` 升级后，原有卡片默认不可展示，须重新导入并确认权利。
 - Buy&Ship Mercari 旧网关响应适配器、至多三次只读请求的 Gate 0 探针，以及 Pivota 候选商品交接契约。它们未连接真实生产数据。
 - TCGdex 日文卡组 JSON 的文本元数据适配器；不导入卡图、图片 URL、徽标或规则文本。
-- 固定 TCGdex commit 的广覆盖日文目录：16,347 条可区分版本的元数据，覆盖 126 个卡组；原 3,621 条阶段性记录全部包含其中。第二来源另补充 10,233 条单记录候选及 462 条多记录同名候选；24,039 条参考记录保留来源。TCGdex 另有 50 条同编号多版本无法区分的内部候选。合计 27,092 条内部身份；不确定候选禁止自动报价匹配，公开展示批准数为 0。
+- 固定 TCGdex commit 的日文目录：16,347 条可区分版本元数据；第二来源另补 10,233 条单记录与 462 条多记录同名候选，保留 24,039 条参考记录；TCGdex 另有 50 条版本歧义候选。日文合计 27,092 条。
+- 同一固定 commit 的英文实体卡目录：Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon 共 73 个卡组，17,611 条可解析版本身份及 135 条版本歧义候选。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 44,838 条内部身份、415 个语言＋卡组组合，公开展示批准数为 0。所有身份均无实时价格；源编号不足或版本歧义的卡禁止自动报价匹配。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
 
 `purge-expired` 需由部署环境定期运行；`expires_at` 停止该来源的导入和展示，数据删除仍按独立的 `retention_days` 执行。
@@ -55,7 +56,10 @@ python3 -m unittest discover -s tests -v
 ```bash
 python3 -m pokemon_index --db catalog.sqlite3 init
 python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/ja-all-sets.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/en-physical-sets.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ja-all-available.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-physical-cards.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-physical-ambiguous.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-multi-record-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl

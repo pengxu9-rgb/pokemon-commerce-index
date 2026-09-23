@@ -90,6 +90,26 @@ class IndexTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "not approved"):
             core.units_for_card(self.db, cid)
 
+    def test_english_set_identity_does_not_use_japanese_set_metadata(self):
+        core.import_sets(self.db, [{
+            "language": "en", "set_code": "SV2A", "name": "English Test Set",
+            "release_date": "2026-09-01", "official_card_count": 165,
+            "provenance": "test fixture", "rights_reference": "synthetic fixture",
+            "display_allowed": False,
+        }])
+        core.import_cards(self.db, [{
+            "language": "en", "set_code": "SV2A", "collector_number": "173/165",
+            "name": "English Pikachu", "provenance": "test fixture",
+            "rights_reference": "synthetic fixture", "display_allowed": False,
+        }])
+        result = core.catalog_search_internal(self.db, "English Test Set 173/165")
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(result["cards"][0]["language"], "en")
+        self.assertEqual(core.catalog_status(self.db)["sets"], 2)
+        self.assertEqual(core.catalog_card_internal(self.db, "en:SV2A:173/165:standard")["set"]["name"],
+                         "English Test Set")
+        self.assertEqual(core.catalog_card_internal(self.db, "ja:SV2A:173/165:standard")["set"], None)
+
     def test_unverified_supplemental_card_cannot_resolve_an_offer(self):
         core.import_cards(self.db, [{
             "language": "ja", "set_code": "S6a", "collector_number": "087/069",

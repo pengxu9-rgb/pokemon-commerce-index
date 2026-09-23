@@ -1,0 +1,753 @@
+{
+  "source": "https://github.com/tcgdex/cards-database/tree/a211f11f3ba57d56c65c5ac33be35b77d3280757/data",
+  "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "series": [
+    "Mega Evolution",
+    "Scarlet & Violet",
+    "Sun & Moon",
+    "Sword & Shield"
+  ],
+  "scope": "English physical-card identity text only; no art, rules or prices",
+  "display_approved": false,
+  "sets": 73,
+  "source_files": 11565,
+  "parsed_files": 11430,
+  "identities": 17611,
+  "match_eligible": 16491,
+  "gap_count": 135,
+  "gap_reasons": {
+    "two source variants collapse to the same identity": 135
+  },
+  "set_coverage": [
+    {
+      "path": "data/Mega Evolution/30th Celebration",
+      "source_files": 161,
+      "parsed_files": 161,
+      "identities": 161,
+      "gaps": 0,
+      "set_id": "30th",
+      "official_card_count": 128,
+      "name_en": "30th Celebration"
+    },
+    {
+      "path": "data/Mega Evolution/30th Classic Collection",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "30th-c",
+      "official_card_count": 30,
+      "name_en": "30th Classic Collection"
+    },
+    {
+      "path": "data/Mega Evolution/Ascended Heroes",
+      "source_files": 295,
+      "parsed_files": 295,
+      "identities": 629,
+      "gaps": 0,
+      "set_id": "me02.5",
+      "official_card_count": 217,
+      "name_en": "Ascended Heroes"
+    },
+    {
+      "path": "data/Mega Evolution/Chaos Rising",
+      "source_files": 122,
+      "parsed_files": 122,
+      "identities": 207,
+      "gaps": 0,
+      "set_id": "me04",
+      "official_card_count": 86,
+      "name_en": "Chaos Rising"
+    },
+    {
+      "path": "data/Mega Evolution/MEP Black Star Promos",
+      "source_files": 89,
+      "parsed_files": 88,
+      "identities": 120,
+      "gaps": 1,
+      "set_id": "mep",
+      "official_card_count": 0,
+      "name_en": "MEP Black Star Promos"
+    },
+    {
+      "path": "data/Mega Evolution/Mega Evolution",
+      "source_files": 188,
+      "parsed_files": 188,
+      "identities": 359,
+      "gaps": 0,
+      "set_id": "me01",
+      "official_card_count": 132,
+      "name_en": "Mega Evolution"
+    },
+    {
+      "path": "data/Mega Evolution/Mega Evolution Energy",
+      "source_files": 16,
+      "parsed_files": 16,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "mee",
+      "official_card_count": 16,
+      "name_en": "Mega Evolution Energy"
+    },
+    {
+      "path": "data/Mega Evolution/Perfect Order",
+      "source_files": 124,
+      "parsed_files": 124,
+      "identities": 237,
+      "gaps": 0,
+      "set_id": "me03",
+      "official_card_count": 88,
+      "name_en": "Perfect Order"
+    },
+    {
+      "path": "data/Mega Evolution/Phantasmal Flames",
+      "source_files": 130,
+      "parsed_files": 130,
+      "identities": 230,
+      "gaps": 0,
+      "set_id": "me02",
+      "official_card_count": 94,
+      "name_en": "Phantasmal Flames"
+    },
+    {
+      "path": "data/Mega Evolution/Pitch Black",
+      "source_files": 120,
+      "parsed_files": 120,
+      "identities": 200,
+      "gaps": 0,
+      "set_id": "me05",
+      "official_card_count": 84,
+      "name_en": "Pitch Black"
+    },
+    {
+      "path": "data/Scarlet & Violet/151",
+      "source_files": 207,
+      "parsed_files": 205,
+      "identities": 378,
+      "gaps": 2,
+      "set_id": "sv03.5",
+      "official_card_count": 165,
+      "name_en": "151"
+    },
+    {
+      "path": "data/Scarlet & Violet/Black Bolt",
+      "source_files": 172,
+      "parsed_files": 170,
+      "identities": 418,
+      "gaps": 2,
+      "set_id": "sv10.5b",
+      "official_card_count": 86,
+      "name_en": "Black Bolt"
+    },
+    {
+      "path": "data/Scarlet & Violet/Destined Rivals",
+      "source_files": 244,
+      "parsed_files": 243,
+      "identities": 429,
+      "gaps": 1,
+      "set_id": "sv10",
+      "official_card_count": 182,
+      "name_en": "Destined Rivals"
+    },
+    {
+      "path": "data/Scarlet & Violet/Journey Together",
+      "source_files": 190,
+      "parsed_files": 185,
+      "identities": 376,
+      "gaps": 5,
+      "set_id": "sv09",
+      "official_card_count": 159,
+      "name_en": "Journey Together"
+    },
+    {
+      "path": "data/Scarlet & Violet/My First Battle",
+      "source_files": 34,
+      "parsed_files": 34,
+      "identities": 48,
+      "gaps": 0,
+      "set_id": "mfb",
+      "official_card_count": 48,
+      "name_en": "My First Battle"
+    },
+    {
+      "path": "data/Scarlet & Violet/Obsidian Flames",
+      "source_files": 230,
+      "parsed_files": 228,
+      "identities": 449,
+      "gaps": 2,
+      "set_id": "sv03",
+      "official_card_count": 197,
+      "name_en": "Obsidian Flames"
+    },
+    {
+      "path": "data/Scarlet & Violet/Paldea Evolved",
+      "source_files": 279,
+      "parsed_files": 277,
+      "identities": 479,
+      "gaps": 2,
+      "set_id": "sv02",
+      "official_card_count": 193,
+      "name_en": "Paldea Evolved"
+    },
+    {
+      "path": "data/Scarlet & Violet/Paldean Fates",
+      "source_files": 245,
+      "parsed_files": 245,
+      "identities": 333,
+      "gaps": 0,
+      "set_id": "sv04.5",
+      "official_card_count": 91,
+      "name_en": "Paldean Fates"
+    },
+    {
+      "path": "data/Scarlet & Violet/Paradox Rift",
+      "source_files": 266,
+      "parsed_files": 264,
+      "identities": 445,
+      "gaps": 2,
+      "set_id": "sv04",
+      "official_card_count": 182,
+      "name_en": "Paradox Rift"
+    },
+    {
+      "path": "data/Scarlet & Violet/Prismatic Evolutions",
+      "source_files": 180,
+      "parsed_files": 177,
+      "identities": 465,
+      "gaps": 3,
+      "set_id": "sv08.5",
+      "official_card_count": 131,
+      "name_en": "Prismatic Evolutions"
+    },
+    {
+      "path": "data/Scarlet & Violet/SVP Black Star Promos",
+      "source_files": 226,
+      "parsed_files": 209,
+      "identities": 293,
+      "gaps": 17,
+      "set_id": "svp",
+      "official_card_count": 225,
+      "name_en": "SVP Black Star Promos"
+    },
+    {
+      "path": "data/Scarlet & Violet/Scarlet & Violet",
+      "source_files": 258,
+      "parsed_files": 258,
+      "identities": 444,
+      "gaps": 0,
+      "set_id": "sv01",
+      "official_card_count": 198,
+      "name_en": "Scarlet & Violet"
+    },
+    {
+      "path": "data/Scarlet & Violet/Scarlet & Violet Energy",
+      "source_files": 24,
+      "parsed_files": 24,
+      "identities": 112,
+      "gaps": 0,
+      "set_id": "sve",
+      "official_card_count": 24,
+      "name_en": "Scarlet & Violet Energy"
+    },
+    {
+      "path": "data/Scarlet & Violet/Shrouded Fable",
+      "source_files": 99,
+      "parsed_files": 99,
+      "identities": 162,
+      "gaps": 0,
+      "set_id": "sv06.5",
+      "official_card_count": 64,
+      "name_en": "Shrouded Fable"
+    },
+    {
+      "path": "data/Scarlet & Violet/Stellar Crown",
+      "source_files": 175,
+      "parsed_files": 171,
+      "identities": 312,
+      "gaps": 4,
+      "set_id": "sv07",
+      "official_card_count": 142,
+      "name_en": "Stellar Crown"
+    },
+    {
+      "path": "data/Scarlet & Violet/Surging Sparks",
+      "source_files": 252,
+      "parsed_files": 249,
+      "identities": 441,
+      "gaps": 3,
+      "set_id": "sv08",
+      "official_card_count": 191,
+      "name_en": "Surging Sparks"
+    },
+    {
+      "path": "data/Scarlet & Violet/Temporal Forces",
+      "source_files": 218,
+      "parsed_files": 215,
+      "identities": 422,
+      "gaps": 3,
+      "set_id": "sv05",
+      "official_card_count": 162,
+      "name_en": "Temporal Forces"
+    },
+    {
+      "path": "data/Scarlet & Violet/Twilight Masquerade",
+      "source_files": 226,
+      "parsed_files": 224,
+      "identities": 394,
+      "gaps": 2,
+      "set_id": "sv06",
+      "official_card_count": 167,
+      "name_en": "Twilight Masquerade"
+    },
+    {
+      "path": "data/Scarlet & Violet/White Flare",
+      "source_files": 173,
+      "parsed_files": 173,
+      "identities": 410,
+      "gaps": 0,
+      "set_id": "sv10.5w",
+      "official_card_count": 86,
+      "name_en": "White Flare"
+    },
+    {
+      "path": "data/Sun & Moon/Burning Shadows",
+      "source_files": 169,
+      "parsed_files": 168,
+      "identities": 289,
+      "gaps": 1,
+      "set_id": "sm3",
+      "official_card_count": 147,
+      "name_en": "Burning Shadows"
+    },
+    {
+      "path": "data/Sun & Moon/Celestial Storm",
+      "source_files": 183,
+      "parsed_files": 183,
+      "identities": 183,
+      "gaps": 0,
+      "set_id": "sm7",
+      "official_card_count": 168,
+      "name_en": "Celestial Storm"
+    },
+    {
+      "path": "data/Sun & Moon/Cosmic Eclipse",
+      "source_files": 271,
+      "parsed_files": 271,
+      "identities": 271,
+      "gaps": 0,
+      "set_id": "sm12",
+      "official_card_count": 236,
+      "name_en": "Cosmic Eclipse"
+    },
+    {
+      "path": "data/Sun & Moon/Crimson Invasion",
+      "source_files": 125,
+      "parsed_files": 125,
+      "identities": 125,
+      "gaps": 0,
+      "set_id": "sm4",
+      "official_card_count": 111,
+      "name_en": "Crimson Invasion"
+    },
+    {
+      "path": "data/Sun & Moon/Detective Pikachu",
+      "source_files": 18,
+      "parsed_files": 18,
+      "identities": 18,
+      "gaps": 0,
+      "set_id": "det1",
+      "official_card_count": 18,
+      "name_en": "Detective Pikachu"
+    },
+    {
+      "path": "data/Sun & Moon/Dragon Majesty",
+      "source_files": 78,
+      "parsed_files": 78,
+      "identities": 78,
+      "gaps": 0,
+      "set_id": "sm7.5",
+      "official_card_count": 70,
+      "name_en": "Dragon Majesty"
+    },
+    {
+      "path": "data/Sun & Moon/Forbidden Light",
+      "source_files": 146,
+      "parsed_files": 146,
+      "identities": 147,
+      "gaps": 0,
+      "set_id": "sm6",
+      "official_card_count": 131,
+      "name_en": "Forbidden Light"
+    },
+    {
+      "path": "data/Sun & Moon/Guardians Rising",
+      "source_files": 169,
+      "parsed_files": 169,
+      "identities": 169,
+      "gaps": 0,
+      "set_id": "sm2",
+      "official_card_count": 145,
+      "name_en": "Guardians Rising"
+    },
+    {
+      "path": "data/Sun & Moon/Hidden Fates",
+      "source_files": 69,
+      "parsed_files": 69,
+      "identities": 69,
+      "gaps": 0,
+      "set_id": "sm115",
+      "official_card_count": 68,
+      "name_en": "Hidden Fates"
+    },
+    {
+      "path": "data/Sun & Moon/Hidden Fates Shiny Vault",
+      "source_files": 94,
+      "parsed_files": 94,
+      "identities": 94,
+      "gaps": 0,
+      "set_id": "sma",
+      "official_card_count": 94,
+      "name_en": "Hidden Fates Shiny Vault"
+    },
+    {
+      "path": "data/Sun & Moon/Lost Thunder",
+      "source_files": 236,
+      "parsed_files": 236,
+      "identities": 236,
+      "gaps": 0,
+      "set_id": "sm8",
+      "official_card_count": 214,
+      "name_en": "Lost Thunder"
+    },
+    {
+      "path": "data/Sun & Moon/SM Black Star Promos",
+      "source_files": 248,
+      "parsed_files": 248,
+      "identities": 248,
+      "gaps": 0,
+      "set_id": "smp",
+      "official_card_count": 248,
+      "name_en": "SM Black Star Promos"
+    },
+    {
+      "path": "data/Sun & Moon/Shining Legends",
+      "source_files": 78,
+      "parsed_files": 78,
+      "identities": 78,
+      "gaps": 0,
+      "set_id": "sm3.5",
+      "official_card_count": 73,
+      "name_en": "Shining Legends"
+    },
+    {
+      "path": "data/Sun & Moon/Sun & Moon",
+      "source_files": 172,
+      "parsed_files": 172,
+      "identities": 172,
+      "gaps": 0,
+      "set_id": "sm1",
+      "official_card_count": 149,
+      "name_en": "Sun & Moon"
+    },
+    {
+      "path": "data/Sun & Moon/Team Up",
+      "source_files": 196,
+      "parsed_files": 196,
+      "identities": 197,
+      "gaps": 0,
+      "set_id": "sm9",
+      "official_card_count": 181,
+      "name_en": "Team Up"
+    },
+    {
+      "path": "data/Sun & Moon/Ultra Prism",
+      "source_files": 173,
+      "parsed_files": 173,
+      "identities": 173,
+      "gaps": 0,
+      "set_id": "sm5",
+      "official_card_count": 156,
+      "name_en": "Ultra Prism"
+    },
+    {
+      "path": "data/Sun & Moon/Unbroken Bonds",
+      "source_files": 234,
+      "parsed_files": 234,
+      "identities": 235,
+      "gaps": 0,
+      "set_id": "sm10",
+      "official_card_count": 214,
+      "name_en": "Unbroken Bonds"
+    },
+    {
+      "path": "data/Sun & Moon/Unified Minds",
+      "source_files": 258,
+      "parsed_files": 258,
+      "identities": 260,
+      "gaps": 0,
+      "set_id": "sm11",
+      "official_card_count": 236,
+      "name_en": "Unified Minds"
+    },
+    {
+      "path": "data/Sword & Shield/Astral Radiance",
+      "source_files": 216,
+      "parsed_files": 215,
+      "identities": 347,
+      "gaps": 1,
+      "set_id": "swsh10",
+      "official_card_count": 189,
+      "name_en": "Astral Radiance"
+    },
+    {
+      "path": "data/Sword & Shield/Astral Radiance Trainer Gallery",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 32,
+      "gaps": 0,
+      "set_id": "swsh10tg",
+      "official_card_count": 30,
+      "name_en": "Astral Radiance Trainer Gallery"
+    },
+    {
+      "path": "data/Sword & Shield/Battle Styles",
+      "source_files": 183,
+      "parsed_files": 181,
+      "identities": 309,
+      "gaps": 2,
+      "set_id": "swsh5",
+      "official_card_count": 163,
+      "name_en": "Battle Styles"
+    },
+    {
+      "path": "data/Sword & Shield/Brilliant Stars",
+      "source_files": 186,
+      "parsed_files": 183,
+      "identities": 312,
+      "gaps": 3,
+      "set_id": "swsh9",
+      "official_card_count": 172,
+      "name_en": "Brilliant Stars"
+    },
+    {
+      "path": "data/Sword & Shield/Brilliant Stars Trainer Gallery",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 32,
+      "gaps": 0,
+      "set_id": "swsh9tg",
+      "official_card_count": 30,
+      "name_en": "Brilliant Stars Trainer Gallery"
+    },
+    {
+      "path": "data/Sword & Shield/Celebrations",
+      "source_files": 25,
+      "parsed_files": 25,
+      "identities": 25,
+      "gaps": 0,
+      "set_id": "cel25",
+      "official_card_count": 25,
+      "name_en": "Celebrations"
+    },
+    {
+      "path": "data/Sword & Shield/Celebrations Classic Collection",
+      "source_files": 25,
+      "parsed_files": 25,
+      "identities": 25,
+      "gaps": 0,
+      "set_id": "cel25cc",
+      "official_card_count": 25,
+      "name_en": "Celebrations Classic Collection"
+    },
+    {
+      "path": "data/Sword & Shield/Champion's Path",
+      "source_files": 80,
+      "parsed_files": 80,
+      "identities": 80,
+      "gaps": 0,
+      "set_id": "swsh3.5",
+      "official_card_count": 73,
+      "name_en": "Champion's Path"
+    },
+    {
+      "path": "data/Sword & Shield/Chilling Reign",
+      "source_files": 233,
+      "parsed_files": 232,
+      "identities": 374,
+      "gaps": 1,
+      "set_id": "swsh6",
+      "official_card_count": 198,
+      "name_en": "Chilling Reign"
+    },
+    {
+      "path": "data/Sword & Shield/Crown Zenith",
+      "source_files": 160,
+      "parsed_files": 158,
+      "identities": 270,
+      "gaps": 2,
+      "set_id": "swsh12.5",
+      "official_card_count": 159,
+      "name_en": "Crown Zenith"
+    },
+    {
+      "path": "data/Sword & Shield/Crown Zenith Galarian Gallery",
+      "source_files": 70,
+      "parsed_files": 70,
+      "identities": 70,
+      "gaps": 0,
+      "set_id": "swsh12.5gg",
+      "official_card_count": 70,
+      "name_en": "Crown Zenith Galarian Gallery"
+    },
+    {
+      "path": "data/Sword & Shield/Darkness Ablaze",
+      "source_files": 201,
+      "parsed_files": 199,
+      "identities": 360,
+      "gaps": 2,
+      "set_id": "swsh3",
+      "official_card_count": 189,
+      "name_en": "Darkness Ablaze"
+    },
+    {
+      "path": "data/Sword & Shield/Evolving Skies",
+      "source_files": 237,
+      "parsed_files": 235,
+      "identities": 375,
+      "gaps": 2,
+      "set_id": "swsh7",
+      "official_card_count": 203,
+      "name_en": "Evolving Skies"
+    },
+    {
+      "path": "data/Sword & Shield/Fusion Strike",
+      "source_files": 284,
+      "parsed_files": 284,
+      "identities": 507,
+      "gaps": 0,
+      "set_id": "swsh8",
+      "official_card_count": 264,
+      "name_en": "Fusion Strike"
+    },
+    {
+      "path": "data/Sword & Shield/Lost Origin",
+      "source_files": 217,
+      "parsed_files": 215,
+      "identities": 368,
+      "gaps": 2,
+      "set_id": "swsh11",
+      "official_card_count": 196,
+      "name_en": "Lost Origin"
+    },
+    {
+      "path": "data/Sword & Shield/Lost Origin Trainer Gallery",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "swsh11tg",
+      "official_card_count": 30,
+      "name_en": "Lost Origin Trainer Gallery"
+    },
+    {
+      "path": "data/Sword & Shield/Pokémon Futsal 2020",
+      "source_files": 5,
+      "parsed_files": 5,
+      "identities": 5,
+      "gaps": 0,
+      "set_id": "fut2020",
+      "official_card_count": 5,
+      "name_en": "Pokémon Futsal 2020"
+    },
+    {
+      "path": "data/Sword & Shield/Pokémon GO",
+      "source_files": 88,
+      "parsed_files": 88,
+      "identities": 155,
+      "gaps": 0,
+      "set_id": "swsh10.5",
+      "official_card_count": 78,
+      "name_en": "Pokémon GO"
+    },
+    {
+      "path": "data/Sword & Shield/Rebel Clash",
+      "source_files": 209,
+      "parsed_files": 209,
+      "identities": 371,
+      "gaps": 0,
+      "set_id": "swsh2",
+      "official_card_count": 192,
+      "name_en": "Rebel Clash"
+    },
+    {
+      "path": "data/Sword & Shield/SWSH Black Star Promos",
+      "source_files": 307,
+      "parsed_files": 238,
+      "identities": 313,
+      "gaps": 69,
+      "set_id": "swshp",
+      "official_card_count": 307,
+      "name_en": "SWSH Black Star Promos"
+    },
+    {
+      "path": "data/Sword & Shield/Shining Fates",
+      "source_files": 73,
+      "parsed_files": 73,
+      "identities": 120,
+      "gaps": 0,
+      "set_id": "swsh4.5",
+      "official_card_count": 72,
+      "name_en": "Shining Fates"
+    },
+    {
+      "path": "data/Sword & Shield/Shining Fates Shiny Vault",
+      "source_files": 122,
+      "parsed_files": 122,
+      "identities": 122,
+      "gaps": 0,
+      "set_id": "swsh4.5sv",
+      "official_card_count": 122,
+      "name_en": "Shining Fates Shiny Vault"
+    },
+    {
+      "path": "data/Sword & Shield/Silver Tempest",
+      "source_files": 215,
+      "parsed_files": 214,
+      "identities": 362,
+      "gaps": 1,
+      "set_id": "swsh12",
+      "official_card_count": 195,
+      "name_en": "Silver Tempest"
+    },
+    {
+      "path": "data/Sword & Shield/Silver Tempest Trainer Gallery",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "swsh12tg",
+      "official_card_count": 30,
+      "name_en": "Silver Tempest Trainer Gallery"
+    },
+    {
+      "path": "data/Sword & Shield/Sword & Shield",
+      "source_files": 216,
+      "parsed_files": 216,
+      "identities": 216,
+      "gaps": 0,
+      "set_id": "swsh1",
+      "official_card_count": 202,
+      "name_en": "Sword & Shield"
+    },
+    {
+      "path": "data/Sword & Shield/Vivid Voltage",
+      "source_files": 203,
+      "parsed_files": 203,
+      "identities": 352,
+      "gaps": 0,
+      "set_id": "swsh4",
+      "official_card_count": 185,
+      "name_en": "Vivid Voltage"
+    }
+  ]
+}

@@ -116,19 +116,22 @@ def _variant_token(value: str, *, normalize_hyphen: bool = False) -> str:
 
 
 def parse_card_source(source: str, *, set_id: str, official_count: int,
-                      path: str, revision: str) -> list[dict[str, Any]]:
+                      path: str, revision: str, language: str = "ja",
+                      source_directory: str | None = None) -> list[dict[str, Any]]:
     if not re.fullmatch(r"[0-9a-f]{40}", revision):
         raise ValueError("dataset revision must be a full Git commit SHA")
     filename = PurePosixPath(path)
-    if filename.suffix != ".ts" or filename.parent.name != set_id:
+    if filename.suffix != ".ts" or filename.parent.name != (source_directory or set_id):
         raise ValueError("card source path does not match set")
     local_id = filename.stem
     if not local_id:
         raise ValueError("card filename lacks local id")
     name_block = _object_field(source, "name", "{", "}")
-    name = _string_field(name_block or "", "ja")
+    if language not in {"ja", "en"}:
+        raise ValueError("unsupported card language")
+    name = _string_field(name_block or "", language)
     if not name:
-        raise ValueError("card source lacks Japanese name")
+        raise ValueError(f"card source lacks {language} name")
     rarity = _string_field(source, "rarity")
     if not re.fullmatch(r"[A-Za-z0-9]+", local_id):
         raise ValueError("card filename is not an alphanumeric collector id")
@@ -159,7 +162,7 @@ def parse_card_source(source: str, *, set_id: str, official_count: int,
     digest = hashlib.sha256(source.encode("utf-8")).hexdigest()
     rights = f"https://github.com/tcgdex/cards-database/blob/{revision}/LICENSE"
     return [{
-        "language": "ja", "set_code": set_id, "collector_number": number,
+        "language": language, "set_code": set_id, "collector_number": number,
         "variant": variant, "name": name, "rarity": rarity,
         "provenance": f"tcgdex:{revision}:{path}:sha256:{digest}",
         "rights_reference": rights, "display_allowed": False,

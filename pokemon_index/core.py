@@ -58,6 +58,11 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE observation ADD COLUMN native_created TEXT")
     if "native_updated" not in observation_columns:
         db.execute("ALTER TABLE observation ADD COLUMN native_updated TEXT")
+    db.execute(
+        """INSERT OR IGNORE INTO catalog_set_localized
+        SELECT 'ja', set_code, name_ja, release_date_ja, official_card_count,
+        provenance, rights_reference, display_allowed FROM catalog_set"""
+    )
     db.commit()
 
 
@@ -149,17 +154,33 @@ def import_sets(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         official = int(row.get("official_card_count", 0))
         if official < 0:
             raise ValueError("official card count cannot be negative")
+        language = str(row.get("language") or "ja").lower()
+        if language not in {"ja", "en"}:
+            raise ValueError("unsupported set language")
+        set_code = str(row["set_code"]).upper()
+        name = row.get("name") if language == "en" else row.get("name_ja")
+        release_date = row.get("release_date") if language == "en" else row.get("release_date_ja")
+        values = (set_code, name, release_date, official, row["provenance"],
+                  row["rights_reference"], int(bool(row.get("display_allowed", False))))
         db.execute(
-            """INSERT INTO catalog_set VALUES (?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(set_code) DO UPDATE SET name_ja=excluded.name_ja,
-            release_date_ja=excluded.release_date_ja,
+            """INSERT INTO catalog_set_localized VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(language, set_code) DO UPDATE SET name=excluded.name,
+            release_date=excluded.release_date,
             official_card_count=excluded.official_card_count,
             provenance=excluded.provenance, rights_reference=excluded.rights_reference,
             display_allowed=excluded.display_allowed""",
-            (str(row["set_code"]).upper(), row.get("name_ja"), row.get("release_date_ja"),
-             official, row["provenance"], row["rights_reference"],
-             int(bool(row.get("display_allowed", False)))),
+            (language, *values),
         )
+        if language == "ja":
+            db.execute(
+                """INSERT INTO catalog_set VALUES (?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(set_code) DO UPDATE SET name_ja=excluded.name_ja,
+                release_date_ja=excluded.release_date_ja,
+                official_card_count=excluded.official_card_count,
+                provenance=excluded.provenance, rights_reference=excluded.rights_reference,
+                display_allowed=excluded.display_allowed""",
+                values,
+            )
         count += 1
     db.commit()
     return count
@@ -190,18 +211,22 @@ def import_card_references(db: sqlite3.Connection, rows: Iterable[dict[str, Any]
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
     totals = db.execute(
-        """SELECT COUNT(*) AS printings, COUNT(DISTINCT set_code) AS sets,
+        """SELECT COUNT(*) AS printings, COUNT(DISTINCT language || ':' || set_code) AS sets,
         SUM(CASE WHEN display_allowed=1 THEN 1 ELSE 0 END) AS display_approved,
         SUM(CASE WHEN match_eligible=1 THEN 1 ELSE 0 END) AS match_eligible
         FROM card"""
     ).fetchone()
     sets = [dict(row) for row in db.execute(
-        """SELECT c.set_code, MAX(s.name_ja) AS name_ja, MAX(s.release_date_ja) AS release_date_ja,
+        """SELECT c.language, c.set_code, MAX(s.name) AS name,
+        MAX(s.release_date) AS release_date,
+        MAX(CASE WHEN c.language='ja' THEN s.name END) AS name_ja,
+        MAX(CASE WHEN c.language='ja' THEN s.release_date END) AS release_date_ja,
         COUNT(*) AS printings, COUNT(DISTINCT c.collector_number) AS collector_numbers,
         SUM(CASE WHEN c.display_allowed=1 THEN 1 ELSE 0 END) AS display_approved,
         SUM(CASE WHEN c.match_eligible=1 THEN 1 ELSE 0 END) AS match_eligible
-        FROM card c LEFT JOIN catalog_set s ON s.set_code=c.set_code
-        GROUP BY c.set_code ORDER BY c.set_code"""
+        FROM card c LEFT JOIN catalog_set_localized s
+        ON s.language=c.language AND s.set_code=c.set_code
+        GROUP BY c.language, c.set_code ORDER BY c.language, c.set_code"""
     )]
     references = db.execute("SELECT COUNT(*) FROM card_reference").fetchone()[0]
     return {"printings": totals["printings"], "sets": totals["sets"],
@@ -228,8 +253,10 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
         raise ValueError("a query or set code is required")
     terms = [normalize_collector_number(term) for term in normalized.casefold().split()]
     candidates = db.execute(
-        """SELECT c.*, s.name_ja AS set_name_ja FROM card c
-        LEFT JOIN catalog_set s ON s.set_code=c.set_code
+        """SELECT c.*, s.name AS set_name,
+        CASE WHEN c.language='ja' THEN s.name END AS set_name_ja FROM card c
+        LEFT JOIN catalog_set_localized s
+        ON s.language=c.language AND s.set_code=c.set_code
         WHERE (? IS NULL OR c.set_code=?) AND (? IS NULL OR c.variant=?)
         ORDER BY c.set_code, c.collector_number, c.variant""",
         (set_code.upper() if set_code else None, set_code.upper() if set_code else None,
@@ -237,7 +264,7 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
     )
     def matches(row: sqlite3.Row) -> bool:
         text = unicodedata.normalize(
-            "NFKC", f"{row['name']} {row['set_name_ja'] or ''} {row['set_code']} {row['collector_number']} "
+            "NFKC", f"{row['name']} {row['set_name'] or ''} {row['set_code']} {row['collector_number']} "
             f"{row['language']} {row['variant']}"
         ).casefold()
         return all(term in text for term in terms)
@@ -265,15 +292,19 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
     for reference in db.execute(
         """SELECT * FROM card_reference WHERE set_code=? AND collector_number=?
         ORDER BY source, native_id LIMIT 20""",
-        (row["set_code"], row["collector_number"]),
+        (row["set_code"] if row["language"] == "ja" else "", row["collector_number"]),
     ):
         item = dict(reference)
         item["attributes"] = json.loads(item.pop("attributes_json"))
         references.append(item)
     return {"card": _catalog_card_dict(row), "variants_at_number": siblings,
-            "set": dict(set_row) if (set_row := db.execute(
-                "SELECT * FROM catalog_set WHERE set_code=?", (row["set_code"],)
-            ).fetchone()) else None,
+            "set": ({**dict(set_row),
+                     "name_ja": set_row["name"] if row["language"] == "ja" else None,
+                     "release_date_ja": set_row["release_date"] if row["language"] == "ja" else None}
+                    if (set_row := db.execute(
+                "SELECT * FROM catalog_set_localized WHERE language=? AND set_code=?",
+                (row["language"], row["set_code"])
+            ).fetchone()) else None),
             "reference_records": references,
             "observed_priceable_units": units,
             "scope": "internal metadata only; public APIs still enforce display permission"}

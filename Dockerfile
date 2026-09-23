@@ -4,12 +4,17 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 COPY pokemon_index /app/pokemon_index
 COPY catalog/ja-all-sets.jsonl catalog/ja-all-available.jsonl \
+     catalog/en-physical-sets.jsonl catalog/en-physical-cards.jsonl \
+     catalog/en-physical-ambiguous.jsonl \
      catalog/ptcg-jp-candidates.jsonl catalog/ptcg-jp-multi-record-candidates.jsonl \
      catalog/ptcg-jp-reference.jsonl \
      catalog/tcgdex-ambiguous-candidates.jsonl /app/catalog/
 RUN python -m pokemon_index --db /app/catalog.sqlite3 init \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/ja-all-sets.jsonl \
+ && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/en-physical-sets.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ja-all-available.jsonl \
+ && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/en-physical-cards.jsonl \
+ && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/en-physical-ambiguous.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ptcg-jp-candidates.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ptcg-jp-multi-record-candidates.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/tcgdex-ambiguous-candidates.jsonl \
