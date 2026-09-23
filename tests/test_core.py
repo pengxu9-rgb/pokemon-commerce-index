@@ -172,6 +172,7 @@ class IndexTests(unittest.TestCase):
         }])
         self.assertIsNone(core.recommend(self.db, unit, "HK", "2026-09-22T11:00:00Z")["recommendation"])
         result = core.recommend(self.db, unit, "HK", "2026-09-22T09:30:00Z")
+        self.assertEqual(result["recommendation_type"], "price_only")
         self.assertEqual(result["recommendation"]["quote"]["total_minor"], 23000)
 
     def test_source_policy_controls_ingest_and_display(self):

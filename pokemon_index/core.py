@@ -692,10 +692,12 @@ def recommend(db: sqlite3.Connection, unit_id: str, destination: str, now: str |
     currencies = {item["quote"]["currency"] for item in quoted}
     if len(currencies) > 1:
         return {"unit_id": unit_id, "destination": destination, "recommendation": None,
+                "recommendation_type": "none",
                 "reason": "quotes have different destination currencies", "offers": active}
     quoted.sort(key=lambda item: (item["quote"]["total_minor"], item["last_seen"]))
     return {"unit_id": unit_id, "destination": destination,
             "recommendation": quoted[0] if quoted else None,
+            "recommendation_type": "price_only" if quoted else "none",
             "reason": "lowest current complete landed quote" if quoted else "no current landed quote",
             "offers": active}
 

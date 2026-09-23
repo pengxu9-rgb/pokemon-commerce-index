@@ -2,6 +2,7 @@
   "source": "https://github.com/tcgdex/cards-database/tree/a211f11f3ba57d56c65c5ac33be35b77d3280757/data",
   "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
   "series": [
+    "Base",
     "Mega Evolution",
     "Scarlet & Violet",
     "Sun & Moon",
@@ -9,16 +10,76 @@
   ],
   "scope": "English physical-card identity text only; no art, rules or prices",
   "display_approved": false,
-  "sets": 73,
-  "source_files": 11565,
-  "parsed_files": 11430,
-  "identities": 17611,
-  "match_eligible": 16491,
+  "sets": 79,
+  "source_files": 12059,
+  "parsed_files": 11924,
+  "identities": 18730,
+  "match_eligible": 17610,
   "gap_count": 135,
   "gap_reasons": {
     "two source variants collapse to the same identity": 135
   },
   "set_coverage": [
+    {
+      "path": "data/Base/Base Set",
+      "source_files": 102,
+      "parsed_files": 102,
+      "identities": 415,
+      "gaps": 0,
+      "set_id": "base1",
+      "official_card_count": 102,
+      "name_en": "Base Set"
+    },
+    {
+      "path": "data/Base/Base Set 2",
+      "source_files": 130,
+      "parsed_files": 130,
+      "identities": 131,
+      "gaps": 0,
+      "set_id": "base4",
+      "official_card_count": 130,
+      "name_en": "Base Set 2"
+    },
+    {
+      "path": "data/Base/Fossil",
+      "source_files": 62,
+      "parsed_files": 62,
+      "identities": 177,
+      "gaps": 0,
+      "set_id": "base3",
+      "official_card_count": 62,
+      "name_en": "Fossil"
+    },
+    {
+      "path": "data/Base/Jungle",
+      "source_files": 64,
+      "parsed_files": 64,
+      "identities": 150,
+      "gaps": 0,
+      "set_id": "base2",
+      "official_card_count": 64,
+      "name_en": "Jungle"
+    },
+    {
+      "path": "data/Base/Team Rocket",
+      "source_files": 83,
+      "parsed_files": 83,
+      "identities": 172,
+      "gaps": 0,
+      "set_id": "base5",
+      "official_card_count": 82,
+      "name_en": "Team Rocket"
+    },
+    {
+      "path": "data/Base/Wizards Black Star Promos",
+      "source_files": 53,
+      "parsed_files": 53,
+      "identities": 74,
+      "gaps": 0,
+      "set_id": "basep",
+      "official_card_count": 53,
+      "name_en": "Wizards Black Star Promos"
+    },
     {
       "path": "data/Mega Evolution/30th Celebration",
       "source_files": 161,
