@@ -5,7 +5,7 @@
 **主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份 → 获准的真实报价 → ask index → 到手价／商家建议 → discovery。人工双审是并行质检工具，不是前三层的开工门槛。**
 
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
-仓库内的 [`catalog-index.sqlite3`](catalog-index.sqlite3) 是已经装载的内部查询快照；无实时市场报价。
+内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
 
 第二步对 Buy&Ship 的接口与数据授权请求已整理在 [SOURCE_ACCESS_REQUEST.md](SOURCE_ACCESS_REQUEST.md)。
@@ -22,7 +22,7 @@
 - 卡片目录逐条记录 `rights_reference` 和是否准许展示。旧数据库经 `init` 升级后，原有卡片默认不可展示，须重新导入并确认权利。
 - Buy&Ship Mercari 旧网关响应适配器、至多三次只读请求的 Gate 0 探针，以及 Pivota 候选商品交接契约。它们未连接真实生产数据。
 - TCGdex 日文卡组 JSON 的文本元数据适配器；不导入卡图、图片 URL、徽标或规则文本。
-- 固定 TCGdex commit 的广覆盖日文目录：16,347 条可区分版本的元数据，覆盖 126 个卡组；原 3,621 条阶段性记录全部包含其中。第二来源另补充 10,233 条未核实的 set+number 候选及 24,039 条参考记录。合计 26,580 条内部身份，公开展示批准数为 0。
+- 固定 TCGdex commit 的广覆盖日文目录：16,347 条可区分版本的元数据，覆盖 126 个卡组；原 3,621 条阶段性记录全部包含其中。第二来源另补充 10,233 条未核实的 set+number 候选及 24,039 条参考记录。TCGdex 另有 50 条同编号多版本无法区分的内部候选，禁止自动报价匹配。合计 26,630 条内部身份，公开展示批准数为 0。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
 
 `purge-expired` 需由部署环境定期运行；`expires_at` 停止该来源的导入和展示，数据删除仍按独立的 `retention_days` 执行。
@@ -57,6 +57,7 @@ python3 -m pokemon_index --db catalog.sqlite3 init
 python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/ja-all-sets.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ja-all-available.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-candidates.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-references catalog/ptcg-jp-reference.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
@@ -143,7 +144,7 @@ python3 -m pokemon_index --db demo.sqlite3 import-cards catalog/ja-selected-mode
 
 原阶段性目录覆盖本期 17 个目标中的 16 个卡组，仍保留作为回归样本。新版 [`catalog/ja-all-available.jsonl`](catalog/ja-all-available.jsonl) 遍历同一 TCGdex 提交的全部 `data-asia` 卡组，保留 16,347 条有日文名称且版本可表示的记录；包括 promo 编号、老卡 1st edition 和 unlimited。卡号统一为三位最低宽度，例如 `080/073`。解析器要求标题有明确卡组代码与卡号；同一编号有多个版本时还须有可判定的版本证据。多卡、冲突语言与不确定版本进入待解析队列。
 
-S6a 在 TCGdex 中仍缺日文逐卡名称；第二来源提供 87 条 set+number 候选。其余补充候选亦全部标 `match_eligible=false`，仅供内部发现和核验；参考记录与审计见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。第二来源源自官方网页采集，仓库 MIT 许可不能替代 Pokémon 内容的公开使用授权，卡图和规则文本均未随本目录输出。
+S6a 在 TCGdex 中仍缺日文逐卡名称；第二来源提供 87 条 set+number 候选。其余补充候选亦全部标 `match_eligible=false`，仅供内部发现和核验；参考记录与审计见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。第二来源源自官方网页采集，仓库 MIT 许可不能替代 Pokémon 内容的公开使用授权，卡图和规则文本均未随本目录输出。SNKRDUNK 的公开网页仅用于少量人工核对身份与价格字段语义，未采集入库；其[现行利用规约](https://snkrdunk.com/terms)第 7 条第 1 款第 13 项明文禁止爬取与抓取。
 
 专属标注 agent 从旧 demo 测试记录整理了 68 条 AI 辅助草稿，并二次撤回了没有独立证据的版本标签。[诊断摘要](catalog/label-draft-summary.md)与[真人复核口径](catalog/labeling-protocol.md)已准备好。当前 40 条卡组＋卡号候选中 34 条在目录内，标题规则接纳 28 条且与草稿身份一致；14 条应弃权样本无错误接纳。这些是样本内一致性，**不是正式匹配精度**；版本完整证据为 0 条，须真人看图复核后才能测版本精度。
 
