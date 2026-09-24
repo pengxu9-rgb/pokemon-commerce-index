@@ -1,0 +1,73 @@
+{
+  "anchors": 30,
+  "candidate_pairs": 67,
+  "duplicate_pairs_skipped": 0,
+  "anchors_with_candidates": 17,
+  "candidate_pairs_by_signal": {
+    "exact_character_set_and_illustrator": 42,
+    "exact_character_set_only": 25
+  },
+  "pairs_with_offer_matching_disabled": 2,
+  "gaps": [
+    {
+      "card_id": "ja:SMJ:025/035:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:SI:419/414:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:DPTP:019/DPT-P:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:SVM:175/175:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:SI:LIG/-1:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:M-P:156/M-P:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:SM11A:053/064:normal",
+      "reason": "missing_reviewed_concept_alias",
+      "category": "Trainer"
+    },
+    {
+      "card_id": "ja:SV8A:169/187:reverse",
+      "reason": "missing_reviewed_concept_alias",
+      "category": "Trainer"
+    },
+    {
+      "card_id": "ja:SK:026/030:standard",
+      "reason": "missing_reviewed_concept_alias",
+      "category": "Trainer"
+    },
+    {
+      "card_id": "ja:MDB:022/046:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:XY9-B:045/080:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:WCP:074/108:unverified",
+      "reason": "missing_card_classification"
+    },
+    {
+      "card_id": "ja:M6:047/076:normal",
+      "reason": "ambiguous_character_signature",
+      "total_candidates": 18,
+      "dex_ids": [
+        "686"
+      ]
+    }
+  ],
+  "scope": "internal retrieval queue; no relationship verified"
+}

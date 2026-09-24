@@ -136,6 +136,24 @@ def parse_discovery_facets(source: str) -> dict[str, Any]:
     return attributes
 
 
+def parse_card_classification(source: str) -> tuple[str, str | None] | None:
+    """Extract the source's category and optional subtype without guessing."""
+    category = _string_field(source, "category")
+    trainer = _string_field(source, "trainerType")
+    energy = _string_field(source, "energyType")
+    if category is None:
+        return None
+    if category not in {"Pokemon", "Trainer", "Energy"}:
+        raise ValueError("unsupported card category")
+    if trainer and (category != "Trainer" or trainer not in {"Item", "Stadium", "Supporter", "Tool"}):
+        raise ValueError("invalid trainer subtype")
+    if energy and (category != "Energy" or energy not in {"Normal", "Special"}):
+        raise ValueError("invalid energy subtype")
+    if trainer and energy:
+        raise ValueError("card has two subtype families")
+    return category, trainer or energy
+
+
 def parse_card_source(source: str, *, set_id: str, official_count: int,
                       path: str, revision: str, language: str = "ja",
                       source_directory: str | None = None) -> list[dict[str, Any]]:

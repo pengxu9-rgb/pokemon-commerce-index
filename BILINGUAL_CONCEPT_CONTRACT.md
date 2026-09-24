@@ -1,0 +1,47 @@
+# Bilingual concept retrieval contract
+
+The exact card printing remains `language + set + collector number + variant`. A bilingual concept is a translation of a card **name** for candidate retrieval. It does not say that Japanese and English printings share artwork, finish, edition, release, price, or merchant availability.
+
+## Current data and source
+
+`catalog/card-classifications.jsonl.gz` contains category and subtype extracted from the pinned TCGdex text metadata at revision `a211f11f3ba57d56c65c5ac33be35b77d3280757`. Each row carries the card's source-file SHA-256 provenance and rights reference. The build reads only local pinned files; it does not copy images, effects, prices, or marketplace listings. The audit is in `catalog/card-classifications-audit.json`. Four variants from two inconsistent source files remain unclassified. The database table is `card_classification`, separate from character/artist facets and reviewed relation assertions.
+
+The `bilingual_concept_revision` table is intentionally empty until a person checks both language names against card-specific source pages or licensed API records. Import records are append-only by `concept_id, revision`. The latest `approved` revision enables retrieval; a newer `withdrawn` revision disables it. A repeated identical revision is idempotent; a stale or conflicting revision is rejected.
+
+Each JSONL record for `import-bilingual-concepts` has these fields:
+
+| Field | Meaning |
+| --- | --- |
+| `concept_id`, `revision` | Stable concept key and increasing integer revision |
+| `category` | `Pokemon`, `Trainer`, or `Energy` |
+| `name_ja`, `name_en` | Exact printed names checked by the reviewer |
+| `source_ja`, `source_en` | Distinct, card-specific evidence references where available; retain source version or access date in the reference |
+| `rights_reference` | Permission and attribution record for internal use |
+| `reviewer`, `reviewed_at` | Human reviewer identifier and timestamp with UTC offset |
+| `status` | `approved` or `withdrawn` |
+
+A sample shape, **not an approved mapping**, is:
+
+```json
+{"concept_id":"example-translation","revision":1,"category":"Trainer","name_ja":"<checked Japanese name>","name_en":"<checked English name>","source_ja":"<card-specific Japanese evidence>","source_en":"<card-specific English evidence>","rights_reference":"<reviewed rights record>","reviewer":"<human reviewer ID>","reviewed_at":"2026-09-24T00:00:00Z","status":"approved"}
+```
+
+The candidate generator looks up the anchor's exact name in the latest approved concept, then requires the other card's category and, when both are known, subtype to agree. Matching illustrator is the strong channel; without it, the full same-name candidate set must fit the per-anchor cap. Multiple concepts for one anchor or too many candidates cause an explicit abstention. The review queue carries concept source references and a digest of both card classifications and the concept revision. A withdrawn or replaced concept blocks compilation of an older positive review queue. A reviewer still needs card-specific identity, artwork, and finish evidence; two agreeing human reviews are required for a verified graph edge.
+
+## Rebuild and probe
+
+```bash
+python3 -m scripts.build_card_classifications \
+  --repo ../../work/tcgdex-public \
+  --revision a211f11f3ba57d56c65c5ac33be35b77d3280757 \
+  --cards catalog/ja-all-available.jsonl --cards catalog/en-physical-cards.jsonl \
+  --output classifications-rebuilt.jsonl.gz --report classifications-rebuilt-audit.json
+python3 -m pokemon_index --db catalog-index.sqlite3 init
+python3 -m pokemon_index --db catalog-index.sqlite3 import-card-classifications catalog/card-classifications.jsonl.gz
+python3 -m pokemon_index --db catalog-index.sqlite3 import-bilingual-concepts reviewed-concepts.jsonl
+python3 -m scripts.relationship_pilot generate --db catalog-index.sqlite3 \
+  --anchors catalog/relationship-coverage-anchors.jsonl \
+  --output concept-queue.jsonl --audit concept-audit.json --sheet concept-review.csv
+```
+
+The last command currently yields the same 17/30 anchors and 67 candidate pairs as before because no approved concept aliases have been imported. This is a diagnostic challenge set, not a recall measurement. The three blind Trainer anchors have source classifications but lack reviewed translations; the three Energy anchors are unverified supplemental identities without source classifications. Independent adjudicated answers are needed before measuring recall@K. Do not add aliases from candidate output itself: that would contaminate the blind evaluation.

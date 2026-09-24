@@ -40,8 +40,11 @@ SHEET_FIELDS = (
     "anchor_metadata_source_url", "anchor_match_eligible",
     "candidate_card_id", "candidate_name", "candidate_variant",
     "candidate_metadata_source_url", "candidate_match_eligible", "retrieval_signal", "dex_id", "illustrator",
+    "concept_id", "concept_source_ja", "concept_source_en",
     "selection_reason", *REVIEW_FIELDS,
 )
+LEGACY_SHEET_FIELDS = tuple(field for field in SHEET_FIELDS if field not in {
+    "concept_id", "concept_source_ja", "concept_source_en"})
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -91,6 +94,9 @@ def write_review_sheet(path: Path, queue: list[dict[str, Any]]) -> None:
                 "retrieval_signal": row["shared_facets"]["retrieval_signal"],
                 "dex_id": row["shared_facets"]["dex_id"],
                 "illustrator": row["shared_facets"]["illustrator"],
+                "concept_id": row["shared_facets"].get("concept_id", ""),
+                "concept_source_ja": row["shared_facets"].get("concept_source_ja", ""),
+                "concept_source_en": row["shared_facets"].get("concept_source_en", ""),
                 "selection_reason": row.get("selection_reason", ""),
                 **row["review"],
             })
@@ -99,7 +105,10 @@ def write_review_sheet(path: Path, queue: list[dict[str, Any]]) -> None:
 def apply_review_sheet(queue: list[dict[str, Any]], path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
-        if not reader.fieldnames or len(reader.fieldnames) != len(SHEET_FIELDS) or set(reader.fieldnames) != set(SHEET_FIELDS):
+        if not reader.fieldnames or not any(
+                len(reader.fieldnames) == len(expected)
+                and set(reader.fieldnames) == set(expected)
+                for expected in (SHEET_FIELDS, LEGACY_SHEET_FIELDS)):
             raise ValueError("review sheet columns do not match the generated template")
         decisions = {}
         for row in reader:
@@ -115,6 +124,9 @@ def apply_review_sheet(queue: list[dict[str, Any]], path: Path) -> list[dict[str
                 or sheet["candidate_card_id"] != row["candidate"]["card_id"]
                 or sheet["source_snapshot_sha256"] != row["source_snapshot_sha256"]):
             raise ValueError(f"candidate identities changed for {row['candidate_id']}")
+        for field in ("concept_id", "concept_source_ja", "concept_source_en"):
+            if field in sheet and sheet[field] != row["shared_facets"].get(field, ""):
+                raise ValueError(f"concept evidence changed for {row['candidate_id']}")
         row["review"] = {field: sheet[field].strip() for field in REVIEW_FIELDS}
     return queue
 
@@ -152,6 +164,54 @@ def _summary(row: sqlite3.Row) -> dict[str, Any]:
     return result
 
 
+def _concept_candidates(db: sqlite3.Connection, anchor: sqlite3.Row,
+                        artist: list[dict[str, str]], max_per_anchor: int
+                        ) -> tuple[list[tuple[sqlite3.Row, dict[str, list[dict[str, str]]]]],
+                                   sqlite3.Row | None, str, dict[str, Any] | None]:
+    classification = db.execute(
+        "SELECT * FROM card_classification WHERE card_id=?", (anchor["card_id"],)
+    ).fetchone()
+    if classification is None:
+        return [], None, "", {"reason": "missing_card_classification"}
+    name_field = "name_ja" if anchor["language"] == "ja" else "name_en"
+    other_field = "name_en" if anchor["language"] == "ja" else "name_ja"
+    other_language = "en" if anchor["language"] == "ja" else "ja"
+    concepts = db.execute(f"""SELECT r.* FROM bilingual_concept_revision r
+        WHERE r.{name_field}=? AND r.category=? AND r.status='approved'
+        AND r.revision=(SELECT MAX(revision) FROM bilingual_concept_revision
+                        WHERE concept_id=r.concept_id)
+        ORDER BY r.concept_id""", (anchor["name"], classification["category"])).fetchall()
+    if not concepts:
+        return [], None, "", {"reason": "missing_reviewed_concept_alias",
+                                    "category": classification["category"]}
+    if len(concepts) != 1:
+        return [], None, "", {"reason": "ambiguous_concept_alias",
+                                    "concept_ids": [row["concept_id"] for row in concepts]}
+    concept = concepts[0]
+    pool = db.execute(f"""SELECT c.* FROM card c JOIN card_classification cl
+        ON cl.card_id=c.card_id WHERE c.language=? AND c.name=?
+        AND cl.category=? AND (cl.subtype IS NULL OR ? IS NULL OR cl.subtype=?)
+        ORDER BY c.card_id""", (other_language, concept[other_field],
+                                 classification["category"], classification["subtype"],
+                                 classification["subtype"])).fetchall()
+    candidates = [(row, _facets(db, row["card_id"])) for row in pool]
+    strict = [(row, facets) for row, facets in candidates if artist and any(
+        item["value"].casefold() == artist[0]["value"].casefold()
+        for item in facets["illustrator"])]
+    if strict:
+        matches, signal = strict, "reviewed_concept_and_illustrator"
+    elif len(candidates) <= max_per_anchor:
+        matches, signal = candidates, "reviewed_concept_only"
+    else:
+        return [], concept, "", {"reason": "ambiguous_concept_candidates",
+                                  "concept_id": concept["concept_id"],
+                                  "total_candidates": len(candidates)}
+    if not matches:
+        return [], concept, "", {"reason": "no_candidate_for_reviewed_concept",
+                                      "concept_id": concept["concept_id"]}
+    return matches, concept, signal, None
+
+
 def generate(db: sqlite3.Connection, anchors: list[dict[str, Any]],
              max_per_anchor: int = 12) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     if max_per_anchor < 1:
@@ -174,10 +234,73 @@ def generate(db: sqlite3.Connection, anchors: list[dict[str, Any]],
         facets = _facets(db, card_id)
         dex = facets["dex_id"]
         artist = facets["illustrator"]
-        if not dex or len(artist) > 1:
+        if len(artist) > 1:
             gaps.append({"card_id": card_id,
-                         "reason": "missing_character_facet" if not dex else "ambiguous_illustrator_facet",
+                         "reason": "ambiguous_illustrator_facet",
                          "dex_count": len(dex), "illustrator_count": len(artist)})
+            continue
+        if not dex:
+            matches, concept, retrieval_signal, gap = _concept_candidates(
+                db, anchor, artist, max_per_anchor)
+            if gap:
+                gaps.append({"card_id": card_id, **gap})
+                continue
+            assert concept is not None
+            matches.sort(key=lambda item: (
+                item[0]["collector_number"] != anchor["collector_number"],
+                item[0]["variant"] != anchor["variant"], item[0]["card_id"],
+            ))
+            if len(matches) > max_per_anchor:
+                gaps.append({"card_id": card_id, "reason": "candidate_list_truncated",
+                             "total_candidates": len(matches), "shown": max_per_anchor,
+                             "omitted_candidate_ids": [row["card_id"] for row, _ in matches[max_per_anchor:]]})
+            for candidate, candidate_facets in matches[:max_per_anchor]:
+                pair = sorted((card_id, candidate["card_id"]))
+                pair_id = hashlib.sha256(("relationship-pilot-v1\0" + "\0".join(pair)).encode()).hexdigest()[:20]
+                if pair_id in seen_pairs:
+                    duplicate_pairs_skipped += 1
+                    continue
+                seen_pairs.add(pair_id)
+                matched_artist = next((item for item in candidate_facets["illustrator"]
+                                       if artist and item["value"].casefold() == artist[0]["value"].casefold()), None)
+                anchor_summary, candidate_summary = _summary(anchor), _summary(candidate)
+                concept_evidence = {key: concept[key] for key in (
+                    "concept_id", "revision", "category", "name_ja", "name_en",
+                    "source_ja", "source_en", "rights_reference", "reviewer", "reviewed_at")}
+                anchor_classification = db.execute(
+                    "SELECT * FROM card_classification WHERE card_id=?", (card_id,)
+                ).fetchone()
+                candidate_classification = db.execute(
+                    "SELECT * FROM card_classification WHERE card_id=?", (candidate["card_id"],)
+                ).fetchone()
+                snapshot = {"anchor": anchor_summary, "candidate": candidate_summary,
+                            "concept": concept_evidence, "shared_artist": artist[0] if artist else None,
+                            "candidate_artist": matched_artist, "retrieval_signal": retrieval_signal,
+                            "anchor_classification": dict(anchor_classification),
+                            "candidate_classification": dict(candidate_classification)}
+                snapshot_digest = hashlib.sha256(json.dumps(
+                    snapshot, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+                queue.append({
+                    "candidate_id": pair_id, "source_snapshot_sha256": snapshot_digest,
+                    "anchor": anchor_summary, "candidate": candidate_summary,
+                    "selection_reason": anchor_input.get("case", ""),
+                    "shared_facets": {
+                        "retrieval_signal": retrieval_signal, "dex_id": "",
+                        "illustrator": artist[0]["value"] if artist else "",
+                        "concept_id": concept["concept_id"],
+                        "concept_revision": concept["revision"],
+                        "concept_source_ja": concept["source_ja"],
+                        "concept_source_en": concept["source_en"],
+                        "concept_reviewer": concept["reviewer"],
+                        "anchor_classification_provenance": anchor_classification["provenance"],
+                        "candidate_classification_provenance": candidate_classification["provenance"],
+                        "anchor_illustrator_provenance": artist[0]["provenance"] if artist else "",
+                        "candidate_illustrator_provenance": matched_artist["provenance"] if matched_artist else "",
+                    },
+                    "retrieval_only": True,
+                    "review": {**{field: "" for field in REVIEW_FIELDS},
+                               "review_revision": "1", "decision": "pending"},
+                })
             continue
         other_language = "en" if anchor["language"] == "ja" else "ja"
         dex_signature = tuple(sorted(item["value"] for item in dex))
@@ -370,6 +493,15 @@ def compile_reviews(rows: list[dict[str, Any]], db: sqlite3.Connection
         counts[decision] = counts.get(decision, 0) + 1
         if decision == "pending":
             continue
+        concept_id = row.get("shared_facets", {}).get("concept_id")
+        if concept_id and decision in POSITIVE_DECISIONS:
+            current_concept = db.execute(
+                """SELECT revision, status FROM bilingual_concept_revision
+                WHERE concept_id=? ORDER BY revision DESC LIMIT 1""", (concept_id,)
+            ).fetchone()
+            if (current_concept is None or current_concept["status"] != "approved"
+                    or current_concept["revision"] != row["shared_facets"].get("concept_revision")):
+                raise ValueError(f"stale concept evidence for {candidate_id}; regenerate review queue")
         _required_review_text(review, "reviewer", "reviewed_at", "review_revision")
         parse_time(review["reviewed_at"])
         if not str(review["review_revision"]).isdigit() or int(review["review_revision"]) < 1:

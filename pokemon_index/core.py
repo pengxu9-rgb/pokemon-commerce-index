@@ -236,6 +236,70 @@ def import_card_facets(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -
     return count
 
 
+def import_card_classifications(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
+    """Import category and subtype from a card-specific, pinned source."""
+    allowed = {
+        "Pokemon": {None},
+        "Trainer": {None, "Item", "Stadium", "Supporter", "Tool"},
+        "Energy": {None, "Normal", "Special"},
+    }
+    count = 0
+    with db:
+        for row in rows:
+            _required(row, "card_id", "category", "provenance", "rights_reference")
+            category, subtype = row["category"], row.get("subtype")
+            if category not in allowed or subtype not in allowed[category]:
+                raise ValueError("invalid card classification")
+            current = db.execute(
+                "SELECT category, subtype, provenance FROM card_classification WHERE card_id=?",
+                (row["card_id"],),
+            ).fetchone()
+            if current and (current["category"], current["subtype"], current["provenance"]) != (
+                    category, subtype, row["provenance"]):
+                raise ValueError("conflicting card classification; review source before replacing")
+            db.execute(
+                """INSERT INTO card_classification VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(card_id) DO NOTHING""",
+                (row["card_id"], category, subtype, row["provenance"], row["rights_reference"]),
+            )
+            count += 1
+    return count
+
+
+def import_bilingual_concepts(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
+    """Import human-reviewed translation concepts without asserting a card edge."""
+    count = 0
+    fields = ("concept_id", "revision", "category", "name_ja", "name_en",
+              "source_ja", "source_en", "rights_reference", "reviewer", "reviewed_at", "status")
+    with db:
+        for row in rows:
+            _required(row, *fields)
+            if row["category"] not in {"Pokemon", "Trainer", "Energy"}:
+                raise ValueError("invalid concept category")
+            if row["status"] not in {"approved", "withdrawn"}:
+                raise ValueError("invalid concept status")
+            if type(row["revision"]) is not int or row["revision"] < 1:
+                raise ValueError("concept revision must be a positive integer")
+            if any(not isinstance(row[field], str) or row[field] != row[field].strip()
+                   or len(row[field]) > 500 for field in fields if field != "revision"):
+                raise ValueError("invalid concept text")
+            parse_time(row["reviewed_at"])
+            values = tuple(row[field] for field in fields)
+            latest = db.execute(
+                "SELECT * FROM bilingual_concept_revision WHERE concept_id=? ORDER BY revision DESC LIMIT 1",
+                (row["concept_id"],),
+            ).fetchone()
+            if latest and row["revision"] <= latest["revision"]:
+                if row["revision"] == latest["revision"] and values == tuple(latest[field] for field in fields):
+                    continue
+                raise ValueError("stale or conflicting concept revision")
+            db.execute(
+                "INSERT INTO bilingual_concept_revision VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", values,
+            )
+            count += 1
+    return count
+
+
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
     totals = db.execute(

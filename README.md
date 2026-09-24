@@ -72,6 +72,7 @@ python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-multi
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-references catalog/ptcg-jp-reference.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-facets catalog/card-facets.jsonl.gz
+python3 -m pokemon_index --db catalog.sqlite3 import-card-classifications catalog/card-classifications.jsonl.gz
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20
@@ -107,6 +108,8 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 日英关系首批人工审核包见 [RELATIONSHIP_PILOT.md](RELATIONSHIP_PILOT.md)，独立复核后的分阶段方案见 [RELATIONSHIP_GRAPH_PLAN.md](RELATIONSHIP_GRAPH_PLAN.md)：19 个日文锚点产生 40 个待复核候选，附可在表格中填写的审核模板。另有 [30 个独立盲审锚点及召回评估流程](RELATIONSHIP_COVERAGE.md)，完整角色集合检索及有上限的弱信号回退后，当前检索器对其中 17 个锚点返回 67 对候选；真人尚未标注正确答案，所以这不是召回率。角色／画师信号只用于召回候选；目前尚无真人核实的对应边。S6a 的一条补充身份因缺少角色和画师信息进入身份缺口清单。内部 `catalog-neighborhood` 现在把已审核关系与同角色／同画师的检索候选分开返回，后者不会变成价格等价关系。
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。
+
+新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；概念别名表仍为空，待人工核对双语卡名后通过 `import-bilingual-concepts` 导入。当前盲审候选数仍为 17/30 个锚点、67 对候选；没有已验证关系或召回率结论。
 
 示例数据完全是合成数据，包括价格、支付凭据和到手价；URL 使用 `.invalid` 域名。`--as-of` 用于重放旧样本，实时 API 默认使用当前时间和来源设置的新鲜度上限。
 

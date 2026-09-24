@@ -74,7 +74,7 @@ class RelationshipCoverageTests(unittest.TestCase):
         self.assertEqual(report["pair_recall"]["all"],
                          {"gold_pairs": 2, "retrieved_pairs": 1, "recall": 0.5})
         self.assertEqual(report["misses"][0]["generator_gaps"],
-                         ["missing_character_facet"])
+                         ["missing_card_classification"])
         reviewed[0]["reviewers"][1]["answers"] = []
         with self.assertRaisesRegex(ValueError, "two reviewers must agree"):
             relationship_coverage.evaluate(self.db, anchors, reviewed)

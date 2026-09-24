@@ -1,0 +1,22 @@
+{
+  "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "source_cards": 35077,
+  "classified_cards": 35073,
+  "by_category": {
+    "Energy": 735,
+    "Pokemon": 28826,
+    "Trainer": 5512
+  },
+  "unclassified_cards": 4,
+  "parse_gaps": [
+    {
+      "source_path": "data-asia/SV/SV8a/137.ts",
+      "reason": "invalid energy subtype"
+    },
+    {
+      "source_path": "data-asia/SV/SV8a/172.ts",
+      "reason": "invalid energy subtype"
+    }
+  ],
+  "scope": "internal category retrieval only; no cross-region printing equivalence"
+}

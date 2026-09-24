@@ -75,6 +75,32 @@ CREATE TABLE IF NOT EXISTS card_facet (
   PRIMARY KEY(card_id, facet_type, value)
 );
 
+-- Source classifications are retrieval signals, not printing relationships.
+CREATE TABLE IF NOT EXISTS card_classification (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  category TEXT NOT NULL CHECK (category IN ('Pokemon', 'Trainer', 'Energy')),
+  subtype TEXT,
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL
+);
+
+-- A curated bilingual name concept connects words, not physical printings.
+-- Revisions are append-only so a withdrawn translation ceases retrieval.
+CREATE TABLE IF NOT EXISTS bilingual_concept_revision (
+  concept_id TEXT NOT NULL,
+  revision INTEGER NOT NULL CHECK (revision > 0),
+  category TEXT NOT NULL CHECK (category IN ('Pokemon', 'Trainer', 'Energy')),
+  name_ja TEXT NOT NULL,
+  name_en TEXT NOT NULL,
+  source_ja TEXT NOT NULL,
+  source_en TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  reviewer TEXT NOT NULL,
+  reviewed_at TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('approved', 'withdrawn')),
+  PRIMARY KEY(concept_id, revision)
+);
+
 -- Reviewed claims connect printings without implying that their prices are interchangeable.
 -- Assertions are append-only; the latest assertion for an edge is its current review state.
 CREATE TABLE IF NOT EXISTS card_relationship_assertion (
