@@ -2,7 +2,7 @@
 
 这是一个可运行的新项目，用于验证日文 Pokémon 卡片的身份归一、报价观测、到手价和卖家库存重合度。它没有复用旧 demo 的代码、数据或图片，也没有内置 SNKRDUNK、Mercari、Yahoo 或 eBay 爬虫。本项目依据用户提供的 build plan 独立实现。旧 demo 的 private GitHub 仓库现已通过授权账号读取；已核对其 Mercari 网关接口和 Yahoo 接口用法，实际接入仍以 Buy&Ship 最新契约与数据授权为准。
 
-**主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份 → 获准的 API 报价 → 商品关联与 ask index → 到手价／品相辅助判断／商家建议 → discovery。人工双审是并行质检工具，不是前三层的开工门槛。**
+**主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份及探索关系 → 获准的 API 报价 → 商品关联与 ask index → 到手价／品相辅助判断／商家建议。探索状态先支持用户逐步选定目标；购买建议仍等待真实报价证据。人工双审是并行质检工具，不是前三层的开工门槛。**
 
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
@@ -26,6 +26,7 @@ API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONT
 - 固定 TCGdex commit 的日文目录：16,347 条可区分版本元数据；第二来源另补 10,233 条单记录与 462 条多记录同名候选，保留 24,039 条参考记录；TCGdex 另有 50 条版本歧义候选。日文合计 27,092 条。
 - 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 **55,165 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
+- 内部关系图可查询同卡组／编号的版本邻居；日英对应、相同画作和收藏替代项仅作为带证据的断言进入库，经过人工核实才可作事实性探索。状态改变以新断言记录，不覆盖旧证据。结构化探索 session 保存语言、卡组、预算等约束、shortlist 和最后选定的精确卡片；只有 `match_eligible` 的卡片可进入后续 offer 跟踪。当前没有自动生成的日英对应边或真实用户 session。
 
 `purge-expired` 需由部署环境定期运行；`expires_at` 停止该来源的导入和展示，数据删除仍按独立的 `retention_days` 执行。
 
@@ -71,9 +72,14 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-card 'ja:SV2A:025/165:reverse_masterball'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'S6a 087/069'
+python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
 
 `catalog-search` 和 `catalog-card` 仅供内部开发查询，返回来源、展示标记与匹配资格。它们不会更改公开展示权限；示例中的 `SV2a 025/165` 会返回普通版、Master Ball 与 Poké Ball 三个不同身份。S6a 补充候选可以查到，但 `match_eligible=false`，不会进入自动报价匹配。
+
+内部探索状态使用逐次递增的 `expected_version` 防止覆盖其他步骤的选择。JSONL 文件每次只含一个 session 更新，例如 `{"session_id":"example-1","owner_key":"opaque-user-1","expected_version":0,"constraints":{"query":"ピカチュウ","language":"ja","budget_minor":20000}}`。随后执行 `save-exploration <file>`、`exploration example-1 --owner-key opaque-user-1`、`exploration-candidates example-1 --owner-key opaque-user-1`。锁定目标时提交下一版本及 `target_card_id`；暂时无法确定版本时保持 shortlist，不生成购买建议。`owner_key` 是调用方提供的匿名作用域标识，不应放入个人资料或认证密钥。当前没有账户认证和会话保留策略，所以这些写入命令仅供受控内部环境使用。
+
+审核关系可通过 `import-relationships <jsonl>` 导入。每条断言需有 `left_card_id`、`right_card_id`、`relation_type`、`review_status`、`evidence_ref`、`rights_reference`、`asserted_by`；`verified` 或 `rejected` 还需 `reviewer`。支持的关系是 `localization_counterpart`、`same_artwork`、`collecting_alternative`。其中 counterpart 不代表两张卡可共用价格；被驳回的边不会用于跨语言发现。所有关系与探索候选仅供内部使用，不能绕过卡片公开展示许可。
 
 示例数据完全是合成数据，包括价格、支付凭据和到手价；URL 使用 `.invalid` 域名。`--as-of` 用于重放旧样本，实时 API 默认使用当前时间和来源设置的新鲜度上限。
 
@@ -83,7 +89,7 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'S6a 087/069'
 python3 -m pokemon_index --db demo.sqlite3 serve --port 8765
 ```
 
-端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
+端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。带 `--internal-catalog-api` 时另有 `/catalog-neighborhood?card_id=...`；探索 session 的读写暂不开放 HTTP。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
 
 ## 输入契约
 

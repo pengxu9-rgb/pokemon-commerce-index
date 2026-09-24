@@ -8,7 +8,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, pivota, tcgdex
+from . import buyship_mercari, calibration, core, discovery_graph, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -57,6 +57,8 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         )
                     elif internal_catalog_api and parsed.path == "/catalog-card":
                         result = core.catalog_card_internal(db, value("card_id"))
+                    elif internal_catalog_api and parsed.path == "/catalog-neighborhood":
+                        result = discovery_graph.card_neighborhood(db, value("card_id"))
                     else:
                         self.send_error(404)
                         return
@@ -79,7 +81,7 @@ def main() -> None:
     parser.add_argument("--db", default="index.sqlite3", help="SQLite database path")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
-    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
+    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
         item = sub.add_parser(command)
         item.add_argument("file", help="UTF-8 JSONL file")
         if command == "calibrate":
@@ -110,6 +112,16 @@ def main() -> None:
     catalog_search.add_argument("--offset", type=int, default=0)
     catalog_card = sub.add_parser("catalog-card", help="internal card identity and known units")
     catalog_card.add_argument("card_id")
+    neighborhood = sub.add_parser("catalog-neighborhood", help="internal reviewed card relationships")
+    neighborhood.add_argument("card_id")
+    neighborhood.add_argument("--include-proposed", action="store_true")
+    exploration = sub.add_parser("exploration", help="read one structured discovery session")
+    exploration.add_argument("session_id")
+    exploration.add_argument("--owner-key", required=True)
+    candidates = sub.add_parser("exploration-candidates", help="internal candidates for a discovery session")
+    candidates.add_argument("session_id")
+    candidates.add_argument("--owner-key", required=True)
+    candidates.add_argument("--limit", type=int, default=20)
     server = sub.add_parser("serve")
     server.add_argument("--host", default="127.0.0.1")
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
@@ -170,6 +182,13 @@ def main() -> None:
             output = {"sets": core.import_sets(db, read_jsonl(args.file))}
         elif args.command == "import-card-references":
             output = {"references": core.import_card_references(db, read_jsonl(args.file))}
+        elif args.command == "import-relationships":
+            output = {"assertions": discovery_graph.assert_relationships(db, read_jsonl(args.file))}
+        elif args.command == "save-exploration":
+            rows = list(read_jsonl(args.file))
+            if len(rows) != 1:
+                raise ValueError("save-exploration expects exactly one JSONL row")
+            output = discovery_graph.save_exploration(db, rows[0])
         elif args.command == "catalog-status":
             output = core.catalog_status(db)
         elif args.command == "catalog-search":
@@ -178,6 +197,13 @@ def main() -> None:
                                                   offset=args.offset)
         elif args.command == "catalog-card":
             output = core.catalog_card_internal(db, args.card_id)
+        elif args.command == "catalog-neighborhood":
+            output = discovery_graph.card_neighborhood(db, args.card_id, args.include_proposed)
+        elif args.command == "exploration":
+            output = discovery_graph.get_exploration(db, args.session_id, args.owner_key)
+        elif args.command == "exploration-candidates":
+            output = discovery_graph.exploration_candidates(db, args.session_id,
+                                                             args.owner_key, args.limit)
         elif args.command == "import-observations":
             output = core.import_observations(db, read_jsonl(args.file))
         elif args.command == "import-quotes":

@@ -64,6 +64,43 @@ CREATE TABLE IF NOT EXISTS card_reference (
   PRIMARY KEY(source, native_id)
 );
 
+-- Reviewed claims connect printings without implying that their prices are interchangeable.
+-- Assertions are append-only; the latest assertion for an edge is its current review state.
+CREATE TABLE IF NOT EXISTS card_relationship_assertion (
+  assertion_id TEXT PRIMARY KEY,
+  left_card_id TEXT NOT NULL REFERENCES card(card_id),
+  right_card_id TEXT NOT NULL REFERENCES card(card_id),
+  relation_type TEXT NOT NULL CHECK (relation_type IN
+    ('localization_counterpart', 'same_artwork', 'collecting_alternative')),
+  review_status TEXT NOT NULL CHECK (review_status IN ('proposed', 'verified', 'rejected')),
+  evidence_ref TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  asserted_by TEXT NOT NULL,
+  asserted_at TEXT NOT NULL,
+  CHECK (left_card_id < right_card_id)
+);
+
+-- Store structured purchase intent; no conversation transcript or marketplace claim is inferred.
+CREATE TABLE IF NOT EXISTS exploration_session (
+  session_id TEXT PRIMARY KEY,
+  owner_key TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('exploring', 'targeted', 'paused')),
+  constraints_json TEXT NOT NULL,
+  shortlist_json TEXT NOT NULL,
+  target_card_id TEXT REFERENCES card(card_id),
+  version INTEGER NOT NULL CHECK (version > 0),
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS exploration_revision (
+  session_id TEXT NOT NULL REFERENCES exploration_session(session_id),
+  version INTEGER NOT NULL,
+  snapshot_json TEXT NOT NULL,
+  recorded_at TEXT NOT NULL,
+  PRIMARY KEY(session_id, version)
+);
+
 CREATE TABLE IF NOT EXISTS priceable_unit (
   unit_id TEXT PRIMARY KEY,
   card_id TEXT NOT NULL REFERENCES card(card_id),
@@ -158,6 +195,9 @@ CREATE TABLE IF NOT EXISTS verified_sale (
 
 CREATE INDEX IF NOT EXISTS idx_card_search ON card(language, set_code, collector_number);
 CREATE INDEX IF NOT EXISTS idx_card_reference_identity ON card_reference(set_code, collector_number);
+CREATE INDEX IF NOT EXISTS idx_card_relationship_pair ON card_relationship_assertion(left_card_id, right_card_id, relation_type, asserted_at);
+CREATE INDEX IF NOT EXISTS idx_card_relationship_reverse ON card_relationship_assertion(right_card_id, left_card_id, relation_type, asserted_at);
+CREATE INDEX IF NOT EXISTS idx_exploration_owner ON exploration_session(owner_key, updated_at);
 CREATE INDEX IF NOT EXISTS idx_listing_unit ON listing(unit_id, current_status);
 CREATE INDEX IF NOT EXISTS idx_observation_time ON observation(observed_at);
 CREATE INDEX IF NOT EXISTS idx_raw_item_time ON raw_item_blob(source, observed_at);
