@@ -25,8 +25,10 @@ All 21 anchors had candidates; 37 pairs used the reviewed concept plus matching
 illustrator, and 12 used the reviewed concept alone. One pair includes an
 offer-matching-disabled card. These are selected anchors, not a recall test.
 
-The local `catalog-index.sqlite3` snapshot now contains 39 concept review
-events, 21 concept revisions, and 21 proposed graph assertions. It is not
+At the v2 import, the local `catalog-index.sqlite3` snapshot contained 39
+concept review events, 21 concept revisions, and 21 proposed graph assertions.
+The later v3 expansion and current totals are recorded in
+[CONCEPT_REVIEW_V3.md](CONCEPT_REVIEW_V3.md). It is not
 committed to GitHub. Rebuild the same state in a catalog database that already
 contains the pinned cards, facets, and classifications:
 

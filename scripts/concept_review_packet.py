@@ -356,6 +356,7 @@ def main() -> None:
     build_cmd.add_argument("--trainer-limit", type=int, default=16)
     build_cmd.add_argument("--energy-limit", type=int, default=8)
     build_cmd.add_argument("--max-names-per-anchor", type=int, default=5)
+    build_cmd.add_argument("--seed", default="concept-review-v2")
     build_cmd.add_argument("--queue", type=Path, required=True)
     build_cmd.add_argument("--sheet", type=Path, required=True)
     build_cmd.add_argument("--audit", type=Path, required=True)
@@ -375,7 +376,8 @@ def main() -> None:
         with sqlite3.connect(f"file:{args.db.resolve()}?mode=ro", uri=True) as db:
             db.row_factory = sqlite3.Row
             packet, audit = build(db, exclude, args.trainer_limit, args.energy_limit,
-                                  args.max_names_per_anchor, include_names=include_names,
+                                  args.max_names_per_anchor, seed=args.seed,
+                                  include_names=include_names,
                                   preserve_pairs=preserve_pairs)
         write_jsonl(args.queue, packet)
         write_sheet(args.sheet, packet)

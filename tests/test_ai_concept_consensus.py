@@ -49,3 +49,23 @@ class AiConceptConsensusTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pinned evidence"):
             compiler.compile_consensus(self.queue, astra, self.sol,
                                        "2026-09-24T09:00:00Z")
+
+    def test_later_batch_defers_disagreement_and_requires_both_source_digests(self):
+        queue = read_jsonl(ROOT / "catalog/concept-review-v3-queue.jsonl")[:2]
+        astra = {row["proposal_id"]: {
+            "proposal_id": row["proposal_id"],
+            "source_snapshot_sha256": row["source_snapshot_sha256"],
+            "suggested_decision": "approve", "rationale": "independent first review",
+            "evidence_limits": "source text only",
+        } for row in queue}
+        sol = copy.deepcopy(astra)
+        sol[queue[1]["proposal_id"]]["suggested_decision"] = "reject"
+        bundle, edges = compiler.compile_consensus(
+            queue, astra, sol, "2026-09-24T09:00:00Z", "v3", True)
+        self.assertEqual((len(bundle["review_events"]), len(edges)), (1, 1))
+        self.assertEqual(bundle["audit"]["deferred_rows"], 1)
+        self.assertTrue(edges[0]["assertion_id"].startswith("concept-candidate-v3:"))
+        sol[queue[0]["proposal_id"]]["source_snapshot_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "pinned evidence"):
+            compiler.compile_consensus(queue, astra, sol,
+                                       "2026-09-24T09:00:00Z", "v3", True)
