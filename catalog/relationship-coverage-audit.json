@@ -9,11 +9,9 @@
     "multi_character": {
       "population": 137,
       "selected": 3,
-      "anchors_with_candidates": 0,
-      "candidate_pairs": 0,
-      "gap_reasons": {
-        "missing_or_ambiguous_facets": 3
-      }
+      "anchors_with_candidates": 3,
+      "candidate_pairs": 6,
+      "gap_reasons": {}
     },
     "trainer": {
       "population": 2241,
@@ -21,7 +19,7 @@
       "anchors_with_candidates": 0,
       "candidate_pairs": 0,
       "gap_reasons": {
-        "missing_or_ambiguous_facets": 3
+        "missing_character_facet": 3
       }
     },
     "energy": {
@@ -30,7 +28,7 @@
       "anchors_with_candidates": 0,
       "candidate_pairs": 0,
       "gap_reasons": {
-        "missing_or_ambiguous_facets": 3
+        "missing_character_facet": 3
       }
     },
     "missing_facet": {
@@ -39,17 +37,15 @@
       "anchors_with_candidates": 0,
       "candidate_pairs": 0,
       "gap_reasons": {
-        "missing_or_ambiguous_facets": 3
+        "missing_character_facet": 3
       }
     },
     "same_number_finish": {
       "population": 2846,
       "selected": 3,
-      "anchors_with_candidates": 2,
-      "candidate_pairs": 6,
-      "gap_reasons": {
-        "missing_or_ambiguous_facets": 1
-      }
+      "anchors_with_candidates": 3,
+      "candidate_pairs": 18,
+      "gap_reasons": {}
     },
     "promo": {
       "population": 716,
@@ -71,16 +67,16 @@
       "anchors_with_candidates": 0,
       "candidate_pairs": 0,
       "gap_reasons": {
-        "missing_or_ambiguous_facets": 3
+        "missing_character_facet": 3
       }
     },
     "current_era": {
       "population": 1958,
       "selected": 3,
-      "anchors_with_candidates": 1,
-      "candidate_pairs": 2,
+      "anchors_with_candidates": 2,
+      "candidate_pairs": 11,
       "gap_reasons": {
-        "no_candidate_with_character_and_artist": 2
+        "ambiguous_character_signature": 1
       }
     },
     "control": {
@@ -93,118 +89,94 @@
   },
   "candidate_probe": {
     "anchors": 30,
-    "candidate_pairs": 40,
+    "candidate_pairs": 67,
     "duplicate_pairs_skipped": 0,
-    "anchors_with_candidates": 12,
+    "anchors_with_candidates": 17,
+    "candidate_pairs_by_signal": {
+      "exact_character_set_and_illustrator": 42,
+      "exact_character_set_only": 25
+    },
     "pairs_with_offer_matching_disabled": 2,
     "gaps": [
       {
-        "card_id": "ja:SM10:110/095:holo",
-        "reason": "missing_or_ambiguous_facets",
-        "dex_count": 2,
-        "illustrator_count": 0
-      },
-      {
-        "card_id": "ja:SM12:104/095:holo",
-        "reason": "missing_or_ambiguous_facets",
-        "dex_count": 2,
-        "illustrator_count": 1
-      },
-      {
-        "card_id": "ja:SM9A:059/055:holo",
-        "reason": "missing_or_ambiguous_facets",
-        "dex_count": 2,
-        "illustrator_count": 1
-      },
-      {
         "card_id": "ja:SMJ:025/035:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:SI:419/414:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:DPTP:019/DPT-P:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:SVM:175/175:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:SI:LIG/-1:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:M-P:156/M-P:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:SM11A:053/064:normal",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 1
       },
       {
         "card_id": "ja:SV8A:169/187:reverse",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 1
       },
       {
         "card_id": "ja:SK:026/030:standard",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 1
       },
       {
-        "card_id": "ja:E2:063/092:normal_1st_edition",
-        "reason": "missing_or_ambiguous_facets",
-        "dex_count": 1,
-        "illustrator_count": 0
-      },
-      {
         "card_id": "ja:MDB:022/046:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:XY9-B:045/080:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:WCP:074/108:unverified",
-        "reason": "missing_or_ambiguous_facets",
+        "reason": "missing_character_facet",
         "dex_count": 0,
         "illustrator_count": 0
       },
       {
         "card_id": "ja:M6:047/076:normal",
-        "reason": "no_candidate_with_character_and_artist",
-        "dex_id": "686",
-        "illustrator": "kawayoo"
-      },
-      {
-        "card_id": "ja:M6:042/076:normal",
-        "reason": "no_candidate_with_character_and_artist",
-        "dex_id": "30",
-        "illustrator": "Jiro Sasumo"
+        "reason": "ambiguous_character_signature",
+        "total_candidates": 18,
+        "dex_ids": [
+          "686"
+        ]
       }
     ],
     "scope": "internal retrieval queue; no relationship verified"

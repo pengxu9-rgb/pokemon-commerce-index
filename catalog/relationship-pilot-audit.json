@@ -3,11 +3,14 @@
   "candidate_pairs": 40,
   "duplicate_pairs_skipped": 0,
   "anchors_with_candidates": 18,
+  "candidate_pairs_by_signal": {
+    "exact_character_set_and_illustrator": 40
+  },
   "pairs_with_offer_matching_disabled": 8,
   "gaps": [
     {
       "card_id": "ja:S6A:087/069:unverified",
-      "reason": "missing_or_ambiguous_facets",
+      "reason": "missing_character_facet",
       "dex_count": 0,
       "illustrator_count": 0
     }

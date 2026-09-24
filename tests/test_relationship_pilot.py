@@ -76,6 +76,59 @@ class RelationshipPilotTests(unittest.TestCase):
         self.assertEqual(matched["shared_facets"]["candidate_illustrator_provenance"],
                          f"fixture:{self.en}")
 
+    def test_multi_character_uses_complete_signature_not_partial_overlap(self):
+        cards = [
+            ("ja", "SM10", "110/095", "マルチ"),
+            ("en", "SM10", "221/214", "Full pair"),
+            ("en", "SM10", "222/214", "Partial pair"),
+            ("en", "SM10", "223/214", "Extra character"),
+        ]
+        core.import_cards(self.db, [dict(language=language, set_code=set_code,
+            collector_number=number, variant="holo", name=name,
+            provenance="fixture", rights_reference="fixture", display_allowed=False)
+            for language, set_code, number, name in cards])
+        ja = "ja:SM10:110/095:holo"
+        full, partial, extra = (f"en:SM10:{number}:holo" for number in
+                                ("221/214", "222/214", "223/214"))
+        facets = [
+            (ja, "dex_id", "25"), (ja, "dex_id", "644"),
+            (full, "dex_id", "25"), (full, "dex_id", "644"),
+            (partial, "dex_id", "25"),
+            (extra, "dex_id", "25"), (extra, "dex_id", "644"),
+            (extra, "dex_id", "999"),
+        ] + [(card_id, "illustrator", "Artist") for card_id in (ja, full, partial, extra)]
+        core.import_card_facets(self.db, [dict(card_id=card_id, facet_type=kind,
+            value=value, provenance="fixture", rights_reference="fixture")
+            for card_id, kind, value in facets])
+        queue, audit = relationship_pilot.generate(self.db, [{"card_id": ja}])
+        self.assertEqual(audit["candidate_pairs"], 1)
+        self.assertEqual(queue[0]["candidate"]["card_id"], full)
+        self.assertEqual(queue[0]["shared_facets"]["retrieval_signal"],
+                         "exact_character_set_and_illustrator")
+
+    def test_character_signature_fallback_is_bounded_when_artist_missing(self):
+        cards = [
+            ("ja", "SM10", "110/095", "マルチ"),
+            ("en", "SM10", "221/214", "Full pair"),
+            ("en", "SM10", "222/214", "Full pair variant"),
+        ]
+        core.import_cards(self.db, [dict(language=language, set_code=set_code,
+            collector_number=number, variant="holo", name=name,
+            provenance="fixture", rights_reference="fixture", display_allowed=False)
+            for language, set_code, number, name in cards])
+        ja = "ja:SM10:110/095:holo"
+        ends = ["en:SM10:221/214:holo", "en:SM10:222/214:holo"]
+        core.import_card_facets(self.db, [dict(card_id=card_id, facet_type="dex_id",
+            value=value, provenance="fixture", rights_reference="fixture")
+            for card_id in [ja, *ends] for value in ("25", "644")])
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": ja}], max_per_anchor=2)
+        self.assertEqual(len(queue), 2)
+        self.assertEqual(queue[0]["shared_facets"]["retrieval_signal"],
+                         "exact_character_set_only")
+        queue, audit = relationship_pilot.generate(self.db, [{"card_id": ja}], max_per_anchor=1)
+        self.assertEqual(queue, [])
+        self.assertEqual(audit["gaps"][0]["reason"], "ambiguous_character_signature")
+
     def test_human_review_compilation_requires_two_sided_evidence(self):
         queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
         queue[0]["review"]["decision"] = "localization_counterpart"

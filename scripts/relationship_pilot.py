@@ -13,6 +13,7 @@ import hashlib
 import json
 import re
 import sqlite3
+from collections import Counter
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -38,7 +39,7 @@ SHEET_FIELDS = (
     "candidate_id", "source_snapshot_sha256", "anchor_card_id", "anchor_name", "anchor_variant",
     "anchor_metadata_source_url", "anchor_match_eligible",
     "candidate_card_id", "candidate_name", "candidate_variant",
-    "candidate_metadata_source_url", "candidate_match_eligible", "dex_id", "illustrator",
+    "candidate_metadata_source_url", "candidate_match_eligible", "retrieval_signal", "dex_id", "illustrator",
     "selection_reason", *REVIEW_FIELDS,
 )
 
@@ -87,6 +88,7 @@ def write_review_sheet(path: Path, queue: list[dict[str, Any]]) -> None:
                 "candidate_variant": row["candidate"]["variant"],
                 "candidate_metadata_source_url": row["candidate"].get("metadata_source_url", ""),
                 "candidate_match_eligible": row["candidate"]["match_eligible"],
+                "retrieval_signal": row["shared_facets"]["retrieval_signal"],
                 "dex_id": row["shared_facets"]["dex_id"],
                 "illustrator": row["shared_facets"]["illustrator"],
                 "selection_reason": row.get("selection_reason", ""),
@@ -172,52 +174,71 @@ def generate(db: sqlite3.Connection, anchors: list[dict[str, Any]],
         facets = _facets(db, card_id)
         dex = facets["dex_id"]
         artist = facets["illustrator"]
-        if len(dex) != 1 or len(artist) != 1:
-            gaps.append({"card_id": card_id, "reason": "missing_or_ambiguous_facets",
+        if not dex or len(artist) > 1:
+            gaps.append({"card_id": card_id,
+                         "reason": "missing_character_facet" if not dex else "ambiguous_illustrator_facet",
                          "dex_count": len(dex), "illustrator_count": len(artist)})
             continue
         other_language = "en" if anchor["language"] == "ja" else "ja"
-        matches = db.execute(
+        dex_signature = tuple(sorted(item["value"] for item in dex))
+        pool = db.execute(
             """SELECT DISTINCT c.* FROM card c
             JOIN card_facet d ON d.card_id=c.card_id AND d.facet_type='dex_id' AND d.value=?
-            JOIN card_facet i ON i.card_id=c.card_id AND i.facet_type='illustrator'
-                AND i.value=? COLLATE NOCASE
             WHERE c.language=? ORDER BY c.card_id""",
-            (dex[0]["value"], artist[0]["value"], other_language),
+            (dex_signature[0], other_language),
         ).fetchall()
-        # Multi-character cards need their own review path; a shared one of
-        # several characters is especially weak evidence of a counterpart.
-        matches = [row for row in matches if len(_facets(db, row["card_id"])["dex_id"]) == 1]
-        if not matches:
-            gaps.append({"card_id": card_id, "reason": "no_candidate_with_character_and_artist",
-                         "dex_id": dex[0]["value"], "illustrator": artist[0]["value"]})
+        same_signature = []
+        for candidate in pool:
+            candidate_facets = _facets(db, candidate["card_id"])
+            if tuple(sorted(item["value"] for item in candidate_facets["dex_id"])) == dex_signature:
+                same_signature.append((candidate, candidate_facets))
+        strict = [(candidate, facets) for candidate, facets in same_signature
+                  if artist and any(item["value"].casefold() == artist[0]["value"].casefold()
+                                    for item in facets["illustrator"])]
+        if strict:
+            matches = strict
+            retrieval_signal = "exact_character_set_and_illustrator"
+        elif len(same_signature) <= max_per_anchor:
+            matches = same_signature
+            retrieval_signal = "exact_character_set_only"
+        else:
+            gaps.append({"card_id": card_id, "reason": "ambiguous_character_signature",
+                         "total_candidates": len(same_signature),
+                         "dex_ids": list(dex_signature)})
             continue
-        matches.sort(key=lambda row: (
-            row["collector_number"] != anchor["collector_number"],
-            row["rarity"] != anchor["rarity"], row["variant"] != anchor["variant"],
-            row["card_id"],
+        if not matches:
+            gaps.append({"card_id": card_id, "reason": "no_candidate_with_character_signature",
+                         "dex_ids": list(dex_signature),
+                         "illustrator": artist[0]["value"] if artist else None})
+            continue
+        matches.sort(key=lambda item: (
+            item[0]["collector_number"] != anchor["collector_number"],
+            item[0]["rarity"] != anchor["rarity"], item[0]["variant"] != anchor["variant"],
+            item[0]["card_id"],
         ))
         if len(matches) > max_per_anchor:
             gaps.append({"card_id": card_id, "reason": "candidate_list_truncated",
                          "total_candidates": len(matches), "shown": max_per_anchor,
-                         "omitted_candidate_ids": [row["card_id"] for row in matches[max_per_anchor:]]})
-        for candidate in matches[:max_per_anchor]:
+                         "omitted_candidate_ids": [row["card_id"] for row, _ in matches[max_per_anchor:]]})
+        for candidate, candidate_facets in matches[:max_per_anchor]:
             pair = sorted((card_id, candidate["card_id"]))
             pair_id = hashlib.sha256(("relationship-pilot-v1\0" + "\0".join(pair)).encode()).hexdigest()[:20]
             if pair_id in seen_pairs:
                 duplicate_pairs_skipped += 1
                 continue
             seen_pairs.add(pair_id)
-            candidate_facets = _facets(db, candidate["card_id"])
             matched_dex = next(item for item in candidate_facets["dex_id"]
-                               if item["value"] == dex[0]["value"])
-            matched_artist = next(item for item in candidate_facets["illustrator"]
-                                  if item["value"].casefold() == artist[0]["value"].casefold())
+                               if item["value"] == dex_signature[0])
+            matched_artist = next((item for item in candidate_facets["illustrator"]
+                                   if artist and item["value"].casefold() == artist[0]["value"].casefold()), None)
             anchor_summary, candidate_summary = _summary(anchor), _summary(candidate)
             snapshot = {
                 "anchor": anchor_summary, "candidate": candidate_summary,
-                "shared_dex": dex[0], "shared_artist": artist[0],
-                "candidate_dex": matched_dex, "candidate_artist": matched_artist,
+                "shared_dex": dex if len(dex) > 1 else dex[0],
+                "shared_artist": artist[0] if artist else None,
+                "candidate_dex": candidate_facets["dex_id"] if len(dex) > 1 else matched_dex,
+                "candidate_artist": matched_artist,
+                "retrieval_signal": retrieval_signal,
             }
             snapshot_digest = hashlib.sha256(json.dumps(
                 snapshot, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
@@ -227,11 +248,13 @@ def generate(db: sqlite3.Connection, anchors: list[dict[str, Any]],
                 "anchor": anchor_summary, "candidate": candidate_summary,
                 "selection_reason": anchor_input.get("case", ""),
                 "shared_facets": {
-                    "dex_id": dex[0]["value"], "illustrator": artist[0]["value"],
+                    "retrieval_signal": retrieval_signal,
+                    "dex_id": ",".join(dex_signature),
+                    "illustrator": artist[0]["value"] if artist else "",
                     "anchor_dex_provenance": dex[0]["provenance"],
-                    "anchor_illustrator_provenance": artist[0]["provenance"],
+                    "anchor_illustrator_provenance": artist[0]["provenance"] if artist else "",
                     "candidate_dex_provenance": matched_dex["provenance"],
-                    "candidate_illustrator_provenance": matched_artist["provenance"],
+                    "candidate_illustrator_provenance": matched_artist["provenance"] if matched_artist else "",
                 },
                 "retrieval_only": True,
                 "review": {
@@ -242,6 +265,8 @@ def generate(db: sqlite3.Connection, anchors: list[dict[str, Any]],
     audit = {"anchors": len(anchors), "candidate_pairs": len(queue),
              "duplicate_pairs_skipped": duplicate_pairs_skipped,
              "anchors_with_candidates": len({row["anchor"]["card_id"] for row in queue}),
+             "candidate_pairs_by_signal": dict(sorted(Counter(
+                 row["shared_facets"]["retrieval_signal"] for row in queue).items())),
              "pairs_with_offer_matching_disabled": sum(
                  not row["anchor"]["match_eligible"] or not row["candidate"]["match_eligible"]
                  for row in queue),
