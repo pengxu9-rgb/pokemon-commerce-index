@@ -86,6 +86,18 @@ CREATE TABLE IF NOT EXISTS card_classification (
 
 -- A curated bilingual name concept connects words, not physical printings.
 -- Revisions are append-only so a withdrawn translation ceases retrieval.
+CREATE TABLE IF NOT EXISTS concept_review_event (
+  event_id TEXT PRIMARY KEY,
+  proposal_id TEXT NOT NULL,
+  review_revision INTEGER NOT NULL CHECK (review_revision > 0),
+  source_snapshot_sha256 TEXT NOT NULL,
+  decision TEXT NOT NULL CHECK (decision IN ('approve', 'reject', 'uncertain')),
+  reviewer TEXT NOT NULL,
+  reviewed_at TEXT NOT NULL,
+  record_json TEXT NOT NULL,
+  UNIQUE(proposal_id, review_revision)
+);
+
 CREATE TABLE IF NOT EXISTS bilingual_concept_revision (
   concept_id TEXT NOT NULL,
   revision INTEGER NOT NULL CHECK (revision > 0),
@@ -98,6 +110,7 @@ CREATE TABLE IF NOT EXISTS bilingual_concept_revision (
   reviewer TEXT NOT NULL,
   reviewed_at TEXT NOT NULL,
   status TEXT NOT NULL CHECK (status IN ('approved', 'withdrawn')),
+  review_event_id TEXT REFERENCES concept_review_event(event_id),
   PRIMARY KEY(concept_id, revision)
 );
 

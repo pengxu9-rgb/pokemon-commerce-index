@@ -109,9 +109,9 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。
 
-新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；概念别名表仍为空，待人工核对双语卡名后通过 `import-bilingual-concepts` 导入。当前盲审候选数仍为 17/30 个锚点、67 对候选；没有已验证关系或召回率结论。
+新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；概念别名表仍为空。人工复核后通过 `import-concept-review-bundle` 原子导入审核事件和获准别名。当前盲审候选数仍为 17/30 个锚点、67 对候选；没有已验证关系或召回率结论。
 
-首批日英概念名称人工复核包见 [CONCEPT_REVIEW_GUIDE.md](CONCEPT_REVIEW_GUIDE.md)：独立于盲审集抽取 22 个日文名称、36 条有双端固定源码链接的待审提案，附 CSV 审核模板和编译命令。模板尚无任何批准；编译不会自动导入数据库。
+目前使用 [v2 人工复核包](CONCEPT_REVIEW_V2.md)：独立于盲审集的 22 个日文名称、39 条双端固定源码提案。初版 36 条记录仍保留在 [v1 档案](CONCEPT_REVIEW_GUIDE.md)。v2 CSV 尚无任何批准；编译保留全部审核理由和额外证据，审核包导入不会放开卡片的报价匹配资格。
 
 示例数据完全是合成数据，包括价格、支付凭据和到手价；URL 使用 `.invalid` 域名。`--as-of` 用于重放旧样本，实时 API 默认使用当前时间和来源设置的新鲜度上限。
 

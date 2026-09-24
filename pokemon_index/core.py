@@ -61,6 +61,9 @@ def init_db(db: sqlite3.Connection) -> None:
     relationship_columns = {row[1] for row in db.execute("PRAGMA table_info(card_relationship_assertion)")}
     if "reviewer" not in relationship_columns:
         db.execute("ALTER TABLE card_relationship_assertion ADD COLUMN reviewer TEXT")
+    concept_columns = {row[1] for row in db.execute("PRAGMA table_info(bilingual_concept_revision)")}
+    if "review_event_id" not in concept_columns:
+        db.execute("ALTER TABLE bilingual_concept_revision ADD COLUMN review_event_id TEXT REFERENCES concept_review_event(event_id)")
     db.execute(
         """INSERT OR IGNORE INTO catalog_set_localized
         SELECT 'ja', set_code, name_ja, release_date_ja, official_card_count,
@@ -267,7 +270,7 @@ def import_card_classifications(db: sqlite3.Connection, rows: Iterable[dict[str,
 
 
 def import_bilingual_concepts(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
-    """Import human-reviewed translation concepts without asserting a card edge."""
+    """Low-level concept import for fixtures and migrations; use review bundles in production."""
     count = 0
     fields = ("concept_id", "revision", "category", "name_ja", "name_en",
               "source_ja", "source_en", "rights_reference", "reviewer", "reviewed_at", "status")
@@ -284,20 +287,138 @@ def import_bilingual_concepts(db: sqlite3.Connection, rows: Iterable[dict[str, A
                    or len(row[field]) > 500 for field in fields if field != "revision"):
                 raise ValueError("invalid concept text")
             parse_time(row["reviewed_at"])
-            values = tuple(row[field] for field in fields)
+            values = tuple(row[field] for field in fields) + (row.get("review_event_id"),)
             latest = db.execute(
                 "SELECT * FROM bilingual_concept_revision WHERE concept_id=? ORDER BY revision DESC LIMIT 1",
                 (row["concept_id"],),
             ).fetchone()
             if latest and row["revision"] <= latest["revision"]:
-                if row["revision"] == latest["revision"] and values == tuple(latest[field] for field in fields):
+                if row["revision"] == latest["revision"] and values == tuple(latest[field] for field in (*fields, "review_event_id")):
                     continue
                 raise ValueError("stale or conflicting concept revision")
             db.execute(
-                "INSERT INTO bilingual_concept_revision VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", values,
+                "INSERT INTO bilingual_concept_revision VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", values,
             )
             count += 1
     return count
+
+
+def import_concept_review_bundle(db: sqlite3.Connection, bundle: dict[str, Any]) -> dict[str, int]:
+    """Atomically retain attributed decisions and their approved name aliases."""
+    if bundle.get("schema") != "pokemon.concept_review_bundle.v1":
+        raise ValueError("unsupported concept review bundle")
+    events = bundle.get("review_events")
+    concepts = bundle.get("concept_revisions")
+    if not isinstance(events, list) or not isinstance(concepts, list):
+        raise ValueError("bundle needs review_events and concept_revisions lists")
+    prepared = {}
+    for event in events:
+        if not isinstance(event, dict) or event.get("schema") != "pokemon.concept_review.v1":
+            raise ValueError("invalid concept review event")
+        payload = {key: value for key, value in event.items() if key != "event_id"}
+        digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        if event.get("event_id") != digest:
+            raise ValueError("concept review event digest mismatch")
+        proposal, review = event.get("proposal"), event.get("review")
+        if not isinstance(proposal, dict) or not isinstance(review, dict):
+            raise ValueError("concept review needs proposal and decision evidence")
+        _required(proposal, "proposal_id", "source_snapshot_sha256", "category", "name_ja",
+                  "name_en", "source_ja", "source_en", "ja_provenance", "en_provenance",
+                  "rights_reference")
+        snapshot = proposal.get("source_snapshot")
+        if not isinstance(snapshot, dict) or not isinstance(snapshot.get("frozen"), dict):
+            raise ValueError("concept review lacks complete source snapshot")
+        snapshot_digest = hashlib.sha256(json.dumps(
+            snapshot, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        if snapshot_digest != proposal["source_snapshot_sha256"] or any(
+                proposal.get(key) != value for key, value in snapshot["frozen"].items()):
+            raise ValueError("concept source snapshot mismatch")
+        for side in ("ja", "en"):
+            if proposal[f"{side}_provenance"] != snapshot[f"{side}_provenance"]:
+                raise ValueError("concept card provenance mismatch")
+        _required(review, "decision", "reviewer", "reviewed_at", "evidence_note")
+        if review["decision"] not in {"approve", "reject", "uncertain"}:
+            raise ValueError("invalid concept review decision")
+        revision = review.get("review_revision")
+        if type(revision) is not int or revision < 1:
+            raise ValueError("concept review needs positive review_revision")
+        parse_time(review["reviewed_at"])
+        if (not isinstance(review["reviewer"], str) or not review["reviewer"].strip()
+                or review["reviewer"] != review["reviewer"].strip()
+                or not isinstance(review["evidence_note"], str)
+                or not review["evidence_note"].strip()):
+            raise ValueError("concept review needs attributed evidence")
+        if review["decision"] == "approve" and any(
+                review.get(field) is not True for field in
+                ("ja_identity_checked", "en_identity_checked", "translation_checked")):
+            raise ValueError("approved concept needs three identity attestations")
+        if event["event_id"] in prepared:
+            raise ValueError("duplicate concept review event")
+        prepared[event["event_id"]] = event
+    approved_ids = {event_id for event_id, event in prepared.items()
+                    if event["review"]["decision"] == "approve"}
+    if {row.get("review_event_id") for row in concepts} != approved_ids:
+        raise ValueError("every approval must map to exactly one concept revision")
+    if len(concepts) != len(approved_ids):
+        raise ValueError("duplicate concept revision for one approval")
+    count_events = count_concepts = 0
+    with db:
+        for event_id, event in prepared.items():
+            proposal, review = event["proposal"], event["review"]
+            record = json.dumps(event, ensure_ascii=False, sort_keys=True)
+            existing = db.execute(
+                "SELECT record_json FROM concept_review_event WHERE event_id=?", (event_id,)
+            ).fetchone()
+            if existing:
+                if existing["record_json"] != record:
+                    raise ValueError("conflicting concept review event")
+                continue
+            latest = db.execute(
+                "SELECT MAX(review_revision) FROM concept_review_event WHERE proposal_id=?",
+                (proposal["proposal_id"],),
+            ).fetchone()[0]
+            if latest is not None and review["review_revision"] <= latest:
+                raise ValueError("stale concept review revision")
+            db.execute("""INSERT INTO concept_review_event VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                       (event_id, proposal["proposal_id"], review["review_revision"],
+                        proposal["source_snapshot_sha256"], review["decision"],
+                        review["reviewer"], review["reviewed_at"], record))
+            count_events += 1
+        for row in concepts:
+            event = prepared[row["review_event_id"]]
+            proposal, review = event["proposal"], event["review"]
+            expected = {
+                "category": proposal["category"], "name_ja": proposal["name_ja"],
+                "name_en": proposal["name_en"], "source_ja": proposal["source_ja"],
+                "source_en": proposal["source_en"],
+                "rights_reference": proposal["rights_reference"],
+                "reviewer": review["reviewer"], "reviewed_at": review["reviewed_at"],
+                "status": "approved",
+            }
+            if any(row.get(key) != value for key, value in expected.items()):
+                raise ValueError("alias does not match retained review evidence")
+            _required(row, "concept_id", "revision")
+            if type(row["revision"]) is not int or row["revision"] < 1:
+                raise ValueError("invalid concept revision")
+            values = tuple(row[key] for key in (
+                "concept_id", "revision", "category", "name_ja", "name_en",
+                "source_ja", "source_en", "rights_reference", "reviewer",
+                "reviewed_at", "status", "review_event_id"))
+            existing = db.execute(
+                "SELECT * FROM bilingual_concept_revision WHERE concept_id=? ORDER BY revision DESC LIMIT 1",
+                (row["concept_id"],),
+            ).fetchone()
+            if existing and row["revision"] <= existing["revision"]:
+                if row["revision"] == existing["revision"] and values == tuple(
+                        existing[key] for key in (
+                            "concept_id", "revision", "category", "name_ja", "name_en",
+                            "source_ja", "source_en", "rights_reference", "reviewer",
+                            "reviewed_at", "status", "review_event_id")):
+                    continue
+                raise ValueError("stale or conflicting concept revision")
+            db.execute("INSERT INTO bilingual_concept_revision VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", values)
+            count_concepts += 1
+    return {"review_events": count_events, "concept_revisions": count_concepts}
 
 
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:

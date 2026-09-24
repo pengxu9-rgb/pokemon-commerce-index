@@ -1,0 +1,33 @@
+{
+  "seed": "concept-review-v2",
+  "excluded_card_ids": 49,
+  "excluded_name_count": 44,
+  "by_category": {
+    "Trainer": {
+      "proposal_strategy": "pooled_illustrators_with_editorial_hints",
+      "source_ja_names_with_artist": 16,
+      "eligible_ja_names": 16,
+      "selected_ja_names": 16,
+      "candidate_rows": 33,
+      "truncated_selected_names": 11,
+      "hint_without_pinned_english_source": [
+        "マグマ団のしたっぱ"
+      ],
+      "gap_counts": {
+        "hint_without_pinned_english_source": 1
+      }
+    },
+    "Energy": {
+      "proposal_strategy": "editorial_name_hint",
+      "source_ja_names_with_artist": 6,
+      "eligible_ja_names": 6,
+      "selected_ja_names": 6,
+      "candidate_rows": 6,
+      "truncated_selected_names": 0,
+      "hint_without_pinned_english_source": [],
+      "gap_counts": {}
+    }
+  },
+  "proposal_rows": 39,
+  "scope": "pending human translation review; no approved aliases or printing edges"
+}

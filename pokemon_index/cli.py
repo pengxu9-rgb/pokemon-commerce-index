@@ -86,9 +86,9 @@ def main() -> None:
     parser.add_argument("--db", default="index.sqlite3", help="SQLite database path")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
-    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-card-classifications", "import-bilingual-concepts", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
+    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-card-classifications", "import-concept-review-bundle", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
         item = sub.add_parser(command)
-        item.add_argument("file", help="UTF-8 JSONL file")
+        item.add_argument("file", help="UTF-8 JSONL file, or JSON for a concept review bundle")
         if command == "calibrate":
             item.add_argument("--gate-config", help="JSON with sold price probe and daily quota measurements")
     for command in ("discover", "discovery", "units", "offers", "recommend", "seller-overlap", "index", "purge-expired"):
@@ -196,8 +196,9 @@ def main() -> None:
             output = {"facets": core.import_card_facets(db, read_jsonl(args.file))}
         elif args.command == "import-card-classifications":
             output = {"classifications": core.import_card_classifications(db, read_jsonl(args.file))}
-        elif args.command == "import-bilingual-concepts":
-            output = {"concept_revisions": core.import_bilingual_concepts(db, read_jsonl(args.file))}
+        elif args.command == "import-concept-review-bundle":
+            output = core.import_concept_review_bundle(
+                db, json.loads(Path(args.file).read_text(encoding="utf-8")))
         elif args.command == "import-relationships":
             output = {"assertions": discovery_graph.assert_relationships(db, read_jsonl(args.file))}
         elif args.command == "save-exploration":
