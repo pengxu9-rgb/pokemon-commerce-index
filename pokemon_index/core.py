@@ -211,6 +211,31 @@ def import_card_references(db: sqlite3.Connection, rows: Iterable[dict[str, Any]
     return count
 
 
+def import_card_facets(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
+    """Load internal character/artist facts with per-row source provenance."""
+    count = 0
+    with db:
+        for row in rows:
+            _required(row, "card_id", "facet_type", "value", "provenance", "rights_reference")
+            facet_type, value = row["facet_type"], str(row["value"]).strip()
+            if facet_type == "dex_id":
+                if not re.fullmatch(r"[1-9]\d{0,3}", value):
+                    raise ValueError("dex_id must be a positive integer below 10000")
+            elif facet_type == "illustrator":
+                if not value or len(value) > 160:
+                    raise ValueError("invalid illustrator")
+            else:
+                raise ValueError("unsupported card facet")
+            db.execute(
+                """INSERT INTO card_facet VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(card_id, facet_type, value) DO UPDATE SET
+                provenance=excluded.provenance, rights_reference=excluded.rights_reference""",
+                (row["card_id"], facet_type, value, row["provenance"], row["rights_reference"]),
+            )
+            count += 1
+    return count
+
+
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
     totals = db.execute(
@@ -232,8 +257,12 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
         GROUP BY c.language, c.set_code ORDER BY c.language, c.set_code"""
     )]
     references = db.execute("SELECT COUNT(*) FROM card_reference").fetchone()[0]
+    facet_coverage = {row["facet_type"]: row["cards"] for row in db.execute(
+        "SELECT facet_type, COUNT(DISTINCT card_id) AS cards FROM card_facet GROUP BY facet_type"
+    )}
     return {"printings": totals["printings"], "sets": totals["sets"],
             "reference_records": references,
+            "facet_coverage": facet_coverage,
             "display_approved": totals["display_approved"] or 0,
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
             "scope": "internal catalog inventory; not a public display authorization"}
@@ -247,13 +276,16 @@ def _catalog_card_dict(row: sqlite3.Row) -> dict[str, Any]:
 
 def catalog_search_internal(db: sqlite3.Connection, query: str, *,
                             set_code: str | None = None, variant: str | None = None,
+                            dex_id: int | None = None, illustrator: str | None = None,
                             limit: int = 20, offset: int = 0) -> dict[str, Any]:
     """Search internal card metadata without weakening public display controls."""
     if not 1 <= limit <= 100 or offset < 0:
         raise ValueError("limit must be 1–100 and offset cannot be negative")
     normalized = unicodedata.normalize("NFKC", query).strip()
-    if not normalized and not set_code:
-        raise ValueError("a query or set code is required")
+    if dex_id is not None and (type(dex_id) is not int or not 1 <= dex_id <= 9999):
+        raise ValueError("dex_id must be a positive integer below 10000")
+    if not normalized and not (set_code or dex_id or illustrator):
+        raise ValueError("a query, set code, dex ID or illustrator is required")
     terms = [normalize_collector_number(term) for term in normalized.casefold().split()]
     candidates = db.execute(
         """SELECT c.*, s.name AS set_name,
@@ -261,9 +293,15 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
         LEFT JOIN catalog_set_localized s
         ON s.language=c.language AND s.set_code=c.set_code
         WHERE (? IS NULL OR c.set_code=?) AND (? IS NULL OR c.variant=?)
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+            AND f.facet_type='dex_id' AND f.value=?))
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+            AND f.facet_type='illustrator' AND lower(f.value)=lower(?)))
         ORDER BY c.set_code, c.collector_number, c.variant""",
         (set_code.upper() if set_code else None, set_code.upper() if set_code else None,
-         variant.lower() if variant else None, variant.lower() if variant else None),
+         variant.lower() if variant else None, variant.lower() if variant else None,
+         dex_id, str(dex_id) if dex_id is not None else None,
+         illustrator, illustrator),
     )
     def matches(row: sqlite3.Row) -> bool:
         text = unicodedata.normalize(
@@ -273,7 +311,8 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
         return all(term in text for term in terms)
     found = [_catalog_card_dict(row) for row in candidates if matches(row)]
     return {"query": query, "set_code": set_code.upper() if set_code else None,
-            "variant": variant.lower() if variant else None, "total": len(found),
+            "variant": variant.lower() if variant else None, "dex_id": dex_id,
+            "illustrator": illustrator, "total": len(found),
             "offset": offset, "cards": found[offset:offset + limit],
             "scope": "internal metadata only; display_allowed controls public APIs"}
 
@@ -300,6 +339,10 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
         item = dict(reference)
         item["attributes"] = json.loads(item.pop("attributes_json"))
         references.append(item)
+    facets = [dict(facet) for facet in db.execute(
+        """SELECT facet_type, value, provenance, rights_reference FROM card_facet
+        WHERE card_id=? ORDER BY facet_type, value""", (cid,)
+    )]
     return {"card": _catalog_card_dict(row), "variants_at_number": siblings,
             "set": ({**dict(set_row),
                      "name_ja": set_row["name"] if row["language"] == "ja" else None,
@@ -309,6 +352,7 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
                 (row["language"], row["set_code"])
             ).fetchone()) else None),
             "reference_records": references,
+            "discovery_facets": facets,
             "observed_priceable_units": units,
             "scope": "internal metadata only; public APIs still enforce display permission"}
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import os
 from dataclasses import asdict
@@ -12,7 +13,9 @@ from . import buyship_mercari, calibration, core, discovery_graph, pivota, tcgde
 
 
 def read_jsonl(path: str):
-    with Path(path).open(encoding="utf-8") as handle:
+    source = Path(path)
+    opener = gzip.open if source.suffix == ".gz" else Path.open
+    with opener(source, "rt", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, 1):
             if line.strip():
                 try:
@@ -53,6 +56,8 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         result = core.catalog_search_internal(
                             db, value("q"), set_code=value("set_code") or None,
                             variant=value("variant") or None,
+                            dex_id=int(value("dex_id")) if value("dex_id") else None,
+                            illustrator=value("illustrator") or None,
                             limit=int(value("limit", "20")), offset=int(value("offset", "0")),
                         )
                     elif internal_catalog_api and parsed.path == "/catalog-card":
@@ -81,7 +86,7 @@ def main() -> None:
     parser.add_argument("--db", default="index.sqlite3", help="SQLite database path")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
-    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
+    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
         item = sub.add_parser(command)
         item.add_argument("file", help="UTF-8 JSONL file")
         if command == "calibrate":
@@ -108,6 +113,8 @@ def main() -> None:
     catalog_search.add_argument("query", nargs="?", default="")
     catalog_search.add_argument("--set-code")
     catalog_search.add_argument("--variant")
+    catalog_search.add_argument("--dex-id", type=int)
+    catalog_search.add_argument("--illustrator")
     catalog_search.add_argument("--limit", type=int, default=20)
     catalog_search.add_argument("--offset", type=int, default=0)
     catalog_card = sub.add_parser("catalog-card", help="internal card identity and known units")
@@ -185,6 +192,8 @@ def main() -> None:
             output = {"sets": core.import_sets(db, read_jsonl(args.file))}
         elif args.command == "import-card-references":
             output = {"references": core.import_card_references(db, read_jsonl(args.file))}
+        elif args.command == "import-card-facets":
+            output = {"facets": core.import_card_facets(db, read_jsonl(args.file))}
         elif args.command == "import-relationships":
             output = {"assertions": discovery_graph.assert_relationships(db, read_jsonl(args.file))}
         elif args.command == "save-exploration":
@@ -196,7 +205,8 @@ def main() -> None:
             output = core.catalog_status(db)
         elif args.command == "catalog-search":
             output = core.catalog_search_internal(db, args.query, set_code=args.set_code,
-                                                  variant=args.variant, limit=args.limit,
+                                                  variant=args.variant, dex_id=args.dex_id,
+                                                  illustrator=args.illustrator, limit=args.limit,
                                                   offset=args.offset)
         elif args.command == "catalog-card":
             output = core.catalog_card_internal(db, args.card_id)

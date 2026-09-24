@@ -150,6 +150,14 @@ class GateDecisionTests(unittest.TestCase):
 
 
 class CatalogAdapterTests(unittest.TestCase):
+    def test_discovery_facets_keep_character_separate_from_printing(self):
+        source = '''const card = { name: { en: "Pikachu" }, illustrator: "Naoyo Kimura",
+            dexId: [25], variants: [{type: "normal"}] };'''
+        self.assertEqual(tcgdex_source.parse_discovery_facets(source),
+                         {"dex_ids": [25], "illustrator": "Naoyo Kimura"})
+        with self.assertRaisesRegex(ValueError, "unsupported dexId"):
+            tcgdex_source.parse_discovery_facets("const card = { dexId: [384.1] };")
+
     def test_english_source_uses_global_directory_and_language(self):
         source = '''const card = { name: { en: "Exeggcute" }, variants: [
             { type: "normal", stamp: ["30th anniversary"] }

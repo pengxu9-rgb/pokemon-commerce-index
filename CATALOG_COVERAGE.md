@@ -17,6 +17,12 @@ The previous 3,621-row selected seed is wholly contained in the broader TCGdex e
 
 The local SQLite snapshot can be rebuilt from the pinned JSONL files. It has no live marketplace listings or prices and is excluded from Git and the source ZIP.
 
+## Character and artist discovery facets
+
+The pinned TCGdex source also supplies **59,710 provenance-checked, text-only facet rows** for the 35,077 Japanese and English identities extracted directly from its card files: 28,361 cards have a usable Pokédex character ID and 31,071 have an illustrator. Facets are stored separately in [`catalog/card-facets.jsonl.gz`](catalog/card-facets.jsonl.gz), with a [build audit](catalog/card-facets-audit.json). Four legacy source files use a decimal `dexId` such as `384.1`; those IDs are omitted and listed in the audit rather than coerced to a different character. API-only and supplemental candidates have no TCGdex facet assertion from this batch.
+
+Each facet retains the pinned source path, content SHA-256 and rights reference. A shared character ID supports exploratory retrieval across languages; it does **not** assert identical artwork, printing, condition or price. Artist matches have the same limitation. All facet queries remain internal, and no display permission is inferred from the source license. `scripts.build_discovery_facets` reproduces the compressed snapshot byte-for-byte from the pinned checkout and the two card identity extracts.
+
 ## Source snapshots
 
 - [TCGdex cards-database](https://github.com/tcgdex/cards-database), commit `a211f11f3ba57d56c65c5ac33be35b77d3280757`. The repository describes its database as MIT licensed. We extracted identity text from its `data-asia` TypeScript files and recorded each source path and SHA-256.

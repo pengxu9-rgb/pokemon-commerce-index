@@ -29,6 +29,7 @@ API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONT
 - 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 **55,165 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
 - 内部关系图可查询同卡组／编号的版本邻居；日英对应、相同画作和收藏替代项仅作为带证据的断言进入库，经过人工核实才可作事实性探索。状态改变以新断言记录，不覆盖旧证据。结构化探索 session 保存语言、卡组、预算等约束、shortlist 和最后选定的精确卡片；只有 `match_eligible` 的卡片可进入后续 offer 跟踪。当前没有自动生成的日英对应边或真实用户 session。
+- 固定 TCGdex 源另提供 59,710 条内部角色 ID／画师属性记录，覆盖 28,361 个带角色 ID 的卡片身份与 31,071 个带画师的身份。英文角色名可通过同一 Pokédex ID 找到日文的**同角色候选**，结果标记 `same_character`，不会创建同画作或日英对应印刷关系。具体范围与 4 个非标准 ID 缺口见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
 
 `purge-expired` 需由部署环境定期运行；`expires_at` 停止该来源的导入和展示，数据删除仍按独立的 `retention_days` 执行。
 
@@ -70,14 +71,27 @@ python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-candi
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-multi-record-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-references catalog/ptcg-jp-reference.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-card-facets catalog/card-facets.jsonl.gz
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
+python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20
+python3 -m pokemon_index --db catalog.sqlite3 catalog-search --illustrator 'Naoyo Kimura' --limit 20
 python3 -m pokemon_index --db catalog.sqlite3 catalog-card 'ja:SV2A:025/165:reverse_masterball'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'S6a 087/069'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
 
 `catalog-search` 和 `catalog-card` 仅供内部开发查询，返回来源、展示标记与匹配资格。它们不会更改公开展示权限；示例中的 `SV2a 025/165` 会返回普通版、Master Ball 与 Poké Ball 三个不同身份。S6a 补充候选可以查到，但 `match_eligible=false`，不会进入自动报价匹配。
+
+角色 ID 与画师属性可由固定源码重建；输出必须为新文件，构建器会逐个核对源码 SHA-256：
+
+```bash
+python3 -m scripts.build_discovery_facets \
+  --repo ../../work/tcgdex-public \
+  --revision a211f11f3ba57d56c65c5ac33be35b77d3280757 \
+  --cards catalog/ja-all-available.jsonl --cards catalog/en-physical-cards.jsonl \
+  --output facets-rebuilt.jsonl.gz --report facets-rebuilt-audit.json
+```
 
 内部探索状态使用逐次递增的 `expected_version` 防止覆盖其他步骤的选择。JSONL 文件每次只含一个 session 更新，例如 `{"session_id":"example-1","owner_key":"opaque-user-1","expected_version":0,"constraints":{"query":"ピカチュウ","language":"ja","budget_minor":20000}}`。随后执行 `save-exploration <file>`、`exploration example-1 --owner-key opaque-user-1`、`exploration-candidates example-1 --owner-key opaque-user-1`、`exploration-decision example-1 --owner-key opaque-user-1`。最后一条按实际候选给出一个下一步问题。锁定目标时提交下一版本及 `target_card_id`；暂时无法确定版本时保持 shortlist，不生成购买建议。暂停后需显式设置 `status=targeted` 才能恢复；更换语言、卡组、卡号或版本时，先清除或替换冲突目标。预算、评级与目的地被保存，但目前不会过滤目录卡片或无权取得的报价。`owner_key` 是调用方提供的匿名作用域标识，不应放入个人资料或认证密钥。当前没有账户认证和会话保留策略，所以这些写入命令仅供受控内部环境使用。
 

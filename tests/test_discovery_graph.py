@@ -92,6 +92,52 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertEqual(discovery_graph.exploration_candidates(
             self.db, "cross", "anonymous-1")["total"], 0)
 
+    def test_character_alias_is_discovery_only_and_artist_can_filter(self):
+        core.import_cards(self.db, [
+            dict(language="en", set_code="ME1", collector_number="026/165",
+                 variant="normal", name="Pikachu & Zekrom", provenance="fixture",
+                 rights_reference="fixture", display_allowed=False),
+            dict(language="ja", set_code="SV2a", collector_number="026/165",
+                 variant="normal", name="ゼクロム", provenance="fixture",
+                 rights_reference="fixture", display_allowed=False),
+        ])
+        group = "en:ME1:026/165:normal"
+        zekrom = "ja:SV2A:026/165:normal"
+        core.import_card_facets(self.db, [
+            dict(card_id=card_id, facet_type=kind, value=value,
+                 provenance=f"fixture:{card_id}", rights_reference="fixture")
+            for card_id in (self.ja, self.reverse, self.en)
+            for kind, value in (("dex_id", "25"), ("illustrator", "Naoyo Kimura"))
+        ])
+        core.import_card_facets(self.db, [
+            dict(card_id=card_id, facet_type="dex_id", value=value,
+                 provenance="fixture:team", rights_reference="fixture")
+            for card_id, value in ((group, "25"), (group, "644"), (zekrom, "644"))
+        ])
+        self.assertEqual(core.catalog_search_internal(self.db, "", dex_id=25)["total"], 4)
+        self.assertEqual(core.catalog_status(self.db)["facet_coverage"],
+                         {"dex_id": 5, "illustrator": 3})
+        self.assertEqual(core.catalog_search_internal(
+            self.db, "", illustrator="naoyo kimura", set_code="SV2a")["total"], 2)
+        self.assertEqual(len(core.catalog_card_internal(
+            self.db, self.ja)["discovery_facets"]), 2)
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="alias", owner_key="user", expected_version=0,
+            constraints={"query": "Pikachu", "language": "ja", "dex_id": 25}))
+        # An English name finds Japanese character relatives, with or without
+        # an explicit dex filter, without creating a counterpart edge.
+        direct = discovery_graph.exploration_candidates(self.db, "alias", "user")
+        self.assertEqual(direct["total"], 2)
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="alias", owner_key="user", expected_version=1,
+            constraints={"dex_id": None}))
+        found = discovery_graph.exploration_candidates(self.db, "alias", "user")
+        self.assertEqual(found["total"], 2)
+        self.assertEqual({card["matched_via"] for card in found["cards"]}, {"same_character"})
+        self.assertTrue(all(card["character_dex_id"] == 25 for card in found["cards"]))
+        self.assertNotIn(zekrom, [card["card_id"] for card in found["cards"]])
+        self.assertEqual(discovery_graph.card_neighborhood(self.db, self.ja)["relationships"], [])
+
     def test_structured_exploration_requires_exact_target_and_checks_revision(self):
         session = discovery_graph.save_exploration(self.db, dict(
             session_id="s1", owner_key="opaque-user-1", expected_version=0,

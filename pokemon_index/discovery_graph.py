@@ -14,7 +14,8 @@ RELATION_TYPES = {"localization_counterpart", "same_artwork", "collecting_altern
 REVIEW_STATUSES = {"proposed", "verified", "rejected"}
 CONSTRAINT_FIELDS = {
     "query", "language", "set_code", "collector_number", "variant",
-    "grade_company", "grade_value", "budget_minor", "currency", "destination",
+    "dex_id", "illustrator", "grade_company", "grade_value", "budget_minor",
+    "currency", "destination",
 }
 
 
@@ -128,10 +129,12 @@ def _validate_constraints(value: Any) -> dict[str, Any]:
         raise ValueError("constraints must be an object with supported fields")
     result = {key: field for key, field in value.items() if field is not None}
     if any(not isinstance(field, str) or not field.strip()
-           for key, field in result.items() if key != "budget_minor"):
+           for key, field in result.items() if key not in {"budget_minor", "dex_id"}):
         raise ValueError("constraint values must be nonempty strings")
     if "budget_minor" in result and (type(result["budget_minor"]) is not int or result["budget_minor"] < 0):
         raise ValueError("budget_minor must be a nonnegative integer")
+    if "dex_id" in result and (type(result["dex_id"]) is not int or not 1 <= result["dex_id"] <= 9999):
+        raise ValueError("dex_id must be a positive integer below 10000")
     if result.get("language") and result["language"] not in {"ja", "en"}:
         raise ValueError("unsupported language")
     if result.get("set_code"):
@@ -245,7 +248,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
     filters = state["constraints"]
     shortlist = state["shortlist_card_ids"]
     if not shortlist and not any(filters.get(field) for field in
-                                 ("query", "set_code", "collector_number")):
+                                 ("query", "set_code", "collector_number", "dex_id", "illustrator")):
         return {"session_id": session_id, "cards": [], "total": 0,
                 "facets": {}, "reason": "add a card name, set code, collector number or shortlist"}
     rows = db.execute(
@@ -253,11 +256,17 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
         match_eligible, display_allowed FROM card
         WHERE (? IS NULL OR language=?) AND (? IS NULL OR set_code=?)
         AND (? IS NULL OR collector_number=?) AND (? IS NULL OR variant=?)
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=card.card_id
+            AND f.facet_type='dex_id' AND f.value=?))
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=card.card_id
+            AND f.facet_type='illustrator' AND lower(f.value)=lower(?)))
         ORDER BY match_eligible DESC, set_code, collector_number, variant""",
         (filters.get("language"), filters.get("language"),
          filters.get("set_code"), filters.get("set_code"),
          filters.get("collector_number"), filters.get("collector_number"),
-         filters.get("variant"), filters.get("variant")),
+         filters.get("variant"), filters.get("variant"),
+         filters.get("dex_id"), str(filters["dex_id"]) if filters.get("dex_id") else None,
+         filters.get("illustrator"), filters.get("illustrator")),
     )
     terms = [term.casefold() for term in filters.get("query", "").split()]
     found = [{**dict(card), "matched_via": "catalog_text"} for card in rows
@@ -299,6 +308,56 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                              | {"matched_via": "verified_localization_counterpart",
                                 "relationship_assertion_id": edge["assertion_id"]})
                 seen.add(target_id)
+    # A common dex ID expands a translated character name to *other cards of
+    # that character*, never to a verified printing counterpart.
+    if terms and filters.get("language") and not found:
+        alias_ids = {}
+        for source in db.execute(
+            """SELECT c.card_id, c.name, f.value, f.provenance FROM card c JOIN card_facet f
+            ON f.card_id=c.card_id WHERE c.language<>? AND f.facet_type='dex_id'
+            AND (SELECT COUNT(*) FROM card_facet single_species
+                 WHERE single_species.card_id=c.card_id AND single_species.facet_type='dex_id')=1""",
+            (filters["language"],),
+        ):
+            if (not filters.get("dex_id") or source["value"] == str(filters["dex_id"])) and all(
+                    term in source["name"].casefold() for term in terms):
+                alias_ids.setdefault(source["value"], dict(source))
+                if len(alias_ids) > 3:
+                    break
+        if 0 < len(alias_ids) <= 3:
+            seen = set()
+            for target in db.execute(
+                """SELECT c.card_id, c.language, c.set_code, c.collector_number, c.variant,
+                c.name, c.rarity, c.match_eligible, c.display_allowed,
+                f.value AS dex_id, f.provenance AS facet_provenance
+                FROM card c JOIN card_facet f ON f.card_id=c.card_id
+                WHERE c.language=? AND f.facet_type='dex_id'
+                ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
+                (filters["language"],),
+            ):
+                if target["dex_id"] not in alias_ids or target["card_id"] in seen:
+                    continue
+                if shortlist and target["card_id"] not in shortlist:
+                    continue
+                if any(filters.get(field) and target[field] != filters[field]
+                       for field in ("set_code", "collector_number", "variant")):
+                    continue
+                if filters.get("illustrator") and not db.execute(
+                    """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='illustrator'
+                    AND lower(value)=lower(?)""", (target["card_id"], filters["illustrator"])
+                ).fetchone():
+                    continue
+                source = alias_ids[target["dex_id"]]
+                found.append({key: target[key] for key in
+                              ("card_id", "language", "set_code", "collector_number", "variant",
+                               "name", "rarity", "match_eligible", "display_allowed")}
+                             | {"matched_via": "same_character",
+                                "character_dex_id": int(target["dex_id"]),
+                                "character_evidence": {
+                                    "source_card_id": source["card_id"],
+                                    "source_provenance": source["provenance"],
+                                    "target_provenance": target["facet_provenance"]}})
+                seen.add(target["card_id"])
     facets = {}
     for field in ("language", "set_code", "collector_number", "variant"):
         counts = Counter(str(card[field]) for card in found)

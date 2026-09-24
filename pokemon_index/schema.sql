@@ -64,6 +64,17 @@ CREATE TABLE IF NOT EXISTS card_reference (
   PRIMARY KEY(source, native_id)
 );
 
+-- Source-backed discovery facets describe a character or artist, never a
+-- printing counterpart or a market price.
+CREATE TABLE IF NOT EXISTS card_facet (
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  facet_type TEXT NOT NULL CHECK (facet_type IN ('dex_id', 'illustrator')),
+  value TEXT NOT NULL,
+  provenance TEXT NOT NULL,
+  rights_reference TEXT NOT NULL,
+  PRIMARY KEY(card_id, facet_type, value)
+);
+
 -- Reviewed claims connect printings without implying that their prices are interchangeable.
 -- Assertions are append-only; the latest assertion for an edge is its current review state.
 CREATE TABLE IF NOT EXISTS card_relationship_assertion (
@@ -196,6 +207,7 @@ CREATE TABLE IF NOT EXISTS verified_sale (
 
 CREATE INDEX IF NOT EXISTS idx_card_search ON card(language, set_code, collector_number);
 CREATE INDEX IF NOT EXISTS idx_card_reference_identity ON card_reference(set_code, collector_number);
+CREATE INDEX IF NOT EXISTS idx_card_facet_lookup ON card_facet(facet_type, value, card_id);
 CREATE INDEX IF NOT EXISTS idx_card_relationship_pair ON card_relationship_assertion(left_card_id, right_card_id, relation_type, asserted_at);
 CREATE INDEX IF NOT EXISTS idx_card_relationship_reverse ON card_relationship_assertion(right_card_id, left_card_id, relation_type, asserted_at);
 CREATE INDEX IF NOT EXISTS idx_exploration_owner ON exploration_session(owner_key, updated_at);

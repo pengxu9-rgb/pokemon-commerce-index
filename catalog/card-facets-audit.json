@@ -1,0 +1,27 @@
+{
+  "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "source_cards": 35077,
+  "source_files": 25321,
+  "facet_rows": 59710,
+  "cards_with_dex_id": 28361,
+  "cards_with_illustrator": 31071,
+  "facet_parse_gaps": [
+    {
+      "source_path": "data-asia/PCG/PCG2/067.ts",
+      "reason": "unsupported dexId array"
+    },
+    {
+      "source_path": "data-asia/PCG/PCG6/043.ts",
+      "reason": "unsupported dexId array"
+    },
+    {
+      "source_path": "data-asia/PCG/PCG7/015.ts",
+      "reason": "unsupported dexId array"
+    },
+    {
+      "source_path": "data-asia/PCG/PCG9/028.ts",
+      "reason": "unsupported dexId array"
+    }
+  ],
+  "scope": "internal character and artist discovery only; no printing equivalence"
+}

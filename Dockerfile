@@ -9,7 +9,8 @@ COPY catalog/ja-all-sets.jsonl catalog/ja-all-available.jsonl \
      catalog/en-api-sets.jsonl catalog/en-api-candidates.jsonl \
      catalog/ptcg-jp-candidates.jsonl catalog/ptcg-jp-multi-record-candidates.jsonl \
      catalog/ptcg-jp-reference.jsonl \
-     catalog/tcgdex-ambiguous-candidates.jsonl /app/catalog/
+     catalog/tcgdex-ambiguous-candidates.jsonl \
+     catalog/card-facets.jsonl.gz /app/catalog/
 RUN python -m pokemon_index --db /app/catalog.sqlite3 init \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/ja-all-sets.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/en-physical-sets.jsonl \
@@ -22,6 +23,7 @@ RUN python -m pokemon_index --db /app/catalog.sqlite3 init \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ptcg-jp-multi-record-candidates.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/tcgdex-ambiguous-candidates.jsonl \
  && python -m pokemon_index --db /app/catalog.sqlite3 import-card-references /app/catalog/ptcg-jp-reference.jsonl
+RUN python -m pokemon_index --db /app/catalog.sqlite3 import-card-facets /app/catalog/card-facets.jsonl.gz
 
 FROM python:3.12-slim
 WORKDIR /app

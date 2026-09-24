@@ -115,6 +115,27 @@ def _variant_token(value: str, *, normalize_hyphen: bool = False) -> str:
     return token
 
 
+def parse_discovery_facets(source: str) -> dict[str, Any]:
+    """Read text-only character and artist facts without inferring a printing link."""
+    attributes: dict[str, Any] = {}
+    dex_body = _object_field(source, "dexId", "[", "]")
+    if dex_body is not None:
+        if not re.fullmatch(r"[\d,\s]*", dex_body):
+            raise ValueError("unsupported dexId array")
+        values = ast.literal_eval("[" + dex_body + "]")
+        if not isinstance(values, list) or not values or any(
+                type(value) is not int or not 1 <= value <= 9999 for value in values):
+            raise ValueError("invalid dexId array")
+        attributes["dex_ids"] = sorted(set(values))
+    illustrator = _string_field(source, "illustrator")
+    if illustrator:
+        illustrator = illustrator.strip()
+        if not illustrator or len(illustrator) > 160:
+            raise ValueError("invalid illustrator")
+        attributes["illustrator"] = illustrator
+    return attributes
+
+
 def parse_card_source(source: str, *, set_id: str, official_count: int,
                       path: str, revision: str, language: str = "ja",
                       source_directory: str | None = None) -> list[dict[str, Any]]:
