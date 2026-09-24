@@ -1,0 +1,28 @@
+{
+  "seed": "concept-review-v1",
+  "excluded_card_ids": 49,
+  "excluded_name_count": 44,
+  "by_category": {
+    "Trainer": {
+      "proposal_strategy": "same_illustrator_and_class",
+      "source_ja_names_with_artist": 827,
+      "eligible_ja_names": 126,
+      "selected_ja_names": 16,
+      "candidate_rows": 30,
+      "gap_counts": {
+        "no_shared_artist_class_candidate": 16,
+        "too_many_candidate_names": 685
+      }
+    },
+    "Energy": {
+      "proposal_strategy": "editorial_name_hint",
+      "source_ja_names_with_artist": 20,
+      "eligible_ja_names": 6,
+      "selected_ja_names": 6,
+      "candidate_rows": 6,
+      "gap_counts": {}
+    }
+  },
+  "proposal_rows": 36,
+  "scope": "pending human translation review; no approved aliases or printing edges"
+}
