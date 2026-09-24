@@ -1,0 +1,212 @@
+{
+  "scope": "blind anchor selection and unlabeled candidate probe; no recall measurement",
+  "seed": "relationship-coverage-v1",
+  "per_stratum": 3,
+  "catalog_ja_cards": 27092,
+  "excluded_anchor_count": 19,
+  "selected_anchors": 30,
+  "strata": {
+    "multi_character": {
+      "population": 137,
+      "selected": 3,
+      "anchors_with_candidates": 0,
+      "candidate_pairs": 0,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 3
+      }
+    },
+    "trainer": {
+      "population": 2241,
+      "selected": 3,
+      "anchors_with_candidates": 0,
+      "candidate_pairs": 0,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 3
+      }
+    },
+    "energy": {
+      "population": 331,
+      "selected": 3,
+      "anchors_with_candidates": 0,
+      "candidate_pairs": 0,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 3
+      }
+    },
+    "missing_facet": {
+      "population": 6378,
+      "selected": 3,
+      "anchors_with_candidates": 0,
+      "candidate_pairs": 0,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 3
+      }
+    },
+    "same_number_finish": {
+      "population": 2846,
+      "selected": 3,
+      "anchors_with_candidates": 2,
+      "candidate_pairs": 6,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 1
+      }
+    },
+    "promo": {
+      "population": 716,
+      "selected": 3,
+      "anchors_with_candidates": 3,
+      "candidate_pairs": 4,
+      "gap_reasons": {}
+    },
+    "name_reprint": {
+      "population": 8951,
+      "selected": 3,
+      "anchors_with_candidates": 3,
+      "candidate_pairs": 14,
+      "gap_reasons": {}
+    },
+    "supplemental_pokemon": {
+      "population": 7661,
+      "selected": 3,
+      "anchors_with_candidates": 0,
+      "candidate_pairs": 0,
+      "gap_reasons": {
+        "missing_or_ambiguous_facets": 3
+      }
+    },
+    "current_era": {
+      "population": 1958,
+      "selected": 3,
+      "anchors_with_candidates": 1,
+      "candidate_pairs": 2,
+      "gap_reasons": {
+        "no_candidate_with_character_and_artist": 2
+      }
+    },
+    "control": {
+      "population": 7662,
+      "selected": 3,
+      "anchors_with_candidates": 3,
+      "candidate_pairs": 14,
+      "gap_reasons": {}
+    }
+  },
+  "candidate_probe": {
+    "anchors": 30,
+    "candidate_pairs": 40,
+    "duplicate_pairs_skipped": 0,
+    "anchors_with_candidates": 12,
+    "pairs_with_offer_matching_disabled": 2,
+    "gaps": [
+      {
+        "card_id": "ja:SM10:110/095:holo",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 2,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:SM12:104/095:holo",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 2,
+        "illustrator_count": 1
+      },
+      {
+        "card_id": "ja:SM9A:059/055:holo",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 2,
+        "illustrator_count": 1
+      },
+      {
+        "card_id": "ja:SMJ:025/035:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:SI:419/414:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:DPTP:019/DPT-P:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:SVM:175/175:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:SI:LIG/-1:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:M-P:156/M-P:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:SM11A:053/064:normal",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 1
+      },
+      {
+        "card_id": "ja:SV8A:169/187:reverse",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 1
+      },
+      {
+        "card_id": "ja:SK:026/030:standard",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 1
+      },
+      {
+        "card_id": "ja:E2:063/092:normal_1st_edition",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 1,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:MDB:022/046:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:XY9-B:045/080:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:WCP:074/108:unverified",
+        "reason": "missing_or_ambiguous_facets",
+        "dex_count": 0,
+        "illustrator_count": 0
+      },
+      {
+        "card_id": "ja:M6:047/076:normal",
+        "reason": "no_candidate_with_character_and_artist",
+        "dex_id": "686",
+        "illustrator": "kawayoo"
+      },
+      {
+        "card_id": "ja:M6:042/076:normal",
+        "reason": "no_candidate_with_character_and_artist",
+        "dex_id": "30",
+        "illustrator": "Jiro Sasumo"
+      }
+    ],
+    "scope": "internal retrieval queue; no relationship verified"
+  }
+}
