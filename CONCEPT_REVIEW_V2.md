@@ -2,7 +2,7 @@
 
 Use the [v2 review CSV](catalog/concept-review-v2-template.csv) with the immutable [proposal queue](catalog/concept-review-v2-queue.jsonl) and [selection audit](catalog/concept-review-v2-audit.json). The v1 packet remains in the repository as an audit of the original shortlist; do not fill it with new decisions.
 
-This packet retains all 36 v1 name pairs and adds three source-backed Trainer proposals: ルリナ → Nessa, ツツジ → Roxanne, and マスタード れんげきのかた → Rapid Strike Style Mustard. It has **39 pending rows** covering the same 22 Japanese names. The fourth identified gap, マグマ団のしたっぱ → Team Magma Grunt, has no English pinned TCGdex card record in this catalog; only an unverified API-family identity is present. It remains a documented source gap rather than an invented source-backed proposal. None of the hints is a human-approved translation.
+This packet retains all 36 v1 name pairs and adds three source-backed Trainer proposals: ルリナ → Nessa, ツツジ → Roxanne, and マスタード れんげきのかた → Rapid Strike Style Mustard. Its **human review template has 39 pending rows** covering the same 22 Japanese names. The fourth identified gap, マグマ団のしたっぱ → Team Magma Grunt, has no English pinned TCGdex card record in this catalog; only an unverified API-family identity is present. It remains a documented source gap rather than an invented source-backed proposal. None of the hints is a human-approved translation.
 
 Japanese and English card names, categories and pinned source-file hashes were rechecked for all 39 rows (65 distinct source cards). The packet excludes the earlier blind and pilot Japanese names. Eleven Trainer name pools had additional artist-based options beyond the curated v2 subset; the `omitted_name_count` column exposes that incompleteness. The packet is not a recall sample or a complete bilingual dictionary.
 
@@ -22,11 +22,11 @@ python3 -m pokemon_index --db catalog-index.sqlite3 \
   import-concept-review-bundle reviewed-concepts-v2.bundle.json
 ```
 
-The untouched template compiles to zero review events and zero aliases. **No one has approved a v2 row yet.** Approved names only retrieve card relationship *candidates*. A factual printing relationship still needs its separate two-reviewer artwork, finish and identity review.
+The untouched template compiles to zero review events and zero aliases. **The human template remains entirely pending.** Following explicit user authorization, two independent AI reviews agreed on all 39 proposals and an AI-attributed bundle approved 21 internal name aliases; 18 rejections are retained as review events. These AI approvals retrieve relationship *candidates* and do not represent human certification. A factual printing relationship still needs its separate two-reviewer artwork, finish and identity review. See [AI_CONSENSUS_IMPORT.md](AI_CONSENSUS_IMPORT.md).
 
 ## Remaining build gates
 
 - Obtain pinned or official card-specific English evidence for Team Magma Grunt, or leave that Japanese name unsupported.
-- Run real human concept review, import the resulting bundle, and regenerate the relationship queue. Keep the 30-anchor blind gold exercise separate from this packet.
+- Run real human concept review on the still-pending human template, then use a superseding-revision workflow for any correction (not yet implemented). Keep the 30-anchor blind gold exercise separate from this selected packet.
 - Measure proposal precision, names with a correct candidate, missed-name reasons, and reviewer effort by signal. The v2 packet is intentionally selected for review and cannot establish population recall.
 - Expand the concept model to allow multiple reviewed language-specific aliases before broad Basic Energy or historical-name coverage. Exact printing identities and their price eligibility remain separate.

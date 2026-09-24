@@ -92,6 +92,23 @@ class DiscoveryGraphTests(unittest.TestCase):
             discovery_graph.assert_relationships(self.db, [dict(row, review_status="rejected")])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 1)
 
+    def test_relationship_import_handles_legacy_column_order(self):
+        self.db.execute("DROP TABLE card_relationship_assertion")
+        self.db.execute("""CREATE TABLE card_relationship_assertion (
+            assertion_id TEXT PRIMARY KEY, left_card_id TEXT NOT NULL,
+            right_card_id TEXT NOT NULL, relation_type TEXT NOT NULL,
+            review_status TEXT NOT NULL, evidence_ref TEXT NOT NULL,
+            rights_reference TEXT NOT NULL, asserted_by TEXT NOT NULL,
+            asserted_at TEXT NOT NULL, reviewer TEXT)""")
+        row = self.assertion("proposed")
+        row["assertion_id"] = "legacy-column-order-test"
+        self.assertEqual(discovery_graph.assert_relationships(self.db, [row]), 1)
+        saved = self.db.execute(
+            "SELECT asserted_at, reviewer FROM card_relationship_assertion"
+        ).fetchone()
+        self.assertTrue(saved["asserted_at"])
+        self.assertIsNone(saved["reviewer"])
+
     def test_direct_verified_import_requires_two_card_two_reviewer_evidence(self):
         row = self.assertion("verified", "reviewer-a")
         with self.assertRaisesRegex(ValueError, "structured evidence"):

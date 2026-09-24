@@ -214,7 +214,11 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
                     continue
                 event_id = str(uuid.uuid4())
             db.execute(
-                "INSERT INTO card_relationship_assertion VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                """INSERT INTO card_relationship_assertion
+                (assertion_id, left_card_id, right_card_id, relation_type,
+                 review_status, evidence_ref, rights_reference, asserted_by,
+                 reviewer, asserted_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (event_id, *fields, asserted_at),
             )
             count += 1

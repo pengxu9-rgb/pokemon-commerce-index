@@ -6,7 +6,7 @@ The exact card printing remains `language + set + collector number + variant`. A
 
 `catalog/card-classifications.jsonl.gz` contains category and subtype extracted from the pinned TCGdex text metadata at revision `a211f11f3ba57d56c65c5ac33be35b77d3280757`. Each row carries the card's source-file SHA-256 provenance and rights reference. The build reads only local pinned files; it does not copy images, effects, prices, or marketplace listings. The audit is in `catalog/card-classifications-audit.json`. Four variants from two inconsistent source files remain unclassified. The database table is `card_classification`, separate from character/artist facets and reviewed relation assertions.
 
-The `bilingual_concept_revision` table is intentionally empty until a person checks both language names against card-specific source pages or licensed API records. Import records are append-only by `concept_id, revision`. The latest `approved` revision enables retrieval; a newer `withdrawn` revision disables it. A repeated identical revision is idempotent; a stale or conflicting revision is rejected. The production import command now accepts a compiled review bundle and atomically stores every non-pending decision in `concept_review_event`; each approved alias references its review event. The low-level `core.import_bilingual_concepts` function remains for fixtures and migrations.
+The `bilingual_concept_revision` table now contains 21 internal aliases approved through a user-authorized dual-AI consensus, with both model identities and rationales retained in each linked review event. This is distinct from human certification. Import records are append-only by `concept_id, revision`. The latest `approved` revision enables retrieval; a newer `withdrawn` revision disables it. A repeated identical revision is idempotent; a stale or conflicting revision is rejected. The production import command now accepts a compiled review bundle and atomically stores every non-pending decision in `concept_review_event`; each approved alias references its review event. The low-level `core.import_bilingual_concepts` function remains for fixtures and migrations.
 
 Each approved concept revision inside a compiled review bundle has these fields:
 
@@ -17,7 +17,7 @@ Each approved concept revision inside a compiled review bundle has these fields:
 | `name_ja`, `name_en` | Exact printed names checked by the reviewer |
 | `source_ja`, `source_en` | Distinct, card-specific evidence references where available; retain source version or access date in the reference |
 | `rights_reference` | Permission and attribution record for internal use |
-| `reviewer`, `reviewed_at` | Human reviewer identifier and timestamp with UTC offset |
+| `reviewer`, `reviewed_at` | Attributed reviewer identity and timestamp with UTC offset; current AI consensus rows use `ai-consensus:gpt-6-astra+gpt-6-sol` |
 | `status` | `approved` or `withdrawn` |
 | `review_event_id` | Digest of the retained review decision and full source snapshot |
 
@@ -49,4 +49,4 @@ python3 -m scripts.relationship_pilot generate --db catalog-index.sqlite3 \
   --output concept-queue.jsonl --audit concept-audit.json --sheet concept-review.csv
 ```
 
-The last command currently yields the same 17/30 anchors and 67 candidate pairs as before because no approved concept aliases have been imported. This is a diagnostic challenge set, not a recall measurement. The three blind Trainer anchors have source classifications but lack reviewed translations; the three Energy anchors are unverified supplemental identities without source classifications. Independent adjudicated answers are needed before measuring recall@K. Do not add aliases from candidate output itself: that would contaminate the blind evaluation. See [CONCEPT_REVIEW_V2.md](CONCEPT_REVIEW_V2.md) for the active human-review packet.
+The selected concept-consensus anchors yield 49 candidate pairs across 21/21 anchors; 21 source pairs also have explicitly `proposed` collecting-alternative edges. The older 30-anchor diagnostic remains separate and should not be treated as a measured recall result. This is a diagnostic challenge set, not a recall measurement. The three blind Trainer anchors have source classifications but lack reviewed translations; the three Energy anchors are unverified supplemental identities without source classifications. Independent adjudicated answers are needed before measuring recall@K. Do not add aliases from candidate output itself: that would contaminate the blind evaluation. See [CONCEPT_REVIEW_V2.md](CONCEPT_REVIEW_V2.md) for the active human-review packet.
