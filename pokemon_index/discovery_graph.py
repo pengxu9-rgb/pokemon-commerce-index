@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import sqlite3
+import uuid
+from collections import Counter
 from typing import Any, Iterable
 
 from . import core
@@ -25,7 +26,7 @@ def _card(db: sqlite3.Connection, card_id: str) -> sqlite3.Row:
 
 
 def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
-    """Import reviewed or proposed claims. Exact duplicate assertions are idempotent."""
+    """Append review events. Repeating the current claim is idempotent; reversal is possible."""
     prepared = []
     for row in rows:
         core._required(row, "left_card_id", "right_card_id", "relation_type",
@@ -41,23 +42,52 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
         if row["relation_type"] == "localization_counterpart" and left_card["language"] == right_card["language"]:
             raise ValueError("localization counterparts must use different languages")
         asserted_at = core.parse_time(row.get("asserted_at") or core.utcnow()).isoformat()
-        actor = str(row.get("reviewer") or row["asserted_by"])
+        actor = str(row["asserted_by"])
+        reviewer = str(row["reviewer"]) if row.get("reviewer") else None
         assertion = {
             "left_card_id": left, "right_card_id": right,
             "relation_type": row["relation_type"], "review_status": row["review_status"],
             "evidence_ref": row["evidence_ref"], "rights_reference": row["rights_reference"],
-            "asserted_by": actor,
+            "asserted_by": actor, "reviewer": reviewer,
         }
-        assertion_id = hashlib.sha256(json.dumps(assertion, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-        prepared.append((assertion_id, left, right, row["relation_type"], row["review_status"],
-                         row["evidence_ref"], row["rights_reference"], actor, asserted_at))
+        event_id = row.get("assertion_id")
+        if event_id is not None and (not isinstance(event_id, str) or not event_id.strip()):
+            raise ValueError("assertion_id must be a nonempty string")
+        prepared.append((event_id, assertion, asserted_at))
     count = 0
     with db:
-        for values in prepared:
-            count += db.execute(
-                "INSERT OR IGNORE INTO card_relationship_assertion VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                values,
-            ).rowcount
+        for event_id, assertion, asserted_at in prepared:
+            fields = (assertion["left_card_id"], assertion["right_card_id"],
+                      assertion["relation_type"], assertion["review_status"],
+                      assertion["evidence_ref"], assertion["rights_reference"],
+                      assertion["asserted_by"], assertion["reviewer"])
+            if event_id:
+                existing = db.execute(
+                    "SELECT * FROM card_relationship_assertion WHERE assertion_id=?", (event_id,)
+                ).fetchone()
+                if existing:
+                    stored = tuple(existing[key] for key in (
+                        "left_card_id", "right_card_id", "relation_type", "review_status",
+                        "evidence_ref", "rights_reference", "asserted_by", "reviewer"))
+                    if stored != fields:
+                        raise ValueError("assertion_id already belongs to a different event")
+                    continue
+            else:
+                latest = db.execute(
+                    """SELECT * FROM card_relationship_assertion
+                    WHERE left_card_id=? AND right_card_id=? AND relation_type=?
+                    ORDER BY rowid DESC LIMIT 1""", fields[:3]
+                ).fetchone()
+                if latest and tuple(latest[key] for key in (
+                        "left_card_id", "right_card_id", "relation_type", "review_status",
+                        "evidence_ref", "rights_reference", "asserted_by", "reviewer")) == fields:
+                    continue
+                event_id = str(uuid.uuid4())
+            db.execute(
+                "INSERT INTO card_relationship_assertion VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (event_id, *fields, asserted_at),
+            )
+            count += 1
     return count
 
 
@@ -136,12 +166,24 @@ def save_exploration(db: sqlite3.Connection, row: dict[str, Any]) -> dict[str, A
         raise ValueError("shortlist must contain at most 50 distinct card IDs")
     for card_id in shortlist:
         _card(db, card_id)
-    target = row.get("target_card_id", prior["target_card_id"] if prior else None)
+    old_target = prior["target_card_id"] if prior else None
+    target = row.get("target_card_id", old_target)
     if row.get("clear_target"):
         target = None
+    target_card = None
     if target:
-        _card(db, target)
-    status = row.get("status", "targeted" if target else "exploring")
+        target_card = _card(db, target)
+        for field in ("language", "set_code", "collector_number", "variant"):
+            if constraints.get(field) and constraints[field] != target_card[field]:
+                raise ValueError(f"selected target conflicts with {field}; clear or change the target")
+    if "status" in row:
+        status = row["status"]
+    elif prior and prior["status"] == "paused":
+        status = "paused"
+    elif target != old_target:
+        status = "targeted" if target else "exploring"
+    else:
+        status = prior["status"] if prior else ("targeted" if target else "exploring")
     if status not in {"exploring", "targeted", "paused"} or (status != "paused" and (status == "targeted") != bool(target)):
         raise ValueError("targeted status requires an exact card; exploring status cannot hold one")
     now = core.parse_time(row.get("recorded_at") or core.utcnow()).isoformat()
@@ -189,7 +231,7 @@ def get_exploration(db: sqlite3.Connection, session_id: str, owner_key: str) -> 
     return {"session_id": session_id, "status": row["status"], "version": row["version"],
             "constraints": constraints, "shortlist_card_ids": json.loads(row["shortlist_json"]),
             "target_card_id": target, "next_clarifications": missing,
-            "ready_for_offer_tracking": bool(card and card["match_eligible"]),
+            "ready_for_offer_tracking": bool(row["status"] == "targeted" and card and card["match_eligible"]),
             "created_at": row["created_at"], "updated_at": row["updated_at"],
             "scope": "internal structured intent; no live offers or user-facing display approval implied"}
 
@@ -205,7 +247,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
     if not shortlist and not any(filters.get(field) for field in
                                  ("query", "set_code", "collector_number")):
         return {"session_id": session_id, "cards": [], "total": 0,
-                "reason": "add a card name, set code, collector number or shortlist"}
+                "facets": {}, "reason": "add a card name, set code, collector number or shortlist"}
     rows = db.execute(
         """SELECT card_id, language, set_code, collector_number, variant, name, rarity,
         match_eligible, display_allowed FROM card
@@ -257,5 +299,63 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                              | {"matched_via": "verified_localization_counterpart",
                                 "relationship_assertion_id": edge["assertion_id"]})
                 seen.add(target_id)
+    facets = {}
+    for field in ("language", "set_code", "collector_number", "variant"):
+        counts = Counter(str(card[field]) for card in found)
+        facets[field] = {"distinct_count": len(counts),
+                         "values": [value for value, _ in counts.most_common(12)]}
     return {"session_id": session_id, "cards": found[:limit], "total": len(found),
+            "facets": facets,
             "scope": "internal metadata; candidate is not an offer or verified counterpart"}
+
+
+def exploration_decision(db: sqlite3.Connection, session_id: str,
+                         owner_key: str) -> dict[str, Any]:
+    """Return one explainable next step without claiming a live price or sale."""
+    state = get_exploration(db, session_id, owner_key)
+    candidates = exploration_candidates(db, session_id, owner_key, limit=20)
+    pending_market_filters = [field for field in ("grade_company", "grade_value", "budget_minor",
+                                                  "currency", "destination")
+                              if field in state["constraints"]]
+    decision: dict[str, Any] = {
+        "session_id": session_id, "session_version": state["version"],
+        "target_card_id": state["target_card_id"],
+        "candidate_count": candidates["total"],
+        "candidate_cards": candidates["cards"],
+        "ready_for_offer_tracking": state["ready_for_offer_tracking"],
+        "pending_market_filters": pending_market_filters,
+        "market_filter_note": "budget, grade and destination are saved but cannot filter cards or offers until authorized offer data exists",
+        "scope": "internal catalog discovery; no live offers, market price or purchase recommendation",
+    }
+    if state["status"] == "paused":
+        decision.update(code="paused", next_question={"field": "status", "prompt": "Resume this exploration?"})
+    elif state["target_card_id"]:
+        if not state["ready_for_offer_tracking"]:
+            decision.update(code="target_unverified", next_question={
+                "field": "printing_evidence", "prompt": "Confirm the exact printing before tracking offers."})
+        else:
+            decision.update(code="target_selected", next_question=None)
+    elif not candidates["total"]:
+        decision.update(code="no_matches", next_question={
+            "field": "query", "prompt": "Try a different card name, set or collector number."})
+    elif candidates["total"] == 1:
+        card = candidates["cards"][0]
+        if card["match_eligible"]:
+            decision.update(code="confirm_target", next_question={
+                "field": "target_card_id", "prompt": "Is this the exact printing you want to track?",
+                "options": [card["card_id"]]})
+        else:
+            decision.update(code="unverified_printing", next_question={
+                "field": "printing_evidence", "prompt": "This printing needs verification before offer tracking."})
+    else:
+        facets = candidates["facets"]
+        field = next((name for name in ("language", "set_code", "collector_number", "variant")
+                      if facets[name]["distinct_count"] > 1), None)
+        decision.update(
+            code="multiple_printings" if field == "variant" else "narrow_candidates",
+            next_question={"field": field, "prompt": f"Which {field} do you mean?",
+                           "options": facets[field]["values"]} if field else {
+                               "field": "target_card_id", "prompt": "Which exact card do you mean?",
+                               "options": [card["card_id"] for card in candidates["cards"]]},
+        )
+    return decision

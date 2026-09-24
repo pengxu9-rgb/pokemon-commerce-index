@@ -28,6 +28,11 @@
 - 第一条实时来源运行后，另抽与模型输出无关的盲测样本，冻结目录和 matcher，再测身份／版本自动接纳精度。只有需要确认卡面版本的样本才要求看图；可争议或高价样本走双人独立复核及裁决。
 - 对售出／撤单状态、轮询频率和漏掉快销单独做 Gate 1。该门槛决定能否发布成交价或流动性，不妨碍 ask index 与到手价 MVP。
 
-## 下一步工程工作
+## Buy&Ship feed 等待期间的开发顺序
 
-目录广覆盖和内部检索已完成，详见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。可继续独立核验 S6a、API 候选的印刷版本和来源冲突；报价主线下一步按每个渠道的书面使用范围接入 `authorized API → immutable observation → versioned product resolution → ask index → landed quote → condition evidence → recommendation`，补上定时拉取、配额保护与新鲜度监控。详细字段与推荐门槛见 [OFFER_CONDITION_CONTRACT.md](OFFER_CONDITION_CONTRACT.md)。公开卡片 API 的元数据展示权也要先确认。Buy&Ship 尚未提供的字段以明确接口契约等待，不伪造实时价格、品相或到手价。
+1. **探索状态正确性与决策契约。** 已修复关系断言的重复审核、暂停状态仍显示可跟踪、修改硬身份约束后目标仍保留等问题。内部 `exploration-decision` 按实际候选返回无匹配、多版本、待核验、待确认、已选目标或暂停状态，并只提出一个下一步问题。预算、评级及目的地是已保存偏好，不会被假装用于过滤没有真实报价的目录。
+2. **补齐可靠探索属性。** 从固定 TCGdex 源提取带来源的 Pokémon `dexId`、画师和可审核的多语言别名，用真实用户问题的小样本检查召回与澄清顺序。相同角色、同画师与跨语言同印刷是三类不同关系；角色 ID 不能自动产生 counterpart 边。
+3. **整理少量有证据的日英对应卡。** 从实际探索需求及之后的 listing 量选优先卡，记录卡组、编号、版本、画作证据并人工复核。只发布已核实的边；对争议边保留提案／拒绝状态。
+4. **上线前的持久探索状态。** 本地 SQLite 支持版本历史，但 Cloud Run 仍是只读目录快照。增加经认证的 owner 隔离、删除与保留期限、可恢复存储及重启测试后，再开放会话写入和通知。当前不接收真实用户会话。
+
+Buy&Ship API feed、配额和用途授权仍待对方提供。收到后按每个渠道的书面使用范围接入 `authorized API → immutable observation → versioned product resolution → ask index → landed quote → condition evidence → recommendation`，补上定时拉取、配额保护与新鲜度监控。详细字段与推荐门槛见 [OFFER_CONDITION_CONTRACT.md](OFFER_CONDITION_CONTRACT.md)。Gate 1 继续决定能否提供成交价与流动性。公开卡片元数据展示权也须单独确认；不伪造实时价格、品相或到手价。

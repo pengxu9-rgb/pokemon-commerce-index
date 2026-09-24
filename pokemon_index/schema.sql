@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS card_relationship_assertion (
   evidence_ref TEXT NOT NULL,
   rights_reference TEXT NOT NULL,
   asserted_by TEXT NOT NULL,
+  reviewer TEXT,
   asserted_at TEXT NOT NULL,
   CHECK (left_card_id < right_card_id)
 );

@@ -58,6 +58,9 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE observation ADD COLUMN native_created TEXT")
     if "native_updated" not in observation_columns:
         db.execute("ALTER TABLE observation ADD COLUMN native_updated TEXT")
+    relationship_columns = {row[1] for row in db.execute("PRAGMA table_info(card_relationship_assertion)")}
+    if "reviewer" not in relationship_columns:
+        db.execute("ALTER TABLE card_relationship_assertion ADD COLUMN reviewer TEXT")
     db.execute(
         """INSERT OR IGNORE INTO catalog_set_localized
         SELECT 'ja', set_code, name_ja, release_date_ja, official_card_count,

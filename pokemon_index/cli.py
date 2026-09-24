@@ -122,6 +122,9 @@ def main() -> None:
     candidates.add_argument("session_id")
     candidates.add_argument("--owner-key", required=True)
     candidates.add_argument("--limit", type=int, default=20)
+    decision = sub.add_parser("exploration-decision", help="internal next step for a discovery session")
+    decision.add_argument("session_id")
+    decision.add_argument("--owner-key", required=True)
     server = sub.add_parser("serve")
     server.add_argument("--host", default="127.0.0.1")
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
@@ -204,6 +207,8 @@ def main() -> None:
         elif args.command == "exploration-candidates":
             output = discovery_graph.exploration_candidates(db, args.session_id,
                                                              args.owner_key, args.limit)
+        elif args.command == "exploration-decision":
+            output = discovery_graph.exploration_decision(db, args.session_id, args.owner_key)
         elif args.command == "import-observations":
             output = core.import_observations(db, read_jsonl(args.file))
         elif args.command == "import-quotes":
