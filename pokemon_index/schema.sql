@@ -207,9 +207,10 @@ CREATE TABLE IF NOT EXISTS verified_sale (
 
 CREATE INDEX IF NOT EXISTS idx_card_search ON card(language, set_code, collector_number);
 CREATE INDEX IF NOT EXISTS idx_card_reference_identity ON card_reference(set_code, collector_number);
-CREATE INDEX IF NOT EXISTS idx_card_facet_lookup ON card_facet(facet_type, value, card_id);
+CREATE INDEX IF NOT EXISTS idx_card_facet_lookup ON card_facet(facet_type, value COLLATE NOCASE, card_id);
 CREATE INDEX IF NOT EXISTS idx_card_relationship_pair ON card_relationship_assertion(left_card_id, right_card_id, relation_type, asserted_at);
 CREATE INDEX IF NOT EXISTS idx_card_relationship_reverse ON card_relationship_assertion(right_card_id, left_card_id, relation_type, asserted_at);
+CREATE INDEX IF NOT EXISTS idx_card_facet_lookup ON card_facet(facet_type, value, card_id);
 CREATE INDEX IF NOT EXISTS idx_exploration_owner ON exploration_session(owner_key, updated_at);
 CREATE INDEX IF NOT EXISTS idx_listing_unit ON listing(unit_id, current_status);
 CREATE INDEX IF NOT EXISTS idx_observation_time ON observation(observed_at);

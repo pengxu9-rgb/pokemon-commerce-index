@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
+import re
 import sqlite3
 import uuid
 from collections import Counter
@@ -26,6 +28,125 @@ def _card(db: sqlite3.Connection, card_id: str) -> sqlite3.Row:
     return card
 
 
+def _validate_verified_evidence(row: dict[str, Any], left: str, right: str) -> None:
+    """Check completeness and identity binding, not the truth of a human review."""
+    if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
+        raise ValueError("verified relationship needs an assertion_id")
+    try:
+        evidence = json.loads(row["evidence_ref"])
+    except (TypeError, ValueError) as exc:
+        raise ValueError("verified relationship needs structured evidence JSON") from exc
+    if not isinstance(evidence, dict) or evidence.get("schema") != "pokemon.relationship_review.v1":
+        raise ValueError("verified relationship needs pokemon.relationship_review.v1 evidence")
+    if evidence.get("review_event_id") != row["assertion_id"]:
+        raise ValueError("review evidence must bind to the assertion_id")
+    if not isinstance(evidence.get("source_snapshot_sha256"), str) or not re.fullmatch(
+            r"[0-9a-f]{64}", evidence["source_snapshot_sha256"]):
+        raise ValueError("review evidence needs a source snapshot SHA-256")
+    cards = evidence.get("cards")
+    if (not isinstance(cards, list) or len(cards) != 2
+            or any(not isinstance(item, dict) or not isinstance(item.get("card_id"), str)
+                   for item in cards)
+            or {item["card_id"] for item in cards} != {left, right}):
+        raise ValueError("review evidence must identify both endpoint cards")
+    for item in cards:
+        if (not isinstance(item.get("source_ref"), str) or not item["source_ref"].strip()
+                or not isinstance(item.get("source_kind"), str) or not item["source_kind"].strip()
+                or item.get("identity_checked") is not True):
+            raise ValueError("review evidence needs a source and identity check for each card")
+    if cards[0]["source_ref"] == cards[1]["source_ref"]:
+        raise ValueError("review evidence needs distinct card-specific sources")
+    first, second = evidence.get("first_review"), evidence.get("second_review")
+    if not isinstance(first, dict) or not isinstance(second, dict):
+        raise ValueError("verified relationship needs two review records")
+    reviewer_ids = (first.get("reviewer"), second.get("reviewer"), row.get("reviewer"))
+    if (any(not isinstance(value, str) or not value.strip() or value != value.strip()
+            for value in reviewer_ids)
+            or reviewer_ids[0].casefold() == reviewer_ids[1].casefold()
+            or reviewer_ids[1] != reviewer_ids[2]
+            or first.get("decision") != row["relation_type"]
+            or second.get("decision") != row["relation_type"]):
+        raise ValueError("verified relationship needs two agreeing, distinct reviewers")
+    review_times = []
+    for review in (first, second):
+        if not isinstance(review.get("reviewed_at"), str):
+            raise ValueError("review evidence needs timestamps")
+        review_times.append(core.parse_time(review["reviewed_at"]))
+    if review_times[1] < review_times[0]:
+        raise ValueError("second review cannot precede first review")
+    artwork, finish = evidence.get("artwork"), evidence.get("finish")
+    if (not isinstance(artwork, dict) or artwork.get("outcome") not in {"same", "different"}
+            or not isinstance(artwork.get("note"), str) or not artwork["note"].strip()
+            or not isinstance(finish, dict) or finish.get("outcome") not in
+            {"same", "different", "not_comparable"}
+            or not isinstance(finish.get("note"), str) or not finish["note"].strip()):
+        raise ValueError("verified relationship needs artwork and finish findings")
+    if row["relation_type"] in {"localization_counterpart", "same_artwork"} and artwork["outcome"] != "same":
+        raise ValueError("this relationship type requires matching artwork evidence")
+    if not isinstance(evidence.get("rationale"), str) or not evidence["rationale"].strip():
+        raise ValueError("verified relationship needs a rationale")
+
+
+def _pilot_event_meta(event_id: str, assertion: dict[str, Any]) -> tuple[str, int, str, str | None]:
+    match = re.fullmatch(r"relpilot-v2:([0-9a-f]{20}):r([1-9][0-9]*):([a-z_]+)", event_id)
+    if not match or match.group(3) != assertion["relation_type"]:
+        raise ValueError("pilot assertion_id must bind candidate, revision, and relation type")
+    pair_digest = hashlib.sha256(("relationship-pilot-v1\0" + "\0".join(
+        (assertion["left_card_id"], assertion["right_card_id"]))).encode()).hexdigest()[:20]
+    if match.group(1) != pair_digest:
+        raise ValueError("pilot candidate_id does not match endpoint cards")
+    try:
+        evidence = json.loads(assertion["evidence_ref"])
+    except (TypeError, ValueError) as exc:
+        raise ValueError("pilot assertion needs structured evidence") from exc
+    if not isinstance(evidence, dict) or evidence.get("review_event_id") != event_id:
+        raise ValueError("pilot evidence must bind to assertion_id")
+    if not isinstance(evidence.get("source_snapshot_sha256"), str) or not re.fullmatch(
+            r"[0-9a-f]{64}", evidence["source_snapshot_sha256"]):
+        raise ValueError("pilot evidence needs a source snapshot SHA-256")
+    fingerprint = evidence.get("review_fingerprint")
+    if not isinstance(fingerprint, str) or not re.fullmatch(r"[0-9a-f]{64}", fingerprint):
+        raise ValueError("pilot evidence needs review fingerprint")
+    expected_head = evidence.get("expected_pair_head")
+    if expected_head is not None and (not isinstance(expected_head, str) or not expected_head):
+        raise ValueError("pilot evidence has invalid expected pair head")
+    return match.group(1), int(match.group(2)), fingerprint, expected_head
+
+
+def _check_pilot_freshness(db: sqlite3.Connection, event_id: str,
+                           assertion: dict[str, Any]) -> None:
+    candidate_id, revision, fingerprint, expected_head = _pilot_event_meta(event_id, assertion)
+    prefix = f"relpilot-v2:{candidate_id}:r"
+    prior = db.execute(
+        "SELECT assertion_id, evidence_ref FROM card_relationship_assertion WHERE assertion_id LIKE ?",
+        (prefix + "%",),
+    ).fetchall()
+    prior_revisions = []
+    for claim in prior:
+        match = re.fullmatch(re.escape(prefix) + r"([1-9][0-9]*):[a-z_]+", claim["assertion_id"])
+        if match:
+            prior_revisions.append(int(match.group(1)))
+            if int(match.group(1)) == revision:
+                if json.loads(claim["evidence_ref"]).get("review_fingerprint") != fingerprint:
+                    raise ValueError("pilot revision conflicts with a different review")
+    if prior_revisions and revision < max(prior_revisions):
+        raise ValueError("stale pilot review revision")
+    head = db.execute(
+        """SELECT assertion_id, evidence_ref FROM card_relationship_assertion
+        WHERE left_card_id=? AND right_card_id=? ORDER BY rowid DESC LIMIT 1""",
+        (assertion["left_card_id"], assertion["right_card_id"]),
+    ).fetchone()
+    current_head = head["assertion_id"] if head else None
+    if current_head == expected_head:
+        return
+    if head and any(head["assertion_id"] == claim["assertion_id"] for claim in prior):
+        match = re.fullmatch(re.escape(prefix) + r"([1-9][0-9]*):[a-z_]+", current_head)
+        if match and int(match.group(1)) == revision:
+            if json.loads(head["evidence_ref"]).get("review_fingerprint") == fingerprint:
+                return
+    raise ValueError("stale pilot pair head; recompile review against current graph")
+
+
 def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
     """Append review events. Repeating the current claim is idempotent; reversal is possible."""
     prepared = []
@@ -42,6 +163,8 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
         left_card, right_card = _card(db, left), _card(db, right)
         if row["relation_type"] == "localization_counterpart" and left_card["language"] == right_card["language"]:
             raise ValueError("localization counterparts must use different languages")
+        if row["review_status"] == "verified":
+            _validate_verified_evidence(row, left, right)
         asserted_at = core.parse_time(row.get("asserted_at") or core.utcnow()).isoformat()
         actor = str(row["asserted_by"])
         reviewer = str(row["reviewer"]) if row.get("reviewer") else None
@@ -54,8 +177,12 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
         event_id = row.get("assertion_id")
         if event_id is not None and (not isinstance(event_id, str) or not event_id.strip()):
             raise ValueError("assertion_id must be a nonempty string")
+        if actor == "relationship-pilot-v2" and not event_id:
+            raise ValueError("pilot relationship requires an assertion_id")
         prepared.append((event_id, assertion, asserted_at))
     count = 0
+    if prepared and not db.in_transaction:
+        db.execute("BEGIN IMMEDIATE")
     with db:
         for event_id, assertion, asserted_at in prepared:
             fields = (assertion["left_card_id"], assertion["right_card_id"],
@@ -73,6 +200,8 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
                     if stored != fields:
                         raise ValueError("assertion_id already belongs to a different event")
                     continue
+                if assertion["asserted_by"] == "relationship-pilot-v2":
+                    _check_pilot_freshness(db, event_id, assertion)
             else:
                 latest = db.execute(
                     """SELECT * FROM card_relationship_assertion
@@ -119,9 +248,42 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
                 if item["review_status"] == "verified"
                 or (include_proposed and item["review_status"] == "proposed")]
     reviewed.sort(key=lambda item: (item["relation_type"], item["other_card_id"]))
+    metadata_neighbors = {}
+    for facet_type, label in (("dex_id", "same_character"), ("illustrator", "same_illustrator")):
+        source_facets = db.execute(
+            """SELECT value, provenance FROM card_facet WHERE card_id=? AND facet_type=?
+            ORDER BY value""", (card_id, facet_type),
+        ).fetchall()
+        # A multi-character card cannot safely seed one-character expansion.
+        distinct_values = {row["value"].casefold() for row in source_facets}
+        if len(distinct_values) != 1:
+            metadata_neighbors[label] = {"total": 0, "cards": [],
+                                         "reason": "missing_or_ambiguous_source_facet"}
+            continue
+        source = source_facets[0]
+        values = (facet_type, source["value"], card_id)
+        total = db.execute(
+            """SELECT COUNT(DISTINCT c.card_id) FROM card_facet f JOIN card c ON c.card_id=f.card_id
+            WHERE f.facet_type=? AND f.value=? COLLATE NOCASE AND f.card_id<>?""", values,
+        ).fetchone()[0]
+        rows = db.execute(
+            """SELECT c.card_id, c.language, c.set_code, c.collector_number,
+            c.variant, c.name, c.match_eligible, c.display_allowed,
+            MIN(f.provenance) AS target_provenance
+            FROM card_facet f JOIN card c ON c.card_id=f.card_id
+            WHERE f.facet_type=? AND f.value=? COLLATE NOCASE AND f.card_id<>?
+            GROUP BY c.card_id
+            ORDER BY c.match_eligible DESC, c.language, c.set_code, c.collector_number, c.variant
+            LIMIT 12""", values,
+        ).fetchall()
+        metadata_neighbors[label] = {
+            "total": total, "cards": [dict(row) for row in rows],
+            "facet_value": source["value"], "source_provenance": source["provenance"],
+            "claim_status": "retrieval_only", "price_comparable": False,
+        }
     return {"card_id": card_id, "variants_at_number": variants,
-            "relationships": reviewed,
-            "scope": "internal metadata; only verified edges support factual discovery claims"}
+            "relationships": reviewed, "metadata_neighbors": metadata_neighbors,
+            "scope": "internal metadata; facet neighbors are discovery candidates, not printing counterparts"}
 
 
 def _validate_constraints(value: Any) -> dict[str, Any]:
@@ -268,9 +430,26 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
          filters.get("dex_id"), str(filters["dex_id"]) if filters.get("dex_id") else None,
          filters.get("illustrator"), filters.get("illustrator")),
     )
+    def identity_allowed(card: sqlite3.Row) -> bool:
+        if any(filters.get(field) and card[field] != filters[field]
+               for field in ("language", "set_code", "collector_number", "variant")):
+            return False
+        if filters.get("dex_id") and not db.execute(
+            """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='dex_id' AND value=?""",
+            (card["card_id"], str(filters["dex_id"])),
+        ).fetchone():
+            return False
+        if filters.get("illustrator") and not db.execute(
+            """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='illustrator'
+            AND value=? COLLATE NOCASE""",
+            (card["card_id"], filters["illustrator"]),
+        ).fetchone():
+            return False
+        return True
+
     terms = [term.casefold() for term in filters.get("query", "").split()]
     found = [{**dict(card), "matched_via": "catalog_text"} for card in rows
-             if (not shortlist or card["card_id"] in shortlist)
+             if identity_allowed(card) and (not shortlist or card["card_id"] in shortlist)
              and all(term in f"{card['name']} {card['set_code']} {card['collector_number']}".casefold()
                      for term in terms)]
     # A reviewed JP↔EN edge can resolve a name in one language to a printing in
@@ -297,9 +476,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
             if target_id in seen or (shortlist and target_id not in shortlist):
                 continue
             target = _card(db, target_id)
-            if filters.get("collector_number") and target["collector_number"] != filters["collector_number"]:
-                continue
-            if filters.get("variant") and target["variant"] != filters["variant"]:
+            if not identity_allowed(target):
                 continue
             if all(term in source_name.casefold() for term in terms):
                 found.append({key: target[key] for key in
@@ -339,13 +516,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                     continue
                 if shortlist and target["card_id"] not in shortlist:
                     continue
-                if any(filters.get(field) and target[field] != filters[field]
-                       for field in ("set_code", "collector_number", "variant")):
-                    continue
-                if filters.get("illustrator") and not db.execute(
-                    """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='illustrator'
-                    AND lower(value)=lower(?)""", (target["card_id"], filters["illustrator"])
-                ).fetchone():
+                if not identity_allowed(target):
                     continue
                 source = alias_ids[target["dex_id"]]
                 found.append({key: target[key] for key in

@@ -102,9 +102,9 @@ python3 -m pokemon_index --db demo.sqlite3 save-exploration examples/exploration
 python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration --owner-key demo-opaque
 ```
 
-审核关系可通过 `import-relationships <jsonl>` 导入。每条断言需有 `left_card_id`、`right_card_id`、`relation_type`、`review_status`、`evidence_ref`、`rights_reference`、`asserted_by`；`verified` 或 `rejected` 还需 `reviewer`。可选 `assertion_id` 是一次审核事件的稳定 ID，重试同一事件不会重复写入；修改关系审核状态时使用新 ID。支持的关系是 `localization_counterpart`、`same_artwork`、`collecting_alternative`。其中 counterpart 不代表两张卡可共用价格；被驳回的边不会用于跨语言发现。所有关系与探索候选仅供内部使用，不能绕过卡片公开展示许可。
+审核关系可通过 `import-relationships <jsonl>` 导入。每条断言需有 `left_card_id`、`right_card_id`、`relation_type`、`review_status`、`evidence_ref`、`rights_reference`、`asserted_by`；`verified` 或 `rejected` 还需 `reviewer`。`verified` 必须带 `assertion_id` 和 `pokemon.relationship_review.v1` 结构化证据，明确双端卡片、独立证据、身份检查、来源快照、两位不同且判断一致的审核员与时间；该检查验证可追溯性，不能代替真实人员认证。每次状态改变使用新事件 ID，重试同一事件不会重复写入。支持的关系是 `localization_counterpart`、`same_artwork`、`collecting_alternative`。其中 counterpart 不代表两张卡可共用价格；被驳回的边不会用于跨语言发现。所有关系与探索候选仅供内部使用，不能绕过卡片公开展示许可。
 
-日英关系首批人工审核包见 [RELATIONSHIP_PILOT.md](RELATIONSHIP_PILOT.md)：19 个日文锚点产生 40 个待复核候选，附可在表格中填写的审核模板。相同角色 ID 加相同画师只用于召回候选；目前尚无真人核实的对应边。S6a 的一条补充身份因缺少角色和画师信息进入身份缺口清单。
+日英关系首批人工审核包见 [RELATIONSHIP_PILOT.md](RELATIONSHIP_PILOT.md)，独立复核后的分阶段方案见 [RELATIONSHIP_GRAPH_PLAN.md](RELATIONSHIP_GRAPH_PLAN.md)：19 个日文锚点产生 40 个待复核候选，附可在表格中填写的审核模板。相同角色 ID 加相同画师只用于召回候选；目前尚无真人核实的对应边。S6a 的一条补充身份因缺少角色和画师信息进入身份缺口清单。内部 `catalog-neighborhood` 现在把已审核关系与同角色／同画师的检索候选分开返回，后者不会变成价格等价关系。
 
 示例数据完全是合成数据，包括价格、支付凭据和到手价；URL 使用 `.invalid` 域名。`--as-of` 用于重放旧样本，实时 API 默认使用当前时间和来源设置的新鲜度上限。
 

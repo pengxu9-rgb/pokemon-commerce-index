@@ -1,5 +1,7 @@
+import json
 import sqlite3
 import unittest
+import uuid
 
 from pokemon_index import core, discovery_graph
 
@@ -27,13 +29,33 @@ class DiscoveryGraphTests(unittest.TestCase):
     def tearDown(self):
         self.db.close()
 
-    def assertion(self, status, reviewer=None):
+    def assertion(self, status, reviewer=None, event_id=None):
         row = dict(left_card_id=self.en, right_card_id=self.ja,
                    relation_type="localization_counterpart", review_status=status,
                    evidence_ref="fixture:card-pair-1", rights_reference="fixture",
                    asserted_by="curation-tool")
         if reviewer:
             row["reviewer"] = reviewer
+        if status == "verified":
+            row["assertion_id"] = event_id or str(uuid.uuid4())
+            row["evidence_ref"] = json.dumps({
+                "schema": "pokemon.relationship_review.v1",
+                "review_event_id": row["assertion_id"],
+                "source_snapshot_sha256": "0" * 64,
+                "cards": [
+                    {"card_id": card_id, "source_ref": f"fixture:{card_id}",
+                     "source_kind": "fixture", "identity_checked": True}
+                    for card_id in (self.en, self.ja)
+                ],
+                "first_review": {"reviewer": "first-reviewer", "decision": "localization_counterpart",
+                                 "reviewed_at": "2026-09-24T01:00:00Z"},
+                "second_review": {"reviewer": reviewer or "second-reviewer",
+                                  "decision": "localization_counterpart",
+                                  "reviewed_at": "2026-09-24T02:00:00Z"},
+                "artwork": {"outcome": "same", "note": "fixture comparison"},
+                "finish": {"outcome": "same", "note": "fixture finish"},
+                "rationale": "synthetic test relationship",
+            }, sort_keys=True)
         return row
 
     def test_relationship_is_reviewed_and_reversible_without_losing_history(self):
@@ -54,20 +76,42 @@ class DiscoveryGraphTests(unittest.TestCase):
         discovery_graph.assert_relationships(self.db, [self.assertion("rejected", "reviewer-b")])
         self.assertEqual(discovery_graph.card_neighborhood(self.db, self.ja, True)["relationships"], [])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 3)
+        restored = self.assertion("verified", "reviewer-a")
         self.assertEqual(discovery_graph.assert_relationships(
-            self.db, [self.assertion("verified", "reviewer-a")]), 1)
+            self.db, [restored]), 1)
         self.assertEqual(discovery_graph.card_neighborhood(
             self.db, self.ja)["relationships"][0]["review_status"], "verified")
         self.assertEqual(discovery_graph.assert_relationships(
-            self.db, [self.assertion("verified", "reviewer-a")]), 0)
+            self.db, [restored]), 0)
 
     def test_explicit_assertion_id_is_retry_safe(self):
-        row = dict(self.assertion("verified", "reviewer-a"), assertion_id="review-event-1")
+        row = self.assertion("verified", "reviewer-a", event_id="review-event-1")
         self.assertEqual(discovery_graph.assert_relationships(self.db, [row]), 1)
         self.assertEqual(discovery_graph.assert_relationships(self.db, [row]), 0)
         with self.assertRaisesRegex(ValueError, "different event"):
             discovery_graph.assert_relationships(self.db, [dict(row, review_status="rejected")])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 1)
+
+    def test_direct_verified_import_requires_two_card_two_reviewer_evidence(self):
+        row = self.assertion("verified", "reviewer-a")
+        with self.assertRaisesRegex(ValueError, "structured evidence"):
+            discovery_graph.assert_relationships(self.db, [dict(row, evidence_ref="checked")])
+        evidence = json.loads(row["evidence_ref"])
+        evidence["cards"][1]["card_id"] = "en:OTHER:001/001:normal"
+        with self.assertRaisesRegex(ValueError, "endpoint cards"):
+            discovery_graph.assert_relationships(
+                self.db, [dict(row, evidence_ref=json.dumps(evidence))])
+        evidence = json.loads(row["evidence_ref"])
+        evidence["second_review"]["reviewer"] = "first-reviewer"
+        with self.assertRaisesRegex(ValueError, "distinct reviewers"):
+            discovery_graph.assert_relationships(
+                self.db, [dict(row, evidence_ref=json.dumps(evidence))])
+        evidence["second_review"]["reviewer"] = "first-reviewer "
+        with self.assertRaisesRegex(ValueError, "distinct reviewers"):
+            discovery_graph.assert_relationships(
+                self.db, [dict(row, evidence_ref=json.dumps(evidence), reviewer="first-reviewer ")])
+        self.assertEqual(self.db.execute(
+            "SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 0)
 
     def test_relationship_does_not_infer_localization_from_matching_numbers(self):
         with self.assertRaisesRegex(ValueError, "different languages"):
@@ -91,6 +135,31 @@ class DiscoveryGraphTests(unittest.TestCase):
         discovery_graph.assert_relationships(self.db, [self.assertion("rejected", "reviewer-b")])
         self.assertEqual(discovery_graph.exploration_candidates(
             self.db, "cross", "anonymous-1")["total"], 0)
+
+    def test_verified_counterpart_respects_explicit_character_and_artist(self):
+        core.import_card_facets(self.db, [
+            dict(card_id=self.ja, facet_type="dex_id", value="25",
+                 provenance="fixture", rights_reference="fixture"),
+            dict(card_id=self.ja, facet_type="illustrator", value="Naoyo Kimura",
+                 provenance="fixture", rights_reference="fixture"),
+        ])
+        discovery_graph.assert_relationships(self.db, [self.assertion("verified", "reviewer-a")])
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="facet-filter", owner_key="owner", expected_version=0,
+            constraints={"query": "Pikachu", "language": "ja", "dex_id": 999}))
+        self.assertEqual(discovery_graph.exploration_candidates(
+            self.db, "facet-filter", "owner")["total"], 0)
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="facet-filter", owner_key="owner", expected_version=1,
+            constraints={"dex_id": None, "illustrator": "Wrong Artist"}))
+        self.assertEqual(discovery_graph.exploration_candidates(
+            self.db, "facet-filter", "owner")["total"], 0)
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="facet-filter", owner_key="owner", expected_version=2,
+            constraints={"illustrator": "naoyo kimura"}))
+        self.assertEqual(discovery_graph.exploration_candidates(
+            self.db, "facet-filter", "owner")["cards"][0]["matched_via"],
+                         "verified_localization_counterpart")
 
     def test_character_alias_is_discovery_only_and_artist_can_filter(self):
         core.import_cards(self.db, [
@@ -136,7 +205,23 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertEqual({card["matched_via"] for card in found["cards"]}, {"same_character"})
         self.assertTrue(all(card["character_dex_id"] == 25 for card in found["cards"]))
         self.assertNotIn(zekrom, [card["card_id"] for card in found["cards"]])
-        self.assertEqual(discovery_graph.card_neighborhood(self.db, self.ja)["relationships"], [])
+        neighborhood = discovery_graph.card_neighborhood(self.db, self.ja)
+        self.assertEqual(neighborhood["relationships"], [])
+        self.assertGreaterEqual(neighborhood["metadata_neighbors"]["same_character"]["total"], 2)
+        self.assertFalse(neighborhood["metadata_neighbors"]["same_illustrator"]["price_comparable"])
+        self.assertEqual(neighborhood["metadata_neighbors"]["same_character"]["claim_status"],
+                         "retrieval_only")
+
+    def test_metadata_neighbor_counts_distinct_cards_across_case_variants(self):
+        core.import_card_facets(self.db, [
+            dict(card_id=card_id, facet_type="illustrator", value=value,
+                 provenance="fixture", rights_reference="fixture")
+            for card_id, value in ((self.ja, "Naoyo Kimura"), (self.ja, "naoyo kimura"),
+                                   (self.en, "Naoyo Kimura"), (self.en, "naoyo kimura"))
+        ])
+        result = discovery_graph.card_neighborhood(self.db, self.ja)["metadata_neighbors"]["same_illustrator"]
+        self.assertEqual(result["total"], 1)
+        self.assertEqual([row["card_id"] for row in result["cards"]], [self.en])
 
     def test_structured_exploration_requires_exact_target_and_checks_revision(self):
         session = discovery_graph.save_exploration(self.db, dict(

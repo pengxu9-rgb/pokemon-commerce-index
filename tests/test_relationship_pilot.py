@@ -38,6 +38,21 @@ class RelationshipPilotTests(unittest.TestCase):
     def tearDown(self):
         self.db.close()
 
+    def review(self, row, decision="localization_counterpart", revision=1, second=False):
+        row["review"].update(
+            review_revision=str(revision), decision=decision, reviewer="reviewer-1",
+            reviewed_at="2026-09-24T01:00:00Z",
+            anchor_evidence_ref="https://example.invalid/ja-card",
+            anchor_evidence_kind="official_catalog", anchor_identity_checked="yes",
+            candidate_evidence_ref=f"https://example.invalid/{row['candidate']['card_id']}",
+            candidate_evidence_kind="official_catalog", candidate_identity_checked="yes",
+            artwork_outcome="same", artwork_note="Reviewer compared card-specific artwork",
+            finish_outcome="same", finish_note="Both printings have normal finish",
+            second_reviewer="reviewer-2" if second else "",
+            second_decision=decision if second else "",
+            second_reviewed_at="2026-09-24T02:00:00Z" if second else "",
+        )
+
     def test_candidate_queue_does_not_verify_shared_character_and_artist(self):
         queue, audit = relationship_pilot.generate(
             self.db, [{"card_id": self.ja, "case": "same metadata, different art"}])
@@ -48,28 +63,37 @@ class RelationshipPilotTests(unittest.TestCase):
         self.assertEqual(self.db.execute(
             "SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 0)
 
+    def test_reverse_anchor_dedup_and_matched_artist_provenance(self):
+        queue, audit = relationship_pilot.generate(
+            self.db, [{"card_id": self.ja}, {"card_id": self.en}])
+        self.assertEqual(audit["duplicate_pairs_skipped"], 1)
+        self.assertEqual(len(queue), 2)
+        core.import_card_facets(self.db, [dict(
+            card_id=self.en, facet_type="illustrator", value="A Different Artist",
+            provenance="fixture:wrong-artist", rights_reference="fixture")])
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        matched = next(row for row in queue if row["candidate"]["card_id"] == self.en)
+        self.assertEqual(matched["shared_facets"]["candidate_illustrator_provenance"],
+                         f"fixture:{self.en}")
+
     def test_human_review_compilation_requires_two_sided_evidence(self):
         queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
         queue[0]["review"]["decision"] = "localization_counterpart"
         queue[0]["review"]["reviewer"] = "reviewer-1"
-        with self.assertRaisesRegex(ValueError, "two-sided evidence"):
-            relationship_pilot.compile_reviews(queue)
-        queue[0]["review"].update(
-            reviewer="reviewer-1", anchor_evidence_ref="https://example.invalid/ja-card",
-            candidate_evidence_ref="https://example.invalid/en-card",
-            artwork_note="Reviewer compared the card illustrations and design",
-            finish_note="Both printings are the normal finish",
-        )
+        with self.assertRaisesRegex(ValueError, "reviewed_at"):
+            relationship_pilot.compile_reviews(queue, self.db)
+        self.review(queue[0], second=True)
         queue[1]["review"].update(
-            decision="no_relation", reviewer="reviewer-1",
+            decision="no_relation", reviewer="reviewer-1", reviewed_at="2026-09-24T01:00:00Z",
             anchor_evidence_ref="https://example.invalid/ja-card",
             candidate_evidence_ref="https://example.invalid/promo",
             artwork_note="Different artwork and card design",
         )
-        assertions, audit = relationship_pilot.compile_reviews(queue)
+        assertions, audit = relationship_pilot.compile_reviews(queue, self.db)
         self.assertEqual(audit["decisions"],
                          {"localization_counterpart": 1, "no_relation": 1})
         self.assertEqual(len(assertions), 1)
+        self.assertEqual(assertions[0]["review_status"], "verified")
         self.assertEqual(discovery_graph.assert_relationships(self.db, assertions), 1)
         self.assertEqual(discovery_graph.card_neighborhood(
             self.db, self.ja)["relationships"][0]["other_card_id"], self.en)
@@ -80,17 +104,88 @@ class RelationshipPilotTests(unittest.TestCase):
         queue, audit = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
         self.assertEqual(audit["pairs_with_offer_matching_disabled"], 1)
         target = next(row for row in queue if row["candidate"]["card_id"] == self.other)
-        target["review"].update(
-            decision="same_artwork", reviewer="reviewer-1",
-            anchor_evidence_ref="https://example.invalid/ja-card",
-            candidate_evidence_ref="https://example.invalid/en-card",
-            artwork_note="Reviewer compared art", finish_note="Finish differs",
-        )
-        assertions, _ = relationship_pilot.compile_reviews([target])
+        self.review(target, decision="same_artwork", second=True)
+        target["review"].update(finish_outcome="different", finish_note="Promo finish differs")
+        assertions, _ = relationship_pilot.compile_reviews([target], self.db)
         self.assertEqual(len(assertions), 1)
         self.assertEqual(discovery_graph.assert_relationships(self.db, assertions), 1)
         self.assertEqual(self.db.execute(
             "SELECT match_eligible FROM card WHERE card_id=?", (self.other,)).fetchone()[0], 0)
+
+    def test_re_review_rejects_then_restores_with_new_revision(self):
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        target = queue[0]
+        self.review(target, second=True)
+        first, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.assertEqual(discovery_graph.assert_relationships(self.db, first), 1)
+        self.assertEqual(discovery_graph.assert_relationships(self.db, first), 0)
+        target["review"].update(review_revision="2", decision="no_relation",
+                                artwork_note="Different card design on reinspection")
+        rejected, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.assertEqual([row["review_status"] for row in rejected], ["rejected"])
+        self.assertEqual(discovery_graph.assert_relationships(self.db, rejected), 1)
+        self.assertEqual(discovery_graph.card_neighborhood(self.db, self.ja)["relationships"], [])
+        self.review(target, revision=1, second=True)
+        with self.assertRaisesRegex(ValueError, "stale review revision"):
+            relationship_pilot.compile_reviews([target], self.db)
+        self.review(target, revision=3, second=True)
+        restored, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.assertNotEqual(restored[0]["assertion_id"], first[0]["assertion_id"])
+        self.assertEqual(discovery_graph.assert_relationships(self.db, restored), 1)
+        self.assertEqual(len(discovery_graph.card_neighborhood(self.db, self.ja)["relationships"]), 1)
+
+    def test_decision_change_retracts_old_type_and_single_review_stays_proposed(self):
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        target = queue[0]
+        self.review(target, second=True)
+        first, _ = relationship_pilot.compile_reviews([target], self.db)
+        discovery_graph.assert_relationships(self.db, first)
+        self.review(target, decision="same_artwork", revision=2, second=False)
+        changed, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.assertEqual({(row["relation_type"], row["review_status"]) for row in changed},
+                         {("localization_counterpart", "rejected"), ("same_artwork", "proposed")})
+        discovery_graph.assert_relationships(self.db, changed)
+        self.assertEqual(discovery_graph.card_neighborhood(self.db, self.ja)["relationships"], [])
+        self.assertEqual(len(discovery_graph.card_neighborhood(self.db, self.ja, True)["relationships"]), 1)
+        self.review(target, decision="same_artwork", revision=3, second=True)
+        reviewed, _ = relationship_pilot.compile_reviews([target], self.db)
+        discovery_graph.assert_relationships(self.db, reviewed)
+        edge = discovery_graph.card_neighborhood(self.db, self.ja)["relationships"][0]
+        self.assertEqual(edge["relation_type"], "same_artwork")
+
+    def test_delayed_compiled_review_cannot_override_newer_revision(self):
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        target = queue[0]
+        self.review(target, revision=1, second=True)
+        old, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.review(target, decision="same_artwork", revision=2, second=True)
+        newer, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.assertEqual(discovery_graph.assert_relationships(self.db, newer), 1)
+        with self.assertRaisesRegex(ValueError, "stale pilot"):
+            discovery_graph.assert_relationships(self.db, old)
+        self.assertEqual(discovery_graph.assert_relationships(self.db, newer), 0)
+
+    def test_competing_review_batches_from_same_head_are_rejected(self):
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        target = queue[0]
+        self.review(target, decision="same_artwork", revision=1, second=True)
+        first, _ = relationship_pilot.compile_reviews([target], self.db)
+        self.review(target, decision="localization_counterpart", revision=2, second=True)
+        second, _ = relationship_pilot.compile_reviews([target], self.db)
+        discovery_graph.assert_relationships(self.db, first)
+        with self.assertRaisesRegex(ValueError, "stale pilot pair head"):
+            discovery_graph.assert_relationships(self.db, second)
+
+    def test_competing_same_revision_review_content_is_rejected(self):
+        queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
+        target = queue[0]
+        self.review(target, revision=1, second=True)
+        first, _ = relationship_pilot.compile_reviews([target], self.db)
+        target["review"]["artwork_note"] = "A distinct review finding"
+        changed, _ = relationship_pilot.compile_reviews([target], self.db)
+        discovery_graph.assert_relationships(self.db, first)
+        with self.assertRaisesRegex(ValueError, "different event"):
+            discovery_graph.assert_relationships(self.db, changed)
 
     def test_review_sheet_preserves_candidate_identifiers(self):
         queue, _ = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
