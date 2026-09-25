@@ -1,4 +1,5 @@
 import hashlib
+import sqlite3
 import tempfile
 import unittest
 from datetime import date
@@ -8,6 +9,31 @@ from scripts import concept_review_ranked
 
 
 class RankedConceptPacketTests(unittest.TestCase):
+    def test_localized_set_date_is_available_to_ranker(self):
+        with tempfile.TemporaryDirectory() as folder:
+            repo = Path(folder)
+            card = repo / "data-asia" / "SV" / "SV2a" / "001.ts"
+            card.parent.mkdir(parents=True)
+            card.write_text("effect: {ja: '30ダメージ'}", encoding="utf-8")
+            header = repo / "data-asia" / "SV" / "SV2a.ts"
+            header.write_text("releaseDate: {ja: '2023-06-16', en: '2023-09-22'}",
+                              encoding="utf-8")
+            revision = concept_review_ranked.REVISION
+            provenance = (f"tcgdex:{revision}:data-asia/SV/SV2a/001.ts:sha256:"
+                          f"{hashlib.sha256(card.read_bytes()).hexdigest()}")
+            with sqlite3.connect(":memory:") as db:
+                db.row_factory = sqlite3.Row
+                db.execute("CREATE TABLE catalog_set_localized "
+                           "(language TEXT, set_code TEXT, provenance TEXT)")
+                db.execute("INSERT INTO catalog_set_localized VALUES (?, ?, ?)",
+                           ("ja", "SV2a", f"tcgdex:{revision}:data-asia/SV/SV2a.ts"))
+                row = {"card_id": "ja:SV2A:001/165:standard", "provenance": provenance,
+                       "language": "ja", "set_code": "SV2a"}
+                scalar = concept_review_ranked._features(db, repo, row, {}, "scalar")
+                localized = concept_review_ranked._features(db, repo, row, {}, "localized")
+            self.assertIsNone(scalar["release_date"])
+            self.assertEqual(localized["release_date"], date(2023, 6, 16))
+
     def test_pinned_source_is_checked_before_ranking(self):
         with tempfile.TemporaryDirectory() as folder:
             repo = Path(folder)

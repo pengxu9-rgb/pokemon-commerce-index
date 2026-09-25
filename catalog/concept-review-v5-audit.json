@@ -1,0 +1,19 @@
+{
+  "seed": "concept-review-v5",
+  "excluded_name_count": 130,
+  "source_ja_names_with_artist": 747,
+  "high_ambiguity_names": 731,
+  "eligible_names": 90,
+  "selected_names": 25,
+  "proposal_rows": 125,
+  "max_candidates_per_name": 5,
+  "minimum_top_score": 3.0,
+  "minimum_cutoff_margin": 0.3,
+  "gap_counts": {
+    "no_cutoff_margin": 413,
+    "not_high_ambiguity": 16,
+    "weak_top_score": 228
+  },
+  "scope": "ranked review candidates only; no translation or printing verified",
+  "date_mode": "localized"
+}

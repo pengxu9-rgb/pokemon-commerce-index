@@ -70,9 +70,11 @@ def parse_set_source(source: str) -> tuple[str, int]:
 
 def parse_set_metadata(source: str) -> dict[str, Any]:
     set_id, official_count = parse_set_source(source)
+    localized_date = _string_field(
+        _object_field(source, "releaseDate", "{", "}") or "", "ja")
     return {"set_code": set_id,
             "name_ja": _string_field(_object_field(source, "name", "{", "}") or "", "ja"),
-            "release_date_ja": _string_field(_object_field(source, "releaseDate", "{", "}") or "", "ja"),
+            "release_date_ja": localized_date or _string_field(source, "releaseDate"),
             "official_card_count": official_count}
 
 

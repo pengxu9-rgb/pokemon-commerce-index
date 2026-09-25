@@ -150,6 +150,15 @@ class GateDecisionTests(unittest.TestCase):
 
 
 class CatalogAdapterTests(unittest.TestCase):
+    def test_set_release_date_supports_scalar_and_localized_source(self):
+        scalar = "const set = {id: 'SM6b', cardCount: {official: 66}, releaseDate: '2018-05-30'}"
+        localized = ("const set = {id: 'SV2a', cardCount: {official: 165}, "
+                     "releaseDate: {ja: '2023-06-16', en: '2023-09-22'}}")
+        self.assertEqual(tcgdex_source.parse_set_metadata(scalar)["release_date_ja"],
+                         "2018-05-30")
+        self.assertEqual(tcgdex_source.parse_set_metadata(localized)["release_date_ja"],
+                         "2023-06-16")
+
     def test_discovery_facets_keep_character_separate_from_printing(self):
         source = '''const card = { name: { en: "Pikachu" }, illustrator: "Naoyo Kimura",
             dexId: [25], variants: [{type: "normal"}] };'''

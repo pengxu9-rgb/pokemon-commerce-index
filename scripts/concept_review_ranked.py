@@ -39,10 +39,12 @@ def _read_verified(repo: Path, path: str, expected_sha: str | None) -> tuple[str
 
 
 def _features(db: sqlite3.Connection, repo: Path, row: sqlite3.Row,
-              cache: dict[str, dict[str, Any]]) -> dict[str, Any]:
+              cache: dict[tuple[str, str], dict[str, Any]],
+              date_mode: str = "scalar") -> dict[str, Any]:
     provenance = row["provenance"]
-    if provenance in cache:
-        return cache[provenance]
+    cache_key = (provenance, date_mode)
+    if cache_key in cache:
+        return cache[cache_key]
     match = SOURCE_RE.fullmatch(provenance)
     if not match or match.group(1) != REVISION:
         raise ValueError(f"card is not from pinned source: {row['card_id']}")
@@ -62,6 +64,9 @@ def _features(db: sqlite3.Connection, repo: Path, row: sqlite3.Row,
         set_path = set_provenance.split(":", 2)[2]
         set_source, set_sha = _read_verified(repo, set_path, None)
         raw_date = tcgdex_source._string_field(set_source, "releaseDate")
+        if date_mode == "localized" and not raw_date:
+            date_body = tcgdex_source._object_field(set_source, "releaseDate", "{", "}") or ""
+            raw_date = tcgdex_source._string_field(date_body, row["language"])
         if raw_date:
             try:
                 release = date.fromisoformat(raw_date)
@@ -72,7 +77,7 @@ def _features(db: sqlite3.Connection, repo: Path, row: sqlite3.Row,
     result = {"effect_numbers": numbers, "release_date": release,
               "source_path": path, "set_provenance": set_provenance,
               "set_source_sha256": set_sha, "era": era}
-    cache[provenance] = result
+    cache[cache_key] = result
     return result
 
 
@@ -97,9 +102,12 @@ def _score(ja: dict[str, Any], en: dict[str, Any]) -> tuple[float, dict[str, Any
 
 def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
           limit_names: int = 25, candidates_per_name: int = 5,
-          seed: str = "concept-review-v4") -> tuple[list[dict[str, Any]], dict[str, Any]]:
+          seed: str = "concept-review-v4", date_mode: str = "scalar"
+          ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     if limit_names < 1 or candidates_per_name < 1:
         raise ValueError("limits must be positive")
+    if date_mode not in {"scalar", "localized"}:
+        raise ValueError("unsupported date mode")
     english = _classified_artist_cards(db, "en", "Trainer")
     japanese = _classified_artist_cards(db, "ja", "Trainer")
     by_artist: dict[str, list[sqlite3.Row]] = defaultdict(list)
@@ -109,7 +117,7 @@ def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
     for row in japanese:
         if row["name"] not in excluded_names:
             by_name[row["name"]].append(row)
-    feature_cache: dict[str, dict[str, Any]] = {}
+    feature_cache: dict[tuple[str, str], dict[str, Any]] = {}
     eligible = []
     gaps = Counter()
     for name, anchors in by_name.items():
@@ -119,8 +127,8 @@ def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
                 if (anchor["source_subtype"] and candidate["source_subtype"] and
                         anchor["source_subtype"] != candidate["source_subtype"]):
                     continue
-                ja_features = _features(db, repo, anchor, feature_cache)
-                en_features = _features(db, repo, candidate, feature_cache)
+                ja_features = _features(db, repo, anchor, feature_cache, date_mode)
+                en_features = _features(db, repo, candidate, feature_cache, date_mode)
                 score, parts = _score(ja_features, en_features)
                 parts.update({"ja_release_date": ja_features["release_date"].isoformat()
                               if ja_features["release_date"] else None,
@@ -159,7 +167,9 @@ def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
             ja, en = _source_card(anchor), _source_card(candidate)
             frozen = {
                 "category": "Trainer", "subtype": anchor["source_subtype"] or "",
-                "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era",
+                "proposal_signal": ("ranked_artist_subtype_effect_numbers_release_era"
+                                    if date_mode == "scalar" else
+                                    "ranked_artist_subtype_effect_numbers_release_era_localized"),
                 "illustrator": anchor["source_illustrator"],
                 "candidate_illustrator": candidate["source_illustrator"],
                 "omitted_name_count": len(ranked) - min(len(ranked), candidates_per_name),
@@ -182,7 +192,8 @@ def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
                         "en_illustrator": candidate["illustrator_provenance"],
                         "ja_rights": anchor["rights_reference"],
                         "en_rights": candidate["rights_reference"],
-                        "rank": {"position": position, "score": round(score, 6), **parts}}
+                        "rank": {"position": position, "score": round(score, 6), **parts,
+                                 **({"date_mode": date_mode} if date_mode != "scalar" else {})}}
             digest = hashlib.sha256(json.dumps(
                 snapshot, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
             packet.append({**frozen, "source_snapshot_sha256": digest,
@@ -199,6 +210,8 @@ def build(db: sqlite3.Connection, repo: Path, excluded_names: set[str],
              "minimum_top_score": 3.0, "minimum_cutoff_margin": 0.3,
              "gap_counts": dict(sorted(gaps.items())),
              "scope": "ranked review candidates only; no translation or printing verified"}
+    if date_mode != "scalar":
+        audit["date_mode"] = date_mode
     return packet, audit
 
 
@@ -210,6 +223,7 @@ def main() -> None:
     parser.add_argument("--limit-names", type=int, default=25)
     parser.add_argument("--candidates-per-name", type=int, default=5)
     parser.add_argument("--seed", default="concept-review-v4")
+    parser.add_argument("--date-mode", choices=("scalar", "localized"), default="scalar")
     parser.add_argument("--queue", type=Path, required=True)
     parser.add_argument("--sheet", type=Path, required=True)
     parser.add_argument("--audit", type=Path, required=True)
@@ -226,7 +240,7 @@ def main() -> None:
                     if (row := db.execute("SELECT name FROM card WHERE card_id=?",
                                           (item["card_id"],)).fetchone())}
         packet, audit = build(db, repo, excluded, args.limit_names,
-                              args.candidates_per_name, args.seed)
+                              args.candidates_per_name, args.seed, args.date_mode)
     write_jsonl(args.queue, packet)
     write_sheet(args.sheet, packet)
     args.audit.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n")

@@ -69,3 +69,16 @@ class AiConceptConsensusTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pinned evidence"):
             compiler.compile_consensus(queue, astra, sol,
                                        "2026-09-24T09:00:00Z", "v3", True)
+
+    def test_v5_retains_only_agreed_reviews_and_proposed_edges(self):
+        queue = read_jsonl(ROOT / "catalog/concept-review-v5-queue.jsonl")
+        astra = compiler._csv_by_id(ROOT / "catalog/concept-review-v5-astra.csv")
+        sol = compiler._csv_by_id(ROOT / "catalog/concept-review-v5-sol.csv")
+        bundle, edges = compiler.compile_consensus(
+            queue, astra, sol, "2026-09-25T00:00:00Z", "v5", True)
+        self.assertEqual(bundle["audit"]["decisions"], {"approve": 24, "reject": 100})
+        self.assertEqual(bundle["audit"]["deferred_rows"], 1)
+        self.assertEqual(len(bundle["review_events"]), 124)
+        self.assertEqual(len(bundle["concept_revisions"]), 24)
+        self.assertEqual(len(edges), 24)
+        self.assertTrue(all(edge["review_status"] == "proposed" for edge in edges))
