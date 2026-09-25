@@ -92,6 +92,18 @@ class DiscoveryGraphTests(unittest.TestCase):
             discovery_graph.assert_relationships(self.db, [dict(row, review_status="rejected")])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0], 1)
 
+    def test_ai_artwork_proposal_is_discoverable_without_price_equivalence(self):
+        row = dict(left_card_id=self.en, right_card_id=self.ja,
+                   relation_type="same_artwork", review_status="proposed",
+                   assertion_id="ai-artwork-fixture", evidence_ref="fixture:hashed-images",
+                   rights_reference="internal-test", asserted_by="ai-artwork-review-v1",
+                   reviewer="gemini-3.8-flash")
+        discovery_graph.assert_relationships(self.db, [row])
+        neighborhood = discovery_graph.card_neighborhood(self.db, self.ja)
+        self.assertEqual(neighborhood["relationships"], [])
+        self.assertEqual(len(neighborhood["ai_artwork_candidates"]), 1)
+        self.assertFalse(neighborhood["ai_artwork_candidates"][0]["price_comparable"])
+
     def test_relationship_import_handles_legacy_column_order(self):
         self.db.execute("DROP TABLE card_relationship_assertion")
         self.db.execute("""CREATE TABLE card_relationship_assertion (

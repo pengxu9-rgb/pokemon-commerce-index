@@ -1,0 +1,792 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "candidate_rows": 13,
+  "decisions": {
+    "insufficient_images": 2,
+    "same": 11
+  },
+  "both_images_included": 11,
+  "rows": [
+    {
+      "candidate_id": "5e06efcce41b76c3bf7f",
+      "source_snapshot_sha256": "3128fdce197bb47a1bd37110d58449c8751e80e07e312cf79fb2063cb940b9e6",
+      "response_sha256": "efd6b823fe6b5c49943ce6b640b7d1e26ea039a2338261880f687a3434926d2b",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 44928,
+        "image_sha256": "9e9711ae273b262cebac0902cc4321b8b1f6ec23730b887ba7ac12ca08017266",
+        "image_url": "https://assets.tcgdex.net/en/me/me02.5/198/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/ME02.5-198",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Mega Evolution/Ascended Heroes/198.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49703",
+        "image_bytes": 153248,
+        "image_sha256": "e4462e25d2be5ccfbc04a4b3653c90acc447d886038c34ad850efe215ecb17c6",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49703.json",
+        "record_sha256": "d6c05755e3803f2a2364407c930475cafafa5b44c4493fcc462897b7cf4d672c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "5818995decfe3b0ee4d83d603d95f84b4da321e6df47b0db6c828ab8d5ec48e6",
+      "usage": {
+        "candidatesTokenCount": 81,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 81
+          }
+        ],
+        "promptTokenCount": 3356,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1172
+          }
+        ],
+        "thoughtsTokenCount": 180,
+        "totalTokenCount": 3617,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "26392b0b834c7542ffd0",
+      "source_snapshot_sha256": "07fe7a9a0e777dcf394afc5a6856411bb008e92980b4147d826135e40551471c",
+      "response_sha256": "cac94ba7035a802cc4ad4fcbdeb63273ecf0d94d5d9c5cee8c4cdb928317c6ee",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 44766,
+        "image_sha256": "e00d26176bfeebebcf6ad7e3e59cc00ee374fb138ac33d06e380364d2b5d0d62",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/078/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-078",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Mega Evolution/Perfect Order/078.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49704",
+        "image_bytes": 166458,
+        "image_sha256": "25aa718347faf5978ec6eae65421c3c895c18347a23f670d8a14ee6df1c5e0d9",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049704_T_MIAREGARETTO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49704.json",
+        "record_sha256": "932ec583152e8f74dc2020875026f9794580fac39942d2bc16bcfc29256f586c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-071",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/071.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "34441940748a97841bc9159f7fd2afa7d772d4fb342ae111aa07b3f8bd0a00c3",
+      "usage": {
+        "candidatesTokenCount": 70,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 70
+          }
+        ],
+        "promptTokenCount": 3106,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 922
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 132,
+        "totalTokenCount": 3308,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "cde40dc800d225e51573",
+      "source_snapshot_sha256": "d9c5389bd96a38cc0b8551ae37f5bb2ed76dbe7c7f8a2bc4bd86399bb36b0a09",
+      "response_sha256": "889defb4796db1ec5e70ff1ae1cd928996f46d411755eedd1fa7b1f29ae1f4a9",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 58310,
+        "image_sha256": "0429b81c2b270bfca7a6f8e3e337da3bac6800d4cf10cdac6b489983aa1d5b1d",
+        "image_url": "https://assets.tcgdex.net/en/me/me05/107/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/ME05-107",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Mega Evolution/Pitch Black/107.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/50323",
+        "image_bytes": 390043,
+        "image_sha256": "4f083779a759f69dfe194cda0b4512a8156c06ba036db82bbf7035bfb49c09f8",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M5/050323_T_ENERUGITSUKEKAE.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/M5/50323.json",
+        "record_sha256": "f6b0b335da8c686d74726bfcf42bd5c4a17806b39ee3082f7239e0b3fda83d50",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "ccd0fbeeede75fc4da2bb8c6d88827221006d88b66a5cafe156a82002f748e94",
+      "usage": {
+        "candidatesTokenCount": 97,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 97
+          }
+        ],
+        "promptTokenCount": 3037,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 853
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 341,
+        "totalTokenCount": 3475,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "64fe5769109695a9d394",
+      "source_snapshot_sha256": "78550a351dd4bd2cf4de633d60e1c6050b921950aa83f4e7ebfcd040ec024b7b",
+      "response_sha256": "b75515cde2fe8125d5f87489e7c691f4fc1b145972bbd92101f10a14ab63364e",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 39044,
+        "image_sha256": "088bd0c7d03a66216b233ab18af2200ae5dcc1f864504b6ffcd93d22e5586313",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/122/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-122",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sword & Shield/Battle Styles/122.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/39123",
+        "image_bytes": 184789,
+        "image_sha256": "5c066730d0d1f23cdb018c9e1e95d1b48c129c96467219ee055a161ecc847b73",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S5I/039123_T_KYANPUSETTO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/S5I/39123.json",
+        "record_sha256": "72737f5d020a77b03728cb115e5dc3b5ad8ae5289b686fbfe5a1cf14971926f6",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S5I-063",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/S/S5I/063.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "e40a85a288aaedbdacfef3b83f8173bd5271f05805bd4fddb1fb1bb8ea7b14b1",
+      "usage": {
+        "candidatesTokenCount": 88,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 88
+          }
+        ],
+        "promptTokenCount": 3245,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1061
+          }
+        ],
+        "thoughtsTokenCount": 184,
+        "totalTokenCount": 3517,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "4a4b3a164ba8a5ddd3e2",
+      "source_snapshot_sha256": "4a3087d71f65935d7dad2755d819fe6d4ff3f691dfda530f85ac5e15fe267c2a",
+      "response_sha256": "49c50dedc82a50da5a71af6bd9a9b075fb70a3a79384024862bcdfd1ad4ed888",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 38988,
+        "image_sha256": "79104cd8e54d54351532e5ff6d637ad517caf0089dc83f3bdce55828239f3288",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh6/140/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH6-140",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sword & Shield/Chilling Reign/140.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/39491",
+        "image_bytes": 98019,
+        "image_sha256": "e69a234c31b09bfd7ea317c585674b46f71e1f61975546876738e93dbf026788",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S6K/039491_T_KIRINOSUISHOU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/S6K/39491.json",
+        "record_sha256": "5618d4357f7c18d144e4079a1e014ae7abd49a409bbbf99feea9fe3bd0a01916",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S6K-060",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/S/S6K/060.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "3c159842535695b317550dac364d639c98be8d2ed081c4ca2cef914737624b10",
+      "usage": {
+        "candidatesTokenCount": 78,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ],
+        "promptTokenCount": 3266,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1082
+          }
+        ],
+        "thoughtsTokenCount": 153,
+        "totalTokenCount": 3497,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "dbead465c3438dfd1440",
+      "source_snapshot_sha256": "07b259b2f754dc3ebaaf4d66fd30e5cef48517acbd2caeaea09e501a5fdb40ce",
+      "response_sha256": "268d3df500408d6807e459f292773a0221b5ec1211ac70eef5c95604eacb18b7",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 51808,
+        "image_sha256": "a3dd39bff63515eff781f3b8800b37348ed902baaac650eaca7e950f86d64078",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/138/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-138",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sword & Shield/Battle Styles/138.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/40319",
+        "image_bytes": 209589,
+        "image_sha256": "641785e73c07607daadc696efdb0f325635289e1272f0f3fea22668c620a5ecc",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/040319_T_MIZUNOTOU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": null,
+        "record_path": "data_jp/S8b/40319.json",
+        "record_sha256": "74f6ff54fe8e8d016e95569036762c6ddb5dd536b174a970e4a98b5aba30aa2f",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-170",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/S/S8b/170.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "d73dcd683ed216458e227582016908e3129ae94576bba86880ca0c30e5ce80fb",
+      "usage": {
+        "candidatesTokenCount": 94,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 94
+          }
+        ],
+        "promptTokenCount": 3260,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1076
+          }
+        ],
+        "thoughtsTokenCount": 302,
+        "totalTokenCount": 3656,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1e7ba41fd5fe8f80156e",
+      "source_snapshot_sha256": "c93e88789eff4ba0ff98331ba56d84e972f72c6a13a0b6d97294c1f410c1555c",
+      "response_sha256": null,
+      "en_image_identity": "",
+      "en_image": {
+        "status": "prior_asset_unavailable",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH12TG-TG28",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/41091",
+        "image_bytes": 452021,
+        "image_sha256": "8f175123066fb09404d8858e24df8a5a9e60c8870b203cb2f373fbffce17a575",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/041091_T_SODDOTOSHIRUDEI.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/S8b/41091.json",
+        "record_sha256": "48c2792a4a8e59d8824a17559522943426c26e964bd8839fc68d5ade53b69b54",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-263",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/S/S8b/263.ts",
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "8f7dde06ab63f2434bdb",
+      "source_snapshot_sha256": "af8337ab72b5db9d6dbbfee6a2634f2bd8f687d477f0239dc830c2cb7b36581d",
+      "response_sha256": "1b0da262920ba037f25b6dd73e2c3fd34adbbc046c60c9973b2e04432b2c05da",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 50778,
+        "image_sha256": "3af04aabcdb8f51c2f6c54ed9f5909737f4b27357b8defb1f36202bf90d166ce",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm5/127/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM5-127",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Ultra Prism/127.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34505",
+        "image_bytes": 134517,
+        "image_sha256": "d2c58f9709bba7140349ac876a484b2021799a9199d0ba1e41048bf405bf300f",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM5M/034505_T_HANSAMUHOISSURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM5M/34505.json",
+        "record_sha256": "0e6b932e425bb730727b2f7ee63f62b7765316625e11310c3008d4465dc92ee7",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM5M-057",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM5M/057.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "4fe814959c6d6d252971a805a8ec52620671fb1072e1cd1a79f4131f9e97f24b",
+      "usage": {
+        "candidatesTokenCount": 78,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ],
+        "promptTokenCount": 3087,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 903
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 180,
+        "totalTokenCount": 3345,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b043e94ba8823f167927",
+      "source_snapshot_sha256": "03f02fea842dad261f75de8950fe1a9b22393c7b62c7bbb70dd23668e5e16e62",
+      "response_sha256": "4f16357cdb0b0d2f710aed9c8a8e8fe02cf1bcbdc4652d81881363f1e87eb821",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 59552,
+        "image_sha256": "24f220df54aaf6d6a781293c4bccd9ecdf75b0eb5741816bca292a15706d58b2",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm7/124/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM7-124",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Celestial Storm/124.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34918",
+        "image_bytes": 153263,
+        "image_sha256": "c62c50b3c358bdd60a623c2f1647e6efcddc626c883c5d270ebb76c97f4d9bb2",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM6b/034918_T_BONGURISHOKUNIN.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM6b/34918.json",
+        "record_sha256": "0b476c35a1c8c03f2a6a4670248459e3ca00608266be09299c7ac9c301b9d149",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM6B-063",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM6b/063.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0e6f34177aeb1a9598039a0403b52b205fec6bcf988c6b95a71f033aee1972d7",
+      "usage": {
+        "candidatesTokenCount": 73,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 73
+          }
+        ],
+        "promptTokenCount": 3151,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 967
+          }
+        ],
+        "thoughtsTokenCount": 169,
+        "totalTokenCount": 3393,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f0d54897c9887844dd8f",
+      "source_snapshot_sha256": "cf5566bb8e75149fd40e059f20110700ccffb900d620f02ab412476c7a82d88c",
+      "response_sha256": "31c5ba814edfbf30b509f27e3d2767ccc303d39758151f416b38cebff85e9f7e",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 51190,
+        "image_sha256": "11014c6224528c3282a5ef82c9ffb6b5b589ed3154b97493bd698fbea60ca0bc",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm8/173/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM8-173",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Lost Thunder/173.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/35381",
+        "image_bytes": 140935,
+        "image_sha256": "6561fce9a04c7c8b817470b872888ef55cad939c4ef2cacbceda418575bcd927",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM8/035381_T_ZAOBO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM8/35381.json",
+        "record_sha256": "c848cf4b81bf84be417a79df2c129074626a3da825fe4bfc419644a07d3930c4",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8-089",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM8/089.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "75353e6250b46dd10325f7301d709b1af55bd2ca0845adecf7413b91d2e769d9",
+      "usage": {
+        "candidatesTokenCount": 78,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ],
+        "promptTokenCount": 3107,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 923
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 195,
+        "totalTokenCount": 3380,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "ac00d7f8fa7230de6660",
+      "source_snapshot_sha256": "145742bc7f91b8c31c2285aadb0ef25e79f8b93fb879865ba2345dd0c2c77557",
+      "response_sha256": "99ce4fdbc33905fb4421d8e8fdfba0af493590048a711f98a6ab55f8fbd8d737",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 60842,
+        "image_sha256": "65d1f2513a61ff78fed400c8165166471a28ef65ac8151c05fb43a65fd4a54fb",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm9/148/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-148",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Team Up/148.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/35448",
+        "image_bytes": 151995,
+        "image_sha256": "c3c6b71613333b934a6a274e1229b7e9da45dbc1c32e9bb751e212c4b3164619",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM8a/035448_T_METARUGOGURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM8a/35448.json",
+        "record_sha256": "3c83d5a9e3b4d878bf8ceb52d759468b0752f3b916bacda4e3fb0a0802181ad6",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8A-049",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM8a/049.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "da3c9aa8f6376d153ab1d22fd4c29d5c6ed51fe778bb5f500603bfaaa976ccd6",
+      "usage": {
+        "candidatesTokenCount": 76,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 76
+          }
+        ],
+        "promptTokenCount": 3258,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1074
+          }
+        ],
+        "thoughtsTokenCount": 138,
+        "totalTokenCount": 3472,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "68bea434818a5604d31f",
+      "source_snapshot_sha256": "2f00f223d5104ef5e054baa4ab3554473d4032483f488c0eb35e44e8642087b9",
+      "response_sha256": null,
+      "en_image_identity": "",
+      "en_image": {
+        "status": "prior_asset_unavailable",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-146",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Team Up/146.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/36022",
+        "image_bytes": 153056,
+        "image_sha256": "e69987ee4dbaf82a480d0d5a2ad1b0bb06ab8a36a842b4c8a902c1655849424d",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM9/036022_T_JAJJIMANHOISSURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM9/36022.json",
+        "record_sha256": "94df252be2446108a171c23b42d50af711d1a3f0dc59f91112643df109fa6355",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM9-078",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM9/078.ts",
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "eab26edf1ffa7e5da429",
+      "source_snapshot_sha256": "a9e68d8f6883cbda98f18c47af8ec3d969ac3771066a1d66de38f5ad490c861e",
+      "response_sha256": "947719a3cd1b034ee827857a84e99f2794797d61b5abf39c89b19634371419d2",
+      "en_image_identity": "",
+      "en_image": {
+        "image_bytes": 56166,
+        "image_sha256": "f2fdb46c6b2dc8b27e25c0dc3c2b375ee53179203f11a9d85cbc0a5e010738dd",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/142/high.webp",
+        "source": "prior_source_bound_audit",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-142",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/142.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/45286",
+        "image_bytes": 637507,
+        "image_sha256": "0695b0d9d2e34e10f1ba2e76d9be8229ff01469038a963556eb385d5603dd538",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV5M/045286_T_BERUNOMAGOKORO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SV5M/45286.json",
+        "record_sha256": "a0272dc8ede22403e2480d7b1e94a0ccfdb5866dbbcbeb482dd5dc8d564cd393",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "865207dec6b6289ed6cf9394c273fe3ffff979bdc07884988fe7b20a4c033c78",
+      "usage": {
+        "candidatesTokenCount": 95,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 95
+          }
+        ],
+        "promptTokenCount": 3212,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1028
+          }
+        ],
+        "thoughtsTokenCount": 253,
+        "totalTokenCount": 3560,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    }
+  ],
+  "scope": "AI visual artwork triage only; no physical printing or finish verified"
+}

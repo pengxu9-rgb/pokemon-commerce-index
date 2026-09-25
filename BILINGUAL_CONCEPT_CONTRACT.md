@@ -1,5 +1,11 @@
 # Bilingual concept retrieval contract
 
+The AI-first artwork lane now produces source-bound `proposed` `same_artwork`
+edges. `card_neighborhood.ai_artwork_candidates` exposes them for discovery
+with `price_comparable=false`. The existing `verified` review contract remains
+stronger. See [AI_CARD_REVIEW.md](AI_CARD_REVIEW.md) for the automated evidence
+gate and the remaining listing-specific checks.
+
 The exact card printing remains `language + set + collector number + variant`. A bilingual concept is a translation of a card **name** for candidate retrieval. It does not say that Japanese and English printings share artwork, finish, edition, release, price, or merchant availability.
 
 ## Current data and source

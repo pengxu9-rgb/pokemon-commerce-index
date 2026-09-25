@@ -1,0 +1,145 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "candidate_rows": 2,
+  "decisions": {
+    "same": 2
+  },
+  "both_images_included": 2,
+  "rows": [
+    {
+      "candidate_id": "1e7ba41fd5fe8f80156e",
+      "source_snapshot_sha256": "c93e88789eff4ba0ff98331ba56d84e972f72c6a13a0b6d97294c1f410c1555c",
+      "response_sha256": "f0d6f27d951cbf29ae41d0e7f978261b65339e63447c3742783039be6c919198",
+      "en_image_identity": "match",
+      "en_image": {
+        "image_bytes": 85312,
+        "image_sha256": "d1545158a781229042b46d058570a508c1e900d3e228d822216f24ec818da456",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh12/TG28/high.webp",
+        "source": "curated_hash_bound_asset",
+        "source_note": "TCGdex Silver Tempest Trainer Gallery TG28 source; CDN stores trainer-gallery image under parent swsh12. Require visual name and number check.",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH12TG-TG28",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/41091",
+        "image_bytes": 452021,
+        "image_sha256": "8f175123066fb09404d8858e24df8a5a9e60c8870b203cb2f373fbffce17a575",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/041091_T_SODDOTOSHIRUDEI.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/S8b/41091.json",
+        "record_sha256": "48c2792a4a8e59d8824a17559522943426c26e964bd8839fc68d5ade53b69b54",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-263",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/S/S8b/263.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "27af845dd9651bdc5eb6b6344762044c59b1783eeedb4ff96eb37b13b3b04e5a",
+      "usage": {
+        "candidatesTokenCount": 90,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 90
+          }
+        ],
+        "promptTokenCount": 3321,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1137
+          }
+        ],
+        "thoughtsTokenCount": 287,
+        "totalTokenCount": 3698,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "68bea434818a5604d31f",
+      "source_snapshot_sha256": "2f00f223d5104ef5e054baa4ab3554473d4032483f488c0eb35e44e8642087b9",
+      "response_sha256": "eec4bf0d244a4912d1b2de442f61d39225a3d4008369de59efecacb1275db5be",
+      "en_image_identity": "match",
+      "en_image": {
+        "image_bytes": 48998,
+        "image_sha256": "ab2a63e1bb8d0c3157393e7f2de75cdc26bab38a369f6492be3c8e5dd21157f0",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm9/146/high.webp",
+        "source": "curated_hash_bound_asset",
+        "source_note": "Card image hash previously observed in catalog/concept-review-v6-stage2-gemini-audit.json; require visual name and number check.",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-146",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Sun & Moon/Team Up/146.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/36022",
+        "image_bytes": 153056,
+        "image_sha256": "e69987ee4dbaf82a480d0d5a2ad1b0bb06ab8a36a842b4c8a902c1655849424d",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM9/036022_T_JAJJIMANHOISSURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM9/36022.json",
+        "record_sha256": "94df252be2446108a171c23b42d50af711d1a3f0dc59f91112643df109fa6355",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM9-078",
+          "error_type": "HTTPError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM9/078.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "b56aa7ecc15b49b6563c4c47c6d24d40a1d801844879dd70da066c9ecb79f032",
+      "usage": {
+        "candidatesTokenCount": 104,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 104
+          }
+        ],
+        "promptTokenCount": 3141,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 957
+          }
+        ],
+        "thoughtsTokenCount": 292,
+        "totalTokenCount": 3537,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    }
+  ],
+  "scope": "AI visual artwork triage only; no physical printing or finish verified"
+}

@@ -252,6 +252,14 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
                 if item["review_status"] == "verified"
                 or (include_proposed and item["review_status"] == "proposed")]
     reviewed.sort(key=lambda item: (item["relation_type"], item["other_card_id"]))
+    ai_artwork = [item for item in latest.values()
+                  if item["relation_type"] == "same_artwork"
+                  and item["review_status"] == "proposed"
+                  and item["asserted_by"] == "ai-artwork-review-v1"]
+    ai_artwork.sort(key=lambda item: item["other_card_id"])
+    for item in ai_artwork:
+        item["price_comparable"] = False
+        item["scope"] = "AI visual artwork proposal; finish and condition unverified"
     metadata_neighbors = {}
     for facet_type, label in (("dex_id", "same_character"), ("illustrator", "same_illustrator")):
         source_facets = db.execute(
@@ -286,7 +294,8 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
             "claim_status": "retrieval_only", "price_comparable": False,
         }
     return {"card_id": card_id, "variants_at_number": variants,
-            "relationships": reviewed, "metadata_neighbors": metadata_neighbors,
+            "relationships": reviewed, "ai_artwork_candidates": ai_artwork,
+            "metadata_neighbors": metadata_neighbors,
             "scope": "internal metadata; facet neighbors are discovery candidates, not printing counterparts"}
 
 

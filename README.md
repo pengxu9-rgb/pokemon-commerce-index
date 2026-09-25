@@ -6,6 +6,8 @@
 
 Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
 
+跨区卡片关系现已有 [AI 图像复核与价格可比性分级](AI_CARD_REVIEW.md)：首批 25 组同画候选可用于内部发现，仍按不同语言与印刷版本保留价格序列。
+
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
