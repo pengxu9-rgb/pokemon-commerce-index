@@ -1,0 +1,861 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "candidate_rows": 25,
+  "decisions": {
+    "different": 1,
+    "insufficient_images": 13,
+    "same": 11
+  },
+  "both_images_included": 12,
+  "rows": [
+    {
+      "candidate_id": "5e06efcce41b76c3bf7f",
+      "source_snapshot_sha256": "3128fdce197bb47a1bd37110d58449c8751e80e07e312cf79fb2063cb940b9e6",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "en_source_path": "data/Mega Evolution/Ascended Heroes/198.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME02.5-198",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me02.5/198/high.webp",
+        "image_sha256": "9e9711ae273b262cebac0902cc4321b8b1f6ec23730b887ba7ac12ca08017266",
+        "image_bytes": 44928
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "26392b0b834c7542ffd0",
+      "source_snapshot_sha256": "07fe7a9a0e777dcf394afc5a6856411bb008e92980b4147d826135e40551471c",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/M/M3/071.ts",
+      "en_source_path": "data/Mega Evolution/Perfect Order/078.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-071",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-078",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/078/high.webp",
+        "image_sha256": "e00d26176bfeebebcf6ad7e3e59cc00ee374fb138ac33d06e380364d2b5d0d62",
+        "image_bytes": 44766
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "cde40dc800d225e51573",
+      "source_snapshot_sha256": "d9c5389bd96a38cc0b8551ae37f5bb2ed76dbe7c7f8a2bc4bd86399bb36b0a09",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "en_source_path": "data/Mega Evolution/Pitch Black/107.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME05-107",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me05/107/high.webp",
+        "image_sha256": "0429b81c2b270bfca7a6f8e3e337da3bac6800d4cf10cdac6b489983aa1d5b1d",
+        "image_bytes": 58310
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f2737e9af1ea40da4cfc",
+      "source_snapshot_sha256": "6d8f0eb1683ed7f2592f3f5124785f1875fbd965ea0535977c47f624c3dee2c0",
+      "response_sha256": "14b92dda63541917d29401da1c4e6aa431da85182eefbb163a186c10ff73e79a",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S12a/146.ts",
+      "en_source_path": "data/Sword & Shield/Crown Zenith/143.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S12A-146",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/S/S12a/146/high.webp",
+        "image_sha256": "c159371d660bd744e3a277be8d78516fd374493079af2b27522ae4ba6e806c5a",
+        "image_bytes": 94818
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH12.5-143",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh12.5/143/high.webp",
+        "image_sha256": "58e0985ba0bce9f93d5705115b308746a10197d3b3776e626ae574c4b81b861c",
+        "image_bytes": 77036
+      },
+      "variant_image_verified": false,
+      "request_sha256": "3b6d482aef5723afb4e00cbfe601953578377f3896d5e593155aa2acc744543d",
+      "usage": {
+        "promptTokenCount": 3703,
+        "candidatesTokenCount": 81,
+        "totalTokenCount": 4009,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1519
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 81
+          }
+        ],
+        "thoughtsTokenCount": 225
+      }
+    },
+    {
+      "candidate_id": "64fe5769109695a9d394",
+      "source_snapshot_sha256": "78550a351dd4bd2cf4de633d60e1c6050b921950aa83f4e7ebfcd040ec024b7b",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S5I/063.ts",
+      "en_source_path": "data/Sword & Shield/Battle Styles/122.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S5I-063",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-122",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/122/high.webp",
+        "image_sha256": "088bd0c7d03a66216b233ab18af2200ae5dcc1f864504b6ffcd93d22e5586313",
+        "image_bytes": 39044
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "4a4b3a164ba8a5ddd3e2",
+      "source_snapshot_sha256": "4a3087d71f65935d7dad2755d819fe6d4ff3f691dfda530f85ac5e15fe267c2a",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S6K/060.ts",
+      "en_source_path": "data/Sword & Shield/Chilling Reign/140.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S6K-060",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH6-140",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh6/140/high.webp",
+        "image_sha256": "79104cd8e54d54351532e5ff6d637ad517caf0089dc83f3bdce55828239f3288",
+        "image_bytes": 38988
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "dbead465c3438dfd1440",
+      "source_snapshot_sha256": "07b259b2f754dc3ebaaf4d66fd30e5cef48517acbd2caeaea09e501a5fdb40ce",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S8b/170.ts",
+      "en_source_path": "data/Sword & Shield/Battle Styles/138.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-170",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-138",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/138/high.webp",
+        "image_sha256": "a3dd39bff63515eff781f3b8800b37348ed902baaac650eaca7e950f86d64078",
+        "image_bytes": 51808
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1e7ba41fd5fe8f80156e",
+      "source_snapshot_sha256": "c93e88789eff4ba0ff98331ba56d84e972f72c6a13a0b6d97294c1f410c1555c",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S8b/263.ts",
+      "en_source_path": "data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-263",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH12TG-TG28",
+        "status": "image_missing"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "8f7dde06ab63f2434bdb",
+      "source_snapshot_sha256": "af8337ab72b5db9d6dbbfee6a2634f2bd8f687d477f0239dc830c2cb7b36581d",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM5M/057.ts",
+      "en_source_path": "data/Sun & Moon/Ultra Prism/127.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SM5M-057",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM5-127",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm5/127/high.webp",
+        "image_sha256": "3af04aabcdb8f51c2f6c54ed9f5909737f4b27357b8defb1f36202bf90d166ce",
+        "image_bytes": 50778
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b043e94ba8823f167927",
+      "source_snapshot_sha256": "03f02fea842dad261f75de8950fe1a9b22393c7b62c7bbb70dd23668e5e16e62",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM6b/063.ts",
+      "en_source_path": "data/Sun & Moon/Celestial Storm/124.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SM6B-063",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM7-124",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm7/124/high.webp",
+        "image_sha256": "24f220df54aaf6d6a781293c4bccd9ecdf75b0eb5741816bca292a15706d58b2",
+        "image_bytes": 59552
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f0d54897c9887844dd8f",
+      "source_snapshot_sha256": "cf5566bb8e75149fd40e059f20110700ccffb900d620f02ab412476c7a82d88c",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM8/089.ts",
+      "en_source_path": "data/Sun & Moon/Lost Thunder/173.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8-089",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM8-173",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm8/173/high.webp",
+        "image_sha256": "11014c6224528c3282a5ef82c9ffb6b5b589ed3154b97493bd698fbea60ca0bc",
+        "image_bytes": 51190
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "ac00d7f8fa7230de6660",
+      "source_snapshot_sha256": "145742bc7f91b8c31c2285aadb0ef25e79f8b93fb879865ba2345dd0c2c77557",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM8a/049.ts",
+      "en_source_path": "data/Sun & Moon/Team Up/148.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8A-049",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-148",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm9/148/high.webp",
+        "image_sha256": "65d1f2513a61ff78fed400c8165166471a28ef65ac8151c05fb43a65fd4a54fb",
+        "image_bytes": 60842
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "68bea434818a5604d31f",
+      "source_snapshot_sha256": "2f00f223d5104ef5e054baa4ab3554473d4032483f488c0eb35e44e8642087b9",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM9/078.ts",
+      "en_source_path": "data/Sun & Moon/Team Up/146.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SM9-078",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-146",
+        "status": "fetch_failed",
+        "error_type": "URLError"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "066d480d7c19df1db247",
+      "source_snapshot_sha256": "4b035a2e1bc4562e93743c5e93ac69b109a94771ac411a8fbae98b16394719fc",
+      "response_sha256": "2bfaf6cebc453cb0bcf1d418d6f83c39d55493fd103df16d420f35bca3f3fac6",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV1V/077.ts",
+      "en_source_path": "data/Scarlet & Violet/Scarlet & Violet/179.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV1V-077",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV1V/077/high.webp",
+        "image_sha256": "8e71a10f8d0d833e2bbf78a37b15143f5ee8cfbe06e864ecbf9fc2c54ef3139e",
+        "image_bytes": 50472
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV01-179",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv01/179/high.webp",
+        "image_sha256": "03a6a50b0c57d3438412fd786e40c2bbb3c5642e1a38faf737505631882a9498",
+        "image_bytes": 48792
+      },
+      "variant_image_verified": false,
+      "request_sha256": "8d248182e8983c37280087cabc413741252a5b914b4dd15dd872aa66cbe7d7ac",
+      "usage": {
+        "promptTokenCount": 3345,
+        "candidatesTokenCount": 81,
+        "totalTokenCount": 3661,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1161
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 81
+          }
+        ],
+        "thoughtsTokenCount": 235
+      }
+    },
+    {
+      "candidate_id": "fe928d04aab3e1368073",
+      "source_snapshot_sha256": "1411deed82112438136bec296d1d04b1b6c09b0135f7dcc92fa10ee50b80a4f9",
+      "response_sha256": "a5190f0ffc6475b87baf36556b66cf9510b2cec58fed84e9e5e407a8579c966d",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV2a/162.ts",
+      "en_source_path": "data/Scarlet & Violet/151/161.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV2A-162",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV2a/162/high.webp",
+        "image_sha256": "b4ef97106a11aeed6380ce234441bfd26304dca8c0675efaddb083f16fd0f984",
+        "image_bytes": 72068
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV03.5-161",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv03.5/161/high.webp",
+        "image_sha256": "c039e671dfa4983a7773bb5db555009d2c6593487f404df29281d895dd07df3d",
+        "image_bytes": 41520
+      },
+      "variant_image_verified": false,
+      "request_sha256": "dddf80c318fc71227e1d524fc49560a9ed1af411d09d5f9351e304aea7069094",
+      "usage": {
+        "promptTokenCount": 3504,
+        "candidatesTokenCount": 104,
+        "totalTokenCount": 3858,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1320
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 104
+          }
+        ],
+        "thoughtsTokenCount": 250
+      }
+    },
+    {
+      "candidate_id": "845b8e710a85f2a6e9e2",
+      "source_snapshot_sha256": "15a7ad873bce60eb78844f1df5a302731ab8701845f39ae9f05c0ae25df3b4a5",
+      "response_sha256": "fd2414c70947d8cf8e45f9c0a42f4b4ca6fb8225e9fc8790058a33abcbd3b1e0",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV3a/059.ts",
+      "en_source_path": "data/Scarlet & Violet/Paradox Rift/174.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV3A-059",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV3a/059/high.webp",
+        "image_sha256": "9d099ea23ee462806480c1d04bfe7d36ecc8c7a7e26b4523ab58c3e3c84e66b7",
+        "image_bytes": 50300
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV04-174",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv04/174/high.webp",
+        "image_sha256": "79a84cd04deae2ecdd782a4f815c00c69367c5627e29a5f83d0c1072f92ce4bd",
+        "image_bytes": 47618
+      },
+      "variant_image_verified": false,
+      "request_sha256": "0d6e24134b346340ac509def42b5666a14a884851e02f50abbadafa5e2ce0706",
+      "usage": {
+        "promptTokenCount": 3430,
+        "candidatesTokenCount": 77,
+        "totalTokenCount": 3661,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1246
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 77
+          }
+        ],
+        "thoughtsTokenCount": 154
+      }
+    },
+    {
+      "candidate_id": "1cf1f57b21a79f55e748",
+      "source_snapshot_sha256": "adb72c7d959e77fd63001f049ca8b466e1c584bcc36abbf1efd2bd0118e06e04",
+      "response_sha256": "fd34bb34c74962c5958085fd26c71642b9fdc9c6911eed97ec1a354e72fe8bf8",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "en_source_path": "data/Scarlet & Violet/Paradox Rift/171.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_bytes": 66348
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV04-171",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv04/171/high.webp",
+        "image_sha256": "393a3772630ff4746ff990f259ed6ee79dc985e224d19e2308a5170f4d95c943",
+        "image_bytes": 64900
+      },
+      "variant_image_verified": false,
+      "request_sha256": "c86a2cc9453b33d9de230c2a3cbeeb876fa16926488634f6dcdbd05f769a2d6c",
+      "usage": {
+        "promptTokenCount": 3317,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 3576,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1133
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 76
+          }
+        ],
+        "thoughtsTokenCount": 183
+      }
+    },
+    {
+      "candidate_id": "22daa96f7f8771b8d376",
+      "source_snapshot_sha256": "5aa4f14c8952aea53ef868597612d28ad8f567d6535ae46f0498af99c3bd7acc",
+      "response_sha256": "6f0b8ae74aeaeeeade852008db796426e8ca737c976bb58aa74069932d7a5c24",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV5a/059.ts",
+      "en_source_path": "data/Scarlet & Violet/Twilight Masquerade/164.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5A-059",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV5a/059/high.webp",
+        "image_sha256": "8d6e6f55dda7a527500ca1de3d88562719d59c88ac6435a7e2b214f6c8d69696",
+        "image_bytes": 123600
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV06-164",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv06/164/high.webp",
+        "image_sha256": "daaebd9d5755facf5499d359f1c20b24f93ca6b15c4b346e251510841a2e65e0",
+        "image_bytes": 68524
+      },
+      "variant_image_verified": false,
+      "request_sha256": "95ffcc86eb93664c0b8a60e709476edfd3fe260355e33522408fe4de3db0c921",
+      "usage": {
+        "promptTokenCount": 3543,
+        "candidatesTokenCount": 90,
+        "totalTokenCount": 3871,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1359
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 90
+          }
+        ],
+        "thoughtsTokenCount": 238
+      }
+    },
+    {
+      "candidate_id": "eab26edf1ffa7e5da429",
+      "source_snapshot_sha256": "a9e68d8f6883cbda98f18c47af8ec3d969ac3771066a1d66de38f5ad490c861e",
+      "response_sha256": null,
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/142.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-142",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/142/high.webp",
+        "image_sha256": "f2fdb46c6b2dc8b27e25c0dc3c2b375ee53179203f11a9d85cbc0a5e010738dd",
+        "image_bytes": 56166
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "8fe271e89e94b4b4b6c0",
+      "source_snapshot_sha256": "732f38dd0a60f312857ae43b7cf0e5c06f7dc0f3a1f0fb39af60141a8b7e3f91",
+      "response_sha256": "74ff9b6432a9e74fbe40b4cdd7764622149fde9e3d833084a553744d4405744c",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV6/095.ts",
+      "en_source_path": "data/Scarlet & Violet/Twilight Masquerade/150.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-095",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/095/high.webp",
+        "image_sha256": "6ae52f73c6db90ab16493bb376ac0a891e8de0c9f5cb6c34294edc3ab3540065",
+        "image_bytes": 53588
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV06-150",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv06/150/high.webp",
+        "image_sha256": "8cc882b97fb2a36c2cc39f9390b4e2b0e80786b84f58a8a59cd8b5d71b345e43",
+        "image_bytes": 50186
+      },
+      "variant_image_verified": false,
+      "request_sha256": "08867b87990ad22dbfb4d1dbb5ca1c0207db2cba2969b9c86acd785252b2791b",
+      "usage": {
+        "promptTokenCount": 3538,
+        "candidatesTokenCount": 73,
+        "totalTokenCount": 3790,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1354
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 73
+          }
+        ],
+        "thoughtsTokenCount": 179
+      }
+    },
+    {
+      "candidate_id": "1b0d383b02404911d5f8",
+      "source_snapshot_sha256": "7fd17547efe1556b7c06816a846c0016247c4aba55e2628983c828f833a8abbe",
+      "response_sha256": "ddf88e2eaa509cf5f3deae38a6d95a7ed673c68d4f2812d16c3b819fe6b004a2",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "en_source_path": "data/Mega Evolution/Mega Evolution/167.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_bytes": 161336
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME01-167",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me01/167/high.webp",
+        "image_sha256": "394d5fb146e661f6b45fab685ed3e110f82ae5b6f3eab0e16c6f37f3cc6e7e4a",
+        "image_bytes": 73120
+      },
+      "variant_image_verified": false,
+      "request_sha256": "d6115f871ae67bef8221eb207aa574abed4e092c9b7022f50401640c4551be57",
+      "usage": {
+        "promptTokenCount": 3202,
+        "candidatesTokenCount": 111,
+        "totalTokenCount": 3846,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1018
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 111
+          }
+        ],
+        "thoughtsTokenCount": 533
+      }
+    },
+    {
+      "candidate_id": "01ba74c8ab5586d45762",
+      "source_snapshot_sha256": "2da313abe537a836baba1875291ef7140f7dbbb30f22bd503093906b26be99d8",
+      "response_sha256": "cd33622428baf53a47117e175c0416fb89c90e75fc8b9db9f283f7347e9b5d61",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV7/096.ts",
+      "en_source_path": "data/Scarlet & Violet/Stellar Crown/134.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV7-096",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV7/096/high.webp",
+        "image_sha256": "cec88ecc91493307b9f8ce3b3814dd979747cca127b258d527bac04950780c5a",
+        "image_bytes": 120132
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV07-134",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv07/134/high.webp",
+        "image_sha256": "b15c42fd3e741c33d28fa6a8bfbd4045a7453a2fc5758522a49bc63b880890df",
+        "image_bytes": 67940
+      },
+      "variant_image_verified": false,
+      "request_sha256": "6da04729eb7f0431f4d139f5b3b6f8fee98db2c7460c100aa4b7fbba547ed46a",
+      "usage": {
+        "promptTokenCount": 3515,
+        "candidatesTokenCount": 114,
+        "totalTokenCount": 3864,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1331
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 114
+          }
+        ],
+        "thoughtsTokenCount": 235
+      }
+    },
+    {
+      "candidate_id": "1ca87feff0643a82d1a7",
+      "source_snapshot_sha256": "f647811c1c1884218021e1268277b747f79637b6c01c239100c988c053e8d5ef",
+      "response_sha256": "137802644711720295c3a4c0e8e37827fbba8e6ac0238cc294df4fcfeecb92bf",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV8/100.ts",
+      "en_source_path": "data/Scarlet & Violet/Surging Sparks/163.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV8-100",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV8/100/high.webp",
+        "image_sha256": "107d51a3ae6ecd492f4e7f02dc5beb4ff9c1f59d7d7992b2e9d3e2ecb808b016",
+        "image_bytes": 47682
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08-163",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08/163/high.webp",
+        "image_sha256": "87940ab1066bff7f4726d09c4a14d3ea021603969fe256b5a14f0cdbdfc68476",
+        "image_bytes": 47984
+      },
+      "variant_image_verified": false,
+      "request_sha256": "d0a4c9b8c532c14e47320b5085de14b765705b80e22c79406c20185fa223d6dc",
+      "usage": {
+        "promptTokenCount": 3448,
+        "candidatesTokenCount": 53,
+        "totalTokenCount": 3649,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1264
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 53
+          }
+        ],
+        "thoughtsTokenCount": 148
+      }
+    },
+    {
+      "candidate_id": "13be46bd7fb0ac910b5e",
+      "source_snapshot_sha256": "defb694d401e47ccc761c1e6092aa85fe1d6583922f64e5523149a77d075ab2c",
+      "response_sha256": "10986f40e4158f19f71bbdc22ae152b13cffc2ad3f6854008f47906245541d5f",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV9/092.ts",
+      "en_source_path": "data/Scarlet & Violet/Journey Together/148.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-092",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/092/high.webp",
+        "image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+        "image_bytes": 55576
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-148",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/148/high.webp",
+        "image_sha256": "ef5e5e1e61a2fa1f4535e92faca7c3f55a5ddb519e96d30f44f10f2bed499657",
+        "image_bytes": 56538
+      },
+      "variant_image_verified": false,
+      "request_sha256": "651ef04644a749a0bf8766cc9e6c1689c06d692cf935b77ff6b54d70751d6b6a",
+      "usage": {
+        "promptTokenCount": 3581,
+        "candidatesTokenCount": 73,
+        "totalTokenCount": 3840,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1397
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 73
+          }
+        ],
+        "thoughtsTokenCount": 186
+      }
+    },
+    {
+      "candidate_id": "99237a4ca689e241d44e",
+      "source_snapshot_sha256": "f15029a57f8d3c371f693735c1d481ea37d6bdb1963adbc83d24706627b117ef",
+      "response_sha256": "e75c30a75487c7c8d69537425b2908e3fc0e2f607a6eb89fe71e0426215ed228",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV9/099.ts",
+      "en_source_path": "data/Scarlet & Violet/Journey Together/154.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-099",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/099/high.webp",
+        "image_sha256": "b3cd4516180cb4e6f8491c2f7a7f868d35274f8b474d3f77679264b9b207662c",
+        "image_bytes": 66524
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-154",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/154/high.webp",
+        "image_sha256": "34a37f0da1d45b5d216992a72c4543a9b334b99752d07a41bffc84c06216fd2a",
+        "image_bytes": 70694
+      },
+      "variant_image_verified": false,
+      "request_sha256": "69801a91177164829c0a8db298431870464ac4480188b6f0b4397e36eff823ab",
+      "usage": {
+        "promptTokenCount": 3467,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 3766,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1283
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 76
+          }
+        ],
+        "thoughtsTokenCount": 223
+      }
+    }
+  ],
+  "scope": "AI visual artwork triage only; no physical printing or finish verified"
+}

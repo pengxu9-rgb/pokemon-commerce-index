@@ -82,3 +82,12 @@ blind, human-adjudicated sample to measure actual retrieval quality. The 58
 card-specific candidates need separate artwork/printing review before any
 cross-region price comparison or merchant recommendation uses them as an exact
 product relationship.
+
+## Subsequent gap rescue
+
+The five exhausted names were subsequently found in the same pinned source
+through direct title and effect search, then unanimously approved as name
+concepts by Astra, Sol and Vertex Gemini. See [the gap-rescue record](CONCEPT_GAP_RESCUE_V6.md).
+This raises the cumulative local index to 122 internal aliases and 122
+`proposed` edges. The 55-row staged yield above remains the frozen result of
+the original ranking method; the five rescue reviews are a separate packet.

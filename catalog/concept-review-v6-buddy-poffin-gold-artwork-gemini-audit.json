@@ -1,0 +1,63 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "candidate_rows": 1,
+  "decisions": {
+    "same": 1
+  },
+  "both_images_included": 1,
+  "rows": [
+    {
+      "candidate_id": "cdd815f5a6d38c18c038",
+      "source_snapshot_sha256": "e82243355c65f4f6a77b588c4968b5ae25904f896978df014a669d93ae580ae5",
+      "response_sha256": "dda29c981cb2559de99c4c26072cca5cae59ec2692e22feaf57749c23ef7fef5",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "en_source_path": "data/Scarlet & Violet/Twilight Masquerade/223.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_bytes": 161336
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV06-223",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv06/223/high.webp",
+        "image_sha256": "bf886753177fb326de605b31c2d77c038758e3cfa034cf83dfc8f25d739319c8",
+        "image_bytes": 72374
+      },
+      "variant_image_verified": false,
+      "request_sha256": "553dd75dbf5584bc752a2075512b2311a34feb60cd401b8e736dfb079e1a861d",
+      "usage": {
+        "promptTokenCount": 3155,
+        "candidatesTokenCount": 81,
+        "totalTokenCount": 3376,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 971
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 81
+          }
+        ],
+        "thoughtsTokenCount": 140
+      }
+    }
+  ],
+  "scope": "AI visual artwork triage only; no physical printing or finish verified"
+}
