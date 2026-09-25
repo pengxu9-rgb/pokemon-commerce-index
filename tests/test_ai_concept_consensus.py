@@ -82,3 +82,13 @@ class AiConceptConsensusTests(unittest.TestCase):
         self.assertEqual(len(bundle["concept_revisions"]), 24)
         self.assertEqual(len(edges), 24)
         self.assertTrue(all(edge["review_status"] == "proposed" for edge in edges))
+
+    def test_v6_stage_can_compile_a_bounded_review(self):
+        queue = read_jsonl(ROOT / "catalog/concept-review-v6-stage1-queue.jsonl")[:1]
+        row = {"proposal_id": queue[0]["proposal_id"],
+               "source_snapshot_sha256": queue[0]["source_snapshot_sha256"],
+               "suggested_decision": "reject", "rationale": "synthetic independent review"}
+        bundle, edges = compiler.compile_consensus(
+            queue, {row["proposal_id"]: row}, {row["proposal_id"]: row},
+            "2026-09-25T00:00:00Z", "v6", True)
+        self.assertEqual((len(bundle["review_events"]), len(edges)), (1, 0))

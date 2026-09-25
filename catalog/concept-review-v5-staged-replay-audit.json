@@ -1,0 +1,15 @@
+{
+  "ranked_names": 25,
+  "ranked_proposals": 125,
+  "reviewed_proposals": 125,
+  "sequential_review_slots": 42,
+  "next_review_rows": 0,
+  "outcomes": {
+    "approved_by_ai": 24,
+    "deferred": 1
+  },
+  "scope": "review scheduling only; no alias, edge, or human verification",
+  "avoided_review_rows": 83,
+  "review_row_reduction": 0.664,
+  "ai_approval_per_sequential_review": 0.5714
+}
