@@ -44,6 +44,11 @@ def connect(path: str | Path) -> sqlite3.Connection:
 
 def init_db(db: sqlite3.Connection) -> None:
     db.executescript(Path(__file__).with_name("schema.sql").read_text())
+    policy_columns = {row[1] for row in db.execute("PRAGMA table_info(source_policy)")}
+    if "media_ai_allowed" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN media_ai_allowed INTEGER NOT NULL DEFAULT 0")
+    if "cross_region_use_allowed" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN cross_region_use_allowed INTEGER NOT NULL DEFAULT 0")
     card_columns = {row[1] for row in db.execute("PRAGMA table_info(card)")}
     if "rights_reference" not in card_columns:
         db.execute("ALTER TABLE card ADD COLUMN rights_reference TEXT NOT NULL DEFAULT 'unreviewed legacy import'")
@@ -96,17 +101,25 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
     if row.get("expires_at"):
         parse_time(row["expires_at"])
     db.execute(
-        """INSERT INTO source_policy VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """INSERT INTO source_policy
+        (source, rights_reference, ingest_allowed, display_allowed,
+         cross_source_use_allowed, seller_analytics_allowed, retention_days,
+         listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(source) DO UPDATE SET rights_reference=excluded.rights_reference,
         ingest_allowed=excluded.ingest_allowed, display_allowed=excluded.display_allowed,
         cross_source_use_allowed=excluded.cross_source_use_allowed,
         seller_analytics_allowed=excluded.seller_analytics_allowed,
+        media_ai_allowed=excluded.media_ai_allowed,
+        cross_region_use_allowed=excluded.cross_region_use_allowed,
         retention_days=excluded.retention_days, listing_ttl_hours=excluded.listing_ttl_hours,
         expires_at=excluded.expires_at""",
         (row["source"], row["rights_reference"], int(bool(row.get("ingest_allowed", False))),
          int(bool(row.get("display_allowed", False))), int(bool(row.get("cross_source_use_allowed", False))),
          int(bool(row.get("seller_analytics_allowed", False))), int(row["retention_days"]),
-         int(row.get("listing_ttl_hours", 6)), row.get("expires_at")),
+         int(row.get("listing_ttl_hours", 6)), row.get("expires_at"),
+         int(bool(row.get("media_ai_allowed", False))),
+         int(bool(row.get("cross_region_use_allowed", False)))),
     )
     db.commit()
 
@@ -709,25 +722,34 @@ def override_resolution(db: sqlite3.Connection, source: str, native_id: str, uni
 
 def import_quotes(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
     count = 0
-    for row in rows:
-        _required(row, "source", "native_id", "destination", "currency", "components", "quoted_at", "expires_at", "evidence_ref")
-        _policy(db, row["source"])
-        quoted_at = parse_time(row["quoted_at"]).isoformat()
-        expires_at = parse_time(row["expires_at"]).isoformat()
-        if expires_at <= quoted_at:
-            raise ValueError("quote expires before it was issued")
-        components = row["components"]
-        if not isinstance(components, dict) or set(components) != COMPONENTS:
-            raise ValueError("quote requires every landed-cost component; use explicit zero when not applicable")
-        if any(not isinstance(value, int) or value < 0 for value in components.values()):
-            raise ValueError("quote components must be nonnegative minor currency units")
-        total = sum(components.values())
-        db.execute("INSERT OR REPLACE INTO landed_quote VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                   (row["source"], row["native_id"], row["destination"], row["currency"],
-                    json.dumps(components, sort_keys=True), total, quoted_at, expires_at,
-                    row["evidence_ref"], json.dumps(row.get("assumptions", {}), sort_keys=True)))
-        count += 1
-    db.commit()
+    with db:
+        for row in rows:
+            _required(row, "source", "native_id", "destination", "currency", "components", "quoted_at", "expires_at", "evidence_ref")
+            _policy(db, row["source"])
+            quoted_at = parse_time(row["quoted_at"]).isoformat()
+            expires_at = parse_time(row["expires_at"]).isoformat()
+            if expires_at <= quoted_at:
+                raise ValueError("quote expires before it was issued")
+            components = row["components"]
+            if not isinstance(components, dict) or set(components) != COMPONENTS:
+                raise ValueError("quote requires every landed-cost component; use explicit zero when not applicable")
+            if any(type(value) is not int or value < 0 for value in components.values()):
+                raise ValueError("quote components must be nonnegative minor currency units")
+            total = sum(components.values())
+            values = (row["source"], row["native_id"], row["destination"], row["currency"],
+                      json.dumps(components, sort_keys=True), total, quoted_at, expires_at,
+                      row["evidence_ref"], json.dumps(row.get("assumptions", {}), sort_keys=True))
+            existing = db.execute(
+                """SELECT source,native_id,destination,currency,components_json,total_minor,
+                quoted_at,expires_at,evidence_ref,assumptions_json FROM landed_quote
+                WHERE source=? AND native_id=? AND destination=? AND quoted_at=?""",
+                (row["source"], row["native_id"], row["destination"], quoted_at)).fetchone()
+            if existing:
+                if tuple(existing) != values:
+                    raise ValueError("quote evidence changed at the same quoted_at timestamp")
+                continue
+            db.execute("INSERT INTO landed_quote VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", values)
+            count += 1
     return count
 
 
@@ -988,9 +1010,14 @@ def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str) -> dict[str,
 def purge_expired(db: sqlite3.Connection, now: str | None = None) -> dict[str, int]:
     instant = parse_time(now or utcnow())
     removed = {"observation": 0, "raw_item_blob": 0, "verified_sale": 0, "landed_quote": 0,
+               "offer_visual_review": 0, "offer_media_snapshot": 0,
                "resolution_record": 0, "listing": 0}
     for policy in db.execute("SELECT * FROM source_policy").fetchall():
         cutoff = (instant - timedelta(days=policy["retention_days"])).isoformat()
+        for table in ("offer_visual_review", "offer_media_snapshot"):
+            cursor = db.execute(f"DELETE FROM {table} WHERE source=? AND observed_at<?",
+                                (policy["source"], cutoff))
+            removed[table] += cursor.rowcount
         for table, column in (("observation", "observed_at"), ("raw_item_blob", "observed_at"),
                               ("verified_sale", "settled_at"),
                               ("landed_quote", "quoted_at")):

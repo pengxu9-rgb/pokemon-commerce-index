@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from .core import parse_time
@@ -96,6 +97,32 @@ def normalize_response(payload: dict[str, Any], observed_at: str, *,
     """Accept search, item, or fetch_items response without guessing absent items."""
     items = response_items(payload, endpoint)
     return [normalize_item(item, observed_at, poll_reason=poll_reason) for item in items]
+
+
+def photo_candidates(item: dict[str, Any], observed_at: str) -> dict[str, Any]:
+    """Retain ordered photo refs without guessing which image shows the back.
+
+    The older gateway contract exposes an unlabelled `photos` array. A later
+    authorized image pass must assign front/back and hash fetched bytes.
+    """
+    native_id = str(item.get("id") or "")
+    if not ITEM_ID_RE.fullmatch(native_id):
+        raise ValueError("missing or invalid Mercari item id")
+    photos = item.get("photos")
+    if not isinstance(photos, list) or len(photos) > 20:
+        raise ValueError("Mercari photos must be an array of at most 20 refs")
+    refs = []
+    for value in photos:
+        parsed = urlparse(value) if isinstance(value, str) else None
+        if not parsed or parsed.scheme != "https" or not parsed.hostname or parsed.username:
+            raise ValueError("Mercari photo ref must be HTTPS")
+        if value not in refs:
+            refs.append(value)
+    return {"source": "mercari_bns", "native_id": native_id,
+            "observed_at": parse_time(observed_at).isoformat(),
+            "photo_refs": refs,
+            "orientation": "unclassified",
+            "evidence_ref": f"mercari-gateway:sha256:{_digest(item)}"}
 
 
 @dataclass(frozen=True)

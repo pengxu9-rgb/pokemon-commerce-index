@@ -49,6 +49,17 @@ class GatewayAdapterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "explicit opt-in"):
             buyship_mercari.GatewayClient("https://example.invalid", "secret")
 
+    def test_photo_candidates_do_not_assume_array_order_or_accept_insecure_refs(self):
+        item = {**self.item, "photos": ["https://example.invalid/front",
+                                         "https://example.invalid/back"]}
+        result = buyship_mercari.photo_candidates(item, "2026-09-22T10:00:00Z")
+        self.assertEqual(result["orientation"], "unclassified")
+        self.assertEqual(result["photo_refs"], item["photos"])
+        self.assertEqual(result["native_id"], self.item["id"])
+        with self.assertRaisesRegex(ValueError, "HTTPS"):
+            buyship_mercari.photo_candidates({**item, "photos": ["http://example.invalid/a"]},
+                                             "2026-09-22T10:00:00Z")
+
 
 class HandoffAndRetentionTests(unittest.TestCase):
     def setUp(self):

@@ -23,6 +23,7 @@ from typing import Any
 
 from scripts.concept_review_ranked import REVISION
 from scripts.official_jp_image_evidence import OfficialJPImageIndex
+from scripts.tcgdex_asset_discovery import fetch as discover_tcgdex_asset
 from scripts.relationship_pilot import read_jsonl
 from scripts.vertex_concept_review import MODEL, _call_model, _image, _source
 
@@ -88,7 +89,7 @@ English pinned source:\n{en_source}
         {"inlineData": {"mimeType": _mime(en_image),
                         "data": base64.b64encode(en_image).decode()}},
     ]}], "generationConfig": {"responseMimeType": "application/json",
-                              "maxOutputTokens": 1200}}
+                              "maxOutputTokens": 2048}}
 
 
 def _mime(image: bytes) -> str:
@@ -192,7 +193,8 @@ def _curated_image(record: dict[str, Any], row: dict[str, Any]
 def run(queue: list[dict[str, Any]], repo: Path, project: str, location: str,
         checkpoint: Path, official_jp: OfficialJPImageIndex | None = None,
         prior_audit: dict[str, dict[str, Any]] | None = None,
-        curated_assets: dict[str, dict[str, Any]] | None = None
+        curated_assets: dict[str, dict[str, Any]] | None = None,
+        discover_en_assets: bool = False
         ) -> tuple[list[dict[str, str]], dict[str, Any]]:
     if subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo,
                                text=True).strip() != REVISION:
@@ -245,6 +247,11 @@ def run(queue: list[dict[str, Any]], repo: Path, project: str, location: str,
                     curated_assets[cid], row)
                 fallback_evidence["tcgdex_attempt"] = en_evidence
                 en_image, en_evidence = fallback_image, fallback_evidence
+            if en_image is None and discover_en_assets:
+                fallback_image, fallback_evidence = discover_tcgdex_asset(
+                    item["en_card_id"], item["en_provenance"])
+                fallback_evidence["tcgdex_attempt"] = en_evidence
+                en_image, en_evidence = fallback_image, fallback_evidence
             evidence: dict[str, Any] = {
                 "model_version": None, "prompt_version": PROMPT_VERSION,
                 "ja_source_path": ja_path, "en_source_path": en_path,
@@ -260,8 +267,16 @@ def run(queue: list[dict[str, Any]], repo: Path, project: str, location: str,
             else:
                 request = _request(row, ja_source, en_source, ja_image, en_image)
                 response = _call_model(project, location, token, request)
-                verdict = _parse(response)
-                if (en_evidence.get("source") == "curated_hash_bound_asset"
+                try:
+                    verdict = _parse(response)
+                except ValueError as exc:
+                    if "no complete candidate" not in str(exc):
+                        raise
+                    request["generationConfig"]["maxOutputTokens"] = 4096
+                    response = _call_model(project, location, token, request)
+                    verdict = _parse(response)
+                if (en_evidence.get("source") in {
+                        "curated_hash_bound_asset", "convention_asset_discovery"}
                         and verdict["en_image_identity"] != "match"):
                     verdict["artwork_decision"] = "uncertain"
                     verdict["evidence_limits"] = _limits(
@@ -311,6 +326,7 @@ def main() -> None:
     parser.add_argument("--official-jp-revision")
     parser.add_argument("--prior-artwork-audit", type=Path)
     parser.add_argument("--curated-assets", type=Path)
+    parser.add_argument("--discover-en-assets", action="store_true")
     args = parser.parse_args()
     if args.output.exists() or args.audit.exists():
         raise FileExistsError("final visual triage outputs already exist")
@@ -346,7 +362,7 @@ def main() -> None:
         raise ValueError("first-pass row differs from frozen source queue")
     rows, audit = run(queue, args.repo.resolve(), project,
                       location, args.checkpoint, official_jp, prior_audit,
-                      curated_assets)
+                      curated_assets, args.discover_en_assets)
     with args.output.open("x", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDS, lineterminator="\n")
         writer.writeheader()

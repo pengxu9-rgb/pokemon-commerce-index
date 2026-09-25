@@ -41,6 +41,36 @@
 
 机器评估输出候选品相范围和可见瑕疵，人工可确认或驳回。没有足够图片、图片不清晰或商品描述与图片矛盾时返回 `insufficient_evidence`。原图存储、外部模型调用和派生标签的保留期限分别受来源许可约束。辅助评估不宣称 PSA／BGS 等机构分数，也不替代实物检验或真伪鉴定。
 
+## 已搭建的 AI 优先商品级比对
+
+`source_policy` 新增 `media_ai_allowed` 和 `cross_region_use_allowed`，默认均关闭。授权后按顺序导入 `observation`、`offer_media_snapshot`、`landed_quote` 和 `offer_visual_review`。媒体表仅保存正反面 HTTPS 引用及 SHA-256，不保存图片字节；每条模型判断绑定商品、观测时间、目录卡片、图片哈希、模型家族及证据引用。旧报价同一时间戳不可被覆盖。
+
+已有 `scripts/vertex_offer_visual_review.py` 可从获准的临时本地图片文件生成 Gemini 第一份判断；第二份由独立模型家族按同一 JSONL 契约导入。两个家族对卡号／语言／版本工艺和裸卡品相一致，且有正反面照片，商品才进入比较。缺图自动请求补证；模型冲突进入例外复核；只有一个模型时等待第二模型，不需要逐条真人常规标注。受限于图片本身，系统不推断评级机构分数或真伪。
+
+旧 Mercari 网关的 `photos[]` 无正反面标签。`adapt-mercari-photo-candidates` 先保留原始顺序；在图片使用权到位、获授权下载到临时目录后，`scripts.vertex_offer_photo_sides` 以 Gemini 判定正反面，输出 `media.jsonl`、`review-manifest.jsonl` 和带候选图哈希与模型响应哈希的 `side-audit.jsonl`。无法确定正面则不生成媒体记录；无法确定背面则品相门槛不会放行。图片字节仍只在临时目录与模型请求中，必须按来源授权清理。需要独立第二模型结果，当前仓库尚无第二模型调用器。
+
+`compare-cross-region` 比较日英同画候选下的**当前商品级到手挂牌价**。两边必须有仍有效且与当前挂牌价绑定的完整到手报价；报价假设须给出来源币种／价格、汇率依据、费率版本和税费依据。只有照片核实后的工艺与品相一致，且两个来源都允许跨区用途及必要的跨来源用途，才输出同一目的地币种的最优报价差、分桶中位数差、样本数和证据引用。结果只称 `contextual_landed_ask_spread`，日英价格序列保持分开，不能称成交价、同 SKU 价格或套利收益。
+
+试跑命令：
+
+```bash
+python3 -m pokemon_index --db index.sqlite3 import-observations observations.jsonl
+python3 -m scripts.vertex_offer_photo_sides --db index.sqlite3 \
+  --manifest authorized-photo-candidates.jsonl --media-output media.jsonl \
+  --review-output authorized-local-photos.jsonl --audit-output side-audit.jsonl
+python3 -m pokemon_index --db index.sqlite3 import-offer-media media.jsonl
+python3 -m pokemon_index --db index.sqlite3 import-quotes landed-quotes.jsonl
+GOOGLE_CLOUD_PROJECT=pivota-prod python3 -m scripts.vertex_offer_visual_review \
+  --db index.sqlite3 --manifest authorized-local-photos.jsonl \
+  --output gemini-offer-reviews.jsonl
+python3 -m pokemon_index --db index.sqlite3 import-visual-reviews gemini-offer-reviews.jsonl
+python3 -m pokemon_index --db index.sqlite3 import-visual-reviews independent-model-reviews.jsonl
+python3 -m pokemon_index --db index.sqlite3 compare-cross-region \
+  ja:SET:001/100:normal en:SET:001/100:normal HK
+```
+
+只有取得 API、图片使用权、跨区比较权、完整费用报价及第二模型结果后，真实商品才会越过这些门槛；当前合成数据已覆盖可比、缺证、冲突、权限撤回和改价失效路径。
+
 ## 上线顺序与验收
 
 1. 取得至少一条渠道 API 的书面数据用途范围、测试凭据、配额和脱敏响应；完成只读探针。

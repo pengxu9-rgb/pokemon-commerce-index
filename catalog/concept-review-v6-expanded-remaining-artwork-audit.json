@@ -1,0 +1,3278 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "candidate_rows": 63,
+  "decisions": {
+    "different": 39,
+    "insufficient_images": 1,
+    "same": 23
+  },
+  "both_images_included": 62,
+  "rows": [
+    {
+      "candidate_id": "db998510c73df24b1aa8",
+      "source_snapshot_sha256": "0f8560f4c455203599769c02bd247da41a8c930daeaffb186404f79d4d12f5aa",
+      "response_sha256": "27c2bde28999ea6d5000c49b4589d45110049f80d0786559774961d8aa838446",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08-163",
+        "image_bytes": 47984,
+        "image_sha256": "87940ab1066bff7f4726d09c4a14d3ea021603969fe256b5a14f0cdbdfc68476",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08/163/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Surging Sparks/163.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV8-100",
+        "image_bytes": 47682,
+        "image_sha256": "107d51a3ae6ecd492f4e7f02dc5beb4ff9c1f59d7d7992b2e9d3e2ecb808b016",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV8/100/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV8/100.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "bcb7ea7a8ca8e04bcf1f98a75c8a25cf5abea69f7e4fe337286d90b1aa1c1930",
+      "usage": {
+        "candidatesTokenCount": 84,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 84
+          }
+        ],
+        "promptTokenCount": 3486,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1302
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 219,
+        "totalTokenCount": 3789,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "677c1a62dfa0483d4995",
+      "source_snapshot_sha256": "d39bc5fa6c40d7ac6e333848c2a0878190f073c974b2b33bb77fb50c34ce6f79",
+      "response_sha256": "268a6d9c6d99d18bca534a16cf3a79ffdf3093fd49c15f405d756a686a903f7b",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM8-208",
+        "image_bytes": 63342,
+        "image_sha256": "4979ebe5d0005172891aea917e830861104f7bb93b27c90088ae81dc0423f13f",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm8/208/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Sun & Moon/Lost Thunder/208.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/35381",
+        "image_bytes": 140935,
+        "image_sha256": "6561fce9a04c7c8b817470b872888ef55cad939c4ef2cacbceda418575bcd927",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM8/035381_T_ZAOBO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM8/35381.json",
+        "record_sha256": "c848cf4b81bf84be417a79df2c129074626a3da825fe4bfc419644a07d3930c4",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8-089",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM8/089.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "1862449b96e1d2495099a3f8843e83bc023597851a15d520fa4ff4dc4242f42c",
+      "usage": {
+        "candidatesTokenCount": 89,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 89
+          }
+        ],
+        "promptTokenCount": 3147,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 963
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 316,
+        "totalTokenCount": 3552,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "209d593deb5699dee246",
+      "source_snapshot_sha256": "294e897acec9237e040588d233ac2354bd42d308140df04597209f5812d72b19",
+      "response_sha256": "346f545ecfa54b9748646eaac2f1fbf9dbf7643dba3bfd2909bc034309894ee8",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV04-174",
+        "image_bytes": 47618,
+        "image_sha256": "79a84cd04deae2ecdd782a4f815c00c69367c5627e29a5f83d0c1072f92ce4bd",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv04/174/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Paradox Rift/174.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV3A-059",
+        "image_bytes": 50300,
+        "image_sha256": "9d099ea23ee462806480c1d04bfe7d36ecc8c7a7e26b4523ab58c3e3c84e66b7",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV3a/059/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV3a/059.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "1ad0ba7cc329d89368b82b5dd9044555a5f5eb7cff39a856ef0bded8e81627da",
+      "usage": {
+        "candidatesTokenCount": 82,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 82
+          }
+        ],
+        "promptTokenCount": 3465,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1281
+          }
+        ],
+        "thoughtsTokenCount": 272,
+        "totalTokenCount": 3819,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1bcf81dd3475421679db",
+      "source_snapshot_sha256": "fc0c5d1b825b956485164ab43e4c1d133fdeb9631c95d619ef85686b36d40cc5",
+      "response_sha256": "7374f65337afefa81e154c74df1d16113dd3adc54ae4b3ab4ec0fc605187fa4e",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-154",
+        "image_bytes": 70694,
+        "image_sha256": "34a37f0da1d45b5d216992a72c4543a9b334b99752d07a41bffc84c06216fd2a",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/154/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Journey Together/154.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-099",
+        "image_bytes": 66524,
+        "image_sha256": "b3cd4516180cb4e6f8491c2f7a7f868d35274f8b474d3f77679264b9b207662c",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/099/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV9/099.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "ebe7130cba3c683c09bcc67a320b630818e4a28a66f6b14f568cbb74f11e02bd",
+      "usage": {
+        "candidatesTokenCount": 79,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 79
+          }
+        ],
+        "promptTokenCount": 3520,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1336
+          }
+        ],
+        "thoughtsTokenCount": 170,
+        "totalTokenCount": 3769,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "879498840559f8ddeb30",
+      "source_snapshot_sha256": "aaa09ee39d2f3206782cd973630625f0196dbf1fbceb10af85789a132409151a",
+      "response_sha256": "7b14417ce5bce044352bdad22fc0e04ea37476830fed04483615f1161d097ca5",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-154",
+        "image_bytes": 70694,
+        "image_sha256": "34a37f0da1d45b5d216992a72c4543a9b334b99752d07a41bffc84c06216fd2a",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/154/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Journey Together/154.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-099",
+        "image_bytes": 66524,
+        "image_sha256": "b3cd4516180cb4e6f8491c2f7a7f868d35274f8b474d3f77679264b9b207662c",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/099/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV9/099.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "70d03d4ecc9ea2372c4adae285a52559525c19cffe5b1e7a92fa6d8891a19308",
+      "usage": {
+        "candidatesTokenCount": 90,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 90
+          }
+        ],
+        "promptTokenCount": 3505,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1321
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 388,
+        "totalTokenCount": 3983,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "d6a567c45431910c6fe6",
+      "source_snapshot_sha256": "89e6495c992d2a190835e227f5e5af5aef76c2fbd2fbc2f74b2043ea39be90da",
+      "response_sha256": "e9557009e2ae4e8239f68237322c4a240bdda5f82c898c55b3b004ba34862638",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM7-161",
+        "image_bytes": 81102,
+        "image_sha256": "a71a6892dc541989224ece0e0b4ae6f0a6181549dd3818364088ecb7c02c9258",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm7/161/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Sun & Moon/Celestial Storm/161.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34918",
+        "image_bytes": 153263,
+        "image_sha256": "c62c50b3c358bdd60a623c2f1647e6efcddc626c883c5d270ebb76c97f4d9bb2",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM6b/034918_T_BONGURISHOKUNIN.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM6b/34918.json",
+        "record_sha256": "0b476c35a1c8c03f2a6a4670248459e3ca00608266be09299c7ac9c301b9d149",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM6B-063",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM6b/063.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0ab4c846789d25b7611a1b2121b962f4cfe06633be91328722e7ef8540614804",
+      "usage": {
+        "candidatesTokenCount": 112,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 112
+          }
+        ],
+        "promptTokenCount": 3167,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 983
+          }
+        ],
+        "thoughtsTokenCount": 238,
+        "totalTokenCount": 3517,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "afdf6c1c081ee47f1f92",
+      "source_snapshot_sha256": "1574dbf83a07bfad5e7007ca4bb5643358e95db46c1c3f7fdbbc0b2019d0539c",
+      "response_sha256": "e03a664ea91e6c7237e85a1fa51ab8bf0527d05dd17137d9dd734b037faa1207",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-142",
+        "image_bytes": 56166,
+        "image_sha256": "f2fdb46c6b2dc8b27e25c0dc3c2b375ee53179203f11a9d85cbc0a5e010738dd",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/142/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/142.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/45286",
+        "image_bytes": 637507,
+        "image_sha256": "0695b0d9d2e34e10f1ba2e76d9be8229ff01469038a963556eb385d5603dd538",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV5M/045286_T_BERUNOMAGOKORO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SV5M/45286.json",
+        "record_sha256": "a0272dc8ede22403e2480d7b1e94a0ccfdb5866dbbcbeb482dd5dc8d564cd393",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "107922298f480ce84c3a1d2b092563de6d666cf0dc88f91586741086d7fe3cd9",
+      "usage": {
+        "candidatesTokenCount": 106,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 106
+          }
+        ],
+        "promptTokenCount": 3270,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1086
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 401,
+        "totalTokenCount": 3777,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "2db33f30187bde47e090",
+      "source_snapshot_sha256": "bfb7c244f86977fd9297495ff174e2d97882b8ad514cf2849754b20f8db8319f",
+      "response_sha256": "a14ee78a0a368af87c550876c866a27c614b8e6c4b792614a9a0fa69a2035365",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-142",
+        "image_bytes": 56166,
+        "image_sha256": "f2fdb46c6b2dc8b27e25c0dc3c2b375ee53179203f11a9d85cbc0a5e010738dd",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/142/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/142.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/45286",
+        "image_bytes": 637507,
+        "image_sha256": "0695b0d9d2e34e10f1ba2e76d9be8229ff01469038a963556eb385d5603dd538",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV5M/045286_T_BERUNOMAGOKORO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SV5M/45286.json",
+        "record_sha256": "a0272dc8ede22403e2480d7b1e94a0ccfdb5866dbbcbeb482dd5dc8d564cd393",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "eb3cec9d30461295137db86e69468a8f497c81980115153f07ac050e253832e2",
+      "usage": {
+        "candidatesTokenCount": 80,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 80
+          }
+        ],
+        "promptTokenCount": 3264,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1080
+          }
+        ],
+        "thoughtsTokenCount": 286,
+        "totalTokenCount": 3630,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "e68171c9e95314cc1d98",
+      "source_snapshot_sha256": "5505e72414e3b85bebad76c59f57165ce904dd286b06db8fa20f65a47884f8e9",
+      "response_sha256": "cee7a3376b6c90c619a3a5c7ddab3da9746d5047390c98346a8a69c20db3aada",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-142",
+        "image_bytes": 56166,
+        "image_sha256": "f2fdb46c6b2dc8b27e25c0dc3c2b375ee53179203f11a9d85cbc0a5e010738dd",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/142/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/142.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/45286",
+        "image_bytes": 637507,
+        "image_sha256": "0695b0d9d2e34e10f1ba2e76d9be8229ff01469038a963556eb385d5603dd538",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV5M/045286_T_BERUNOMAGOKORO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SV5M/45286.json",
+        "record_sha256": "a0272dc8ede22403e2480d7b1e94a0ccfdb5866dbbcbeb482dd5dc8d564cd393",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "4af95d8ac8b5918dc197da482374780d13127f2b54f9d93540184cd959df9b95",
+      "usage": {
+        "candidatesTokenCount": 89,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 89
+          }
+        ],
+        "promptTokenCount": 3256,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1072
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 328,
+        "totalTokenCount": 3673,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "463275a7ceb5e409d9b1",
+      "source_snapshot_sha256": "0da184236c7e413245c0a7f00767b18982d16c0523cb84d3ab6c5050d62d7129",
+      "response_sha256": "190139798f615dd16842b3ef5a3a4208d6b4bd817585a5d352adf7ef035bcd0e",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-197",
+        "image_bytes": 69942,
+        "image_sha256": "f8c797f21449b3c59992c57ced308817e38aeb602b86636b0d3f2a699a1321be",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/197/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/197.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/45286",
+        "image_bytes": 637507,
+        "image_sha256": "0695b0d9d2e34e10f1ba2e76d9be8229ff01469038a963556eb385d5603dd538",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV5M/045286_T_BERUNOMAGOKORO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SV5M/45286.json",
+        "record_sha256": "a0272dc8ede22403e2480d7b1e94a0ccfdb5866dbbcbeb482dd5dc8d564cd393",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV5M-069",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SV/SV5M/069.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "c65ccafd5a9e2841346fb7cb3484e85904d931e7a40a0a2473196d4d16191dce",
+      "usage": {
+        "candidatesTokenCount": 90,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 90
+          }
+        ],
+        "promptTokenCount": 3156,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 972
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 273,
+        "totalTokenCount": 3519,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "908f32dea455d68352b4",
+      "source_snapshot_sha256": "a6a5c1cfae91aea3b161426634937cd0b0db722de4149579a2540120fc009afe",
+      "response_sha256": "998426ae260610e4eb97ff1667c615c4fc9a27f4ae13d26081bf451680ec407e",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-195",
+        "image_bytes": 83942,
+        "image_sha256": "9d96d438a10cbe6f02f93a94e200d5af360dfb79789963e305a319b669ec25fb",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm9/195/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Sun & Moon/Team Up/195.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/35448",
+        "image_bytes": 151995,
+        "image_sha256": "c3c6b71613333b934a6a274e1229b7e9da45dbc1c32e9bb751e212c4b3164619",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM8a/035448_T_METARUGOGURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM8a/35448.json",
+        "record_sha256": "3c83d5a9e3b4d878bf8ceb52d759468b0752f3b916bacda4e3fb0a0802181ad6",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM8A-049",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM8a/049.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "a6a110d9aee7e71445c0fc8225b0f0cdca29db55b85593c8149615a847c3a811",
+      "usage": {
+        "candidatesTokenCount": 87,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 87
+          }
+        ],
+        "promptTokenCount": 3299,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1115
+          }
+        ],
+        "thoughtsTokenCount": 213,
+        "totalTokenCount": 3599,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "c5a40bc5d6d4babe9972",
+      "source_snapshot_sha256": "a50fab034d6af928426338177906e255e7f948015cc0c041f84982ada42fcf60",
+      "response_sha256": "3f6fec06c717f9befe6ec50a23d027bf6111e27b500a63bbb32e13241e04146b",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV01-179",
+        "image_bytes": 48792,
+        "image_sha256": "03a6a50b0c57d3438412fd786e40c2bbb3c5642e1a38faf737505631882a9498",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv01/179/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Scarlet & Violet/179.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV1V-077",
+        "image_bytes": 50472,
+        "image_sha256": "8e71a10f8d0d833e2bbf78a37b15143f5ee8cfbe06e864ecbf9fc2c54ef3139e",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV1V/077/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV1V/077.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0e330ca24908db779b4e40acccf5aaec46a55d9f4ff525bc0986f350e1e6411e",
+      "usage": {
+        "candidatesTokenCount": 77,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 77
+          }
+        ],
+        "promptTokenCount": 3382,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1198
+          }
+        ],
+        "thoughtsTokenCount": 230,
+        "totalTokenCount": 3689,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "c8084bb6e1e89dd86895",
+      "source_snapshot_sha256": "492f81a324e8a044f6002ac5f587a626b647317f376a97f050d3af0b1db613ac",
+      "response_sha256": "ad3d0552b4f0564311ad29cbb6ea42a3394a2113bbada7d6c816caa11149ff73",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV01-238",
+        "image_bytes": 75880,
+        "image_sha256": "05e1be5f8b1f0764ee1a41965c84fa2b9f70804df4270858fb24bac66fbdc5aa",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv01/238/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Scarlet & Violet/238.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV1V-077",
+        "image_bytes": 50472,
+        "image_sha256": "8e71a10f8d0d833e2bbf78a37b15143f5ee8cfbe06e864ecbf9fc2c54ef3139e",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV1V/077/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV1V/077.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "ed1dc05814313f7cc0fc0b12cde96b091e944c62e5f37a343053edb2e8723bb3",
+      "usage": {
+        "candidatesTokenCount": 92,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 92
+          }
+        ],
+        "promptTokenCount": 3370,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1186
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 274,
+        "totalTokenCount": 3736,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "e7fc3d068fd0f8766e81",
+      "source_snapshot_sha256": "b5584dc051e56c5f7ba979d36fda3cfacf0d5064b6c3947268285641c0b90d17",
+      "response_sha256": "39269f5fb4cbe57725b4bca203ec5fa1fc55377b2e98ce860094f4e5cef13dbe",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-121",
+        "image_bytes": 72062,
+        "image_sha256": "314812dd1599e5b31c8146f0b983ee6e7da0d83094b8ff0a85c833bb6832ec70",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/121/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/121.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "image_bytes": 66348,
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "035756fd9306137f16dd8ca56a713931a5a63c490cb6509eb404afa93532a3b0",
+      "usage": {
+        "candidatesTokenCount": 66,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 66
+          }
+        ],
+        "promptTokenCount": 3383,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1199
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 224,
+        "totalTokenCount": 3673,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f629d122c0bc8b75a04b",
+      "source_snapshot_sha256": "aaa6dbe7639de643a6716dceda6c8fc599e0cfab685f1265f5d2a48dea543690",
+      "response_sha256": "0df4e4d1aec769cb70e4957109443bfb172ccf7135c621e85392d5f07e90d27c",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV04-171",
+        "image_bytes": 64900,
+        "image_sha256": "393a3772630ff4746ff990f259ed6ee79dc985e224d19e2308a5170f4d95c943",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv04/171/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Paradox Rift/171.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "image_bytes": 66348,
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "2385a4f35159d8d601254e980ca4171416da8119ce6f21f8924a641996d33578",
+      "usage": {
+        "candidatesTokenCount": 71,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 71
+          }
+        ],
+        "promptTokenCount": 3355,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1171
+          }
+        ],
+        "thoughtsTokenCount": 333,
+        "totalTokenCount": 3759,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "7394f30727879f31a1ea",
+      "source_snapshot_sha256": "cad0cb35babf46c7aac21f50aead8a85ab86343e440a711d00dfa7bd4ade2744",
+      "response_sha256": "ba4c2df40d8bca9b28da41adae0b65af4cc50efe7c838f9220653b063fb9566f",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV04-240",
+        "image_bytes": 68938,
+        "image_sha256": "e70e21d7cac81a6bad952870511ab7e4d48cb5dc543f75dbe3df81886fd8fd66",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv04/240/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Paradox Rift/240.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "image_bytes": 66348,
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0e1834bf30c8ab723164f7e28172a0ca659b84aa2262c103887a8f6ecca7ee4c",
+      "usage": {
+        "candidatesTokenCount": 99,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 99
+          }
+        ],
+        "promptTokenCount": 3294,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1110
+          }
+        ],
+        "thoughtsTokenCount": 240,
+        "totalTokenCount": 3633,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f160e9190ee9f59aa3f0",
+      "source_snapshot_sha256": "539792815b04ef94dbf04db19a9ef1b0c84af32ba8744a3591ded9d7415abcb3",
+      "response_sha256": "c3040128ee09363180e120a3768c46289a10d59ae39a17214931645b397728c9",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-121",
+        "image_bytes": 72062,
+        "image_sha256": "314812dd1599e5b31c8146f0b983ee6e7da0d83094b8ff0a85c833bb6832ec70",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/121/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/121.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "image_bytes": 66348,
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0c689dfe5980e19bf232227641030daa4c4909e0d33f9ee31a34947f5f5f7b20",
+      "usage": {
+        "candidatesTokenCount": 80,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 80
+          }
+        ],
+        "promptTokenCount": 3383,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1199
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 285,
+        "totalTokenCount": 3748,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "86869a58c6ddc3d8b8c1",
+      "source_snapshot_sha256": "c1e24a21177b680eb3c5dd32cd25252a65f084462ba04474bba4a99aaa9a7a3f",
+      "response_sha256": "160ff1220d1c06977397b8b1c959a305e912a67986fd294b0ce3a9d7a15b8f0c",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-121",
+        "image_bytes": 72062,
+        "image_sha256": "314812dd1599e5b31c8146f0b983ee6e7da0d83094b8ff0a85c833bb6832ec70",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/121/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/121.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV4M-065",
+        "image_bytes": 66348,
+        "image_sha256": "1c495d00b8889fa3a2d9273728c1cf6d5d9c2390da4a07a8bf24013fa42d3d30",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV4M/065/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV4M/065.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "e828b611ac9cf7245f70492a6b3de6b2201c2be251119b8d45107100de3727c7",
+      "usage": {
+        "candidatesTokenCount": 70,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 70
+          }
+        ],
+        "promptTokenCount": 3391,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1207
+          }
+        ],
+        "thoughtsTokenCount": 268,
+        "totalTokenCount": 3729,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1b0d383b02404911d5f8",
+      "source_snapshot_sha256": "7fd17547efe1556b7c06816a846c0016247c4aba55e2628983c828f833a8abbe",
+      "response_sha256": "4eb4b1ae49eec72eedb50d779dfd4086471b1debc9ab1c8ee127365dc9f8460c",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME01-167",
+        "image_bytes": 73120,
+        "image_sha256": "394d5fb146e661f6b45fab685ed3e110f82ae5b6f3eab0e16c6f37f3cc6e7e4a",
+        "image_url": "https://assets.tcgdex.net/en/me/me01/167/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Mega Evolution/167.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "bd0a06c19491916886df26d218f569013b7bdde3d0610e1a2a5bb3f510c2421e",
+      "usage": {
+        "candidatesTokenCount": 107,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 107
+          }
+        ],
+        "promptTokenCount": 3241,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1057
+          }
+        ],
+        "thoughtsTokenCount": 735,
+        "totalTokenCount": 4083,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "618e4c679dd82b1c55d0",
+      "source_snapshot_sha256": "78a8bc6b7ac8f7905e1f52512e7a409cb47fdceaf23dd2ec362138b694f0ce9f",
+      "response_sha256": "63ccf66d69caf9e3141b067ec7371a2944033b949e732bfc90bf72ab324bdd62",
+      "en_image_identity": "match",
+      "en_image": {
+        "identity_check_required": true,
+        "image_bytes": 49932,
+        "image_sha256": "7ab14687851ac065b82c4bc55569e77f584041ef8dc711a1cf65a1840e81d2f6",
+        "image_url": "https://assets.tcgdex.net/en/me/me02.5/184/high.webp",
+        "source": "convention_asset_discovery",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/en/cards/ME02.5-184",
+          "error_type": "URLError",
+          "status": "fetch_failed"
+        }
+      },
+      "en_source_path": "data/Mega Evolution/Ascended Heroes/184.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "7c2f8ac50a7e3c7a40ef19ea99934ee198361adb63b3fbe0336c0e33c0f5c05c",
+      "usage": {
+        "candidatesTokenCount": 94,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 94
+          }
+        ],
+        "promptTokenCount": 3289,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1105
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 347,
+        "totalTokenCount": 3730,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1d07442d03d1ecbc890e",
+      "source_snapshot_sha256": "d6aee722840c417983e61949e1391770231f41dd2e55079682a3b43f375bc291",
+      "response_sha256": "26ac72236625cddb1879dce57836ac80024434e06e273bac961bc94c0267be01",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME02.5-184",
+        "image_bytes": 49932,
+        "image_sha256": "7ab14687851ac065b82c4bc55569e77f584041ef8dc711a1cf65a1840e81d2f6",
+        "image_url": "https://assets.tcgdex.net/en/me/me02.5/184/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Ascended Heroes/184.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "897728283c51ea54d28992c83c8bb3aa978684b2469c8eacef4fcf8f88545aaa",
+      "usage": {
+        "candidatesTokenCount": 97,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 97
+          }
+        ],
+        "promptTokenCount": 3288,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1104
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 273,
+        "totalTokenCount": 3658,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "48fea79c48c3c5288c03",
+      "source_snapshot_sha256": "ef3977824683ea1ed277d88d16f704e2673cef7c9c9270556b221d9052997d70",
+      "response_sha256": "322e505889895c753d83c57303f64c9f58e1c4ad9b939d810d8b747af7a1f1bd",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "1cfa75854d8b0cb377cc85f59f7ebd74c893ad83a3ad73a7dae0254f67d7f5aa",
+      "usage": {
+        "candidatesTokenCount": 104,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 104
+          }
+        ],
+        "promptTokenCount": 3729,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1545
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 281,
+        "totalTokenCount": 4114,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "35d17d54930d15806584",
+      "source_snapshot_sha256": "0bece867e0014af780ff547d936c3571307c9ca29aa93b86ce580fd0e92700db",
+      "response_sha256": "a2b4d4054590dfbebd11bbc82cd5bdae3accf6dc6ef97471dfb0e73066ec885b",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "4fd5f7b781e2118e9cb9c171d499ce08d686a92b05c26162bf6552f407e360ff",
+      "usage": {
+        "candidatesTokenCount": 98,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 98
+          }
+        ],
+        "promptTokenCount": 3715,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1531
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 422,
+        "totalTokenCount": 4235,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "fcc369807845cc9c01ca",
+      "source_snapshot_sha256": "5184d7b6a30ae7af7011abb24655a213a7dc6c32db91f2295850c37bd8854762",
+      "response_sha256": "0ea0f91ece020740b59371c9170df0e0c3f58dd8b6bfcbdde7b08509c9d3803e",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "2fbd6ab0146eb943b475ece1860494b8d53fa81955e2bfb2da57cbd22eb77270",
+      "usage": {
+        "candidatesTokenCount": 105,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 105
+          }
+        ],
+        "promptTokenCount": 3718,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1534
+          }
+        ],
+        "thoughtsTokenCount": 300,
+        "totalTokenCount": 4123,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "aeb4bf750af3143c89d8",
+      "source_snapshot_sha256": "a36ca337f94b8ef11544a204dd729428823e15dda377e1f174dc004eeb4baa52",
+      "response_sha256": "df9a4e9ffe015af46e1aad9eb3003ebf848b4025448e39f59086f8b6bed2e7fc",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "f425f701fd01de1820f11725b437bec55ff90d6ba7e925368dab6271d841aef5",
+      "usage": {
+        "candidatesTokenCount": 103,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 103
+          }
+        ],
+        "promptTokenCount": 3725,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1541
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 471,
+        "totalTokenCount": 4299,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "1c88a5cec85e7afcdb87",
+      "source_snapshot_sha256": "60a789cc5d7c98fa02134d1b0ab5dd889c87d592a44141e75594c0c52613fc2f",
+      "response_sha256": "7876066e9ef3ae3615bf89b9da93d3150260744c7a5193b5ac5c01f8945d273d",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "780bc875b97f252c0b082265c5b1e459323bc2b9d2add132f3a9ce923ba16163",
+      "usage": {
+        "candidatesTokenCount": 93,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 93
+          }
+        ],
+        "promptTokenCount": 3729,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1545
+          }
+        ],
+        "thoughtsTokenCount": 499,
+        "totalTokenCount": 4321,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b47a4f83a7ca31c73800",
+      "source_snapshot_sha256": "de57d2f2d3233dd34af5571d2ad616026aa52e5434f5ac5bc8f92007925f7058",
+      "response_sha256": "771e1928195c22b691a82e1638ec4e9eedd7ad2f9daea4db894f66a6f156b24f",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "821e9ddbaeff4f0b42d0f6f0696b4c403463b20106fa9d4d1cc9be87162dddd5",
+      "usage": {
+        "candidatesTokenCount": 91,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 91
+          }
+        ],
+        "promptTokenCount": 3731,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1547
+          }
+        ],
+        "thoughtsTokenCount": 309,
+        "totalTokenCount": 4131,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "3533ed0a17c53bf3d9b2",
+      "source_snapshot_sha256": "8c27d92a65bb4c26d909740c3a588fdbfb1dc32f745f946d46c0ada215a6ad1e",
+      "response_sha256": "46db56685a91d92e0b0941e4af30b665253a202b42bb344af72c13d223d2466e",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "11edb7407545885a33387f9a73f10cd0b542786d7cd0d2841b51353f2dc70f28",
+      "usage": {
+        "candidatesTokenCount": 95,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 95
+          }
+        ],
+        "promptTokenCount": 3735,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1551
+          }
+        ],
+        "thoughtsTokenCount": 411,
+        "totalTokenCount": 4241,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b8bb5bc00d768b9ce255",
+      "source_snapshot_sha256": "0472cbe3661c1047f6457827d361c676fd69180a513096156b3e3689f42e5dcd",
+      "response_sha256": "0ae290c46ebc44f122bb2bfdf05b862937aca5b54db8f53d59dce1023f89a761",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "81865d85bcb2e60467340b641ddb6a93a4b248503546159933e31785e21e85f7",
+      "usage": {
+        "candidatesTokenCount": 99,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 99
+          }
+        ],
+        "promptTokenCount": 3729,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1545
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 326,
+        "totalTokenCount": 4154,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "d2278d4e42297783787a",
+      "source_snapshot_sha256": "9b4e752c72c954d95a656f4995927786455a48c276eaac1a7ea0685460b793e2",
+      "response_sha256": "7f01e41b9cfde6ef45b18c7df6ff67f83f24ccbda0509b1bc48a8f5f32e2b439",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "a2446ce4b89ce288198a22d564810ef76e9c405faa8c2edc5ca9395d1c2d7208",
+      "usage": {
+        "candidatesTokenCount": 96,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 96
+          }
+        ],
+        "promptTokenCount": 3736,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1552
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 281,
+        "totalTokenCount": 4113,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "ebd1f3b27c8499f25236",
+      "source_snapshot_sha256": "2cdaedf95ff49ffda91b402b30d27c984a990605b5b12ffde40fc4e3f479425b",
+      "response_sha256": "145449ab6535035e9e8e2349767a1ddd8fad4e46708014faf4d1cd5d13d37446",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "13860ea36cfacf5b722fe9ddcd86c18384c8e0702d5e95c160ad9aba3ceb1e27",
+      "usage": {
+        "candidatesTokenCount": 97,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 97
+          }
+        ],
+        "promptTokenCount": 3735,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1551
+          }
+        ],
+        "thoughtsTokenCount": 559,
+        "totalTokenCount": 4391,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "562cbf52f5397c6ea88a",
+      "source_snapshot_sha256": "6989d6c9b64ea1a76b1de948d655ee1d5f3442f6d5d80a91c01768bcb158ad55",
+      "response_sha256": "dc62d4df5c514e2a884440175bfb16e85da6a85cdbb9e0b4466b53fd5c572163",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "94a4be6bc7443392a7e6213787c935d95d7f5f01b131eeb011d28c595390ba13",
+      "usage": {
+        "candidatesTokenCount": 91,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 91
+          }
+        ],
+        "promptTokenCount": 3739,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1555
+          }
+        ],
+        "thoughtsTokenCount": 260,
+        "totalTokenCount": 4090,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "51dcb504a60212bf6331",
+      "source_snapshot_sha256": "f3275ade59e81fae65a9354d9b1d49fd0ca9e2a4b0774a0c5756239c2b6fb47d",
+      "response_sha256": "aaf88857175dbb43da44412888750cbab0aa1218bd984f63663273b7269ff723",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "afe4d1cc7f7206eb2b93e9debca66134c1a9c85d8624b79daca407bfb4b049e7",
+      "usage": {
+        "candidatesTokenCount": 100,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 100
+          }
+        ],
+        "promptTokenCount": 3731,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1547
+          }
+        ],
+        "thoughtsTokenCount": 284,
+        "totalTokenCount": 4115,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "5ce6fa0e3cb12eaf8aa1",
+      "source_snapshot_sha256": "e873bfea0f794deff26d289a1fadda5820433d2a6fe5b2ad6f035b9b65a3320b",
+      "response_sha256": "e2785ef67940a99980615c549934ea30929775093737a44a591533b630eb20ce",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "dbb4cf26da4f191e983835d12e9c194d5a25d2d1a0cf60a48a8f83378c951a9d",
+      "usage": {
+        "candidatesTokenCount": 100,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 100
+          }
+        ],
+        "promptTokenCount": 3732,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1548
+          }
+        ],
+        "thoughtsTokenCount": 572,
+        "totalTokenCount": 4404,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b40dba0c9b6b37324d9f",
+      "source_snapshot_sha256": "00a58f742df05324aad8a8fc6ff1e7f5fbc50ea110a48ed444c9f1ba858c0d06",
+      "response_sha256": "7bdc6fe0f80acbdc11b2c69ecd4e273f522f14ef5f1b2747cc408c9b04d95dce",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "bb824a07aa750968662d53fb0866777ba48f43eeae43e75d341366b14bfec80f",
+      "usage": {
+        "candidatesTokenCount": 94,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 94
+          }
+        ],
+        "promptTokenCount": 3734,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1550
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 469,
+        "totalTokenCount": 4297,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "793ec8ee1259a0de072c",
+      "source_snapshot_sha256": "b30da073f8ff59e109a13a7740e6fbc96ce4b72cb1d1d63c82753ced6e7a4a22",
+      "response_sha256": "670378f784698df3befdfdcb3b99024b363e12ab4401b3a9e0f23a8d08ea669b",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "82ad79eda37f4b7d1956dca17c8088bd03c35e344648d8a7554727b73f3b0739",
+      "usage": {
+        "candidatesTokenCount": 92,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 92
+          }
+        ],
+        "promptTokenCount": 3738,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1554
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 479,
+        "totalTokenCount": 4309,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "126e8d0e53050877d6f8",
+      "source_snapshot_sha256": "cc1e1d2c688288b2e55df7b386d6e60cb74d64ad21658b6f9d2a7dd5337e1b57",
+      "response_sha256": "dd683b735677c0cbccfe76443306377c7ee971a7ebd9e3b3fe241854ba7a13d3",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "83c1551cedc36e558657cc57ec574a04e2593f276cd347160f67e25832d2d99b",
+      "usage": {
+        "candidatesTokenCount": 103,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 103
+          }
+        ],
+        "promptTokenCount": 3727,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1543
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 506,
+        "totalTokenCount": 4336,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "c249beacf92da500287a",
+      "source_snapshot_sha256": "66aba58871bd8f28c981c0a2d4ddc8bb5fb8ad8749736df54c5d62ce6a4c6de6",
+      "response_sha256": "f2d74d71a2417ef931c875419100b71be6e97d381866cddeea6ef6b48c705ea3",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "88e72175b0209578a095b70e9ffc5cc016d56fb68d06fd6d4c20f11d73f2e0d4",
+      "usage": {
+        "candidatesTokenCount": 88,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 88
+          }
+        ],
+        "promptTokenCount": 3726,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1542
+          }
+        ],
+        "thoughtsTokenCount": 326,
+        "totalTokenCount": 4140,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "89934e7d09782d6d46a1",
+      "source_snapshot_sha256": "924dcd1a0e59a5925e6641cd8230ba5564d037beb319215787d911973b51663a",
+      "response_sha256": "f3873a64c677c434c43e19378e37638c14b7a9bae9f0c8d8fb12b418b68f4633",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0b6ad63e1a6aca6f8d088a351bc03c921a522e829e0bd036af5c19aec83362fe",
+      "usage": {
+        "candidatesTokenCount": 97,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 97
+          }
+        ],
+        "promptTokenCount": 3727,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1543
+          }
+        ],
+        "thoughtsTokenCount": 591,
+        "totalTokenCount": 4415,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "04fa5946dc02ae07e5ee",
+      "source_snapshot_sha256": "bf86108c81f59d3c02ca88ea697e4a8051d561410c3b69ef7023b1ca4f740e92",
+      "response_sha256": "968b0c04d4aef48b79ea9954852d6ef14529f6cb74bba34419a97c90b58d733a",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "7afe83afc1db0952cfe302f66b262e36093db6709a08512f92fd5a107baa2104",
+      "usage": {
+        "candidatesTokenCount": 106,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 106
+          }
+        ],
+        "promptTokenCount": 3711,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1527
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 321,
+        "totalTokenCount": 4138,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "5bc8f12cb0a9363b1032",
+      "source_snapshot_sha256": "0a5a2644f43a31e0ccb7f69feabc980b5274c6cc125aab48bdedb36d51364c57",
+      "response_sha256": "c82761081830fd80fbf130b4a19b37a1a2c5abffc4b65b17cb71549f0160ef7c",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV05-144",
+        "image_bytes": 48136,
+        "image_sha256": "0ee488fa627c29e394776870605d25f744743e81d7b3a690a8ba9ab232b68194",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/144/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Temporal Forces/144.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "b281451350013440925d34177afdab7e525c956aab1b11cf490c9d96a3c5b1ec",
+      "usage": {
+        "candidatesTokenCount": 95,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 95
+          }
+        ],
+        "promptTokenCount": 3721,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1537
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 340,
+        "totalTokenCount": 4156,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "125544858e5034045364",
+      "source_snapshot_sha256": "b0593fe9318e05b845c1860ff6548bc61a3b072f77f983bc56265f4e596568c0",
+      "response_sha256": "9500ad8a9fc656b66b631356e7dc1ee852c0315d9fb4bc22201aa8cbd047af35",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-101",
+        "image_bytes": 51562,
+        "image_sha256": "0d5c0a0eb469c973bcb24bd224c46a78be1e067de350af52a21055701f1ff769",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/101/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/101.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "3386011bb24ac19c4c97c9ba4d40d636b47bc5a83b4a050e622a2972fced6cd8",
+      "usage": {
+        "candidatesTokenCount": 93,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 93
+          }
+        ],
+        "promptTokenCount": 3291,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1107
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 270,
+        "totalTokenCount": 3654,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "9f8170913d388c95cd0e",
+      "source_snapshot_sha256": "c74c56011798d37068ab8fbf652fcd1f53ffa78d2424fa10ab345c02707566b4",
+      "response_sha256": "d28dc75af04723edc116e2091666f91fd6b02bb4182410b1fbf2b6a963399db0",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-101",
+        "image_bytes": 51562,
+        "image_sha256": "0d5c0a0eb469c973bcb24bd224c46a78be1e067de350af52a21055701f1ff769",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/101/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/101.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "1d1693ec1b2142a606fdd0029a8c37539083dc541e8e6c839c80b6317999117b",
+      "usage": {
+        "candidatesTokenCount": 91,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 91
+          }
+        ],
+        "promptTokenCount": 3290,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1106
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 288,
+        "totalTokenCount": 3669,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "db76044ac1865e49dd33",
+      "source_snapshot_sha256": "fd6aec67218c0ec2adf4c0f299f3f04eb3915ac26108f7e6c15670027713b612",
+      "response_sha256": "2600107eb48de3d87caff76c472b4f0c96d65d9181acb3cf1afb3f0c7c0b2e64",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV08.5-101",
+        "image_bytes": 51562,
+        "image_sha256": "0d5c0a0eb469c973bcb24bd224c46a78be1e067de350af52a21055701f1ff769",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv08.5/101/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Prismatic Evolutions/101.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-133",
+        "image_bytes": 161336,
+        "image_sha256": "4febe3523ba41ed8dad7ad661a7f0319dfe4c1a77cece48a395413ccac461b45",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/133/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/133.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0065294ccff286fd6b3dcfc7b8f016e81733ca4129549ffccc5485bab5e3c152",
+      "usage": {
+        "candidatesTokenCount": 106,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 106
+          }
+        ],
+        "promptTokenCount": 3293,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1109
+          }
+        ],
+        "thoughtsTokenCount": 283,
+        "totalTokenCount": 3682,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "dd75987c24f84c333395",
+      "source_snapshot_sha256": "a459e346dbe98d44aa251ace4b8c385bcfb5cbe040a8c7f565af0613d7f5f696",
+      "response_sha256": "70a7ea514efedc4417b59ebf150c43178f2f5ef3bb1dc0797c8703b1cccc7f28",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-078",
+        "image_bytes": 44766,
+        "image_sha256": "e00d26176bfeebebcf6ad7e3e59cc00ee374fb138ac33d06e380364d2b5d0d62",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/078/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Perfect Order/078.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49704",
+        "image_bytes": 166458,
+        "image_sha256": "25aa718347faf5978ec6eae65421c3c895c18347a23f670d8a14ee6df1c5e0d9",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049704_T_MIAREGARETTO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49704.json",
+        "record_sha256": "932ec583152e8f74dc2020875026f9794580fac39942d2bc16bcfc29256f586c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-071",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/071.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "7cb23d6cf4854e64c580b05ae920359be9ed07508d007992b087635f7f01b33b",
+      "usage": {
+        "candidatesTokenCount": 78,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ],
+        "promptTokenCount": 3145,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 961
+          }
+        ],
+        "thoughtsTokenCount": 290,
+        "totalTokenCount": 3513,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "8fd8577012a23e9a895c",
+      "source_snapshot_sha256": "9782fd3514d4141e0b76847ec085996556d7b50d0e81a041868ddb5e7e9376d5",
+      "response_sha256": "260bc3debf53550ebccaa49992a1a8f78a97fb744371ff7e27df13e2c6753893",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV06-150",
+        "image_bytes": 50186,
+        "image_sha256": "8cc882b97fb2a36c2cc39f9390b4e2b0e80786b84f58a8a59cd8b5d71b345e43",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv06/150/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Twilight Masquerade/150.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV6-095",
+        "image_bytes": 53588,
+        "image_sha256": "6ae52f73c6db90ab16493bb376ac0a891e8de0c9f5cb6c34294edc3ab3540065",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV6/095/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV6/095.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "58405f6def92815a0d41ef49f0acb89e4fe58678b52f258a49c15ed8808d6df0",
+      "usage": {
+        "candidatesTokenCount": 82,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 82
+          }
+        ],
+        "promptTokenCount": 3577,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1393
+          }
+        ],
+        "thoughtsTokenCount": 270,
+        "totalTokenCount": 3929,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "d84aee675b5cdd739876",
+      "source_snapshot_sha256": "5bb4f92ffcaebfd31a0da99821e822ce7f7105741f5a1a302a98f8812988068d",
+      "response_sha256": "8447f180944c677e98ef7291890fc716b22c1ca9ffce1798c000d6d314159e43",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SM9-194",
+        "image_bytes": 66082,
+        "image_sha256": "76b0fcb81266935eff04581933896df2d37c7dff41ad12dea04361c8b6b76b38",
+        "image_url": "https://assets.tcgdex.net/en/sm/sm9/194/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Sun & Moon/Team Up/194.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/36022",
+        "image_bytes": 153056,
+        "image_sha256": "e69987ee4dbaf82a480d0d5a2ad1b0bb06ab8a36a842b4c8a902c1655849424d",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM9/036022_T_JAJJIMANHOISSURU.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/SM9/36022.json",
+        "record_sha256": "94df252be2446108a171c23b42d50af711d1a3f0dc59f91112643df109fa6355",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM9-078",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/SM/SM9/078.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "ac6d71983599c87264b3ffdc69649271c20a3ad0c905f6cfe33508919800cd11",
+      "usage": {
+        "candidatesTokenCount": 102,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 102
+          }
+        ],
+        "promptTokenCount": 3140,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 434,
+        "totalTokenCount": 3676,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "22d253050fb707aad62b",
+      "source_snapshot_sha256": "430cf8a79bea51390eb0e5f5e5703965ea1d9e699433ec6775f4b6b70ba73075",
+      "response_sha256": "99493f33cc192ca84fe38b56c83cab6c4df83ef3f285c3cb2ab00f5265168c5a",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME01-115",
+        "image_bytes": 46372,
+        "image_sha256": "727e48024b470c360e4cab89a015cefe608276003c42d70eb8a2a540b6934b80",
+        "image_url": "https://assets.tcgdex.net/en/me/me01/115/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Mega Evolution/115.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/50323",
+        "image_bytes": 390043,
+        "image_sha256": "4f083779a759f69dfe194cda0b4512a8156c06ba036db82bbf7035bfb49c09f8",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M5/050323_T_ENERUGITSUKEKAE.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/M5/50323.json",
+        "record_sha256": "f6b0b335da8c686d74726bfcf42bd5c4a17806b39ee3082f7239e0b3fda83d50",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "9a16199c19cd221e14382d4a9722386b51fbfaf1519c0ca2945e98e66681c072",
+      "usage": {
+        "candidatesTokenCount": 99,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 99
+          }
+        ],
+        "promptTokenCount": 3123,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 939
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 542,
+        "totalTokenCount": 3764,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "c7c48db0f969b9ec18ce",
+      "source_snapshot_sha256": "ec36b716ffd1ff87deb70717c106c6c64af25657030b31563269b852ce39b566",
+      "response_sha256": "8eb0540ad044a3878afa1e8543fe6e5a902bdd81932c7b85b3aecbc9ee23f571",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME01-115",
+        "image_bytes": 46372,
+        "image_sha256": "727e48024b470c360e4cab89a015cefe608276003c42d70eb8a2a540b6934b80",
+        "image_url": "https://assets.tcgdex.net/en/me/me01/115/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Mega Evolution/115.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/50323",
+        "image_bytes": 390043,
+        "image_sha256": "4f083779a759f69dfe194cda0b4512a8156c06ba036db82bbf7035bfb49c09f8",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M5/050323_T_ENERUGITSUKEKAE.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/M5/50323.json",
+        "record_sha256": "f6b0b335da8c686d74726bfcf42bd5c4a17806b39ee3082f7239e0b3fda83d50",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "236bd84a5a3a8bbe2f120951e559b2922fa396fe8c743ba463e1b07ec12a5c96",
+      "usage": {
+        "candidatesTokenCount": 102,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 102
+          }
+        ],
+        "promptTokenCount": 3122,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 938
+          }
+        ],
+        "thoughtsTokenCount": 587,
+        "totalTokenCount": 3811,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "3e6e0191be4aa52db009",
+      "source_snapshot_sha256": "5d6698af0f7f3c96df99bc61d5568d2e22611bec3229c3e770b0d192d9310209",
+      "response_sha256": "6c72b8bafab1a32d8a6b6356bd66bb2aff819d60c15dcb3784207ca5d98db1b0",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV01-173",
+        "image_bytes": 41602,
+        "image_sha256": "45eb2707db565cee0b8327ea96ae0fc318ab5f63799214e32a7a33db2a9f924f",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv01/173/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Scarlet & Violet/173.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/50323",
+        "image_bytes": 390043,
+        "image_sha256": "4f083779a759f69dfe194cda0b4512a8156c06ba036db82bbf7035bfb49c09f8",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M5/050323_T_ENERUGITSUKEKAE.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/M5/50323.json",
+        "record_sha256": "f6b0b335da8c686d74726bfcf42bd5c4a17806b39ee3082f7239e0b3fda83d50",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+          "error_type": "URLError",
+          "status": "fetch_failed"
+        }
+      },
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "0fa6a7a4ce526f19a84b9d071789da1da421008c8a484bc0d6297e37ec0423b8",
+      "usage": {
+        "candidatesTokenCount": 128,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 128
+          }
+        ],
+        "promptTokenCount": 3047,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 863
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 358,
+        "totalTokenCount": 3533,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "b17f3e2e35e0ce5454c8",
+      "source_snapshot_sha256": "3d9af5b50be5c90b0dda06ad884051a36bb6c3f28f7d8625d515240232f4bbde",
+      "response_sha256": "18b80a64f6dd2c9a79a6df41f3379f7a75d547df6852d9543c8ab6b2fd903472",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV01-173",
+        "image_bytes": 41602,
+        "image_sha256": "45eb2707db565cee0b8327ea96ae0fc318ab5f63799214e32a7a33db2a9f924f",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv01/173/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Scarlet & Violet/173.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/50323",
+        "image_bytes": 390043,
+        "image_sha256": "4f083779a759f69dfe194cda0b4512a8156c06ba036db82bbf7035bfb49c09f8",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M5/050323_T_ENERUGITSUKEKAE.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_sr_c",
+        "record_path": "data_jp/M5/50323.json",
+        "record_sha256": "f6b0b335da8c686d74726bfcf42bd5c4a17806b39ee3082f7239e0b3fda83d50",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M5-103",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M5/103.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "e32a59a88ee1e64c96fa9c413989a77c313ac3a41f32586de2d7e0a865782f5d",
+      "usage": {
+        "candidatesTokenCount": 97,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 97
+          }
+        ],
+        "promptTokenCount": 3048,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 864
+          }
+        ],
+        "thoughtsTokenCount": 315,
+        "totalTokenCount": 3460,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "fb0a4e87378f6c3cf9f3",
+      "source_snapshot_sha256": "62d357a18427426c563a29715eb9f0356f10542095628eaa34c1845a4ae1718b",
+      "response_sha256": "cf4073c1bcaaca1cdab0f6d69d00edadce95f6bd0377e6a2e0313246d729265b",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-148",
+        "image_bytes": 56538,
+        "image_sha256": "ef5e5e1e61a2fa1f4535e92faca7c3f55a5ddb519e96d30f44f10f2bed499657",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/148/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Journey Together/148.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-092",
+        "image_bytes": 55576,
+        "image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/092/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV9/092.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "b4639f02f98bceffd963a81e016a49db3062f7acca434568c51fe0429ef34d57",
+      "usage": {
+        "candidatesTokenCount": 75,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 75
+          }
+        ],
+        "promptTokenCount": 3637,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1453
+          }
+        ],
+        "thoughtsTokenCount": 171,
+        "totalTokenCount": 3883,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "221f1712b50b64490d2d",
+      "source_snapshot_sha256": "7a88c09309a0a22ba7448aa62847c1412728a8b494d5521c62b6e586f2bac755",
+      "response_sha256": "b7b0ba05b70b4b95e1e89fb769e949086ef73cc6974f99f534daebe946adbdc8",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-148",
+        "image_bytes": 56538,
+        "image_sha256": "ef5e5e1e61a2fa1f4535e92faca7c3f55a5ddb519e96d30f44f10f2bed499657",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/148/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Scarlet & Violet/Journey Together/148.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-092",
+        "image_bytes": 55576,
+        "image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/092/high.webp",
+        "status": "included"
+      },
+      "ja_source_path": "data-asia/SV/SV9/092.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "cc0839fd9e727c2c1250dac1088a75a94d498639b56a8e93ce526fe922e947a5",
+      "usage": {
+        "candidatesTokenCount": 102,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 102
+          }
+        ],
+        "promptTokenCount": 3624,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1440
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 303,
+        "totalTokenCount": 4029,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "02a9b0654487d4331798",
+      "source_snapshot_sha256": "a85fef3b0acf27336ad0acba86dde76d2d5fe68da83cd38014904a70280f7709",
+      "response_sha256": "33968aa1ca2bf756206bca5ef5b5b85314945a43eaf0ded0cd30dc3208778daa",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-081",
+        "image_bytes": 47098,
+        "image_sha256": "063dd980369939515cdabbae081ecd7f71dc0da7cb6c1f578a42f677dc2b4467",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/081/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Perfect Order/081.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49703",
+        "image_bytes": 153248,
+        "image_sha256": "e4462e25d2be5ccfbc04a4b3653c90acc447d886038c34ad850efe215ecb17c6",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49703.json",
+        "record_sha256": "d6c05755e3803f2a2364407c930475cafafa5b44c4493fcc462897b7cf4d672c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "bc044876253883128c37d48382f4edbaada7ddce2ae620ae87837b735f3968a5",
+      "usage": {
+        "candidatesTokenCount": 92,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 92
+          }
+        ],
+        "promptTokenCount": 3397,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1213
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 272,
+        "totalTokenCount": 3761,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "f175eedc91036b31084a",
+      "source_snapshot_sha256": "18d3bf5d54391210e82218ad1da66ef2c769d3f2527dd0ea2ed3777a43ce206c",
+      "response_sha256": "7ea6d3f436f9e3085dfc88fc069ee5086af95c6c6d576fa13fe2b55df4280397",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME02.5-198",
+        "image_bytes": 44928,
+        "image_sha256": "9e9711ae273b262cebac0902cc4321b8b1f6ec23730b887ba7ac12ca08017266",
+        "image_url": "https://assets.tcgdex.net/en/me/me02.5/198/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Ascended Heroes/198.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49703",
+        "image_bytes": 153248,
+        "image_sha256": "e4462e25d2be5ccfbc04a4b3653c90acc447d886038c34ad850efe215ecb17c6",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49703.json",
+        "record_sha256": "d6c05755e3803f2a2364407c930475cafafa5b44c4493fcc462897b7cf4d672c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "962e6d978cea8925f6c0bd72a6249ec00ba130af44ad4ea7afe55df7b46c2d87",
+      "usage": {
+        "candidatesTokenCount": 104,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 104
+          }
+        ],
+        "promptTokenCount": 3395,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1211
+          }
+        ],
+        "thoughtsTokenCount": 342,
+        "totalTokenCount": 3841,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "a8ca3988f735f8e2bdd7",
+      "source_snapshot_sha256": "28575312aa8289123f5e0310b00d2f150fc467608df82311515ecaf82d8aed70",
+      "response_sha256": "524f310e18819ec2b15510bf6cdc122a16bd7b73a95c2ef6e88cf8984c42cf0c",
+      "en_image_identity": "match",
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-081",
+        "image_bytes": 47098,
+        "image_sha256": "063dd980369939515cdabbae081ecd7f71dc0da7cb6c1f578a42f677dc2b4467",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/081/high.webp",
+        "status": "included"
+      },
+      "en_source_path": "data/Mega Evolution/Perfect Order/081.ts",
+      "ja_image": {
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49703",
+        "image_bytes": 153248,
+        "image_sha256": "e4462e25d2be5ccfbc04a4b3653c90acc447d886038c34ad850efe215ecb17c6",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg",
+        "mime_type": "image/jpeg",
+        "rarity_source": "rare_u_c",
+        "record_path": "data_jp/M3/49703.json",
+        "record_sha256": "d6c05755e3803f2a2364407c930475cafafa5b44c4493fcc462897b7cf4d672c",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "status": "included",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+          "status": "image_missing"
+        }
+      },
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "request_sha256": "dfb1684798acebde46ae8edc695d7dad9ca2f435106eeab33b127c5c3fb44773",
+      "usage": {
+        "candidatesTokenCount": 77,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 77
+          }
+        ],
+        "promptTokenCount": 3393,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1209
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "thoughtsTokenCount": 261,
+        "totalTokenCount": 3731,
+        "trafficType": "ON_DEMAND"
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "7540778eff9fb34aa3bf",
+      "source_snapshot_sha256": "600d4ec9547445fbdba874cf704acc738b0e7544eed334e6a7269d896f408f7b",
+      "response_sha256": "f55f8cab5909f1309ae120e6de1657d758bc092bd899354937e377f923081e92",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/M/M3/070.ts",
+      "en_source_path": "data/Mega Evolution/Perfect Order/113.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/49703",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg",
+        "record_path": "data_jp/M3/49703.json",
+        "record_sha256": "d6c05755e3803f2a2364407c930475cafafa5b44c4493fcc462897b7cf4d672c",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "e4462e25d2be5ccfbc04a4b3653c90acc447d886038c34ad850efe215ecb17c6",
+        "image_bytes": 153248,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/M3-070",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME03-113",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me03/113/high.webp",
+        "image_sha256": "590f8795251c26ccb3ed2e132a353d9523be1f608b44b64347c3c3a4926d083b",
+        "image_bytes": 59926
+      },
+      "variant_image_verified": false,
+      "request_sha256": "56b83fa02165b062776b5d8cadf63c03da2891d86453badc2de75d6c13c8324b",
+      "usage": {
+        "promptTokenCount": 3344,
+        "candidatesTokenCount": 90,
+        "totalTokenCount": 4403,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1160
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 90
+          }
+        ],
+        "thoughtsTokenCount": 969
+      }
+    },
+    {
+      "candidate_id": "62bb1c263e2bd139d055",
+      "source_snapshot_sha256": "0d128aa2015aae1490a99284cfac6fa112109781334264a4cad821d90c0de639",
+      "response_sha256": "db2ca8b1b22ab49e99b5b9af8b5daae23f6fa6616407e5bf217963af10bc03cd",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S8b/170.ts",
+      "en_source_path": "data/Sword & Shield/Battle Styles/138.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/40319",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/040319_T_MIZUNOTOU.jpg",
+        "record_path": "data_jp/S8b/40319.json",
+        "record_sha256": "74f6ff54fe8e8d016e95569036762c6ddb5dd536b174a970e4a98b5aba30aa2f",
+        "rarity_source": null,
+        "image_sha256": "641785e73c07607daadc696efdb0f325635289e1272f0f3fea22668c620a5ecc",
+        "image_bytes": 209589,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-170",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-138",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/138/high.webp",
+        "image_sha256": "a3dd39bff63515eff781f3b8800b37348ed902baaac650eaca7e950f86d64078",
+        "image_bytes": 51808
+      },
+      "variant_image_verified": false,
+      "request_sha256": "0d8f644e65218b04911a6e7200422631bc209bb687436ec91bb040a58de159e6",
+      "usage": {
+        "promptTokenCount": 3301,
+        "candidatesTokenCount": 94,
+        "totalTokenCount": 3697,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1117
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 94
+          }
+        ],
+        "thoughtsTokenCount": 302
+      }
+    },
+    {
+      "candidate_id": "ea3f6fbc433e64dc0af1",
+      "source_snapshot_sha256": "7c773d80668952fb01b6b637071d835a2d45e2b8e0a7035ade23b0d88e52c323",
+      "response_sha256": "25d8a873ed1e89f681d45bac525f01406f7acb3c2d28a153ffab809732fd237f",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV2a/162.ts",
+      "en_source_path": "data/Scarlet & Violet/151/161.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV2A-162",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV2a/162/high.webp",
+        "image_sha256": "b4ef97106a11aeed6380ce234441bfd26304dca8c0675efaddb083f16fd0f984",
+        "image_bytes": 72068
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV03.5-161",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv03.5/161/high.webp",
+        "image_sha256": "c039e671dfa4983a7773bb5db555009d2c6593487f404df29281d895dd07df3d",
+        "image_bytes": 41520
+      },
+      "variant_image_verified": false,
+      "request_sha256": "b891240c3f93cf8822f6d54f2902f5d9d45063857486cc6046423f702b953dcb",
+      "usage": {
+        "promptTokenCount": 3541,
+        "candidatesTokenCount": 91,
+        "totalTokenCount": 3868,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1357
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 91
+          }
+        ],
+        "thoughtsTokenCount": 236
+      }
+    },
+    {
+      "candidate_id": "bfd8a13dd1c22bdf6b99",
+      "source_snapshot_sha256": "4510fe1f8147869bddc960d81827812124c8c3f76cb45859289ad88acccc9d96",
+      "response_sha256": null,
+      "en_image_identity": "not_checked",
+      "model_version": null,
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SV/SV2a/162.ts",
+      "en_source_path": "data/Scarlet & Violet/151/197.ts",
+      "ja_image": {
+        "status": "ambiguous_official_record",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SV2A-162",
+          "status": "fetch_failed",
+          "error_type": "URLError"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV03.5-197",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv03.5/197/high.webp",
+        "image_sha256": "126d204910c292050ee08524d567dd4cf079b88054797447f604093ae279e81a",
+        "image_bytes": 55472
+      },
+      "variant_image_verified": false
+    },
+    {
+      "candidate_id": "478b35719b5f34e209e8",
+      "source_snapshot_sha256": "c0c06a3ba815e46cdc7351292607e1be965fa787246624879f7a9f0403e28ef7",
+      "response_sha256": "8519cbc6fb49ba1d77e0d25247663d545968c47c96237021c2d8b1bf897fb2fa",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S6K/060.ts",
+      "en_source_path": "data/Sword & Shield/Chilling Reign/140.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/39491",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S6K/039491_T_KIRINOSUISHOU.jpg",
+        "record_path": "data_jp/S6K/39491.json",
+        "record_sha256": "5618d4357f7c18d144e4079a1e014ae7abd49a409bbbf99feea9fe3bd0a01916",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "e69a234c31b09bfd7ea317c585674b46f71e1f61975546876738e93dbf026788",
+        "image_bytes": 98019,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S6K-060",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH6-140",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh6/140/high.webp",
+        "image_sha256": "79104cd8e54d54351532e5ff6d637ad517caf0089dc83f3bdce55828239f3288",
+        "image_bytes": 38988
+      },
+      "variant_image_verified": false,
+      "request_sha256": "09761057bf644ff7e8b2bbcb258699c6f9c7a46e42fee5b41c5a02bf30cf8c61",
+      "usage": {
+        "promptTokenCount": 3308,
+        "candidatesTokenCount": 70,
+        "totalTokenCount": 3697,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1124
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 70
+          }
+        ],
+        "thoughtsTokenCount": 319
+      }
+    },
+    {
+      "candidate_id": "33cf2e89e1e752ede1d4",
+      "source_snapshot_sha256": "f21831f59470e9258ccfaf30111c5a54f013b7273a72de1abfc3d73870958da7",
+      "response_sha256": "6bb23f47cfa848edeeff172c838696684fc1db4642f48c9d5476b5d51f97c31e",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S6K/060.ts",
+      "en_source_path": "data/Sword & Shield/Chilling Reign/227.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/39491",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S6K/039491_T_KIRINOSUISHOU.jpg",
+        "record_path": "data_jp/S6K/39491.json",
+        "record_sha256": "5618d4357f7c18d144e4079a1e014ae7abd49a409bbbf99feea9fe3bd0a01916",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "e69a234c31b09bfd7ea317c585674b46f71e1f61975546876738e93dbf026788",
+        "image_bytes": 98019,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S6K-060",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH6-227",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh6/227/high.webp",
+        "image_sha256": "8a6e029900a4b8dd7f5db3618fd7745e9744b98c4c5de6242b659dd4182456a9",
+        "image_bytes": 60414
+      },
+      "variant_image_verified": false,
+      "request_sha256": "5fd44cebc985a9c1aa44b74dc83ef7e0cc5a45593a9c64342944a87bc29fac1c",
+      "usage": {
+        "promptTokenCount": 3268,
+        "candidatesTokenCount": 88,
+        "totalTokenCount": 3622,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1084
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 88
+          }
+        ],
+        "thoughtsTokenCount": 266
+      }
+    },
+    {
+      "candidate_id": "0c43074def7e2d3f07ed",
+      "source_snapshot_sha256": "b1c5959fb4cbbe0725d201c432b2104a307a104be7ddd716984f32c480565fc2",
+      "response_sha256": "f8a79d0d5f88d3757468b145545ce6d62583b0e655e9ac85bda13d1f9be9b938",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S5I/063.ts",
+      "en_source_path": "data/Sword & Shield/Battle Styles/122.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/39123",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S5I/039123_T_KYANPUSETTO.jpg",
+        "record_path": "data_jp/S5I/39123.json",
+        "record_sha256": "72737f5d020a77b03728cb115e5dc3b5ad8ae5289b686fbfe5a1cf14971926f6",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "5c066730d0d1f23cdb018c9e1e95d1b48c129c96467219ee055a161ecc847b73",
+        "image_bytes": 184789,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S5I-063",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH5-122",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh5/122/high.webp",
+        "image_sha256": "088bd0c7d03a66216b233ab18af2200ae5dcc1f864504b6ffcd93d22e5586313",
+        "image_bytes": 39044
+      },
+      "variant_image_verified": false,
+      "request_sha256": "8ebfddddb1da69bc6ee6e4fa367606a9d79585f89afc73d1a2d14794c75b95bd",
+      "usage": {
+        "promptTokenCount": 3282,
+        "candidatesTokenCount": 84,
+        "totalTokenCount": 3608,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1098
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 84
+          }
+        ],
+        "thoughtsTokenCount": 242
+      }
+    }
+  ],
+  "scope": "AI visual artwork triage only; no physical printing or finish verified"
+}

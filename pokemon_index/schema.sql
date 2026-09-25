@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS source_policy (
   display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
   cross_source_use_allowed INTEGER NOT NULL CHECK (cross_source_use_allowed IN (0, 1)),
   seller_analytics_allowed INTEGER NOT NULL CHECK (seller_analytics_allowed IN (0, 1)),
+  media_ai_allowed INTEGER NOT NULL DEFAULT 0 CHECK (media_ai_allowed IN (0, 1)),
+  cross_region_use_allowed INTEGER NOT NULL DEFAULT 0 CHECK (cross_region_use_allowed IN (0, 1)),
   retention_days INTEGER NOT NULL CHECK (retention_days > 0),
   listing_ttl_hours INTEGER NOT NULL CHECK (listing_ttl_hours > 0),
   expires_at TEXT
@@ -233,6 +235,45 @@ CREATE TABLE IF NOT EXISTS landed_quote (
   FOREIGN KEY(source, native_id) REFERENCES listing(source, native_id)
 );
 
+-- Image bytes are not stored. Every AI finding binds to a specific listing
+-- observation and source-authorized photo references and hashes.
+CREATE TABLE IF NOT EXISTS offer_media_snapshot (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  observed_at TEXT NOT NULL,
+  front_ref TEXT NOT NULL,
+  front_sha256 TEXT NOT NULL,
+  back_ref TEXT,
+  back_sha256 TEXT,
+  rights_reference TEXT NOT NULL,
+  imported_at TEXT NOT NULL,
+  PRIMARY KEY(source, native_id, observed_at),
+  FOREIGN KEY(source, native_id, observed_at)
+    REFERENCES observation(source, native_id, observed_at)
+);
+
+CREATE TABLE IF NOT EXISTS offer_visual_review (
+  review_id TEXT PRIMARY KEY,
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  observed_at TEXT NOT NULL,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  model_family TEXT NOT NULL,
+  model_version TEXT NOT NULL,
+  reviewed_at TEXT NOT NULL,
+  front_sha256 TEXT NOT NULL,
+  back_sha256 TEXT,
+  identity_decision TEXT NOT NULL CHECK (identity_decision IN ('match', 'mismatch', 'uncertain')),
+  observed_finish TEXT,
+  finish_decision TEXT NOT NULL CHECK (finish_decision IN ('match', 'mismatch', 'uncertain')),
+  condition_bucket TEXT,
+  condition_decision TEXT NOT NULL CHECK (condition_decision IN ('assessed', 'uncertain')),
+  evidence_ref TEXT NOT NULL,
+  rationale TEXT NOT NULL,
+  FOREIGN KEY(source, native_id, observed_at)
+    REFERENCES offer_media_snapshot(source, native_id, observed_at)
+);
+
 CREATE TABLE IF NOT EXISTS verified_sale (
   source TEXT NOT NULL,
   native_id TEXT NOT NULL,
@@ -256,3 +297,4 @@ CREATE INDEX IF NOT EXISTS idx_observation_time ON observation(observed_at);
 CREATE INDEX IF NOT EXISTS idx_raw_item_time ON raw_item_blob(source, observed_at);
 CREATE INDEX IF NOT EXISTS idx_resolution_item ON resolution_record(source, native_id, resolved_at);
 CREATE INDEX IF NOT EXISTS idx_quote_expiry ON landed_quote(expires_at);
+CREATE INDEX IF NOT EXISTS idx_offer_visual_snapshot ON offer_visual_review(source, native_id, observed_at, model_family, reviewed_at);

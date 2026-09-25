@@ -175,6 +175,22 @@ class IndexTests(unittest.TestCase):
         self.assertEqual(result["recommendation_type"], "price_only")
         self.assertEqual(result["recommendation"]["quote"]["total_minor"], 23000)
 
+    def test_landed_quote_is_append_only_at_its_timestamp(self):
+        core.import_observations(self.db, [self.observation(
+            "a", "ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")])
+        row = {"source": "fixture", "native_id": "a", "destination": "HK",
+               "currency": "HKD", "components": {
+                   "item": 20000, "domestic": 0, "service": 1000,
+                   "international": 0, "tax": 0, "insurance": 0,
+                   "fx_spread": 0, "other": 0},
+               "quoted_at": "2026-09-22T09:01:00Z",
+               "expires_at": "2026-09-22T10:00:00Z", "evidence_ref": "fixture:quote"}
+        self.assertEqual(core.import_quotes(self.db, [row]), 1)
+        self.assertEqual(core.import_quotes(self.db, [row]), 0)
+        changed = {**row, "components": {**row["components"], "item": 21000}}
+        with self.assertRaisesRegex(ValueError, "evidence changed"):
+            core.import_quotes(self.db, [changed])
+
     def test_source_policy_controls_ingest_and_display(self):
         with self.assertRaisesRegex(ValueError, "SNKRDUNK"):
             core.register_source(self.db, {"source": "snkrdunk", "rights_reference": "public_site",

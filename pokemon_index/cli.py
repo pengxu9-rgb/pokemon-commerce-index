@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, discovery_graph, pivota, tcgdex
+from . import buyship_mercari, calibration, core, discovery_graph, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -64,6 +64,10 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         result = core.catalog_card_internal(db, value("card_id"))
                     elif internal_catalog_api and parsed.path == "/catalog-neighborhood":
                         result = discovery_graph.card_neighborhood(db, value("card_id"))
+                    elif internal_catalog_api and parsed.path == "/cross-region-compare":
+                        result = offer_comparison.compare_landed_asks(
+                            db, value("ja_card_id"), value("en_card_id"),
+                            value("destination"), value("as_of") or None)
                     else:
                         self.send_error(404)
                         return
@@ -86,7 +90,7 @@ def main() -> None:
     parser.add_argument("--db", default="index.sqlite3", help="SQLite database path")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
-    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-card-classifications", "import-concept-review-bundle", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-verified-sales", "calibrate"):
+    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-card-classifications", "import-concept-review-bundle", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-offer-media", "import-visual-reviews", "import-verified-sales", "calibrate"):
         item = sub.add_parser(command)
         item.add_argument("file", help="UTF-8 JSONL file, or JSON for a concept review bundle")
         if command == "calibrate":
@@ -109,6 +113,22 @@ def main() -> None:
             item.add_argument("unit_id")
             item.add_argument("date", help="UTC date YYYY-MM-DD")
     sub.add_parser("catalog-status", help="internal catalog coverage and display status")
+    photo_candidates = sub.add_parser("adapt-mercari-photo-candidates")
+    photo_candidates.add_argument("file")
+    photo_candidates.add_argument("--endpoint", required=True,
+                                  choices=("search", "item", "fetch_items"))
+    photo_candidates.add_argument("--observed-at", required=True)
+    photo_candidates.add_argument("--output", required=True)
+    comparison = sub.add_parser("compare-cross-region", help="evidence-bound landed ask spread")
+    comparison.add_argument("ja_card_id")
+    comparison.add_argument("en_card_id")
+    comparison.add_argument("destination")
+    comparison.add_argument("--as-of")
+    visual = sub.add_parser("visual-gate", help="current AI photo consensus for a listing")
+    visual.add_argument("source")
+    visual.add_argument("native_id")
+    visual.add_argument("observed_at")
+    visual.add_argument("card_id")
     catalog_search = sub.add_parser("catalog-search", help="internal metadata search; not exposed over HTTP")
     catalog_search.add_argument("query", nargs="?", default="")
     catalog_search.add_argument("--set-code")
@@ -228,6 +248,17 @@ def main() -> None:
             output = core.import_observations(db, read_jsonl(args.file))
         elif args.command == "import-quotes":
             output = {"quotes": core.import_quotes(db, read_jsonl(args.file))}
+        elif args.command == "import-offer-media":
+            output = {"media": offer_comparison.import_media(db, read_jsonl(args.file))}
+        elif args.command == "import-visual-reviews":
+            output = {"reviews": offer_comparison.import_visual_reviews(db, read_jsonl(args.file))}
+        elif args.command == "visual-gate":
+            output = offer_comparison.visual_gate(db, args.source, args.native_id,
+                                                  args.observed_at, args.card_id)
+        elif args.command == "compare-cross-region":
+            output = offer_comparison.compare_landed_asks(db, args.ja_card_id,
+                                                           args.en_card_id, args.destination,
+                                                           args.as_of)
         elif args.command == "import-verified-sales":
             output = {"sales": core.import_verified_sales(db, read_jsonl(args.file))}
         elif args.command == "calibrate":
@@ -258,6 +289,17 @@ def main() -> None:
                     handle.write(json.dumps(row, ensure_ascii=False) + "\n")
             output = {"observations": len(rows), "output": args.output,
                       "source": "mercari_bns"}
+        elif args.command == "adapt-mercari-photo-candidates":
+            policy = core._policy(db, "mercari_bns")
+            if not policy["media_ai_allowed"]:
+                raise ValueError("Mercari media AI use has not been authorized")
+            payload = json.loads(Path(args.file).read_text(encoding="utf-8"))
+            raw_items = buyship_mercari.response_items(payload, args.endpoint)
+            with Path(args.output).open("x", encoding="utf-8") as handle:
+                for item in raw_items:
+                    handle.write(json.dumps(buyship_mercari.photo_candidates(
+                        item, args.observed_at), ensure_ascii=False) + "\n")
+            output = {"photo_candidates": len(raw_items), "output": args.output}
         elif args.command == "probe-mercari":
             core._policy(db, "mercari_bns")
             client = buyship_mercari.GatewayClient(

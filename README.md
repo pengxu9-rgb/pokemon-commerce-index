@@ -6,7 +6,8 @@
 
 Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
 
-跨区卡片关系现已有 [AI 图像复核与价格可比性分级](AI_CARD_REVIEW.md)：首批 25 组同画候选可用于内部发现，仍按不同语言与印刷版本保留价格序列。
+跨区卡片关系现已有 [AI 图像复核与价格可比性分级](AI_CARD_REVIEW.md)：88 组候选中 48 组同画、39 组不同画、1 组待补证；同画候选可用于内部发现，仍按不同语言与印刷版本保留价格序列。
+商品照片、独立 AI 复核与跨区到手挂牌价差的离线接入路径见 [商品级证据契约](OFFER_CONDITION_CONTRACT.md)。
 
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
@@ -131,12 +132,14 @@ python3 -m pokemon_index --db demo.sqlite3 serve --port 8765
 
 | 文件 | 关键字段 |
 | --- | --- |
-| Source policy | `source`, `rights_reference`, `ingest_allowed`, `display_allowed`, `cross_source_use_allowed`, `seller_analytics_allowed`, `retention_days`, `listing_ttl_hours`, 可选 `expires_at` |
+| Source policy | `source`, `rights_reference`, `ingest_allowed`, `display_allowed`, `cross_source_use_allowed`, `seller_analytics_allowed`, `media_ai_allowed`, `cross_region_use_allowed`, `retention_days`, `listing_ttl_hours`, 可选 `expires_at` |
 | Card | `language`, `set_code`, `collector_number`, `name`, `provenance`, `rights_reference`, `display_allowed`；可选 `variant`, `rarity`, `match_eligible`, `attributes`。未明确允许展示时填 `false`；版本未经核实时 `match_eligible=false` |
 | Set metadata | `set_code`, `official_card_count`, `provenance`, `rights_reference`；可选 `name_ja`, `release_date_ja`, `display_allowed` |
 | Card reference | `source`, `source_jp_id`, `name`, `provenance`, `rights_reference`；可选 `set_code`, `collector_number`, `rarity`, `attributes`, `display_allowed`；仅供内部查证，不进入自动匹配 |
 | Observation | `source`, `native_id`, `title`, `url`, `observed_at`, `status`, `currency`, `evidence_ref`；可选 `price_minor`, `language`, `variant`, `card_id`, `condition_bucket`, `seller_native_id`, `poll_reason` |
 | Landed quote | `source`, `native_id`, `destination`, `currency`, `components`, `quoted_at`, `expires_at`, `evidence_ref`；可选 `assumptions` |
+| Offer media | `source`, `native_id`, `observed_at`, `front_ref`, `front_sha256`, `rights_reference`；可选 `back_ref`, `back_sha256` |
+| Visual review | `review_id`, 商品观测键, `card_id`, `model_family`, 图片哈希, 身份／工艺／品相判断, `evidence_ref` |
 | Verified sale | `source`, `native_id`, `settled_at`, `paid_minor`, `currency`, `evidence_ref` |
 | Calibration panel | `source`, `native_id`, `sold_at`, `last_price_minor`, `bucket` |
 
@@ -153,6 +156,8 @@ python3 -m pokemon_index --db demo.sqlite3 import-observations mercari-observati
 ```
 
 适配器保留原生 `created`/`updated` 字段及每个商品的 SHA-256 证据引用，并在本地 `raw_item_blob` 表保存对应原始商品 JSON，按来源保留期清理。原始响应文件也需按授权要求管理。它不猜测卡片语言、评级或实际支付金额，无法确定卡片身份时进入待解析队列。`response.json` 可以是 `search`、`item` 或 `fetch_items` 的响应；输出文件必须尚不存在，避免覆盖证据。
+
+若 Buy&Ship 授权图片 AI 用途，`adapt-mercari-photo-candidates` 可把详情响应中的未标注 `photos[]` 留为顺序候选，不猜哪张是背面。获授权的临时照片文件可交给 `scripts.vertex_offer_photo_sides` 自动识别正反面并输出哈希绑定的媒体与复核清单；随后运行 [`OFFER_CONDITION_CONTRACT.md`](OFFER_CONDITION_CONTRACT.md) 中的视觉双审和跨区比较。商品照片不会写入仓库。内部接口 `/cross-region-compare?ja_card_id=...&en_card_id=...&destination=...` 只在 `--internal-catalog-api` 下开放。真实卡片展示授权尚未确认，因此现阶段真实目录仍保持隐藏；合成样本仅用于验证流程。
 
 网关探针需在 Buy&Ship 确认授权、提供测试环境和凭据后运行。凭据通过 `BNS_MERCARI_HMAC_SECRET` 环境变量注入，不写入仓库或命令参数；只有明确启用旧 demo 签名方式时才发请求：
 
