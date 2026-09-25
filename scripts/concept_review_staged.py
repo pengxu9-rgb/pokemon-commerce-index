@@ -77,12 +77,36 @@ def read_dual_reviews(queue: list[dict[str, Any]], astra: Path | None,
     return {pid: (first[pid], second[pid]) for pid in first}
 
 
+def read_triple_reviews(queue: list[dict[str, Any]], astra: Path, sol: Path,
+                        gemini: Path, gemini_audit: Path
+                        ) -> tuple[dict[str, tuple[str, str, str]], set[str]]:
+    dual = read_dual_reviews(queue, astra, sol)
+    third = _review_rows(gemini, {row["proposal_id"]: row for row in queue})
+    if set(dual) != set(third):
+        raise ValueError("three AI review files cover different proposals")
+    audit = json.loads(gemini_audit.read_text(encoding="utf-8"))
+    if audit.get("model") != "gemini-3.8-flash":
+        raise ValueError("Gemini model audit is missing")
+    evidence = {row["proposal_id"]: row for row in audit.get("rows", [])}
+    if len(evidence) != len(third) or set(evidence) != set(third):
+        raise ValueError("Gemini image audit does not cover reviewed proposals")
+    image_holds = {pid for pid, decision in third.items()
+                   if decision == "approve" and any(
+                       evidence[pid].get(f"{side}_image", {}).get("status") != "included"
+                       for side in ("ja", "en"))}
+    return {pid: (*dual[pid], third[pid]) for pid in dual}, image_holds
+
+
 def select_next(queue: list[dict[str, Any]],
-                reviews: dict[str, tuple[str, str]], *, replay_full: bool = False
+                reviews: dict[str, tuple[str, ...]], *, replay_full: bool = False,
+                held_ids: set[str] | None = None
                 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     groups = _groups(queue)
     if set(reviews) - {row["proposal_id"] for row in queue}:
         raise ValueError("review references an unknown proposal")
+    held_ids = held_ids or set()
+    if held_ids - set(reviews):
+        raise ValueError("image hold references an unreviewed proposal")
     selected: list[dict[str, Any]] = []
     outcomes: Counter[str] = Counter()
     scheduled_count = 0
@@ -102,10 +126,12 @@ def select_next(queue: list[dict[str, Any]],
                 outcomes["needs_review"] += 1
                 stopped = True
                 continue
-            first, second = reviews[pid]
-            if first == second == "reject":
+            decisions = reviews[pid]
+            if len(decisions) not in {2, 3} or any(item not in DECISIONS for item in decisions):
+                raise ValueError(f"invalid independent decisions for {pid}")
+            if pid not in held_ids and all(item == "reject" for item in decisions):
                 continue
-            if first == second == "approve":
+            if pid not in held_ids and all(item == "approve" for item in decisions):
                 outcomes["approved_by_ai"] += 1
             else:
                 outcomes["deferred"] += 1
@@ -132,6 +158,9 @@ def main() -> None:
     parser.add_argument("--queue", type=Path, required=True)
     parser.add_argument("--astra", type=Path)
     parser.add_argument("--sol", type=Path)
+    parser.add_argument("--gemini", type=Path)
+    parser.add_argument("--gemini-audit", type=Path)
+    parser.add_argument("--require-image-pair", action="store_true")
     parser.add_argument("--replay-full", action="store_true")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--sheet", type=Path)
@@ -144,8 +173,22 @@ def main() -> None:
     if args.audit and args.audit.exists():
         raise FileExistsError(args.audit)
     queue = read_jsonl(args.queue)
-    reviews = read_dual_reviews(queue, args.astra, args.sol)
-    selected, audit = select_next(queue, reviews, replay_full=args.replay_full)
+    if args.gemini or args.gemini_audit:
+        if not (args.astra and args.sol and args.gemini and args.gemini_audit):
+            raise ValueError("triple review needs all three files and Gemini audit")
+        reviews, image_gaps = read_triple_reviews(
+            queue, args.astra, args.sol, args.gemini, args.gemini_audit)
+        held_ids = image_gaps if args.require_image_pair else set()
+    else:
+        if args.require_image_pair:
+            raise ValueError("image-pair gate requires Gemini audit")
+        reviews, held_ids, image_gaps = read_dual_reviews(queue, args.astra, args.sol), set(), set()
+    selected, audit = select_next(queue, reviews, replay_full=args.replay_full,
+                                  held_ids=held_ids)
+    if args.gemini:
+        audit["reviewer_count"] = 3
+        audit["missing_image_pair_rows"] = len(image_gaps)
+        audit["image_evidence_holds"] = len(held_ids)
     if args.output:
         write_jsonl(args.output, selected)
     if args.sheet:

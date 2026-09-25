@@ -1,0 +1,955 @@
+{
+  "schema": "pokemon.concept_review_bundle.v1",
+  "review_events": [
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Studio Bora Inc.",
+        "category": "Trainer",
+        "en_card_id": "en:ME01:115/132:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/115.ts:sha256:3b6f8473a71f34e20d80931b2948c7aa9c0a4a8fc95412379c28e38aaaabad5c",
+        "illustrator": "Studio Bora Inc.",
+        "ja_card_id": "ja:M-P:085/M-P:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+        "name_en": "Energy Switch",
+        "name_ja": "ポケパッド",
+        "omitted_name_count": 31,
+        "proposal_id": "39dcc72b8704999c7c46",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Mega%20Evolution/115.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M-P/085.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/115.ts:sha256:3b6f8473a71f34e20d80931b2948c7aa9c0a4a8fc95412379c28e38aaaabad5c",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/115.ts:sha256:3b6f8473a71f34e20d80931b2948c7aa9c0a4a8fc95412379c28e38aaaabad5c",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/115.ts:sha256:3b6f8473a71f34e20d80931b2948c7aa9c0a4a8fc95412379c28e38aaaabad5c",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Studio Bora Inc.",
+            "category": "Trainer",
+            "en_card_id": "en:ME01:115/132:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Studio Bora Inc.",
+            "ja_card_id": "ja:M-P:085/M-P:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Energy Switch",
+            "name_ja": "ポケパッド",
+            "omitted_name_count": 31,
+            "proposal_id": "39dcc72b8704999c7c46",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Mega%20Evolution/115.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M-P/085.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.538462,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2025-09-26",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution.ts",
+            "en_set_source_sha256": "c4f57cb24fd79b25311fbe748291cecd73a3f1e05847e6b3d8384d3039ba03bc",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2025-07-28",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "ja_set_source_sha256": "43331d7a5c9621ed7e01abfb271e2f23376c2337bbea736cd72923db186fa052",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 60,
+            "score": 4.038462
+          }
+        },
+        "source_snapshot_sha256": "01c85001c58640dfef314acf11314775e9194799ef2b4975e0073304ce6a4312",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Energy Switch moves one attached basic Energy between the user’s Pokémon; ポケパッド searches the deck for a Pokémon without a Rule Box. Different named concepts and effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Poké Pad searches the deck for a Pokémon without a Rule Box and adds it to hand; Energy Switch moves Basic Energy between your Pokémon.",
+            "limitations": "Shared Item subtype and illustrator do not identify a name concept."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'ポケパッド' (PokéPad) and the English card 'Energy Switch' are completely different Trainer cards with different names and effects. 'ポケパッド' allows searching the deck for a Pokémon without a rule box to put into your hand, whereas 'Energy Switch' (known in Japanese as エネルギーつけかえ) moves a Basic Energy from one Pokémon to another.",
+            "limitations": "None. The Japanese card title and distinct card text completely diverge from the English card title and effect.",
+            "image_evidence": "The provided English card scan shows 'Energy Switch' (MEG EN 115/132) with an effect moving a Basic Energy between Pokémon. No Japanese card scan was provided.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "727e48024b470c360e4cab89a015cefe608276003c42d70eb8a2a540b6934b80",
+            "image_pair_checked": false,
+            "request_sha256": "2fdcf8dd59be2ce27cadccfd7a42695395e002d6a686404aa176ef2e7cd8705c",
+            "response_sha256": "f4a061675b740a7ad3c3b632c8fb38a2efd29c23b43667d4064db1e6cb8db5e4"
+          }
+        ]
+      },
+      "event_id": "cd8693f03532608c9a04a5be01469ff681bbb3f6b0500d60f7f050520dfc39d3"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "5ban Graphics",
+        "category": "Trainer",
+        "en_card_id": "en:SM12:263/236:standard",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/263.ts:sha256:f32ac1d092d55ae9a1660ee8450e87d87c5c58f7c550617e0734e507899ab6b0",
+        "illustrator": "5ban Graphics",
+        "ja_card_id": "ja:S8B:170/184:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+        "name_en": "Giant Hearth",
+        "name_ja": "みずの塔",
+        "omitted_name_count": 25,
+        "proposal_id": "3483fbbd3f2a6cd5f85a",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sun%20%26%20Moon/Cosmic%20Eclipse/263.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/263.ts:sha256:f32ac1d092d55ae9a1660ee8450e87d87c5c58f7c550617e0734e507899ab6b0",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/263.ts:sha256:f32ac1d092d55ae9a1660ee8450e87d87c5c58f7c550617e0734e507899ab6b0",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/263.ts:sha256:f32ac1d092d55ae9a1660ee8450e87d87c5c58f7c550617e0734e507899ab6b0",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "5ban Graphics",
+            "category": "Trainer",
+            "en_card_id": "en:SM12:263/236:standard",
+            "en_match_eligible": 1,
+            "illustrator": "5ban Graphics",
+            "ja_card_id": "ja:S8B:170/184:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Giant Hearth",
+            "name_ja": "みずの塔",
+            "omitted_name_count": 25,
+            "proposal_id": "3483fbbd3f2a6cd5f85a",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sun%20%26%20Moon/Cosmic%20Eclipse/263.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+            "subtype": "Stadium"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.415369,
+            "en_effect_numbers": [
+              "2"
+            ],
+            "en_release_date": "2019-11-01",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse.ts",
+            "en_set_source_sha256": "08120138cea54dff55a98a858d01550f75bec368ec14b6352431316b7fabdbd5",
+            "era_score": 0.0,
+            "ja_effect_numbers": [
+              "2"
+            ],
+            "ja_release_date": "2021-12-03",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b.ts",
+            "ja_set_source_sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 763,
+            "score": 2.415369
+          }
+        },
+        "source_snapshot_sha256": "0ed8fba09ce2a2e4fa4192ab7e5dc3fff1c807af4bbfa441ec92ec2b2cb57ee7",
+        "subtype": "Stadium"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Stadiums, but Giant Hearth discards a hand card to search for up to two Fire Energy; みずの塔 reduces Rapid Strike Pokémon retreat costs by two. The common number does not connect their names or functions.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Tower of Waters reduces Rapid Strike Pokémon retreat cost by two; Giant Hearth discards a card to search for up to two Fire Energy.",
+            "limitations": "Both are Stadiums, but the names and central effects differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'みずの塔' translates to 'Tower of Waters' (a Stadium card associated with Rapid Strike Pokémon that reduces retreat cost by 2). In contrast, 'Giant Hearth' corresponds to the Japanese card '巨大なカマド' (a Stadium card allowing players to discard a card to search for Fire Energy). These are two entirely different Stadium cards with completely unrelated names and effects.",
+            "limitations": "None. The names and card mechanics in the source files are completely different.",
+            "image_evidence": "The provided scan shows the English secret rare print of 'Giant Hearth' (Cosmic Eclipse 263/236), which is a Stadium card searching for Fire Energy, completely distinct from 'Tower of Waters' ('みずの塔'). No Japanese scan was provided, but text evidence is definitive.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "4870e9b4519d422f2a6ccb1de917a84aa2a701c0be1912c2be8a64db2df30c9c",
+            "image_pair_checked": false,
+            "request_sha256": "870a83377643d7bc08381e7c34cbce2e4879c8664928b7b1a5b0c278e6ebd061",
+            "response_sha256": "2835a78ff674694418f70125af15d517df69b342a3d964a2146bda6414687162"
+          }
+        ]
+      },
+      "event_id": "a5b23540d895e256667e2e71627d3730f6b09419a0d8191372b41dea025a57da"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Hideki Ishikawa",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH12.5:140/159:holo",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/140.ts:sha256:2493abb3b76b7c7c22feb1c4ae78a268082e131f29700731cecca49aa0adfdf4",
+        "illustrator": "Hideki Ishikawa",
+        "ja_card_id": "ja:SV2A:207/165:holo",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+        "name_en": "Raihan",
+        "name_ja": "サカキのカリスマ",
+        "omitted_name_count": 41,
+        "proposal_id": "434c83ca923306e08d34",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/140.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2a/207.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/140.ts:sha256:2493abb3b76b7c7c22feb1c4ae78a268082e131f29700731cecca49aa0adfdf4",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/140.ts:sha256:2493abb3b76b7c7c22feb1c4ae78a268082e131f29700731cecca49aa0adfdf4",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/140.ts:sha256:2493abb3b76b7c7c22feb1c4ae78a268082e131f29700731cecca49aa0adfdf4",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Hideki Ishikawa",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH12.5:140/159:holo",
+            "en_match_eligible": 1,
+            "illustrator": "Hideki Ishikawa",
+            "ja_card_id": "ja:SV2A:207/165:holo",
+            "ja_match_eligible": 1,
+            "name_en": "Raihan",
+            "name_ja": "サカキのカリスマ",
+            "omitted_name_count": 41,
+            "proposal_id": "434c83ca923306e08d34",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/140.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2a/207.ts",
+            "subtype": "Supporter"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.152738,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2023-01-20",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith.ts",
+            "en_set_source_sha256": "545eb29372a5c9c6a8cbe840517cfb9f4664325226fdbf6e94a097a6cccb8835",
+            "era_score": 0.0,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2023-06-16",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "ja_set_source_sha256": "a9c27017a1b1afce71dca355c15c2ca02ded082fe18bb30806d2bc3c287523be",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 147,
+            "score": 3.152738
+          }
+        },
+        "source_snapshot_sha256": "1d61c813dfc31679489759fcca32197a6602f88ea26e9ccf4f01fdbe729939f5",
+        "subtype": "Supporter"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Supporters involving Energy, but Raihan requires a prior-turn knockout, attaches discarded basic Energy and searches for any card; サカキのカリスマ returns opposing Active Energy to hand then attaches Energy from the user’s hand to the Active Pokémon. Different character names and effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Giovanni’s Charisma returns Energy from the opposing Active Pokémon and attaches Energy from hand; Raihan attaches Basic Energy from discard after a knockout, then searches the deck.",
+            "limitations": "A broad Energy attachment overlap does not identify the same Supporter."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is 'サカキのカリスマ' (Giovanni's Charisma), depicting Giovanni, while the English card is 'Raihan' (known in Japanese as キバナ). These are completely different Supporter cards depicting different characters with completely different effects.",
+            "limitations": "None. Both text and images clearly confirm entirely different cards and characters.",
+            "image_evidence": "The Japanese scan shows a Special Illustration Rare card depicting Giovanni sitting with a Persian ('サカキのカリスマ'). The English scan shows Raihan sitting with a Flygon on a regular Trainer card ('Raihan').",
+            "ja_image_sha256": "dca1ffe6b39d97d8c63ce63a6b40b49f0ed3ca25e9d9b1aac274997e1c98d390",
+            "en_image_sha256": "e4b9884c1ca97d9917083167adf949850b8034cdaf1eed75843db1b7fb093c2b",
+            "image_pair_checked": true,
+            "request_sha256": "5db570ed824cf0e83b3ebafd4a7136a24f5a69ab9912d171b98b174b94c6e704",
+            "response_sha256": "0db86e732f1f1ea2fcc8ccb1bc73df9d9e6a900be1f0f97de4e5b865a75fc46e"
+          }
+        ]
+      },
+      "event_id": "ac76b38dbae70e5c5413ba6464752623e1082816a12f865ee5f6e70c69fbd1d8"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH12.5:125/159:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/125.ts:sha256:70144cc32d510fe0b7f5c806a0cff703408333c89e0abcb415fa6102170651a4",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S12A:134/172:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/134.ts:sha256:dbdca42e59c4183f382c8f42590f3fdaa51f22e0ae84bbbf37320714ce2302dc",
+        "name_en": "Crushing Hammer",
+        "name_ja": "霧の水晶",
+        "omitted_name_count": 14,
+        "proposal_id": "14a5eb770dca801bff9a",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/125.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12a/134.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/125.ts:sha256:70144cc32d510fe0b7f5c806a0cff703408333c89e0abcb415fa6102170651a4",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/125.ts:sha256:70144cc32d510fe0b7f5c806a0cff703408333c89e0abcb415fa6102170651a4",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/125.ts:sha256:70144cc32d510fe0b7f5c806a0cff703408333c89e0abcb415fa6102170651a4",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH12.5:125/159:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S12A:134/172:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Crushing Hammer",
+            "name_ja": "霧の水晶",
+            "omitted_name_count": 14,
+            "proposal_id": "14a5eb770dca801bff9a",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/125.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12a/134.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/134.ts:sha256:dbdca42e59c4183f382c8f42590f3fdaa51f22e0ae84bbbf37320714ce2302dc",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/134.ts:sha256:dbdca42e59c4183f382c8f42590f3fdaa51f22e0ae84bbbf37320714ce2302dc",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/134.ts:sha256:dbdca42e59c4183f382c8f42590f3fdaa51f22e0ae84bbbf37320714ce2302dc",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.606426,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2023-01-20",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith.ts",
+            "en_set_source_sha256": "545eb29372a5c9c6a8cbe840517cfb9f4664325226fdbf6e94a097a6cccb8835",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2022-12-02",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a.ts",
+            "ja_set_source_sha256": "5ca74d35c7e9725f4a8c0af37e7fe3716c741fb89e04fe061530f00d3ecb5f81",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 49,
+            "score": 4.106426
+          }
+        },
+        "source_snapshot_sha256": "aa6dac36b68ed58064872b7a8693acf69e486d6e522de31644e833c6696ae79f",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Crushing Hammer flips a coin to discard opposing Energy; 霧の水晶 searches for a Psychic Basic Pokémon or Psychic Energy. Distinct objects and actions.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Fog Crystal searches for a Psychic Basic Pokémon or Psychic Energy; Crushing Hammer flips a coin to discard an opposing Energy.",
+            "limitations": "These are different Items despite shared illustrator."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is '霧の水晶' (Fog Crystal), which searches the deck for a Psychic Basic Pokémon or Psychic Energy card. The English card is 'Crushing Hammer' (Japanese: クラッシュハンマー), which flips a coin to discard an Energy from an opponent's Pokémon. They are entirely different Item cards with unrelated names and effects.",
+            "limitations": "None. The text, names, and images clearly demonstrate two completely different card concepts.",
+            "image_evidence": "The Japanese card scan shows a glowing purple crystal ball on a gold stand titled '霧の水晶' (Fog Crystal). The English card scan shows a red toy hammer shattering glass titled 'Crushing Hammer'.",
+            "ja_image_sha256": "f5ebeff21ca6c58f067fa2e7597ea46c156c243969a439137ac6277e55f5c91c",
+            "en_image_sha256": "55399343e7a6f7e6f39d643c3f18270d500b065442c2a3659338bc3d8943ba50",
+            "image_pair_checked": true,
+            "request_sha256": "870bdd31e0dc2f237ccd1d81fa02aef4f932e031ac9d8986732effb2382c4fb6",
+            "response_sha256": "eb33cb86566bd94fe18d7a956468b707279e70b1e4682a7b46472cdb5a60de97"
+          }
+        ]
+      },
+      "event_id": "7c72e36abd25b971160451198ab865931b0bcf112aa3e0dfd4ebaf9f7e4d2eb1"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "nagimiso",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH12TG:TG28/0030:holo",
+        "en_match_eligible": 0,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts:sha256:cc8cced1a7d9b2b13865a74d7278595a21295cefd6cad877054d4ff36eba9a6b",
+        "illustrator": "nagimiso",
+        "ja_card_id": "ja:S8B:263/184:holo",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/263.ts:sha256:cb1f34376017cee3c9ed37af265e8235c61d300aa586c844b8ee1c2ece022586",
+        "name_en": "Sordward & Shielbert",
+        "name_ja": "ソッドとシルディ",
+        "omitted_name_count": 48,
+        "proposal_id": "1c56d00aa563ef3ba6e1",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Silver%20Tempest%20Trainer%20Gallery/TG28.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/263.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts:sha256:cc8cced1a7d9b2b13865a74d7278595a21295cefd6cad877054d4ff36eba9a6b",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts:sha256:cc8cced1a7d9b2b13865a74d7278595a21295cefd6cad877054d4ff36eba9a6b",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Silver Tempest Trainer Gallery/TG28.ts:sha256:cc8cced1a7d9b2b13865a74d7278595a21295cefd6cad877054d4ff36eba9a6b",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "nagimiso",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH12TG:TG28/0030:holo",
+            "en_match_eligible": 0,
+            "illustrator": "nagimiso",
+            "ja_card_id": "ja:S8B:263/184:holo",
+            "ja_match_eligible": 1,
+            "name_en": "Sordward & Shielbert",
+            "name_ja": "ソッドとシルディ",
+            "omitted_name_count": 48,
+            "proposal_id": "1c56d00aa563ef3ba6e1",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Silver%20Tempest%20Trainer%20Gallery/TG28.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/263.ts",
+            "subtype": "Supporter"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/263.ts:sha256:cb1f34376017cee3c9ed37af265e8235c61d300aa586c844b8ee1c2ece022586",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/263.ts:sha256:cb1f34376017cee3c9ed37af265e8235c61d300aa586c844b8ee1c2ece022586",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/263.ts:sha256:cb1f34376017cee3c9ed37af265e8235c61d300aa586c844b8ee1c2ece022586",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.736648,
+            "en_effect_numbers": [
+              "3"
+            ],
+            "en_release_date": "2022-11-11",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Silver Tempest Trainer Gallery.ts",
+            "en_set_source_sha256": "77e9f6ebba879faee0b82707f73f33f43956dd8bc10878f3b2cbd65d052f108c",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "3"
+            ],
+            "ja_release_date": "2021-12-03",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b.ts",
+            "ja_set_source_sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+            "number_score": 1.0,
+            "position": 3,
+            "release_gap_days": 343,
+            "score": 2.236648
+          }
+        },
+        "source_snapshot_sha256": "7c1c8fdb840963e36dcc6a19a4ac08727125b04459bf6c25b2a801395ebe689a",
+        "subtype": "Supporter"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "approve",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": true,
+        "en_identity_checked": true,
+        "translation_checked": true,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "approve",
+            "rationale": "Sordward & Shielbert / ソッドとシルディ: both Supporters choose a discarded Trainer and ask the opponent whether it may return to hand, drawing three if refused. The localized paired-character name and distinctive opponent-choice effect agree.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "approve",
+            "rationale": "ソッドとシルディ is Sordward & Shielbert; both Supporters ask the opponent whether one Trainer from your discard pile may return to hand, drawing three cards if refused.",
+            "limitations": "Pinned cards support the name concept, not physical-printing or price equivalence."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "approve",
+            "rationale": "The Japanese title 'ソッドとシルディ' is the canonical name for the duo Sordward & Shielbert introduced in Pokémon Sword and Shield. Both cards share the Trainer - Supporter category/subtype, regulation mark D, and an identical distinctive effect where the player chooses a Trainer card from the discard pile and asks the opponent if it may be put into their hand, drawing 3 cards if the opponent says no.",
+            "limitations": "Card scans were not provided; comparison relies on text metadata, but the distinctive effect text and character name mapping provide decisive proof of identity.",
+            "image_evidence": "image missing",
+            "ja_image_sha256": null,
+            "en_image_sha256": null,
+            "image_pair_checked": false,
+            "request_sha256": "02f5621b1a56f29cc49c33de20fefa91762318ab216e0abc9cb1b8e972aa1bb1",
+            "response_sha256": "fa063f0fe1b306fadfdb6d35b7ff195fc414df02edd47695e054ded564479ad9"
+          }
+        ]
+      },
+      "event_id": "abbdc3d11aff72b8b1761e203d453507ae08e2c5b19cf6e98d833901b50f7f44"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH7:142/203:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Evolving Skies/142.ts:sha256:be6b74ba1ca8059ec2e37f6243be7a2f6191c77d4d801bc5b2cdbf2d2af84569",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S5I:063/070:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+        "name_en": "Boost Shake",
+        "name_ja": "キャンプセット",
+        "omitted_name_count": 14,
+        "proposal_id": "0d926871e797707d5e22",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Evolving%20Skies/142.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Evolving Skies/142.ts:sha256:be6b74ba1ca8059ec2e37f6243be7a2f6191c77d4d801bc5b2cdbf2d2af84569",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Evolving Skies/142.ts:sha256:be6b74ba1ca8059ec2e37f6243be7a2f6191c77d4d801bc5b2cdbf2d2af84569",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Evolving Skies/142.ts:sha256:be6b74ba1ca8059ec2e37f6243be7a2f6191c77d4d801bc5b2cdbf2d2af84569",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH7:142/203:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S5I:063/070:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Boost Shake",
+            "name_ja": "キャンプセット",
+            "omitted_name_count": 14,
+            "proposal_id": "0d926871e797707d5e22",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Evolving%20Skies/142.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.959233,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2021-08-27",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Evolving Skies.ts",
+            "en_set_source_sha256": "b1735a6ea5ad54a0f83c1bd746a813d63784949ebf600d33c99179a0eeefee2c",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2021-01-22",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I.ts",
+            "ja_set_source_sha256": "f4aa9a28c68579f69388d0b3209178592373fae090ffd6bd330791726ead4c10",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 217,
+            "score": 3.459233
+          }
+        },
+        "source_snapshot_sha256": "44b4e90915089592baae8c86db1f83804adb682deeb88607a0ec31ed92fb342a",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items that end the user’s turn, but Boost Shake searches for and immediately evolves a Pokémon with first-turn exceptions; キャンプセット searches for any card and adds it to hand. Shared turn-ending text does not establish a shared name concept.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Camp Set ends the turn after searching for any card; Boost Shake ends the turn after finding and immediately playing an Evolution card.",
+            "limitations": "Both end the turn, but their card-search purpose and resulting actions differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is キャンプセット (Camping Gear), which lets the player search their deck for any 1 card to put into their hand, ending their turn. In contrast, 'Boost Shake' corresponds to the Japanese card ぐんぐんシェイク (Gungun Shake), which searches the deck for an Evolution card to evolve a Pokémon immediately, ending the turn. They are completely different Item cards.",
+            "limitations": "No Japanese card scan was provided, but the Japanese card text, name, and English scan provide conclusive evidence of distinct cards.",
+            "image_evidence": "The English scan shows 'Boost Shake' depicting a shaker bottle with yellow liquid, matching the effect of searching for an evolution card. This is distinct from the Japanese Item 'キャンプセット' (Camping Gear).",
+            "ja_image_sha256": null,
+            "en_image_sha256": "d3b2b0caf78148a2c8cd6718883ab076cc4330cdb92ca5de34197c1d1f326c3d",
+            "image_pair_checked": false,
+            "request_sha256": "e532bf53c12cccb1921b548fd907aae86b57d6bf8250f54437c4b5489c4686fd",
+            "response_sha256": "f0562e9c8c1d82a31fa3cc90aa4a82c11f5dc1d4226dd75b9ec40efbb221b747"
+          }
+        ]
+      },
+      "event_id": "a62f0000fb5537f85f8be6c34d362198a5678a3bca71797b0b99e9b1711e4e51"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Toyste Beach",
+        "category": "Trainer",
+        "en_card_id": "en:ME02:093/094:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/093.ts:sha256:d97eddeddc164d7d3fdfe819b26eac9411a85e3ed105e20539e4e64ca5ba23b6",
+        "illustrator": "Toyste Beach",
+        "ja_card_id": "ja:M2A:167/193:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/167.ts:sha256:1f2d0fbe88dacf3807b06dcad06473718e1914f85154f272b6814df18444bc3c",
+        "name_en": "Sacred Charm",
+        "name_ja": "ホップのこだわりハチマキ",
+        "omitted_name_count": 49,
+        "proposal_id": "1119286a097641869e95",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/093.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2a/167.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/093.ts:sha256:d97eddeddc164d7d3fdfe819b26eac9411a85e3ed105e20539e4e64ca5ba23b6",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/093.ts:sha256:d97eddeddc164d7d3fdfe819b26eac9411a85e3ed105e20539e4e64ca5ba23b6",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/093.ts:sha256:d97eddeddc164d7d3fdfe819b26eac9411a85e3ed105e20539e4e64ca5ba23b6",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Toyste Beach",
+            "category": "Trainer",
+            "en_card_id": "en:ME02:093/094:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Toyste Beach",
+            "ja_card_id": "ja:M2A:167/193:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Sacred Charm",
+            "name_ja": "ホップのこだわりハチマキ",
+            "omitted_name_count": 49,
+            "proposal_id": "1119286a097641869e95",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/093.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2a/167.ts",
+            "subtype": "Tool"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/167.ts:sha256:1f2d0fbe88dacf3807b06dcad06473718e1914f85154f272b6814df18444bc3c",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/167.ts:sha256:1f2d0fbe88dacf3807b06dcad06473718e1914f85154f272b6814df18444bc3c",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/167.ts:sha256:1f2d0fbe88dacf3807b06dcad06473718e1914f85154f272b6814df18444bc3c",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.869159,
+            "en_effect_numbers": [
+              "30"
+            ],
+            "en_release_date": "2025-11-14",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames.ts",
+            "en_set_source_sha256": "589d0acbe19ea07948d293528efbe4943768bde937a59ad7a471e23f4ddd738a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "30"
+            ],
+            "ja_release_date": "2025-11-28",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a.ts",
+            "ja_set_source_sha256": "cc26231c06c79a10a0046a375b90f2792d45f5d8f944018e7278ec1c70acb556",
+            "number_score": 1.0,
+            "position": 3,
+            "release_gap_days": 14,
+            "score": 3.369159
+          }
+        },
+        "source_snapshot_sha256": "cfa36c981349dec8829fccaa98befedb9f91d40fc22fe82859c0a53db7936ddc",
+        "subtype": "Tool"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Tools with a 30-damage number, but Sacred Charm reduces damage from opposing Pokémon with Abilities; ホップのこだわりハチマキ reduces Hop’s Pokémon attack costs by one Colorless Energy and adds 30 attack damage. Distinct names, restrictions and opposite damage roles.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Hop’s Choice Band lowers attack cost for Hop’s Pokémon and adds 30 attack damage; Sacred Charm reduces incoming damage by 30 from Pokémon with Abilities.",
+            "limitations": "The shared number 30 and Tool subtype do not identify the same concept."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is 'ホップのこだわりハチマキ' (Hop's Choice Band), a Pokémon Tool specifically affecting 'Hop's Pokémon' by reducing energy requirements and increasing attack damage by 30. The English card is 'Sacred Charm', which reduces damage taken from Pokémon that have an Ability by 30. These are completely different cards with different names and effects.",
+            "limitations": "None. The distinct names and entirely different mechanics in the text make this an unmistakable mismatch.",
+            "image_evidence": "The provided scan shows the English Pokémon Tool card 'Sacred Charm' (PFL 093/094) illustrated by Toyste Beach, depicting a blue glowing teardrop-shaped pendant charm. No Japanese scan was provided, but the Japanese source text clearly represents a completely different card (Hop's Choice Band).",
+            "ja_image_sha256": null,
+            "en_image_sha256": "a4f813967a38c23d5f12b3b62ea91348a96afbf4a7eb29e9798d4a524c836151",
+            "image_pair_checked": false,
+            "request_sha256": "835da9671f6067ffdb382354e91d748702ec0a769c40b6306b097e79e1e35bc8",
+            "response_sha256": "a457cf5687fd1c0f4daf87bfd9382783a7167c2688c171523065312095a6866e"
+          }
+        ]
+      },
+      "event_id": "f65266786013bfbee6efa02ee85192a1405df06b4caa80d53b9df98511725a2e"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Studio Bora Inc.",
+        "category": "Trainer",
+        "en_card_id": "en:ME05:107/084:holo",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Pitch Black/107.ts:sha256:0350767335857887001aff9405ad71cd3feb070e8f2281a9aa511561025cb9f4",
+        "illustrator": "Studio Bora Inc.",
+        "ja_card_id": "ja:M5:103/081:holo",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/103.ts:sha256:47f8bd5bd1df472fd11b74a49644894d953f4bc943c5a97264c80a968ab57cbb",
+        "name_en": "Energy Switch",
+        "name_ja": "エネルギーつけかえ",
+        "omitted_name_count": 114,
+        "proposal_id": "62af3f1d5fbc67735447",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Pitch%20Black/107.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/103.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Pitch Black/107.ts:sha256:0350767335857887001aff9405ad71cd3feb070e8f2281a9aa511561025cb9f4",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Pitch Black/107.ts:sha256:0350767335857887001aff9405ad71cd3feb070e8f2281a9aa511561025cb9f4",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Pitch Black/107.ts:sha256:0350767335857887001aff9405ad71cd3feb070e8f2281a9aa511561025cb9f4",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Studio Bora Inc.",
+            "category": "Trainer",
+            "en_card_id": "en:ME05:107/084:holo",
+            "en_match_eligible": 1,
+            "illustrator": "Studio Bora Inc.",
+            "ja_card_id": "ja:M5:103/081:holo",
+            "ja_match_eligible": 1,
+            "name_en": "Energy Switch",
+            "name_ja": "エネルギーつけかえ",
+            "omitted_name_count": 114,
+            "proposal_id": "62af3f1d5fbc67735447",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Pitch%20Black/107.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/103.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/103.ts:sha256:47f8bd5bd1df472fd11b74a49644894d953f4bc943c5a97264c80a968ab57cbb",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/103.ts:sha256:47f8bd5bd1df472fd11b74a49644894d953f4bc943c5a97264c80a968ab57cbb",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/103.ts:sha256:47f8bd5bd1df472fd11b74a49644894d953f4bc943c5a97264c80a968ab57cbb",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.5625,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2026-07-17",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Pitch Black.ts",
+            "en_set_source_sha256": "5de8cb1a5b916a3ce022c5201f5e056d4e248b09d6a43d6498eebba27932520a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2026-05-22",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5.ts",
+            "ja_set_source_sha256": "1db9d1f230e08df727cea33bf0d20dcd0f3a3cefe88c1c26c06990cffb58eb2a",
+            "number_score": 2.0,
+            "position": 3,
+            "release_gap_days": 56,
+            "score": 4.0625
+          }
+        },
+        "source_snapshot_sha256": "d4821966fb670e13c7a3f154c322c500c5695e1e9b0ded08e7a41508b53e9b45",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "approve",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:14:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": true,
+        "en_identity_checked": true,
+        "translation_checked": true,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "approve",
+            "rationale": "Energy Switch / エネルギーつけかえ: both Items move one attached basic Energy from one of the user’s Pokémon to another. The localized Energy-switching name and exact effect agree.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "approve",
+            "rationale": "エネルギーつけかえ is Energy Switch; both Items move one Basic Energy from one of your Pokémon to another.",
+            "limitations": "Pinned cards support the name concept, not physical-printing or price equivalence."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "approve",
+            "rationale": "Both cards represent the standard Trainer - Item card 'Energy Switch' (Japanese: エネルギーつけかえ). Their rules text is identical in function: moving 1 Basic Energy from 1 of your Pokémon to another of your Pokémon.",
+            "limitations": "The Japanese card scan is missing, but the Japanese card text, name, card type, and effect directly correspond to the official localization of the English card.",
+            "image_evidence": "The English scan shows 'Item - Trainer - Energy Switch' with the effect 'Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.' illustrated by Studio Bora Inc. No Japanese scan was provided.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "0429b81c2b270bfca7a6f8e3e337da3bac6800d4cf10cdac6b489983aa1d5b1d",
+            "image_pair_checked": false,
+            "request_sha256": "e94518a753b9c035e77b064ff2a1f63fe93ffce7ce629d3ca51c64d2ad3ca179",
+            "response_sha256": "bc3fc3218c634d8582f6e13029fe8c86eba31b2d204945e9b1af9d379345d06c"
+          }
+        ]
+      },
+      "event_id": "9a28b6e0295b7fa11aff5b07945037a18601e847d5c32396cbf49e8fbc786565"
+    }
+  ],
+  "concept_revisions": [
+    {
+      "concept_id": "concept-1e0ba721f655af8f387d",
+      "revision": 1,
+      "category": "Trainer",
+      "name_ja": "ソッドとシルディ",
+      "name_en": "Sordward & Shielbert",
+      "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/263.ts",
+      "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Silver%20Tempest%20Trainer%20Gallery/TG28.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+      "reviewed_at": "2026-09-25T08:14:00+00:00",
+      "status": "approved",
+      "review_event_id": "abbdc3d11aff72b8b1761e203d453507ae08e2c5b19cf6e98d833901b50f7f44"
+    },
+    {
+      "concept_id": "concept-3ce6190b35fe4d5668fd",
+      "revision": 1,
+      "category": "Trainer",
+      "name_ja": "エネルギーつけかえ",
+      "name_en": "Energy Switch",
+      "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/103.ts",
+      "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Pitch%20Black/107.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+      "reviewed_at": "2026-09-25T08:14:00+00:00",
+      "status": "approved",
+      "review_event_id": "9a28b6e0295b7fa11aff5b07945037a18601e847d5c32396cbf49e8fbc786565"
+    }
+  ],
+  "audit": {
+    "proposal_rows": 8,
+    "decisions": {
+      "approve": 2,
+      "reject": 6
+    },
+    "retained_review_events": 8,
+    "approved_import_rows": 2,
+    "proposed_candidate_edges": 2,
+    "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+    "deferred_rows": 0,
+    "deferred": [],
+    "scope": "AI-agreed name concepts and proposed collecting alternatives; no human-certified printing counterparts"
+  }
+}

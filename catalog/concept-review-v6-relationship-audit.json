@@ -1,0 +1,36 @@
+{
+  "anchors": 20,
+  "candidate_pairs": 58,
+  "duplicate_pairs_skipped": 0,
+  "anchors_with_candidates": 20,
+  "candidate_pairs_by_signal": {
+    "reviewed_concept_and_illustrator": 58
+  },
+  "pairs_with_offer_matching_disabled": 1,
+  "gaps": [
+    {
+      "card_id": "ja:SV6:133/101:holo",
+      "reason": "candidate_list_truncated",
+      "total_candidates": 27,
+      "shown": 12,
+      "omitted_candidate_ids": [
+        "en:SV05:144/162:normal_international_championship_latin_america_staff",
+        "en:SV05:144/162:normal_international_championship_latin_america_top_eight",
+        "en:SV05:144/162:normal_international_championship_north_america",
+        "en:SV05:144/162:normal_international_championship_north_america_champion",
+        "en:SV05:144/162:normal_international_championship_north_america_staff",
+        "en:SV05:144/162:normal_international_championship_north_america_top_eight",
+        "en:SV05:144/162:normal_master_ball_league",
+        "en:SV05:144/162:normal_master_ball_league_judge",
+        "en:SV05:144/162:normal_player_rewards_program",
+        "en:SV05:144/162:reverse",
+        "en:SV05:144/162:reverse_player-reward",
+        "en:SV06:223/167:holo_gold",
+        "en:SV08.5:101/131:normal",
+        "en:SV08.5:101/131:reverse",
+        "en:SV08.5:101/131:reverse_pokeball"
+      ]
+    }
+  ],
+  "scope": "internal retrieval queue; no relationship verified"
+}

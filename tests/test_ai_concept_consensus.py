@@ -92,3 +92,30 @@ class AiConceptConsensusTests(unittest.TestCase):
             queue, {row["proposal_id"]: row}, {row["proposal_id"]: row},
             "2026-09-25T00:00:00Z", "v6", True)
         self.assertEqual((len(bundle["review_events"]), len(edges)), (1, 0))
+
+    def test_v6_triple_review_requires_source_bound_multimodal_agreement(self):
+        queue = read_jsonl(ROOT / "catalog/concept-review-v6-stage1-queue.jsonl")[:1]
+        row = {"proposal_id": queue[0]["proposal_id"],
+               "source_snapshot_sha256": queue[0]["source_snapshot_sha256"],
+               "suggested_decision": "approve", "rationale": "independent source comparison",
+               "image_evidence": "both source-matched card scans checked"}
+        reviews = {row["proposal_id"]: row}
+        image = {"status": "included", "image_sha256": "a" * 64}
+        audit = {"model": "gemini-3.8-flash",
+                 "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+                 "rows": [{"proposal_id": row["proposal_id"],
+                           "model_version": "gemini-3.8-flash",
+                           "ja_image": image, "en_image": image,
+                           "request_sha256": "b" * 64, "response_sha256": "c" * 64}]}
+        bundle, edges = compiler.compile_consensus(
+            queue, reviews, reviews, "2026-09-25T00:00:00Z", "v6", True,
+            reviews, audit)
+        self.assertEqual((len(bundle["review_events"]), len(edges)), (1, 1))
+        self.assertEqual(len(bundle["review_events"][0]["review"]["ai_reviews"]), 3)
+        audit["rows"][0]["ja_image"] = {"status": "image_missing"}
+        partial, partial_edges = compiler.compile_consensus(
+            queue, reviews, reviews, "2026-09-25T00:00:00Z", "v6", True,
+            reviews, audit)
+        self.assertEqual((len(partial["review_events"]), len(partial_edges)), (1, 1))
+        self.assertFalse(partial["review_events"][0]["review"]["ai_reviews"][2]
+                         ["image_pair_checked"])

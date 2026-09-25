@@ -1,0 +1,713 @@
+{
+  "schema": "pokemon.concept_review_bundle.v1",
+  "review_events": [
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Studio Bora Inc.",
+        "category": "Trainer",
+        "en_card_id": "en:ME01:125/132:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/125.ts:sha256:0458c441dd48dc292fc6a0e63d1283bb785581c3cb127b23ebb78ba18f0b3cc6",
+        "illustrator": "Studio Bora Inc.",
+        "ja_card_id": "ja:M-P:085/M-P:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+        "name_en": "Rare Candy",
+        "name_ja": "ポケパッド",
+        "omitted_name_count": 31,
+        "proposal_id": "a915e01790aa7cef96f9",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Mega%20Evolution/125.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M-P/085.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/125.ts:sha256:0458c441dd48dc292fc6a0e63d1283bb785581c3cb127b23ebb78ba18f0b3cc6",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/125.ts:sha256:0458c441dd48dc292fc6a0e63d1283bb785581c3cb127b23ebb78ba18f0b3cc6",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution/125.ts:sha256:0458c441dd48dc292fc6a0e63d1283bb785581c3cb127b23ebb78ba18f0b3cc6",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Studio Bora Inc.",
+            "category": "Trainer",
+            "en_card_id": "en:ME01:125/132:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Studio Bora Inc.",
+            "ja_card_id": "ja:M-P:085/M-P:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Rare Candy",
+            "name_ja": "ポケパッド",
+            "omitted_name_count": 31,
+            "proposal_id": "a915e01790aa7cef96f9",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Mega%20Evolution/125.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M-P/085.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/085.ts:sha256:c7464e38a858f16a738ec6f78bcab7f12f7ba17261357b92080f08b69a39c6c9",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.538462,
+            "en_effect_numbers": [
+              "1",
+              "2"
+            ],
+            "en_release_date": "2025-09-26",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Mega Evolution.ts",
+            "en_set_source_sha256": "c4f57cb24fd79b25311fbe748291cecd73a3f1e05847e6b3d8384d3039ba03bc",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2025-07-28",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "ja_set_source_sha256": "43331d7a5c9621ed7e01abfb271e2f23376c2337bbea736cd72923db186fa052",
+            "number_score": 1.0,
+            "position": 5,
+            "release_gap_days": 60,
+            "score": 3.038462
+          }
+        },
+        "source_snapshot_sha256": "75dc09149073b6b0d733f2d0058de064b4227d11d43236d8a46598f40b7b8a18",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Rare Candy evolves a Basic Pokémon directly into Stage 2 using a card in hand, with first-turn restrictions; ポケパッド searches the deck for a Pokémon without a Rule Box and adds it to hand. Different names and effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Poké Pad searches the deck for a Pokémon without a Rule Box and adds it to hand; Rare Candy evolves a Basic Pokémon directly to Stage 2 using a card already in hand.",
+            "limitations": "Both are Items involving Pokémon cards, but the names and actions differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'ポケパッド' (Poké Pad) has an effect allowing the player to search their deck for 1 Pokémon without a Rule Box and add it to their hand. The English card is 'Rare Candy', which corresponds to the Japanese card 'ふしぎなアメ' (Fushigi na Ame) and has an entirely different effect focused on evolving a Basic Pokémon directly into a Stage 2 Pokémon. They represent completely distinct name concepts and card mechanics.",
+            "limitations": "None. The titles and card effects completely differ.",
+            "image_evidence": "The English card scan clearly shows 'Rare Candy' with its classic evolution-skipping text and artwork. The Japanese card scan is missing, but the provided Japanese card data explicitly gives the title 'ポケパッド' and a deck-search effect.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "54334a66454d4621c89ad3f72e2f737cd0a09fa264b7fe67c64976ca9dd59b04",
+            "image_pair_checked": false,
+            "request_sha256": "fdae87212e18f7edc9fce77b0ddd10a2672d1848c3dce81dfb24b770f671c5e9",
+            "response_sha256": "96e6c574c839d2a9ef2ce22880af19c1f71887afaf9c427f663e87182a20fd2c"
+          }
+        ]
+      },
+      "event_id": "2a337294cc88d912196351393f378f7765d8d335011a9f81bd830dfb5d7f322d"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "5ban Graphics",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH8:282/264:holo_gold",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Fusion Strike/282.ts:sha256:780c7e26296e8aca2322ef552e1de660eb43a624603a3159ba3f719a3f9f35d9",
+        "illustrator": "5ban Graphics",
+        "ja_card_id": "ja:S8B:170/184:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+        "name_en": "Training Court",
+        "name_ja": "みずの塔",
+        "omitted_name_count": 25,
+        "proposal_id": "24abdecaf803c77e8fbe",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Fusion%20Strike/282.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Fusion Strike/282.ts:sha256:780c7e26296e8aca2322ef552e1de660eb43a624603a3159ba3f719a3f9f35d9",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Fusion Strike/282.ts:sha256:780c7e26296e8aca2322ef552e1de660eb43a624603a3159ba3f719a3f9f35d9",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Fusion Strike/282.ts:sha256:780c7e26296e8aca2322ef552e1de660eb43a624603a3159ba3f719a3f9f35d9",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "5ban Graphics",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH8:282/264:holo_gold",
+            "en_match_eligible": 1,
+            "illustrator": "5ban Graphics",
+            "ja_card_id": "ja:S8B:170/184:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Training Court",
+            "name_ja": "みずの塔",
+            "omitted_name_count": 25,
+            "proposal_id": "24abdecaf803c77e8fbe",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Fusion%20Strike/282.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+            "subtype": "Stadium"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.809955,
+            "en_effect_numbers": [],
+            "en_release_date": "2021-11-12",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Fusion Strike.ts",
+            "en_set_source_sha256": "95b54693d79afb4616a51866f887524c9432e1a64a6794c1fef8123fab1386ec",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "2"
+            ],
+            "ja_release_date": "2021-12-03",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b.ts",
+            "ja_set_source_sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+            "number_score": 0.0,
+            "position": 5,
+            "release_gap_days": 21,
+            "score": 2.309955
+          }
+        },
+        "source_snapshot_sha256": "6b0cdb011ae645a1e1937ed337e2054281fdaeff146ad626eac0c25bc82453dc",
+        "subtype": "Stadium"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Stadiums, but Training Court returns one discarded basic Energy to hand each turn; みずの塔 reduces Rapid Strike Pokémon retreat costs by two. Distinct locations and effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Tower of Waters reduces Rapid Strike Pokémon retreat cost by two; Training Court returns one Basic Energy from discard to hand each turn.",
+            "limitations": "Both are Stadiums, but their names and effects differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'みずの塔' translates to 'Tower of Waters' and reduces the retreat cost of Rapid Strike Pokémon by 2. The English card 'Training Court' corresponds to the Japanese card 'トレーニングコート' and allows players to retrieve a basic Energy card from their discard pile once per turn. They are completely different Stadium cards with distinct names and effects.",
+            "limitations": "None. Both cards have well-established, non-matching official translations and completely different effect text.",
+            "image_evidence": "The provided scan shows the English Stadium card 'Training Court' (Fusion Strike 282/264, Secret Rare) with the effect to recover a basic Energy from the discard pile once per turn. The Japanese card scan is missing, but the text data for 'みずの塔' confirms it has an entirely different Rapid Strike retreat reduction effect.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "177e2cd9cb9b1c3682bd6f8b600219d60b37751987bb895971c14a74aa9b4b08",
+            "image_pair_checked": false,
+            "request_sha256": "705a0909b3fd1beac734a83bfd112f027551548ffa0641b2d2514c3e8ed011a2",
+            "response_sha256": "c82263090c7f710248f45313d2c5645c2559c79d589f89d7cd447a7da0216a33"
+          }
+        ]
+      },
+      "event_id": "19b2269d9fc34cf2620f682150465700504cbe0c0ad760e50ca630b5a95c253d"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Hideki Ishikawa",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH11:167/196:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Lost Origin/167.ts:sha256:5ff06d196a0ab7b8a7f833ae74a25333a9c610afd1d9c3b79fe543ac211fc315",
+        "illustrator": "Hideki Ishikawa",
+        "ja_card_id": "ja:SV2A:207/165:holo",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+        "name_en": "Thorton",
+        "name_ja": "サカキのカリスマ",
+        "omitted_name_count": 41,
+        "proposal_id": "fbef618543d675f7298a",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Lost%20Origin/167.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2a/207.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Lost Origin/167.ts:sha256:5ff06d196a0ab7b8a7f833ae74a25333a9c610afd1d9c3b79fe543ac211fc315",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Lost Origin/167.ts:sha256:5ff06d196a0ab7b8a7f833ae74a25333a9c610afd1d9c3b79fe543ac211fc315",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Lost Origin/167.ts:sha256:5ff06d196a0ab7b8a7f833ae74a25333a9c610afd1d9c3b79fe543ac211fc315",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Hideki Ishikawa",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH11:167/196:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Hideki Ishikawa",
+            "ja_card_id": "ja:SV2A:207/165:holo",
+            "ja_match_eligible": 1,
+            "name_en": "Thorton",
+            "name_ja": "サカキのカリスマ",
+            "omitted_name_count": 41,
+            "proposal_id": "fbef618543d675f7298a",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Lost%20Origin/167.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2a/207.ts",
+            "subtype": "Supporter"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/207.ts:sha256:d4c8ebe608e134dfe678ccaee64cb242c84633885854eb19cc1630cdf5fd5b24",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.833333,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2022-09-09",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Lost Origin.ts",
+            "en_set_source_sha256": "ea52bbcc0836ef20156626a3b36035379323c0d1911456e36d6c12c8eb6d2efd",
+            "era_score": 0.0,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2023-06-16",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "ja_set_source_sha256": "a9c27017a1b1afce71dca355c15c2ca02ded082fe18bb30806d2bc3c287523be",
+            "number_score": 2.0,
+            "position": 5,
+            "release_gap_days": 280,
+            "score": 2.833333
+          }
+        },
+        "source_snapshot_sha256": "0617dda309d0dc91c53ff5cb216208340f58b962bc5dfef8b765c825024b196a",
+        "subtype": "Supporter"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Supporters, but Thorton replaces an in-play Basic Pokémon with one from the discard pile while preserving attachments and other state; サカキのカリスマ returns opposing Active Energy to hand and attaches Energy from the user’s hand. Different characters and distinctive effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Giovanni’s Charisma returns an opposing Active Pokémon’s Energy to hand and attaches Energy from your hand; Thorton swaps a Basic Pokémon in discard with one in play while preserving attached cards and state.",
+            "limitations": "Both are Supporters, but the characters and effects differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is 'サカキのカリスマ' (Giovanni's Charisma), depicting the character Giovanni with an effect that manipulates energy attached to Active Pokémon. The English card is 'Thorton' (whose Japanese name is ネジキ / Nejiki), depicting the character Thorton with an effect that switches Basic Pokémon from the discard pile into play. They represent completely different Trainer cards and characters.",
+            "limitations": "None. The card names, depicted characters, and card texts are entirely distinct and clearly documented.",
+            "image_evidence": "The Japanese scan shows Giovanni sitting on a couch with Persian (titled 'サカキのカリスマ'). The English scan shows Thorton in front of the Battle Factory (titled 'Thorton').",
+            "ja_image_sha256": "dca1ffe6b39d97d8c63ce63a6b40b49f0ed3ca25e9d9b1aac274997e1c98d390",
+            "en_image_sha256": "444af8e1989c70481550814bba8b91a4dd1be90f8b7b9b9c8d51b5c8ee570980",
+            "image_pair_checked": true,
+            "request_sha256": "bc119fa1232c78fcc3d132045f8f23c914d04b0ac223151537e02f17668b4daf",
+            "response_sha256": "69b4f1ae23e68dbb0956b9b1e487fd4b1a94612c14e0427de0b0e13c05f80ece"
+          }
+        ]
+      },
+      "event_id": "5956d93cc26738c51a59f904964917b905ab6c952356cd9c2322e66db2d969ff"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH10:158/189:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S8B:135/184:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/135.ts:sha256:484918e8fb7dbfea2d61a09926315f429632d9474d346385f526d8d7910a8aea",
+        "name_en": "Wait and See Turbo",
+        "name_ja": "霧の水晶",
+        "omitted_name_count": 14,
+        "proposal_id": "0545a4c3c7d6da35ebb5",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Astral%20Radiance/158.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/135.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH10:158/189:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S8B:135/184:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Wait and See Turbo",
+            "name_ja": "霧の水晶",
+            "omitted_name_count": 14,
+            "proposal_id": "0545a4c3c7d6da35ebb5",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Astral%20Radiance/158.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/135.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/135.ts:sha256:484918e8fb7dbfea2d61a09926315f429632d9474d346385f526d8d7910a8aea",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/135.ts:sha256:484918e8fb7dbfea2d61a09926315f429632d9474d346385f526d8d7910a8aea",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/135.ts:sha256:484918e8fb7dbfea2d61a09926315f429632d9474d346385f526d8d7910a8aea",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.066667,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2022-05-27",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance.ts",
+            "en_set_source_sha256": "51a134e3293d03834ffb5e7caf076a5d092107a9bffb1c111bbc2f493208110e",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2021-12-03",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b.ts",
+            "ja_set_source_sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+            "number_score": 2.0,
+            "position": 5,
+            "release_gap_days": 175,
+            "score": 3.566667
+          }
+        },
+        "source_snapshot_sha256": "7bfc898c7b9315b67f6464484183ac75bc4709f9fb066b3a06104f83fd9281e5",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items that search for Energy, but Wait and See Turbo only works on the first turn going second, attaches a searched basic Energy and ends the turn; 霧の水晶 adds a Psychic Basic Pokémon or Psychic Energy to hand. Different names, timing, targets and destinations.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Fog Crystal searches for a Psychic Basic Pokémon or Psychic Energy and adds it to hand; Wait and See Turbo attaches Basic Energy from the deck on a restricted opening turn and then ends the turn.",
+            "limitations": "Both search for Energy, but card type, target action, restrictions, and name differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card '霧の水晶' (Fog Crystal) is an Item card that allows the player to search their deck for a Psychic Basic Pokémon or a Psychic Energy card. In contrast, 'Wait and See Turbo' (Japanese title 'あとだしターボ' / Atodashi Turbo) is an Item card with completely different text requiring it to be played only if going second on the first turn to search for and attach a basic Energy card and end the turn. They are distinct cards with completely different effects and Japanese names.",
+            "limitations": "Only the English card scan is provided, but the effect text and card titles in both source files provide definitive evidence that these are entirely different cards.",
+            "image_evidence": "The English card scan shows 'Wait and See Turbo' (Astral Radiance 158/189), depicting an energy-firing hairdryer-like device with an effect restricting its use to going second on the first turn. The Japanese card scan is missing.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "cf8d83f2fa29bb801f9640d31942c9e1e356f796cef8d9e3b4796a021ff0f323",
+            "image_pair_checked": false,
+            "request_sha256": "41a6ee4c229a9086129ab56014d0b471ecef60c58ada2c7ffab23e155201306b",
+            "response_sha256": "7763ef7ad8fc622fd0a6df7f0b4bb63be7cfe697d040f1c5b89ff6b767b7a8df"
+          }
+        ]
+      },
+      "event_id": "a025faaf00c11b553af3264c5b085e58b82a03e85d09e3df186651de8b1b7be9"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH10:158/189:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S5I:063/070:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+        "name_en": "Wait and See Turbo",
+        "name_ja": "キャンプセット",
+        "omitted_name_count": 14,
+        "proposal_id": "85a47bdc2ff20fab0992",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Astral%20Radiance/158.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance/158.ts:sha256:a35e2f9592a4259c2a5dc0cb38dbb3c4f664d311f81ae0e9c259b7ea94aeeb85",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH10:158/189:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S5I:063/070:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Wait and See Turbo",
+            "name_ja": "キャンプセット",
+            "omitted_name_count": 14,
+            "proposal_id": "85a47bdc2ff20fab0992",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Astral%20Radiance/158.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.57971,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2022-05-27",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Astral Radiance.ts",
+            "en_set_source_sha256": "51a134e3293d03834ffb5e7caf076a5d092107a9bffb1c111bbc2f493208110e",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2021-01-22",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I.ts",
+            "ja_set_source_sha256": "f4aa9a28c68579f69388d0b3209178592373fae090ffd6bd330791726ead4c10",
+            "number_score": 2.0,
+            "position": 5,
+            "release_gap_days": 490,
+            "score": 3.07971
+          }
+        },
+        "source_snapshot_sha256": "4cc327afa2e57eb184d8fd623221c418e1855e674ce217ef365288b5e3c4dec4",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items that search the deck and end the turn, but Wait and See Turbo attaches basic Energy and is restricted to the first turn going second; キャンプセット adds any card to hand without that timing condition. Distinct name concepts despite shared turn-ending text.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Camp Set ends the turn after searching for any card to add to hand; Wait and See Turbo attaches Basic Energy from the deck during a restricted opening turn and ends the turn.",
+            "limitations": "The shared turn-ending clause and deck search do not establish the same Item concept."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is キャンプセット (Camping Gear from S5I / Battle Styles), which allows you to search your deck for any 1 card to put into your hand, ending your turn. The English card is Wait and See Turbo (Astral Radiance, corresponding to the Japanese card あとだしターボ from S10D), which can only be played on turn 1 going second to attach a basic Energy from the deck to 1 of your Pokémon. These are completely different cards.",
+            "limitations": "None. The names and card effects clearly belong to two distinct Item cards.",
+            "image_evidence": "The English card scan shows 'Wait and See Turbo' depicting a hair-dryer-like device shooting an energy ball, which matches the English text but does not match the Japanese card 'キャンプセット' (Camping Gear).",
+            "ja_image_sha256": null,
+            "en_image_sha256": "cf8d83f2fa29bb801f9640d31942c9e1e356f796cef8d9e3b4796a021ff0f323",
+            "image_pair_checked": false,
+            "request_sha256": "d2d55a6e47e230c27161bc57f0d41d02acb15b5092801b89e29e5741dfbe50db",
+            "response_sha256": "28eeaf225d0d0d7291eda3dd0b0e909986ca64977c053bbc9d176bdfed7a1a74"
+          }
+        ]
+      },
+      "event_id": "3ea394a69c0da6b960d06c589b3affa844fcf4c922af1bd907c85aa78c03e3a9"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Toyste Beach",
+        "category": "Trainer",
+        "en_card_id": "en:SV09:148/159:holo_cosmos_player_rewards_program",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Journey Together/148.ts:sha256:af1de9168bcec80bfbc88e40c4dc05352c1d95fdb7b6268d59e8f7218dd25019",
+        "illustrator": "Toyste Beach",
+        "ja_card_id": "ja:SV9:092/100:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+        "name_en": "Hop's Choice Band",
+        "name_ja": "ホップのこだわりハチマキ",
+        "omitted_name_count": 49,
+        "proposal_id": "f6e529fb8e4c5251ba73",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Journey%20Together/148.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/092.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Journey Together/148.ts:sha256:af1de9168bcec80bfbc88e40c4dc05352c1d95fdb7b6268d59e8f7218dd25019",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Journey Together/148.ts:sha256:af1de9168bcec80bfbc88e40c4dc05352c1d95fdb7b6268d59e8f7218dd25019",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Journey Together/148.ts:sha256:af1de9168bcec80bfbc88e40c4dc05352c1d95fdb7b6268d59e8f7218dd25019",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Toyste Beach",
+            "category": "Trainer",
+            "en_card_id": "en:SV09:148/159:holo_cosmos_player_rewards_program",
+            "en_match_eligible": 1,
+            "illustrator": "Toyste Beach",
+            "ja_card_id": "ja:SV9:092/100:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Hop's Choice Band",
+            "name_ja": "ホップのこだわりハチマキ",
+            "omitted_name_count": 49,
+            "proposal_id": "f6e529fb8e4c5251ba73",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Journey%20Together/148.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/092.ts",
+            "subtype": "Tool"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.520913,
+            "en_effect_numbers": [
+              "30"
+            ],
+            "en_release_date": "2025-03-28",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Journey Together.ts",
+            "en_set_source_sha256": "a7a73a04cc952ec29dd483f485afd97d979ab621f3e8edf20d3452b2160a1812",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "30"
+            ],
+            "ja_release_date": "2025-01-24",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9.ts",
+            "ja_set_source_sha256": "bc24f7a3873fc8d1bb6410d89ea2ced429f6ce11a7e58a5bbb2c9ae371e5c954",
+            "number_score": 1.0,
+            "position": 5,
+            "release_gap_days": 63,
+            "score": 3.020913
+          }
+        },
+        "source_snapshot_sha256": "8f0b5a104bd2f8fe1be0c85216848273d2d10257c43d786440feafab5efe85c8",
+        "subtype": "Tool"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "approve",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:36:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": true,
+        "en_identity_checked": true,
+        "translation_checked": true,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "approve",
+            "rationale": "Hop’s Choice Band / ホップのこだわりハチマキ: both Tools reduce Hop’s Pokémon attack costs by one Energy and add 30 damage against the opposing Active Pokémon. The owner-specific band name and distinctive combined effect agree.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification. Japanese effect lacks the explicit Colorless symbol present in English; no exact rules-text equivalence asserted."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "approve",
+            "rationale": "ホップのこだわりハチマキ is Hop’s Choice Band; both Tools lower attack cost by one Colorless Energy for Hop’s Pokémon and add 30 damage to the opposing Active Pokémon.",
+            "limitations": "Pinned cards support the name concept, not physical-printing or price equivalence."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "approve",
+            "rationale": "The Japanese card 'ホップのこだわりハチマキ' and English card 'Hop's Choice Band' represent the exact same bilingual name concept. Both are Trainer - Pokémon Tool cards specifically designed for 'Hop's Pokémon' ('ホップのポケモン'), reducing attack cost by 1 Colorless energy and adding 30 damage to attacks against the opponent's Active Pokémon.",
+            "limitations": "None. The titles, subtypes, effect mechanics, and regulation mark ('I') correspond completely.",
+            "image_evidence": "Both scans show identical artwork by Toyste Beach featuring Hop's themed headband against a blue, green, and white swirl background.",
+            "ja_image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+            "en_image_sha256": "ef5e5e1e61a2fa1f4535e92faca7c3f55a5ddb519e96d30f44f10f2bed499657",
+            "image_pair_checked": true,
+            "request_sha256": "ab175f89c9f84740987227b9f8b46a9259a4d3eea500ac8f96c795bc679cd813",
+            "response_sha256": "3240905f6226fad4b673e6ef107269583209f8555833319354577e666a81812e"
+          }
+        ]
+      },
+      "event_id": "399b03974e632cb0b9b8627b28dce4be08a1edea1b6a194ecb0b9d8c63459f96"
+    }
+  ],
+  "concept_revisions": [
+    {
+      "concept_id": "concept-87070e6f2675977a25da",
+      "revision": 1,
+      "category": "Trainer",
+      "name_ja": "ホップのこだわりハチマキ",
+      "name_en": "Hop's Choice Band",
+      "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/092.ts",
+      "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Journey%20Together/148.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+      "reviewed_at": "2026-09-25T08:36:00+00:00",
+      "status": "approved",
+      "review_event_id": "399b03974e632cb0b9b8627b28dce4be08a1edea1b6a194ecb0b9d8c63459f96"
+    }
+  ],
+  "audit": {
+    "proposal_rows": 6,
+    "decisions": {
+      "approve": 1,
+      "reject": 5
+    },
+    "retained_review_events": 6,
+    "approved_import_rows": 1,
+    "proposed_candidate_edges": 1,
+    "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+    "deferred_rows": 0,
+    "deferred": [],
+    "scope": "AI-agreed name concepts and proposed collecting alternatives; no human-certified printing counterparts"
+  }
+}

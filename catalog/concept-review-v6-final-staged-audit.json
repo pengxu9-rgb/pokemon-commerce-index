@@ -1,0 +1,83 @@
+{
+  "ranked_names": 25,
+  "ranked_proposals": 125,
+  "reviewed_proposals": 55,
+  "sequential_review_slots": 55,
+  "next_review_rows": 0,
+  "outcomes": {
+    "approved_by_ai": 20,
+    "exhausted": 5
+  },
+  "scope": "review scheduling only; no alias, edge, or human verification",
+  "unresolved_names": [
+    {
+      "category": "Trainer",
+      "name_ja": "ポケパッド",
+      "candidate_ids": [
+        "0666bc221dc37ce625a0",
+        "d4827fc4080d56c0bc77",
+        "39dcc72b8704999c7c46",
+        "417299be745bc3efe61f",
+        "a915e01790aa7cef96f9"
+      ],
+      "reason": "all five ranked candidates unanimously rejected by three AI reviewers"
+    },
+    {
+      "category": "Trainer",
+      "name_ja": "みずの塔",
+      "candidate_ids": [
+        "9360a025c047aebd6b56",
+        "df827f4f5b937ad237e3",
+        "3483fbbd3f2a6cd5f85a",
+        "b2bb438d0239a65fcbf6",
+        "24abdecaf803c77e8fbe"
+      ],
+      "reason": "all five ranked candidates unanimously rejected by three AI reviewers"
+    },
+    {
+      "category": "Trainer",
+      "name_ja": "サカキのカリスマ",
+      "candidate_ids": [
+        "a6cc59e26b556fd77e07",
+        "52d29363829b42b8f565",
+        "434c83ca923306e08d34",
+        "84ee0fa02dc3002c3129",
+        "fbef618543d675f7298a"
+      ],
+      "reason": "all five ranked candidates unanimously rejected by three AI reviewers"
+    },
+    {
+      "category": "Trainer",
+      "name_ja": "霧の水晶",
+      "candidate_ids": [
+        "5106424f7e05463734d3",
+        "4e2639be5db50926ef6a",
+        "14a5eb770dca801bff9a",
+        "013ee57bfdd79ea63a4a",
+        "0545a4c3c7d6da35ebb5"
+      ],
+      "reason": "all five ranked candidates unanimously rejected by three AI reviewers"
+    },
+    {
+      "category": "Trainer",
+      "name_ja": "キャンプセット",
+      "candidate_ids": [
+        "7762cb279685cd10d384",
+        "fe2e9710892a27387057",
+        "0d926871e797707d5e22",
+        "5a45ad2e6dcd96fc298a",
+        "85a47bdc2ff20fab0992"
+      ],
+      "reason": "all five ranked candidates unanimously rejected by three AI reviewers"
+    }
+  ],
+  "image_gap_rows": 10,
+  "images_included": 73,
+  "image_sides_total": 110,
+  "stages": 5,
+  "reviewers": [
+    "gpt-6-astra",
+    "gpt-6-sol",
+    "gemini-3.8-flash"
+  ]
+}

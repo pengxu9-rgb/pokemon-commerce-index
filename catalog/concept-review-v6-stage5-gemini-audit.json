@@ -1,0 +1,281 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-concept-name-review-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "review_rows": 6,
+  "decisions": {
+    "approve": 1,
+    "reject": 5
+  },
+  "images_included": 8,
+  "image_sides_total": 12,
+  "rows": [
+    {
+      "proposal_id": "a915e01790aa7cef96f9",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "fdae87212e18f7edc9fce77b0ddd10a2672d1848c3dce81dfb24b770f671c5e9",
+      "response_sha256": "96e6c574c839d2a9ef2ce22880af19c1f71887afaf9c427f663e87182a20fd2c",
+      "usage": {
+        "promptTokenCount": 2423,
+        "candidatesTokenCount": 188,
+        "totalTokenCount": 2820,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1331
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 188
+          }
+        ],
+        "thoughtsTokenCount": 209
+      },
+      "ja_source_path": "data-asia/M/M-P/085.ts",
+      "en_source_path": "data/Mega Evolution/Mega Evolution/125.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/M-P-085",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/ME01-125",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/me/me01/125/high.webp",
+        "image_sha256": "54334a66454d4621c89ad3f72e2f737cd0a09fa264b7fe67c64976ca9dd59b04",
+        "image_bytes": 51528
+      }
+    },
+    {
+      "proposal_id": "24abdecaf803c77e8fbe",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "705a0909b3fd1beac734a83bfd112f027551548ffa0641b2d2514c3e8ed011a2",
+      "response_sha256": "c82263090c7f710248f45313d2c5645c2559c79d589f89d7cd447a7da0216a33",
+      "usage": {
+        "promptTokenCount": 2117,
+        "candidatesTokenCount": 205,
+        "totalTokenCount": 2529,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1025
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 205
+          }
+        ],
+        "thoughtsTokenCount": 207
+      },
+      "ja_source_path": "data-asia/S/S8b/170.ts",
+      "en_source_path": "data/Sword & Shield/Fusion Strike/282.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-170",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH8-282",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh8/282/high.webp",
+        "image_sha256": "177e2cd9cb9b1c3682bd6f8b600219d60b37751987bb895971c14a74aa9b4b08",
+        "image_bytes": 105768
+      }
+    },
+    {
+      "proposal_id": "fbef618543d675f7298a",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "bc119fa1232c78fcc3d132045f8f23c914d04b0ac223151537e02f17668b4daf",
+      "response_sha256": "69b4f1ae23e68dbb0956b9b1e487fd4b1a94612c14e0427de0b0e13c05f80ece",
+      "usage": {
+        "promptTokenCount": 3534,
+        "candidatesTokenCount": 175,
+        "totalTokenCount": 3891,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1350
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 175
+          }
+        ],
+        "thoughtsTokenCount": 182
+      },
+      "ja_source_path": "data-asia/SV/SV2a/207.ts",
+      "en_source_path": "data/Sword & Shield/Lost Origin/167.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV2A-207",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV2a/207/high.webp",
+        "image_sha256": "dca1ffe6b39d97d8c63ce63a6b40b49f0ed3ca25e9d9b1aac274997e1c98d390",
+        "image_bytes": 141290
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH11-167",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh11/167/high.webp",
+        "image_sha256": "444af8e1989c70481550814bba8b91a4dd1be90f8b7b9b9c8d51b5c8ee570980",
+        "image_bytes": 53990
+      }
+    },
+    {
+      "proposal_id": "0545a4c3c7d6da35ebb5",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "41a6ee4c229a9086129ab56014d0b471ecef60c58ada2c7ffab23e155201306b",
+      "response_sha256": "7763ef7ad8fc622fd0a6df7f0b4bb63be7cfe697d040f1c5b89ff6b767b7a8df",
+      "usage": {
+        "promptTokenCount": 2306,
+        "candidatesTokenCount": 223,
+        "totalTokenCount": 2741,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1214
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 223
+          }
+        ],
+        "thoughtsTokenCount": 212
+      },
+      "ja_source_path": "data-asia/S/S8b/135.ts",
+      "en_source_path": "data/Sword & Shield/Astral Radiance/158.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-135",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH10-158",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh10/158/high.webp",
+        "image_sha256": "cf8d83f2fa29bb801f9640d31942c9e1e356f796cef8d9e3b4796a021ff0f323",
+        "image_bytes": 49252
+      }
+    },
+    {
+      "proposal_id": "85a47bdc2ff20fab0992",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "d2d55a6e47e230c27161bc57f0d41d02acb15b5092801b89e29e5741dfbe50db",
+      "response_sha256": "28eeaf225d0d0d7291eda3dd0b0e909986ca64977c053bbc9d176bdfed7a1a74",
+      "usage": {
+        "promptTokenCount": 2312,
+        "candidatesTokenCount": 196,
+        "totalTokenCount": 2802,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1220
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 196
+          }
+        ],
+        "thoughtsTokenCount": 294
+      },
+      "ja_source_path": "data-asia/S/S5I/063.ts",
+      "en_source_path": "data/Sword & Shield/Astral Radiance/158.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S5I-063",
+        "status": "image_missing"
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH10-158",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh10/158/high.webp",
+        "image_sha256": "cf8d83f2fa29bb801f9640d31942c9e1e356f796cef8d9e3b4796a021ff0f323",
+        "image_bytes": 49252
+      }
+    },
+    {
+      "proposal_id": "f6e529fb8e4c5251ba73",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-concept-name-review-v1",
+      "request_sha256": "ab175f89c9f84740987227b9f8b46a9259a4d3eea500ac8f96c795bc679cd813",
+      "response_sha256": "3240905f6226fad4b673e6ef107269583209f8555833319354577e666a81812e",
+      "usage": {
+        "promptTokenCount": 3601,
+        "candidatesTokenCount": 156,
+        "totalTokenCount": 4009,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1417
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 156
+          }
+        ],
+        "thoughtsTokenCount": 252
+      },
+      "ja_source_path": "data-asia/SV/SV9/092.ts",
+      "en_source_path": "data/Scarlet & Violet/Journey Together/148.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/SV9-092",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/SV/SV9/092/high.webp",
+        "image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+        "image_bytes": 55576
+      },
+      "en_image": {
+        "api_url": "https://api.tcgdex.net/v2/en/cards/SV09-148",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/en/sv/sv09/148/high.webp",
+        "image_sha256": "ef5e5e1e61a2fa1f4535e92faca7c3f55a5ddb519e96d30f44f10f2bed499657",
+        "image_bytes": 56538
+      }
+    }
+  ],
+  "scope": "independent AI name-concept review; no physical printing verified"
+}

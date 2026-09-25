@@ -81,3 +81,15 @@ class StagedConceptReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "skipped a prior rank"):
             concept_review_staged.select_next(queue, {
                 second_for_first["proposal_id"]: ("reject", "reject")})
+
+    def test_three_way_reject_advances_and_image_hold_stops(self):
+        queue = read_jsonl(ROOT / "catalog/concept-review-v6-full-queue.jsonl")
+        first, _ = concept_review_staged.select_next(queue, {})
+        reviews = {first[0]["proposal_id"]: ("reject", "reject", "reject"),
+                   first[1]["proposal_id"]: ("approve", "approve", "approve")}
+        selected, audit = concept_review_staged.select_next(
+            queue, reviews, held_ids={first[1]["proposal_id"]})
+        self.assertEqual(len(selected), 24)
+        self.assertEqual(audit["outcomes"]["deferred"], 1)
+        advanced = next(row for row in selected if row["name_ja"] == first[0]["name_ja"])
+        self.assertEqual(advanced["source_snapshot"]["rank"]["position"], 2)

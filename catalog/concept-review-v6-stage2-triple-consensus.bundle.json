@@ -1,0 +1,1183 @@
+{
+  "schema": "pokemon.concept_review_bundle.v1",
+  "review_events": [
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Ayaka Yoshida",
+        "category": "Trainer",
+        "en_card_id": "en:SM9:146/181:standard",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Team Up/146.ts:sha256:8ad683fc88cd6a72dab101b122a8ea6d487ad31309cece44cd1c16f4bb897e7e",
+        "illustrator": "Ayaka Yoshida",
+        "ja_card_id": "ja:SM9:078/095:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/078.ts:sha256:d41511de0bea842cb6ed4081dd962b13a3a003c15287bb6db00047d822a5fe44",
+        "name_en": "Judge Whistle",
+        "name_ja": "ジャッジマンホイッスル",
+        "omitted_name_count": 10,
+        "proposal_id": "5b53d53d807915d3915a",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sun%20%26%20Moon/Team%20Up/146.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM9/078.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Team Up/146.ts:sha256:8ad683fc88cd6a72dab101b122a8ea6d487ad31309cece44cd1c16f4bb897e7e",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Team Up/146.ts:sha256:8ad683fc88cd6a72dab101b122a8ea6d487ad31309cece44cd1c16f4bb897e7e",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Team Up/146.ts:sha256:8ad683fc88cd6a72dab101b122a8ea6d487ad31309cece44cd1c16f4bb897e7e",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Ayaka Yoshida",
+            "category": "Trainer",
+            "en_card_id": "en:SM9:146/181:standard",
+            "en_match_eligible": 1,
+            "illustrator": "Ayaka Yoshida",
+            "ja_card_id": "ja:SM9:078/095:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Judge Whistle",
+            "name_ja": "ジャッジマンホイッスル",
+            "omitted_name_count": 10,
+            "proposal_id": "5b53d53d807915d3915a",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sun%20%26%20Moon/Team%20Up/146.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM9/078.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/078.ts:sha256:d41511de0bea842cb6ed4081dd962b13a3a003c15287bb6db00047d822a5fe44",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/078.ts:sha256:d41511de0bea842cb6ed4081dd962b13a3a003c15287bb6db00047d822a5fe44",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/078.ts:sha256:d41511de0bea842cb6ed4081dd962b13a3a003c15287bb6db00047d822a5fe44",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.568627,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2019-01-31",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Team Up.ts",
+            "en_set_source_sha256": "e43bc1dd274dad3520d0dad6ad40f4036bc4036559f8ce0d399daf44d540befd",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "2"
+            ],
+            "ja_release_date": "2018-12-07",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9.ts",
+            "ja_set_source_sha256": "ae8cd311447a5dc190440900c0c0663a5ab17816297aa10e032c86062810f297",
+            "number_score": 1.0,
+            "position": 2,
+            "release_gap_days": 55,
+            "score": 3.068627
+          }
+        },
+        "source_snapshot_sha256": "80129fdb172a14076613a8d18662329747c97aff92a827b18fb52c83b3ec3934",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "approve",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": true,
+        "en_identity_checked": true,
+        "translation_checked": true,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "approve",
+            "rationale": "Judge Whistle / ジャッジマンホイッスル: both Items choose between drawing one card and returning a Judge / ジャッジマン from the discard pile to hand. The whistle name and distinctive two-option effect agree.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "approve",
+            "rationale": "ジャッジマンホイッスル is Judge Whistle; both Items offer the same choice: draw one card or return Judge from the discard pile to hand.",
+            "limitations": "The paired cards establish a name concept, not a physical printing or price relationship."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "approve",
+            "rationale": "The Japanese title 'ジャッジマンホイッスル' directly corresponds to the English title 'Judge Whistle', as 'ジャッジマン' (Judge Man) is the established Japanese name for the Supporter card 'Judge'. Both cards are Trainer - Item cards with identical choice effects: either draw 1 card, or recover a Judge card from the discard pile to the hand.",
+            "limitations": "Only the English card scan is provided; the Japanese card scan is missing. However, the textual data provides complete, unambiguous alignment of card type, subtype, title, and mechanics.",
+            "image_evidence": "The English card scan shows a Trainer - Item card named 'Judge Whistle' (Team Up 146/181) illustrated by Ayaka Yoshida, depicting a black referee whistle on a lanyard, with the effect text allowing a choice between drawing a card or putting a Judge card from the discard pile into the hand.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "ab2a63e1bb8d0c3157393e7f2de75cdc26bab38a369f6492be3c8e5dd21157f0",
+            "image_pair_checked": false,
+            "request_sha256": "2151b6df0ee56e67ca95dab68ed6be9b2f2455b1ceb58d7c316d31aa5ace719f",
+            "response_sha256": "c77c4ce61d91ddbb88795f69b011ef22763d6aee541773aad015f831d1dd78b0"
+          }
+        ]
+      },
+      "event_id": "44d22b9af42918ffe103459f126427aa821d41f7d1145210a27a5f36af9ab314"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Studio Bora Inc.",
+        "category": "Trainer",
+        "en_card_id": "en:ME02:094/094:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+        "illustrator": "Studio Bora Inc.",
+        "ja_card_id": "ja:MC:662/742:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/662.ts:sha256:dbbac414d5997dbdd4fa4f16ee172d8eda0a68e1bf0dd1055f0d186a646dcdcb",
+        "name_en": "Wondrous Patch",
+        "name_ja": "ポケパッド",
+        "omitted_name_count": 31,
+        "proposal_id": "d4827fc4080d56c0bc77",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/094.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/662.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Studio Bora Inc.",
+            "category": "Trainer",
+            "en_card_id": "en:ME02:094/094:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Studio Bora Inc.",
+            "ja_card_id": "ja:MC:662/742:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Wondrous Patch",
+            "name_ja": "ポケパッド",
+            "omitted_name_count": 31,
+            "proposal_id": "d4827fc4080d56c0bc77",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/094.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/662.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/662.ts:sha256:dbbac414d5997dbdd4fa4f16ee172d8eda0a68e1bf0dd1055f0d186a646dcdcb",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/662.ts:sha256:dbbac414d5997dbdd4fa4f16ee172d8eda0a68e1bf0dd1055f0d186a646dcdcb",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/662.ts:sha256:dbbac414d5997dbdd4fa4f16ee172d8eda0a68e1bf0dd1055f0d186a646dcdcb",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.702128,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2025-11-14",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames.ts",
+            "en_set_source_sha256": "589d0acbe19ea07948d293528efbe4943768bde937a59ad7a471e23f4ddd738a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2025-12-19",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC.ts",
+            "ja_set_source_sha256": "8b8dd1cc7786bc61e05350f7fe2ab4aeb1b57ef9f56081a73a64186bc70116dc",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 35,
+            "score": 4.202128
+          }
+        },
+        "source_snapshot_sha256": "536e21feb2a41d24e7cc6992d69e907afc9e9ec31ce9d56d015f0a238b13b2da",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Wondrous Patch attaches discarded Basic Psychic Energy to a Benched Psychic Pokémon; ポケパッド searches the deck for a Pokémon without a Rule Box. Different named concepts and functions.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Poké Pad searches the deck for a Pokémon without a Rule Box; Wondrous Patch attaches Basic Psychic Energy from discard to a Benched Psychic Pokémon.",
+            "limitations": "Shared Item subtype and illustrator do not establish identity."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'ポケパッド' (PokéPad) and English card 'Wondrous Patch' are entirely different cards with completely different effects. The Japanese card allows a player to search their deck for a Pokémon without a Rule Box and put it into their hand, whereas 'Wondrous Patch' attaches a Basic Psychic Energy from the discard pile to a Benched Psychic Pokémon. Their names also have completely different concepts.",
+            "limitations": "A scan is only provided for the English card, but the effect text and names in the source files are completely disparate and conclusive.",
+            "image_evidence": "The provided English card scan depicts 'Wondrous Patch', an Item card featuring a psychic energy-like medallion and effect text detailing Psychic Energy attachment from the discard pile. No Japanese card scan was provided.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "f5ddd73e4a405b938c762abc823771bf9b01bdbd528a86a72b97beeb4756a76f",
+            "image_pair_checked": false,
+            "request_sha256": "f13f07f1f3d8babf04b8b9e125334fbd69d5076faccd06938b664cb6d3b53991",
+            "response_sha256": "b3fed710dff24d98b94b0381f8456b737c7ad78d8859076bf384976b12cd901d"
+          }
+        ]
+      },
+      "event_id": "fc7d0227863b09fa055d1d40ad0d7eee7b2e3c980d6dc115a4086de79c558030"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "5ban Graphics",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH3:170/189:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/170.ts:sha256:ffd6058f35aa644c526f6dae6f70bebca87090d17b5332b380ee41d78f1fa796",
+        "illustrator": "5ban Graphics",
+        "ja_card_id": "ja:S8B:170/184:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+        "name_en": "Spikemuth",
+        "name_ja": "みずの塔",
+        "omitted_name_count": 25,
+        "proposal_id": "df827f4f5b937ad237e3",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Darkness%20Ablaze/170.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/170.ts:sha256:ffd6058f35aa644c526f6dae6f70bebca87090d17b5332b380ee41d78f1fa796",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/170.ts:sha256:ffd6058f35aa644c526f6dae6f70bebca87090d17b5332b380ee41d78f1fa796",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/170.ts:sha256:ffd6058f35aa644c526f6dae6f70bebca87090d17b5332b380ee41d78f1fa796",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "5ban Graphics",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH3:170/189:normal",
+            "en_match_eligible": 1,
+            "illustrator": "5ban Graphics",
+            "ja_card_id": "ja:S8B:170/184:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Spikemuth",
+            "name_ja": "みずの塔",
+            "omitted_name_count": 25,
+            "proposal_id": "df827f4f5b937ad237e3",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Darkness%20Ablaze/170.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S8b/170.ts",
+            "subtype": "Stadium"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/170.ts:sha256:20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.591716,
+            "en_effect_numbers": [
+              "2"
+            ],
+            "en_release_date": "2020-08-14",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze.ts",
+            "en_set_source_sha256": "4bed34217397bcfeee8925868b50816051022d1bbdb60b63eac702ae6f6bd70a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "2"
+            ],
+            "ja_release_date": "2021-12-03",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b.ts",
+            "ja_set_source_sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 476,
+            "score": 3.091716
+          }
+        },
+        "source_snapshot_sha256": "f12570ad71c2e15c72d931e57cbd734603d8bb000943f855f88c74a000643b29",
+        "subtype": "Stadium"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Stadiums, but Spikemuth places two damage counters when an Active Pokémon moves to the Bench during its owner’s turn; みずの塔 reduces Rapid Strike Pokémon retreat costs by two. The shared number does not indicate the same concept.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Tower of Waters reduces Rapid Strike Pokémon retreat costs by two; Spikemuth puts two damage counters on an Active Pokémon moved to the Bench.",
+            "limitations": "Both are Stadiums, but their names and effects differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'みずの塔' translates to 'Tower of Waters' and reduces the retreat cost of Rapid Strike Pokémon by 2. The English card is 'Spikemuth' (Japanese: 'スパイクタウン'), which places damage counters when an Active Pokémon moves to the Bench. They are completely different Stadium cards.",
+            "limitations": "None. The names and card rules/effects are entirely distinct concepts.",
+            "image_evidence": "The provided English card scan shows 'Spikemuth' (Darkness Ablaze 170/189), depicting the street of Spikemuth, which does not match the Japanese 'みずの塔' (Tower of Waters).",
+            "ja_image_sha256": null,
+            "en_image_sha256": "643843200924a063862604b834d220dda53d675b0de6eff79164e224b1572d9d",
+            "image_pair_checked": false,
+            "request_sha256": "e4f1594bf26861d0cb52d773e5d92b7bce0766651bc269ebc14138dc2dd36825",
+            "response_sha256": "abbc933a407975e6a326610abc844e01a0fa174b4e398992acf6f76f167133e0"
+          }
+        ]
+      },
+      "event_id": "54384e362b958bd2e158d883d02414a2a551751c8d3b2634239752b7bbb85b26"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "hncl",
+        "category": "Trainer",
+        "en_card_id": "en:SV04:171/182:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift/171.ts:sha256:177a9face15914683f7aad1a1f1203f958b1296c8aad7661816275e38459ec30",
+        "illustrator": "hncl",
+        "ja_card_id": "ja:SV4A:173/190:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/173.ts:sha256:b37bb35978ea9659e969e99d6e993f2c11aa65b94d6376fbb592bb4dfc17976a",
+        "name_en": "Professor Turo's Scenario",
+        "name_ja": "サカキのカリスマ",
+        "omitted_name_count": 41,
+        "proposal_id": "52d29363829b42b8f565",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Paradox%20Rift/171.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/173.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift/171.ts:sha256:177a9face15914683f7aad1a1f1203f958b1296c8aad7661816275e38459ec30",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift/171.ts:sha256:177a9face15914683f7aad1a1f1203f958b1296c8aad7661816275e38459ec30",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift/171.ts:sha256:177a9face15914683f7aad1a1f1203f958b1296c8aad7661816275e38459ec30",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "hncl",
+            "category": "Trainer",
+            "en_card_id": "en:SV04:171/182:normal",
+            "en_match_eligible": 1,
+            "illustrator": "hncl",
+            "ja_card_id": "ja:SV4A:173/190:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Professor Turo's Scenario",
+            "name_ja": "サカキのカリスマ",
+            "omitted_name_count": 41,
+            "proposal_id": "52d29363829b42b8f565",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Paradox%20Rift/171.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/173.ts",
+            "subtype": "Supporter"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/173.ts:sha256:b37bb35978ea9659e969e99d6e993f2c11aa65b94d6376fbb592bb4dfc17976a",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/173.ts:sha256:b37bb35978ea9659e969e99d6e993f2c11aa65b94d6376fbb592bb4dfc17976a",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/173.ts:sha256:b37bb35978ea9659e969e99d6e993f2c11aa65b94d6376fbb592bb4dfc17976a",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.754386,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2023-11-03",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift.ts",
+            "en_set_source_sha256": "97f7c1940c0205ff4ad823179ba9bb1bfa2a7415c4b4bddcc81befe2b50abc23",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2023-12-01",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+            "ja_set_source_sha256": "a21a8e39bf8ce84a04ff96dfdae12940c1d00dadeac7357b428e2791a3161265",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 28,
+            "score": 4.254386
+          }
+        },
+        "source_snapshot_sha256": "6e453edabdab3b86fa7777d267403d7f2fb99f0fa49df26597c6679ee7d00bda",
+        "subtype": "Supporter"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Supporters, but Professor Turo’s Scenario returns the user’s Pokémon to hand and discards attached cards; サカキのカリスマ returns Energy from the opposing Active Pokémon to hand and attaches Energy from the user’s hand. Different characters and effects.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Giovanni’s Charisma returns Energy from the opponent’s Active Pokémon and attaches Energy from hand; Professor Turo’s Scenario returns one of your Pokémon to hand and discards attached cards.",
+            "limitations": "Both are Supporters, but the characters and actions differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The two cards represent completely different Supporter cards. 'サカキのカリスマ' translates to 'Giovanni's Charisma' featuring Giovanni (Sakaki), with an effect that manipulates energy on the Active Pokémon. 'Professor Turo's Scenario' corresponds to the Japanese card 'フトゥー博士のシナリオ' featuring Professor Turo, with an effect that scoops a Pokémon in play into the hand. They share the same illustrator (hncl), but are entirely distinct card concepts.",
+            "limitations": "None. The card names, featured characters, effects, and subcategories (Professor Turo's Scenario has the Future mechanic tag) clearly differentiate the two cards.",
+            "image_evidence": "The Japanese scan shows Giovanni in front of a Team Rocket background titled 'サカキのカリスマ' (sv4a 173/190). The English scan shows Professor Turo with a 'Future' subtype bar titled 'Professor Turo's Scenario' (PAR 171/182).",
+            "ja_image_sha256": "a8efb28e899c51faec289d531b1614cc3f3b28f639eacb2614a4925533dcdce6",
+            "en_image_sha256": "393a3772630ff4746ff990f259ed6ee79dc985e224d19e2308a5170f4d95c943",
+            "image_pair_checked": true,
+            "request_sha256": "d58543273f94a4787e3b5ba4d3316ad955f48efa1a5b5e29d8e037bbd718e401",
+            "response_sha256": "9e6308fc5f6b6552c5a0295094bfffcf243c2571ab7cd5256d7136fd10be2731"
+          }
+        ]
+      },
+      "event_id": "523e590b2728660daeb6c1d92657a76afe4b7a8129225c3a6442c9bb0cd4632e"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH5:127/163:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S6K:060/070:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S6K/060.ts:sha256:72197794e930c8ddd1f7edc3f4cbdf06dece8cc22760082b3f6c74eb41867b62",
+        "name_en": "Fan of Waves",
+        "name_ja": "霧の水晶",
+        "omitted_name_count": 14,
+        "proposal_id": "4e2639be5db50926ef6a",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Battle%20Styles/127.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S6K/060.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH5:127/163:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S6K:060/070:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Fan of Waves",
+            "name_ja": "霧の水晶",
+            "omitted_name_count": 14,
+            "proposal_id": "4e2639be5db50926ef6a",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Battle%20Styles/127.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S6K/060.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S6K/060.ts:sha256:72197794e930c8ddd1f7edc3f4cbdf06dece8cc22760082b3f6c74eb41867b62",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S6K/060.ts:sha256:72197794e930c8ddd1f7edc3f4cbdf06dece8cc22760082b3f6c74eb41867b62",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S6K/060.ts:sha256:72197794e930c8ddd1f7edc3f4cbdf06dece8cc22760082b3f6c74eb41867b62",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.702128,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2021-03-19",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles.ts",
+            "en_set_source_sha256": "8d2268cd350dd72f0815ac39848d750a7090173f036f84dbe6ec6d0678d55c25",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2021-04-23",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S6K.ts",
+            "ja_set_source_sha256": "d4921883c664f7c3c7458f618b8be7a43da3bbba4f2ff7dfdd215954642d2cd1",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 35,
+            "score": 4.202128
+          }
+        },
+        "source_snapshot_sha256": "4e03092d3a95e7872bfaded0cd0c409828873498162f90c68c8c0cdb279aebce",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Fan of Waves places an opposing attached Special Energy on the bottom of its owner’s deck; 霧の水晶 searches the user’s deck for a Psychic Basic Pokémon or Psychic Energy. Distinct object names and Energy actions.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Fog Crystal searches for a Psychic Basic Pokémon or Psychic Energy; Fan of Waves moves opposing Special Energy to the bottom of its owner’s deck.",
+            "limitations": "Shared Item subtype and illustrator are insufficient."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card '霧の水晶' corresponds to the English card 'Fog Crystal', an Item card that searches the deck for a Psychic Basic Pokémon or Psychic Energy card. The English source card and scan represent 'Fan of Waves' (Japanese: 'うねりの扇'), which is a completely different Item card with the effect to put a Special Energy attached to 1 of your opponent's Pokémon on the bottom of their deck.",
+            "limitations": "No Japanese card scan was provided, but the source text provides unambiguous names and effects that clearly distinguish the two entirely different cards.",
+            "image_evidence": "The provided image shows the English card 'Fan of Waves' (Battle Styles 127/163), an Item card with the Rapid Strike mechanic and text 'Put a Special Energy attached to 1 of your opponent's Pokémon on the bottom of their deck.' No image was provided for the Japanese card.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "a31ef8a3458e21b748565de598a834fa4d51f6497ebf61fa0e2ada04ca17d564",
+            "image_pair_checked": false,
+            "request_sha256": "b0280323a4bdfd2761f6844edbf8bfa9bba873adedecd65fe8962d36939449b6",
+            "response_sha256": "f691374d2f137d9387dc2ab6e8f744d3e12bd8d032c749b93764f04164414e06"
+          }
+        ]
+      },
+      "event_id": "6769a1a2fdf6495452ae2e061bf81c2822073036478dbfc9dda771bd2627e67e"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Hideki Ishikawa",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH3:159/189:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/159.ts:sha256:1e5caf45c32ba9a47b3976b13c299b2cc5ba369e37826334d18ee76d1029fda2",
+        "illustrator": "Hideki Ishikawa",
+        "ja_card_id": "ja:S-P:118/S-P:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P/118.ts:sha256:11464d87ab1fbcb1e8793fccedf5cdf0bc89614b19900635c82ade61571e66ce",
+        "name_en": "Bird Keeper",
+        "name_ja": "ソッドとシルディ",
+        "omitted_name_count": 48,
+        "proposal_id": "3516099f5a3e1c7c1e99",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Darkness%20Ablaze/159.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S-P/118.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/159.ts:sha256:1e5caf45c32ba9a47b3976b13c299b2cc5ba369e37826334d18ee76d1029fda2",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/159.ts:sha256:1e5caf45c32ba9a47b3976b13c299b2cc5ba369e37826334d18ee76d1029fda2",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze/159.ts:sha256:1e5caf45c32ba9a47b3976b13c299b2cc5ba369e37826334d18ee76d1029fda2",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Hideki Ishikawa",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH3:159/189:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Hideki Ishikawa",
+            "ja_card_id": "ja:S-P:118/S-P:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Bird Keeper",
+            "name_ja": "ソッドとシルディ",
+            "omitted_name_count": 48,
+            "proposal_id": "3516099f5a3e1c7c1e99",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Darkness%20Ablaze/159.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S-P/118.ts",
+            "subtype": "Supporter"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P/118.ts:sha256:11464d87ab1fbcb1e8793fccedf5cdf0bc89614b19900635c82ade61571e66ce",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P/118.ts:sha256:11464d87ab1fbcb1e8793fccedf5cdf0bc89614b19900635c82ade61571e66ce",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P/118.ts:sha256:11464d87ab1fbcb1e8793fccedf5cdf0bc89614b19900635c82ade61571e66ce",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 0.0,
+            "en_effect_numbers": [
+              "1",
+              "3"
+            ],
+            "en_release_date": "2020-08-14",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Darkness Ablaze.ts",
+            "en_set_source_sha256": "4bed34217397bcfeee8925868b50816051022d1bbdb60b63eac702ae6f6bd70a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "3"
+            ],
+            "ja_release_date": null,
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P.ts",
+            "ja_set_source_sha256": "6446a0d9ec26e9d6b3aa4185705005f972c1d515022e7bdfe5b6bf7a3fee35e4",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": null,
+            "score": 2.5
+          }
+        },
+        "source_snapshot_sha256": "839dadeba35a085aa181d1f57b073023b47add2e5ac63510e115b3c018cd6d44",
+        "subtype": "Supporter"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Supporters, but Bird Keeper switches the user’s Active Pokémon and then draws three; ソッドとシルディ asks the opponent to permit Trainer recovery, drawing three only if permission is refused. The shared draw quantity is insufficient and the names differ.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Sordward & Shielbert asks the opponent whether a Trainer from discard returns to hand, otherwise drawing three; Bird Keeper switches your Active Pokémon and draws three.",
+            "limitations": "The shared draw-three detail does not identify the same Supporter."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'ソッドとシルディ' corresponds to the characters Sordward & Shielbert (Sordward and Shielbert), with an effect allowing the player to recover a Trainer card from the discard pile depending on the opponent's choice, or draw 3 cards. In contrast, 'Bird Keeper' corresponds to the Japanese card 'とりつかい' (Bird Keeper), with an effect that switches the Active Pokémon with a Benched Pokémon and draws 3 cards. These represent completely different cards, characters, and effects.",
+            "limitations": "None. The titles and card effects completely differ.",
+            "image_evidence": "The English card scan depicts 'Bird Keeper', an uncommon Supporter card illustrated by Hideki Ishikawa featuring a Bird Keeper trainer holding a birdcage. No Japanese card scan was provided, but the textual evidence clearly indicates two entirely different cards.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "ef29e1b12e70c7a9dc2554cfc1a22d4f790977c277f9310bdba0bad32571dbdd",
+            "image_pair_checked": false,
+            "request_sha256": "5fa8534989d2a5d67d65413f5453f8faddcb034e242a6728075e5e06b54376ce",
+            "response_sha256": "3ed727508c554ec62c9a3a24d0af0874e2400b295ce191629cbcbce0e7fa1354"
+          }
+        ]
+      },
+      "event_id": "c7886326f992e98f1a5473da9d01ca51b1947b4087ca88eb59be8faf8a0898d4"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "sadaji",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH5:127/163:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+        "illustrator": "sadaji",
+        "ja_card_id": "ja:S5I:063/070:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+        "name_en": "Fan of Waves",
+        "name_ja": "キャンプセット",
+        "omitted_name_count": 14,
+        "proposal_id": "fe2e9710892a27387057",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Battle%20Styles/127.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles/127.ts:sha256:c70cb12483cf3e1d799d8db4113f183ce91b47c6c1c6f986d8adb0465f0008ea",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "sadaji",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH5:127/163:normal",
+            "en_match_eligible": 1,
+            "illustrator": "sadaji",
+            "ja_card_id": "ja:S5I:063/070:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Fan of Waves",
+            "name_ja": "キャンプセット",
+            "omitted_name_count": 14,
+            "proposal_id": "fe2e9710892a27387057",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Battle%20Styles/127.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S5I/063.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I/063.ts:sha256:6460d08a954cf1395b09ad01ba1a57bacdf9f8e35477697d12df5fd5ba602d0e",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.5625,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2021-03-19",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Battle Styles.ts",
+            "en_set_source_sha256": "8d2268cd350dd72f0815ac39848d750a7090173f036f84dbe6ec6d0678d55c25",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2021-01-22",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S5I.ts",
+            "ja_set_source_sha256": "f4aa9a28c68579f69388d0b3209178592373fae090ffd6bd330791726ead4c10",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 56,
+            "score": 4.0625
+          }
+        },
+        "source_snapshot_sha256": "6716abc0a6cacfc6b92ec4c98a4c7ff1d31cacd34c6c1449c64c25aa8faee802",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items, but Fan of Waves removes opposing Special Energy to the deck bottom; キャンプセット searches for any card and ends the user’s turn. Different concepts.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Camp Set ends your turn to search for any card; Fan of Waves sends an opposing Special Energy to the bottom of its owner’s deck.",
+            "limitations": "These are distinct Items despite shared illustrator."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'キャンプセット' corresponds to 'Camping Gear', which allows the player to search their deck for any card at the cost of ending their turn. In contrast, 'Fan of Waves' corresponds to the Japanese card 'うねりの扇' (Uneri no Ougi) and has the effect of putting a Special Energy attached to an opponent's Pokémon on the bottom of their deck. They are completely different cards.",
+            "limitations": "None. The names and card rules are completely distinct.",
+            "image_evidence": "The provided scan shows the English card 'Fan of Waves' (Battle Styles 127/163), an Item card with Rapid Strike synergy that puts an opponent's Special Energy on the bottom of their deck. The Japanese scan is missing.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "a31ef8a3458e21b748565de598a834fa4d51f6497ebf61fa0e2ada04ca17d564",
+            "image_pair_checked": false,
+            "request_sha256": "28d7910c3b500628103ecccc396f36b98e6174897f905cd86c8eece52cc98bf4",
+            "response_sha256": "b640ca4bf614d5285c85876ae3c56e687157503acc9e3502a80852998aea14e6"
+          }
+        ]
+      },
+      "event_id": "fc98a32d0f553c6ad9a241f1f8680cf45f02d4ae8837cb178e978b6ac29a22aa"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Toyste Beach",
+        "category": "Trainer",
+        "en_card_id": "en:SV08.5:129/131:holo",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Prismatic Evolutions/129.ts:sha256:17d5ae8ba90ec323f5dc0163a371e582670a549be495ff04259211b1e4a87ccc",
+        "illustrator": "Toyste Beach",
+        "ja_card_id": "ja:SV9:092/100:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+        "name_en": "Sparkling Crystal",
+        "name_ja": "ホップのこだわりハチマキ",
+        "omitted_name_count": 49,
+        "proposal_id": "64b67c97450b92d4d7b2",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Prismatic%20Evolutions/129.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/092.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Prismatic Evolutions/129.ts:sha256:17d5ae8ba90ec323f5dc0163a371e582670a549be495ff04259211b1e4a87ccc",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Prismatic Evolutions/129.ts:sha256:17d5ae8ba90ec323f5dc0163a371e582670a549be495ff04259211b1e4a87ccc",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Prismatic Evolutions/129.ts:sha256:17d5ae8ba90ec323f5dc0163a371e582670a549be495ff04259211b1e4a87ccc",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Toyste Beach",
+            "category": "Trainer",
+            "en_card_id": "en:SV08.5:129/131:holo",
+            "en_match_eligible": 1,
+            "illustrator": "Toyste Beach",
+            "ja_card_id": "ja:SV9:092/100:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Sparkling Crystal",
+            "name_ja": "ホップのこだわりハチマキ",
+            "omitted_name_count": 49,
+            "proposal_id": "64b67c97450b92d4d7b2",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Scarlet%20%26%20Violet/Prismatic%20Evolutions/129.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/092.ts",
+            "subtype": "Tool"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/092.ts:sha256:ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.932367,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2025-01-17",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Prismatic Evolutions.ts",
+            "en_set_source_sha256": "3b8b43caf30872f188b5d8bd01c9ea520141f281de5f7fe044c4ec66419f2931",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1",
+              "30"
+            ],
+            "ja_release_date": "2025-01-24",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9.ts",
+            "ja_set_source_sha256": "bc24f7a3873fc8d1bb6410d89ea2ced429f6ce11a7e58a5bbb2c9ae371e5c954",
+            "number_score": 1.0,
+            "position": 2,
+            "release_gap_days": 7,
+            "score": 3.432367
+          }
+        },
+        "source_snapshot_sha256": "08350db4bff489bbe992eb607d06a0cbe536df331a36a57c0544ba70a6d4b478",
+        "subtype": "Tool"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Tools reducing attack costs by one Energy, but Sparkling Crystal applies to Tera Pokémon; ホップのこだわりハチマキ applies to Hop’s Pokémon and also adds 30 attack damage. Different names, eligibility and effect identify distinct concepts.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Hop’s Choice Band reduces attack cost for Hop’s Pokémon and adds 30 attack damage; Sparkling Crystal reduces attack cost for Tera Pokémon without that damage bonus.",
+            "limitations": "A partial one-Energy cost overlap does not establish the same Tool concept."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card 'ホップのこだわりハチマキ' (Hop's Choice Band) is an Uncommon Pokémon Tool designed for 'Hop's Pokémon', reducing attack cost by one Colorless Energy and increasing damage by 30. The English card 'Sparkling Crystal' is an ACE SPEC Pokémon Tool (whose Japanese counterpart is 'きらめく結晶') that reduces the attack cost of Tera Pokémon by one Energy of any type. They represent completely different card concepts.",
+            "limitations": "None. The titles, effects, mechanics, and illustrations are entirely distinct.",
+            "image_evidence": "The Japanese scan shows a white headband with blue and red patterns and text 'ホップのこだわりハチマキ' (SV9 #092/100). The English scan shows a glowing blue crystal with magenta ACE SPEC borders and text 'Sparkling Crystal' (PRE #129/131).",
+            "ja_image_sha256": "66696dadd6f9e4bdeddf16b9e8d9c5775795f9cce675ed4d31e1f522dd846a2c",
+            "en_image_sha256": "c352cd083a8dae289b0d981bd9c436b62e90f507d2ebee86d1e670f2e14fe8d3",
+            "image_pair_checked": true,
+            "request_sha256": "f9264a2486b22d65c384140edc2e6007ac2428a9f3353f151a0015386858ecdc",
+            "response_sha256": "fb69731233473495dadbdd8edb64df7586b3e70a441160e8dce6ac234a186051"
+          }
+        ]
+      },
+      "event_id": "1b0675b05acf9e6d33f8d52a2f2aa38e3e3688418a1252a9a811d28aa7c7eb40"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "Studio Bora Inc.",
+        "category": "Trainer",
+        "en_card_id": "en:ME02:094/094:normal",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+        "illustrator": "Studio Bora Inc.",
+        "ja_card_id": "ja:MC:638/742:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/638.ts:sha256:9cc7c490fdfd08bd485e37d3b29ec4f68a2631c8c532ae34deec534f686b2010",
+        "name_en": "Wondrous Patch",
+        "name_ja": "エネルギーつけかえ",
+        "omitted_name_count": 114,
+        "proposal_id": "c43348974449594a921c",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/094.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/638.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames/094.ts:sha256:73ff7ce4cccee6837756fa8506fb1f468d0387dc4f6d3b8767f7256367f39b87",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "Studio Bora Inc.",
+            "category": "Trainer",
+            "en_card_id": "en:ME02:094/094:normal",
+            "en_match_eligible": 1,
+            "illustrator": "Studio Bora Inc.",
+            "ja_card_id": "ja:MC:638/742:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Wondrous Patch",
+            "name_ja": "エネルギーつけかえ",
+            "omitted_name_count": 114,
+            "proposal_id": "c43348974449594a921c",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Mega%20Evolution/Phantasmal%20Flames/094.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/638.ts",
+            "subtype": "Item"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/638.ts:sha256:9cc7c490fdfd08bd485e37d3b29ec4f68a2631c8c532ae34deec534f686b2010",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/638.ts:sha256:9cc7c490fdfd08bd485e37d3b29ec4f68a2631c8c532ae34deec534f686b2010",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/638.ts:sha256:9cc7c490fdfd08bd485e37d3b29ec4f68a2631c8c532ae34deec534f686b2010",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.702128,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2025-11-14",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Phantasmal Flames.ts",
+            "en_set_source_sha256": "589d0acbe19ea07948d293528efbe4943768bde937a59ad7a471e23f4ddd738a",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2025-12-19",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC.ts",
+            "ja_set_source_sha256": "8b8dd1cc7786bc61e05350f7fe2ab4aeb1b57ef9f56081a73a64186bc70116dc",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 35,
+            "score": 4.202128
+          }
+        },
+        "source_snapshot_sha256": "2b440435e90479fbaac90ab8c2908edd145183f67ef7dfc4d1d1dd2878815f29",
+        "subtype": "Item"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "reject",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": false,
+        "en_identity_checked": false,
+        "translation_checked": false,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and source-matched card images where available. Missing image evidence is recorded. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "reject",
+            "rationale": "Both are Items involving basic Energy, but Wondrous Patch attaches discarded Basic Psychic Energy to a Benched Psychic Pokémon; エネルギーつけかえ moves already attached basic Energy between the user’s Pokémon. Distinct Energy-source and target conditions support different concepts.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "reject",
+            "rationale": "Energy Switch moves Basic Energy between two of your Pokémon; Wondrous Patch attaches Basic Psychic Energy from the discard pile to a Benched Psychic Pokémon.",
+            "limitations": "Energy attachment is a broad shared theme; the source, target, and name differ."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "reject",
+            "rationale": "The Japanese card is エネルギーつけかえ (Energy Switch), which allows moving a basic Energy card from one of your Pokémon to another of your Pokémon. The English card is Wondrous Patch, which attaches a Basic Psychic Energy from the discard pile to a Benched Psychic Pokémon. These are entirely different Trainer Item cards with different names and effects.",
+            "limitations": "None. The Japanese card title and text clearly describe Energy Switch, whereas the English card and scan depict Wondrous Patch.",
+            "image_evidence": "The English scan shows the Trainer Item card 'Wondrous Patch' (094/094) illustrated by Studio Bora Inc., with the effect of attaching a Basic Psychic Energy from the discard pile to a Benched Psychic Pokémon. No Japanese card scan was provided.",
+            "ja_image_sha256": null,
+            "en_image_sha256": "f5ddd73e4a405b938c762abc823771bf9b01bdbd528a86a72b97beeb4756a76f",
+            "image_pair_checked": false,
+            "request_sha256": "81b5554c1af5c2d57e7e03556bc33c173e541c89c49396b62dabf432e1ac3cc3",
+            "response_sha256": "50c71fd7945e407c8ed62414d133a970af9cfb1026223ae0d23670ede7ad4e67"
+          }
+        ]
+      },
+      "event_id": "1bd04145fee4660628536d17e346ac6b565ff1a861d54a029403b1ffd093e81c"
+    },
+    {
+      "schema": "pokemon.concept_review.v1",
+      "proposal": {
+        "candidate_illustrator": "AYUMI ODASHIMA",
+        "category": "Trainer",
+        "en_card_id": "en:SWSH12.5:143/159:holo",
+        "en_match_eligible": 1,
+        "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/143.ts:sha256:a5044549c1acb270179c03a768740ab511d93110fa9c2c1f4dcf2711bad1ecad",
+        "illustrator": "AYUMI ODASHIMA",
+        "ja_card_id": "ja:S12A:146/172:normal",
+        "ja_match_eligible": 1,
+        "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/146.ts:sha256:073552dcdcc12af3ffc07c496e07070a324f810b8e861332bf9046c3f8c4462f",
+        "name_en": "Sky Seal Stone",
+        "name_ja": "空の封印石",
+        "omitted_name_count": 4,
+        "proposal_id": "c2c0274e9221ccb33c08",
+        "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+        "retrieval_only": true,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/143.ts",
+        "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12a/146.ts",
+        "source_snapshot": {
+          "en_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/143.ts:sha256:a5044549c1acb270179c03a768740ab511d93110fa9c2c1f4dcf2711bad1ecad",
+          "en_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/143.ts:sha256:a5044549c1acb270179c03a768740ab511d93110fa9c2c1f4dcf2711bad1ecad",
+          "en_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith/143.ts:sha256:a5044549c1acb270179c03a768740ab511d93110fa9c2c1f4dcf2711bad1ecad",
+          "en_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "frozen": {
+            "candidate_illustrator": "AYUMI ODASHIMA",
+            "category": "Trainer",
+            "en_card_id": "en:SWSH12.5:143/159:holo",
+            "en_match_eligible": 1,
+            "illustrator": "AYUMI ODASHIMA",
+            "ja_card_id": "ja:S12A:146/172:normal",
+            "ja_match_eligible": 1,
+            "name_en": "Sky Seal Stone",
+            "name_ja": "空の封印石",
+            "omitted_name_count": 4,
+            "proposal_id": "c2c0274e9221ccb33c08",
+            "proposal_signal": "ranked_artist_subtype_effect_numbers_release_era_localized",
+            "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/143.ts",
+            "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12a/146.ts",
+            "subtype": "Tool"
+          },
+          "ja_classification": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/146.ts:sha256:073552dcdcc12af3ffc07c496e07070a324f810b8e861332bf9046c3f8c4462f",
+          "ja_illustrator": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/146.ts:sha256:073552dcdcc12af3ffc07c496e07070a324f810b8e861332bf9046c3f8c4462f",
+          "ja_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/146.ts:sha256:073552dcdcc12af3ffc07c496e07070a324f810b8e861332bf9046c3f8c4462f",
+          "ja_rights": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "rank": {
+            "date_mode": "localized",
+            "date_score": 1.606426,
+            "en_effect_numbers": [
+              "1"
+            ],
+            "en_release_date": "2023-01-20",
+            "en_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Crown Zenith.ts",
+            "en_set_source_sha256": "545eb29372a5c9c6a8cbe840517cfb9f4664325226fdbf6e94a097a6cccb8835",
+            "era_score": 0.5,
+            "ja_effect_numbers": [
+              "1"
+            ],
+            "ja_release_date": "2022-12-02",
+            "ja_set_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a.ts",
+            "ja_set_source_sha256": "5ca74d35c7e9725f4a8c0af37e7fe3716c741fb89e04fe061530f00d3ecb5f81",
+            "number_score": 2.0,
+            "position": 2,
+            "release_gap_days": 49,
+            "score": 4.106426
+          }
+        },
+        "source_snapshot_sha256": "f4d8a79f4d69c7863b20b996374211af3de17ef23c20e4a79bde100c40fbd0a0",
+        "subtype": "Tool"
+      },
+      "review": {
+        "review_revision": 1,
+        "decision": "approve",
+        "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+        "reviewed_at": "2026-09-25T08:03:00+00:00",
+        "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+        "ja_identity_checked": true,
+        "en_identity_checked": true,
+        "translation_checked": true,
+        "evidence_note": "Three independent AI reviews agree on the name concept; Gemini saw pinned text and both source-matched card images. No human or printing verification.",
+        "extra_source_ja": "",
+        "extra_source_en": "",
+        "ai_reviews": [
+          {
+            "model": "gpt-6-astra",
+            "decision": "approve",
+            "rationale": "Sky Seal Stone / 空の封印石: both Tools grant Pokémon V the Star Order VSTAR Power, taking one extra Prize when a Basic Pokémon V knocks out an opposing Active VSTAR or VMAX by attack damage that turn. The sky-seal name and complete distinctive power agree.",
+            "limitations": "Pinned local TCGdex English/Japanese text only; bilingual name concept only, without physical-printing, artwork, variant, legality, price or market-equivalence claims; no official card-image verification."
+          },
+          {
+            "model": "gpt-6-sol",
+            "decision": "approve",
+            "rationale": "空の封印石 is Sky Seal Stone; both Tools grant Pokémon V the Star Order VSTAR Power, taking one extra Prize when a Basic Pokémon V knocks out an opposing VSTAR or VMAX by attack damage.",
+            "limitations": "The paired cards establish a name concept, not a physical printing or price relationship."
+          },
+          {
+            "model": "gemini-3.8-flash",
+            "decision": "approve",
+            "rationale": "The Japanese card '空の封印石' and the English card 'Sky Seal Stone' share the exact same name concept, card category (Trainer - Pokémon Tool), and unique VSTAR Power Ability ('スターオーダー' / 'Star Order'), which allows the attached Pokémon V to take an extra Prize card when knocking out an opponent's Active Pokémon VSTAR or VMAX with an attack from a Basic Pokémon V.",
+            "limitations": "None. The name translation, card subtype, effect mechanics, and VSTAR power naming are completely aligned.",
+            "image_evidence": "Both scans depict identical artwork by AYUMI ODASHIMA featuring a carved spiral stone tablet with a central glowing sphere on a blue sky-like background.",
+            "ja_image_sha256": "c159371d660bd744e3a277be8d78516fd374493079af2b27522ae4ba6e806c5a",
+            "en_image_sha256": "58e0985ba0bce9f93d5705115b308746a10197d3b3776e626ae574c4b81b861c",
+            "image_pair_checked": true,
+            "request_sha256": "c4004e48894edd0a18a6becf780ee5c73d789dc6358aa7ffafb5deb3813bdb08",
+            "response_sha256": "ea4065310e5f50d6b077a4dc2c535d56db3b817322c0d85c28ad46c3a557b7ae"
+          }
+        ]
+      },
+      "event_id": "f37cbcb4153a46a862ff3147e422f9d89754b73c9d022d26c9956bbfbad4a7af"
+    }
+  ],
+  "concept_revisions": [
+    {
+      "concept_id": "concept-3928f4fe58661db5538c",
+      "revision": 1,
+      "category": "Trainer",
+      "name_ja": "ジャッジマンホイッスル",
+      "name_en": "Judge Whistle",
+      "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM9/078.ts",
+      "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sun%20%26%20Moon/Team%20Up/146.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+      "reviewed_at": "2026-09-25T08:03:00+00:00",
+      "status": "approved",
+      "review_event_id": "44d22b9af42918ffe103459f126427aa821d41f7d1145210a27a5f36af9ab314"
+    },
+    {
+      "concept_id": "concept-b83870c4208c1ac03ea0",
+      "revision": 1,
+      "category": "Trainer",
+      "name_ja": "空の封印石",
+      "name_en": "Sky Seal Stone",
+      "source_ja": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12a/146.ts",
+      "source_en": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data/Sword%20%26%20Shield/Crown%20Zenith/143.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "reviewer": "ai-consensus:gpt-6-astra+gpt-6-sol+gemini-3.8-flash",
+      "reviewed_at": "2026-09-25T08:03:00+00:00",
+      "status": "approved",
+      "review_event_id": "f37cbcb4153a46a862ff3147e422f9d89754b73c9d022d26c9956bbfbad4a7af"
+    }
+  ],
+  "audit": {
+    "proposal_rows": 10,
+    "decisions": {
+      "approve": 2,
+      "reject": 8
+    },
+    "retained_review_events": 10,
+    "approved_import_rows": 2,
+    "proposed_candidate_edges": 2,
+    "review_basis": "triple_ai_agreement_user_authorized_images_when_available",
+    "deferred_rows": 0,
+    "deferred": [],
+    "scope": "AI-agreed name concepts and proposed collecting alternatives; no human-certified printing counterparts"
+  }
+}
