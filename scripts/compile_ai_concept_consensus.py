@@ -40,7 +40,7 @@ def compile_consensus(queue: list[dict[str, Any]], astra: dict[str, dict[str, st
                       sol: dict[str, dict[str, str]], reviewed_at: str,
                       batch_id: str = "v2", allow_deferred: bool = False
                       ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-    if batch_id not in {"v2", "v3"}:
+    if batch_id not in {"v2", "v3", "v4"}:
         raise ValueError("unsupported concept batch ID")
     timestamp = parse_time(reviewed_at).isoformat()
     ids = [row["proposal_id"] for row in queue]
@@ -59,7 +59,7 @@ def compile_consensus(queue: list[dict[str, Any]], astra: dict[str, dict[str, st
         if _digest(proposal["source_snapshot"]) != proposal["source_snapshot_sha256"]:
             raise ValueError(f"source snapshot changed for {pid}")
         for label, row in (("Astra", first), ("Sol", second)):
-            if batch_id == "v3" and row.get("source_snapshot_sha256") != proposal["source_snapshot_sha256"]:
+            if batch_id != "v2" and row.get("source_snapshot_sha256") != proposal["source_snapshot_sha256"]:
                 raise ValueError(f"{label} review no longer binds pinned evidence for {pid}")
         if batch_id == "v2":
             if any(first.get(field) != proposal[field] for field in
@@ -161,7 +161,7 @@ def main() -> None:
     parser.add_argument("--astra", type=Path, required=True)
     parser.add_argument("--sol", type=Path, required=True)
     parser.add_argument("--reviewed-at", default=datetime.now().astimezone().isoformat())
-    parser.add_argument("--batch-id", choices=("v2", "v3"), default="v2")
+    parser.add_argument("--batch-id", choices=("v2", "v3", "v4"), default="v2")
     parser.add_argument("--allow-deferred", action="store_true")
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--edges", type=Path, required=True)

@@ -48,7 +48,7 @@ untouched [printing review template](catalog/concept-review-v3-relationship-revi
 All 33 anchors found candidates; two candidate pairs include a card barred
 from automatic offer matching. None of the 68 is a verified edge.
 
-The local `catalog-index.sqlite3` snapshot now has 153 AI review events,
+At the v3 import, the local `catalog-index.sqlite3` snapshot had 153 AI review events,
 54 approved name aliases, 54 proposed source-card edges, and zero verified
 printing edges across v2 and v3. The snapshot is not committed. The frozen
 bundle and edges can be replayed after rebuilding the catalog:

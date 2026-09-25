@@ -109,7 +109,7 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。
 
-新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；概念别名表已有 54 条经用户授权的双 AI 一致审核的内部别名，153 条 AI 审核事件留痕；另有 54 条明确标为 `proposed` 的卡片候选边。v2 的 21 个日文锚点产生 49 对待复核候选，v3 的 33 个日文锚点新增 68 对。v3 唯一分歧 Pokémon Center 未导入。真人审核表仍全部 pending，没有已验证印刷关系或召回率结论。详情见 [AI_CONSENSUS_IMPORT.md](AI_CONSENSUS_IMPORT.md) 与 [CONCEPT_REVIEW_V3.md](CONCEPT_REVIEW_V3.md)。
+新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；概念别名表已有 73 条经用户授权的双 AI 一致审核的内部别名，276 条 AI 审核事件留痕；另有 73 条明确标为 `proposed` 的卡片候选边。v2、v3、v4 分别从 21、33、19 个日文锚点产生 49、68、37 对待复核候选。Pokémon Center、Spell Tag 与 Cyrus ◇ 暂缓导入。真人审核表仍全部 pending，没有已验证印刷关系或召回率结论。详情见 [AI_CONSENSUS_IMPORT.md](AI_CONSENSUS_IMPORT.md) 、[CONCEPT_REVIEW_V3.md](CONCEPT_REVIEW_V3.md) 与 [CONCEPT_REVIEW_V4.md](CONCEPT_REVIEW_V4.md)。
 
 目前使用 [v2 人工复核包](CONCEPT_REVIEW_V2.md)：独立于盲审集的 22 个日文名称、39 条双端固定源码提案。初版 36 条记录仍保留在 [v1 档案](CONCEPT_REVIEW_GUIDE.md)。v2 CSV 尚无任何批准；编译保留全部审核理由和额外证据，审核包导入不会放开卡片的报价匹配资格。
 
