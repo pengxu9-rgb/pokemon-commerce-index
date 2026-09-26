@@ -136,6 +136,11 @@ def normalize_collector_number(number: str) -> str:
     return f"{match.group(1).zfill(width)}/{match.group(2).zfill(width)}"
 
 
+def _compact_identity_text(value: str) -> str:
+    """Allow listing spacing/punctuation differences without changing card letters."""
+    return re.sub(r"[\W_]+", "", unicodedata.normalize("NFKC", value).casefold())
+
+
 def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
     count = 0
     for row in rows:
@@ -594,7 +599,7 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
         number_marks = ",".join("?" for _ in numbers)
         set_marks = ",".join("?" for _ in mentioned_sets)
         choices = db.execute(
-            f"""SELECT card_id, language, variant FROM card
+            f"""SELECT card_id, language, variant, name FROM card
                 WHERE set_code IN ({set_marks}) AND collector_number IN ({number_marks})
                 AND match_eligible=1 AND (? IS NULL OR language=?)""",
             (*sorted(mentioned_sets), *sorted(numbers), requested_language, requested_language),
@@ -622,6 +627,8 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
             variant = None
         selected = [choice for choice in choices if choice["variant"] == variant]
         if len(selected) != 1:
+            return None, "unresolved"
+        if _compact_identity_text(selected[0]["name"]) not in _compact_identity_text(title):
             return None, "unresolved"
         cid = selected[0]["card_id"]
         method = "exact"

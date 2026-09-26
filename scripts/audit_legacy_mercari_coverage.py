@@ -94,49 +94,64 @@ def audit(db: sqlite3.Connection, cassette_dir: Path) -> dict:
     counts = Counter()
     gaps = Counter()
     reference_only = Counter()
-    for item in items.values():
-        counts["unique_items"] += 1
-        if item.get("status") != "on_sale":
-            counts["non_on_sale"] += 1
-        photos = item.get("photos")
-        if isinstance(photos, list):
-            counts["with_photo_array"] += 1
-            counts["with_two_or_more_photos"] += len(photos) >= 2
-        title = unicodedata.normalize("NFKC", str(item.get("name", "")))
-        if core.BUNDLE_RE.search(title):
-            counts["bundle_or_multi_card_title"] += 1
-            continue
-        numbers = {core.normalize_collector_number(n) for n in NUMBER.findall(title)}
-        codes, code_method = _candidate_codes(title, set_codes, code_pattern)
-        if len(numbers) != 1 or not codes or PROMO_NUMBER.search(title):
-            counts["no_single_set_number"] += 1
-            if code_method == "artwork_shorthand":
-                counts["artwork_shorthand_not_set"] += 1
-            continue
-        number = next(iter(numbers))
-        matches = db.execute(
-            "SELECT language,set_code,collector_number,match_eligible FROM card "
-            "WHERE set_code IN (" + ",".join("?" for _ in codes) + ") "
-            "AND collector_number=?", (*sorted(codes), number)).fetchall()
-        counts["explicit_or_alias_set_number"] += 1
-        counts[f"code_method_{code_method}"] += 1
-        if matches:
-            counts["catalog_identity_present"] += 1
-            counts["catalog_match_eligible_present"] += any(row["match_eligible"] for row in matches)
-            if len({(row["language"], row["set_code"]) for row in matches}) > 1:
-                counts["multiple_language_or_set_candidates"] += 1
-        elif len(codes) == 1:
-            code = next(iter(codes))
-            references = db.execute(
-                "SELECT COUNT(*) FROM card_reference WHERE set_code=? AND collector_number=?",
-                (code, number)).fetchone()[0]
-            if references:
-                counts["reference_only_no_printing"] += 1
-                reference_only[(code, number, references)] += 1
+    db.execute("SAVEPOINT legacy_fixture_resolution_audit")
+    try:
+        for item in items.values():
+            counts["unique_items"] += 1
+            if item.get("status") != "on_sale":
+                counts["non_on_sale"] += 1
+            photos = item.get("photos")
+            two_photos = isinstance(photos, list) and len(photos) >= 2
+            if isinstance(photos, list):
+                counts["with_photo_array"] += 1
+                counts["with_two_or_more_photos"] += two_photos
+            title = unicodedata.normalize("NFKC", str(item.get("name", "")))
+            try:
+                unit_id, _ = core.resolve(db, {"title": title})
+                counts["resolver_auto_accepted" if unit_id else "resolver_abstained"] += 1
+                if two_photos:
+                    counts["auto_accepted_two_photo_candidates" if unit_id
+                           else "abstained_two_photo_candidates"] += 1
+            except ValueError:
+                counts["resolver_error"] += 1
+            if core.BUNDLE_RE.search(title):
+                counts["bundle_or_multi_card_title"] += 1
+                counts["bundle_with_two_or_more_photos"] += two_photos
+                continue
+            numbers = {core.normalize_collector_number(n) for n in NUMBER.findall(title)}
+            codes, code_method = _candidate_codes(title, set_codes, code_pattern)
+            if len(numbers) != 1 or not codes or PROMO_NUMBER.search(title):
+                counts["no_single_set_number"] += 1
+                if code_method == "artwork_shorthand":
+                    counts["artwork_shorthand_not_set"] += 1
+                continue
+            number = next(iter(numbers))
+            matches = db.execute(
+                "SELECT language,set_code,collector_number,match_eligible FROM card "
+                "WHERE set_code IN (" + ",".join("?" for _ in codes) + ") "
+                "AND collector_number=?", (*sorted(codes), number)).fetchall()
+            counts["explicit_or_alias_set_number"] += 1
+            counts[f"code_method_{code_method}"] += 1
+            if matches:
+                counts["catalog_identity_present"] += 1
+                counts["catalog_match_eligible_present"] += any(row["match_eligible"] for row in matches)
+                if len({(row["language"], row["set_code"]) for row in matches}) > 1:
+                    counts["multiple_language_or_set_candidates"] += 1
+            elif len(codes) == 1:
+                code = next(iter(codes))
+                references = db.execute(
+                    "SELECT COUNT(*) FROM card_reference WHERE set_code=? AND collector_number=?",
+                    (code, number)).fetchone()[0]
+                if references:
+                    counts["reference_only_no_printing"] += 1
+                    reference_only[(code, number, references)] += 1
+                else:
+                    gaps[(code, number)] += 1
             else:
-                gaps[(code, number)] += 1
-        else:
-            counts["ambiguous_alias_gap"] += 1
+                counts["ambiguous_alias_gap"] += 1
+    finally:
+        db.execute("ROLLBACK TO SAVEPOINT legacy_fixture_resolution_audit")
+        db.execute("RELEASE SAVEPOINT legacy_fixture_resolution_audit")
     return {
         "scope": "offline historical fixture coverage; no live offers, prices or photo bytes",
         "cassette_files_with_items": len(fingerprints),

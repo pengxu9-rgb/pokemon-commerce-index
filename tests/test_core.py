@@ -16,7 +16,7 @@ class IndexTests(unittest.TestCase):
         })
         core.import_cards(self.db, [{
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
-            "name": "ピカチュウ AR", "provenance": "test fixture",
+            "name": "ピカチュウ", "rarity": "AR", "provenance": "test fixture",
             "rights_reference": "synthetic fixture", "display_allowed": True,
         }])
 
@@ -54,6 +54,7 @@ class IndexTests(unittest.TestCase):
         self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 2枚セット"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "中国語 ピカチュウ SV2a 173/165"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 マスターボールミラー"})[0])
+        self.assertIsNone(core.resolve(self.db, {"title": "リザードン SV2a 173/165"})[0])
 
     def test_collector_number_padding_is_consistent_for_short_sets(self):
         core.import_cards(self.db, [{
@@ -78,6 +79,18 @@ class IndexTests(unittest.TestCase):
             "title": "メガリザードンXex MA 223/193 メガドリームex", "language": "ja"})
         self.assertEqual(method, "exact")
         self.assertEqual(unit.split("|")[0], "ja:M2A:223/193:holo")
+
+    def test_missing_x_in_mega_charizard_name_abstains(self):
+        core.import_cards(self.db, [{
+            "language": "ja", "set_code": "M2", "collector_number": "116/080",
+            "variant": "holo", "name": "メガリザードンXex", "provenance": "fixture",
+            "rights_reference": "fixture", "display_allowed": True,
+        }])
+        self.assertEqual(core.resolve(self.db, {
+            "title": "PSA10 メガリザードンex 116/080 MUR M2"}), (None, "unresolved"))
+        unit, _ = core.resolve(self.db, {
+            "title": "PSA10 メガリザードンX ex 116/080 MUR M2"})
+        self.assertEqual(unit.split("|")[0], "ja:M2:116/080:holo")
 
     def test_internal_catalog_search_preserves_public_display_gate(self):
         core.import_sets(self.db, [{

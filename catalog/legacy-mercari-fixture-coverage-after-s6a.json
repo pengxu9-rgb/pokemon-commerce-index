@@ -3,8 +3,11 @@
   "cassette_files_with_items": 26,
   "cassette_snapshot_sha256": "8458421748c91001f7bed7efdf2b71584274c65067b4998caa22da1fc7bdc407",
   "counts": {
+    "abstained_two_photo_candidates": 319,
     "artwork_shorthand_not_set": 35,
+    "auto_accepted_two_photo_candidates": 99,
     "bundle_or_multi_card_title": 99,
+    "bundle_with_two_or_more_photos": 83,
     "catalog_identity_present": 126,
     "catalog_match_eligible_present": 107,
     "code_method_exact": 112,
@@ -14,6 +17,8 @@
     "multiple_language_or_set_candidates": 2,
     "no_single_set_number": 241,
     "reference_only_no_printing": 1,
+    "resolver_abstained": 362,
+    "resolver_auto_accepted": 105,
     "unique_items": 467,
     "with_photo_array": 467,
     "with_two_or_more_photos": 418

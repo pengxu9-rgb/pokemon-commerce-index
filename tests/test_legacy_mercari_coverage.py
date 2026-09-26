@@ -51,6 +51,7 @@ class LegacyCoverageTests(unittest.TestCase):
             self.assertEqual(after["counts"]["catalog_identity_present"], 1)
             self.assertEqual(after["counts"]["catalog_match_eligible_present"], 0)
             self.assertEqual(after["missing_set_number_groups"], [])
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM priceable_unit").fetchone()[0], 0)
             serial = json.dumps(after)
             self.assertNotIn("999999", serial)
             self.assertNotIn("m123456789", serial)

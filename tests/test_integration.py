@@ -73,7 +73,7 @@ class HandoffAndRetentionTests(unittest.TestCase):
         })
         core.import_cards(self.db, [{
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
-            "name": "ピカチュウ AR", "provenance": "synthetic fixture",
+            "name": "ピカチュウ", "rarity": "AR", "provenance": "synthetic fixture",
             "rights_reference": "synthetic fixture", "display_allowed": True,
         }])
         item = {"id": "m123456789", "name": "ピカチュウ SV2a 173/165",

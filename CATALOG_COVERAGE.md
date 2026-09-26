@@ -34,6 +34,15 @@ priceable unit or offer was asserted. One `SA 006/023` title remains
 reference-only because the existing source has three different cards at that
 set/number.
 
+The deterministic resolver accepts 105 of the 467 historical titles and
+abstains on 362. Among items with at least two photo references, 99 are
+title-accepted and 319 abstain; 83 of the latter are explicit bundles. These
+are sampling strata for a future authorized photo evaluation, not measured
+vision accuracy. The resolver now requires the normalized catalog card name
+as well as set/number and finish evidence. One old title omitted the `X` in
+`メガリザードンXex` and is now held for photo review instead of being automatically
+matched.
+
 The before/after audit files are
 [`catalog/legacy-mercari-fixture-coverage-audit.json`](catalog/legacy-mercari-fixture-coverage-audit.json)
 and [`catalog/legacy-mercari-fixture-coverage-after-s6a.json`](catalog/legacy-mercari-fixture-coverage-after-s6a.json).
