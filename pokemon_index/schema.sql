@@ -30,6 +30,24 @@ CREATE TABLE IF NOT EXISTS card (
   UNIQUE(language, set_code, collector_number, variant)
 );
 
+-- A provisional language/set numbering scope, derived from the existing card
+-- identity. It is not an official release ID or evidence of physical finish.
+CREATE TABLE IF NOT EXISTS card_number_context (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  number_scope_id TEXT NOT NULL,
+  scope_status TEXT NOT NULL CHECK (scope_status='provisional_language_set'),
+  printed_number TEXT NOT NULL,
+  full_number_key TEXT NOT NULL,
+  numerator_key TEXT,
+  denominator_key TEXT,
+  number_format TEXT NOT NULL CHECK (number_format IN
+    ('numeric_fraction', 'mixed_fraction', 'coded_fraction', 'single', 'other')),
+  variant_label TEXT NOT NULL,
+  derivation TEXT NOT NULL CHECK (derivation='card_metadata_v1')
+);
+CREATE INDEX IF NOT EXISTS card_number_context_scope_number
+  ON card_number_context(number_scope_id, full_number_key);
+
 -- Source snapshots remain immutable; official-page corrections overlay them.
 CREATE TABLE IF NOT EXISTS card_identity_exception (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),

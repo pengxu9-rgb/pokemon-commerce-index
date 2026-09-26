@@ -44,6 +44,15 @@ additional fields are needed to avoid hiding physical differences in a free
 text variant or attributes blob. Supplementary and multi-record identities
 remain match-disabled until their exact printing can be distinguished.
 
+The first implementation step now materializes `card_number_context` for all
+55,167 local card identities. Its `number_scope_id` is the **provisional**
+language/set-code namespace, not an asserted official release or region. It
+parses number components and retains the catalog variant label while leaving
+physical finish, stamp and edition unverified. The internal number-explanation
+query combines these facts with current review-status edges; equal numbers
+alone cannot create a counterpart or a price comparison. The later release,
+region and physical-variant evidence model remains to be built.
+
 ## Typed relation graph
 
 Do not merge nodes through `same_artwork`, `same_character`, or a matching
@@ -118,7 +127,8 @@ simply a cheaper collecting alternative; those are different traversals.
 
 1. **Now:** finish image/number audits, retry missing images and model errors,
    inspect a stratified sample of positives and negatives, and keep all
-   587 batch artwork claims at proposed status. Treat trainer, energy and
+   587 batch artwork claims at proposed status. The provisional number
+   context and explanation query are implemented. Treat trainer, energy and
    supplemental-source gaps as a separate recall lane.
 2. **Identity layer:** add release and scoped-number tables/fields, structured
    finish/stamp/edition, artwork and gameplay concepts, and source alias

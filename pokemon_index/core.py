@@ -10,6 +10,8 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Iterable
 
+from . import number_graph
+
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
 COMPONENTS = {"item", "domestic", "service", "international", "tax", "insurance", "fx_spread", "other"}
 GRADE_RE = re.compile(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)\s*(10|9(?:\.5)?|8(?:\.5)?|7(?:\.5)?|6(?:\.5)?|[1-5](?:\.5)?)(?![\d.])", re.I)
@@ -100,6 +102,7 @@ def init_db(db: sqlite3.Connection) -> None:
         SELECT 'ja', set_code, name_ja, release_date_ja, official_card_count,
         provenance, rights_reference, display_allowed FROM catalog_set"""
     )
+    number_graph.backfill_number_context(db)
     db.commit()
 
 
@@ -202,6 +205,11 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
              int(bool(row.get("match_eligible", True))),
              json.dumps(row.get("attributes", {}), ensure_ascii=False, sort_keys=True)),
         )
+        number_graph.upsert_number_context(db, {
+            "card_id": cid, "language": row["language"].lower(),
+            "set_code": row["set_code"].upper(), "collector_number": number,
+            "variant": variant,
+        })
         count += 1
     db.commit()
     return count
@@ -647,6 +655,7 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
     )]
     exception = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?", (cid,)).fetchone()
     return {"card": _catalog_card_dict(row),
+            "number_context": number_graph.card_number_context(db, cid),
             "identity_exception": dict(exception) if exception else None,
             "variants_at_number": siblings,
             "set": ({**dict(set_row),

@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, discovery_graph, listing_candidates, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, calibration, core, discovery_graph, listing_candidates, number_graph, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -66,6 +66,9 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         result = listing_candidates.retrieve(db, value("title"))
                     elif internal_catalog_api and parsed.path == "/catalog-neighborhood":
                         result = discovery_graph.card_neighborhood(db, value("card_id"))
+                    elif internal_catalog_api and parsed.path == "/number-explanation":
+                        result = number_graph.explain_number_pair(
+                            db, value("left_card_id"), value("right_card_id"))
                     elif internal_catalog_api and parsed.path == "/cross-region-compare":
                         result = offer_comparison.compare_landed_asks(
                             db, value("ja_card_id"), value("en_card_id"),
@@ -148,6 +151,9 @@ def main() -> None:
     neighborhood = sub.add_parser("catalog-neighborhood", help="internal reviewed card relationships")
     neighborhood.add_argument("card_id")
     neighborhood.add_argument("--include-proposed", action="store_true")
+    number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
+    number_explanation.add_argument("left_card_id")
+    number_explanation.add_argument("right_card_id")
     exploration = sub.add_parser("exploration", help="read one structured discovery session")
     exploration.add_argument("session_id")
     exploration.add_argument("--owner-key", required=True)
@@ -249,6 +255,9 @@ def main() -> None:
             output = listing_candidates.retrieve(db, args.title, args.limit)
         elif args.command == "catalog-neighborhood":
             output = discovery_graph.card_neighborhood(db, args.card_id, args.include_proposed)
+        elif args.command == "number-explanation":
+            output = number_graph.explain_number_pair(db, args.left_card_id,
+                                                       args.right_card_id)
         elif args.command == "exploration":
             output = discovery_graph.get_exploration(db, args.session_id, args.owner_key)
         elif args.command == "exploration-candidates":

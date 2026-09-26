@@ -10,7 +10,7 @@ import uuid
 from collections import Counter
 from typing import Any, Iterable
 
-from . import core
+from . import core, number_graph
 
 RELATION_TYPES = {"localization_counterpart", "same_artwork", "collecting_alternative"}
 REVIEW_STATUSES = {"proposed", "verified", "rejected"}
@@ -265,8 +265,15 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
                   and item["review_status"] == "proposed"
                   and item["asserted_by"] == "ai-artwork-review-v1"]
     ai_artwork.sort(key=lambda item: item["other_card_id"])
-    for item in ai_artwork:
+    source_number = number_graph.card_number_context(db, card_id)
+    target_numbers = {}
+    for item in reviewed + ai_artwork:
+        other = item["other_card_id"]
+        if other not in target_numbers:
+            target_numbers[other] = number_graph.card_number_context(db, other)
+        item.update(number_graph.number_alignment(source_number, target_numbers[other]))
         item["price_comparable"] = False
+    for item in ai_artwork:
         item["scope"] = "AI visual artwork proposal; finish and condition unverified"
     metadata_neighbors = {}
     for facet_type, label in (("dex_id", "same_character"), ("illustrator", "same_illustrator")):
@@ -304,6 +311,7 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
             "claim_status": "retrieval_only", "price_comparable": False,
         }
     return {"card_id": card_id,
+            "number_context": source_number,
             "official_printing_type": printing["official_printing_type"] if printing else None,
             "variants_at_number": variants,
             "relationships": reviewed, "ai_artwork_candidates": ai_artwork,
