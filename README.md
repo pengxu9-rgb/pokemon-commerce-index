@@ -125,7 +125,7 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 python3 -m pokemon_index --db demo.sqlite3 serve --port 8765
 ```
 
-端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。带 `--internal-catalog-api` 时另有 `/catalog-neighborhood?card_id=...`；探索 session 的读写暂不开放 HTTP。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
+端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。带 `--internal-catalog-api` 时另有 `/catalog-neighborhood?card_id=...` 和 `/listing-candidates?title=...`；后者只返回照片审核候选，绝不自动匹配报价。探索 session 的读写暂不开放 HTTP。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
 
 ## 输入契约
 

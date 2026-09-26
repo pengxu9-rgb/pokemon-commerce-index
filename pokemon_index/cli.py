@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, discovery_graph, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, calibration, core, discovery_graph, listing_candidates, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -62,6 +62,8 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         )
                     elif internal_catalog_api and parsed.path == "/catalog-card":
                         result = core.catalog_card_internal(db, value("card_id"))
+                    elif internal_catalog_api and parsed.path == "/listing-candidates":
+                        result = listing_candidates.retrieve(db, value("title"))
                     elif internal_catalog_api and parsed.path == "/catalog-neighborhood":
                         result = discovery_graph.card_neighborhood(db, value("card_id"))
                     elif internal_catalog_api and parsed.path == "/cross-region-compare":
@@ -139,6 +141,9 @@ def main() -> None:
     catalog_search.add_argument("--offset", type=int, default=0)
     catalog_card = sub.add_parser("catalog-card", help="internal card identity and known units")
     catalog_card.add_argument("card_id")
+    listing_lookup = sub.add_parser("listing-candidates", help="internal photo-review candidates, never offer resolution")
+    listing_lookup.add_argument("title")
+    listing_lookup.add_argument("--limit", type=int, default=12)
     neighborhood = sub.add_parser("catalog-neighborhood", help="internal reviewed card relationships")
     neighborhood.add_argument("card_id")
     neighborhood.add_argument("--include-proposed", action="store_true")
@@ -235,6 +240,8 @@ def main() -> None:
                                                   offset=args.offset)
         elif args.command == "catalog-card":
             output = core.catalog_card_internal(db, args.card_id)
+        elif args.command == "listing-candidates":
+            output = listing_candidates.retrieve(db, args.title, args.limit)
         elif args.command == "catalog-neighborhood":
             output = discovery_graph.card_neighborhood(db, args.card_id, args.include_proposed)
         elif args.command == "exploration":

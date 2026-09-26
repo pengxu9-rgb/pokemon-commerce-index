@@ -50,6 +50,8 @@ class LegacyCoverageTests(unittest.TestCase):
             after = audit(db, Path(directory))
             self.assertEqual(after["counts"]["catalog_identity_present"], 1)
             self.assertEqual(after["counts"]["catalog_match_eligible_present"], 0)
+            self.assertEqual(after["counts"]["review_candidate_items"], 1)
+            self.assertEqual(after["counts"]["abstained_two_photo_items_with_review_candidates"], 1)
             self.assertEqual(after["missing_set_number_groups"], [])
             self.assertEqual(db.execute("SELECT COUNT(*) FROM priceable_unit").fetchone()[0], 0)
             serial = json.dumps(after)

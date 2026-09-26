@@ -4,6 +4,8 @@
 
 现有确定性标题解析在这批样本中自动接纳 105 个、弃权 362 个；接纳组有 99 个带至少两张照片，弃权组有 319 个带至少两张照片，其中 83 个标题指向组合装。这些是**试测候选数量**，不是照片可用率或匹配准确率。卡名与卡组／编号必须一致；例如标题缺少“X”的「メガリザードンex」不能自动当作「メガリザードンXex」。
 
+新增的内部 `listing-candidates` 检索可为 319 个“两图但标题弃权”的商品中的 **94 个**返回至少一个目录候选。它也会返回不可自动报价匹配的卡片，并明确标记卡名冲突；仅用于给照片模型缩小查证范围。组合装直接排除，所有候选都不能自行进入价格指数。
+
 ## 可以立即重放的部分
 
 在持有旧 demo 本地副本的环境里，使用
@@ -14,6 +16,8 @@ python3 -m scripts.audit_legacy_mercari_coverage \
   --db catalog-index.sqlite3 \
   --cassettes /path/to/shopping-agent-demo/backend/flow_tests \
   --output /tmp/legacy-mercari-coverage.json
+python3 -m pokemon_index --db catalog-index.sqlite3 listing-candidates \
+  'ブラッキーVMAX S6a 095/069'
 ```
 
 ## 获得 Buy&Ship 授权后的照片 AI 测试

@@ -43,6 +43,12 @@ as well as set/number and finish evidence. One old title omitted the `X` in
 `メガリザードンXex` and is now held for photo review instead of being automatically
 matched.
 
+An internal review-only candidate retriever now finds at least one catalog
+candidate for 94 of the 319 two-photo historical items on which the strict
+title resolver abstains. This expands the future photo audit queue without
+changing `match_eligible`, the ask index, or public card display. A singleton
+retrieval result is not a verified identity.
+
 The before/after audit files are
 [`catalog/legacy-mercari-fixture-coverage-audit.json`](catalog/legacy-mercari-fixture-coverage-audit.json)
 and [`catalog/legacy-mercari-fixture-coverage-after-s6a.json`](catalog/legacy-mercari-fixture-coverage-after-s6a.json).

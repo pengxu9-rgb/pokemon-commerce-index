@@ -17,7 +17,7 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse
 
-from pokemon_index import buyship_mercari, core
+from pokemon_index import buyship_mercari, core, listing_candidates
 
 NUMBER = re.compile(r"(?<!\d)(\d{1,3}/\d{1,3})(?!\d)")
 PROMO_NUMBER = re.compile(r"(?<!\d)\d{1,3}/(?:SV-P|S-P|SM-P|XY-P)(?![A-Za-z0-9])", re.I)
@@ -106,6 +106,7 @@ def audit(db: sqlite3.Connection, cassette_dir: Path) -> dict:
                 counts["with_photo_array"] += 1
                 counts["with_two_or_more_photos"] += two_photos
             title = unicodedata.normalize("NFKC", str(item.get("name", "")))
+            unit_id = None
             try:
                 unit_id, _ = core.resolve(db, {"title": title})
                 counts["resolver_auto_accepted" if unit_id else "resolver_abstained"] += 1
@@ -114,6 +115,16 @@ def audit(db: sqlite3.Connection, cassette_dir: Path) -> dict:
                            else "abstained_two_photo_candidates"] += 1
             except ValueError:
                 counts["resolver_error"] += 1
+            try:
+                retrieval = listing_candidates.retrieve(db, title)
+            except ValueError:
+                retrieval = {"status": "none"}
+            if retrieval["status"] == "candidate_only":
+                counts["review_candidate_items"] += 1
+                counts["review_candidate_items_with_two_photos"] += two_photos
+                if not unit_id and two_photos:
+                    counts["abstained_two_photo_items_with_review_candidates"] += 1
+                counts["single_candidate_items"] += retrieval["candidate_count"] == 1
             if core.BUNDLE_RE.search(title):
                 counts["bundle_or_multi_card_title"] += 1
                 counts["bundle_with_two_or_more_photos"] += two_photos
