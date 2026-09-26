@@ -28,8 +28,8 @@ API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONT
 - 卡片目录逐条记录 `rights_reference` 和是否准许展示。旧数据库经 `init` 升级后，原有卡片默认不可展示，须重新导入并确认权利。
 - Buy&Ship Mercari 旧网关响应适配器、至多三次只读请求的 Gate 0 探针，以及 Pivota 候选商品交接契约。它们未连接真实生产数据。
 - TCGdex 日文卡组 JSON 的文本元数据适配器；不导入卡图、图片 URL、徽标或规则文本。
-- 固定 TCGdex commit 的日文目录：16,347 条可区分版本元数据；第二来源另补 10,233 条单记录与 462 条多记录同名候选，保留 24,039 条参考记录；TCGdex 另有 50 条版本歧义候选。日文合计 27,092 条。
-- 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 **55,165 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
+- 固定 TCGdex commit 的日文目录：16,347 条可区分版本元数据；第二来源另补 10,233 条单记录与 462 条多记录同名候选，保留 24,039 条参考记录；TCGdex 另有 50 条版本歧义候选。历史 Mercari 样本指出的 S6a 094/069、095/069 另增 2 条不可自动匹配候选。日文合计 27,094 条。
+- 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 **55,167 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
 - 内部关系图可查询同卡组／编号的版本邻居；日英对应、相同画作和收藏替代项仅作为带证据的断言进入库，经过人工核实才可作事实性探索。状态改变以新断言记录，不覆盖旧证据。结构化探索 session 保存语言、卡组、预算等约束、shortlist 和最后选定的精确卡片；只有 `match_eligible` 的卡片可进入后续 offer 跟踪。当前没有自动生成的日英对应边或真实用户 session。
 - 固定 TCGdex 源另提供 59,710 条内部角色 ID／画师属性记录，覆盖 28,361 个带角色 ID 的卡片身份与 31,071 个带画师的身份。英文角色名可通过同一 Pokédex ID 找到日文的**同角色候选**，结果标记 `same_character`，不会创建同画作或日英对应印刷关系。具体范围与 4 个非标准 ID 缺口见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
@@ -72,6 +72,7 @@ python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-physical-a
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-api-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-multi-record-candidates.jsonl
+python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/s6a-secret-art-gap-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-references catalog/ptcg-jp-reference.jsonl
 python3 -m pokemon_index --db catalog.sqlite3 import-card-facets catalog/card-facets.jsonl.gz

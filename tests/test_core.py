@@ -65,6 +65,20 @@ class IndexTests(unittest.TestCase):
             unit, _ = core.resolve(self.db, {"title": f"コイキング SV1a {number}"})
             self.assertEqual(unit.split("|")[0], "ja:SV1A:080/073:holo")
 
+    def test_mega_dream_name_outweighs_ma_artwork_shorthand(self):
+        core.import_cards(self.db, [
+            {"language": "ja", "set_code": "M2a", "collector_number": "223/193",
+             "variant": "holo", "name": "メガリザードンXex", "provenance": "fixture",
+             "rights_reference": "fixture", "display_allowed": True},
+            {"language": "ja", "set_code": "MA", "collector_number": "223/193",
+             "variant": "normal", "name": "別カード", "provenance": "fixture",
+             "rights_reference": "fixture", "display_allowed": True},
+        ])
+        unit, method = core.resolve(self.db, {
+            "title": "メガリザードンXex MA 223/193 メガドリームex", "language": "ja"})
+        self.assertEqual(method, "exact")
+        self.assertEqual(unit.split("|")[0], "ja:M2A:223/193:holo")
+
     def test_internal_catalog_search_preserves_public_display_gate(self):
         core.import_sets(self.db, [{
             "set_code": "SV1a", "name_ja": "トリプレットビート",

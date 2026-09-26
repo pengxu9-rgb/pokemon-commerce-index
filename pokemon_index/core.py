@@ -583,6 +583,12 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
         set_codes = [value[0] for value in db.execute("SELECT DISTINCT set_code FROM card")]
         mentioned_sets = {code for code in set_codes if re.search(
             rf"(?<![A-Za-z0-9]){re.escape(code)}(?![A-Za-z0-9])", title, re.I)}
+        # Marketplace "MA" can mean the artwork rarity. The printed set name
+        # is stronger evidence for M2a than that short token.
+        if ("MEGAドリーム" in title.upper() or "メガドリーム" in title) and "M2A" in set_codes:
+            mentioned_sets = {"M2A"}
+        elif "M2A" in mentioned_sets:
+            mentioned_sets.discard("MA")
         if not mentioned_sets:
             return None, "unresolved"
         number_marks = ",".join("?" for _ in numbers)

@@ -1,6 +1,6 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
-The catalog can be built without Buy&Ship. It currently contains **55,165 internal card identities across 543 card-bearing language-and-set combinations**: 27,092 Japanese identities in 342 sets and 28,073 English identities in 201 sets, plus 24,039 Japanese and 9,208 English source reference records. These are card metadata, not live offers or prices.
+The catalog can be built without Buy&Ship. The 23 September pinned baseline contains **55,165 internal card identities across 543 card-bearing language-and-set combinations**: 27,092 Japanese identities in 342 sets and 28,073 English identities in 201 sets, plus 24,039 Japanese and 9,208 English source reference records. The 26 September increment below adds two internal candidates. These are card metadata, not live offers or prices.
 
 | Layer | Records | Use in offer matching |
 | --- | ---: | --- |
@@ -16,6 +16,32 @@ The catalog can be built without Buy&Ship. It currently contains **55,165 intern
 The previous 3,621-row selected seed is wholly contained in the broader TCGdex extract. The supplemental layer includes **87 S6a cards** from the second source; they remain unverified for price matching. No catalog record is currently approved for public display, and no images, image URLs, attacks, effects or rules text are shipped in these extracts.
 
 The local SQLite snapshot can be rebuilt from the pinned JSONL files. It has no live marketplace listings or prices and is excluded from Git and the source ZIP.
+
+### 26 September 2026 demand-backed increment
+
+A read-only audit of 26 old Mercari HTTP cassette files found 467 distinct
+historical items; 467 carried a `photos[]` array and 418 carried at least two
+photo references. These counts do not prove that either image shows a card back,
+that the URLs still work, or that Buy&Ship permits sending them to AI. The
+audit copied no listing titles, IDs, photo URLs, sellers or prices into this
+repository. Of 127 non-bundle titles with one interpretable set/number, 121
+already had a catalog identity. Five historical items pointed to two missing
+S6a secret-art numbers, `094/069` and `095/069`; these have now been added as
+**match-disabled, display-disabled** internal candidates using two independent
+set/number/name references each. The local index now has **55,167 identities**
+(27,094 Japanese, 28,073 English) and still **33,957 match-eligible**. No new
+priceable unit or offer was asserted. One `SA 006/023` title remains
+reference-only because the existing source has three different cards at that
+set/number.
+
+The before/after audit files are
+[`catalog/legacy-mercari-fixture-coverage-audit.json`](catalog/legacy-mercari-fixture-coverage-audit.json)
+and [`catalog/legacy-mercari-fixture-coverage-after-s6a.json`](catalog/legacy-mercari-fixture-coverage-after-s6a.json).
+The two internal candidates are in
+[`catalog/s6a-secret-art-gap-candidates.jsonl`](catalog/s6a-secret-art-gap-candidates.jsonl).
+The public TCGdex Japanese set API listed 40 set codes absent from the Japanese
+runtime index, but every detail response returned zero card summaries on this
+date; they therefore supplied no safe card-level expansion.
 
 ## Character and artist discovery facets
 
@@ -36,7 +62,7 @@ Each facet retains the pinned source path, content SHA-256 and rights reference.
 - Supplemental source: 24,039 records, 10,233 new single-record set-and-number candidates, and 525 new groups with multiple source records. Of the multi-record groups, 462 have one shared Japanese name and come from set codes with no name collision; they are internal *set-and-number* candidates, not resolved printing variants. The other 51 name-conflicting groups and 12 same-name groups in those conflicting sets (`MG`, `SA`) remain reference-only. Another 1,468 records lack a usable set/number identity, while 162 overlapping groups have names that disagree with TCGdex. Conflicts remain visible in the audit and are not silently merged.
 - Pinned English physical source: 12,059 card files in 79 sets, 11,924 parsed files yielding 18,730 version identities. A further 135 files have duplicate indistinguishable variant declarations; each contributes one unverified internal discovery candidate. Of the parsed version identities, 17,610 have a numeric collector ID and nonzero official set denominator. The remaining 1,120 stay match-disabled. This does not establish actual marketplace match accuracy.
 - API supplement: 126 set responses, 9,208 card summaries and no identity-field gaps. Four set responses have empty card lists (`jumbo`, `rc`, `sp`, `wp`). All 9,208 card families are unverified and match-disabled; they are not 9,208 confirmed printing variants.
-- `catalog_status` reports 55,165 identities, 33,957 structurally match-eligible, 21,208 match-disabled, 24,039 Japanese reference records and zero display-approved. The API's 9,208 English reference rows are frozen in JSONL but not loaded into the runtime `card_reference` table. Japanese and English set metadata are keyed by both language and code, so identical codes cannot cross-contaminate names.
+- At the 23 September baseline, `catalog_status` reports 55,165 identities, 33,957 structurally match-eligible, 21,208 match-disabled, 24,039 Japanese reference records and zero display-approved. After the two S6a imports it reports 55,167 identities and 21,210 match-disabled. The API's 9,208 English reference rows are frozen in JSONL but not loaded into the runtime `card_reference` table. Japanese and English set metadata are keyed by both language and code, so identical codes cannot cross-contaminate names.
 
 ## Files and reproduction
 
