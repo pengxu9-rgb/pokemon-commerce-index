@@ -30,6 +30,19 @@ CREATE TABLE IF NOT EXISTS card (
   UNIQUE(language, set_code, collector_number, variant)
 );
 
+-- Source snapshots remain immutable; official-page corrections overlay them.
+CREATE TABLE IF NOT EXISTS card_identity_exception (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  original_name TEXT NOT NULL,
+  source_provenance TEXT NOT NULL,
+  corrected_name TEXT NOT NULL,
+  corrected_rarity TEXT,
+  official_url TEXT NOT NULL,
+  official_page_sha256 TEXT NOT NULL,
+  reason TEXT NOT NULL,
+  applied_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS catalog_set (
   set_code TEXT PRIMARY KEY,
   name_ja TEXT,

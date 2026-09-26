@@ -1,0 +1,1311 @@
+{
+  "scope": "internal card-name comparison; no images, listings or price evidence",
+  "tcgdex_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "ptcg_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+  "base_sha256": "980391d63131ecf0d29bbd8d29bc28bb1886d6f37b6174d65cd4e2b584adc774",
+  "reference_sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d",
+  "verified_at": "2026-09-26T05:52:43.540230+00:00",
+  "counts": {
+    "format_only": 53,
+    "material_name_difference": 23,
+    "official_exact_pages_checked": 23,
+    "official_support_ptcg_name": 4,
+    "official_support_tcgdex_base_name": 19
+  },
+  "conflicts": [
+    {
+      "set_code": "M6",
+      "collector_number": "098/076",
+      "tcgdex_names": [
+        "とくちゅうチョッキ"
+      ],
+      "ptcg_names": [
+        "ポケモンキャッチャー"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50539.json:sha256:6b0d4cb45b452974fc1de10d472b88cb1dd8950147724bbb1a6ac6d261f41aa6"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/50539",
+          "page_sha256": "bd76f9e780767b54ff4147d134aac2837717c98542a137ba3d4d8bca4df8fda4",
+          "name": "ポケモンキャッチャー",
+          "set_code": "M6",
+          "collector_number": "098/076"
+        }
+      ],
+      "official_support": "ptcg_name"
+    },
+    {
+      "set_code": "M6",
+      "collector_number": "099/076",
+      "tcgdex_names": [
+        "ポケモンキャッチャー"
+      ],
+      "ptcg_names": [
+        "とくちゅうチョッキ"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50540.json:sha256:0911442d1d8e9d467be985ea251c94fa818277b7ad52fc1ace296310ccb60d37"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/50540",
+          "page_sha256": "15441375c00d75529c633add0c549270ccfcd1b6467d35552982714145931e0d",
+          "name": "とくちゅうチョッキ",
+          "set_code": "M6",
+          "collector_number": "099/076"
+        }
+      ],
+      "official_support": "ptcg_name"
+    },
+    {
+      "set_code": "S-P",
+      "collector_number": "128/S-P",
+      "tcgdex_names": [
+        "博士の研究"
+      ],
+      "ptcg_names": [
+        "博士の研究（マグノリア博士）"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S-P/38634.json:sha256:753df132e64e745314cf8846ba0be60c5ff7c825f98f5df78fa17f18017b5172"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/38634",
+          "page_sha256": "2c2b6c732089c4133f1aad3e857654f12a35b31f8a03c3f6202d9ac9471ba28e",
+          "name": "博士の研究",
+          "set_code": "S-P",
+          "collector_number": "128/S-P"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "S-P",
+      "collector_number": "224/S-P",
+      "tcgdex_names": [
+        "博士の研究"
+      ],
+      "ptcg_names": [
+        "博士の研究（ウィロー博士）"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S-P/39900.json:sha256:42ef499a6a09e27eeb014d5a8bd8ab4b19a4da8f7947374916a617841b52e5fb"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/39900",
+          "page_sha256": "7cdb9c99dbac053bf91434024e6ed836f82ad4774eb7ed257ba3e57b172eea6a",
+          "name": "博士の研究",
+          "set_code": "S-P",
+          "collector_number": "224/S-P"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "S-P",
+      "collector_number": "288/S-P",
+      "tcgdex_names": [
+        "アローラナッシーV"
+      ],
+      "ptcg_names": [
+        "アローラ ナッシーV"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S-P/41786.json:sha256:c1e2879c00e584ac42506f6797ece23801ecbb20676aba5e5723735f24275140"
+      ]
+    },
+    {
+      "set_code": "S10P",
+      "collector_number": "039/067",
+      "tcgdex_names": [
+        "ヒスイ ジュナイパー"
+      ],
+      "ptcg_names": [
+        "ヒスイジュナイパー"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S10P/41467.json:sha256:c3440aeff887d13dc084bcfcbe20f24fdad7ac6681827f6ddeb2a62b8d3ed982"
+      ]
+    },
+    {
+      "set_code": "S6H",
+      "collector_number": "053/070",
+      "tcgdex_names": [
+        "ポリゴン２"
+      ],
+      "ptcg_names": [
+        "ポリゴン2"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S6H/39413.json:sha256:8e471d4cf36bfb6d491cb7440fb086e5c68cfc3e4324e075cc9749a15b1ee334"
+      ]
+    },
+    {
+      "set_code": "S6H",
+      "collector_number": "054/070",
+      "tcgdex_names": [
+        "ポリゴンＺ"
+      ],
+      "ptcg_names": [
+        "ポリゴンZ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/S6H/39414.json:sha256:5a298a5535bbba09bea4d2e69e99d627f49bf03769df61cc25cbd0fc9d68dc8e"
+      ]
+    },
+    {
+      "set_code": "SM10",
+      "collector_number": "029/095",
+      "tcgdex_names": [
+        "ベトベトン&アローラベトベトンGX"
+      ],
+      "ptcg_names": [
+        "ベトベトン&アローラ ベトベトンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM10/36348.json:sha256:7a7eafc2a1e357f7107a498de5b561c2484e8c57649723e66be27d30cc715afa"
+      ]
+    },
+    {
+      "set_code": "SM10",
+      "collector_number": "098/095",
+      "tcgdex_names": [
+        "ベトベトン&アローラベトベトンGX"
+      ],
+      "ptcg_names": [
+        "ベトベトン&アローラ ベトベトンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM10/36646.json:sha256:4bb7ab28320d075c3e814dc3ff1547cc6dee686b5e8c770c211a89a78418936d"
+      ]
+    },
+    {
+      "set_code": "SM10",
+      "collector_number": "099/095",
+      "tcgdex_names": [
+        "ベトベトン&アローラベトベトンGX"
+      ],
+      "ptcg_names": [
+        "ベトベトン&アローラ ベトベトンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM10/36647.json:sha256:eb5e3f95f8b4728378a5a60303ce2e2f02ef7691ed4559a5934ecb46158dd68e"
+      ]
+    },
+    {
+      "set_code": "SM12",
+      "collector_number": "016/095",
+      "tcgdex_names": [
+        "アローラロコン"
+      ],
+      "ptcg_names": [
+        "アローラ ロコン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM12/37080.json:sha256:1bdba86e5f3aeeb057dd489741edcc63769929358b1d96dcf72b3f6a86efaa3a"
+      ]
+    },
+    {
+      "set_code": "SM12",
+      "collector_number": "051/095",
+      "tcgdex_names": [
+        "アローラサンド"
+      ],
+      "ptcg_names": [
+        "アローラ サンド"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM12/37115.json:sha256:5d62b2eaebf48f78206450a5a72646430e1bfe4ad37b0aabb8e389918a45d8b6"
+      ]
+    },
+    {
+      "set_code": "SM12",
+      "collector_number": "052/095",
+      "tcgdex_names": [
+        "アローラサンドパン"
+      ],
+      "ptcg_names": [
+        "アローラ サンドパン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM12/37116.json:sha256:26cda75a249226ab8d6fc146dfdfe3e262672d0f7ce6eda6605cc94035c0173a"
+      ]
+    },
+    {
+      "set_code": "SM12",
+      "collector_number": "056/095",
+      "tcgdex_names": [
+        "アローラキュウコン"
+      ],
+      "ptcg_names": [
+        "アローラ キュウコン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM12/37120.json:sha256:b2c290eaf063ee694b03c8bb267fc4ae62a50aa4efaad8792400cf5bee0e7f02"
+      ]
+    },
+    {
+      "set_code": "SM1M",
+      "collector_number": "022/060",
+      "tcgdex_names": [
+        "アローラベトベター"
+      ],
+      "ptcg_names": [
+        "アローラ ベトベター"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1M/33086.json:sha256:a20823b3dfded7d622ae31ee7a3d04be7d67df3873c7c0d4ae194be9c2af47db"
+      ]
+    },
+    {
+      "set_code": "SM1M",
+      "collector_number": "023/060",
+      "tcgdex_names": [
+        "アローラベトベトン"
+      ],
+      "ptcg_names": [
+        "アローラ ベトベトン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1M/33087.json:sha256:b5234971e838a6c2f88f932223cde0e8816d58e6c9cebb558ef3d7fea4e7aba5"
+      ]
+    },
+    {
+      "set_code": "SM1M",
+      "collector_number": "035/060",
+      "tcgdex_names": [
+        "アローラコラッタ"
+      ],
+      "ptcg_names": [
+        "アローラ コラッタ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1M/33099.json:sha256:416399bd9c0f293f4013000f93c3d965102f92afaa7ee5c2dcc8a382cf14c303"
+      ]
+    },
+    {
+      "set_code": "SM1M",
+      "collector_number": "036/060",
+      "tcgdex_names": [
+        "アローララッタ"
+      ],
+      "ptcg_names": [
+        "アローラ ラッタ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1M/33100.json:sha256:15bf4632440cbc7a23b98fbeb2dab9c374093d82ea5a9a09481ac1b822974acc"
+      ]
+    },
+    {
+      "set_code": "SM1S",
+      "collector_number": "032/060",
+      "tcgdex_names": [
+        "アローラニャース"
+      ],
+      "ptcg_names": [
+        "アローラ ニャース"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1S/33036.json:sha256:6b63d903ff58dd1be0d58ad2b75b334399f10c5b310a8a81b08804470441ee8a"
+      ]
+    },
+    {
+      "set_code": "SM1S",
+      "collector_number": "033/060",
+      "tcgdex_names": [
+        "アローラペルシアン"
+      ],
+      "ptcg_names": [
+        "アローラ ペルシアン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1S/33037.json:sha256:ca784552aed8dcaa70e5f394f2db7f699a5729fb006869e8913eeb43e8b43bc6"
+      ]
+    },
+    {
+      "set_code": "SM1S",
+      "collector_number": "037/060",
+      "tcgdex_names": [
+        "アローラディグダ"
+      ],
+      "ptcg_names": [
+        "アローラ ディグダ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1S/33041.json:sha256:217926937be205b7e5d5a038a7ca7bfad66b24d0e6366ea3257d01bb22f27219"
+      ]
+    },
+    {
+      "set_code": "SM1S",
+      "collector_number": "038/060",
+      "tcgdex_names": [
+        "アローラダグトリオ"
+      ],
+      "ptcg_names": [
+        "アローラ ダグトリオ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM1S/33042.json:sha256:7bb2b3213d0893c32503605b777d8aba35e76fcf53762cff3a9246b9821aef19"
+      ]
+    },
+    {
+      "set_code": "SM2K",
+      "collector_number": "010/050",
+      "tcgdex_names": [
+        "アローラサンド"
+      ],
+      "ptcg_names": [
+        "アローラ サンド"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2K/33329.json:sha256:46471dcb0dfbdfbc15b69bbf68dbdd11edb4a51fe307a65f289429aefdf2873f"
+      ]
+    },
+    {
+      "set_code": "SM2K",
+      "collector_number": "011/050",
+      "tcgdex_names": [
+        "アローラサンドパン"
+      ],
+      "ptcg_names": [
+        "アローラ サンドパン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2K/33330.json:sha256:9dd4996e028652fb49baf2d355146a47d12ed9926a98119776779c0cd3101919"
+      ]
+    },
+    {
+      "set_code": "SM2K",
+      "collector_number": "012/050",
+      "tcgdex_names": [
+        "アローラロコン"
+      ],
+      "ptcg_names": [
+        "アローラ ロコン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2K/33331.json:sha256:be0bfdc6877597c73f3fced63ab866c81005af5f7c66746fbd15bbb932f04a0a"
+      ]
+    },
+    {
+      "set_code": "SM2K",
+      "collector_number": "013/050",
+      "tcgdex_names": [
+        "アローラキュウコンGX"
+      ],
+      "ptcg_names": [
+        "アローラ キュウコンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2K/33332.json:sha256:bfcb4fb48be8f89c4c4716bb11f0467e4fbdb49088357a9b334ccc8d5ec68d13"
+      ]
+    },
+    {
+      "set_code": "SM2K",
+      "collector_number": "052/050",
+      "tcgdex_names": [
+        "アローラキュウコンGX"
+      ],
+      "ptcg_names": [
+        "アローラ キュウコンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2K/35636.json:sha256:f9e1dc336af8e87fc51d4add1070938c0af78d015483d4a0bafbd4d92c4bf6fb"
+      ]
+    },
+    {
+      "set_code": "SM2L",
+      "collector_number": "015/050",
+      "tcgdex_names": [
+        "アローライシツブテ"
+      ],
+      "ptcg_names": [
+        "アローラ イシツブテ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2L/33431.json:sha256:dbfa92bd9d3e6ea9beede17cde1bdce8c861344319db10feb72e452e80762ca1"
+      ]
+    },
+    {
+      "set_code": "SM2L",
+      "collector_number": "016/050",
+      "tcgdex_names": [
+        "アローラゴローン"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2L/33432.json:sha256:562dd1b0a37b7dc34ef100698a777e936280fdb60ab6cf8ac41019dd80927ef4"
+      ]
+    },
+    {
+      "set_code": "SM2L",
+      "collector_number": "017/050",
+      "tcgdex_names": [
+        "アローラゴローニャ"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローニャ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM2L/33433.json:sha256:cc91e492bc0a67fbff34af23796eb482b8a89ed7f8cafac9104fb058f146fb9c"
+      ]
+    },
+    {
+      "set_code": "SM3H",
+      "collector_number": "032/051",
+      "tcgdex_names": [
+        "アローラベトベター"
+      ],
+      "ptcg_names": [
+        "アローラ ベトベター"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM3H/33895.json:sha256:0c6c2c4404910de2c2a7bba9f7976b9d3d24b41c1bf7ac035c408a5f143218d8"
+      ]
+    },
+    {
+      "set_code": "SM3H",
+      "collector_number": "033/051",
+      "tcgdex_names": [
+        "アローラベトベトンGX"
+      ],
+      "ptcg_names": [
+        "アローラ ベトベトンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM3H/33896.json:sha256:8fa80a3f4fd1ab70ad69dcb5f9695735d58faf70180ec0d7afc52677ffbe6b8c"
+      ]
+    },
+    {
+      "set_code": "SM3H",
+      "collector_number": "054/051",
+      "tcgdex_names": [
+        "アローラベトベトンGX"
+      ],
+      "ptcg_names": [
+        "アローラ ベトベトンGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM3H/35650.json:sha256:c49f8cc3f8b6bcc7cb2d0b46046a8f3c18e936fe9aa0d8dd20d4afcc72c517ef"
+      ]
+    },
+    {
+      "set_code": "SM3N",
+      "collector_number": "034/051",
+      "tcgdex_names": [
+        "アローラコラッタ"
+      ],
+      "ptcg_names": [
+        "アローラ コラッタ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM3N/33948.json:sha256:4e078aa4f494ea65d5a91e69a9524bc6744b4dfb24a0143f96d2b3c82cc724f4"
+      ]
+    },
+    {
+      "set_code": "SM3N",
+      "collector_number": "035/051",
+      "tcgdex_names": [
+        "アローララッタ"
+      ],
+      "ptcg_names": [
+        "アローラ ラッタ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM3N/33949.json:sha256:57bccada8504166995907d4696f9f195cc393da16084eae3b615b4a1b19afaa8"
+      ]
+    },
+    {
+      "set_code": "SM4A",
+      "collector_number": "016/050",
+      "tcgdex_names": [
+        "アローラライチュウ"
+      ],
+      "ptcg_names": [
+        "アローラ ライチュウ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4A/34095.json:sha256:5381f6275c0343933b50e18a93903a0c5b6642634cdb091a93e58eedbcf294a4"
+      ]
+    },
+    {
+      "set_code": "SM4A",
+      "collector_number": "037/050",
+      "tcgdex_names": [
+        "アローラナッシーGX"
+      ],
+      "ptcg_names": [
+        "アローラ ナッシーGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4A/34116.json:sha256:26f5a9426f732a75cd32985d8f524785bfc7136647a81a9f015046bf920ba6f0"
+      ]
+    },
+    {
+      "set_code": "SM4A",
+      "collector_number": "054/050",
+      "tcgdex_names": [
+        "アローラナッシーGX"
+      ],
+      "ptcg_names": [
+        "アローラ ナッシーGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4A/35673.json:sha256:8076239a63574c2679bdfff38b39496ab57cda8d1b1061035dbccdd5ddf0e77d"
+      ]
+    },
+    {
+      "set_code": "SM4S",
+      "collector_number": "006/050",
+      "tcgdex_names": [
+        "アローラガラガラ"
+      ],
+      "ptcg_names": [
+        "アローラ ガラガラ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4S/34135.json:sha256:46f499f29b965e77d055983ea9fcda18a9c687db956e9b46a7d3457d05cda17b"
+      ]
+    },
+    {
+      "set_code": "SM4S",
+      "collector_number": "016/050",
+      "tcgdex_names": [
+        "アローライシツブテ"
+      ],
+      "ptcg_names": [
+        "アローラ イシツブテ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4S/34145.json:sha256:7fb083b2b73237ac826ce5918294c8516686fac7dbc852bfd928bc72f0977d9a"
+      ]
+    },
+    {
+      "set_code": "SM4S",
+      "collector_number": "017/050",
+      "tcgdex_names": [
+        "アローラゴローン"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4S/34146.json:sha256:f973c1536cd85489fb181db6b6faf5ef4b83bcfcbc2b832a25d30e39fd6ad954"
+      ]
+    },
+    {
+      "set_code": "SM4S",
+      "collector_number": "018/050",
+      "tcgdex_names": [
+        "アローラゴローニャGX"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローニャGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4S/34147.json:sha256:ce97dab1be1095dacf3e7f7930fa23c1069b24b3b16e9ca04a823476ff484888"
+      ]
+    },
+    {
+      "set_code": "SM4S",
+      "collector_number": "051/050",
+      "tcgdex_names": [
+        "アローラゴローニャGX"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローニャGX"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM4S/35665.json:sha256:ef9a44e42f5ce033b59df8c77341ba13cdcabc676aabc0177213f28a1047a610"
+      ]
+    },
+    {
+      "set_code": "SM5M",
+      "collector_number": "001/066",
+      "tcgdex_names": [
+        "アローラサンド"
+      ],
+      "ptcg_names": [
+        "アローラ サンド"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5M/34449.json:sha256:0d09c0520f07c6229c8ea8291361403e3d2e44f5621c1168ba2125f852f25ec8"
+      ]
+    },
+    {
+      "set_code": "SM5M",
+      "collector_number": "002/066",
+      "tcgdex_names": [
+        "アローラサンドパン"
+      ],
+      "ptcg_names": [
+        "アローラ サンドパン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5M/34450.json:sha256:097d44c59cf011a7ed2fa457c2179a4b83df03895454bc635f7067e27a75ef13"
+      ]
+    },
+    {
+      "set_code": "SM5M",
+      "collector_number": "030/066",
+      "tcgdex_names": [
+        "ギラティナ"
+      ],
+      "ptcg_names": [
+        "ギラティナprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5M/34478.json:sha256:d94c302e053e03251c8ec67323b6bec882ff0c62302edd9a7c6cf3df8a5ffa8b"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34478",
+          "page_sha256": "78bb610345d2c78b8debf93932928dec7b78e9b98279284b7d00e0d66ea1f01a",
+          "name": "ギラティナ",
+          "set_code": "SM5M",
+          "collector_number": "030/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM5M",
+      "collector_number": "032/066",
+      "tcgdex_names": [
+        "ルナアーラ"
+      ],
+      "ptcg_names": [
+        "ルナアーラprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5M/34480.json:sha256:91ec370e2a244613f6a2aa3f1d77ab9af340c1c5f4248feaf08f75fc1b3f0483"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34480",
+          "page_sha256": "2821f4499a4026ca0e1b83dea82d675fdbd87232c5c01b2c8c897284416663fa",
+          "name": "ルナアーラ",
+          "set_code": "SM5M",
+          "collector_number": "032/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM5M",
+      "collector_number": "065/066",
+      "tcgdex_names": [
+        "超ブーストエネルギー"
+      ],
+      "ptcg_names": [
+        "超ブーストエネルギーprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5M/34513.json:sha256:891d276c451634d5483acdd3328230a344d85a64c2e2b62676c87c9357f8a5f6"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34513",
+          "page_sha256": "d1126b89136887d68aad6197b31edc1315d9d2013c7577b150c81764c0c7b1f5",
+          "name": "超ブーストエネルギー",
+          "set_code": "SM5M",
+          "collector_number": "065/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM5S",
+      "collector_number": "031/066",
+      "tcgdex_names": [
+        "ダークライ"
+      ],
+      "ptcg_names": [
+        "ダークライprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5S/34413.json:sha256:339e0f9db09163bc5dcaa08aa8f79e351fe1358470c4a2c6fcb3e9987b684a50"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34413",
+          "page_sha256": "482cb4cd79b3464c85d5951969877a5027e9638a0923c788e36b1044721ec476",
+          "name": "ダークライ",
+          "set_code": "SM5S",
+          "collector_number": "031/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM5S",
+      "collector_number": "032/066",
+      "tcgdex_names": [
+        "アローラディグダ"
+      ],
+      "ptcg_names": [
+        "アローラ ディグダ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5S/34414.json:sha256:c0a35d92d1dfea16cc0949d9313c7d0115c0f2c94482356b8dd49f607d2f82a3"
+      ]
+    },
+    {
+      "set_code": "SM5S",
+      "collector_number": "033/066",
+      "tcgdex_names": [
+        "アローラダグトリオ"
+      ],
+      "ptcg_names": [
+        "アローラ ダグトリオ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5S/34415.json:sha256:2ba38d3d6c39a1c197c25fc37b98457256e50f31845798cad393f69904ee5575"
+      ]
+    },
+    {
+      "set_code": "SM5S",
+      "collector_number": "043/066",
+      "tcgdex_names": [
+        "ソルガレオ"
+      ],
+      "ptcg_names": [
+        "ソルガレオprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5S/34425.json:sha256:039043e5de5171dd6a8c9ab246aadf2bf0dbbc53a84d9b59b5c53c32db4119d8"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34425",
+          "page_sha256": "b16553f003f91e8e67ba3636b844c0068d5e8de6cc392136754ba5c4450abca0",
+          "name": "ソルガレオ",
+          "set_code": "SM5S",
+          "collector_number": "043/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM5S",
+      "collector_number": "059/066",
+      "tcgdex_names": [
+        "アカギ"
+      ],
+      "ptcg_names": [
+        "アカギprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM5S/34441.json:sha256:0f63853ffad5c5737d61e05da718f486708138a3adf43c12a981ffc46953e0e6"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34441",
+          "page_sha256": "5c27bf36bbd6f2106b5453ed8418b0559a370bba400e6a3fda278246b5e60389",
+          "name": "アカギ",
+          "set_code": "SM5S",
+          "collector_number": "059/066"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "002/094",
+      "tcgdex_names": [
+        "アローラナッシー"
+      ],
+      "ptcg_names": [
+        "アローラ ナッシー"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34676.json:sha256:f5d68b735be492b87d79e336ee0880179da12ce7bad69d6a3e0fcc98794befbb"
+      ]
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "010/094",
+      "tcgdex_names": [
+        "アローラガラガラ"
+      ],
+      "ptcg_names": [
+        "アローラ ガラガラ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34684.json:sha256:4e128ad343401e664a4dd258f4c64d10169b295f5be57f10d8ea91da3e462c4f"
+      ]
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "027/094",
+      "tcgdex_names": [
+        "ボルケニオン"
+      ],
+      "ptcg_names": [
+        "ボルケニオンprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34701.json:sha256:aaf4e4a236eb37d1cc429ce80cb370b0b6ed9c1322ae6c903b02c6a31ea17427"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34701",
+          "page_sha256": "59ddd528b8d43a0b945f43c7a87c17141fd7a5e2926c1be4dea8053cb51f0670",
+          "name": "ボルケニオン",
+          "set_code": "SM6",
+          "collector_number": "027/094"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "051/094",
+      "tcgdex_names": [
+        "ディアンシー"
+      ],
+      "ptcg_names": [
+        "ディアンシーprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34725.json:sha256:e91a7fbad05a9cc9f683b65dc50418f84ce36acca26f5ee0425b25ef8d66f1fc"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34725",
+          "page_sha256": "241f8d09f816d7abbca08f340fd57f2c7365f47730d0a8ebf4af78fbd690f5ab",
+          "name": "ディアンシー",
+          "set_code": "SM6",
+          "collector_number": "051/094"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "089/094",
+      "tcgdex_names": [
+        "フラダリ"
+      ],
+      "ptcg_names": [
+        "フラダリprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34763.json:sha256:d5b163b0eca8145b4940657189934b134b68eaaf064dcf2605d7620fc8e688d6"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34763",
+          "page_sha256": "af95bbe12c229362baf052f097894dce4f315ef28834c5d009a3eecadc168c8a",
+          "name": "フラダリ",
+          "set_code": "SM6",
+          "collector_number": "089/094"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM6",
+      "collector_number": "094/094",
+      "tcgdex_names": [
+        "ユニットエネルギー闘悪妖"
+      ],
+      "ptcg_names": [
+        "ユニットエネルギー闘悪フェアリー"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM6/34768.json:sha256:01eaf6f4498dc22094cfafbe316a1363395e221f412b970624a7db28f5a92f9f"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34768",
+          "page_sha256": "5f10c21d4cc97c3eec974057d7f038943d0e30fdcb3fcc3d6b6968727c107018",
+          "name": "ユニットエネルギー闘悪フェアリー",
+          "set_code": "SM6",
+          "collector_number": "094/094"
+        }
+      ],
+      "official_support": "ptcg_name"
+    },
+    {
+      "set_code": "SM7",
+      "collector_number": "057/096",
+      "tcgdex_names": [
+        "ジラーチ"
+      ],
+      "ptcg_names": [
+        "ジラーチprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM7/34980.json:sha256:8b9c5f8d90edbb0d938aced4715bd10780de7f2f100e3b2aaff2b858c2b5df0c"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34980",
+          "page_sha256": "25d86fa483a259738027ed223c2cd5f9fb10f4cd577dce2e8cc0ad5752e3f9bf",
+          "name": "ジラーチ",
+          "set_code": "SM7",
+          "collector_number": "057/096"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM7",
+      "collector_number": "066/096",
+      "tcgdex_names": [
+        "ラティアス"
+      ],
+      "ptcg_names": [
+        "ラティアスprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM7/34989.json:sha256:30a1988298b52523d395976c22a5311d72b470c185700b3fab067494b2e0dc8d"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34989",
+          "page_sha256": "333f93f58fe31cff934b312acd8d94d85d04f9ea2fda787d9976e96f072d38f6",
+          "name": "ラティアス",
+          "set_code": "SM7",
+          "collector_number": "066/096"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM7",
+      "collector_number": "067/096",
+      "tcgdex_names": [
+        "ラティオス"
+      ],
+      "ptcg_names": [
+        "ラティオスprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM7/34990.json:sha256:8510ecbd66ef48c473c75ed49287455715b94d9f20210345293735c13db8f3dd"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/34990",
+          "page_sha256": "5f697d57fa8b6bf6c6eb2f4ac9a6ec339fbd68df6730c3ba69bb0ae770f1b4e8",
+          "name": "ラティオス",
+          "set_code": "SM7",
+          "collector_number": "067/096"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM8",
+      "collector_number": "015/095",
+      "tcgdex_names": [
+        "セレビィ"
+      ],
+      "ptcg_names": [
+        "セレビィprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM8/35307.json:sha256:26d009f9bbee20e795c1cfda91dc8db49643cfc0f6b2e251bcb574b6e8a02a68"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/35307",
+          "page_sha256": "ada7bfc1b6fa0151be6d383e33159b89bfb0afd1aeda174a7a83f2e3a2c4e2fb",
+          "name": "セレビィ",
+          "set_code": "SM8",
+          "collector_number": "015/095"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM8",
+      "collector_number": "056/095",
+      "tcgdex_names": [
+        "アローラニャース"
+      ],
+      "ptcg_names": [
+        "アローラ ニャース"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM8/35348.json:sha256:40bb17efa370919337f55c9af8254e2c9b876c306b54851d91b4849b28a237da"
+      ]
+    },
+    {
+      "set_code": "SM8",
+      "collector_number": "057/095",
+      "tcgdex_names": [
+        "アローラペルシアン"
+      ],
+      "ptcg_names": [
+        "アローラ ペルシアン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM8/35349.json:sha256:60dd810fb8cf580fa723f7e6a383c9c084b36282864b1b10edee2b2eeada3bb1"
+      ]
+    },
+    {
+      "set_code": "SM8",
+      "collector_number": "092/095",
+      "tcgdex_names": [
+        "ルザミーネ"
+      ],
+      "ptcg_names": [
+        "ルザミーネprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM8/35384.json:sha256:47819f4e8ef02eafa29da2c9479785996c7fe7c202c2400bfa7bdc11432e8953"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/35384",
+          "page_sha256": "471d9940933068351f53f5f0b447d9412bfdccdf8a0fb3ce79ace91456eb7873",
+          "name": "ルザミーネ",
+          "set_code": "SM8",
+          "collector_number": "092/095"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM8",
+      "collector_number": "093/095",
+      "tcgdex_names": [
+        "ヒートファクトリー"
+      ],
+      "ptcg_names": [
+        "ヒートファクトリーprismstar"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM8/35385.json:sha256:0bfa93a2e112d76bd25f0fe48c298618733230d02732bc347b49c2ae66c9e266"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/35385",
+          "page_sha256": "4cc515ee1a6666b85c780d4a7792e6e769e5de93e1b151b97ab343fb60b5f9dc",
+          "name": "ヒートファクトリー",
+          "set_code": "SM8",
+          "collector_number": "093/095"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SM9",
+      "collector_number": "032/095",
+      "tcgdex_names": [
+        "アローライシツブテ"
+      ],
+      "ptcg_names": [
+        "アローラ イシツブテ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM9/35976.json:sha256:815e1724c32379267a4fcf3519dcf1cfd577ca8a9e407b680ef693bec145c5e3"
+      ]
+    },
+    {
+      "set_code": "SM9",
+      "collector_number": "033/095",
+      "tcgdex_names": [
+        "アローライシツブテ"
+      ],
+      "ptcg_names": [
+        "アローラ イシツブテ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM9/35977.json:sha256:4e4b0a09a3fb3b150ecd83d70978201efe62eb05feb35377aa42d9506064b0b1"
+      ]
+    },
+    {
+      "set_code": "SM9",
+      "collector_number": "034/095",
+      "tcgdex_names": [
+        "アローラゴローン"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローン"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM9/35978.json:sha256:9431386b01201a0c698e1fd182e17792aacf7b9d7645c8ff3498f1c4c9524086"
+      ]
+    },
+    {
+      "set_code": "SM9",
+      "collector_number": "035/095",
+      "tcgdex_names": [
+        "アローラゴローニャ"
+      ],
+      "ptcg_names": [
+        "アローラ ゴローニャ"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM9/35979.json:sha256:2377668934d80cce240aca1b67d068d7b85e912affa13494ae94fd849e9388c9"
+      ]
+    },
+    {
+      "set_code": "SM9",
+      "collector_number": "061/095",
+      "tcgdex_names": [
+        "アローラナッシー"
+      ],
+      "ptcg_names": [
+        "アローラ ナッシー"
+      ],
+      "classification": "format_only",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SM9/36005.json:sha256:f8bc18f250a03a2afb1ecf0e7718673a9d8997a4f5d54661a5e1e7b9bd63c474"
+      ]
+    },
+    {
+      "set_code": "SV-P",
+      "collector_number": "021/SV-P",
+      "tcgdex_names": [
+        "博士の研究"
+      ],
+      "ptcg_names": [
+        "博士の研究（オーリム博士）"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SV-P/43125.json:sha256:c9a33de3ed9df87be9cca010ccf2efe0afe9aed3d5cc40b21715a311c4c783d5"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/43125",
+          "page_sha256": "51b0e8c6d4fad33d356ac65d6a549c4e9c2c86d36f2a2d21567498302bdac514",
+          "name": "博士の研究",
+          "set_code": "SV-P",
+          "collector_number": "021/SV-P"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SV-P",
+      "collector_number": "022/SV-P",
+      "tcgdex_names": [
+        "博士の研究"
+      ],
+      "ptcg_names": [
+        "博士の研究（フトゥー博士）"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SV-P/43126.json:sha256:54f14b409ed9874a83944e2d11bd02d9df8f3cb2934ec55cdf30f5463cb7212e"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/43126",
+          "page_sha256": "18483bb0b94134776590800fd1c71db6a365577e8a60e1a03276e7be04c5ffd3",
+          "name": "博士の研究",
+          "set_code": "SV-P",
+          "collector_number": "022/SV-P"
+        }
+      ],
+      "official_support": "tcgdex_base_name"
+    },
+    {
+      "set_code": "SV-P",
+      "collector_number": "136/SV-P",
+      "tcgdex_names": [
+        "バトルコンプレッサー"
+      ],
+      "ptcg_names": [
+        "バトルコンプレッサー（フレア団ギア）"
+      ],
+      "classification": "material_name_difference",
+      "ptcg_provenance": [
+        "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SV-P/44845.json:sha256:3a94b6b0d07f2d34b2463fae809d4ddd56e5bcb6231cdcfed5ddabcba47ab4d7"
+      ],
+      "official_records": [
+        {
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/44845",
+          "page_sha256": "c39eae4e8f1fd061ac679171242629e48557e7269dc544c96d16167068da4bf2",
+          "name": "バトルコンプレッサー（フレア団ギア）",
+          "set_code": "SV-P",
+          "collector_number": "136/SV-P"
+        }
+      ],
+      "official_support": "ptcg_name"
+    }
+  ]
+}

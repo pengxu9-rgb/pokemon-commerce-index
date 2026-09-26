@@ -49,6 +49,30 @@ title resolver abstains. This expands the future photo audit queue without
 changing `match_eligible`, the ask index, or public card display. A singleton
 retrieval result is not a verified identity.
 
+### 26 September source-conflict check
+
+A fresh comparison against the broad TCGdex Japanese seed found 76 same-set,
+same-number groups with different source names. Unicode and whitespace
+normalization accounts for 53. The remaining 23 were checked against the
+exact set and collector number on Pokémon's official card pages, retaining
+the page URL and response SHA-256 in the [official-page audit](catalog/jp-source-conflict-official-audit.json).
+Nineteen official base names agree with TCGdex; the other source had appended
+qualifiers such as a professor's name or `prismstar`. Four official pages
+contradict TCGdex's name: M6 `098/076` and `099/076` were interchanged, while
+SM6 `094/094` and SV-P `136/SV-P` omitted part of the printed name.
+
+The four [identity exceptions](catalog/jp-card-identity-exceptions.jsonl) correct
+the internal names without rewriting the pinned TCGdex extract. All four are
+held from automatic offer matching and public display until the printing and
+finish metadata are independently confirmed. The exception table makes that
+hold survive a seed re-import. Match-eligible cards decrease from 33,957 to
+**33,953**; the total remains **55,167**. A Gemini 3.8 Flash Google Search
+grounding pass identified M6 `098/076` as a likely source error, but did not
+return its exact official URL. Direct official-page verification, rather than
+the model answer, determined the correction. That single grounded request
+generated 56 searches, so bulk conflict verification uses the bounded exact
+official-page path.
+
 The before/after audit files are
 [`catalog/legacy-mercari-fixture-coverage-audit.json`](catalog/legacy-mercari-fixture-coverage-audit.json)
 and [`catalog/legacy-mercari-fixture-coverage-after-s6a.json`](catalog/legacy-mercari-fixture-coverage-after-s6a.json).

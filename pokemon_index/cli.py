@@ -92,7 +92,7 @@ def main() -> None:
     parser.add_argument("--db", default="index.sqlite3", help="SQLite database path")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
-    for command in ("register-source", "import-sets", "import-cards", "import-card-references", "import-card-facets", "import-card-classifications", "import-concept-review-bundle", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-offer-media", "import-visual-reviews", "import-verified-sales", "calibrate"):
+    for command in ("register-source", "import-sets", "import-cards", "import-card-identity-exceptions", "import-card-references", "import-card-facets", "import-card-classifications", "import-concept-review-bundle", "import-relationships", "save-exploration", "import-observations", "import-quotes", "import-offer-media", "import-visual-reviews", "import-verified-sales", "calibrate"):
         item = sub.add_parser(command)
         item.add_argument("file", help="UTF-8 JSONL file, or JSON for a concept review bundle")
         if command == "calibrate":
@@ -213,6 +213,8 @@ def main() -> None:
             output = {"registered": True}
         elif args.command == "import-cards":
             output = {"cards": core.import_cards(db, read_jsonl(args.file))}
+        elif args.command == "import-card-identity-exceptions":
+            output = {"exceptions": core.apply_card_identity_exceptions(db, read_jsonl(args.file))}
         elif args.command == "import-sets":
             output = {"sets": core.import_sets(db, read_jsonl(args.file))}
         elif args.command == "import-card-references":

@@ -58,6 +58,11 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE card ADD COLUMN match_eligible INTEGER NOT NULL DEFAULT 1")
     if "attributes_json" not in card_columns:
         db.execute("ALTER TABLE card ADD COLUMN attributes_json TEXT NOT NULL DEFAULT '{}'")
+    exception_columns = {row[1] for row in db.execute("PRAGMA table_info(card_identity_exception)")}
+    if "source_provenance" not in exception_columns:
+        db.execute("ALTER TABLE card_identity_exception ADD COLUMN source_provenance TEXT NOT NULL DEFAULT ''")
+        db.execute("""UPDATE card_identity_exception SET source_provenance =
+                   (SELECT provenance FROM card WHERE card.card_id=card_identity_exception.card_id)""")
     observation_columns = {row[1] for row in db.execute("PRAGMA table_info(observation)")}
     if "native_created" not in observation_columns:
         db.execute("ALTER TABLE observation ADD COLUMN native_created TEXT")
@@ -149,16 +154,26 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         variant = str(row.get("variant") or "standard").lower()
         number = normalize_collector_number(row["collector_number"])
         cid = card_id(row["language"], row["set_code"], number, variant)
+        exception = db.execute("SELECT source_provenance FROM card_identity_exception WHERE card_id=?",
+                               (cid,)).fetchone()
+        if exception and exception["source_provenance"] != row["provenance"]:
+            raise ValueError("re-imported card source differs from its identity exception")
         db.execute(
             """INSERT INTO card
             (card_id, language, set_code, collector_number, variant, name, rarity,
              provenance, rights_reference, display_allowed, match_eligible, attributes_json)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(card_id) DO UPDATE SET name=excluded.name,
-            rarity=excluded.rarity, provenance=excluded.provenance,
+            ON CONFLICT(card_id) DO UPDATE SET
+            name=COALESCE((SELECT corrected_name FROM card_identity_exception
+                           WHERE card_id=excluded.card_id), excluded.name),
+            rarity=COALESCE((SELECT corrected_rarity FROM card_identity_exception
+                             WHERE card_id=excluded.card_id), excluded.rarity),
+            provenance=excluded.provenance,
             rights_reference=excluded.rights_reference,
-            display_allowed=excluded.display_allowed,
-            match_eligible=excluded.match_eligible,
+            display_allowed=CASE WHEN EXISTS(SELECT 1 FROM card_identity_exception
+                 WHERE card_id=excluded.card_id) THEN 0 ELSE excluded.display_allowed END,
+            match_eligible=CASE WHEN EXISTS(SELECT 1 FROM card_identity_exception
+                 WHERE card_id=excluded.card_id) THEN 0 ELSE excluded.match_eligible END,
             attributes_json=excluded.attributes_json""",
             (cid, row["language"].lower(), row["set_code"].upper(),
              number, variant, row["name"], row.get("rarity"), row["provenance"],
@@ -168,6 +183,45 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         )
         count += 1
     db.commit()
+    return count
+
+
+def apply_card_identity_exceptions(db: sqlite3.Connection,
+                                   rows: Iterable[dict[str, Any]]) -> int:
+    """Apply source-bound corrections and keep corrected cards out of offer matching."""
+    count = 0
+    with db:
+        for row in rows:
+            _required(row, "card_id", "original_name", "source_provenance", "corrected_name", "official_url",
+                      "official_page_sha256", "reason")
+            if (not re.fullmatch(r"https://www\.pokemon-card\.com/card-search/details\.php/card/\d+",
+                                 row["official_url"])
+                    or not re.fullmatch(r"[0-9a-f]{64}", row["official_page_sha256"])):
+                raise ValueError("identity exception lacks a valid official page reference")
+            card = db.execute("SELECT name,provenance FROM card WHERE card_id=?",
+                              (row["card_id"],)).fetchone()
+            if (not card or card["name"] not in {row["original_name"], row["corrected_name"]}
+                    or card["provenance"] != row["source_provenance"]
+                    or not card["provenance"].startswith("tcgdex:")):
+                raise ValueError("identity exception does not bind the pinned card")
+            existing = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?",
+                                  (row["card_id"],)).fetchone()
+            expected = (row["original_name"], row["source_provenance"],
+                        row["corrected_name"], row.get("corrected_rarity"),
+                        row["official_url"], row["official_page_sha256"], row["reason"])
+            if existing:
+                actual = tuple(existing[key] for key in
+                               ("original_name", "source_provenance", "corrected_name", "corrected_rarity",
+                                "official_url", "official_page_sha256", "reason"))
+                if actual != expected:
+                    raise ValueError("existing identity exception differs")
+            else:
+                db.execute("""INSERT INTO card_identity_exception VALUES (?,?,?,?,?,?,?,?,?)""",
+                           (row["card_id"], *expected, utcnow()))
+            db.execute("""UPDATE card SET name=?, rarity=COALESCE(?,rarity),
+                       match_eligible=0, display_allowed=0 WHERE card_id=?""",
+                       (row["corrected_name"], row.get("corrected_rarity"), row["card_id"]))
+            count += 1
     return count
 
 
@@ -546,7 +600,10 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
         """SELECT facet_type, value, provenance, rights_reference FROM card_facet
         WHERE card_id=? ORDER BY facet_type, value""", (cid,)
     )]
-    return {"card": _catalog_card_dict(row), "variants_at_number": siblings,
+    exception = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?", (cid,)).fetchone()
+    return {"card": _catalog_card_dict(row),
+            "identity_exception": dict(exception) if exception else None,
+            "variants_at_number": siblings,
             "set": ({**dict(set_row),
                      "name_ja": set_row["name"] if row["language"] == "ja" else None,
                      "release_date_ja": set_row["release_date"] if row["language"] == "ja" else None}
