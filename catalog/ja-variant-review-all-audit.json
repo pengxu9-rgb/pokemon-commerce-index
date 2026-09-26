@@ -1,0 +1,23 @@
+{
+  "set_code": "ALL",
+  "ptcg_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+  "reference_sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d",
+  "candidate_sha256": "42df1561f5989c83c64c541afb604d437bf7fcceb367af4778f1dbaa656d5d1e",
+  "groups_queued": 462,
+  "sets_queued": 31,
+  "same_name_rarity_groups": 462,
+  "same_illustrator_groups": 462,
+  "distinct_image_url_groups": 462,
+  "records_per_group": {
+    "2": 433,
+    "3": 19,
+    "4": 9,
+    "8": 1
+  },
+  "differing_field_patterns": {
+    "card_type|img|jp_id|sources|url": 1,
+    "img|jp_id|sources|url": 113,
+    "img|jp_id|url": 348
+  },
+  "scope": "internal variant review queue; no verified printing or offer match"
+}

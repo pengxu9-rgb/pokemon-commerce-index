@@ -113,6 +113,8 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 日英关系首批人工审核包见 [RELATIONSHIP_PILOT.md](RELATIONSHIP_PILOT.md)，独立复核后的分阶段方案见 [RELATIONSHIP_GRAPH_PLAN.md](RELATIONSHIP_GRAPH_PLAN.md)：19 个日文锚点产生 40 个待复核候选，附可在表格中填写的审核模板。另有 [30 个独立盲审锚点及召回评估流程](RELATIONSHIP_COVERAGE.md)，完整角色集合检索及有上限的弱信号回退后，当前检索器对其中 17 个锚点返回 67 对候选；真人尚未标注正确答案，所以这不是召回率。角色／画师信号只用于召回候选；目前尚无真人核实的对应边。S6a 的一条补充身份因缺少角色和画师信息进入身份缺口清单。内部 `catalog-neighborhood` 现在把已审核关系与同角色／同画师的检索候选分开返回，后者不会变成价格等价关系。
 
+[千组规模关系审计批次](RELATIONSHIP_SCALE_BATCH.md)现包含 1,000 对日英候选及 462 组日文同编号多记录候选；全部仍处于待核查状态。1,000 对的 1,734 份来源文件已按固定版本重新校验哈希。这批数据用于批量发现关联、差异和召回缺口，不会自动转成可用于报价比较的关系边。
+
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。
 
 新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；v2–v6 累计 122 条供内部检索的日英名称别名、460 条可追溯的 AI 审核事件、122 条明确标为 `proposed` 的卡片候选边。v6 采用[逐名分阶段复核](CONCEPT_REVIEW_STAGED.md)，由 Astra、Sol 和通过 Vertex AI 调用的 Gemini 3.8 Flash 独立审核，Gemini 在可获取时同时查看卡片图片。原始排序包的 55 组审核获得 20 个名称概念；[后续来源补救](CONCEPT_GAP_RESCUE_V6.md)从相同的固定数据中找回其余 5 个名称并完成三方复核。25 个名称锚点的完整工作池有 88 组待复核卡片关系候选；新版首轮每个锚点取一组，Gemini 对其中 12 组给出双端图片支持的同插画线索，13 组缺少完整图片。名称别名和关系候选没有已验证印刷关系或召回率结论；这些候选不能用于认定两个地区的卡片为同一价格商品。

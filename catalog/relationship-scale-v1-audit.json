@@ -1,0 +1,46 @@
+{
+  "largest_ja_set_count": 66,
+  "max_pairs_per_ja_set": 80,
+  "offer_matching_disabled_pairs": 114,
+  "per_stratum_anchor_budget": 300,
+  "prior_distinct_pairs_excluded": 309,
+  "prior_queue_files_excluded": 8,
+  "retrieval_gap_reasons": {
+    "ambiguous_character_signature": 261,
+    "candidate_list_truncated": 21,
+    "missing_card_classification": 902,
+    "missing_reviewed_concept_alias": 374
+  },
+  "retrieved_pairs": 3071,
+  "sampled_anchors": 2837,
+  "scope": "internal cross-region retrieval candidates; no verified relationship, artwork, printing or price equivalence",
+  "seed": "relationship-scale-batch-v1",
+  "selected_by_stratum": {
+    "control": 151,
+    "current_era": 151,
+    "missing_facet": 90,
+    "multi_character": 152,
+    "name_reprint": 152,
+    "promo": 152,
+    "same_number_finish": 152
+  },
+  "selected_ja_anchors": 880,
+  "selected_ja_sets": 83,
+  "selected_pairs": 1000,
+  "source_database_cards": 55167,
+  "source_database_concept_revisions": 122,
+  "source_database_facets": 59710,
+  "stratum_populations": {
+    "control": 7652,
+    "current_era": 1958,
+    "energy": 331,
+    "missing_facet": 6378,
+    "multi_character": 137,
+    "name_reprint": 8951,
+    "promo": 716,
+    "same_number_finish": 2846,
+    "supplemental_pokemon": 7661,
+    "trainer": 2241
+  },
+  "target_pairs": 1000
+}

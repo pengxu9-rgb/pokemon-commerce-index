@@ -11,7 +11,7 @@ import hashlib
 import json
 import re
 import subprocess
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 from scripts.audit_jp_source_conflicts import PTCG_REVISION
@@ -22,25 +22,28 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def build(reference_path: Path, candidates_path: Path, repo: Path,
-          set_code: str) -> tuple[list[dict], dict]:
+          set_code: str | None) -> tuple[list[dict], dict]:
     if subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo,
                                text=True).strip() != PTCG_REVISION:
         raise ValueError("Japanese source checkout differs from pinned revision")
-    set_code = set_code.upper()
+    set_code = set_code.upper() if set_code else None
     grouped: dict[tuple[str, str], list[dict]] = defaultdict(list)
     for row in read_jsonl(reference_path):
-        if row.get("set_code") == set_code and row.get("collector_number"):
-            grouped[(set_code, row["collector_number"])].append(row)
+        if (row.get("collector_number") and row.get("set_code")
+                and (set_code is None or row["set_code"].upper() == set_code)):
+            grouped[(row["set_code"].upper(), row["collector_number"])].append(row)
     candidate_keys = {(r["set_code"].upper(), r["collector_number"]): r
                       for r in read_jsonl(candidates_path)
-                      if r["set_code"].upper() == set_code}
+                      if set_code is None or r["set_code"].upper() == set_code}
     queue = []
+    record_counts: Counter[int] = Counter()
+    difference_patterns: Counter[tuple[str, ...]] = Counter()
     for key, group in sorted(grouped.items()):
         if len(group) < 2 or key not in candidate_keys:
             continue
         if len({r["name"] for r in group}) != 1 or len({r["rarity"] for r in group}) != 1:
             continue
-        official_urls, image_urls, authors, source_hashes = [], set(), set(), []
+        official_urls, image_urls, authors, source_hashes, source_records = [], set(), set(), [], []
         ordered_group = sorted(group, key=lambda item: int(item["source_jp_id"]))
         for row in ordered_group:
             prefix = f"ptcg-database:{PTCG_REVISION}:"
@@ -54,6 +57,7 @@ def build(reference_path: Path, candidates_path: Path, repo: Path,
             if hashlib.sha256(raw).hexdigest() != expected:
                 raise ValueError("source record hash differs from pinned reference")
             source = json.loads(raw)
+            source_records.append(source)
             url = source.get("url", "")
             if not re.fullmatch(r"https://www\.pokemon-card\.com/card-search/details\.php/card/\d+", url):
                 raise ValueError("source lacks exact official card page")
@@ -65,9 +69,15 @@ def build(reference_path: Path, candidates_path: Path, repo: Path,
             continue
         if len(set(official_urls)) != len(group):
             raise ValueError("duplicate source IDs share an official page")
+        difference = tuple(sorted(field for field in set().union(
+            *(record.keys() for record in source_records)) if len({
+                json.dumps(record.get(field), ensure_ascii=False, sort_keys=True)
+                for record in source_records}) > 1))
+        record_counts[len(group)] += 1
+        difference_patterns[difference] += 1
         candidate = candidate_keys[key]
-        queue.append({"card_id": f"ja:{set_code}:{key[1]}:{candidate['variant']}",
-                      "set_code": set_code, "collector_number": key[1],
+        queue.append({"card_id": f"ja:{key[0]}:{key[1]}:{candidate['variant']}",
+                      "set_code": key[0], "collector_number": key[1],
                       "name": group[0]["name"], "source_rarity": group[0]["rarity"],
                       "source_jp_ids": [row["source_jp_id"] for row in ordered_group],
                       "official_page_urls": official_urls,
@@ -76,13 +86,17 @@ def build(reference_path: Path, candidates_path: Path, repo: Path,
                       "review_status": "candidate_only",
                       "review_question": "Do the official records represent distinct physical printings or duplicate records?",
                       "evidence_limit": "Distinct pages or image URLs do not establish foil, finish, edition or price equivalence."})
-    audit = {"set_code": set_code, "ptcg_revision": PTCG_REVISION,
+    audit = {"set_code": set_code or "ALL", "ptcg_revision": PTCG_REVISION,
              "reference_sha256": hashlib.sha256(reference_path.read_bytes()).hexdigest(),
              "candidate_sha256": hashlib.sha256(candidates_path.read_bytes()).hexdigest(),
              "groups_queued": len(queue),
+             "sets_queued": len({r["set_code"] for r in queue}),
              "same_name_rarity_groups": len(queue),
              "same_illustrator_groups": len(queue),
              "distinct_image_url_groups": sum(r["distinct_source_image_urls"] > 1 for r in queue),
+             "records_per_group": dict(sorted(record_counts.items())),
+             "differing_field_patterns": {"|".join(fields): count
+                                          for fields, count in sorted(difference_patterns.items())},
              "scope": "internal variant review queue; no verified printing or offer match"}
     return queue, audit
 
@@ -92,7 +106,7 @@ def main() -> None:
     parser.add_argument("--reference", type=Path, required=True)
     parser.add_argument("--candidates", type=Path, required=True)
     parser.add_argument("--repo", type=Path, required=True)
-    parser.add_argument("--set-code", required=True)
+    parser.add_argument("--set-code", help="one set, or omit to audit every eligible set")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--audit", type=Path, required=True)
     args = parser.parse_args()

@@ -97,7 +97,7 @@ The public TCGdex Japanese set API listed 40 set codes absent from the Japanese
 runtime index, but every detail response returned zero card summaries on this
 date; they therefore supplied no safe card-level expansion.
 
-### Next evidence expansion: SV11B duplicates
+### Evidence expansion: all Japanese multi-record groups
 
 The 50 E2/E3 TCGdex variant-ambiguous candidates have no matching set/number
 record in the pinned Japanese second source, so that source cannot independently
@@ -107,11 +107,16 @@ pairs share name, rarity and illustrator, but point to distinct official card
 pages and image URLs. The [80-row internal review queue](catalog/ja-sv11b-variant-review-queue.jsonl)
 and [build audit](catalog/ja-sv11b-variant-review-audit.json) bind both source
 records by SHA-256 while omitting image URLs and bytes. Distinct records alone
-do not prove separate physical printings. The next pilot should inspect a small
-stratified sample with Gemini vision and exact official page checks before any
-batch promotion; source-supported findings remain candidate-only until the
-specific finish difference can be stated and independently verified. No new
-card identities or match permissions were added by this queue.
+do not prove separate physical printings. The follow-on [all-set review queue](catalog/ja-variant-review-all-queue.jsonl)
+expands this lane to **462 groups in 31 sets**, including the same 80 SV11B
+groups. Every source record is hash-bound and all groups remain candidate-only.
+Its [structural audit](catalog/ja-variant-review-all-audit.json) found 348
+groups whose source records differ only in record ID, official page URL and
+image URL; another 113 also differ in source attribution, and one additionally
+differs in card type. These differences do not establish physical finish.
+Batch image and official-page review must resolve the exact printing before
+any catalog split or offer matching. No new card identities or match permissions
+were added by either queue.
 
 ## Character and artist discovery facets
 

@@ -1,0 +1,14 @@
+{
+  "candidate_pairs": 1000,
+  "distinct_pairs": 1000,
+  "queue_sha256": "49853e5b37ca3b068df1e16dfc822940c9806e3f630c7a029a1b2a0ddfe28bf5",
+  "scope": "source and catalog identity validation only; no artwork, printing or relationship claim",
+  "signals": {
+    "exact_character_set_and_illustrator": 809,
+    "exact_character_set_only": 148,
+    "reviewed_concept_and_illustrator": 31,
+    "reviewed_concept_only": 12
+  },
+  "tcgdex_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "unique_pinned_source_files_checked": 1734
+}
