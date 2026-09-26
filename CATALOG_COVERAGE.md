@@ -60,13 +60,17 @@ Nineteen official base names agree with TCGdex; the other source had appended
 qualifiers such as a professor's name or `prismstar`. Four official pages
 contradict TCGdex's name: M6 `098/076` and `099/076` were interchanged, while
 SM6 `094/094` and SV-P `136/SV-P` omitted part of the printed name.
+Within the 19 base-name agreements, **15 official pages carry the Prism Star
+rarity icon**, while the pinned seed labels their sole variant `holo` and its
+rarity `Rare Holo`. The audit records the official icon separately from the
+card title; a base-name agreement does not resolve this printing mismatch.
 
-The four [identity exceptions](catalog/jp-card-identity-exceptions.jsonl) correct
-the internal names without rewriting the pinned TCGdex extract. All four are
-held from automatic offer matching and public display until the printing and
-finish metadata are independently confirmed. The exception table makes that
-hold survive a seed re-import. Match-eligible cards decrease from 33,957 to
-**33,953**; the total remains **55,167**. A Gemini 3.8 Flash Google Search
+The 19 [identity exceptions](catalog/jp-card-identity-exceptions.jsonl) correct
+four internal names and label 15 official Prism Star rarities without rewriting
+the pinned TCGdex extract. All 19 are held from automatic offer matching and
+public display until the variant taxonomy and finish are reconciled. The
+exception table makes that hold survive a seed re-import. Match-eligible cards
+decrease from 33,957 to **33,938**; the total remains **55,167**. A Gemini 3.8 Flash Google Search
 grounding pass identified M6 `098/076` as a likely source error, but did not
 return its exact official URL. Direct official-page verification, rather than
 the model answer, determined the correction. That single grounded request

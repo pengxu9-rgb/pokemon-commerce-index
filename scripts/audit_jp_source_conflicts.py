@@ -24,6 +24,7 @@ PTCG_REVISION = "bc5a2698eb9af858feb0280d579fd5fd0f0273e2"
 NUMBER = re.compile(r"(\d{1,3})&nbsp;/&nbsp;([A-Za-z0-9-]+)&nbsp;")
 TITLE = re.compile(r'<h1[^>]*class="Heading1 mt20"[^>]*>(.*?)</h1>', re.S)
 SET = re.compile(r'/card/regulation_logo_1/([^/]+)\.gif"[^>]*alt="([^"]+)"')
+RARITY_ICON = re.compile(r'/card/rarity/(ic_[a-z0-9_]+\.gif)')
 
 
 def compact(name: str) -> str:
@@ -56,8 +57,10 @@ def official_record(url: str, set_code: str, number: str) -> dict:
     if (card_set.group(1).upper() != set_code or card_set.group(2).upper() != set_code
             or observed_number.upper() != number):
         raise ValueError("official page set or number disagrees with source")
+    rarity_icons = sorted(set(RARITY_ICON.findall(body)))
     return {"url": url, "page_sha256": hashlib.sha256(raw).hexdigest(),
-            "name": name, "set_code": set_code, "collector_number": number}
+            "name": name, "set_code": set_code, "collector_number": number,
+            "rarity_icons": rarity_icons}
 
 
 def audit(base_path: Path, reference_path: Path, ptcg_repo: Path,
@@ -108,6 +111,8 @@ def audit(base_path: Path, reference_path: Path, ptcg_repo: Path,
                 entry["official_support"] = "neither"
             counts["official_exact_pages_checked"] += len(found)
             counts["official_support_" + entry["official_support"]] += 1
+            if any("ic_prismstar.gif" in record["rarity_icons"] for record in found):
+                counts["official_prismstar_groups"] += 1
         counts[classification] += 1
         results.append(entry)
     return {"scope": "internal card-name comparison; no images, listings or price evidence",

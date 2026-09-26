@@ -4,11 +4,12 @@
   "ptcg_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
   "base_sha256": "980391d63131ecf0d29bbd8d29bc28bb1886d6f37b6174d65cd4e2b584adc774",
   "reference_sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d",
-  "verified_at": "2026-09-26T05:52:43.540230+00:00",
+  "verified_at": "2026-09-26T06:00:28.260241+00:00",
   "counts": {
     "format_only": 53,
     "material_name_difference": 23,
     "official_exact_pages_checked": 23,
+    "official_prismstar_groups": 15,
     "official_support_ptcg_name": 4,
     "official_support_tcgdex_base_name": 19
   },
@@ -32,7 +33,10 @@
           "page_sha256": "bd76f9e780767b54ff4147d134aac2837717c98542a137ba3d4d8bca4df8fda4",
           "name": "ポケモンキャッチャー",
           "set_code": "M6",
-          "collector_number": "098/076"
+          "collector_number": "098/076",
+          "rarity_icons": [
+            "ic_rare_sr_c.gif"
+          ]
         }
       ],
       "official_support": "ptcg_name"
@@ -56,7 +60,10 @@
           "page_sha256": "15441375c00d75529c633add0c549270ccfcd1b6467d35552982714145931e0d",
           "name": "とくちゅうチョッキ",
           "set_code": "M6",
-          "collector_number": "099/076"
+          "collector_number": "099/076",
+          "rarity_icons": [
+            "ic_rare_sr_c.gif"
+          ]
         }
       ],
       "official_support": "ptcg_name"
@@ -80,7 +87,8 @@
           "page_sha256": "2c2b6c732089c4133f1aad3e857654f12a35b31f8a03c3f6202d9ac9471ba28e",
           "name": "博士の研究",
           "set_code": "S-P",
-          "collector_number": "128/S-P"
+          "collector_number": "128/S-P",
+          "rarity_icons": []
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -104,7 +112,8 @@
           "page_sha256": "7cdb9c99dbac053bf91434024e6ed836f82ad4774eb7ed257ba3e57b172eea6a",
           "name": "博士の研究",
           "set_code": "S-P",
-          "collector_number": "224/S-P"
+          "collector_number": "224/S-P",
+          "rarity_icons": []
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -716,7 +725,10 @@
           "page_sha256": "78bb610345d2c78b8debf93932928dec7b78e9b98279284b7d00e0d66ea1f01a",
           "name": "ギラティナ",
           "set_code": "SM5M",
-          "collector_number": "030/066"
+          "collector_number": "030/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -740,7 +752,10 @@
           "page_sha256": "2821f4499a4026ca0e1b83dea82d675fdbd87232c5c01b2c8c897284416663fa",
           "name": "ルナアーラ",
           "set_code": "SM5M",
-          "collector_number": "032/066"
+          "collector_number": "032/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -764,7 +779,10 @@
           "page_sha256": "d1126b89136887d68aad6197b31edc1315d9d2013c7577b150c81764c0c7b1f5",
           "name": "超ブーストエネルギー",
           "set_code": "SM5M",
-          "collector_number": "065/066"
+          "collector_number": "065/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -788,7 +806,10 @@
           "page_sha256": "482cb4cd79b3464c85d5951969877a5027e9638a0923c788e36b1044721ec476",
           "name": "ダークライ",
           "set_code": "SM5S",
-          "collector_number": "031/066"
+          "collector_number": "031/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -840,7 +861,10 @@
           "page_sha256": "b16553f003f91e8e67ba3636b844c0068d5e8de6cc392136754ba5c4450abca0",
           "name": "ソルガレオ",
           "set_code": "SM5S",
-          "collector_number": "043/066"
+          "collector_number": "043/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -864,7 +888,10 @@
           "page_sha256": "5c27bf36bbd6f2106b5453ed8418b0559a370bba400e6a3fda278246b5e60389",
           "name": "アカギ",
           "set_code": "SM5S",
-          "collector_number": "059/066"
+          "collector_number": "059/066",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -916,7 +943,10 @@
           "page_sha256": "59ddd528b8d43a0b945f43c7a87c17141fd7a5e2926c1be4dea8053cb51f0670",
           "name": "ボルケニオン",
           "set_code": "SM6",
-          "collector_number": "027/094"
+          "collector_number": "027/094",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -940,7 +970,10 @@
           "page_sha256": "241f8d09f816d7abbca08f340fd57f2c7365f47730d0a8ebf4af78fbd690f5ab",
           "name": "ディアンシー",
           "set_code": "SM6",
-          "collector_number": "051/094"
+          "collector_number": "051/094",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -964,7 +997,10 @@
           "page_sha256": "af95bbe12c229362baf052f097894dce4f315ef28834c5d009a3eecadc168c8a",
           "name": "フラダリ",
           "set_code": "SM6",
-          "collector_number": "089/094"
+          "collector_number": "089/094",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -988,7 +1024,10 @@
           "page_sha256": "5f10c21d4cc97c3eec974057d7f038943d0e30fdcb3fcc3d6b6968727c107018",
           "name": "ユニットエネルギー闘悪フェアリー",
           "set_code": "SM6",
-          "collector_number": "094/094"
+          "collector_number": "094/094",
+          "rarity_icons": [
+            "ic_rare_u_c.gif"
+          ]
         }
       ],
       "official_support": "ptcg_name"
@@ -1012,7 +1051,10 @@
           "page_sha256": "25d86fa483a259738027ed223c2cd5f9fb10f4cd577dce2e8cc0ad5752e3f9bf",
           "name": "ジラーチ",
           "set_code": "SM7",
-          "collector_number": "057/096"
+          "collector_number": "057/096",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1036,7 +1078,10 @@
           "page_sha256": "333f93f58fe31cff934b312acd8d94d85d04f9ea2fda787d9976e96f072d38f6",
           "name": "ラティアス",
           "set_code": "SM7",
-          "collector_number": "066/096"
+          "collector_number": "066/096",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1060,7 +1105,10 @@
           "page_sha256": "5f697d57fa8b6bf6c6eb2f4ac9a6ec339fbd68df6730c3ba69bb0ae770f1b4e8",
           "name": "ラティオス",
           "set_code": "SM7",
-          "collector_number": "067/096"
+          "collector_number": "067/096",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1084,7 +1132,10 @@
           "page_sha256": "ada7bfc1b6fa0151be6d383e33159b89bfb0afd1aeda174a7a83f2e3a2c4e2fb",
           "name": "セレビィ",
           "set_code": "SM8",
-          "collector_number": "015/095"
+          "collector_number": "015/095",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1136,7 +1187,10 @@
           "page_sha256": "471d9940933068351f53f5f0b447d9412bfdccdf8a0fb3ce79ace91456eb7873",
           "name": "ルザミーネ",
           "set_code": "SM8",
-          "collector_number": "092/095"
+          "collector_number": "092/095",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1160,7 +1214,10 @@
           "page_sha256": "4cc515ee1a6666b85c780d4a7792e6e769e5de93e1b151b97ab343fb60b5f9dc",
           "name": "ヒートファクトリー",
           "set_code": "SM8",
-          "collector_number": "093/095"
+          "collector_number": "093/095",
+          "rarity_icons": [
+            "ic_prismstar.gif"
+          ]
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1254,7 +1311,8 @@
           "page_sha256": "51b0e8c6d4fad33d356ac65d6a549c4e9c2c86d36f2a2d21567498302bdac514",
           "name": "博士の研究",
           "set_code": "SV-P",
-          "collector_number": "021/SV-P"
+          "collector_number": "021/SV-P",
+          "rarity_icons": []
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1278,7 +1336,8 @@
           "page_sha256": "18483bb0b94134776590800fd1c71db6a365577e8a60e1a03276e7be04c5ffd3",
           "name": "博士の研究",
           "set_code": "SV-P",
-          "collector_number": "022/SV-P"
+          "collector_number": "022/SV-P",
+          "rarity_icons": []
         }
       ],
       "official_support": "tcgdex_base_name"
@@ -1302,7 +1361,8 @@
           "page_sha256": "c39eae4e8f1fd061ac679171242629e48557e7269dc544c96d16167068da4bf2",
           "name": "バトルコンプレッサー（フレア団ギア）",
           "set_code": "SV-P",
-          "collector_number": "136/SV-P"
+          "collector_number": "136/SV-P",
+          "rarity_icons": []
         }
       ],
       "official_support": "ptcg_name"
