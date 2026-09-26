@@ -101,6 +101,12 @@ class OfferComparisonTests(unittest.TestCase):
         result = offer_comparison.compare_landed_asks(
             self.db, self.ja, self.en, "HK", "2026-09-25T09:30:00Z")
         self.assertEqual(result["status"], "ready")
+        self.assertEqual(result["relationship_status"], "proposed")
+        self.assertEqual(result["relationship_basis"],
+                         "ai_visual_same_artwork_candidate")
+        self.assertEqual(result["artwork_review_count"], 1)
+        self.assertEqual(result["identity_certainty"], "artwork_candidate_only")
+        self.assertIn("paid_sale", result["excluded_dimensions"])
         comparison = result["comparisons"][0]
         self.assertEqual(comparison["en_minus_ja_minor"], 2000)
         self.assertEqual(comparison["en_minus_ja_percent_bps"], 1818)

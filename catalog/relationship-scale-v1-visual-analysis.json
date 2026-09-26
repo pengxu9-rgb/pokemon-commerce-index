@@ -1,0 +1,95 @@
+{
+  "by_retrieval_signal": {
+    "exact_character_set_and_illustrator": {
+      "different": 33,
+      "insufficient_images": 201,
+      "model_error": 9,
+      "same": 564,
+      "uncertain": 2
+    },
+    "exact_character_set_only": {
+      "different": 7,
+      "insufficient_images": 136,
+      "same": 4,
+      "uncertain": 1
+    },
+    "reviewed_concept_and_illustrator": {
+      "different": 9,
+      "insufficient_images": 3,
+      "same": 19
+    },
+    "reviewed_concept_only": {
+      "different": 1,
+      "insufficient_images": 11
+    }
+  },
+  "by_stratum": {
+    "control": {
+      "different": 7,
+      "insufficient_images": 38,
+      "model_error": 3,
+      "same": 102,
+      "uncertain": 1
+    },
+    "current_era": {
+      "different": 2,
+      "insufficient_images": 13,
+      "model_error": 5,
+      "same": 131
+    },
+    "missing_facet": {
+      "different": 7,
+      "insufficient_images": 74,
+      "same": 9
+    },
+    "multi_character": {
+      "different": 9,
+      "insufficient_images": 78,
+      "same": 63,
+      "uncertain": 2
+    },
+    "name_reprint": {
+      "different": 6,
+      "insufficient_images": 45,
+      "same": 101
+    },
+    "promo": {
+      "different": 19,
+      "insufficient_images": 41,
+      "model_error": 1,
+      "same": 91
+    },
+    "same_number_finish": {
+      "insufficient_images": 62,
+      "same": 90
+    }
+  },
+  "candidate_pairs": 1000,
+  "image_status_pairs": {
+    "ambiguous_official_record|included": 20,
+    "fetch_failed|fetch_failed": 4,
+    "fetch_failed|included": 36,
+    "included|fetch_failed": 51,
+    "included|included": 649,
+    "no_exact_official_record|fetch_failed": 43,
+    "no_exact_official_record|included": 197
+  },
+  "model": "gemini-3.8-flash",
+  "pending_followup_pairs": 363,
+  "price_series_merge_allowed": 0,
+  "queue_sha256": "49853e5b37ca3b068df1e16dfc822940c9806e3f630c7a029a1b2a0ddfe28bf5",
+  "same_artwork_metadata": {
+    "any_offer_match_disabled": 30,
+    "rarity_string_equal": 306,
+    "variant_string_equal": 316
+  },
+  "scope": "Gemini source-bound artwork triage; no verified graph edge, printing or price equivalence",
+  "visual_decisions": {
+    "different": 50,
+    "insufficient_images": 351,
+    "model_error": 9,
+    "same": 587,
+    "uncertain": 3
+  },
+  "visual_sha256": "acb839bc42470747af5790b733cc0a46bfc273d95c5a5a020e32007e09d43183"
+}

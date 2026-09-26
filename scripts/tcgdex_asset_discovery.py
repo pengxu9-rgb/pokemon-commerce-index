@@ -7,6 +7,7 @@ and collector number. No image bytes are persisted by this module.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import re
 import urllib.error
 import urllib.request
@@ -52,6 +53,7 @@ def fetch(card_id: str, provenance: str) -> tuple[bytes | None, dict[str, Any]]:
         evidence.update({"status": "included", "image_sha256": hashlib.sha256(image).hexdigest(),
                          "image_bytes": len(image), "identity_check_required": True})
         return image, evidence
-    except (ValueError, urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+    except (ValueError, urllib.error.HTTPError, urllib.error.URLError, TimeoutError,
+            http.client.HTTPException, OSError) as exc:
         evidence.update({"status": "fetch_failed", "error_type": type(exc).__name__})
         return None, evidence

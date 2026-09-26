@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import subprocess
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -266,25 +267,42 @@ def run(queue: list[dict[str, Any]], repo: Path, project: str, location: str,
                            "response_sha256": None}
             else:
                 request = _request(row, ja_source, en_source, ja_image, en_image)
-                response = _call_model(project, location, token, request)
-                try:
-                    verdict = _parse(response)
-                except ValueError as exc:
-                    if "no complete candidate" not in str(exc):
-                        raise
-                    request["generationConfig"]["maxOutputTokens"] = 4096
-                    response = _call_model(project, location, token, request)
-                    verdict = _parse(response)
-                if (en_evidence.get("source") in {
-                        "curated_hash_bound_asset", "convention_asset_discovery"}
-                        and verdict["en_image_identity"] != "match"):
-                    verdict["artwork_decision"] = "uncertain"
-                    verdict["evidence_limits"] = _limits(
-                        "Curated English image identity was not confirmed by visual review.")
-                evidence.update({"model_version": response["modelVersion"],
-                                 "request_sha256": _sha(json.dumps(
-                                     request, ensure_ascii=False, sort_keys=True).encode()),
-                                 "usage": response.get("usageMetadata", {})})
+                verdict, response = None, None
+                for attempt in range(3):
+                    try:
+                        response = _call_model(project, location, token, request)
+                        verdict = _parse(response)
+                        break
+                    except ValueError as exc:
+                        if "no complete candidate" in str(exc):
+                            request["generationConfig"]["maxOutputTokens"] = 4096
+                        evidence["model_error_type"] = type(exc).__name__
+                    except RuntimeError as exc:
+                        if not any(f"HTTP {code}" in str(exc) for code in
+                                   (400, 408, 429, 500, 502, 503, 504)):
+                            raise
+                        evidence["model_error_type"] = str(exc)
+                    except (urllib.error.URLError, TimeoutError) as exc:
+                        evidence["model_error_type"] = type(exc).__name__
+                    if attempt < 2:
+                        time.sleep(attempt + 1)
+                if verdict is None:
+                    verdict = {"artwork_decision": "model_error",
+                               "rationale": "Vertex did not return a usable artwork decision after three attempts.",
+                               "evidence_limits": "No visual verdict; this candidate remains pending.",
+                               "en_image_identity": "not_checked",
+                               "response_sha256": None}
+                else:
+                    if (en_evidence.get("source") in {
+                            "curated_hash_bound_asset", "convention_asset_discovery"}
+                            and verdict["en_image_identity"] != "match"):
+                        verdict["artwork_decision"] = "uncertain"
+                        verdict["evidence_limits"] = _limits(
+                            "Curated English image identity was not confirmed by visual review.")
+                    evidence.update({"model_version": response["modelVersion"],
+                                     "request_sha256": _sha(json.dumps(
+                                         request, ensure_ascii=False, sort_keys=True).encode()),
+                                     "usage": response.get("usageMetadata", {})})
             result = {"candidate_id": cid,
                       "source_snapshot_sha256": row["source_snapshot_sha256"],
                       **verdict,

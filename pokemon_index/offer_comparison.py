@@ -190,6 +190,27 @@ def _latest_artwork_edge(db: sqlite3.Connection, ja_card_id: str,
         ORDER BY rowid DESC LIMIT 1""", (left, right)).fetchone()
 
 
+def _relationship_context(edge: sqlite3.Row) -> dict[str, Any]:
+    proposed = edge["review_status"] == "proposed"
+    count = 1 if proposed and edge["asserted_by"] == "ai-artwork-review-v1" else None
+    if not proposed:
+        try:
+            evidence = json.loads(edge["evidence_ref"])
+            reviewers = evidence.get("reviewers") if isinstance(evidence, dict) else None
+            if isinstance(reviewers, list):
+                count = len(reviewers)
+        except (TypeError, ValueError):
+            pass
+    return {"relationship_status": edge["review_status"],
+            "relationship_basis": ("ai_visual_same_artwork_candidate" if proposed
+                                   else "reviewed_same_artwork"),
+            "artwork_review_count": count,
+            "identity_certainty": ("artwork_candidate_only" if proposed
+                                   else "reviewed_artwork_only"),
+            "comparison_scope": "current_landed_asks_for_matching_photographed_finish_and_condition",
+            "excluded_dimensions": ["same_printing", "paid_sale", "future_price_trend"]}
+
+
 def _quote_ready(offer: dict[str, Any]) -> bool:
     quote = offer.get("quote")
     if not quote or offer["current_price_minor"] is None:
@@ -218,6 +239,7 @@ def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str
         return {"status": "blocked", "reason": "no current source-backed same-artwork relation"}
     if edge["review_status"] == "proposed" and edge["asserted_by"] != "ai-artwork-review-v1":
         return {"status": "blocked", "reason": "same-artwork proposal lacks AI image audit"}
+    relation = _relationship_context(edge)
     instant = core.parse_time(now or core.utcnow()).isoformat()
     sides = {}
     for language, card_id in (("ja", ja_card_id), ("en", en_card_id)):
@@ -248,7 +270,8 @@ def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str
                    for offer, _ in side["eligible"]}
     if len(all_sources) > 1 and any(not core._policy(db, source)["cross_source_use_allowed"]
                                     for source in all_sources):
-        return {"status": "blocked", "reason": "cross-source comparison lacks permission"}
+        return {"status": "blocked", "reason": "cross-source comparison lacks permission",
+                **relation}
     grouped = {}
     for lang, side in sides.items():
         for offer, gate in side["eligible"]:
@@ -298,6 +321,7 @@ def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str
             "destination": destination, "as_of": instant,
             "comparison_type": "contextual_landed_ask_spread",
             "artwork_assertion_id": edge["assertion_id"],
+            **relation,
             "comparisons": comparisons,
             "sides": {lang: {key: val for key, val in side.items() if key != "eligible"}
                       for lang, side in sides.items()},

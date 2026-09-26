@@ -1,0 +1,89 @@
+{
+  "by_visual_decision": {
+    "different": {
+      "different_numerator__different_denominator": 50,
+      "pairs": 50,
+      "same_set_code": 3,
+      "same_variant_string": 12
+    },
+    "insufficient_images": {
+      "different_numerator__different_denominator": 328,
+      "different_numerator__same_denominator": 10,
+      "pairs": 351,
+      "same_numerator__different_denominator": 11,
+      "same_numerator__same_denominator": 2,
+      "same_set_code": 15,
+      "same_variant_string": 97
+    },
+    "model_error": {
+      "different_numerator__different_denominator": 8,
+      "pairs": 9,
+      "same_numerator__different_denominator": 1,
+      "same_set_code": 0,
+      "same_variant_string": 5
+    },
+    "same": {
+      "different_numerator__different_denominator": 536,
+      "different_numerator__same_denominator": 1,
+      "pairs": 587,
+      "same_numerator__different_denominator": 42,
+      "same_numerator__same_denominator": 8,
+      "same_set_code": 51,
+      "same_variant_string": 316
+    },
+    "uncertain": {
+      "different_numerator__different_denominator": 3,
+      "pairs": 3,
+      "same_set_code": 0,
+      "same_variant_string": 1
+    }
+  },
+  "examples_by_number_pattern": {
+    "different_numerator__different_denominator": {
+      "en_card_id": "en:ME04:055/086:holo",
+      "en_name": "Krookodile ex",
+      "en_variant": "holo",
+      "ja_card_id": "ja:M-P:046/M-P:normal",
+      "ja_name": "ワルビアルex",
+      "ja_variant": "normal"
+    },
+    "different_numerator__same_denominator": {
+      "en_card_id": "en:SWSH9:020/172:reverse",
+      "en_name": "Magmortar",
+      "en_variant": "reverse",
+      "ja_card_id": "ja:S12A:017/172:reverse",
+      "ja_name": "ブーバーン",
+      "ja_variant": "reverse"
+    },
+    "same_numerator__different_denominator": {
+      "en_card_id": "en:ME01:005/132:normal",
+      "en_name": "Exeggutor",
+      "en_variant": "normal",
+      "ja_card_id": "ja:M1L:005/063:normal",
+      "ja_name": "ナッシー",
+      "ja_variant": "normal"
+    },
+    "same_numerator__same_denominator": {
+      "en_card_id": "en:SWSH9:006/172:reverse",
+      "en_name": "Turtwig",
+      "en_variant": "reverse",
+      "ja_card_id": "ja:S12A:006/172:reverse",
+      "ja_name": "ナエトル",
+      "ja_variant": "reverse"
+    }
+  },
+  "observation_prices_included": 0,
+  "pairs": 1000,
+  "price_trend_inference_allowed": false,
+  "queue_sha256": "49853e5b37ca3b068df1e16dfc822940c9806e3f630c7a029a1b2a0ddfe28bf5",
+  "same_artwork_many_to_many": {
+    "distinct_en_cards": 572,
+    "distinct_ja_cards": 567,
+    "en_cards_with_multiple_ja_candidates": 14,
+    "ja_cards_with_multiple_en_candidates": 20,
+    "maximum_en_candidates_per_ja": 2,
+    "maximum_ja_candidates_per_en": 3
+  },
+  "scope": "number patterns in a biased retrieval cohort; same means one Gemini artwork verdict, not verified card or price equivalence",
+  "visual_sha256": "acb839bc42470747af5790b733cc0a46bfc273d95c5a5a020e32007e09d43183"
+}

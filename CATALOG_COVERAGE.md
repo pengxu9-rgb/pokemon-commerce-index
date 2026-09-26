@@ -114,6 +114,12 @@ Its [structural audit](catalog/ja-variant-review-all-audit.json) found 348
 groups whose source records differ only in record ID, official page URL and
 image URL; another 113 also differ in source attribution, and one additionally
 differs in card type. These differences do not establish physical finish.
+The follow-up [image-hash audit](catalog/ja-variant-image-hash-audit.json)
+fetched all 967 official source images for these 462 groups and found distinct
+image bytes within every group. Hashes establish file differences only; they
+do not classify artwork, foil, stamp, edition, or physical printing. The
+source-bound [group evidence](catalog/ja-variant-image-hash-evidence.jsonl)
+remains internal.
 Batch image and official-page review must resolve the exact printing before
 any catalog split or offer matching. No new card identities or match permissions
 were added by either queue.

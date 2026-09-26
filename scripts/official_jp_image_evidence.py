@@ -7,6 +7,7 @@ served, or treated as proof of a particular foil pattern or physical condition.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import re
 import urllib.error
@@ -97,6 +98,7 @@ class OfficialJPImageIndex:
             evidence.update({"status": "included", "image_sha256": _sha(image),
                              "image_bytes": len(image), "mime_type": "image/jpeg"})
             return image, evidence
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError,
+                http.client.HTTPException, OSError) as exc:
             evidence.update({"status": "fetch_failed", "error_type": type(exc).__name__})
             return None, evidence

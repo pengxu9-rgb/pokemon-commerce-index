@@ -11,6 +11,7 @@ import argparse
 import base64
 import csv
 import hashlib
+import http.client
 import json
 import os
 import subprocess
@@ -87,7 +88,8 @@ def _image(row: dict[str, Any], side: str) -> tuple[bytes | None, dict[str, Any]
         evidence.update({"status": "included", "image_url": image_url,
                          "image_sha256": _sha(image), "image_bytes": len(image)})
         return image, evidence
-    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError) as exc:
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError,
+            http.client.HTTPException, OSError, ValueError) as exc:
         evidence["status"] = "fetch_failed"
         evidence["error_type"] = type(exc).__name__
         return None, evidence

@@ -17,6 +17,10 @@ def build(rows: list[dict]) -> list[dict]:
             continue
         if not row.get("ja_image_sha256") or not row.get("en_image_sha256"):
             raise ValueError("same-artwork proposal needs both image hashes")
+        if row.get("en_image_identity") != "match":
+            raise ValueError("same-artwork proposal needs a confirmed English image identity")
+        if not row.get("model_response_sha256") or not row.get("source_snapshot_sha256"):
+            raise ValueError("same-artwork proposal needs model and source hashes")
         left, right = sorted((row["ja_card_id"], row["en_card_id"]))
         evidence = {
             "schema": "pokemon.ai_artwork_review.v1",
