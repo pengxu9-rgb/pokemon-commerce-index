@@ -15,14 +15,16 @@ from . import core
 RELATION_TYPES = {"localization_counterpart", "same_artwork", "collecting_alternative"}
 REVIEW_STATUSES = {"proposed", "verified", "rejected"}
 CONSTRAINT_FIELDS = {
-    "query", "language", "set_code", "collector_number", "variant",
+    "query", "language", "set_code", "collector_number", "variant", "printing_type",
     "dex_id", "illustrator", "grade_company", "grade_value", "budget_minor",
     "currency", "destination",
 }
 
 
 def _card(db: sqlite3.Connection, card_id: str) -> sqlite3.Row:
-    card = db.execute("SELECT * FROM card WHERE card_id=?", (card_id,)).fetchone()
+    card = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+                       LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+                       WHERE c.card_id=?""", (card_id,)).fetchone()
     if card is None:
         raise ValueError(f"unknown card {card_id!r}")
     return card
@@ -229,18 +231,24 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
                       include_proposed: bool = False) -> dict[str, Any]:
     """Internal view. Same set/number variants are structural; other edges need review."""
     card = _card(db, card_id)
+    printing = db.execute("SELECT official_printing_type FROM card_identity_exception WHERE card_id=?",
+                          (card_id,)).fetchone()
     variants = [dict(row) for row in db.execute(
-        """SELECT card_id, name, variant, match_eligible, display_allowed FROM card
-        WHERE language=? AND set_code=? AND collector_number=? AND card_id<>?
-        ORDER BY variant""",
+        """SELECT c.card_id, c.name, c.variant, c.match_eligible, c.display_allowed,
+        e.official_printing_type FROM card c
+        LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+        WHERE c.language=? AND c.set_code=? AND c.collector_number=? AND c.card_id<>?
+        ORDER BY c.variant""",
         (card["language"], card["set_code"], card["collector_number"], card_id),
     )]
     assertions = db.execute(
         """SELECT a.*, CASE WHEN a.left_card_id=? THEN a.right_card_id ELSE a.left_card_id END AS other_card_id,
         c.name AS other_name, c.language AS other_language, c.match_eligible AS other_match_eligible,
-        c.display_allowed AS other_display_allowed
+        c.display_allowed AS other_display_allowed,
+        e.official_printing_type AS other_official_printing_type
         FROM card_relationship_assertion a JOIN card c
         ON c.card_id=CASE WHEN a.left_card_id=? THEN a.right_card_id ELSE a.left_card_id END
+        LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
         WHERE a.left_card_id=? OR a.right_card_id=?
         ORDER BY a.rowid DESC""", (card_id, card_id, card_id, card_id),
     )
@@ -281,8 +289,10 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
         rows = db.execute(
             """SELECT c.card_id, c.language, c.set_code, c.collector_number,
             c.variant, c.name, c.match_eligible, c.display_allowed,
+            e.official_printing_type,
             MIN(f.provenance) AS target_provenance
             FROM card_facet f JOIN card c ON c.card_id=f.card_id
+            LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
             WHERE f.facet_type=? AND f.value=? COLLATE NOCASE AND f.card_id<>?
             GROUP BY c.card_id
             ORDER BY c.match_eligible DESC, c.language, c.set_code, c.collector_number, c.variant
@@ -293,7 +303,9 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
             "facet_value": source["value"], "source_provenance": source["provenance"],
             "claim_status": "retrieval_only", "price_comparable": False,
         }
-    return {"card_id": card_id, "variants_at_number": variants,
+    return {"card_id": card_id,
+            "official_printing_type": printing["official_printing_type"] if printing else None,
+            "variants_at_number": variants,
             "relationships": reviewed, "ai_artwork_candidates": ai_artwork,
             "metadata_neighbors": metadata_neighbors,
             "scope": "internal metadata; facet neighbors are discovery candidates, not printing counterparts"}
@@ -318,6 +330,8 @@ def _validate_constraints(value: Any) -> dict[str, Any]:
         result["collector_number"] = core.normalize_collector_number(result["collector_number"])
     if result.get("variant"):
         result["variant"] = result["variant"].lower()
+    if result.get("printing_type") and result["printing_type"] != "prism_star":
+        raise ValueError("unsupported official printing type")
     return result
 
 
@@ -354,6 +368,9 @@ def save_exploration(db: sqlite3.Connection, row: dict[str, Any]) -> dict[str, A
         for field in ("language", "set_code", "collector_number", "variant"):
             if constraints.get(field) and constraints[field] != target_card[field]:
                 raise ValueError(f"selected target conflicts with {field}; clear or change the target")
+        if (constraints.get("printing_type")
+                and constraints["printing_type"] != target_card["official_printing_type"]):
+            raise ValueError("selected target conflicts with printing_type; clear or change the target")
     if "status" in row:
         status = row["status"]
     elif prior and prior["status"] == "paused":
@@ -423,29 +440,35 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
     filters = state["constraints"]
     shortlist = state["shortlist_card_ids"]
     if not shortlist and not any(filters.get(field) for field in
-                                 ("query", "set_code", "collector_number", "dex_id", "illustrator")):
+                                 ("query", "set_code", "collector_number", "printing_type",
+                                  "dex_id", "illustrator")):
         return {"session_id": session_id, "cards": [], "total": 0,
                 "facets": {}, "reason": "add a card name, set code, collector number or shortlist"}
     rows = db.execute(
-        """SELECT card_id, language, set_code, collector_number, variant, name, rarity,
-        match_eligible, display_allowed FROM card
-        WHERE (? IS NULL OR language=?) AND (? IS NULL OR set_code=?)
-        AND (? IS NULL OR collector_number=?) AND (? IS NULL OR variant=?)
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=card.card_id
+        """SELECT c.card_id, c.language, c.set_code, c.collector_number, c.variant,
+        c.name, c.rarity, c.match_eligible, c.display_allowed, e.official_printing_type
+        FROM card c LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+        WHERE (? IS NULL OR c.language=?) AND (? IS NULL OR c.set_code=?)
+        AND (? IS NULL OR c.collector_number=?) AND (? IS NULL OR c.variant=?)
+        AND (? IS NULL OR e.official_printing_type=?)
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='dex_id' AND f.value=?))
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=card.card_id
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='illustrator' AND lower(f.value)=lower(?)))
-        ORDER BY match_eligible DESC, set_code, collector_number, variant""",
+        ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
         (filters.get("language"), filters.get("language"),
          filters.get("set_code"), filters.get("set_code"),
          filters.get("collector_number"), filters.get("collector_number"),
          filters.get("variant"), filters.get("variant"),
+         filters.get("printing_type"), filters.get("printing_type"),
          filters.get("dex_id"), str(filters["dex_id"]) if filters.get("dex_id") else None,
          filters.get("illustrator"), filters.get("illustrator")),
     )
     def identity_allowed(card: sqlite3.Row) -> bool:
         if any(filters.get(field) and card[field] != filters[field]
                for field in ("language", "set_code", "collector_number", "variant")):
+            return False
+        if filters.get("printing_type") and card["official_printing_type"] != filters["printing_type"]:
             return False
         if filters.get("dex_id") and not db.execute(
             """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='dex_id' AND value=?""",
@@ -463,7 +486,8 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
     terms = [term.casefold() for term in filters.get("query", "").split()]
     found = [{**dict(card), "matched_via": "catalog_text"} for card in rows
              if identity_allowed(card) and (not shortlist or card["card_id"] in shortlist)
-             and all(term in f"{card['name']} {card['set_code']} {card['collector_number']}".casefold()
+             and all(term in (f"{card['name']} {card['set_code']} {card['collector_number']} "
+                              f"{'プリズムスター Prism Star' if card['official_printing_type'] == 'prism_star' else ''}").casefold()
                      for term in terms)]
     # A reviewed JP↔EN edge can resolve a name in one language to a printing in
     # the requested language. No name/number coincidence creates such an edge.
@@ -494,6 +518,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
             if all(term in source_name.casefold() for term in terms):
                 found.append({key: target[key] for key in
                               ("card_id", "language", "set_code", "collector_number", "variant",
+                               "official_printing_type",
                                "name", "rarity", "match_eligible", "display_allowed")}
                              | {"matched_via": "verified_localization_counterpart",
                                 "relationship_assertion_id": edge["assertion_id"]})
@@ -519,8 +544,10 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
             for target in db.execute(
                 """SELECT c.card_id, c.language, c.set_code, c.collector_number, c.variant,
                 c.name, c.rarity, c.match_eligible, c.display_allowed,
+                e.official_printing_type,
                 f.value AS dex_id, f.provenance AS facet_provenance
                 FROM card c JOIN card_facet f ON f.card_id=c.card_id
+                LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
                 WHERE c.language=? AND f.facet_type='dex_id'
                 ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
                 (filters["language"],),
@@ -534,6 +561,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                 source = alias_ids[target["dex_id"]]
                 found.append({key: target[key] for key in
                               ("card_id", "language", "set_code", "collector_number", "variant",
+                               "official_printing_type",
                                "name", "rarity", "match_eligible", "display_allowed")}
                              | {"matched_via": "same_character",
                                 "character_dex_id": int(target["dex_id"]),
@@ -543,7 +571,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                                     "target_provenance": target["facet_provenance"]}})
                 seen.add(target["card_id"])
     facets = {}
-    for field in ("language", "set_code", "collector_number", "variant"):
+    for field in ("language", "set_code", "collector_number", "variant", "official_printing_type"):
         counts = Counter(str(card[field]) for card in found)
         facets[field] = {"distinct_count": len(counts),
                          "values": [value for value, _ in counts.most_common(12)]}

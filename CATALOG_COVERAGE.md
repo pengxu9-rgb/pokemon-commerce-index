@@ -77,6 +77,17 @@ the model answer, determined the correction. That single grounded request
 generated 56 searches, so bulk conflict verification uses the bounded exact
 official-page path.
 
+The 15 cards now also carry `official_printing_type=prism_star`, sourced from
+the verified official rarity icon. Internal catalog search, listing review
+candidates and the exploration graph expose this field separately from the
+old TCGdex `variant=holo`. Their existing card IDs remain stable because card
+facets and classifications already reference them; the `holo` suffix is a
+legacy source key, not a verified physical finish. `catalog-search
+--printing-type prism_star` finds the 15 cards, but all 15 remain
+`match_eligible=false` and cannot start offer tracking. The SQLite migration
+also repairs a prior positional-insert error in upgraded exception tables;
+new inserts name their columns explicitly.
+
 The before/after audit files are
 [`catalog/legacy-mercari-fixture-coverage-audit.json`](catalog/legacy-mercari-fixture-coverage-audit.json)
 and [`catalog/legacy-mercari-fixture-coverage-after-s6a.json`](catalog/legacy-mercari-fixture-coverage-after-s6a.json).

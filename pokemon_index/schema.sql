@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS card_identity_exception (
   source_provenance TEXT NOT NULL,
   corrected_name TEXT NOT NULL,
   corrected_rarity TEXT,
+  official_printing_type TEXT CHECK (official_printing_type IS NULL OR official_printing_type='prism_star'),
   official_url TEXT NOT NULL,
   official_page_sha256 TEXT NOT NULL,
   reason TEXT NOT NULL,

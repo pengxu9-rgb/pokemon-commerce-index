@@ -63,6 +63,27 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE card_identity_exception ADD COLUMN source_provenance TEXT NOT NULL DEFAULT ''")
         db.execute("""UPDATE card_identity_exception SET source_provenance =
                    (SELECT provenance FROM card WHERE card.card_id=card_identity_exception.card_id)""")
+    if "official_printing_type" not in exception_columns:
+        db.execute("ALTER TABLE card_identity_exception ADD COLUMN official_printing_type TEXT")
+        db.execute("""UPDATE card_identity_exception SET official_printing_type='prism_star'
+                   WHERE corrected_rarity='Prism Star'""")
+    # A prior positional insert into an upgraded table shifted these fields.
+    # Repair only the exact, recognizable shape; fail closed on anything else.
+    for broken in db.execute("""SELECT * FROM card_identity_exception
+        WHERE official_url='Prism Star' AND corrected_name LIKE 'tcgdex:%'""").fetchall():
+        if (not re.fullmatch(r"https://www\.pokemon-card\.com/card-search/details\.php/card/\d+",
+                             broken["official_page_sha256"])
+                or not re.fullmatch(r"[0-9a-f]{64}", broken["reason"])):
+            raise ValueError("unrecognized shifted card exception; manual repair required")
+        db.execute("""UPDATE card_identity_exception SET
+            source_provenance=?, corrected_name=?, corrected_rarity='Prism Star',
+            official_url=?, official_page_sha256=?, reason=?, applied_at=?,
+            official_printing_type='prism_star' WHERE card_id=?""",
+            (broken["corrected_name"], broken["corrected_rarity"],
+             broken["official_page_sha256"], broken["reason"], broken["applied_at"],
+             broken["source_provenance"], broken["card_id"]))
+        db.execute("UPDATE card SET name=?, rarity='Prism Star' WHERE card_id=?",
+                   (broken["corrected_rarity"], broken["card_id"]))
     observation_columns = {row[1] for row in db.execute("PRAGMA table_info(observation)")}
     if "native_created" not in observation_columns:
         db.execute("ALTER TABLE observation ADD COLUMN native_created TEXT")
@@ -198,6 +219,11 @@ def apply_card_identity_exceptions(db: sqlite3.Connection,
                                  row["official_url"])
                     or not re.fullmatch(r"[0-9a-f]{64}", row["official_page_sha256"])):
                 raise ValueError("identity exception lacks a valid official page reference")
+            printing_type = row.get("official_printing_type")
+            if printing_type not in {None, "prism_star"}:
+                raise ValueError("unsupported official printing type")
+            if printing_type == "prism_star" and row.get("corrected_rarity") != "Prism Star":
+                raise ValueError("Prism Star printing type requires official rarity evidence")
             card = db.execute("SELECT name,provenance FROM card WHERE card_id=?",
                               (row["card_id"],)).fetchone()
             if (not card or card["name"] not in {row["original_name"], row["corrected_name"]}
@@ -207,16 +233,21 @@ def apply_card_identity_exceptions(db: sqlite3.Connection,
             existing = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?",
                                   (row["card_id"],)).fetchone()
             expected = (row["original_name"], row["source_provenance"],
-                        row["corrected_name"], row.get("corrected_rarity"),
+                        row["corrected_name"], row.get("corrected_rarity"), printing_type,
                         row["official_url"], row["official_page_sha256"], row["reason"])
             if existing:
                 actual = tuple(existing[key] for key in
                                ("original_name", "source_provenance", "corrected_name", "corrected_rarity",
+                                "official_printing_type",
                                 "official_url", "official_page_sha256", "reason"))
                 if actual != expected:
                     raise ValueError("existing identity exception differs")
             else:
-                db.execute("""INSERT INTO card_identity_exception VALUES (?,?,?,?,?,?,?,?,?)""",
+                db.execute("""INSERT INTO card_identity_exception
+                    (card_id, original_name, source_provenance, corrected_name,
+                     corrected_rarity, official_printing_type, official_url,
+                     official_page_sha256, reason, applied_at)
+                    VALUES (?,?,?,?,?,?,?,?,?,?)""",
                            (row["card_id"], *expected, utcnow()))
             db.execute("""UPDATE card SET name=?, rarity=COALESCE(?,rarity),
                        match_eligible=0, display_allowed=0 WHERE card_id=?""",
@@ -517,9 +548,13 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     facet_coverage = {row["facet_type"]: row["cards"] for row in db.execute(
         "SELECT facet_type, COUNT(DISTINCT card_id) AS cards FROM card_facet GROUP BY facet_type"
     )}
+    printing_type_coverage = {row["official_printing_type"]: row["cards"] for row in db.execute(
+        """SELECT official_printing_type, COUNT(*) AS cards FROM card_identity_exception
+           WHERE official_printing_type IS NOT NULL GROUP BY official_printing_type""")}
     return {"printings": totals["printings"], "sets": totals["sets"],
             "reference_records": references,
             "facet_coverage": facet_coverage,
+            "official_printing_type_coverage": printing_type_coverage,
             "display_approved": totals["display_approved"] or 0,
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
             "scope": "internal catalog inventory; not a public display authorization"}
@@ -533,6 +568,7 @@ def _catalog_card_dict(row: sqlite3.Row) -> dict[str, Any]:
 
 def catalog_search_internal(db: sqlite3.Connection, query: str, *,
                             set_code: str | None = None, variant: str | None = None,
+                            printing_type: str | None = None,
                             dex_id: int | None = None, illustrator: str | None = None,
                             limit: int = 20, offset: int = 0) -> dict[str, Any]:
     """Search internal card metadata without weakening public display controls."""
@@ -541,15 +577,19 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
     normalized = unicodedata.normalize("NFKC", query).strip()
     if dex_id is not None and (type(dex_id) is not int or not 1 <= dex_id <= 9999):
         raise ValueError("dex_id must be a positive integer below 10000")
-    if not normalized and not (set_code or dex_id or illustrator):
-        raise ValueError("a query, set code, dex ID or illustrator is required")
+    if printing_type not in {None, "prism_star"}:
+        raise ValueError("unsupported official printing type")
+    if not normalized and not (set_code or printing_type or dex_id or illustrator):
+        raise ValueError("a query, set code, printing type, dex ID or illustrator is required")
     terms = [normalize_collector_number(term) for term in normalized.casefold().split()]
     candidates = db.execute(
-        """SELECT c.*, s.name AS set_name,
+        """SELECT c.*, s.name AS set_name, e.official_printing_type,
         CASE WHEN c.language='ja' THEN s.name END AS set_name_ja FROM card c
         LEFT JOIN catalog_set_localized s
         ON s.language=c.language AND s.set_code=c.set_code
+        LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
         WHERE (? IS NULL OR c.set_code=?) AND (? IS NULL OR c.variant=?)
+        AND (? IS NULL OR e.official_printing_type=?)
         AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='dex_id' AND f.value=?))
         AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
@@ -557,25 +597,30 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
         ORDER BY c.set_code, c.collector_number, c.variant""",
         (set_code.upper() if set_code else None, set_code.upper() if set_code else None,
          variant.lower() if variant else None, variant.lower() if variant else None,
+         printing_type, printing_type,
          dex_id, str(dex_id) if dex_id is not None else None,
          illustrator, illustrator),
     )
     def matches(row: sqlite3.Row) -> bool:
         text = unicodedata.normalize(
             "NFKC", f"{row['name']} {row['set_name'] or ''} {row['set_code']} {row['collector_number']} "
-            f"{row['language']} {row['variant']}"
+            f"{row['language']} {row['variant']} {row['official_printing_type'] or ''} "
+            f"{'プリズムスター Prism Star' if row['official_printing_type'] == 'prism_star' else ''}"
         ).casefold()
         return all(term in text for term in terms)
     found = [_catalog_card_dict(row) for row in candidates if matches(row)]
     return {"query": query, "set_code": set_code.upper() if set_code else None,
-            "variant": variant.lower() if variant else None, "dex_id": dex_id,
+            "variant": variant.lower() if variant else None,
+            "printing_type": printing_type, "dex_id": dex_id,
             "illustrator": illustrator, "total": len(found),
             "offset": offset, "cards": found[offset:offset + limit],
             "scope": "internal metadata only; display_allowed controls public APIs"}
 
 
 def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
-    row = db.execute("SELECT * FROM card WHERE card_id=?", (cid,)).fetchone()
+    row = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+                      LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+                      WHERE c.card_id=?""", (cid,)).fetchone()
     if not row:
         raise ValueError("unknown card")
     units = [dict(unit) for unit in db.execute(

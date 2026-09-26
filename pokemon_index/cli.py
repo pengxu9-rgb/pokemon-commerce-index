@@ -135,6 +135,7 @@ def main() -> None:
     catalog_search.add_argument("query", nargs="?", default="")
     catalog_search.add_argument("--set-code")
     catalog_search.add_argument("--variant")
+    catalog_search.add_argument("--printing-type", choices=("prism_star",))
     catalog_search.add_argument("--dex-id", type=int)
     catalog_search.add_argument("--illustrator")
     catalog_search.add_argument("--limit", type=int, default=20)
@@ -237,7 +238,9 @@ def main() -> None:
             output = core.catalog_status(db)
         elif args.command == "catalog-search":
             output = core.catalog_search_internal(db, args.query, set_code=args.set_code,
-                                                  variant=args.variant, dex_id=args.dex_id,
+                                                  variant=args.variant,
+                                                  printing_type=args.printing_type,
+                                                  dex_id=args.dex_id,
                                                   illustrator=args.illustrator, limit=args.limit,
                                                   offset=args.offset)
         elif args.command == "catalog-card":

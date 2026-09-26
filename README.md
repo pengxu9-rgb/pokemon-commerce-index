@@ -84,6 +84,7 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --illustrator 'Naoyo Kimura' --limit 20
 python3 -m pokemon_index --db catalog.sqlite3 catalog-card 'ja:SV2A:025/165:reverse_masterball'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'S6a 087/069'
+python3 -m pokemon_index --db catalog.sqlite3 catalog-search --printing-type prism_star
 python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
 

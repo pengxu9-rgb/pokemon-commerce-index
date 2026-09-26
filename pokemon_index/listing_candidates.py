@@ -65,8 +65,10 @@ def retrieve(db: sqlite3.Connection, title: str, limit: int = 12) -> dict[str, A
         clauses.append("set_code IN (" + ",".join("?" for _ in codes) + ")")
         params.extend(sorted(codes))
     rows = db.execute(
-        """SELECT card_id,language,set_code,collector_number,variant,name,rarity,
-        match_eligible,provenance FROM card WHERE """ + " AND ".join(clauses), params).fetchall()
+        """SELECT c.card_id,c.language,c.set_code,c.collector_number,c.variant,
+        c.name,c.rarity,c.match_eligible,c.provenance,e.official_printing_type
+        FROM card c LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+        WHERE """ + " AND ".join("c." + clause for clause in clauses), params).fetchall()
     compact_title = core._compact_identity_text(normalized)
     candidates = []
     for row in rows:
@@ -84,6 +86,7 @@ def retrieve(db: sqlite3.Connection, title: str, limit: int = 12) -> dict[str, A
                            "set_code": row["set_code"],
                            "collector_number": row["collector_number"],
                            "name": row["name"], "variant": row["variant"],
+                           "official_printing_type": row["official_printing_type"],
                            "rarity": row["rarity"],
                            "match_eligible": bool(row["match_eligible"]),
                            "retrieval_signal": signal,
