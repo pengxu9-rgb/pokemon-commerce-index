@@ -97,6 +97,22 @@ The public TCGdex Japanese set API listed 40 set codes absent from the Japanese
 runtime index, but every detail response returned zero card summaries on this
 date; they therefore supplied no safe card-level expansion.
 
+### Next evidence expansion: SV11B duplicates
+
+The 50 E2/E3 TCGdex variant-ambiguous candidates have no matching set/number
+record in the pinned Japanese second source, so that source cannot independently
+settle them. In contrast, SV11B has 80 match-disabled `unverified_multi_record`
+card candidates with two pinned source records at the same set/number. All 80
+pairs share name, rarity and illustrator, but point to distinct official card
+pages and image URLs. The [80-row internal review queue](catalog/ja-sv11b-variant-review-queue.jsonl)
+and [build audit](catalog/ja-sv11b-variant-review-audit.json) bind both source
+records by SHA-256 while omitting image URLs and bytes. Distinct records alone
+do not prove separate physical printings. The next pilot should inspect a small
+stratified sample with Gemini vision and exact official page checks before any
+batch promotion; source-supported findings remain candidate-only until the
+specific finish difference can be stated and independently verified. No new
+card identities or match permissions were added by this queue.
+
 ## Character and artist discovery facets
 
 The pinned TCGdex source also supplies **59,710 provenance-checked, text-only facet rows** for the 35,077 Japanese and English identities extracted directly from its card files: 28,361 cards have a usable Pokédex character ID and 31,071 have an illustrator. Facets are stored separately in [`catalog/card-facets.jsonl.gz`](catalog/card-facets.jsonl.gz), with a [build audit](catalog/card-facets-audit.json). Four legacy source files use a decimal `dexId` such as `384.1`; those IDs are omitted and listed in the audit rather than coerced to a different character. API-only and supplemental candidates have no TCGdex facet assertion from this batch.
