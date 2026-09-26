@@ -1,0 +1,13 @@
+{
+  "scope": "image-only derived-recolor challenge set; no graph verification",
+  "sample_sha256": "418bf3078c70d24de02131803a16fcc269d25a078d2be694d8f6d44511eff9ac",
+  "model": "gemini-3.8-flash",
+  "prompt_version": "image-only-artwork-lineage-v1",
+  "rows": 18,
+  "categories": {
+    "derived_recolor": 5,
+    "different": 3,
+    "exact": 10
+  },
+  "no_graph_promotion": true
+}

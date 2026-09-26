@@ -51,6 +51,15 @@ they were imported into the local index, with zero verified edges from this
 batch. The [comparison audit](catalog/relationship-scale-v1-comparability-audit.json)
 allows neither price-series merging nor numeric cross-region spread.
 
+The [blind calibration](RELATIONSHIP_CALIBRATION.md) sampled 150 `same`
+results, all 50 `different` results and all 12 uncertain/model-error results.
+On identical image bytes, the image-only repeat agreed on 149/149 `same` and
+47/50 `different`; ten cases still lack stable original image bytes. An
+18-case palette challenge identified five `derived_recolor` candidates,
+which the [v2 comparison audit](catalog/relationship-scale-v1-comparability-v2-audit.json)
+separates from `separate_artwork`. These are stability and taxonomy signals,
+not matching precision or verified graph edges.
+
 The [numbering audit](catalog/relationship-scale-v1-numbering-audit.json)
 found only eight identical complete numbers among those 587 same-artwork
 candidates; 536 differ in both numerator and denominator. This selected cohort
@@ -74,10 +83,10 @@ printing identities or offer matching permissions changed.
    source record, distinct artwork, possible finish/stamp, or insufficient
    evidence; retain match-disabled set-and-number identities until exact
    physical printing evidence exists.
-3. Independently calibrate a stratified sample of the 587 AI positives and 50
-   negatives before any `verified` relationship promotion. Record precision,
-   disagreement and source-era effects rather than treating model output as
-   ground truth.
+3. Obtain independent adjudicated labels on a precommitted probability sample
+   before any `verified` relationship promotion or production precision
+   claim. The same-model blind repeat found classification conflicts but is
+   not ground truth.
 4. After an authorized offer feed arrives, match exact regional printing and
    photographed condition before computing destination-specific landed asks.
 

@@ -1,0 +1,31 @@
+{
+  "scope": "three source URLs returned original audited image hash on repeated fetch; second pass rerun",
+  "recovered": 3,
+  "rows": [
+    {
+      "candidate_id": "127d74143485f8e4f263",
+      "original_result_sha256": "3a86bf957bf20ca3445efce192092cc406cd15590d5d59f23d3ba9cf7b4e33b4",
+      "rechecked_result_sha256": "1de91173f7ef65d0d8df3f8d443bd57f9f4d387403e3c36e435ebba85f630d35",
+      "audited_image_sha256": "b06a7b9ed20643fb530f197ea34f2a7b42b491d4c6334d2f972312d4ddbad0c0",
+      "changed_side": "ja",
+      "result": "same after source URL returned audited bytes"
+    },
+    {
+      "candidate_id": "79e5eec370a5087bbb9a",
+      "original_result_sha256": "04f2ecdb55561e909b550a6e4e446b52c923912044f0cd07ef1952f8043ba9b1",
+      "rechecked_result_sha256": "b449ce3b4effc94e56be58b1cf761342c2ede5ccbe11cf7f137fb8b34f528b7d",
+      "audited_image_sha256": "d7b914618bcd274f3fb55283e69fa1bfb86f8d1fb1596cf11a7b55a6216cea67",
+      "changed_side": "en",
+      "result": "same after source URL returned audited bytes"
+    },
+    {
+      "candidate_id": "dc60ca98e94e09461d1b",
+      "original_result_sha256": "2748d83f039397134e39a509ff0c4e74f368feed74e9cbec3884727f616fedba",
+      "rechecked_result_sha256": "7a20cf036a736ab79645d80ca9aed99ee79e18b34cf711ebbd6f7feac262a71c",
+      "audited_image_sha256": "289f9ca9d0862c6da5fa9b6b5785b3af1e47d61a4ff3d86bdd59bfef8827b150",
+      "changed_side": "en",
+      "result": "same after source URL returned audited bytes"
+    }
+  ],
+  "no_graph_promotion": true
+}

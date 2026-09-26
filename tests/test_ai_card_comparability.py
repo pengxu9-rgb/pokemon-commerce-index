@@ -41,6 +41,21 @@ class AIComparabilityTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "does not bind"):
             compile_pair(self.pair, self.art, self.audit)
 
+    def test_recolor_is_separate_lineage_and_never_a_shared_price_series(self):
+        self.art["artwork_decision"] = "different"
+        taxonomy = {"candidate_id": "pair-1", "source_snapshot_sha256": "a" * 64,
+                    "ja_image_sha256": "b" * 64, "en_image_sha256": "c" * 64,
+                    "prompt_version": "image-only-artwork-lineage-v1",
+                    "model": "gemini-3.8-flash", "category": "derived_recolor",
+                    "visual_basis": "Same poses and linework, rainbow recolor",
+                    "response_sha256": "d" * 64}
+        result = compile_pair(self.pair, self.art, self.audit, taxonomy)
+        self.assertEqual(result["comparison_scope"], "derived_artwork_candidate")
+        self.assertFalse(result["price_series_merge_allowed"])
+        with self.assertRaisesRegex(ValueError, "does not bind"):
+            compile_pair(self.pair, self.art, self.audit,
+                         dict(taxonomy, en_image_sha256="e" * 64))
+
 
 if __name__ == "__main__":
     unittest.main()

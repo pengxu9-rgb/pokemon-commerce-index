@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -26,7 +27,8 @@ def _rows(path: Path) -> dict[str, dict[str, str]]:
 
 
 def compile_pair(pair: dict[str, Any], art: dict[str, str],
-                 audit: dict[str, Any]) -> dict[str, Any]:
+                 audit: dict[str, Any], taxonomy: dict[str, Any] | None = None
+                 ) -> dict[str, Any]:
     cid = pair["candidate_id"]
     if (art["candidate_id"] != cid
             or art["source_snapshot_sha256"] != pair["source_snapshot_sha256"]
@@ -43,11 +45,38 @@ def compile_pair(pair: dict[str, Any], art: dict[str, str],
             and art["artwork_decision"] == "same"
             and art.get("en_image_identity") != "match"):
         raise ValueError(f"curated English image identity was not confirmed: {cid}")
+    if taxonomy is not None:
+        if (taxonomy.get("candidate_id") != cid
+                or taxonomy.get("source_snapshot_sha256") != pair["source_snapshot_sha256"]
+                or taxonomy.get("ja_image_sha256") != audit["ja_image"].get("image_sha256")
+                or taxonomy.get("en_image_sha256") != audit["en_image"].get("image_sha256")
+                or taxonomy.get("prompt_version") != "image-only-artwork-lineage-v1"
+                or taxonomy.get("model") != "gemini-3.8-flash"
+                or taxonomy.get("category") not in
+                {"exact", "derived_recolor", "different", "uncertain",
+                 "model_error", "source_image_changed", "insufficient_images"}):
+            raise ValueError(f"taxonomy evidence does not bind to candidate images: {cid}")
+        if taxonomy["category"] in {"exact", "derived_recolor", "different", "uncertain"}:
+            if (not isinstance(taxonomy.get("response_sha256"), str)
+                    or not re.fullmatch(r"[0-9a-f]{64}", taxonomy["response_sha256"])
+                    or not taxonomy.get("visual_basis")):
+                raise ValueError(f"taxonomy verdict lacks model evidence: {cid}")
     same_art = art["artwork_decision"] == "same"
     variants_match = pair["anchor"]["variant"] == pair["candidate"]["variant"]
     rarity_match = pair["anchor"]["rarity"] == pair["candidate"]["rarity"]
     if not image_complete:
         scope, next_action = "await_image_evidence", "fetch_exact_missing_card_image"
+    elif taxonomy and taxonomy["category"] == "source_image_changed":
+        scope, next_action = "source_image_changed", "reconcile_source_image_revision"
+    elif taxonomy and taxonomy["category"] == "uncertain":
+        scope, next_action = "artwork_uncertain", "independent_adjudication"
+    elif taxonomy and taxonomy["category"] == "derived_recolor":
+        scope, next_action = "derived_artwork_candidate", "review_artwork_lineage"
+    elif taxonomy and ((art["artwork_decision"] == "different" and
+                        taxonomy["category"] == "exact") or
+                       (art["artwork_decision"] == "same" and
+                        taxonomy["category"] == "different")):
+        scope, next_action = "artwork_disagreement", "independent_adjudication"
     elif art["artwork_decision"] == "different":
         scope, next_action = "separate_artwork", "retain_separate_price_series"
     elif not same_art:
@@ -62,6 +91,8 @@ def compile_pair(pair: dict[str, Any], art: dict[str, str],
         "ja_card_id": pair["anchor"]["card_id"],
         "en_card_id": pair["candidate"]["card_id"],
         "artwork_decision": art["artwork_decision"],
+        "artwork_lineage_category": taxonomy["category"] if taxonomy else None,
+        "artwork_lineage_response_sha256": taxonomy.get("response_sha256") if taxonomy else None,
         "artwork_model": audit.get("model_version"),
         "artwork_rationale": art.get("rationale", ""),
         "model_response_sha256": audit.get("response_sha256"),
@@ -85,7 +116,8 @@ def compile_pair(pair: dict[str, Any], art: dict[str, str],
 
 
 def compile_all(queue: list[dict[str, Any]], passes: list[tuple[Path, Path]],
-                ignored_candidate_ids: set[str] | None = None
+                ignored_candidate_ids: set[str] | None = None,
+                taxonomy: list[dict[str, Any]] | None = None
                 ) -> list[dict[str, Any]]:
     art_by_id: dict[str, dict[str, str]] = {}
     audit_by_id: dict[str, dict[str, Any]] = {}
@@ -102,8 +134,12 @@ def compile_all(queue: list[dict[str, Any]], passes: list[tuple[Path, Path]],
     if ((set(art_by_id) - expected) != ignored or (expected - set(art_by_id))
             or len(expected) != len(queue)):
         raise ValueError("artwork passes do not cover the candidate queue exactly")
+    taxonomy_by_id = {row["candidate_id"]: row for row in taxonomy or []}
+    if len(taxonomy_by_id) != len(taxonomy or []) or set(taxonomy_by_id) - expected:
+        raise ValueError("taxonomy evidence has duplicate or unexpected candidates")
     return [compile_pair(row, art_by_id[row["candidate_id"]],
-                         audit_by_id[row["candidate_id"]]) for row in queue]
+                         audit_by_id[row["candidate_id"]],
+                         taxonomy_by_id.get(row["candidate_id"])) for row in queue]
 
 
 def main() -> None:
@@ -114,11 +150,14 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--ignore-superseded-candidate", action="append", default=[])
+    parser.add_argument("--taxonomy", type=Path,
+                        help="source-bound image-only artwork lineage review JSONL")
     args = parser.parse_args()
     if args.output.exists() or args.report.exists():
         raise FileExistsError("comparison outputs already exist")
     rows = compile_all(read_jsonl(args.queue), [tuple(p) for p in args.passes],
-                       set(args.ignore_superseded_candidate))
+                       set(args.ignore_superseded_candidate),
+                       read_jsonl(args.taxonomy) if args.taxonomy else None)
     with args.output.open("x", encoding="utf-8") as handle:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")

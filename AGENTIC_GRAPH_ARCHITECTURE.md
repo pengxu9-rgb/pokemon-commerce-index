@@ -85,6 +85,13 @@ labelled `proposed`. The 462 Japanese multi-record groups all have distinct
 official image bytes, but image-byte differences alone do not identify foil,
 stamp, edition or distinct physical printings.
 
+The [blind calibration](RELATIONSHIP_CALIBRATION.md) exposed a distinct
+`derived_recolor` lineage: five of the initial 50 `different` findings in a
+palette-keyword challenge share composition or linework but differ materially
+in color treatment. These five are unverified candidates, not newly verified
+`same_artwork` edges. `uses_artwork` must distinguish exact from derived
+visual reuse before the agent answers “same picture?”
+
 ## Agent questions and minimum evidence
 
 | User question | Graph traversal and evidence | Response boundary |

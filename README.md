@@ -117,6 +117,8 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 编号结构现独立保存在 `card_number_context`，保留原 `card_id`，记录语言＋卡组暂定编号范围、标准化分子／分母和源数据版本标签；地区、实体工艺、印章与版次在缺少证据时仍为空。`init` 会为旧目录补齐编号结构，新增卡片在导入时同步建立。内部 `number-explanation <左卡片ID> <右卡片ID>` 及受限 `/number-explanation` 查询会说明编号对齐方式和现有关系审核状态，不会根据相同编号自动建立日英对应或合并价格。完整目录副本已回填 55,167 条，缺失 0 条；51,301 条为纯数字分式、3,792 条为混合分式、74 条为代码分式。
 
+[跨区画面对比盲复核](RELATIONSHIP_CALIBRATION.md)覆盖 212 对来源绑定图片：可比较样本中首轮同画面 149/149 重复同判、首轮不同画面 47/50 重复同判；这仅衡量同模型换提示后的稳定性，不是准确率。定向配色核对将五对原先笼统的“不同画面”列为“同构图但重配色”候选；[新版比较范围](catalog/relationship-scale-v1-comparability-v2-audit.json)仍禁止任何跨卡价格序列合并。图片哈希未能恢复的十对继续隔离。
+
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。
 
 新增的来源可追溯卡片类别与日英概念别名检索契约见 [BILINGUAL_CONCEPT_CONTRACT.md](BILINGUAL_CONCEPT_CONTRACT.md)。已从固定 TCGdex 源码提取 35,073 张卡的类别；v2–v6 累计 122 条供内部检索的日英名称别名、460 条可追溯的 AI 审核事件、122 条明确标为 `proposed` 的卡片候选边。v6 采用[逐名分阶段复核](CONCEPT_REVIEW_STAGED.md)，由 Astra、Sol 和通过 Vertex AI 调用的 Gemini 3.8 Flash 独立审核，Gemini 在可获取时同时查看卡片图片。原始排序包的 55 组审核获得 20 个名称概念；[后续来源补救](CONCEPT_GAP_RESCUE_V6.md)从相同的固定数据中找回其余 5 个名称并完成三方复核。25 个名称锚点的完整工作池有 88 组待复核卡片关系候选；新版首轮每个锚点取一组，Gemini 对其中 12 组给出双端图片支持的同插画线索，13 组缺少完整图片。名称别名和关系候选没有已验证印刷关系或召回率结论；这些候选不能用于认定两个地区的卡片为同一价格商品。

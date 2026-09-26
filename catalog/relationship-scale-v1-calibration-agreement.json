@@ -1,0 +1,76 @@
+{
+  "scope": "blind same-model agreement; no accuracy, precision or recall estimate",
+  "sample_rows": 212,
+  "matrix": {
+    "different": {
+      "different": 47,
+      "same": 3
+    },
+    "model_error": {
+      "source_image_changed": 9
+    },
+    "same": {
+      "same": 149,
+      "source_image_changed": 1
+    },
+    "uncertain": {
+      "different": 2,
+      "same": 1
+    }
+  },
+  "by_retrieval_stratum": {
+    "control": {
+      "different->different": 7,
+      "model_error->source_image_changed": 3,
+      "same->same": 25,
+      "uncertain->different": 1
+    },
+    "current_era": {
+      "different->different": 2,
+      "model_error->source_image_changed": 5,
+      "same->same": 31,
+      "same->source_image_changed": 1
+    },
+    "missing_facet": {
+      "different->different": 6,
+      "different->same": 1,
+      "same->same": 8
+    },
+    "multi_character": {
+      "different->different": 7,
+      "different->same": 2,
+      "same->same": 16,
+      "uncertain->different": 1,
+      "uncertain->same": 1
+    },
+    "name_reprint": {
+      "different->different": 6,
+      "same->same": 25
+    },
+    "promo": {
+      "different->different": 19,
+      "model_error->source_image_changed": 1,
+      "same->same": 22
+    },
+    "same_number_finish": {
+      "same->same": 22
+    }
+  },
+  "same_agreement": {
+    "n": 149,
+    "model_answered_denominator": 149,
+    "decisive_denominator": 149,
+    "selected_denominator": 150
+  },
+  "different_agreement": {
+    "n": 47,
+    "model_answered_denominator": 50,
+    "decisive_denominator": 50,
+    "selected_denominator": 50
+  },
+  "source_image_changed": 10,
+  "image_unavailable": 0,
+  "disagreements_or_abstentions": 16,
+  "verified_graph_edges_created": 0,
+  "price_comparability_inferred": false
+}

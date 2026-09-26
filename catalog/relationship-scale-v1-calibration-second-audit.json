@@ -1,0 +1,17 @@
+{
+  "scope": "blind same-model second pass; agreement is not accuracy or verified artwork",
+  "sample_sha256": "62aa40ab161ec8fd87af47c597a761e4dc5d2c441a0e6185877cb016402ee7f4",
+  "model": "gemini-3.8-flash",
+  "prompt_version": "image-only-artwork-calibration-v1",
+  "rows": 212,
+  "second_decisions": {
+    "different": 49,
+    "same": 153,
+    "source_image_changed": 10
+  },
+  "no_graph_promotion": true,
+  "transient_fetch_retries_recovered": 1,
+  "retry_audit": "catalog/relationship-scale-v1-calibration-retry-audit.json",
+  "source_hash_rechecks_recovered": 3,
+  "source_recovery_audit": "catalog/relationship-scale-v1-calibration-source-recovery-audit.json"
+}

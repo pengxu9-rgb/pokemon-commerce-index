@@ -1,0 +1,12 @@
+{
+  "candidate_id": "3561014c4fbcf977da9d",
+  "reason": "transient image fetch URLError",
+  "original_decision": "insufficient_images",
+  "recovered_decision": "different",
+  "source_snapshot_sha256": "6ba716d03bb4240a5f1f174cd2e3a0bdacf8dccaeb3eda8b541079fa3551031b",
+  "ja_image_sha256": "d487ebf2168bd1181e33eece15453100be06caab081971675058416bf64cf623",
+  "en_image_sha256": "af1a18a93eb0d3616a905c03656619fc156baa46e167a192314f4a346ee49d55",
+  "original_result_sha256": "a43e755af97beb4d60c78fdaea7879f4d44575c1465474d86180cc510ec2d36d",
+  "retry_result_sha256": "04125a1fbf4a67dced06d4fbf80fd0d79134780dbb5d6af8d4b50139ab9381b5",
+  "scope": "same source images; no graph promotion"
+}

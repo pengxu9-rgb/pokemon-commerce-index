@@ -1,0 +1,23 @@
+{
+  "scope": "deterministic, source-bound blind second-pass sample; no accuracy or graph promotion",
+  "first_batch_candidate_rows": 1000,
+  "sample_rows": 212,
+  "positive_quota_by_retrieval_stratum": {
+    "control": 25,
+    "current_era": 32,
+    "missing_facet": 8,
+    "multi_character": 16,
+    "name_reprint": 25,
+    "promo": 22,
+    "same_number_finish": 22
+  },
+  "first_decisions": {
+    "different": 50,
+    "model_error": 9,
+    "same": 150,
+    "uncertain": 3
+  },
+  "sample_sha256": "62aa40ab161ec8fd87af47c597a761e4dc5d2c441a0e6185877cb016402ee7f4",
+  "first_audit_sha256": "61e2907b97b21d8aca956cd1abca6fb731cb603533b9a1b1ca9eee746543aa0e",
+  "prompt_version": "image-only-artwork-calibration-v1"
+}
