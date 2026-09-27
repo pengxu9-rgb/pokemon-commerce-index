@@ -59,6 +59,37 @@ class NumberAliasTests(unittest.TestCase):
             number_aliases.apply_candidates(self.db, [row])
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_number_alias_candidate").fetchone()[0], 0)
 
+    def test_multi_record_visual_signal_stays_unassigned(self):
+        aliases = [json.loads(line) for line in (
+            CATALOG / "ja-number-alias-candidates.jsonl").read_text().splitlines()]
+        row = next(row for row in aliases if row["card_id"] == "ja:SV11B:001/174:normal")
+        visual = next(json.loads(line) for line in (
+            CATALOG / "ja-number-alias-visual-crosswalk.jsonl").read_text().splitlines()
+                      if '"card_id": "ja:SV11B:001/174:normal"' in line)
+        core.import_cards(self.db, [{"language": "ja", "set_code": "SV11B",
+            "collector_number": row["catalog_number"], "variant": "normal",
+            "name": row["catalog_name"], "provenance": row["source_provenance"],
+            "rights_reference": "fixture", "display_allowed": False}])
+        number_conflicts.apply_rules(self.db, [self.rules[1]])
+        number_aliases.apply_candidates(self.db, [row])
+        self.assertEqual(number_aliases.apply_visual_context(self.db, [visual]),
+                         {"visual_contexts": 1})
+        signal = number_graph.card_number_context(self.db, row["card_id"])[
+            "multi_record_visual_signal"]
+        self.assertEqual(signal["visual_status"], "ai_exact_artwork_surface_question")
+        self.assertEqual(signal["official_record_to_catalog_variant_assignment"],
+                         "unestablished")
+        self.assertEqual(self.db.execute("SELECT match_eligible FROM card WHERE card_id=?",
+                                         (row["card_id"],)).fetchone()[0], 0)
+        altered = copy.deepcopy(visual)
+        altered["source_jp_ids"] = [1, 2]
+        with self.assertRaisesRegex(ValueError, "pinned source records"):
+            number_aliases.apply_visual_context(self.db, [altered])
+        altered = copy.deepcopy(visual)
+        altered["official_record_to_catalog_variant_assignment"] = "confirmed"
+        with self.assertRaisesRegex(ValueError, "ambiguous number group"):
+            number_aliases.apply_visual_context(self.db, [altered])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -119,6 +119,10 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 [日文编号冲突恢复审计](catalog/ja-number-alias-audit.json)从两个已锁定来源重新校验文件哈希与来源清单：395 条受限卡片中，388 条按同卡组、相同分子编号和标准化卡名找到来源中的编号候选；其中 232 条对应多个来源记录，无法判定具体工艺／印刷版本。其余 7 条在当前来源快照里缺少该分子编号，列于 [待补证据清单](catalog/ja-number-alias-unresolved.jsonl)。这些仅是内部编号线索，保存在独立的 `card_number_alias_candidate` 表中；395 条仍不参与自动报价匹配、关系图验证或价格合并。先运行 `init`，再执行 `import-card-number-aliases catalog/ja-number-alias-candidates.jsonl`；`number-explanation` 与内部卡片详情会显示可追溯的候选编号及尚未核实的实体版本状态。
 
+[多记录图像证据关联审计](catalog/ja-number-alias-visual-crosswalk-audit.json)把上述 232 条目录卡对应到 80 个官方同编号双记录组，并复用已有的来源哈希和 Gemini 图像复核：77 组／223 条目录卡仅得到“相同插画、可见表面差异待查”的信号，3 组／9 条图片不足。每个目录版本仍无法指定为其中哪条官方记录。执行 `import-card-number-alias-visuals catalog/ja-number-alias-visual-crosswalk.jsonl` 后，内部编号解释会显示组级视觉状态，但不会放开报价匹配或验证实体版本。
+
+[SM10b 官网搜索缺口审计](catalog/ja-sm10b-official-search-gap-audit.json)记录了官方产品页所链接搜索结果的两页响应哈希：公开列表共 62 条，ID 与固定来源中的 62 条完全相同。其余 7 条高编号卡没有这份官方搜索记录；这不证明卡片不存在，也不能从同名基础卡推断它们的插画或具体工艺。后续需补独立的卡面编号证据，当前仍保持报价匹配禁用。
+
 [跨区画面对比盲复核](RELATIONSHIP_CALIBRATION.md)覆盖 212 对来源绑定图片：可比较样本中首轮同画面 149/149 重复同判、首轮不同画面 47/50 重复同判；这仅衡量同模型换提示后的稳定性，不是准确率。定向配色核对将五对原先笼统的“不同画面”列为“同构图但重配色”候选；[新版比较范围](catalog/relationship-scale-v1-comparability-v2-audit.json)仍禁止任何跨卡价格序列合并。图片哈希未能恢复的十对继续隔离。
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。

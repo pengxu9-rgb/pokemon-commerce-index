@@ -93,10 +93,22 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                         "source_revision": evidence["official_source_revision"],
                         "physical_printing_status": "unverified",
                         "offer_matching_status": "blocked"}
+    visual = db.execute("""SELECT group_id,visual_status,evidence_json
+        FROM card_number_alias_visual_context WHERE card_id=?""", (card_id,)).fetchone()
+    visual_signal = None
+    if visual:
+        evidence = json.loads(visual["evidence_json"])
+        visual_signal = {"group_id": visual["group_id"],
+                         "visual_status": visual["visual_status"],
+                         "source_jp_ids": evidence["source_jp_ids"],
+                         "official_record_to_catalog_variant_assignment": "unestablished",
+                         "physical_printing_status": "unverified",
+                         "offer_matching_status": "blocked"}
     return dict(row) | {"region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
                         "source_number_conflict": number_conflict,
-                        "source_number_alias_candidate": number_alias}
+                        "source_number_alias_candidate": number_alias,
+                        "multi_record_visual_signal": visual_signal}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:

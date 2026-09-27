@@ -92,6 +92,19 @@ CREATE TABLE IF NOT EXISTS card_number_alias_candidate (
   imported_at TEXT NOT NULL
 );
 
+-- Group-level AI artwork evidence projected to catalog variants; it never
+-- assigns a catalog finish to a particular official source record.
+CREATE TABLE IF NOT EXISTS card_number_alias_visual_context (
+  card_id TEXT PRIMARY KEY REFERENCES card_number_alias_candidate(card_id),
+  group_id TEXT NOT NULL,
+  visual_status TEXT NOT NULL CHECK (visual_status IN
+    ('ai_exact_artwork_surface_question', 'image_unavailable')),
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS card_number_alias_visual_group
+  ON card_number_alias_visual_context(group_id);
+
 CREATE TABLE IF NOT EXISTS catalog_set (
   set_code TEXT PRIMARY KEY,
   name_ja TEXT,

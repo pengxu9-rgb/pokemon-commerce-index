@@ -66,3 +66,47 @@ def apply_candidates(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> 
                         datetime.now(timezone.utc).isoformat()))
             imported += 1
     return {"candidates": imported}
+
+
+def apply_visual_context(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> dict[str, int]:
+    """Attach earlier AI image comparisons without assigning a physical finish."""
+    imported = 0
+    with db:
+        for row in rows:
+            alias = db.execute("SELECT * FROM card_number_alias_candidate WHERE card_id=?",
+                               (row.get("card_id"),)).fetchone()
+            if alias is None:
+                raise ValueError("visual context requires an existing number alias")
+            evidence = json.loads(alias["evidence_json"])
+            number = alias["official_number_candidate"]
+            group_id = f"ja:{row['card_id'].split(':')[1]}:{number}:unverified_multi_record"
+            if (alias["official_record_count"] != 2 or row.get("group_id") != group_id
+                    or row.get("official_number_candidate") != number
+                    or row.get("physical_printing_status") != "unverified"
+                    or row.get("official_record_to_catalog_variant_assignment") != "unestablished"
+                    or row.get("offer_matching_status") != "blocked"):
+                raise ValueError("visual context must preserve its ambiguous number group")
+            records = evidence["official_records"]
+            ids = sorted(int(record["path"].rsplit("/", 1)[1][:-5]) for record in records)
+            hashes = sorted(record["sha256"] for record in records)
+            if (sorted(row.get("source_jp_ids", [])) != ids
+                    or sorted(row.get("source_record_sha256", [])) != hashes):
+                raise ValueError("visual context differs from pinned source records")
+            status = row.get("visual_status")
+            if status not in {"ai_exact_artwork_surface_question", "image_unavailable"}:
+                raise ValueError("unknown visual context status")
+            if (not re.fullmatch(r"[0-9a-f]{64}", str(row.get("visual_row_sha256", "")))
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("review_queue_sha256", "")))
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("visual_batch_sha256", "")))
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("followup_batch_sha256", "")))):
+                raise ValueError("visual context lacks source snapshot hashes")
+            canonical = json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            prior = db.execute("SELECT evidence_json FROM card_number_alias_visual_context WHERE card_id=?",
+                               (row["card_id"],)).fetchone()
+            if prior and prior["evidence_json"] != canonical:
+                raise ValueError("existing visual context differs")
+            db.execute("INSERT OR IGNORE INTO card_number_alias_visual_context VALUES (?,?,?,?,?)",
+                       (row["card_id"], group_id, status, canonical,
+                        datetime.now(timezone.utc).isoformat()))
+            imported += 1
+    return {"visual_contexts": imported}

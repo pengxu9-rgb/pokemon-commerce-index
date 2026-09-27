@@ -1,0 +1,137 @@
+{
+  "fetched_at": "2026-09-27T01:52:54.308543+00:00",
+  "official_set_page": "https://www.pokemon-card.com/products/sm/sm10b.html",
+  "official_search_results": 62,
+  "official_search_pages": [
+    {
+      "url": "https://www.pokemon-card.com/card-search/resultAPI.php?mode=statuslist&pg=647&keyword=&illust=&page=1",
+      "response_sha256": "62a1536f92320513bcfbe63488d7448c75fa5ca99a60dbb049008b2c7f9546a0",
+      "card_ids": [
+        "36656",
+        "36657",
+        "36658",
+        "36659",
+        "36660",
+        "36661",
+        "36662",
+        "36663",
+        "36664",
+        "36665",
+        "36666",
+        "36667",
+        "36668",
+        "36669",
+        "36670",
+        "36671",
+        "36672",
+        "36673",
+        "36674",
+        "36675",
+        "36676",
+        "36677",
+        "36678",
+        "36679",
+        "36680",
+        "36681",
+        "36682",
+        "36683",
+        "36684",
+        "36685",
+        "36686",
+        "36687",
+        "36688",
+        "36689",
+        "36690",
+        "36691",
+        "36692",
+        "36693",
+        "36694"
+      ]
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/resultAPI.php?mode=statuslist&pg=647&keyword=&illust=&page=2",
+      "response_sha256": "04fa2ea2cda7cf00f2cb63bbf137c2d25969cfa25ddfd2f29fd80bc7a3356c71",
+      "card_ids": [
+        "36695",
+        "36696",
+        "36697",
+        "36698",
+        "36873",
+        "36874",
+        "36875",
+        "36876",
+        "36877",
+        "36878",
+        "36699",
+        "36700",
+        "36701",
+        "36702",
+        "36703",
+        "36704",
+        "36706",
+        "36707",
+        "36708",
+        "36709",
+        "36879",
+        "36880",
+        "36705"
+      ]
+    }
+  ],
+  "pinned_source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+  "pinned_source_ids_match_official_search": true,
+  "unresolved_catalog_cards": [
+    {
+      "card_id": "ja:SM10B:063/056:holo",
+      "catalog_name": "モクロー&アローラナッシーGX",
+      "catalog_number": "063/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:064/056:holo",
+      "catalog_name": "ケルディオGX",
+      "catalog_number": "064/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:065/056:holo",
+      "catalog_name": "アーゴヨンGX",
+      "catalog_number": "065/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:066/056:holo",
+      "catalog_name": "ファイヤー&サンダー&フリーザーGX",
+      "catalog_number": "066/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:067/056:holo",
+      "catalog_name": "Uターンボード",
+      "catalog_number": "067/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:068/056:holo",
+      "catalog_name": "トキワの森",
+      "catalog_number": "068/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    },
+    {
+      "card_id": "ja:SM10B:069/056:holo",
+      "catalog_name": "リサイクルエネルギー",
+      "catalog_number": "069/056",
+      "reason": "official_numerator_absent",
+      "rule_id": "numconf:3fe8cde944f9475b4a17e022"
+    }
+  ],
+  "interpretation": "Seven cards lack exact entries in this public official search feed; absence is not evidence that the cards do not exist. Their official collector numbers and physical finishes remain unverified in this audit.",
+  "offer_match_eligibility_changed": false,
+  "unresolved_sha256": "b337e0817f8776fa6a4eb6bbaebc05d2e61f0f91822a25a6be175ad91cdd1459"
+}
