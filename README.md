@@ -117,6 +117,8 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 编号结构现独立保存在 `card_number_context`，保留原 `card_id`，记录语言＋卡组暂定编号范围、标准化分子／分母和源数据版本标签；地区、实体工艺、印章与版次在缺少证据时仍为空。`init` 会为旧目录补齐编号结构，新增卡片在导入时同步建立。内部 `number-explanation <左卡片ID> <右卡片ID>` 及受限 `/number-explanation` 查询会说明编号对齐方式、来源编号冲突和现有关系审核状态，不会根据相同编号自动建立日英对应或合并价格。完整目录副本已回填 55,167 条，缺失 0 条；51,301 条为纯数字分式、3,792 条为混合分式、74 条为代码分式。
 
+[日文编号冲突恢复审计](catalog/ja-number-alias-audit.json)从两个已锁定来源重新校验文件哈希与来源清单：395 条受限卡片中，388 条按同卡组、相同分子编号和标准化卡名找到来源中的编号候选；其中 232 条对应多个来源记录，无法判定具体工艺／印刷版本。其余 7 条在当前来源快照里缺少该分子编号，列于 [待补证据清单](catalog/ja-number-alias-unresolved.jsonl)。这些仅是内部编号线索，保存在独立的 `card_number_alias_candidate` 表中；395 条仍不参与自动报价匹配、关系图验证或价格合并。先运行 `init`，再执行 `import-card-number-aliases catalog/ja-number-alias-candidates.jsonl`；`number-explanation` 与内部卡片详情会显示可追溯的候选编号及尚未核实的实体版本状态。
+
 [跨区画面对比盲复核](RELATIONSHIP_CALIBRATION.md)覆盖 212 对来源绑定图片：可比较样本中首轮同画面 149/149 重复同判、首轮不同画面 47/50 重复同判；这仅衡量同模型换提示后的稳定性，不是准确率。定向配色核对将五对原先笼统的“不同画面”列为“同构图但重配色”候选；[新版比较范围](catalog/relationship-scale-v1-comparability-v2-audit.json)仍禁止任何跨卡价格序列合并。图片哈希未能恢复的十对继续隔离。
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。

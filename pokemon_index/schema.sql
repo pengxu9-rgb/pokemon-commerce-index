@@ -80,6 +80,18 @@ CREATE TABLE IF NOT EXISTS card_number_conflict_rule (
   UNIQUE(language, set_code, catalog_denominator, catalog_source_prefix)
 );
 
+-- A source-bound collector-number lead, never a physical-printing identity.
+CREATE TABLE IF NOT EXISTS card_number_alias_candidate (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  rule_id TEXT NOT NULL REFERENCES card_number_conflict_rule(rule_id),
+  catalog_number TEXT NOT NULL,
+  official_number_candidate TEXT NOT NULL,
+  source_provenance TEXT NOT NULL,
+  official_record_count INTEGER NOT NULL CHECK (official_record_count >= 1),
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS catalog_set (
   set_code TEXT PRIMARY KEY,
   name_ja TEXT,

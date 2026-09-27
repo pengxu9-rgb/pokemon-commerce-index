@@ -187,6 +187,14 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
                 and number_conflicts.rule_for_card(
                     db, row["language"], row["set_code"], number, previous["provenance"])):
             raise ValueError("re-imported card source differs from its number conflict rule")
+        number_alias = db.execute("SELECT evidence_json FROM card_number_alias_candidate WHERE card_id=?",
+                                  (cid,)).fetchone()
+        if number_alias:
+            alias_evidence = json.loads(number_alias["evidence_json"])
+            if (alias_evidence["source_provenance"] != row["provenance"]
+                    or _compact_identity_text(alias_evidence["catalog_name"])
+                    != _compact_identity_text(row["name"])):
+                raise ValueError("re-imported card differs from its number alias evidence")
         number_conflict = number_conflicts.rule_for_card(
             db, row["language"], row["set_code"], number, row["provenance"])
         db.execute(

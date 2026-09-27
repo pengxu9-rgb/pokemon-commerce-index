@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 import unicodedata
@@ -80,9 +81,22 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                         "catalog_denominator": conflict["catalog_denominator"],
                         "official_denominator": conflict["official_denominator"],
                         "reason": conflict["reason"]} if conflict else None)
+    alias = db.execute("""SELECT official_number_candidate,official_record_count,evidence_json
+        FROM card_number_alias_candidate WHERE card_id=?""", (card_id,)).fetchone()
+    number_alias = None
+    if alias:
+        evidence = json.loads(alias["evidence_json"])
+        number_alias = {"official_number_candidate": alias["official_number_candidate"],
+                        "official_record_count": alias["official_record_count"],
+                        "official_source_page_urls_unverified": [
+                            record["url"] for record in evidence["official_records"]],
+                        "source_revision": evidence["official_source_revision"],
+                        "physical_printing_status": "unverified",
+                        "offer_matching_status": "blocked"}
     return dict(row) | {"region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
-                        "source_number_conflict": number_conflict}
+                        "source_number_conflict": number_conflict,
+                        "source_number_alias_candidate": number_alias}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
