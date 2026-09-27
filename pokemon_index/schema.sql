@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS source_policy (
   seller_analytics_allowed INTEGER NOT NULL CHECK (seller_analytics_allowed IN (0, 1)),
   media_ai_allowed INTEGER NOT NULL DEFAULT 0 CHECK (media_ai_allowed IN (0, 1)),
   cross_region_use_allowed INTEGER NOT NULL DEFAULT 0 CHECK (cross_region_use_allowed IN (0, 1)),
+  photo_resolution_required INTEGER NOT NULL DEFAULT 0 CHECK (photo_resolution_required IN (0, 1)),
   retention_days INTEGER NOT NULL CHECK (retention_days > 0),
   listing_ttl_hours INTEGER NOT NULL CHECK (listing_ttl_hours > 0),
   expires_at TEXT
@@ -386,6 +387,21 @@ CREATE TABLE IF NOT EXISTS offer_visual_review (
   rationale TEXT NOT NULL,
   FOREIGN KEY(source, native_id, observed_at)
     REFERENCES offer_media_snapshot(source, native_id, observed_at)
+);
+
+-- A photo-gated source can enter an ask series only for an approved snapshot.
+-- A later observation needs a fresh approval even if its listing ID is unchanged.
+CREATE TABLE IF NOT EXISTS visual_resolution_approval (
+  source TEXT NOT NULL,
+  native_id TEXT NOT NULL,
+  observed_at TEXT NOT NULL,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  unit_id TEXT NOT NULL REFERENCES priceable_unit(unit_id),
+  review_ids_json TEXT NOT NULL,
+  approved_at TEXT NOT NULL,
+  PRIMARY KEY(source, native_id, observed_at),
+  FOREIGN KEY(source, native_id, observed_at)
+    REFERENCES observation(source, native_id, observed_at)
 );
 
 CREATE TABLE IF NOT EXISTS verified_sale (

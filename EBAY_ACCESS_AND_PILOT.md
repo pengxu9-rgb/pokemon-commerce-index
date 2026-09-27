@@ -31,6 +31,8 @@ Production probing additionally requires eBay's actual approval, `EBAY_PRODUCTIO
 
 After **both** production access and written approval of the specific data uses, compare observed results with each target's exact card identity. The Browse adapter converts fixed-price results to unresolved observations, in USD cents, with listing ID, seller, observed time and response hash. The `ebay_us` source is hard-gated from automatic title-only resolution. Photo/finish and condition review must complete before an offer can enter a card's ask index, and that photo use itself must be approved. Generic eBay `condition` is not a Pokémon card grade. Unknown domestic shipping, tax or forwarding cost must remain unknown until separately quoted.
 
+For a source with `photo_resolution_required`, an internal operator can run `visual-gate` and then `approve-visual-resolution <source> <native_id> <observed_at> <card_id>` after two independent model families agree on the card, finish and raw condition from authorized front/back photos. The approval is tied to **that exact observation timestamp**; a later observation disappears from offers, seller overlap and the ask index until reviewed again. A manual `override-resolution` cannot bypass this gate. Approval rejects a catalog variant that differs from the observed finish. This machine decision does not verify authenticity or provide a paid-sale price. eBay's pending source policy still disables ingestion, display and media AI; this flow is testable only with synthetic data until written authorization arrives.
+
 For an authorized saved Browse search response, the offline conversion is:
 
 ```bash

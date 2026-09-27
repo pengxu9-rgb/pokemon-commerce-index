@@ -181,6 +181,68 @@ def visual_gate(db: sqlite3.Connection, source: str, native_id: str,
             "scope": "AI-assisted raw condition bucket; no grader score or authenticity claim"}
 
 
+def approve_visual_resolution(db: sqlite3.Connection, source: str, native_id: str,
+                              observed_at: str, card_id: str) -> dict[str, Any]:
+    """Bind one current raw-card ask to two independent photo reviews.
+
+    Every new listing observation must pass the gate again. This is a machine
+    evidence decision, not a human attestation or an authenticity judgement.
+    """
+    policy = core._policy(db, source)
+    if not policy["photo_resolution_required"] or not policy["media_ai_allowed"]:
+        raise ValueError("source requires authorized photo resolution")
+    at = core.parse_time(observed_at).isoformat()
+    snapshot = db.execute("""SELECT status FROM observation
+        WHERE source=? AND native_id=? AND observed_at=?""",
+        (source, native_id, at)).fetchone()
+    latest = db.execute("""SELECT observed_at FROM observation
+        WHERE source=? AND native_id=? ORDER BY observed_at DESC LIMIT 1""",
+        (source, native_id)).fetchone()
+    if not snapshot or snapshot["status"] != "on_sale" or not latest or latest["observed_at"] != at:
+        raise ValueError("visual approval requires the latest on-sale observation")
+    card = db.execute("SELECT variant, match_eligible FROM card WHERE card_id=?",
+                      (card_id,)).fetchone()
+    if not card or not card["match_eligible"]:
+        raise ValueError("card identity is not eligible for offer matching")
+    gate = visual_gate(db, source, native_id, at, card_id)
+    if gate["status"] != "ready":
+        raise ValueError(f"visual evidence is not ready: {gate['status']}")
+    if card["variant"] != gate["observed_finish"]:
+        raise ValueError("observed finish does not match catalog printing variant")
+    existing = db.execute("SELECT unit_id FROM listing WHERE source=? AND native_id=?",
+                          (source, native_id)).fetchone()
+    if not existing:
+        raise ValueError("listing is missing")
+    unit_id = "|".join((card_id, "RAW", "raw", gate["condition_bucket"]))
+    if existing["unit_id"] and existing["unit_id"] != unit_id:
+        raise ValueError("listing identity or condition changed; quarantine for separate review")
+    approval = db.execute("""SELECT unit_id, review_ids_json FROM visual_resolution_approval
+        WHERE source=? AND native_id=? AND observed_at=?""", (source, native_id, at)).fetchone()
+    ids = json.dumps(gate["review_ids"], separators=(",", ":"))
+    if approval:
+        if approval["unit_id"] != unit_id or approval["review_ids_json"] != ids:
+            raise ValueError("prior visual approval conflicts with current review evidence")
+        return {"status": "already_approved", "unit_id": unit_id,
+                "observed_at": at, "review_ids": gate["review_ids"]}
+    with db:
+        core._unit(db, card_id, "RAW", "raw", gate["condition_bucket"])
+        db.execute("""UPDATE listing SET unit_id=?, resolution_method='explicit'
+            WHERE source=? AND native_id=?""", (unit_id, source, native_id))
+        approved_at = core.utcnow()
+        db.execute("""INSERT INTO visual_resolution_approval
+            (source,native_id,observed_at,card_id,unit_id,review_ids_json,approved_at)
+            VALUES (?,?,?,?,?,?,?)""",
+            (source, native_id, at, card_id, unit_id, ids, approved_at))
+        db.execute("""INSERT INTO resolution_record
+            (source,native_id,unit_id,method,rule_version,resolved_at,reason)
+            VALUES (?,?,?,'explicit','visual-consensus-v1',?,?)""",
+            (source, native_id, unit_id, approved_at,
+             "two independent model families agreed on identity, finish and raw condition"))
+    return {"status": "approved", "unit_id": unit_id, "observed_at": at,
+            "review_ids": gate["review_ids"],
+            "scope": "one listing snapshot; current ask only"}
+
+
 def _latest_artwork_edge(db: sqlite3.Connection, ja_card_id: str,
                          en_card_id: str) -> sqlite3.Row | None:
     left, right = sorted((ja_card_id, en_card_id))

@@ -51,6 +51,9 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE source_policy ADD COLUMN media_ai_allowed INTEGER NOT NULL DEFAULT 0")
     if "cross_region_use_allowed" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN cross_region_use_allowed INTEGER NOT NULL DEFAULT 0")
+    if "photo_resolution_required" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN photo_resolution_required INTEGER NOT NULL DEFAULT 0")
+    db.execute("UPDATE source_policy SET photo_resolution_required=1 WHERE source='ebay_us'")
     card_columns = {row[1] for row in db.execute("PRAGMA table_info(card)")}
     if "rights_reference" not in card_columns:
         db.execute("ALTER TABLE card ADD COLUMN rights_reference TEXT NOT NULL DEFAULT 'unreviewed legacy import'")
@@ -135,14 +138,16 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         """INSERT INTO source_policy
         (source, rights_reference, ingest_allowed, display_allowed,
          cross_source_use_allowed, seller_analytics_allowed, retention_days,
-         listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed,
+         photo_resolution_required)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(source) DO UPDATE SET rights_reference=excluded.rights_reference,
         ingest_allowed=excluded.ingest_allowed, display_allowed=excluded.display_allowed,
         cross_source_use_allowed=excluded.cross_source_use_allowed,
         seller_analytics_allowed=excluded.seller_analytics_allowed,
         media_ai_allowed=excluded.media_ai_allowed,
         cross_region_use_allowed=excluded.cross_region_use_allowed,
+        photo_resolution_required=excluded.photo_resolution_required,
         retention_days=excluded.retention_days, listing_ttl_hours=excluded.listing_ttl_hours,
         expires_at=excluded.expires_at""",
         (row["source"], row["rights_reference"], int(bool(row.get("ingest_allowed", False))),
@@ -150,7 +155,8 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
          int(bool(row.get("seller_analytics_allowed", False))), int(row["retention_days"]),
          int(row.get("listing_ttl_hours", 6)), row.get("expires_at"),
          int(bool(row.get("media_ai_allowed", False))),
-         int(bool(row.get("cross_region_use_allowed", False)))),
+         int(bool(row.get("cross_region_use_allowed", False))),
+         int(row["source"] == "ebay_us" or bool(row.get("photo_resolution_required", False)))),
     )
     db.commit()
 
@@ -709,7 +715,11 @@ def _unit(db: sqlite3.Connection, cid: str, company: str, grade: str, condition:
 
 
 def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, str]:
-    if row.get("source") == "ebay_us" or row.get("resolution_gate") == "photo_required":
+    source = row.get("source")
+    policy = db.execute("SELECT photo_resolution_required FROM source_policy WHERE source=?",
+                        (source,)).fetchone() if source else None
+    if (source == "ebay_us" or (policy and policy["photo_resolution_required"])
+            or row.get("resolution_gate") == "photo_required"):
         return None, "unresolved"
     title = unicodedata.normalize("NFKC", str(row["title"]))
     if row.get("card_id"):
@@ -862,7 +872,9 @@ def archive_raw_item(db: sqlite3.Connection, row: dict[str, Any], raw_item: dict
 def override_resolution(db: sqlite3.Connection, source: str, native_id: str, unit_id: str,
                         reviewer: str, reason: str) -> None:
     _required({"reviewer": reviewer, "reason": reason}, "reviewer", "reason")
-    _policy(db, source)
+    policy = _policy(db, source)
+    if policy["photo_resolution_required"]:
+        raise ValueError("photo-gated source requires snapshot-bound visual approval")
     if not db.execute("SELECT 1 FROM listing WHERE source=? AND native_id=?", (source, native_id)).fetchone():
         raise ValueError("unknown listing")
     if not db.execute("SELECT 1 FROM priceable_unit WHERE unit_id=?", (unit_id,)).fetchone():
@@ -1026,6 +1038,10 @@ def offers(db: sqlite3.Connection, card: str, destination: str | None = None,
         if not snapshot or snapshot["status"] != "on_sale":
             continue
         policy = _policy(db, row["source"], display=True)
+        if policy["photo_resolution_required"] and not _visual_approval(
+                db, row["source"], row["native_id"], snapshot["observed_at"],
+                row["unit_id"], now):
+            continue
         if parse_time(snapshot["observed_at"]) < parse_time(now) - timedelta(hours=policy["listing_ttl_hours"]):
             continue
         item = dict(row)
@@ -1055,6 +1071,14 @@ def offers(db: sqlite3.Connection, card: str, destination: str | None = None,
     return result
 
 
+def _visual_approval(db: sqlite3.Connection, source: str, native_id: str,
+                     observed_at: str, unit_id: str, as_of: str | None = None) -> bool:
+    row = db.execute("""SELECT approved_at FROM visual_resolution_approval
+        WHERE source=? AND native_id=? AND observed_at=? AND unit_id=?""",
+        (source, native_id, observed_at, unit_id)).fetchone()
+    return bool(row and (as_of is None or parse_time(row["approved_at"]) <= parse_time(as_of)))
+
+
 def seller_overlap(db: sqlite3.Connection, source: str, unit_ids: list[str],
                    now: str | None = None) -> dict[str, Any]:
     policy = _policy(db, source, display=True)
@@ -1082,7 +1106,10 @@ def seller_overlap(db: sqlite3.Connection, source: str, unit_ids: list[str],
             (source, row["native_id"], instant.isoformat()),
         ).fetchone()
         if (snapshot and snapshot["status"] == "on_sale"
-                and parse_time(snapshot["observed_at"]) >= instant - timedelta(hours=policy["listing_ttl_hours"])):
+                and parse_time(snapshot["observed_at"]) >= instant - timedelta(hours=policy["listing_ttl_hours"])
+                and (not policy["photo_resolution_required"] or _visual_approval(
+                    db, source, row["native_id"], snapshot["observed_at"], row["unit_id"],
+                    instant.isoformat()))):
             sellers.setdefault(row["seller_native_id"], set()).add(row["unit_id"])
     ranking = [{"seller_native_id": seller, "matched_units": sorted(units),
                 "coverage": len(units) / len(set(unit_ids))}
@@ -1123,35 +1150,51 @@ def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str) -> dict[str,
     transition_prices: dict[str, list[int]] = {}
     actual: dict[str, list[int]] = {}
     listing_ids = db.execute("SELECT source, native_id FROM listing WHERE unit_id=?", (unit_id,)).fetchall()
-    visible_sources = {item["source"] for item in listing_ids if _displayable(db, item["source"])}
-    if len(visible_sources) > 1 and any(not _policy(db, source)["cross_source_use_allowed"]
-                                        for source in visible_sources):
-        raise ValueError("cross-source index lacks permission")
+    contributing_sources: set[str] = set()
     for listing in listing_ids:
         if not _displayable(db, listing["source"]):
             continue
+        policy = _policy(db, listing["source"], display=True)
         history = db.execute("SELECT * FROM observation WHERE source=? AND native_id=? ORDER BY observed_at",
                              (listing["source"], listing["native_id"])).fetchall()
         eligible = [row for row in history if parse_time(row["observed_at"]) < end]
         if eligible:
             latest = eligible[-1]
-            policy = _policy(db, listing["source"], display=True)
             if (latest["status"] == "on_sale" and latest["price_minor"] is not None
-                    and parse_time(latest["observed_at"]) >= end - timedelta(hours=policy["listing_ttl_hours"])):
+                    and parse_time(latest["observed_at"]) >= end - timedelta(hours=policy["listing_ttl_hours"])
+                    and (not policy["photo_resolution_required"] or _visual_approval(
+                        db, listing["source"], listing["native_id"], latest["observed_at"],
+                        unit_id))):
                 by_currency.setdefault(latest["currency"], []).append(latest["price_minor"])
+                contributing_sources.add(listing["source"])
         for offset, (prev, current) in enumerate(zip(history, history[1:])):
             if prev["status"] == "on_sale" and current["status"] in ("trading", "sold_out"):
                 timestamp = parse_time(current["observed_at"])
                 reverted = any(later["status"] == "on_sale" for later in history[offset + 2:])
-                if start <= timestamp < end and prev["price_minor"] is not None and not reverted:
+                if (start <= timestamp < end and prev["price_minor"] is not None and not reverted
+                        and (not policy["photo_resolution_required"] or _visual_approval(
+                            db, listing["source"], listing["native_id"], prev["observed_at"],
+                            unit_id))):
                     transition_prices.setdefault(prev["currency"], []).append(prev["price_minor"])
+                    contributing_sources.add(listing["source"])
         sales = db.execute(
-            """SELECT paid_minor, currency FROM verified_sale
+            """SELECT paid_minor, currency, settled_at FROM verified_sale
             WHERE source=? AND native_id=? AND settled_at>=? AND settled_at<?""",
             (listing["source"], listing["native_id"], start.isoformat(), end.isoformat()),
         ).fetchall()
         for row in sales:
+            if policy["photo_resolution_required"] and not db.execute(
+                    """SELECT 1 FROM visual_resolution_approval
+                    WHERE source=? AND native_id=? AND unit_id=? AND observed_at<=?
+                    LIMIT 1""", (listing["source"], listing["native_id"], unit_id,
+                                  row["settled_at"])).fetchone():
+                continue
             actual.setdefault(row["currency"], []).append(row["paid_minor"])
+            contributing_sources.add(listing["source"])
+    if len(contributing_sources) > 1 and any(
+            not _policy(db, source)["cross_source_use_allowed"]
+            for source in contributing_sources):
+        raise ValueError("cross-source index lacks permission")
     series = {}
     for name, groups in (("ask", by_currency), ("last_list_at_transition", transition_prices),
                          ("verified_paid", actual)):
@@ -1167,10 +1210,11 @@ def purge_expired(db: sqlite3.Connection, now: str | None = None) -> dict[str, i
     instant = parse_time(now or utcnow())
     removed = {"observation": 0, "raw_item_blob": 0, "verified_sale": 0, "landed_quote": 0,
                "offer_visual_review": 0, "offer_media_snapshot": 0,
+               "visual_resolution_approval": 0,
                "resolution_record": 0, "listing": 0}
     for policy in db.execute("SELECT * FROM source_policy").fetchall():
         cutoff = (instant - timedelta(days=policy["retention_days"])).isoformat()
-        for table in ("offer_visual_review", "offer_media_snapshot"):
+        for table in ("visual_resolution_approval", "offer_visual_review", "offer_media_snapshot"):
             cursor = db.execute(f"DELETE FROM {table} WHERE source=? AND observed_at<?",
                                 (policy["source"], cutoff))
             removed[table] += cursor.rowcount

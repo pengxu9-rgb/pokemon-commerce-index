@@ -142,6 +142,12 @@ def main() -> None:
     visual.add_argument("native_id")
     visual.add_argument("observed_at")
     visual.add_argument("card_id")
+    visual_approval = sub.add_parser("approve-visual-resolution",
+                                     help="bind a current raw-card ask to independent photo evidence")
+    visual_approval.add_argument("source")
+    visual_approval.add_argument("native_id")
+    visual_approval.add_argument("observed_at")
+    visual_approval.add_argument("card_id")
     catalog_search = sub.add_parser("catalog-search", help="internal metadata search; not exposed over HTTP")
     catalog_search.add_argument("query", nargs="?", default="")
     catalog_search.add_argument("--set-code")
@@ -317,6 +323,9 @@ def main() -> None:
         elif args.command == "visual-gate":
             output = offer_comparison.visual_gate(db, args.source, args.native_id,
                                                   args.observed_at, args.card_id)
+        elif args.command == "approve-visual-resolution":
+            output = offer_comparison.approve_visual_resolution(
+                db, args.source, args.native_id, args.observed_at, args.card_id)
         elif args.command == "compare-cross-region":
             output = offer_comparison.compare_landed_asks(db, args.ja_card_id,
                                                            args.en_card_id, args.destination,
