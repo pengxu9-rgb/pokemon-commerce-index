@@ -127,6 +127,8 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 [SV11B 扫描图候选对应审计](catalog/ja-sv11b-scan-candidates-audit.json)逐条把官网记录 ID 与其文件哈希重新绑定。旧交叉表把哈希作为无序集合存储，37/80 组的数组顺序与官网记录 ID 顺序相反；旧证据保留，新的 `card_number_alias_scan_candidate` 表记录有序的 ID／哈希对。Gemini 在 80 组的第二张官网扫描图上均观察到精灵球图案；结合 TCGdex 的版本标签，得到 80 条 `reverse_pokeball` 与第二张、70 条 `normal` 与对照图的**候选**对应。72 条 `reverse_masterball` 和 10 条 `holo` 仍未分配。先执行 `init`，再执行 `import-card-number-alias-scan-candidates catalog/ja-sv11b-scan-candidates.jsonl`；内部卡片详情显示扫描图候选。图像呈现不证明实体闪卡工艺或品相，232 条卡片仍不参与自动报价匹配或价格合并。
 
+[全部日文同编号多记录扫描证据](catalog/ja-multi-record-scan-evidence-audit.json)把已完成的官网图像复核扩到 31 个卡组、462 个目录组和 967 条逐张绑定的官网记录。459 组有 Gemini 同画面比较，276 组至少一条比较指出可见表面或印章差异；另有 183 组未指出这种差异，3 组仍缺可用图像。执行 `init` 后，可通过 `import-card-multi-record-scans catalog/ja-multi-record-scan-evidence.jsonl` 导入；内部 `catalog-card` 的 `number_context.multi_record_scan_evidence` 返回官网记录、比较结论及原始可见理由。这一层保留旧图像结果和 3 组恢复结果的来源快照，不给未明版本强行指定工艺，也不开放报价匹配或跨版本价格合并。
+
 [SM10b 商家目录编号审计](catalog/ja-sm10b-secondary-number-audit.json)对官方列表未收录的 7 条卡，逐张在晴れる屋2和 Fullcomp 两个独立商家目录中核对卡名、卡组、HR／UR 与 `063/054`–`069/054` 编号，保存网页响应哈希。导入 `import-card-number-secondary-candidates catalog/ja-sm10b-secondary-number-candidates.jsonl` 后，内部编号解释会把它们显示为较弱的商家目录候选。它们仍缺官方逐卡记录及独立卡面核验，不构成实体版本确认；7 条报价自动匹配仍禁用。
 
 [跨区画面对比盲复核](RELATIONSHIP_CALIBRATION.md)覆盖 212 对来源绑定图片：可比较样本中首轮同画面 149/149 重复同判、首轮不同画面 47/50 重复同判；这仅衡量同模型换提示后的稳定性，不是准确率。定向配色核对将五对原先笼统的“不同画面”列为“同构图但重配色”候选；[新版比较范围](catalog/relationship-scale-v1-comparability-v2-audit.json)仍禁止任何跨卡价格序列合并。图片哈希未能恢复的十对继续隔离。

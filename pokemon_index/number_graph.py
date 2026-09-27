@@ -138,6 +138,17 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                           "candidate_strength": evidence["candidate_strength"],
                           "physical_printing_status": "unverified",
                           "offer_matching_status": "blocked"}
+    group_scan = db.execute("""SELECT evidence_json FROM card_multi_record_scan_evidence
+        WHERE card_id=?""", (card_id,)).fetchone()
+    group_scan_evidence = None
+    if group_scan:
+        evidence = json.loads(group_scan["evidence_json"])
+        group_scan_evidence = {"review_status": evidence["review_status"],
+                               "artwork_relation": evidence["artwork_relation"],
+                               "source_records": evidence["source_records"],
+                               "comparisons_to_first_record": evidence["comparisons_to_first_record"],
+                               "physical_printing_status": "unverified",
+                               "offer_matching_status": "blocked"}
     return dict(row) | {"region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
                         "source_number_conflict": number_conflict,
@@ -145,7 +156,8 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                         "secondary_number_alias_candidate": secondary_alias,
                         "multi_record_visual_signal": visual_signal,
                         "multi_record_visual_recovery": visual_recovery,
-                        "scan_presentation_candidate": scan_candidate}
+                        "scan_presentation_candidate": scan_candidate,
+                        "multi_record_scan_evidence": group_scan_evidence}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:

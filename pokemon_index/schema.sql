@@ -124,6 +124,16 @@ CREATE TABLE IF NOT EXISTS card_number_alias_scan_candidate (
   imported_at TEXT NOT NULL
 );
 
+-- Group-level comparisons of official scans across Japanese sets. These
+-- observations identify artwork and visible differences only.
+CREATE TABLE IF NOT EXISTS card_multi_record_scan_evidence (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  review_status TEXT NOT NULL CHECK (review_status IN
+    ('ai_visual_candidate', 'image_unavailable')),
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
 -- Merchant catalog text may suggest an official denominator for cards absent
 -- from the official search feed; this is weaker than an official page record.
 CREATE TABLE IF NOT EXISTS card_number_secondary_candidate (

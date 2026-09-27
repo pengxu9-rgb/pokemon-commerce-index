@@ -183,6 +183,10 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         if exception and exception["source_provenance"] != row["provenance"]:
             raise ValueError("re-imported card source differs from its identity exception")
         previous = db.execute("SELECT provenance FROM card WHERE card_id=?", (cid,)).fetchone()
+        scan_evidence = db.execute("SELECT 1 FROM card_multi_record_scan_evidence WHERE card_id=?",
+                                   (cid,)).fetchone()
+        if scan_evidence and (not previous or previous["provenance"] != row["provenance"]):
+            raise ValueError("re-imported card source differs from multi-record scan evidence")
         if (previous and previous["provenance"] != row["provenance"]
                 and number_conflicts.rule_for_card(
                     db, row["language"], row["set_code"], number, previous["provenance"])):
@@ -225,7 +229,8 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
             (cid, row["language"].lower(), row["set_code"].upper(),
              number, variant, row["name"], row.get("rarity"), row["provenance"],
              row["rights_reference"], int(bool(row.get("display_allowed", False))),
-             int(bool(row.get("match_eligible", True)) and number_conflict is None),
+             int(bool(row.get("match_eligible", True)) and number_conflict is None
+                 and variant != "unverified_multi_record"),
              json.dumps(row.get("attributes", {}), ensure_ascii=False, sort_keys=True)),
         )
         number_graph.upsert_number_context(db, {
