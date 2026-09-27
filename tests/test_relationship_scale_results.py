@@ -11,6 +11,40 @@ CATALOG = Path(__file__).resolve().parents[1] / "catalog"
 
 
 class RelationshipScaleResultsTests(unittest.TestCase):
+    def test_recovered_visual_pairs_only_add_proposed_graph_edges(self):
+        first = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges.jsonl")
+        expanded = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges-v3.jsonl")
+        delta = read_jsonl(CATALOG / "relationship-scale-v1-recovery-proposed-edges.jsonl")
+        scopes = read_jsonl(CATALOG / "relationship-scale-v1-comparability-v3.jsonl")
+        ids_first = {row["assertion_id"] for row in first}
+        ids_new = {row["assertion_id"] for row in expanded}
+        self.assertEqual(len(first), 587)
+        self.assertEqual(len(expanded), 649)
+        self.assertEqual({row["assertion_id"] for row in delta}, ids_new - ids_first)
+        self.assertEqual(len(delta), 62)
+        self.assertEqual(len(scopes), 1000)
+        for row in expanded:
+            self.assertEqual(row["review_status"], "proposed")
+            self.assertFalse(json.loads(row["evidence_ref"])["price_comparable"])
+        for row in scopes:
+            self.assertFalse(row["price_series_merge_allowed"])
+            self.assertFalse(row["numeric_cross_region_spread_allowed"])
+
+    def test_japanese_visual_retry_preserves_all_pending_printings(self):
+        queue = read_jsonl(CATALOG / "ja-variant-review-all-queue.jsonl")
+        visual = read_jsonl(CATALOG / "ja-variant-artwork-ai-v2.jsonl")
+        audit = json.loads((CATALOG / "ja-variant-artwork-ai-v2-audit.json").read_text())
+        followup = read_jsonl(CATALOG / "ja-variant-artwork-followup-v2.jsonl")
+        self.assertEqual(len(queue), len(visual), audit["groups"])
+        self.assertEqual(audit["statuses"], {"ai_visual_candidate": 456,
+                                             "image_unavailable": 6})
+        self.assertEqual(audit["labels"], {"exact_artwork": 499})
+        self.assertEqual(len(followup), 279)
+        for source, row in zip(queue, visual):
+            self.assertEqual(source["card_id"], row["card_id"])
+            self.assertFalse(row["printing_verified"])
+            self.assertFalse(row["match_eligible_changed"])
+
     def test_visual_batch_covers_every_pair_without_price_promotion(self):
         queue = read_jsonl(CATALOG / "relationship-scale-v1-queue.jsonl")
         with (CATALOG / "relationship-scale-v1-gemini.csv").open(newline="") as handle:

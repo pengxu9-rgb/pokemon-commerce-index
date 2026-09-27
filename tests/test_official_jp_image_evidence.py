@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts.official_jp_image_evidence import OfficialJPImageIndex
+from scripts.official_jp_image_evidence import OfficialJPImageIndex, _valid_official_url
 
 
 class _ImageResponse:
@@ -19,6 +19,14 @@ class _ImageResponse:
 
 
 class OfficialImageEvidenceTests(unittest.TestCase):
+    def test_official_legend_image_path_is_supported(self):
+        self.assertTrue(_valid_official_url(
+            "https://www.pokemon-card.com/assets/images/card_images/legend/M6a/050728_CARD.jpg",
+            image=True))
+        self.assertFalse(_valid_official_url(
+            "https://other.example/assets/images/card_images/legend/M6a/050728_CARD.jpg",
+            image=True))
+
     def test_exact_set_number_total_and_name_required_before_image_fetch(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

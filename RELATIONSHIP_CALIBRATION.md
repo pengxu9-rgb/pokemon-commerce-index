@@ -78,3 +78,8 @@ and complete landed quote.
    separate printings.
 4. A production precision claim needs independently adjudicated labels on a
    precommitted probability sample. Same-model agreement is insufficient.
+
+The 27 September [source recovery](RELATIONSHIP_SCALE_BATCH.md#source-recovery-and-japanese-visual-comparison--27-september)
+resolved 68 of the original 351 image-incomplete pairs. Japanese same-number
+records also received a first visual pass and hash-rebased retry. These are
+additional candidate findings, not the independent labels required by gate 4.

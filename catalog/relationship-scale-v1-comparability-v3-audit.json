@@ -1,0 +1,14 @@
+{
+  "candidate_pairs": 1000,
+  "comparison_scope": {
+    "artwork_peer_only": 462,
+    "artwork_uncertain": 13,
+    "await_image_evidence": 283,
+    "derived_artwork_candidate": 5,
+    "nominal_variant_peer": 187,
+    "separate_artwork": 50
+  },
+  "price_series_merge_allowed": 0,
+  "numeric_cross_region_spread_allowed": 0,
+  "scope": "AI card-level evidence only; listing condition and finish need listing evidence"
+}

@@ -1,0 +1,19 @@
+{
+  "pairs": 351,
+  "ptcg_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+  "jp_gap_causes": {
+    "exact_official_record_present": 42,
+    "multiple_exact_official_records": 20,
+    "no_official_set_number_record": 207,
+    "official_name_conflict": 8,
+    "official_set_total_conflict": 23
+  },
+  "en_prior_status": {
+    "fetch_failed": 98,
+    "included": 253
+  },
+  "source_gaps_resolved_by_inference": 0,
+  "scope": "source diagnosis only; candidate records are not image substitutions",
+  "queue_sha256": "49853e5b37ca3b068df1e16dfc822940c9806e3f630c7a029a1b2a0ddfe28bf5",
+  "followup_sha256": "f0768d26720e2d6a41deea69f4e36a387b661114e4d47a0f9e163d7ce5f5c893"
+}

@@ -62,6 +62,8 @@ def _run_chunk_locked(number: int, path: Path,
                "--official-jp-revision", args.official_jp_revision]
     if args.discover_en_assets:
         command.append("--discover-en-assets")
+    if args.prior_artwork_audit:
+        command.extend(["--prior-artwork-audit", str(args.prior_artwork_audit)])
     for attempt in range(3):
         # A previous run may have completed the CSV write and failed before
         # committing its audit. The row checkpoint is the authoritative resume.
@@ -163,6 +165,8 @@ def main() -> None:
     parser.add_argument("--chunk-size", type=int, default=50)
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--discover-en-assets", action="store_true")
+    parser.add_argument("--prior-artwork-audit", type=Path,
+                        help="reuse previously audited images only when their hashes still match")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--audit", type=Path, required=True)
     args = parser.parse_args()

@@ -27,7 +27,7 @@ def _valid_official_url(url: str, *, image: bool) -> bool:
         return False
     if parsed.query or parsed.fragment:
         return False
-    pattern = (r"/assets/images/card_images/large/[^/]+/[^/]+\.jpg"
+    pattern = (r"/assets/images/card_images/(?:large|legend)/[^/]+/[^/]+\.jpg"
                if image else r"/card-search/details\.php/card/[0-9]+")
     return re.fullmatch(pattern, parsed.path) is not None
 
