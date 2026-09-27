@@ -109,9 +109,27 @@ visible illustrations, not proof of foil, stamp, edition or separate physical
 printing. All 462 groups remain pending for printing identity and offer
 matching.
 
+An additional narrow [legacy English image probe](catalog/relationship-scale-v1-legacy-en-assets-audit.json)
+located seven source-bound public PNG candidates for eight pairs with a
+Japanese image already available. The model confirmed the English printed
+identity and classified all eight as same artwork. The frozen thousand-pair
+batch is now **657 same, 55 different, 275 lacking images, four uncertain,
+nine model errors**. The [v4 comparison](catalog/relationship-scale-v1-comparability-v4-audit.json)
+still allows no price merge or numeric regional spread; the eight new edges
+are `proposed` only. The image source is a temporary internal comparison
+source because [its API is deprecated](https://docs.pokemontcg.io/); it is
+not a runtime feed or display-rights grant.
+
+The missing-image audit also exposed a catalog identity risk: TCGdex's
+Japanese `SM10B /056` and `SV11B /174` denominator scopes conflict with
+uniform pinned official-source values `/054` and `/086`. The
+[source-scoped match gate](CATALOG_COVERAGE.md#collector-denominator-conflict-gate--27-september)
+now withholds all 395 affected identities from exact offer matching while
+keeping them in the internal discovery catalog.
+
 ## Next evidence work
 
-1. Seek additional exact, licensed image sources for the 283 still incomplete
+1. Seek additional exact, licensed image sources for the 275 still incomplete
    cross-region pairs; preserve set-total and name conflicts for source
    correction rather than inference. Investigate retrieval gaps for trainer,
    energy and supplemental-source Pokémon separately.

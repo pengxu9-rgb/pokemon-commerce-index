@@ -11,6 +11,20 @@ CATALOG = Path(__file__).resolve().parents[1] / "catalog"
 
 
 class RelationshipScaleResultsTests(unittest.TestCase):
+    def test_legacy_asset_review_adds_only_source_bound_proposals(self):
+        previous = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges-v3.jsonl")
+        current = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges-v4.jsonl")
+        delta = read_jsonl(CATALOG / "relationship-scale-v1-legacy-en-proposed-edges.jsonl")
+        assets = read_jsonl(CATALOG / "relationship-scale-v1-legacy-en-assets.jsonl")
+        current_ids = {row["assertion_id"] for row in current}
+        old_ids = {row["assertion_id"] for row in previous}
+        self.assertEqual((len(previous), len(current), len(delta), len(assets)),
+                         (649, 657, 8, 8))
+        self.assertEqual({row["assertion_id"] for row in delta}, current_ids - old_ids)
+        self.assertTrue(all(row["review_status"] == "proposed" for row in delta))
+        self.assertTrue(all(not json.loads(row["evidence_ref"])["price_comparable"]
+                            for row in delta))
+
     def test_recovered_visual_pairs_only_add_proposed_graph_edges(self):
         first = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges.jsonl")
         expanded = read_jsonl(CATALOG / "relationship-scale-v1-proposed-edges-v3.jsonl")

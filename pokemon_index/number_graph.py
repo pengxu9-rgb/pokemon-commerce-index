@@ -7,6 +7,8 @@ import sqlite3
 import unicodedata
 from typing import Any
 
+from . import number_conflicts
+
 
 def _token(value: str) -> str:
     token = unicodedata.normalize("NFKC", value).strip().upper()
@@ -72,8 +74,15 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
         WHERE n.card_id=?""", (card_id,)).fetchone()
     if row is None:
         raise ValueError("unknown card or missing number context")
+    conflict = number_conflicts.rule_for_card(
+        db, row["language"], row["set_code"], row["printed_number"], row["provenance"])
+    number_conflict = ({"rule_id": conflict["rule_id"],
+                        "catalog_denominator": conflict["catalog_denominator"],
+                        "official_denominator": conflict["official_denominator"],
+                        "reason": conflict["reason"]} if conflict else None)
     return dict(row) | {"region": None, "finish": None, "stamp": None,
-                        "edition": None, "physical_variant_status": "unverified"}
+                        "edition": None, "physical_variant_status": "unverified",
+                        "source_number_conflict": number_conflict}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:

@@ -62,6 +62,24 @@ CREATE TABLE IF NOT EXISTS card_identity_exception (
   applied_at TEXT NOT NULL
 );
 
+-- A pinned-source numbering conflict blocks exact offer matching for the
+-- affected catalog denominator while preserving its internal card identity.
+CREATE TABLE IF NOT EXISTS card_number_conflict_rule (
+  rule_id TEXT PRIMARY KEY,
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  catalog_denominator TEXT NOT NULL,
+  official_denominator TEXT NOT NULL,
+  catalog_source_prefix TEXT NOT NULL,
+  official_source_revision TEXT NOT NULL,
+  official_record_count INTEGER NOT NULL CHECK (official_record_count >= 2),
+  official_record_manifest_sha256 TEXT NOT NULL,
+  evidence_ref TEXT NOT NULL,
+  reason TEXT NOT NULL,
+  applied_at TEXT NOT NULL,
+  UNIQUE(language, set_code, catalog_denominator, catalog_source_prefix)
+);
+
 CREATE TABLE IF NOT EXISTS catalog_set (
   set_code TEXT PRIMARY KEY,
   name_ja TEXT,

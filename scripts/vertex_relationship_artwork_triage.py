@@ -13,6 +13,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 import subprocess
 import time
 import urllib.error
@@ -98,6 +99,8 @@ def _mime(image: bytes) -> str:
         return "image/webp"
     if image.startswith(b"\xff\xd8\xff"):
         return "image/jpeg"
+    if image.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png"
     raise ValueError("unsupported card image format")
 
 
@@ -167,8 +170,15 @@ def _curated_image(record: dict[str, Any], row: dict[str, Any]
     url = record.get("image_url", "")
     parsed = urllib.parse.urlparse(url)
     expected = record.get("image_sha256", "")
-    if (parsed.scheme != "https" or parsed.hostname != "assets.tcgdex.net"
-            or parsed.query or parsed.fragment or not parsed.path.endswith("/high.webp")
+    tcgdex = (parsed.hostname == "assets.tcgdex.net"
+              and parsed.path.endswith("/high.webp")
+              and record.get("asset_source", "tcgdex") == "tcgdex")
+    legacy = (parsed.hostname == "images.pokemontcg.io"
+              and re.fullmatch(r"/(?:sm35|swshp|swsh12pt5gg)/[A-Za-z0-9]+_hires\.png",
+                               parsed.path) is not None
+              and record.get("asset_source") == "pokemon_tcg_api_image_candidate")
+    if (parsed.scheme != "https" or not (tcgdex or legacy)
+            or parsed.query or parsed.fragment
             or not isinstance(expected, str) or len(expected) != 64):
         return None, result
     try:
@@ -176,7 +186,8 @@ def _curated_image(record: dict[str, Any], row: dict[str, Any]
             "User-Agent": "pokemon-commerce-internal-review/1"})
         with urllib.request.urlopen(request, timeout=30) as response:
             image = response.read(7_000_001)
-        if len(image) > 7_000_000 or _mime(image) != "image/webp":
+        if len(image) > 7_000_000 or _mime(image) != (
+                "image/png" if legacy else "image/webp"):
             result["status"] = "unsupported_image"
         elif _sha(image) != expected:
             result["status"] = "curated_asset_hash_changed"

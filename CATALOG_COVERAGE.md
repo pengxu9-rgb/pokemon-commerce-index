@@ -77,6 +77,29 @@ the model answer, determined the correction. That single grounded request
 generated 56 searches, so bulk conflict verification uses the bounded exact
 official-page path.
 
+### Collector-denominator conflict gate — 27 September
+
+The pinned TCGdex Japanese extract assigns `SM10B` cards `/056` and `SV11B`
+cards `/174`. All 62 pinned official-source records for `SM10B` use `/054`;
+all 254 for `SV11B` use `/086`. Two live official pages per set, including
+the first and highest-numbered source records, confirmed the printed
+denominator. The [rule evidence](catalog/ja-number-denominator-conflict-rules.jsonl)
+and [audit](catalog/ja-number-denominator-conflict-audit.json) retain source
+revisions, a manifest hash and official-page hashes.
+
+The two source-scoped rules disable exact offer matching for **69 + 326 =
+395** existing catalog identities. They do not rewrite card IDs or approve
+the same-number official-source records as equivalent physical variants.
+The local index now has **33,543 match-eligible cards** of 55,167. A seed
+re-import cannot re-enable these 395 cards while the same pinned source
+revision is used. `number-explanation` exposes the catalog and official
+denominators. Apply the rules after `init` when rebuilding a database:
+
+```bash
+python3 -m pokemon_index --db catalog-index.sqlite3 import-card-number-conflicts \
+  catalog/ja-number-denominator-conflict-rules.jsonl
+```
+
 The 15 cards now also carry `official_printing_type=prism_star`, sourced from
 the verified official rarity icon. Internal catalog search, listing review
 candidates and the exploration graph expose this field separately from the

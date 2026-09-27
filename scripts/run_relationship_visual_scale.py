@@ -64,6 +64,8 @@ def _run_chunk_locked(number: int, path: Path,
         command.append("--discover-en-assets")
     if args.prior_artwork_audit:
         command.extend(["--prior-artwork-audit", str(args.prior_artwork_audit)])
+    if args.curated_assets:
+        command.extend(["--curated-assets", str(args.curated_assets)])
     for attempt in range(3):
         # A previous run may have completed the CSV write and failed before
         # committing its audit. The row checkpoint is the authoritative resume.
@@ -167,6 +169,8 @@ def main() -> None:
     parser.add_argument("--discover-en-assets", action="store_true")
     parser.add_argument("--prior-artwork-audit", type=Path,
                         help="reuse previously audited images only when their hashes still match")
+    parser.add_argument("--curated-assets", type=Path,
+                        help="source-bound image candidates with content hashes")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--audit", type=Path, required=True)
     args = parser.parse_args()

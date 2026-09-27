@@ -10,7 +10,7 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Iterable
 
-from . import number_graph
+from . import number_conflicts, number_graph
 
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
 COMPONENTS = {"item", "domestic", "service", "international", "tax", "insurance", "fx_spread", "other"}
@@ -182,6 +182,13 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
                                (cid,)).fetchone()
         if exception and exception["source_provenance"] != row["provenance"]:
             raise ValueError("re-imported card source differs from its identity exception")
+        previous = db.execute("SELECT provenance FROM card WHERE card_id=?", (cid,)).fetchone()
+        if (previous and previous["provenance"] != row["provenance"]
+                and number_conflicts.rule_for_card(
+                    db, row["language"], row["set_code"], number, previous["provenance"])):
+            raise ValueError("re-imported card source differs from its number conflict rule")
+        number_conflict = number_conflicts.rule_for_card(
+            db, row["language"], row["set_code"], number, row["provenance"])
         db.execute(
             """INSERT INTO card
             (card_id, language, set_code, collector_number, variant, name, rarity,
@@ -202,7 +209,7 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
             (cid, row["language"].lower(), row["set_code"].upper(),
              number, variant, row["name"], row.get("rarity"), row["provenance"],
              row["rights_reference"], int(bool(row.get("display_allowed", False))),
-             int(bool(row.get("match_eligible", True))),
+             int(bool(row.get("match_eligible", True)) and number_conflict is None),
              json.dumps(row.get("attributes", {}), ensure_ascii=False, sort_keys=True)),
         )
         number_graph.upsert_number_context(db, {

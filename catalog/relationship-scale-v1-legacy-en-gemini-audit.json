@@ -1,0 +1,536 @@
+{
+  "model": "gemini-3.8-flash",
+  "project": "pivota-prod",
+  "location": "global",
+  "prompt_version": "vertex-card-artwork-triage-v1",
+  "pinned_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "scope": "AI artwork triage only; no verified printing or price equivalence",
+  "queue_sha256": "0591a4ee1a1b6826076edba7d1f3a961a316e916aba2355aee41f4f0e0e1cca0",
+  "candidate_rows": 8,
+  "decisions": {
+    "same": 8
+  },
+  "both_images_included": 8,
+  "rows": [
+    {
+      "candidate_id": "0831dee264a414ad6254",
+      "source_snapshot_sha256": "826f0b2f3770a9177241fd28fd051290938638f2ff4431cf13df13f06ea815b4",
+      "response_sha256": "faf6b08ee7a8d32d1ae021bd7cc74836ddf75d671da8c6ce5194c1ac86496fd1",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM3p/070.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/62.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34066",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM3p/034066_T_RIRIE.jpg",
+        "record_path": "data_jp/SM3p/34066.json",
+        "record_sha256": "02bc3b256f073497f588aea88314169a73291e77112e9b2491c4147c4dd969f9",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "673e706ad6db04e63d47d7b110275e6cec2163057b2f63ba230465d5a8afbf91",
+        "image_bytes": 162127,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM3P-070",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/62_hires.png",
+        "image_sha256": "f8c94dd72d170b6370a4a6fff2a997c01063a5240f866cf65642e34e591739af",
+        "image_bytes": 399182,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-62",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "4741107df354eb51e4ee87834a7f58cf3ef2b3b4645cbaf55c59b7e1f3d41df0",
+      "usage": {
+        "promptTokenCount": 3106,
+        "candidatesTokenCount": 67,
+        "totalTokenCount": 3500,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 922
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 67
+          }
+        ],
+        "thoughtsTokenCount": 327
+      }
+    },
+    {
+      "candidate_id": "7f4aad9522d80bb6d5d1",
+      "source_snapshot_sha256": "9cf3d0598a6aae8b4e2bb47e180e1c235eb0b7afa7c50671c0f5e9aacdba45d8",
+      "response_sha256": "f89c6c54ecab508ae85c7b5060fa9c1c910498d88e4b5b03ca1d0cbf8a9de3d6",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM6/091.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/62.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34765",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM6/034765_T_RIRIE.jpg",
+        "record_path": "data_jp/SM6/34765.json",
+        "record_sha256": "d6db8c41a1c581df7de051bf91303fec1de2f7d24f0a9f3e5a83cba6d177361b",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "b414007a11a6a1e0f4a18964f0a896302fb99f6aa266269e80f0ea994ea2b4cb",
+        "image_bytes": 161625,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM6-091",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/62_hires.png",
+        "image_sha256": "f8c94dd72d170b6370a4a6fff2a997c01063a5240f866cf65642e34e591739af",
+        "image_bytes": 399182,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-62",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "f4ba7204cbdef4e29671ebd6a1e3a7c1787657da0a003886f017300aebf2c8b8",
+      "usage": {
+        "promptTokenCount": 3104,
+        "candidatesTokenCount": 69,
+        "totalTokenCount": 3474,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 920
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 69
+          }
+        ],
+        "thoughtsTokenCount": 301
+      }
+    },
+    {
+      "candidate_id": "2beeb678a2c0d37cbad3",
+      "source_snapshot_sha256": "7f5b79df6c8322ab4338282ad0e56d067328cbb22c980d5663e753dbe8313e3e",
+      "response_sha256": "c699e0203e6747052656aa11508265be89aab4b740d7fa4d85b182d312e900b6",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S-P/339.ts",
+      "en_source_path": "data/Sword & Shield/SWSH Black Star Promos/SWSH305.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/42260",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/S-P/042260_P_GEKKOUGA.jpg",
+        "record_path": "data_jp/S-P/42260.json",
+        "record_sha256": "0a3f418be8561e8ed970e8ef60b79b990a7b716ff27e36a32c906733bad1d354",
+        "rarity_source": null,
+        "image_sha256": "ae592af2254482dfaaebfb5a345c2f2a9fd3b4eddef003cb0a39ad651a5e07a2",
+        "image_bytes": 365781,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/S-P-339",
+          "status": "fetch_failed",
+          "error_type": "HTTPError"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/swshp/SWSH305_hires.png",
+        "image_sha256": "18aeb33b9fd91e1526167d3d2f2ad788c6291e96a1426257cb44ebb3b2d2d9a4",
+        "image_bytes": 1308237,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SWSHP-SWSH305",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "e51458e5258aac1d8a287a169b177a24d1fc35be83e35b3b1bc80c09a2e43643",
+      "usage": {
+        "promptTokenCount": 3265,
+        "candidatesTokenCount": 74,
+        "totalTokenCount": 3598,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1081
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 74
+          }
+        ],
+        "thoughtsTokenCount": 259
+      }
+    },
+    {
+      "candidate_id": "8d2f6bcf037fdd6ade25",
+      "source_snapshot_sha256": "dbf86bf477f8e96e4432a23a9b4fbf55ae8e3103946e005c6f8ddff01acfb70c",
+      "response_sha256": "3e581a90364a9c01f51cd989934cd7bfbb2f89680853019353fad87ce496e35f",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/S/S12a/228.ts",
+      "en_source_path": "data/Sword & Shield/Crown Zenith Galarian Gallery/GG50.ts",
+      "ja_image": {
+        "api_url": "https://api.tcgdex.net/v2/ja/cards/S12A-228",
+        "status": "included",
+        "image_url": "https://assets.tcgdex.net/ja/S/S12a/228/high.webp",
+        "image_sha256": "3f3122883af0df8f8fab172612530f3302531d0a1f3f4a4a7016eee353b089dd",
+        "image_bytes": 187060
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/swsh12pt5gg/GG50_hires.png",
+        "image_sha256": "b7d21e9520a0072f11063c24ef1939141ddf59ae7113890c329192bb98ba51f7",
+        "image_bytes": 806095,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SWSH12.5GG-GG50",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "50bb60b23b4085509aa23699981da01345936737569f3e89473d8fe00586960b",
+      "usage": {
+        "promptTokenCount": 3655,
+        "candidatesTokenCount": 79,
+        "totalTokenCount": 3991,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1471
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 79
+          }
+        ],
+        "thoughtsTokenCount": 257
+      }
+    },
+    {
+      "candidate_id": "ba1f0e28d25f226ae5dc",
+      "source_snapshot_sha256": "7f931b335b5ec1026d5ddf6dd106fa62aea586d0c017acefebb12b6c5a31561e",
+      "response_sha256": "09845c76c0f3587b7429d87132de5f7872c60106b57410372629bdd0e16160cc",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM3p/008.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/7.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34004",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM3p/034004_P_SHIEIMI.jpg",
+        "record_path": "data_jp/SM3p/34004.json",
+        "record_sha256": "fbff78d8f7754ea9649bc3825d066a3cad76e86b4f5e5e952eafe174692bb5f5",
+        "rarity_source": "rare_r_c",
+        "image_sha256": "ba49fe950c74844343ed9cdfac082d878ca6edf0eed53a3f92b43c87f5d87d01",
+        "image_bytes": 210017,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM3P-008",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/7_hires.png",
+        "image_sha256": "39716293554440f12e53331058cef1cd85b223540ead4794d5645e1c44740edd",
+        "image_bytes": 522040,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-7",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "ad2503a3a1a247fc3dbb36cdab7bc9fc01df72278cc0f034bc566e202822d34c",
+      "usage": {
+        "promptTokenCount": 3803,
+        "candidatesTokenCount": 88,
+        "totalTokenCount": 4202,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1619
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 88
+          }
+        ],
+        "thoughtsTokenCount": 311
+      }
+    },
+    {
+      "candidate_id": "9789dcec8dc4c659e5ce",
+      "source_snapshot_sha256": "57a39e9935da679dcfd2bf6dbbd7c59d9fa1714c037848e7248a023094259caf",
+      "response_sha256": "27e7ac89ec43baeda1696332d659b35710d47cd795bfc67c823982b94acf44ce",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM3p/006.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/5.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34002",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM3p/034002_P_KINOGASSA.jpg",
+        "record_path": "data_jp/SM3p/34002.json",
+        "record_sha256": "25d6bec98229e0a97f292b68c30266c75aef695ef1d19fda221ddd422a22591a",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "f9786f068b1485a3126aadad0206399c4ca7927adbee3477dfb7c8acc2ba9008",
+        "image_bytes": 201746,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM3P-006",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/5_hires.png",
+        "image_sha256": "470d9d6cdbb98aa3f1cb0d539e18493a4cb28a330dccea403efc3efbdacdd390",
+        "image_bytes": 547869,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-5",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "91b01200c91007089fa372b359d549c2311d43d39d59662657de46db6387d71c",
+      "usage": {
+        "promptTokenCount": 3738,
+        "candidatesTokenCount": 78,
+        "totalTokenCount": 4031,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1554
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ],
+        "thoughtsTokenCount": 215
+      }
+    },
+    {
+      "candidate_id": "104089b9a37c43a113a3",
+      "source_snapshot_sha256": "ca63635f35f04791336e9aaa55a49e01cf23849b5559e2e16e6f8b7135005902",
+      "response_sha256": "cc7de5078404a0efa14ff23a708b5b6c824199959783be5ae134041b1c2d4383",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM3p/012.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/11.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34008",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM3p/034008_P_KOTASU.jpg",
+        "record_path": "data_jp/SM3p/34008.json",
+        "record_sha256": "5564dc8aec7a94003b823750023b9f641f02c4b9feee43f640eb0d52f9f21a0b",
+        "rarity_source": "rare_u_c",
+        "image_sha256": "8b65438661525df9e4bd8555ac4794e0804a208976107afc1ebcf29f994075db",
+        "image_bytes": 203611,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM3P-012",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/11_hires.png",
+        "image_sha256": "d03cbf8621ac4b325111717f375c0fcc68170b66952799109f33a64ed49fc38f",
+        "image_bytes": 564611,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-11",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "caba1d5b99d792a3c0bf5231b7236722c39d0e89333a853aa127f50d641b3780",
+      "usage": {
+        "promptTokenCount": 3786,
+        "candidatesTokenCount": 80,
+        "totalTokenCount": 4028,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1602
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 80
+          }
+        ],
+        "thoughtsTokenCount": 162
+      }
+    },
+    {
+      "candidate_id": "0d555f0a1012bedae761",
+      "source_snapshot_sha256": "ea1c0ac14f6e185a6c98317620a46fdc343897b2cbcaa7b582968aea573a1acc",
+      "response_sha256": "45a42fa09c79150ac0661b051fdf6311efad94113b9e9c41db16dfe76a4b10d4",
+      "en_image_identity": "match",
+      "model_version": "gemini-3.8-flash",
+      "prompt_version": "vertex-card-artwork-triage-v1",
+      "ja_source_path": "data-asia/SM/SM3p/056.ts",
+      "en_source_path": "data/Sun & Moon/Shining Legends/55.ts",
+      "ja_image": {
+        "status": "included",
+        "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+        "card_url": "https://www.pokemon-card.com/card-search/details.php/card/34052",
+        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SM3p/034052_P_FUPA.jpg",
+        "record_path": "data_jp/SM3p/34052.json",
+        "record_sha256": "c38226e013dc2d29d89c16a88aba7ce7c52f2a007c3c4a0351893aa639291882",
+        "rarity_source": "rare_r_c",
+        "image_sha256": "8283b6806249568ca0e3be50e5fc2586dba738915bcca46f5e682b2402097195",
+        "image_bytes": 276006,
+        "mime_type": "image/jpeg",
+        "tcgdex_attempt": {
+          "api_url": "https://api.tcgdex.net/v2/ja/cards/SM3P-056",
+          "status": "image_missing"
+        }
+      },
+      "en_image": {
+        "status": "included",
+        "image_url": "https://images.pokemontcg.io/sm35/55_hires.png",
+        "image_sha256": "fb268dc692a163ebdb9afb77942c4c6d7d0c5b22cfdfebe40dcef4f2210ea88e",
+        "image_bytes": 677016,
+        "source": "curated_hash_bound_asset",
+        "source_note": "Legacy public image CDN; exact printed identity requires model check; internal comparison only; no runtime dependency or image display",
+        "tcgdex_attempt": {
+          "status": "prior_asset_unavailable",
+          "tcgdex_attempt": {
+            "api_url": "https://api.tcgdex.net/v2/en/cards/SM3.5-55",
+            "status": "image_missing"
+          }
+        }
+      },
+      "variant_image_verified": false,
+      "request_sha256": "3515f1e2928a4a14b3c82e0bdb37505b0a782e6c287d2092d4f1d06052123f90",
+      "usage": {
+        "promptTokenCount": 3668,
+        "candidatesTokenCount": 79,
+        "totalTokenCount": 3911,
+        "trafficType": "ON_DEMAND",
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2184
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 1484
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 79
+          }
+        ],
+        "thoughtsTokenCount": 164
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "rules": 2,
+  "sets": {
+    "SM10B": {
+      "catalog_cards_affected": 69,
+      "official_records_checked": 62,
+      "catalog_denominator": "056",
+      "official_denominator": "054"
+    },
+    "SV11B": {
+      "catalog_cards_affected": 326,
+      "official_records_checked": 254,
+      "catalog_denominator": "174",
+      "official_denominator": "086"
+    }
+  },
+  "tcgdex_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "ptcg_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2",
+  "scope": "disable unsafe exact offer matching; preserve catalog identities and graph proposals",
+  "cards_sha256": "980391d63131ecf0d29bbd8d29bc28bb1886d6f37b6174d65cd4e2b584adc774"
+}
