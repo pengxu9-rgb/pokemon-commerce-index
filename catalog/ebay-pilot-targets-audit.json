@@ -1,0 +1,21 @@
+{
+  "targets": 100,
+  "buckets": {
+    "en:Charizard": 10,
+    "en:Eevee": 10,
+    "en:Gengar": 10,
+    "en:Mewtwo": 10,
+    "en:Pikachu": 10,
+    "ja:イーブイ": 10,
+    "ja:ゲンガー": 10,
+    "ja:ピカチュウ": 10,
+    "ja:ミュウツー": 10,
+    "ja:リザードン": 10
+  },
+  "distinct_sets": 59,
+  "marketplace": "EBAY_US",
+  "planned_days": 14,
+  "planned_search_calls_per_day": 100,
+  "observed_market_demand": false,
+  "scope": "provisional exact-printing coverage sample; no API observations or prices"
+}

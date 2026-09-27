@@ -6,6 +6,8 @@
 
 Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
 
+eBay 独立数据路径的[接口核查、生产准入和 100 个版本试验方案](EBAY_ACCESS_AND_PILOT.md)已准备。Browse API 可技术性读取在售报价，但标准协议不足以授权本项目的跨平台价格指数与 Gemini 商品图像处理；这些用途需 eBay 另行书面确认。当前没有 eBay 凭据或生产授权，没有运行真实查询或价格采集。
+
 跨区卡片关系现已有 [AI 图像复核与价格可比性分级](AI_CARD_REVIEW.md)：88 组候选中 48 组同画、39 组不同画、1 组待补证；同画候选可用于内部发现，仍按不同语言与印刷版本保留价格序列。
 商品照片、独立 AI 复核与跨区到手挂牌价差的离线接入路径见 [商品级证据契约](OFFER_CONDITION_CONTRACT.md)。
 

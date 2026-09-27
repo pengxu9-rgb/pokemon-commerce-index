@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, discovery_graph, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -124,6 +124,14 @@ def main() -> None:
                                   choices=("search", "item", "fetch_items"))
     photo_candidates.add_argument("--observed-at", required=True)
     photo_candidates.add_argument("--output", required=True)
+    ebay_adapter = sub.add_parser("adapt-ebay-browse", help="offline fixed-price search response adapter")
+    ebay_adapter.add_argument("file")
+    ebay_adapter.add_argument("--observed-at", required=True)
+    ebay_adapter.add_argument("--output", required=True)
+    ebay_probe = sub.add_parser("probe-ebay-browse", help="one shape-only Browse API access probe")
+    ebay_probe.add_argument("--environment", choices=("sandbox", "production"), default="sandbox")
+    ebay_probe.add_argument("--query", default="Pokemon card Pikachu")
+    ebay_probe.add_argument("--production-approved", action="store_true")
     comparison = sub.add_parser("compare-cross-region", help="evidence-bound landed ask spread")
     comparison.add_argument("ja_card_id")
     comparison.add_argument("en_card_id")
@@ -209,6 +217,25 @@ def main() -> None:
                 handle.write(json.dumps(card, ensure_ascii=False) + "\n")
         print(json.dumps({"cards": len(cards), "output": args.output,
                           "display_approved": args.display_approved}, ensure_ascii=False, indent=2))
+        return
+    if args.command == "adapt-ebay-browse":
+        payload = json.loads(Path(args.file).read_text(encoding="utf-8"))
+        rows = ebay_browse.normalize_search(payload, args.observed_at)
+        destination = Path(args.output)
+        if destination.exists():
+            raise FileExistsError("adapter output already exists")
+        destination.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n"
+                                       for row in rows), encoding="utf-8")
+        print(json.dumps({"observations": len(rows), "output": str(destination),
+                          "resolution": "photo_required"}, ensure_ascii=False, indent=2))
+        return
+    if args.command == "probe-ebay-browse":
+        client = ebay_browse.BrowseProbe(
+            os.getenv("EBAY_CLIENT_ID", ""), os.getenv("EBAY_CLIENT_SECRET", ""),
+            environment=args.environment,
+            production_approved=args.production_approved and
+                                os.getenv("EBAY_PRODUCTION_APPROVED") == "1")
+        print(json.dumps(client.search_shape(args.query), ensure_ascii=False, indent=2))
         return
     with core.connect(args.db) as db:
         if args.command == "init":

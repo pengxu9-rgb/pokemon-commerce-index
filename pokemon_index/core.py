@@ -127,6 +127,8 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
     _required(row, "source", "rights_reference", "retention_days")
     if row["source"].lower() == "snkrdunk" and row["rights_reference"] == "public_site":
         raise ValueError("SNKRDUNK public pages are not an ingest permission")
+    if row["source"].lower() == "ebay_us" and int(row.get("listing_ttl_hours", 6)) > 6:
+        raise ValueError("eBay displayed listing TTL cannot exceed six hours")
     if row.get("expires_at"):
         parse_time(row["expires_at"])
     db.execute(
@@ -707,6 +709,8 @@ def _unit(db: sqlite3.Connection, cid: str, company: str, grade: str, condition:
 
 
 def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, str]:
+    if row.get("source") == "ebay_us" or row.get("resolution_gate") == "photo_required":
+        return None, "unresolved"
     title = unicodedata.normalize("NFKC", str(row["title"]))
     if row.get("card_id"):
         cid = str(row["card_id"])
