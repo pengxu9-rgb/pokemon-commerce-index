@@ -114,6 +114,16 @@ CREATE TABLE IF NOT EXISTS card_number_alias_visual_recovery (
   imported_at TEXT NOT NULL
 );
 
+-- Source-ID-bound scan presentation candidates supersede the legacy
+-- crosswalk's unordered hash list, without changing physical identity.
+CREATE TABLE IF NOT EXISTS card_number_alias_scan_candidate (
+  card_id TEXT PRIMARY KEY REFERENCES card_number_alias_candidate(card_id),
+  group_id TEXT NOT NULL,
+  candidate_official_scan_id INTEGER,
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
 -- Merchant catalog text may suggest an official denominator for cards absent
 -- from the official search feed; this is weaker than an official page record.
 CREATE TABLE IF NOT EXISTS card_number_secondary_candidate (

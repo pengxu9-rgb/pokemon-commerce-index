@@ -127,13 +127,25 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                            "official_record_status": "absent_from_public_set_search",
                            "physical_printing_status": "unverified",
                            "offer_matching_status": "blocked"}
+    scan = db.execute("""SELECT evidence_json FROM card_number_alias_scan_candidate
+        WHERE card_id=?""", (card_id,)).fetchone()
+    scan_candidate = None
+    if scan:
+        evidence = json.loads(scan["evidence_json"])
+        scan_candidate = {"group_id": evidence["group_id"],
+                          "official_scans": evidence["official_scans"],
+                          "candidate_official_scan_id": evidence["candidate_official_scan_id"],
+                          "candidate_strength": evidence["candidate_strength"],
+                          "physical_printing_status": "unverified",
+                          "offer_matching_status": "blocked"}
     return dict(row) | {"region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
                         "source_number_conflict": number_conflict,
                         "source_number_alias_candidate": number_alias,
                         "secondary_number_alias_candidate": secondary_alias,
                         "multi_record_visual_signal": visual_signal,
-                        "multi_record_visual_recovery": visual_recovery}
+                        "multi_record_visual_recovery": visual_recovery,
+                        "scan_presentation_candidate": scan_candidate}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:

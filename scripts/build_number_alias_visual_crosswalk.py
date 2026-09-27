@@ -31,15 +31,16 @@ def build(aliases: list[dict], queue: list[dict], visual: list[dict],
         group, review, pending = groups.get(group_id), reviews.get(group_id), followups.get(group_id)
         if not all((group, review, pending)):
             raise ValueError(f"number alias lacks prior image-review group: {group_id}")
-        ids = sorted(int(record["path"].rsplit("/", 1)[1][:-5])
-                     for record in alias["official_records"])
-        hashes = sorted(record["sha256"] for record in alias["official_records"])
-        if (sorted(group["source_jp_ids"]) != ids
-                or sorted(group["source_record_sha256"]) != hashes
-                or sorted(review["source_jp_ids"]) != ids
-                or sorted(review["source_record_sha256"]) != hashes
-                or sorted(pending["source_jp_ids"]) != ids
-                or sorted(pending["source_record_sha256"]) != hashes):
+        records = sorted(alias["official_records"],
+                         key=lambda record: int(record["path"].rsplit("/", 1)[1][:-5]))
+        ids = [int(record["path"].rsplit("/", 1)[1][:-5]) for record in records]
+        hashes = [record["sha256"] for record in records]
+        if (group["source_jp_ids"] != ids
+                or group["source_record_sha256"] != hashes
+                or review["source_jp_ids"] != ids
+                or review["source_record_sha256"] != hashes
+                or pending["source_jp_ids"] != ids
+                or pending["source_record_sha256"] != hashes):
             raise ValueError(f"source records changed between alias and image review: {group_id}")
         if review["review_status"] == "ai_visual_candidate":
             if (pending["reason"] != "visible_surface_or_stamp_question"

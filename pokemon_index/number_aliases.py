@@ -146,6 +146,68 @@ def apply_visual_recoveries(db: sqlite3.Connection,
     return {"visual_recoveries": recovered}
 
 
+def apply_scan_candidates(db: sqlite3.Connection,
+                          rows: Iterable[dict[str, Any]]) -> dict[str, int]:
+    """Store image-presentation hypotheses; never change offer eligibility."""
+    imported = 0
+    with db:
+        for row in rows:
+            card_id = row.get("card_id")
+            alias = db.execute("SELECT * FROM card_number_alias_candidate WHERE card_id=?",
+                               (card_id,)).fetchone()
+            visual = db.execute("SELECT * FROM card_number_alias_visual_context WHERE card_id=?",
+                                (card_id,)).fetchone()
+            card = db.execute("SELECT variant,match_eligible FROM card WHERE card_id=?",
+                              (card_id,)).fetchone()
+            if not alias or not visual or not card or card["match_eligible"]:
+                raise ValueError("scan candidate needs blocked alias and visual context")
+            old = json.loads(visual["evidence_json"])
+            records = sorted(json.loads(alias["evidence_json"])["official_records"],
+                             key=lambda item: int(item["path"].rsplit("/", 1)[-1][:-5]))
+            scans = row.get("official_scans")
+            if (len(records) != 2 or not isinstance(scans, list) or len(scans) != 2
+                    or [item.get("source_jp_id") for item in scans] != [
+                        int(item["path"].rsplit("/", 1)[-1][:-5]) for item in records]
+                    or [item.get("source_record_sha256") for item in scans] != [
+                        item["sha256"] for item in records]
+                    or [item["source_jp_id"] for item in scans] != old["source_jp_ids"]
+                    or sorted(item["source_record_sha256"] for item in scans) !=
+                       sorted(old["source_record_sha256"])
+                    or [item.get("scan_role") for item in scans] != [
+                        "reference_image_no_motif_assertion",
+                        "visible_pokeball_pattern_candidate"]):
+                raise ValueError("scan candidate differs from official record ID/hash binding")
+            variant = card["variant"]
+            expected_id = (scans[0]["source_jp_id"] if variant == "normal" else
+                           scans[1]["source_jp_id"] if variant == "reverse_pokeball" else None)
+            expected_strength = ("metadata_plus_contrasting_reference_scan" if variant == "normal"
+                                 else "metadata_plus_visible_scan_motif" if variant == "reverse_pokeball"
+                                 else "unassigned")
+            if (row.get("group_id") != visual["group_id"]
+                    or row.get("official_number_candidate") != alias["official_number_candidate"]
+                    or row.get("catalog_variant") != variant
+                    or row.get("candidate_official_scan_id") != expected_id
+                    or row.get("candidate_strength") != expected_strength
+                    or row.get("physical_printing_status") != "unverified"
+                    or row.get("offer_matching_status") != "blocked"
+                    or row.get("price_series_merge_allowed") is not False
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("ai_visual_review_sha256", "")))
+                    or not isinstance(row.get("source_snapshots_sha256"), dict)
+                    or any(not re.fullmatch(r"[0-9a-f]{64}", str(value)) for value in
+                           row["source_snapshots_sha256"].values())):
+                raise ValueError("scan candidate cannot establish physical printing or matching")
+            canonical = json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            previous = db.execute("SELECT evidence_json FROM card_number_alias_scan_candidate WHERE card_id=?",
+                                  (card_id,)).fetchone()
+            if previous and previous["evidence_json"] != canonical:
+                raise ValueError("existing scan candidate evidence differs")
+            db.execute("INSERT OR IGNORE INTO card_number_alias_scan_candidate VALUES (?,?,?,?,?)",
+                       (card_id, row["group_id"], expected_id, canonical,
+                        datetime.now(timezone.utc).isoformat()))
+            imported += 1
+    return {"scan_candidates": imported}
+
+
 def apply_secondary_candidates(db: sqlite3.Connection,
                                rows: Iterable[dict[str, Any]]) -> dict[str, int]:
     imported = 0

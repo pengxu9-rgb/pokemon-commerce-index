@@ -121,6 +121,39 @@ class NumberAliasTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source-bound missing-image"):
             number_aliases.apply_visual_recoveries(self.db, [altered])
 
+    def test_scan_candidate_binds_each_hash_to_its_record_without_unlocking_offers(self):
+        cid = "ja:SV11B:001/174:reverse_pokeball"
+        alias = next(json.loads(line) for line in (
+            CATALOG / "ja-number-alias-candidates.jsonl").read_text().splitlines()
+                     if f'"card_id": "{cid}"' in line)
+        visual = next(json.loads(line) for line in (
+            CATALOG / "ja-number-alias-visual-crosswalk.jsonl").read_text().splitlines()
+                      if f'"card_id": "{cid}"' in line)
+        candidate = next(json.loads(line) for line in (
+            CATALOG / "ja-sv11b-scan-candidates.jsonl").read_text().splitlines()
+                         if f'"card_id": "{cid}"' in line)
+        core.import_cards(self.db, [{"language": "ja", "set_code": "SV11B",
+            "collector_number": alias["catalog_number"], "variant": "reverse_pokeball",
+            "name": alias["catalog_name"], "provenance": alias["source_provenance"],
+            "rights_reference": "fixture", "display_allowed": False}])
+        number_conflicts.apply_rules(self.db, [self.rules[1]])
+        number_aliases.apply_candidates(self.db, [alias])
+        number_aliases.apply_visual_context(self.db, [visual])
+        self.assertEqual(number_aliases.apply_scan_candidates(self.db, [candidate]),
+                         {"scan_candidates": 1})
+        context = number_graph.card_number_context(self.db, cid)
+        self.assertEqual(context["scan_presentation_candidate"]["candidate_official_scan_id"],
+                         48087)
+        self.assertEqual(context["match_eligible"], 0)
+        altered = copy.deepcopy(candidate)
+        altered["official_scans"][1]["source_record_sha256"] = candidate["official_scans"][0]["source_record_sha256"]
+        with self.assertRaisesRegex(ValueError, "record ID/hash binding"):
+            number_aliases.apply_scan_candidates(self.db, [altered])
+        altered = copy.deepcopy(candidate)
+        altered["price_series_merge_allowed"] = True
+        with self.assertRaisesRegex(ValueError, "cannot establish physical printing"):
+            number_aliases.apply_scan_candidates(self.db, [altered])
+
     def test_secondary_number_lead_does_not_change_offer_status(self):
         row = json.loads((CATALOG / "ja-sm10b-secondary-number-candidates.jsonl")
                          .read_text().splitlines()[0])
