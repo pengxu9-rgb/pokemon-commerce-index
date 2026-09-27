@@ -123,6 +123,10 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 
 [SM10b 官网搜索缺口审计](catalog/ja-sm10b-official-search-gap-audit.json)记录了官方产品页所链接搜索结果的两页响应哈希：公开列表共 62 条，ID 与固定来源中的 62 条完全相同。其余 7 条高编号卡没有这份官方搜索记录；这不证明卡片不存在，也不能从同名基础卡推断它们的插画或具体工艺。后续需补独立的卡面编号证据，当前仍保持报价匹配禁用。
 
+[SV11B 图像缺口恢复审计](catalog/ja-number-alias-visual-recovery-audit.json)针对原先图片不足的 3 个同编号组，重新独立抓取两轮、逐图核对稳定哈希，再由 Gemini 3.8 Flash 审核官方图片。3 组均得到“相同插画、可见表面图案差异”候选结论，投影到 9 条目录版本。导入命令为 `import-card-number-alias-visual-recoveries catalog/ja-number-alias-visual-recovery.jsonl`；旧的图片不足记录保留，新增结果独立存储。80 个组现均有视觉候选，但仍没有一组完成实体工艺／版本对应确认，也没有恢复报价匹配。
+
+[SM10b 商家目录编号审计](catalog/ja-sm10b-secondary-number-audit.json)对官方列表未收录的 7 条卡，逐张在晴れる屋2和 Fullcomp 两个独立商家目录中核对卡名、卡组、HR／UR 与 `063/054`–`069/054` 编号，保存网页响应哈希。导入 `import-card-number-secondary-candidates catalog/ja-sm10b-secondary-number-candidates.jsonl` 后，内部编号解释会把它们显示为较弱的商家目录候选。它们仍缺官方逐卡记录及独立卡面核验，不构成实体版本确认；7 条报价自动匹配仍禁用。
+
 [跨区画面对比盲复核](RELATIONSHIP_CALIBRATION.md)覆盖 212 对来源绑定图片：可比较样本中首轮同画面 149/149 重复同判、首轮不同画面 47/50 重复同判；这仅衡量同模型换提示后的稳定性，不是准确率。定向配色核对将五对原先笼统的“不同画面”列为“同构图但重配色”候选；[新版比较范围](catalog/relationship-scale-v1-comparability-v2-audit.json)仍禁止任何跨卡价格序列合并。图片哈希未能恢复的十对继续隔离。
 
 由候选检索走向生产可用关系图的数据与验证门槛见 [RELATIONSHIP_PRODUCTION_PATH.md](RELATIONSHIP_PRODUCTION_PATH.md)。

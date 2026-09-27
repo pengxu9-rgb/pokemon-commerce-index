@@ -110,3 +110,93 @@ def apply_visual_context(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
                         datetime.now(timezone.utc).isoformat()))
             imported += 1
     return {"visual_contexts": imported}
+
+
+def apply_visual_recoveries(db: sqlite3.Connection,
+                            rows: Iterable[dict[str, Any]]) -> dict[str, int]:
+    recovered = 0
+    with db:
+        for row in rows:
+            prior = db.execute("""SELECT * FROM card_number_alias_visual_context
+                WHERE card_id=?""", (row.get("card_id"),)).fetchone()
+            if prior is None or prior["visual_status"] != "image_unavailable":
+                raise ValueError("visual recovery requires a prior missing-image result")
+            baseline = json.loads(prior["evidence_json"])
+            if (row.get("group_id") != prior["group_id"]
+                    or row.get("prior_visual_row_sha256") != baseline["visual_row_sha256"]
+                    or row.get("source_jp_ids") != baseline["source_jp_ids"]
+                    or row.get("source_record_sha256") != baseline["source_record_sha256"]
+                    or row.get("visual_status") != "ai_exact_artwork_surface_question"
+                    or row.get("physical_printing_status") != "unverified"
+                    or row.get("official_record_to_catalog_variant_assignment") != "unestablished"
+                    or row.get("offer_matching_status") != "blocked"):
+                raise ValueError("visual recovery differs from its source-bound missing-image result")
+            for key in ("stable_audit_sha256", "review_batch_sha256", "recovery_review_row_sha256"):
+                if not re.fullmatch(r"[0-9a-f]{64}", str(row.get(key, ""))):
+                    raise ValueError("visual recovery lacks stable-image review hashes")
+            canonical = json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            existing = db.execute("SELECT evidence_json FROM card_number_alias_visual_recovery WHERE card_id=?",
+                                  (row["card_id"],)).fetchone()
+            if existing and existing["evidence_json"] != canonical:
+                raise ValueError("existing visual recovery evidence differs")
+            db.execute("INSERT OR IGNORE INTO card_number_alias_visual_recovery VALUES (?,?,?,?)",
+                       (row["card_id"], row["group_id"], canonical,
+                        datetime.now(timezone.utc).isoformat()))
+            recovered += 1
+    return {"visual_recoveries": recovered}
+
+
+def apply_secondary_candidates(db: sqlite3.Connection,
+                               rows: Iterable[dict[str, Any]]) -> dict[str, int]:
+    imported = 0
+    expected_urls = {
+        "https://www.hareruya2.com/en/pages/buying-list-sm",
+        "https://shopping.fullcomp.jp/collections/p_sm10b",
+    }
+    with db:
+        for row in rows:
+            card = db.execute("SELECT * FROM card WHERE card_id=?", (row.get("card_id"),)).fetchone()
+            if card is None or card["match_eligible"]:
+                raise ValueError("secondary number candidate requires a blocked card")
+            rule = number_conflicts.rule_for_card(
+                db, card["language"], card["set_code"], card["collector_number"],
+                card["provenance"])
+            if (rule is None or row.get("rule_id") != rule["rule_id"]
+                    or card["set_code"] != "SM10B"
+                    or card["collector_number"].split("/")[0] not in
+                    {str(n).zfill(3) for n in range(63, 70)}
+                    or db.execute("SELECT 1 FROM card_number_alias_candidate WHERE card_id=?",
+                                  (card["card_id"],)).fetchone()):
+                raise ValueError("secondary number candidate is outside the official-search gap")
+            candidate = card["collector_number"].split("/")[0] + "/" + rule["official_denominator"]
+            rarity = "HR" if int(candidate[:3]) <= 66 else "UR"
+            if (row.get("candidate_number") != candidate
+                    or row.get("catalog_number") != card["collector_number"]
+                    or row.get("source_provenance") != card["provenance"]
+                    or compact_name(str(row.get("catalog_name", ""))) != compact_name(card["name"])
+                    or row.get("rarity_label") != rarity
+                    or row.get("evidence_class") != "two_independent_merchant_catalog_text"
+                    or row.get("physical_printing_status") != "unverified"
+                    or row.get("offer_matching_status") != "blocked"
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("official_search_gap_sha256", "")))):
+                raise ValueError("secondary number candidate changed its card or evidence scope")
+            sources = row.get("merchant_sources")
+            if (not isinstance(sources, list) or len(sources) != 2
+                    or {source.get("url") for source in sources} != expected_urls):
+                raise ValueError("secondary number candidate needs two independent merchant catalogs")
+            for source in sources:
+                if (not re.fullmatch(r"[0-9a-f]{64}", str(source.get("page_sha256", "")))
+                        or source.get("matched_number") != candidate
+                        or compact_name(str(source.get("matched_name", ""))) != compact_name(card["name"])
+                        or source.get("rarity_label") != rarity):
+                    raise ValueError("secondary merchant evidence disagrees with the card")
+            canonical = json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            old = db.execute("SELECT evidence_json FROM card_number_secondary_candidate WHERE card_id=?",
+                             (card["card_id"],)).fetchone()
+            if old and old["evidence_json"] != canonical:
+                raise ValueError("existing secondary number evidence differs")
+            db.execute("INSERT OR IGNORE INTO card_number_secondary_candidate VALUES (?,?,?,?,?)",
+                       (card["card_id"], rule["rule_id"], candidate, canonical,
+                        datetime.now(timezone.utc).isoformat()))
+            imported += 1
+    return {"secondary_candidates": imported}

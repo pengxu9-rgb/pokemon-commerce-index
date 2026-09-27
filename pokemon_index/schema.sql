@@ -105,6 +105,25 @@ CREATE TABLE IF NOT EXISTS card_number_alias_visual_context (
 CREATE INDEX IF NOT EXISTS card_number_alias_visual_group
   ON card_number_alias_visual_context(group_id);
 
+-- Preserve the earlier missing-image event; a later stable-image AI review
+-- adds evidence without rewriting the original result or assigning finish.
+CREATE TABLE IF NOT EXISTS card_number_alias_visual_recovery (
+  card_id TEXT PRIMARY KEY REFERENCES card_number_alias_visual_context(card_id),
+  group_id TEXT NOT NULL,
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
+-- Merchant catalog text may suggest an official denominator for cards absent
+-- from the official search feed; this is weaker than an official page record.
+CREATE TABLE IF NOT EXISTS card_number_secondary_candidate (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  rule_id TEXT NOT NULL REFERENCES card_number_conflict_rule(rule_id),
+  candidate_number TEXT NOT NULL,
+  evidence_json TEXT NOT NULL,
+  imported_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS catalog_set (
   set_code TEXT PRIMARY KEY,
   name_ja TEXT,

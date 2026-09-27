@@ -104,11 +104,36 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                          "official_record_to_catalog_variant_assignment": "unestablished",
                          "physical_printing_status": "unverified",
                          "offer_matching_status": "blocked"}
+    recovery = db.execute("""SELECT evidence_json FROM card_number_alias_visual_recovery
+        WHERE card_id=?""", (card_id,)).fetchone()
+    visual_recovery = None
+    if recovery:
+        evidence = json.loads(recovery["evidence_json"])
+        visual_recovery = {"visual_status": evidence["visual_status"],
+                           "prior_visual_status": "image_unavailable",
+                           "group_id": evidence["group_id"],
+                           "model": evidence["model"],
+                           "official_record_to_catalog_variant_assignment": "unestablished",
+                           "physical_printing_status": "unverified",
+                           "offer_matching_status": "blocked"}
+    secondary = db.execute("""SELECT evidence_json FROM card_number_secondary_candidate
+        WHERE card_id=?""", (card_id,)).fetchone()
+    secondary_alias = None
+    if secondary:
+        evidence = json.loads(secondary["evidence_json"])
+        secondary_alias = {"number_candidate": evidence["candidate_number"],
+                           "evidence_class": evidence["evidence_class"],
+                           "source_urls": [source["url"] for source in evidence["merchant_sources"]],
+                           "official_record_status": "absent_from_public_set_search",
+                           "physical_printing_status": "unverified",
+                           "offer_matching_status": "blocked"}
     return dict(row) | {"region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
                         "source_number_conflict": number_conflict,
                         "source_number_alias_candidate": number_alias,
-                        "multi_record_visual_signal": visual_signal}
+                        "secondary_number_alias_candidate": secondary_alias,
+                        "multi_record_visual_signal": visual_signal,
+                        "multi_record_visual_recovery": visual_recovery}
 
 
 def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
