@@ -7,6 +7,7 @@ order-creation method: payment and buyer-confirmation semantics are unspecified.
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import sqlite3
 import time
@@ -181,7 +182,8 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
     policy = core._policy(db, source, display=True)
     if not policy["partner_handoff_allowed"]:
         raise ValueError("source is not approved for Buy&Ship URL handoff")
-    offers = core.offers(db, card_id, country, now.isoformat(), unit_id)
+    offers = core.offers(db, card_id, country, now.isoformat(), unit_id,
+                         source_filter=source)
     matches = [offer for offer in offers if offer["source"] == source
                and offer["native_id"] == native_id]
     if len(matches) != 1:
@@ -211,14 +213,13 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
         raise ValueError("selected variant lacks variant_key")
     resolved_price = _money(selected.get("price"))
     quoted = client.quote(reference_id, key, destination, currency)
+    received_at = core.parse_time(core.utcnow()) if isinstance(client, PartnerClient) else now
     if not isinstance(quoted, dict) or quoted.get("status") != "OPEN":
         raise ValueError("Buy&Ship quote is not open")
     quote_id, expires_at = quoted.get("quote_id"), quoted.get("expires_at")
     if not isinstance(quote_id, str) or not quote_id or not isinstance(expires_at, str):
         raise ValueError("Buy&Ship quote lacks id or expiry")
-    if core.parse_time(expires_at) <= now or (
-            isinstance(client, PartnerClient)
-            and core.parse_time(expires_at) <= core.parse_time(core.utcnow())):
+    if core.parse_time(expires_at) <= received_at:
         raise ValueError("Buy&Ship quote has expired")
     if quoted.get("destination") != destination:
         raise ValueError("Buy&Ship quote destination differs from request")
@@ -267,13 +268,15 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
                         and resolved_price["currency"] == observation_price["currency"]
                         and resolved_price["subunit_amount"] != observation_price["subunit_amount"]),
                     "quote_id": quote_id, "expires_at": expires_at,
+                    "quoted_at": received_at.isoformat(),
                     "destination": destination, "currency": quote_currency,
                     "unit_price": unit_price, "components": components,
                     "grand_total": grand_total},
     }
 
 
-def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = None) -> dict[str, Any]:
+def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = None,
+                        db: sqlite3.Connection | None = None) -> dict[str, Any]:
     """Price-only shortlist for the same exact unit; no seller-quality claim."""
     if not previews:
         raise ValueError("at least one quote preview is required")
@@ -281,6 +284,11 @@ def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = Non
     first = previews[0]
     identity = (first["card_id"], first["unit_id"],
                 first["buyship"]["destination"], first["buyship"]["currency"])
+    sources = {preview["listing"]["source"] for preview in previews}
+    if len(sources) > 1:
+        if db is None or any(not core._policy(db, source, display=True)["cross_source_use_allowed"]
+                             for source in sources):
+            raise ValueError("cross-source quote ranking lacks permission")
     seen: set[tuple[str, str]] = set()
     for preview in previews:
         if (preview.get("status") != "quote_ready_for_review"
@@ -293,6 +301,8 @@ def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = Non
             raise ValueError("shortlist mixes card units, destinations or currencies")
         if core.parse_time(preview["buyship"]["expires_at"]) <= checked_at:
             raise ValueError("shortlist contains an expired quote")
+        if core.parse_time(preview["buyship"]["quoted_at"]) > checked_at:
+            raise ValueError("shortlist contains a future quote")
         listing_key = (preview["listing"]["source"], preview["listing"]["native_id"])
         if listing_key in seen:
             raise ValueError("shortlist repeats a listing")
@@ -308,3 +318,77 @@ def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = Non
             "destination": identity[2], "currency": identity[3],
             "best": ordered[0], "alternatives": ordered[1:],
             "purchasable": False, "purchase_action": None}
+
+
+def _quote_preview_row(db: sqlite3.Connection, preview: dict[str, Any]) -> dict[str, Any]:
+    """Prepare one storage row after source, snapshot and quote checks."""
+    if (preview.get("status") != "quote_ready_for_review"
+            or preview.get("purchasable") is not False
+            or preview.get("purchase_action") is not None
+            or preview.get("order_created") is not False):
+        raise ValueError("only a non-purchasable quote preview can be stored")
+    listing, quote = preview["listing"], preview["buyship"]
+    source, native_id = listing["source"], listing["native_id"]
+    policy = core._policy(db, source, display=True)
+    if not policy["partner_handoff_allowed"] or not policy["partner_quote_store_allowed"]:
+        raise ValueError("Buy&Ship quote storage is not approved for this source")
+    quoted_at = core.parse_time(quote["quoted_at"])
+    if core.parse_time(quote["expires_at"]) <= quoted_at:
+        raise ValueError("Buy&Ship quote expired before receipt")
+    country = quote["destination"]["country"]
+    offers = core.offers(db, preview["card_id"], country, quoted_at.isoformat(),
+                         preview["unit_id"], source_filter=source)
+    matches = [offer for offer in offers if offer["native_id"] == native_id]
+    if (len(matches) != 1 or matches[0]["url"] != listing["url"]
+            or matches[0]["last_seen"] != listing["observed_at"]
+            or matches[0]["current_price_minor"] != (
+                listing["ask"]["subunit_amount"] if listing["ask"] else None)
+            or matches[0]["currency"] != (
+                listing["ask"]["currency"] if listing["ask"] else matches[0]["currency"])):
+        raise ValueError("quote preview no longer matches its indexed offer snapshot")
+    if not _same_product_url(listing["url"], quote["canonical_url"]):
+        raise ValueError("quote preview URL differs from indexed listing")
+    for key in ("quote_id", "reference_id", "variant_key"):
+        if not isinstance(quote.get(key), str) or not quote[key]:
+            raise ValueError(f"Buy&Ship quote lacks {key}")
+    currency = quote["currency"]
+    components = {name: _money(quote["components"].get(name), currency)["subunit_amount"]
+                  for name in QUOTE_COMPONENTS}
+    if sum(components.values()) != _money(quote["grand_total"], currency)["subunit_amount"]:
+        raise ValueError("Buy&Ship quote total does not reconcile")
+    mapped = {"item": components["items"], "domestic": components["local_shipping"],
+              "international": components["international_shipping"],
+              "tax": components["duties"], "service": components["bns_service_fee"],
+              "insurance": 0, "fx_spread": 0, "other": 0}
+    assumptions = {
+        "provider": "buyship_partner_v1", "quote_id": quote["quote_id"],
+        "reference_id": quote["reference_id"], "variant_key": quote["variant_key"],
+        "unit_id": preview["unit_id"], "source_url": listing["url"],
+        "source_observed_at": listing["observed_at"],
+        "source_price_minor": listing["ask"]["subunit_amount"] if listing["ask"] else None,
+        "source_currency": listing["ask"]["currency"] if listing["ask"] else None,
+        "resolve_price": quote["resolve_price"],
+        "resolve_price_differs_from_observation": quote["resolve_price_differs_from_observation"],
+    }
+    digest = hashlib.sha256(json.dumps({"listing": listing, "buyship": quote},
+                                    sort_keys=True, ensure_ascii=False,
+                                    separators=(",", ":")).encode()).hexdigest()
+    return {
+        "source": source, "native_id": native_id, "destination": country,
+        "currency": currency, "components": mapped,
+        "quoted_at": quoted_at.isoformat(), "expires_at": quote["expires_at"],
+        "evidence_ref": "buyship-partner:v1:sha256:" + digest,
+        "assumptions": assumptions,
+    }
+
+
+def persist_quote_previews(db: sqlite3.Connection, previews: list[dict[str, Any]]) -> int:
+    """Atomically store authorized quote previews for the existing offer index."""
+    if not previews:
+        raise ValueError("at least one quote preview is required")
+    rows = [_quote_preview_row(db, preview) for preview in previews]
+    return core.import_quotes(db, rows)
+
+
+def persist_quote_preview(db: sqlite3.Connection, preview: dict[str, Any]) -> int:
+    return persist_quote_previews(db, [preview])

@@ -222,6 +222,8 @@ def main() -> None:
     partner_shortlist = sub.add_parser("preview-buyship-shortlist",
                                        help="offline exact-unit quote ranking; never creates an order")
     partner_shortlist.add_argument("file", help="JSON shortlist with fixture paths")
+    partner_shortlist.add_argument("--store", action="store_true",
+                                   help="store only when the source explicitly permits partner quote retention")
     catalog = sub.add_parser("adapt-tcgdex-set", help="normalize one reviewed Japanese set JSON")
     catalog.add_argument("file")
     catalog.add_argument("--rights-reference", required=True)
@@ -426,7 +428,12 @@ def main() -> None:
                     client=buyship_partner.FixturePartnerClient(fixture),
                     now=shortlist["as_of"], variant_key=candidate.get("variant_key"),
                     currency=shortlist.get("currency")))
-            output = buyship_partner.rank_quote_previews(previews, now=shortlist["as_of"])
+            output = buyship_partner.rank_quote_previews(previews, now=shortlist["as_of"], db=db)
+            if args.store:
+                output["stored_quotes"] = buyship_partner.persist_quote_previews(db, previews)
+                output["indexed_recommendation"] = core.recommend(
+                    db, shortlist["unit_id"], shortlist["destination"]["country"],
+                    shortlist["as_of"])
         elif args.command == "discover":
             output = {"cards": core.discover(db, args.query)}
         elif args.command == "discovery":

@@ -38,11 +38,12 @@ class PartnerPreviewTests(unittest.TestCase):
     def tearDown(self):
         self.db.close()
 
-    def register_source(self, *, handoff):
+    def register_source(self, *, handoff, store=False):
         core.register_source(self.db, {
             "source": "licensed_fixture", "rights_reference": "synthetic test",
             "ingest_allowed": True, "display_allowed": True,
             "partner_handoff_allowed": handoff,
+            "partner_quote_store_allowed": store,
             "retention_days": 1, "listing_ttl_hours": 24,
         })
 
@@ -150,6 +151,99 @@ class PartnerPreviewTests(unittest.TestCase):
             buyship_partner.rank_quote_previews([first, changed], now=NOW)
         with self.assertRaisesRegex(ValueError, "expired"):
             buyship_partner.rank_quote_previews([first], now="2026-09-22T09:20:00Z")
+
+    def test_partner_quote_storage_requires_distinct_permission(self):
+        preview, _ = self.preview()
+        with self.assertRaisesRegex(ValueError, "storage is not approved"):
+            buyship_partner.persist_quote_preview(self.db, preview)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM landed_quote").fetchone()[0], 0)
+
+    def test_persisted_quote_reaches_existing_recommendation_and_expires(self):
+        self.register_source(handoff=True, store=True)
+        payload = copy.deepcopy(FIXTURE)
+        payload["resolve"]["variants"][0]["price"]["subunit_amount"] = 390000
+        preview, _ = self.preview(payload)
+        self.assertEqual(buyship_partner.persist_quote_preview(self.db, preview), 1)
+        self.assertEqual(buyship_partner.persist_quote_preview(self.db, preview), 0)
+        result = core.recommend(self.db, UNIT_ID, "HK", "2026-09-22T09:06:00Z")
+        self.assertEqual(result["recommendation_type"], "price_only")
+        quote = result["recommendation"]["quote"]
+        self.assertEqual(quote["total_minor"], 24060)
+        self.assertEqual(quote["assumptions"]["provider"], "buyship_partner_v1")
+        self.assertTrue(quote["assumptions"]["resolve_price_differs_from_observation"])
+        self.assertIsNone(core.recommend(self.db, UNIT_ID, "HK",
+                                         "2026-09-22T09:20:00Z")["recommendation"])
+
+    def test_new_listing_observation_invalidates_previous_partner_quote(self):
+        self.register_source(handoff=True, store=True)
+        preview, _ = self.preview()
+        buyship_partner.persist_quote_preview(self.db, preview)
+        core.import_observations(self.db, [{
+            "source": "licensed_fixture", "native_id": "demo-2",
+            "title": "ピカチュウ AR SV2a 173/165",
+            "url": "https://example.invalid/demo-2", "language": "ja",
+            "condition_bucket": "A", "observed_at": "2026-09-22T09:06:00Z",
+            "status": "on_sale", "price_minor": 390000, "currency": "JPY",
+            "evidence_ref": "synthetic:test:price-edit",
+        }])
+        self.assertIsNone(core.recommend(self.db, UNIT_ID, "HK",
+                                         "2026-09-22T09:07:00Z")["recommendation"])
+
+    def test_revoked_quote_storage_permission_hides_existing_quote(self):
+        self.register_source(handoff=True, store=True)
+        preview, _ = self.preview()
+        buyship_partner.persist_quote_preview(self.db, preview)
+        self.register_source(handoff=True, store=False)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM landed_quote").fetchone()[0], 0)
+        result = core.recommend(self.db, UNIT_ID, "HK", "2026-09-22T09:06:00Z")
+        self.assertIsNone(result["recommendation"])
+        self.assertEqual(len(result["offers"]), 1)
+        self.assertIsNone(result["offers"][0]["quote"])
+
+    def test_tampered_preview_cannot_be_stored(self):
+        self.register_source(handoff=True, store=True)
+        preview, _ = self.preview()
+        changed = copy.deepcopy(preview)
+        changed["buyship"]["components"]["bns_service_fee"]["subunit_amount"] = 1
+        with self.assertRaisesRegex(ValueError, "reconcile"):
+            buyship_partner.persist_quote_preview(self.db, changed)
+        changed = copy.deepcopy(preview)
+        changed["listing"]["observed_at"] = "2026-09-22T08:00:00Z"
+        with self.assertRaisesRegex(ValueError, "snapshot"):
+            buyship_partner.persist_quote_preview(self.db, changed)
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM landed_quote").fetchone()[0], 0)
+
+    def test_shortlist_storage_is_atomic(self):
+        self.register_source(handoff=True, store=True)
+        good, _ = self.preview()
+        bad = copy.deepcopy(good)
+        bad["listing"]["native_id"] = "missing-listing"
+        with self.assertRaisesRegex(ValueError, "snapshot"):
+            buyship_partner.persist_quote_previews(self.db, [good, bad])
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM landed_quote").fetchone()[0], 0)
+
+    def test_cross_source_price_ranking_requires_comparison_permission(self):
+        first, _ = self.preview()
+        core.register_source(self.db, {
+            "source": "second_fixture", "rights_reference": "synthetic test",
+            "ingest_allowed": True, "display_allowed": True,
+            "partner_handoff_allowed": True,
+            "cross_source_use_allowed": False,
+            "retention_days": 1, "listing_ttl_hours": 24,
+        })
+        core.import_observations(self.db, [{
+            "source": "second_fixture", "native_id": "demo-3",
+            "title": "ピカチュウ AR SV2a 173/165",
+            "url": "https://example.invalid/demo-3", "language": "ja",
+            "condition_bucket": "A", "observed_at": "2026-09-22T09:00:00Z",
+            "status": "on_sale", "price_minor": 400000, "currency": "JPY",
+            "evidence_ref": "synthetic:test:second-source",
+        }])
+        second_fixture = json.loads((Path(__file__).parents[1] / "examples" /
+                                     "buyship_partner_preview_2.json").read_text(encoding="utf-8"))
+        second, _ = self.preview(second_fixture, source="second_fixture", native_id="demo-3")
+        with self.assertRaisesRegex(ValueError, "cross-source"):
+            buyship_partner.rank_quote_previews([first, second], now=NOW, db=self.db)
 
 
 class PartnerClientTests(unittest.TestCase):

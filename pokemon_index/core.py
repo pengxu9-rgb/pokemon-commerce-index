@@ -65,6 +65,8 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE source_policy ADD COLUMN cross_region_use_allowed INTEGER NOT NULL DEFAULT 0")
     if "partner_handoff_allowed" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN partner_handoff_allowed INTEGER NOT NULL DEFAULT 0")
+    if "partner_quote_store_allowed" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN partner_quote_store_allowed INTEGER NOT NULL DEFAULT 0")
     if "photo_resolution_required" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN photo_resolution_required INTEGER NOT NULL DEFAULT 0")
     db.execute("UPDATE source_policy SET photo_resolution_required=1 WHERE source='ebay_us'")
@@ -153,8 +155,8 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         (source, rights_reference, ingest_allowed, display_allowed,
          cross_source_use_allowed, seller_analytics_allowed, retention_days,
          listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed,
-         photo_resolution_required, partner_handoff_allowed)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         photo_resolution_required, partner_handoff_allowed, partner_quote_store_allowed)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(source) DO UPDATE SET rights_reference=excluded.rights_reference,
         ingest_allowed=excluded.ingest_allowed, display_allowed=excluded.display_allowed,
         cross_source_use_allowed=excluded.cross_source_use_allowed,
@@ -162,6 +164,7 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         media_ai_allowed=excluded.media_ai_allowed,
         cross_region_use_allowed=excluded.cross_region_use_allowed,
         partner_handoff_allowed=excluded.partner_handoff_allowed,
+        partner_quote_store_allowed=excluded.partner_quote_store_allowed,
         photo_resolution_required=excluded.photo_resolution_required,
         retention_days=excluded.retention_days, listing_ttl_hours=excluded.listing_ttl_hours,
         expires_at=excluded.expires_at""",
@@ -172,8 +175,18 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
          int(bool(row.get("media_ai_allowed", False))),
          int(bool(row.get("cross_region_use_allowed", False))),
          int(row["source"] == "ebay_us" or bool(row.get("photo_resolution_required", False))),
-         int(bool(row.get("partner_handoff_allowed", False)))),
+         int(bool(row.get("partner_handoff_allowed", False))),
+         int(bool(row.get("partner_quote_store_allowed", False)))),
     )
+    if not row.get("partner_quote_store_allowed", False):
+        for quote in db.execute(
+                """SELECT source,native_id,destination,quoted_at,assumptions_json
+                FROM landed_quote WHERE source=?""", (row["source"],)).fetchall():
+            if json.loads(quote["assumptions_json"]).get("provider") == "buyship_partner_v1":
+                db.execute("""DELETE FROM landed_quote WHERE source=? AND native_id=?
+                           AND destination=? AND quoted_at=?""",
+                           (quote["source"], quote["native_id"],
+                            quote["destination"], quote["quoted_at"]))
     db.commit()
 
 
@@ -1057,14 +1070,16 @@ def units_for_card(db: sqlite3.Connection, card: str) -> list[dict[str, Any]]:
 
 
 def offers(db: sqlite3.Connection, card: str, destination: str | None = None,
-           now: str | None = None, unit_id: str | None = None) -> list[dict[str, Any]]:
+           now: str | None = None, unit_id: str | None = None,
+           source_filter: str | None = None) -> list[dict[str, Any]]:
     _require_card_display(db, card)
     now = parse_time(now or utcnow()).isoformat()
     rows = db.execute(
         """SELECT l.*, u.grade_company, u.grade_value, u.condition_bucket
         FROM listing l JOIN priceable_unit u ON u.unit_id=l.unit_id
         WHERE u.card_id=? AND (? IS NULL OR l.unit_id=?)
-        ORDER BY l.last_seen DESC""", (card, unit_id, unit_id)
+          AND (? IS NULL OR l.source=?)
+        ORDER BY l.last_seen DESC""", (card, unit_id, unit_id, source_filter, source_filter)
     ).fetchall()
     result = []
     for row in rows:
@@ -1105,6 +1120,10 @@ def offers(db: sqlite3.Connection, card: str, destination: str | None = None,
                 item["quote"] = dict(quote)
                 item["quote"]["components"] = json.loads(item["quote"].pop("components_json"))
                 item["quote"]["assumptions"] = json.loads(item["quote"].pop("assumptions_json"))
+                if (item["quote"]["assumptions"].get("provider") == "buyship_partner_v1"
+                        and (not policy["partner_handoff_allowed"]
+                             or not policy["partner_quote_store_allowed"])):
+                    item["quote"] = None
         result.append(item)
     sources = {item["source"] for item in result}
     if len(sources) > 1 and any(not _policy(db, source)["cross_source_use_allowed"] for source in sources):
@@ -1182,9 +1201,21 @@ def recommend(db: sqlite3.Connection, unit_id: str, destination: str, now: str |
 
 def quote_matches_current_offer(offer: dict[str, Any]) -> bool:
     quote = offer.get("quote")
-    if not quote or offer.get("current_price_minor") is None:
+    if not quote:
         return False
     assumptions = quote["assumptions"]
+    if assumptions.get("provider") == "buyship_partner_v1":
+        return (assumptions.get("unit_id") == offer["unit_id"]
+                and assumptions.get("source_url") == offer["url"]
+                and assumptions.get("source_observed_at") == offer["last_seen"]
+                and assumptions.get("source_price_minor") == offer["current_price_minor"]
+                and (assumptions.get("source_currency") == offer["currency"]
+                     or (offer["current_price_minor"] is None
+                         and assumptions.get("source_currency") is None))
+                and all(isinstance(assumptions.get(key), str) and assumptions[key].strip()
+                        for key in ("quote_id", "reference_id", "variant_key")))
+    if offer.get("current_price_minor") is None:
+        return False
     return (type(assumptions.get("source_price_minor")) is int
             and assumptions["source_price_minor"] == offer["current_price_minor"]
             and assumptions.get("source_currency") == offer["currency"]

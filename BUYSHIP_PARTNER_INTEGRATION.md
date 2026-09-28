@@ -29,6 +29,10 @@ The example uses the existing `licensed_fixture` source and `example.invalid` UR
 
 For a price-only recommendation across two synthetic listings linked to the **same indexed card unit**, run `preview-buyship-shortlist examples/buyship_partner_shortlist.json` against the same initialized demo database. The lower delivered total is selected; seller reliability, card authenticity and image-based condition are not scored.
 
+Adding `--store` to that command imports both synthetic quotes atomically into the existing landed-quote index and returns its price-only recommendation. This requires an additional source policy permission, `partner_quote_store_allowed=true`; it defaults to false for existing and real sources. The import binds the quote to the exact listing observation, URL, unit, partner reference, variant and expiry. Buy&Ship's five cost lines map to the index's existing landed-cost components; insurance, FX spread and other are zero because the binding grand total has no separate lines for them. A later listing observation invalidates the old quote for recommendations, even before its nominal expiry. Only the synthetic fixture source currently enables this storage permission. No raw partner response, product image or delivery address is stored.
+
+Disabling quote storage permission removes stored Buy&Ship partner quotes for that source; ordinary source quotes are unaffected.
+
 ## Partner decisions before live use
 
 1. Provide sandbox and production base URLs, client credentials, rate limits, timeout/retry guidance and an OpenAPI or equivalent detailed schema.
