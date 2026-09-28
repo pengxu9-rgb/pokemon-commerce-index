@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 import random
+import re
 import sqlite3
 import subprocess
 from collections import Counter
@@ -58,6 +59,12 @@ def _frame_item(row: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(images, list) or any(not isinstance(url, str) or
                                             not url.startswith("https://") for url in images):
         raise ValueError("image_urls must be HTTPS URLs")
+    image_hashes = row.get("image_sha256", [])
+    if (not isinstance(image_hashes, list) or
+            (image_hashes and len(image_hashes) != len(images)) or
+            any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
+                for value in image_hashes)):
+        raise ValueError("image_sha256 must align with image_urls and contain SHA-256 hashes")
     if any(key in row for key in ("card_id", "unit_id", "proposed_set", "proposed_variant",
                                   "matcher_prediction", "gold_label")):
         raise ValueError("sampling frame must not contain matcher predictions or labels")
@@ -68,7 +75,8 @@ def _frame_item(row: dict[str, Any]) -> dict[str, Any]:
             "title": row["title"], "url": row["url"],
             "observed_at": row["observed_at"],
             "description": str(row.get("description") or ""),
-            "image_urls": images, "stratum": str(row.get("stratum") or "unspecified")}
+            "image_urls": images, "image_sha256": image_hashes,
+            "stratum": str(row.get("stratum") or "unspecified")}
 
 
 def prepare(frame: Path, catalog_db: Path, catalog_manifest: Path, out_dir: Path,
