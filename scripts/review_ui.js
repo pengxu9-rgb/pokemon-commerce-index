@@ -40,7 +40,7 @@ function renderItem(item, progress, reviews = []) {
   for (const review of reviews) {
     const block = document.createElement("pre");
     const l = review.label;
-    block.textContent = `${review.reviewer}\n单卡: ${l.single_card}\n语言: ${l.language}\n卡组: ${l.set_code || "未知"}\n卡号: ${l.number || "未知"}\n版本: ${l.variant}\n评级: ${l.grade_company || "未判定"} ${l.grade_value || ""}\n看过卡面: ${l.image_seen ? "是" : "否"}\n证据: ${l.evidence_notes || "未填写"}`;
+    block.textContent = `${review.reviewer}\n单卡: ${l.single_card}\n语言: ${l.language}\n卡组: ${l.set_code || "未知"}\n卡号: ${l.number || "未知"}\n版本: ${l.variant}\n评级: ${l.grade_status || "unknown"} ${l.grade_company || ""} ${l.grade_value || ""}\n看过卡面: ${l.image_seen ? "是" : "否"}\n证据: ${l.evidence_notes || "未填写"}`;
     comparison.append(block);
   }
 }
@@ -100,13 +100,15 @@ $("label-form").addEventListener("submit", async (event) => {
     single_card: form.get("single_card"), language: form.get("language"),
     set_code: String(form.get("set_code") || "").trim(),
     number: String(form.get("number") || "").trim(),
-    variant: form.get("variant"), grade_company: form.get("grade_company"),
+    variant: String(form.get("variant") || "unknown").trim().toLowerCase(),
+    grade_status: form.get("grade_status"),
+    grade_company: form.get("grade_company"),
     grade_value: String(form.get("grade_value") || "").trim(),
     image_seen: form.get("image_seen") === "on",
     evidence_notes: String(form.get("evidence_notes") || "").trim(),
   };
-  if (label.variant !== "unknown" && !label.image_seen) {
-    showMessage("填写具体版本前，需要实际看过可判定的卡面图片。");
+  if ((label.variant !== "unknown" || label.grade_status !== "unknown") && !label.image_seen) {
+    showMessage("填写具体版本或评级状态前，需要实际看过可判定的商品图片。");
     return;
   }
   const payload = { reviewer, item_key: current.item_key, label };

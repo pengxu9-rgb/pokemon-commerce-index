@@ -13,7 +13,8 @@ class ReviewWorkbenchTests(unittest.TestCase):
                 "number": "185/165", "variant": "holo", "image_seen": False}
         with self.assertRaisesRegex(ValueError, "photo"):
             validate_label(base)
-        label = validate_label({**base, "image_seen": True})
+        label = validate_label({**base, "image_seen": True,
+                                "evidence_notes": "The holo surface is visible in photo 1."})
         self.assertEqual(label["number"], "185/165")
         self.assertEqual(label["variant"], "holo")
 
@@ -30,7 +31,8 @@ class ReviewWorkbenchTests(unittest.TestCase):
             with connect(root / "reviews.sqlite3") as db:
                 first = validate_label({"single_card": "yes", "language": "ja",
                                         "set_code": "SV2a", "number": "185/165",
-                                        "variant": "unknown", "image_seen": False})
+                                        "variant": "unknown", "image_seen": False,
+                                        "evidence_notes": "The title gives the set and number."})
                 second = validate_label({**first, "number": "201/165"})
                 self.assertTrue(disagree({"label": first}, {"label": second}))
                 db.execute("INSERT INTO review VALUES (?,?,?,?)",

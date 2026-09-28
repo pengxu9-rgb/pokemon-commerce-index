@@ -6,6 +6,8 @@
 
 Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
 
+新[真实 listing 盲测协议和工具](BLIND_LISTING_BENCHMARK.md)现可冻结独立采样框、目录和 matcher，把标题预测与双人复核分离，并对卡片、印刷版本和评级分别计数。当前没有来自新授权来源的盲测样本，因此没有真实市场匹配精度结论。
+
 Buy&Ship 新 partner v1 文档确认商品 URL → resolve → 15 分钟有效的实时到手价 quote → order，但不提供 listing 搜索或目录。已加入仅用合成响应的 [URL 到报价预览](BUYSHIP_PARTNER_INTEGRATION.md)：按来源权限和精确卡片版本绑定当前报价，核对变体、URL、有效期与费用总和；不会创建订单。真实商城支持、付款和数据使用范围仍待对方确认。
 
 合成报价现可在单独的 `partner_quote_store_allowed` 来源权限下导入现有到手价索引；后续 listing 观测变化会使旧报价退出推荐。真实来源的该权限默认关闭，避免将仅有 URL 报价能力误当作持续的市场价格 feed。

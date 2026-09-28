@@ -58,29 +58,21 @@
             <select name="language"><option value="unknown">不确定</option><option value="ja">日文</option><option value="en">英文</option><option value="ko">韩文</option><option value="zh">中文</option></select>
           </label>
           <label>卡组代码 <input name="set_code" placeholder="SV2a"></label>
-          <label>卡号 <input name="number" placeholder="185/165"></label>
-          <label>卡面版本
-            <select name="variant">
-              <option value="unknown">无法确认</option>
-              <option value="normal">普通</option><option value="holo">闪卡 Holo</option>
-              <option value="reverse">反闪 Reverse</option>
-              <option value="reverse_pokeball">Poké Ball reverse</option>
-              <option value="reverse_masterball">Master Ball reverse</option>
-              <option value="reverse_energy">Energy reverse</option>
-              <option value="reverse_duskball">Dusk Ball reverse</option>
-              <option value="reverse_friendball">Friend Ball reverse</option>
-              <option value="reverse_loveball">Love Ball reverse</option>
-              <option value="reverse_quickball">Quick Ball reverse</option>
-              <option value="reverse_team-rocket">Team Rocket reverse</option>
-            </select>
+          <label>卡号 <input name="number" placeholder="185/165 或 136/SV-P"></label>
+          <label>精确印刷版本代码
+            <input name="variant" value="unknown" list="variant-hints" placeholder="unknown / standard / reverse_masterball">
+            <datalist id="variant-hints"><option value="unknown"><option value="standard"><option value="normal"><option value="holo"><option value="reverse"><option value="reverse_pokeball"><option value="reverse_masterball"><option value="normal_1st_edition"><option value="holo_1st_edition"><option value="normal_unlimited"><option value="holo_unlimited"></datalist>
+          </label>
+          <label>评级状态
+            <select name="grade_status"><option value="unknown">无法确认</option><option value="raw">裸卡，未评级</option><option value="graded">已评级</option></select>
           </label>
           <label>评级机构
-            <select name="grade_company"><option value="">未评级或无法确认</option><option>PSA</option><option>BGS</option><option>CGC</option><option>ARS</option><option>PGC</option><option>OTHER</option></select>
+            <select name="grade_company"><option value="">未填写</option><option>PSA</option><option>BGS</option><option>CGC</option><option>ARS</option><option>PGC</option><option>OTHER</option></select>
           </label>
           <label>评级分数 <input name="grade_value" placeholder="例如 10"></label>
         </div>
-        <label class="checkbox"><input type="checkbox" name="image_seen">我实际看到了可判定这张卡的卡面图片</label>
-        <p class="note">如果图片无法打开、看不清工艺，版本必须保持“无法确认”。仅凭稀有度、价格或目录默认版本不算看图证据。</p>
+        <label class="checkbox"><input type="checkbox" name="image_seen">我实际看到了可判定卡面或评级状态的商品图片</label>
+        <p class="note">图片无法打开或看不清时，版本与评级状态保持“无法确认”。仅凭稀有度、价格或目录默认版本不算看图证据。</p>
         <label>证据说明 <textarea name="evidence_notes" rows="4" placeholder="写明卡号、工艺、评级的证据位于哪张图片或哪段文字"></textarea></label>
         <label id="reason-wrap" hidden>裁决理由 <textarea name="reason" rows="3" placeholder="说明如何处理两人分歧，至少 10 个字符"></textarea></label>
         <button id="submit" type="submit">提交并查看下一条</button>

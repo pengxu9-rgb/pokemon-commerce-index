@@ -21,13 +21,10 @@ from pokemon_index.core import normalize_collector_number
 
 REVIEWER_RE = re.compile(r"[A-Za-z0-9_-]{2,40}\Z")
 SET_RE = re.compile(r"[A-Za-z0-9-]{1,24}\Z")
-NUMBER_RE = re.compile(r"\d{1,4}/\d{1,4}\Z")
-VARIANTS = {"unknown", "normal", "holo", "reverse", "reverse_pokeball",
-            "reverse_masterball", "reverse_energy", "reverse_duskball",
-            "reverse_friendball", "reverse_loveball", "reverse_quickball",
-            "reverse_team-rocket"}
+NUMBER_RE = re.compile(r"[A-Za-z0-9-]{1,16}(?:/[A-Za-z0-9-]{1,16})?\Z")
+VARIANT_RE = re.compile(r"[a-z][a-z0-9_-]{0,79}\Z")
 LABEL_FIELDS = ("single_card", "language", "set_code", "number", "variant",
-                "grade_company", "grade_value")
+                "grade_status", "grade_company", "grade_value")
 
 
 def load_queue(path: Path) -> dict[str, dict]:
@@ -98,8 +95,8 @@ def validate_label(value: object) -> dict:
     if set_code and not SET_RE.fullmatch(set_code):
         raise ValueError("invalid set code")
     if number and not NUMBER_RE.fullmatch(number):
-        raise ValueError("collector number must be NNN/NNN")
-    if variant not in VARIANTS:
+        raise ValueError("invalid collector number")
+    if not isinstance(variant, str) or not VARIANT_RE.fullmatch(variant):
         raise ValueError("invalid finish variant")
     image_seen = value.get("image_seen") is True
     if variant != "unknown" and not image_seen:
@@ -108,31 +105,49 @@ def validate_label(value: object) -> dict:
         raise ValueError("non-single listing cannot have a single-card identity")
     grade_company = str(value.get("grade_company") or "").upper().strip()
     grade_value = str(value.get("grade_value") or "").strip()
+    grade_status = value.get("grade_status") or ("graded" if grade_company else "unknown")
+    if grade_status not in {"unknown", "raw", "graded"}:
+        raise ValueError("grade status must be unknown, raw or graded")
     if grade_company and grade_company not in {"PSA", "BGS", "CGC", "ARS", "PGC", "OTHER"}:
         raise ValueError("invalid grading company")
     if bool(grade_company) != bool(grade_value):
         raise ValueError("grading company and grade must be filled together")
-    if single != "yes" and grade_company:
+    if grade_status == "graded" and not grade_company:
+        raise ValueError("graded status requires company and grade")
+    if grade_status != "graded" and grade_company:
+        raise ValueError("raw or unknown grade cannot have company and grade")
+    if grade_status != "unknown" and not image_seen:
+        raise ValueError("a known raw or graded status requires a listing photo reviewed")
+    if single != "yes" and grade_status != "unknown":
         raise ValueError("non-single listing cannot have one graded-card label")
     if len(grade_value) > 20:
         raise ValueError("grade value is too long")
+    if grade_value and not re.fullmatch(r"(?:10\+?|[1-9](?:\.5)?)", grade_value):
+        raise ValueError("grade must use a canonical numeric value, such as 9.5 or 10+")
     notes = str(value.get("evidence_notes") or "").strip()
     if len(notes) > 2000:
         raise ValueError("evidence notes are too long")
+    if (set_code or number or variant != "unknown" or grade_status != "unknown") and not notes:
+        raise ValueError("known identity, finish or grading status requires evidence notes")
     return {
         "single_card": single, "language": language,
         "set_code": set_code.upper() if set_code else None,
         "number": normalize_collector_number(number) if number else None,
-        "variant": variant, "grade_company": grade_company or None,
+        "variant": variant, "grade_status": grade_status,
+        "grade_company": grade_company or None,
         "grade_value": grade_value or None, "image_seen": image_seen,
         "evidence_notes": notes,
     }
 
 
 def reviews_for(db: sqlite3.Connection, item_key: str) -> list[dict]:
-    return [{"reviewer": row["reviewer"], "label": json.loads(row["label_json"])}
+    def legacy_status(label: dict) -> dict:
+        label.setdefault("grade_status", "graded" if label.get("grade_company") else "unknown")
+        return label
+    return [{"reviewer": row["reviewer"], "submitted_at": row["submitted_at"],
+             "label": legacy_status(json.loads(row["label_json"]))}
             for row in db.execute(
-                "SELECT reviewer,label_json FROM review WHERE item_key=? ORDER BY submitted_at, reviewer",
+                "SELECT reviewer,submitted_at,label_json FROM review WHERE item_key=? ORDER BY submitted_at, reviewer",
                 (item_key,)).fetchall()]
 
 
@@ -190,13 +205,19 @@ def export_gold(queue: dict[str, dict], db: sqlite3.Connection, output: Path) ->
             pending += 1
             continue
         label = json.loads(adjudication["label_json"]) if adjudication else reviews[0]["label"]
-        if label["variant"] != "unknown" and not (
-                label["image_seen"] and (adjudication or reviews[1]["label"]["image_seen"])):
-            label = {**label, "variant": "unknown"}
+        label.setdefault("grade_status", "graded" if label.get("grade_company") else "unknown")
+        photo_confirmed = bool(label["image_seen"] and
+                               (adjudication or reviews[1]["label"]["image_seen"]))
+        if not photo_confirmed:
+            label = {**label, "variant": "unknown", "grade_status": "unknown",
+                     "grade_company": None, "grade_value": None}
         single = label["single_card"] == "yes"
         row = {
+            "item_key": key,
             "source": item["source"], "native_id": item["native_id"],
             "title": item["title"], "url": item["url"],
+            "single_card": label["single_card"],
+            "language": label["language"],
             "identity_status": ("abstain" if not single else "complete" if label["set_code"]
                                 and label["number"] else "partial"),
             "label_status": ("abstain" if not single else "matched" if label["set_code"]
@@ -206,10 +227,18 @@ def export_gold(queue: dict[str, dict], db: sqlite3.Connection, output: Path) ->
             "proposed_variant": label["variant"] if single and label["variant"] != "unknown" else None,
             "grade_company": label["grade_company"] if single else None,
             "grade_value": label["grade_value"] if single else None,
+            "grade_status": label["grade_status"] if single else "unknown",
             "human_reviewed": True,
             "reviewers": [review["reviewer"] for review in reviews[:2]],
+            "review_evidence": [{"reviewer": review["reviewer"],
+                                 "submitted_at": review["submitted_at"],
+                                 "image_seen": review["label"]["image_seen"],
+                                 "evidence_notes": review["label"].get("evidence_notes", "")}
+                                for review in reviews[:2]],
             "adjudicator": adjudication["adjudicator"] if adjudication else None,
+            "adjudication_reason": adjudication["reason"] if adjudication else None,
             "image_seen": label["image_seen"],
+            "evidence_notes": label.get("evidence_notes", ""),
         }
         rows.append(row)
     output.parent.mkdir(parents=True, exist_ok=True)
