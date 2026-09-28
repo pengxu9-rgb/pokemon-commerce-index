@@ -1,0 +1,27 @@
+{
+  "blind_sha256": "77e6e832b155a9f3b697f1039285940cae5266f53056f8a50b09228bbe72649b",
+  "by_language": {
+    "en": 18,
+    "ja": 6
+  },
+  "by_media": {
+    "referenced_not_collected": 9,
+    "text_only": 15
+  },
+  "by_platform": {
+    "elitefourum": 6,
+    "reddit": 12,
+    "yahoo_chiebukuro": 6
+  },
+  "holdout": 7,
+  "holdout_ratio": 0.25,
+  "questions": 24,
+  "schema": "pokemon.public-question-sandbox.v1",
+  "scope": "search-discovered public question situations; not representative; source-condensed text is not raw-language accuracy",
+  "seed": 20260929,
+  "source_index_sha256": "cf91a4337905ab4de00bef90e798a2648b672f5d22655c5b1761ca3f73ebef99",
+  "source_sha256": "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+  "text_forms": {
+    "source_condensed": 24
+  }
+}

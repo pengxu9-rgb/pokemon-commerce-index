@@ -10,6 +10,8 @@ Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的�
 
 [买家问题证据门槛](BUYER_QUESTION_LAYER.md)新增内部 `buyer-question-plan`：针对精确卡片，区分同编号版本、已核实跨语言关系、AI 同画面线索，以及仍需实时报价或商品照片的问题。独立问题集的离线评测入口已准备，但当前尚无真实用户问题盲测成绩。
 
+[公开买卖家问题 sandbox](PUBLIC_QUESTION_SANDBOX.md)已冻结 24 个带来源链接的 Reddit、Elite Fourum 和 Yahoo!知恵袋问题情境，并由 Astra 与 Vertex Gemini 3.8 Flash 独立做证据分流。23 条双模型有效结果中，意图一致 20 条，首步动作一致 14 条；只有 2 条六字段完全一致。它衡量 AI 标签的一致性及定义缺口，尚不是目标 agent 的真实问答准确率。原始问题、两份独立标签与报告保存在 `sandbox/public_questions/v1/`。
+
 新[真实 listing 盲测协议和工具](BLIND_LISTING_BENCHMARK.md)现可冻结独立采样框、目录和 matcher，把标题预测与双人复核分离，并对卡片、印刷版本和评级分别计数。当前没有来自新授权来源的盲测样本，因此没有真实市场匹配精度结论。
 
 [AI 优先复核](AI_FIRST_REVIEW.md)允许两家独立模型在同一商品及照片哈希上达成高置信一致后暂列可接受候选；分歧和证据不足升级给真人，另随机抽查 AI 一致通过项。当前只实现离线分流与抽查计数，尚未调用真实模型或放行真实 offer。
