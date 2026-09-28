@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -68,6 +68,10 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         result = listing_candidates.retrieve(db, value("title"))
                     elif internal_catalog_api and parsed.path == "/catalog-neighborhood":
                         result = discovery_graph.card_neighborhood(db, value("card_id"))
+                    elif internal_catalog_api and parsed.path == "/buyer-question-plan":
+                        result = buyer_questions.plan_card_question(
+                            db, value("question_type"), value("card_id") or None,
+                            value("target_language") or None)
                     elif internal_catalog_api and parsed.path == "/number-explanation":
                         result = number_graph.explain_number_pair(
                             db, value("left_card_id"), value("right_card_id"))
@@ -168,6 +172,10 @@ def main() -> None:
     neighborhood = sub.add_parser("catalog-neighborhood", help="internal reviewed card relationships")
     neighborhood.add_argument("card_id")
     neighborhood.add_argument("--include-proposed", action="store_true")
+    buyer_plan = sub.add_parser("buyer-question-plan", help="internal evidence gates for a card question")
+    buyer_plan.add_argument("question_type", choices=sorted(buyer_questions.QUESTION_TYPES))
+    buyer_plan.add_argument("--card-id")
+    buyer_plan.add_argument("--target-language", choices=("ja", "en"))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
     number_explanation.add_argument("left_card_id")
     number_explanation.add_argument("right_card_id")
@@ -322,6 +330,9 @@ def main() -> None:
             output = listing_candidates.retrieve(db, args.title, args.limit)
         elif args.command == "catalog-neighborhood":
             output = discovery_graph.card_neighborhood(db, args.card_id, args.include_proposed)
+        elif args.command == "buyer-question-plan":
+            output = buyer_questions.plan_card_question(
+                db, args.question_type, args.card_id, args.target_language)
         elif args.command == "number-explanation":
             output = number_graph.explain_number_pair(db, args.left_card_id,
                                                        args.right_card_id)

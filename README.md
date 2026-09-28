@@ -8,6 +8,8 @@ Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的�
 
 新的 [buyer discovery journey 回归评估](DISCOVERY_JOURNEYS.md)在固定目录上覆盖 10 个手写场景、15 个结构化步骤；全部达到预期的澄清和目标选择。固定快照现含 657 条 AI 提议的同画面内部候选边，已核实跨区关系仍为 0，提议边不用于价格等价或报价合并。这是工程回归，不是自然语言理解或真实用户相关性测量。
 
+[买家问题证据门槛](BUYER_QUESTION_LAYER.md)新增内部 `buyer-question-plan`：针对精确卡片，区分同编号版本、已核实跨语言关系、AI 同画面线索，以及仍需实时报价或商品照片的问题。独立问题集的离线评测入口已准备，但当前尚无真实用户问题盲测成绩。
+
 新[真实 listing 盲测协议和工具](BLIND_LISTING_BENCHMARK.md)现可冻结独立采样框、目录和 matcher，把标题预测与双人复核分离，并对卡片、印刷版本和评级分别计数。当前没有来自新授权来源的盲测样本，因此没有真实市场匹配精度结论。
 
 [AI 优先复核](AI_FIRST_REVIEW.md)允许两家独立模型在同一商品及照片哈希上达成高置信一致后暂列可接受候选；分歧和证据不足升级给真人，另随机抽查 AI 一致通过项。当前只实现离线分流与抽查计数，尚未调用真实模型或放行真实 offer。
@@ -147,7 +149,7 @@ python3 -m pokemon_index --db demo.sqlite3 exploration-decision demo-exploration
 python3 -m pokemon_index --db demo.sqlite3 serve --port 8765
 ```
 
-端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。带 `--internal-catalog-api` 时另有 `/catalog-neighborhood?card_id=...` 和 `/listing-candidates?title=...`；后者只返回照片审核候选，绝不自动匹配报价。探索 session 的读写暂不开放 HTTP。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
+端点：`/health`、`/discover?q=...`、`/discovery?q=...`、`/units?card_id=...`、`/offers?card_id=...&destination=...&as_of=...`、`/recommend?unit_id=...&destination=...&as_of=...`、`/index?unit_id=...&date=YYYY-MM-DD`、`/seller-overlap?source=...&unit_ids=...`。带 `--internal-catalog-api` 时另有 `/catalog-neighborhood?card_id=...`、`/buyer-question-plan?question_type=...&card_id=...` 和 `/listing-candidates?title=...`；后者只返回照片审核候选，绝不自动匹配报价。探索 session 的读写暂不开放 HTTP。`/discovery` 仅做保守的规则化意图解析，无法确定时弃答；没有接入 LLM。服务默认只绑定 `127.0.0.1`，没有用户认证，不能直接公开部署。
 
 ## 输入契约
 
