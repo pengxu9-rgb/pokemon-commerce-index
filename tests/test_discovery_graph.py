@@ -161,9 +161,24 @@ class DiscoveryGraphTests(unittest.TestCase):
         found = discovery_graph.exploration_candidates(self.db, "cross", "anonymous-1")
         self.assertEqual(found["cards"][0]["card_id"], self.ja)
         self.assertEqual(found["cards"][0]["matched_via"], "verified_localization_counterpart")
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="cross", owner_key="anonymous-1", expected_version=1,
+            constraints={"set_code": "SV2a", "collector_number": "025/165"}))
+        narrowed = discovery_graph.exploration_decision(self.db, "cross", "anonymous-1")
+        self.assertEqual(narrowed["candidate_basis"], {"verified_localization_counterpart": 1})
+        self.assertEqual(narrowed["candidate_cards"][0]["card_id"], self.ja)
         discovery_graph.assert_relationships(self.db, [self.assertion("rejected", "reviewer-b")])
         self.assertEqual(discovery_graph.exploration_candidates(
             self.db, "cross", "anonymous-1")["total"], 0)
+
+    def test_empty_journey_asks_for_a_starting_clue(self):
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="empty", owner_key="owner", expected_version=0,
+            constraints={"language": "ja"}))
+        decision = discovery_graph.exploration_decision(self.db, "empty", "owner")
+        self.assertEqual(decision["candidate_count"], 0)
+        self.assertEqual(decision["candidate_basis"], {})
+        self.assertIn("Which card", decision["next_question"]["prompt"])
 
     def test_verified_counterpart_respects_explicit_character_and_artist(self):
         core.import_card_facets(self.db, [
@@ -234,6 +249,18 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertEqual({card["matched_via"] for card in found["cards"]}, {"same_character"})
         self.assertTrue(all(card["character_dex_id"] == 25 for card in found["cards"]))
         self.assertNotIn(zekrom, [card["card_id"] for card in found["cards"]])
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="language-choice", owner_key="user", expected_version=0,
+            constraints={"query": "Pikachu"}))
+        choice = discovery_graph.exploration_decision(self.db, "language-choice", "user")
+        self.assertEqual(choice["next_question"]["field"], "language")
+        self.assertEqual(choice["candidate_basis"]["same_character"], 2)
+        self.assertIn("not a verified", choice["candidate_basis_note"])
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="team-name", owner_key="user", expected_version=0,
+            constraints={"query": "Pikachu & Zekrom"}))
+        team = discovery_graph.exploration_decision(self.db, "team-name", "user")
+        self.assertNotIn("same_character", team["candidate_basis"])
         neighborhood = discovery_graph.card_neighborhood(self.db, self.ja)
         self.assertEqual(neighborhood["relationships"], [])
         self.assertGreaterEqual(neighborhood["metadata_neighbors"]["same_character"]["total"], 2)

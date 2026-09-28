@@ -1,6 +1,6 @@
 {
   "schema": "pokemon.catalog-build.v1",
-  "purpose": "private read-only catalog snapshot; no marketplace observations or reviewed cross-language edges",
+  "purpose": "private read-only catalog snapshot; internal AI artwork proposals, no verified cross-language edges or marketplace observations",
   "steps": [
     {
       "operation": "import-sets",
@@ -81,6 +81,11 @@
       "operation": "import-card-classifications",
       "path": "catalog/card-classifications.jsonl.gz",
       "sha256": "6c496a83997122ec458b957711c53bc4eda846887e29130c453f678ca5f20ad5"
+    },
+    {
+      "operation": "import-ai-artwork-proposals",
+      "path": "catalog/relationship-scale-v1-proposed-edges-v4.jsonl",
+      "sha256": "3fd17ee08c0c84f3e06412dfc6e6f31add57089207240d257f9c6516ee1aabb0"
     }
   ],
   "expected": {
@@ -91,6 +96,8 @@
     "reference_records": 24039,
     "identity_exceptions": 19,
     "number_conflict_rules": 2,
-    "relationship_assertions": 0
+    "relationship_assertions": 657,
+    "verified_relationships": 0,
+    "ai_artwork_proposals": 657
   }
 }

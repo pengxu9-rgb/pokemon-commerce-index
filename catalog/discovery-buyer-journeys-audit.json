@@ -1,0 +1,205 @@
+{
+  "schema": "pokemon.discovery-buyer-journeys.v1",
+  "journeys": 10,
+  "steps": 15,
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 1,
+      "utterance": "I want a Pikachu card.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 405,
+      "code": "narrow_candidates",
+      "next_field": "language",
+      "candidate_basis": {
+        "catalog_text": 277,
+        "same_character": 128
+      }
+    },
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 2,
+      "utterance": "In Japanese.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 128,
+      "code": "narrow_candidates",
+      "next_field": "set_code",
+      "candidate_basis": {
+        "same_character": 128
+      }
+    },
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 3,
+      "utterance": "From Pokémon 151.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 4,
+      "code": "narrow_candidates",
+      "next_field": "collector_number",
+      "candidate_basis": {
+        "same_character": 4
+      }
+    },
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 4,
+      "utterance": "The 025/165 card.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 3,
+      "code": "multiple_printings",
+      "next_field": "variant",
+      "candidate_basis": {
+        "same_character": 3
+      }
+    },
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 5,
+      "utterance": "Master Ball reverse.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 1,
+      "code": "confirm_target",
+      "next_field": "target_card_id",
+      "candidate_basis": {
+        "same_character": 1
+      }
+    },
+    {
+      "journey_id": "pikachu-language-to-masterball",
+      "step": 6,
+      "utterance": "Yes, that exact printing.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 1,
+      "code": "target_selected",
+      "next_field": null,
+      "candidate_basis": {
+        "same_character": 1
+      }
+    },
+    {
+      "journey_id": "japanese-secret-rare",
+      "step": 1,
+      "utterance": "Japanese Pikachu, SV2a 173/165.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 1,
+      "code": "confirm_target",
+      "next_field": "target_card_id",
+      "candidate_basis": {
+        "same_character": 1
+      }
+    },
+    {
+      "journey_id": "english-numbered-card",
+      "step": 1,
+      "utterance": "English Pikachu, 30TH 023/128.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 1,
+      "code": "confirm_target",
+      "next_field": "target_card_id",
+      "candidate_basis": {
+        "catalog_text": 1
+      }
+    },
+    {
+      "journey_id": "unverified-promo",
+      "step": 1,
+      "utterance": "Is Japanese SV-P 136/SV-P trackable?",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 1,
+      "code": "unverified_printing",
+      "next_field": "printing_evidence",
+      "candidate_basis": {
+        "catalog_text": 1
+      }
+    },
+    {
+      "journey_id": "prism-star-printing",
+      "step": 1,
+      "utterance": "Show Japanese Prism Star cards.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 15,
+      "code": "narrow_candidates",
+      "next_field": "set_code",
+      "candidate_basis": {
+        "catalog_text": 15
+      }
+    },
+    {
+      "journey_id": "artist-exploration",
+      "step": 1,
+      "utterance": "Show Japanese cards illustrated by Naoyo Kimura.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 99,
+      "code": "narrow_candidates",
+      "next_field": "set_code",
+      "candidate_basis": {
+        "catalog_text": 99
+      }
+    },
+    {
+      "journey_id": "budget-and-grade-are-preferences",
+      "step": 1,
+      "utterance": "Japanese Charizard, PSA 10, under ¥100,000 to Hong Kong.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 56,
+      "code": "narrow_candidates",
+      "next_field": "set_code",
+      "candidate_basis": {
+        "same_character": 56
+      }
+    },
+    {
+      "journey_id": "multi-character-name-is-not-a-single-character-alias",
+      "step": 1,
+      "utterance": "Pikachu & Zekrom card.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 6,
+      "code": "narrow_candidates",
+      "next_field": "set_code",
+      "candidate_basis": {
+        "catalog_text": 6
+      }
+    },
+    {
+      "journey_id": "no-clue-yet",
+      "step": 1,
+      "utterance": "I am just browsing in English.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 0,
+      "code": "no_matches",
+      "next_field": "query",
+      "candidate_basis": {}
+    },
+    {
+      "journey_id": "unknown-card-name",
+      "step": 1,
+      "utterance": "Find ImaginaryCardNameXYZ.",
+      "passed": true,
+      "errors": [],
+      "candidate_count": 0,
+      "code": "no_matches",
+      "next_field": "query",
+      "candidate_basis": {}
+    }
+  ],
+  "interpretation": "Hand-authored structured intent regression, not real-user relevance or natural-language parsing accuracy",
+  "catalog_db_sha256": "54c7b44f0d201d7be64eabfdc4bf700eb74ae5374758dd09eb919ddb8f60ae99",
+  "catalog_manifest_sha256": "346020b66ef5e0aa883333a0b01cb9425fa24d4258383efcfb9c8a25e3511e88",
+  "suite_sha256": "bf5748dc6ff3e310f4fc83c495e5fac4f3a708fe06291b4b213b929cfe1b8a6b"
+}

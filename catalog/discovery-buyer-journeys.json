@@ -1,0 +1,71 @@
+{
+  "schema": "pokemon.discovery-buyer-journeys.v1",
+  "scope": "Hand-authored structured interpretations of plausible buyer questions; not a natural-language parsing or real-user relevance benchmark",
+  "journeys": [
+    {
+      "id": "pikachu-language-to-masterball",
+      "steps": [
+        {"utterance": "I want a Pikachu card.", "constraints": {"query": "Pikachu"}, "expect": {"code": "narrow_candidates", "next_field": "language", "basis_contains": ["catalog_text", "same_character"], "min_candidates": 2}},
+        {"utterance": "In Japanese.", "constraints": {"language": "ja"}, "expect": {"code": "narrow_candidates", "next_field": "set_code", "basis_contains": ["same_character"], "basis_absent": ["verified_localization_counterpart"], "min_candidates": 2}},
+        {"utterance": "From Pokémon 151.", "constraints": {"set_code": "SV2A"}, "expect": {"code": "narrow_candidates", "next_field": "collector_number", "basis_contains": ["same_character"], "min_candidates": 2}},
+        {"utterance": "The 025/165 card.", "constraints": {"collector_number": "025/165"}, "expect": {"code": "multiple_printings", "next_field": "variant", "basis_contains": ["same_character"], "min_candidates": 2}},
+        {"utterance": "Master Ball reverse.", "constraints": {"variant": "reverse_masterball"}, "expect": {"code": "confirm_target", "next_field": "target_card_id", "required_card_id": "ja:SV2A:025/165:reverse_masterball", "min_candidates": 1, "max_candidates": 1}},
+        {"utterance": "Yes, that exact printing.", "target_card_id": "ja:SV2A:025/165:reverse_masterball", "expect": {"code": "target_selected", "next_field": null, "ready_for_offer_tracking": true}}
+      ]
+    },
+    {
+      "id": "japanese-secret-rare",
+      "steps": [
+        {"utterance": "Japanese Pikachu, SV2a 173/165.", "constraints": {"query": "Pikachu", "language": "ja", "set_code": "SV2A", "collector_number": "173/165"}, "expect": {"code": "confirm_target", "next_field": "target_card_id", "required_card_id": "ja:SV2A:173/165:holo", "min_candidates": 1, "max_candidates": 1}}
+      ]
+    },
+    {
+      "id": "english-numbered-card",
+      "steps": [
+        {"utterance": "English Pikachu, 30TH 023/128.", "constraints": {"language": "en", "set_code": "30TH", "collector_number": "023/128"}, "expect": {"code": "confirm_target", "next_field": "target_card_id", "required_card_id": "en:30TH:023/128:holo_30th_anniversary", "min_candidates": 1, "max_candidates": 1}}
+      ]
+    },
+    {
+      "id": "unverified-promo",
+      "steps": [
+        {"utterance": "Is Japanese SV-P 136/SV-P trackable?", "constraints": {"language": "ja", "set_code": "SV-P", "collector_number": "136/SV-P"}, "expect": {"code": "unverified_printing", "next_field": "printing_evidence", "ready_for_offer_tracking": false, "min_candidates": 1, "max_candidates": 1}}
+      ]
+    },
+    {
+      "id": "prism-star-printing",
+      "steps": [
+        {"utterance": "Show Japanese Prism Star cards.", "constraints": {"language": "ja", "printing_type": "prism_star"}, "expect": {"code": "narrow_candidates", "next_field": "set_code", "min_candidates": 10, "basis_contains": ["catalog_text"]}}
+      ]
+    },
+    {
+      "id": "artist-exploration",
+      "steps": [
+        {"utterance": "Show Japanese cards illustrated by Naoyo Kimura.", "constraints": {"language": "ja", "illustrator": "Naoyo Kimura"}, "expect": {"code": "narrow_candidates", "next_field": "set_code", "min_candidates": 20, "basis_contains": ["catalog_text"]}}
+      ]
+    },
+    {
+      "id": "budget-and-grade-are-preferences",
+      "steps": [
+        {"utterance": "Japanese Charizard, PSA 10, under ¥100,000 to Hong Kong.", "constraints": {"query": "Charizard", "language": "ja", "grade_company": "PSA", "grade_value": "10", "budget_minor": 100000, "currency": "JPY", "destination": "HK"}, "expect": {"code": "narrow_candidates", "next_field": "set_code", "basis_contains": ["same_character"], "min_candidates": 10, "pending_market_filters": ["grade_company", "grade_value", "budget_minor", "currency", "destination"]}}
+      ]
+    },
+    {
+      "id": "multi-character-name-is-not-a-single-character-alias",
+      "steps": [
+        {"utterance": "Pikachu & Zekrom card.", "constraints": {"query": "Pikachu & Zekrom"}, "expect": {"code": "narrow_candidates", "next_field": "set_code", "basis_contains": ["catalog_text"], "basis_absent": ["same_character"], "min_candidates": 2}}
+      ]
+    },
+    {
+      "id": "no-clue-yet",
+      "steps": [
+        {"utterance": "I am just browsing in English.", "constraints": {"language": "en"}, "expect": {"code": "no_matches", "next_field": "query", "max_candidates": 0, "next_prompt_contains": "Which card"}}
+      ]
+    },
+    {
+      "id": "unknown-card-name",
+      "steps": [
+        {"utterance": "Find ImaginaryCardNameXYZ.", "constraints": {"query": "ImaginaryCardNameXYZ"}, "expect": {"code": "no_matches", "next_field": "query", "max_candidates": 0}}
+      ]
+    }
+  ]
+}

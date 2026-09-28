@@ -451,7 +451,8 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                                  ("query", "set_code", "collector_number", "printing_type",
                                   "dex_id", "illustrator")):
         return {"session_id": session_id, "cards": [], "total": 0,
-                "facets": {}, "reason": "add a card name, set code, collector number or shortlist"}
+                "facets": {}, "basis_counts": {},
+                "reason": "add a card name, set code, collector number or shortlist"}
     rows = db.execute(
         """SELECT c.card_id, c.language, c.set_code, c.collector_number, c.variant,
         c.name, c.rarity, c.match_eligible, c.display_allowed, e.official_printing_type
@@ -499,7 +500,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                      for term in terms)]
     # A reviewed JP↔EN edge can resolve a name in one language to a printing in
     # the requested language. No name/number coincidence creates such an edge.
-    if terms and filters.get("language") and not filters.get("set_code"):
+    if terms and filters.get("language"):
         seen = {card["card_id"] for card in found}
         for edge in db.execute(
             """SELECT a.*, l.name AS left_name, l.language AS left_language,
@@ -578,6 +579,59 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                                     "source_provenance": source["provenance"],
                                     "target_provenance": target["facet_provenance"]}})
                 seen.add(target["card_id"])
+    # If the user's name is in one language and no language was chosen, show
+    # separately labelled same-character leads from the other language. This
+    # asks for language before set, without pretending the printings match.
+    if (terms and not filters.get("language") and not filters.get("set_code")
+            and not filters.get("collector_number") and not filters.get("variant") and found):
+        source_languages = {card["language"] for card in found}
+        if len(source_languages) == 1:
+            source_language = next(iter(source_languages))
+            alias_ids = {}
+            for source in found:
+                facets_for_source = db.execute(
+                    """SELECT value, provenance FROM card_facet
+                    WHERE card_id=? AND facet_type='dex_id'""",
+                    (source["card_id"],),
+                ).fetchall()
+                if len(facets_for_source) != 1:
+                    continue
+                facet = facets_for_source[0]
+                alias_ids.setdefault(facet["value"], {
+                    "card_id": source["card_id"], "provenance": facet["provenance"]})
+                if len(alias_ids) > 3:
+                    break
+            if 0 < len(alias_ids) <= 3:
+                seen = {card["card_id"] for card in found}
+                for target in db.execute(
+                    """SELECT c.card_id, c.language, c.set_code, c.collector_number,
+                    c.variant, c.name, c.rarity, c.match_eligible, c.display_allowed,
+                    e.official_printing_type, f.value AS dex_id,
+                    f.provenance AS facet_provenance
+                    FROM card c JOIN card_facet f ON f.card_id=c.card_id
+                    LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
+                    WHERE c.language<>? AND f.facet_type='dex_id'
+                    ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
+                    (source_language,),
+                ):
+                    if target["dex_id"] not in alias_ids or target["card_id"] in seen:
+                        continue
+                    if shortlist and target["card_id"] not in shortlist:
+                        continue
+                    if not identity_allowed(target):
+                        continue
+                    source = alias_ids[target["dex_id"]]
+                    found.append({key: target[key] for key in
+                                  ("card_id", "language", "set_code", "collector_number",
+                                   "variant", "official_printing_type", "name", "rarity",
+                                   "match_eligible", "display_allowed")}
+                                 | {"matched_via": "same_character",
+                                    "character_dex_id": int(target["dex_id"]),
+                                    "character_evidence": {
+                                        "source_card_id": source["card_id"],
+                                        "source_provenance": source["provenance"],
+                                        "target_provenance": target["facet_provenance"]}})
+                    seen.add(target["card_id"])
     facets = {}
     for field in ("language", "set_code", "collector_number", "variant", "official_printing_type"):
         counts = Counter(str(card[field]) for card in found)
@@ -585,6 +639,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                          "values": [value for value, _ in counts.most_common(12)]}
     return {"session_id": session_id, "cards": found[:limit], "total": len(found),
             "facets": facets,
+            "basis_counts": dict(sorted(Counter(card["matched_via"] for card in found).items())),
             "scope": "internal metadata; candidate is not an offer or verified counterpart"}
 
 
@@ -606,6 +661,12 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
         "market_filter_note": "budget, grade and destination are saved but cannot filter cards or offers until authorized offer data exists",
         "scope": "internal catalog discovery; no live offers, market price or purchase recommendation",
     }
+    basis = candidates["basis_counts"]
+    decision["candidate_basis"] = basis
+    decision["candidate_basis_note"] = (
+        "same_character is a search lead, not a verified artwork or printing counterpart"
+        if basis.get("same_character") else
+        "catalog text and verified card-specific relationships are reported separately")
     if state["status"] == "paused":
         decision.update(code="paused", next_question={"field": "status", "prompt": "Resume this exploration?"})
     elif state["target_card_id"]:
@@ -615,8 +676,12 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
         else:
             decision.update(code="target_selected", next_question=None)
     elif not candidates["total"]:
+        has_clue = any(state["constraints"].get(field) for field in
+                       ("query", "set_code", "collector_number", "printing_type",
+                        "dex_id", "illustrator")) or bool(state["shortlist_card_ids"])
         decision.update(code="no_matches", next_question={
-            "field": "query", "prompt": "Try a different card name, set or collector number."})
+            "field": "query", "prompt": ("Try another card name, set or collector number."
+                                      if has_clue else "Which card, character or set interests you?")})
     elif candidates["total"] == 1:
         card = candidates["cards"][0]
         if card["match_eligible"]:
@@ -630,9 +695,13 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
         facets = candidates["facets"]
         field = next((name for name in ("language", "set_code", "collector_number", "variant")
                       if facets[name]["distinct_count"] > 1), None)
+        prompts = {"language": "Which card language do you prefer?",
+                   "set_code": "Which set or release do you mean?",
+                   "collector_number": "What collector number is printed on the card?",
+                   "variant": "Which printing or foil finish do you want?"}
         decision.update(
             code="multiple_printings" if field == "variant" else "narrow_candidates",
-            next_question={"field": field, "prompt": f"Which {field} do you mean?",
+            next_question={"field": field, "prompt": prompts[field],
                            "options": facets[field]["values"]} if field else {
                                "field": "target_card_id", "prompt": "Which exact card do you mean?",
                                "options": [card["card_id"] for card in candidates["cards"]]},

@@ -10,8 +10,18 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from pokemon_index import core, number_conflicts
+from pokemon_index import core, discovery_graph, number_conflicts
 from pokemon_index.cli import read_jsonl
+
+def import_ai_artwork_proposals(db, rows) -> int:
+    proposals = list(rows)
+    if any(row.get("relation_type") != "same_artwork" or
+           row.get("review_status") != "proposed" or
+           row.get("asserted_by") != "ai-artwork-review-v1"
+           for row in proposals):
+        raise ValueError("catalog artwork imports must remain AI proposals")
+    return discovery_graph.assert_relationships(db, proposals)
+
 
 OPERATIONS = {
     "import-sets": core.import_sets,
@@ -21,6 +31,7 @@ OPERATIONS = {
     "import-card-references": core.import_card_references,
     "import-card-facets": core.import_card_facets,
     "import-card-classifications": core.import_card_classifications,
+    "import-ai-artwork-proposals": import_ai_artwork_proposals,
 }
 
 
@@ -69,7 +80,13 @@ def build(manifest_path: Path, output: Path) -> dict:
                       "number_conflict_rules": db.execute(
                           "SELECT COUNT(*) FROM card_number_conflict_rule").fetchone()[0],
                       "relationship_assertions": db.execute(
-                          "SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0]}
+                          "SELECT COUNT(*) FROM card_relationship_assertion").fetchone()[0],
+                      "verified_relationships": db.execute(
+                          "SELECT COUNT(*) FROM card_relationship_assertion WHERE review_status='verified'").fetchone()[0],
+                      "ai_artwork_proposals": db.execute(
+                          """SELECT COUNT(*) FROM card_relationship_assertion
+                          WHERE relation_type='same_artwork' AND review_status='proposed'
+                          AND asserted_by='ai-artwork-review-v1'""").fetchone()[0]}
             if actual != manifest.get("expected"):
                 raise ValueError(f"catalog build counts differ: {actual}")
         os.replace(temporary, output)
