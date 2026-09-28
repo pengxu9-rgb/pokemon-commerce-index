@@ -63,6 +63,8 @@ def init_db(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE source_policy ADD COLUMN media_ai_allowed INTEGER NOT NULL DEFAULT 0")
     if "cross_region_use_allowed" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN cross_region_use_allowed INTEGER NOT NULL DEFAULT 0")
+    if "partner_handoff_allowed" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN partner_handoff_allowed INTEGER NOT NULL DEFAULT 0")
     if "photo_resolution_required" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN photo_resolution_required INTEGER NOT NULL DEFAULT 0")
     db.execute("UPDATE source_policy SET photo_resolution_required=1 WHERE source='ebay_us'")
@@ -151,14 +153,15 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         (source, rights_reference, ingest_allowed, display_allowed,
          cross_source_use_allowed, seller_analytics_allowed, retention_days,
          listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed,
-         photo_resolution_required)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         photo_resolution_required, partner_handoff_allowed)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(source) DO UPDATE SET rights_reference=excluded.rights_reference,
         ingest_allowed=excluded.ingest_allowed, display_allowed=excluded.display_allowed,
         cross_source_use_allowed=excluded.cross_source_use_allowed,
         seller_analytics_allowed=excluded.seller_analytics_allowed,
         media_ai_allowed=excluded.media_ai_allowed,
         cross_region_use_allowed=excluded.cross_region_use_allowed,
+        partner_handoff_allowed=excluded.partner_handoff_allowed,
         photo_resolution_required=excluded.photo_resolution_required,
         retention_days=excluded.retention_days, listing_ttl_hours=excluded.listing_ttl_hours,
         expires_at=excluded.expires_at""",
@@ -168,7 +171,8 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
          int(row.get("listing_ttl_hours", 6)), row.get("expires_at"),
          int(bool(row.get("media_ai_allowed", False))),
          int(bool(row.get("cross_region_use_allowed", False))),
-         int(row["source"] == "ebay_us" or bool(row.get("photo_resolution_required", False)))),
+         int(row["source"] == "ebay_us" or bool(row.get("photo_resolution_required", False))),
+         int(bool(row.get("partner_handoff_allowed", False)))),
     )
     db.commit()
 

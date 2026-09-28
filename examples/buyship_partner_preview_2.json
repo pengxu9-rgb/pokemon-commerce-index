@@ -1,0 +1,39 @@
+{
+  "resolve": {
+    "merchant": {"country": "JP", "domain": "example.invalid"},
+    "product": {"name": "Synthetic Pikachu card, second listing", "images": []},
+    "reference_id": "fixture-reference-2",
+    "url": "https://example.invalid/demo-3",
+    "variants": [{
+      "availability": "in_stock",
+      "options": {},
+      "price": {"currency": "JPY", "subunit_amount": 400000},
+      "variant_key": "fixture-variant-2"
+    }]
+  },
+  "quote": {
+    "currency": "HKD",
+    "destination": {"country": "HK"},
+    "expires_at": "2026-09-22T09:20:00Z",
+    "items": [{
+      "item_total": {"currency": "HKD", "subunit_amount": 22000},
+      "merchant": "Synthetic merchant",
+      "name": "Synthetic Pikachu card, second listing",
+      "quantity": 1,
+      "reference_id": "fixture-reference-2",
+      "unit_price": {"currency": "HKD", "subunit_amount": 22000},
+      "variant_key": "fixture-variant-2",
+      "variant_options": {}
+    }],
+    "quote_id": "fixture-quote-2",
+    "status": "OPEN",
+    "totals": {
+      "bns_service_fee": {"currency": "HKD", "subunit_amount": 1320},
+      "duties": {"currency": "HKD", "subunit_amount": 0},
+      "grand_total": {"currency": "HKD", "subunit_amount": 25120},
+      "international_shipping": {"currency": "HKD", "subunit_amount": 1800},
+      "items": {"currency": "HKD", "subunit_amount": 22000},
+      "local_shipping": {"currency": "HKD", "subunit_amount": 0}
+    }
+  }
+}

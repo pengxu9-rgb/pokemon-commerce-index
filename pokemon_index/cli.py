@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, buyship_partner, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
 
 
 def read_jsonl(path: str):
@@ -207,6 +207,21 @@ def main() -> None:
     export.add_argument("card_id")
     export.add_argument("--destination", required=True)
     export.add_argument("--as-of")
+    partner_preview = sub.add_parser("preview-buyship-fixture",
+                                     help="offline URL-to-quote preview; never creates an order")
+    partner_preview.add_argument("fixture", help="JSON with resolve and quote responses")
+    partner_preview.add_argument("card_id")
+    partner_preview.add_argument("unit_id")
+    partner_preview.add_argument("source")
+    partner_preview.add_argument("native_id")
+    partner_preview.add_argument("--destination", required=True, choices=("US", "HK"))
+    partner_preview.add_argument("--state", help="required for US destinations")
+    partner_preview.add_argument("--currency")
+    partner_preview.add_argument("--variant-key")
+    partner_preview.add_argument("--as-of", help="UTC time for a reproducible fixture preview")
+    partner_shortlist = sub.add_parser("preview-buyship-shortlist",
+                                       help="offline exact-unit quote ranking; never creates an order")
+    partner_shortlist.add_argument("file", help="JSON shortlist with fixture paths")
     catalog = sub.add_parser("adapt-tcgdex-set", help="normalize one reviewed Japanese set JSON")
     catalog.add_argument("file")
     catalog.add_argument("--rights-reference", required=True)
@@ -386,6 +401,32 @@ def main() -> None:
                           category_id=args.category_id)]}
         elif args.command == "export-pivota":
             output = pivota.export_card(db, args.card_id, args.destination, args.as_of)
+        elif args.command == "preview-buyship-fixture":
+            fixture = json.loads(Path(args.fixture).read_text(encoding="utf-8"))
+            destination = {"country": args.destination}
+            if args.state:
+                destination["state"] = args.state
+            output = buyship_partner.preview_quote(
+                db, card_id=args.card_id, unit_id=args.unit_id,
+                source=args.source, native_id=args.native_id,
+                destination=destination,
+                client=buyship_partner.FixturePartnerClient(fixture),
+                now=args.as_of, variant_key=args.variant_key, currency=args.currency)
+        elif args.command == "preview-buyship-shortlist":
+            shortlist_path = Path(args.file)
+            shortlist = json.loads(shortlist_path.read_text(encoding="utf-8"))
+            previews = []
+            for candidate in shortlist["candidates"]:
+                fixture_path = shortlist_path.parent / candidate["fixture"]
+                fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
+                previews.append(buyship_partner.preview_quote(
+                    db, card_id=shortlist["card_id"], unit_id=shortlist["unit_id"],
+                    source=candidate["source"], native_id=candidate["native_id"],
+                    destination=shortlist["destination"],
+                    client=buyship_partner.FixturePartnerClient(fixture),
+                    now=shortlist["as_of"], variant_key=candidate.get("variant_key"),
+                    currency=shortlist.get("currency")))
+            output = buyship_partner.rank_quote_previews(previews, now=shortlist["as_of"])
         elif args.command == "discover":
             output = {"cards": core.discover(db, args.query)}
         elif args.command == "discovery":

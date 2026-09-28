@@ -1,0 +1,11 @@
+{
+  "card_id": "ja:SV2A:173/165:standard",
+  "unit_id": "ja:SV2A:173/165:standard|RAW|raw|a",
+  "destination": {"country": "HK"},
+  "currency": "HKD",
+  "as_of": "2026-09-22T09:05:00Z",
+  "candidates": [
+    {"source": "licensed_fixture", "native_id": "demo-2", "fixture": "buyship_partner_preview.json"},
+    {"source": "licensed_fixture", "native_id": "demo-3", "fixture": "buyship_partner_preview_2.json"}
+  ]
+}
