@@ -32,7 +32,7 @@ API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONT
 - 当前到手价推荐是 `price_only`：只比较**相同可计价单元**、相同目的地和同一币种的未过期完整报价。价格组件由上游报价方提供；本项目不会猜测运费、税费或汇率。商品实际品相的证据评估与综合推荐尚未接通。
 - 卖家库存重合度仅在来源明确允许 seller analytics 时计算；不生成可信卖家评分。
 - 校准报告：从授权的卖家真值样本计算发现前售出覆盖率、Wilson 区间和漏掉/捕获 listing 的价格比。
-- 来源级保留期限、listing 新鲜度和跨来源使用开关。默认不允许跨来源混合展示或卖家画像。
+- 来源级保留期限、listing 新鲜度、独立的价格统计许可和跨来源使用开关。默认不允许计算来源价格指数、跨来源混合展示或卖家画像；单条商品可展示不代表允许统计。
 - 卡片目录逐条记录 `rights_reference` 和是否准许展示。旧数据库经 `init` 升级后，原有卡片默认不可展示，须重新导入并确认权利。
 - Buy&Ship Mercari 旧网关响应适配器、至多三次只读请求的 Gate 0 探针，以及 Pivota 候选商品交接契约。它们未连接真实生产数据。
 - 对要求照片复核的 API 来源，商品必须有两家独立 AI 对正反面、卡片身份、印刷工艺和裸卡品相的一致证据，才能把**单次商品快照**关联到可计价单元。后续商品快照重新锁定；普通人工改判入口不能绕过。eBay 默认强制此门槛，其来源权限目前仍全部关闭。
@@ -151,7 +151,7 @@ python3 -m pokemon_index --db demo.sqlite3 serve --port 8765
 
 | 文件 | 关键字段 |
 | --- | --- |
-| Source policy | `source`, `rights_reference`, `ingest_allowed`, `display_allowed`, `cross_source_use_allowed`, `seller_analytics_allowed`, `media_ai_allowed`, `cross_region_use_allowed`, `retention_days`, `listing_ttl_hours`, 可选 `expires_at` |
+| Source policy | `source`, `rights_reference`, `ingest_allowed`, `display_allowed`, `price_statistics_allowed`, `cross_source_use_allowed`, `seller_analytics_allowed`, `media_ai_allowed`, `cross_region_use_allowed`, `retention_days`, `listing_ttl_hours`, 可选 `expires_at` |
 | Card | `language`, `set_code`, `collector_number`, `name`, `provenance`, `rights_reference`, `display_allowed`；可选 `variant`, `rarity`, `match_eligible`, `attributes`。未明确允许展示时填 `false`；版本未经核实时 `match_eligible=false` |
 | Set metadata | `set_code`, `official_card_count`, `provenance`, `rights_reference`；可选 `name_ja`, `release_date_ja`, `display_allowed` |
 | Card reference | `source`, `source_jp_id`, `name`, `provenance`, `rights_reference`；可选 `set_code`, `collector_number`, `rarity`, `attributes`, `display_allowed`；仅供内部查证，不进入自动匹配 |

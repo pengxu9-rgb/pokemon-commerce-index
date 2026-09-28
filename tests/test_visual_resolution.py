@@ -15,6 +15,7 @@ class VisualResolutionTests(unittest.TestCase):
         core.register_source(self.db, {
             "source": "ebay_us", "rights_reference": "synthetic fixture",
             "ingest_allowed": True, "display_allowed": True,
+            "price_statistics_allowed": True,
             "media_ai_allowed": True, "photo_resolution_required": False,
             "retention_days": 1, "listing_ttl_hours": 6,
         })

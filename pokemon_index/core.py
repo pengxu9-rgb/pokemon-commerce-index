@@ -59,6 +59,8 @@ def connect(path: str | Path) -> sqlite3.Connection:
 def init_db(db: sqlite3.Connection) -> None:
     db.executescript(Path(__file__).with_name("schema.sql").read_text())
     policy_columns = {row[1] for row in db.execute("PRAGMA table_info(source_policy)")}
+    if "price_statistics_allowed" not in policy_columns:
+        db.execute("ALTER TABLE source_policy ADD COLUMN price_statistics_allowed INTEGER NOT NULL DEFAULT 0")
     if "media_ai_allowed" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN media_ai_allowed INTEGER NOT NULL DEFAULT 0")
     if "cross_region_use_allowed" not in policy_columns:
@@ -152,13 +154,14 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         parse_time(row["expires_at"])
     db.execute(
         """INSERT INTO source_policy
-        (source, rights_reference, ingest_allowed, display_allowed,
+        (source, rights_reference, ingest_allowed, display_allowed, price_statistics_allowed,
          cross_source_use_allowed, seller_analytics_allowed, retention_days,
          listing_ttl_hours, expires_at, media_ai_allowed, cross_region_use_allowed,
          photo_resolution_required, partner_handoff_allowed, partner_quote_store_allowed)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(source) DO UPDATE SET rights_reference=excluded.rights_reference,
         ingest_allowed=excluded.ingest_allowed, display_allowed=excluded.display_allowed,
+        price_statistics_allowed=excluded.price_statistics_allowed,
         cross_source_use_allowed=excluded.cross_source_use_allowed,
         seller_analytics_allowed=excluded.seller_analytics_allowed,
         media_ai_allowed=excluded.media_ai_allowed,
@@ -169,7 +172,9 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
         retention_days=excluded.retention_days, listing_ttl_hours=excluded.listing_ttl_hours,
         expires_at=excluded.expires_at""",
         (row["source"], row["rights_reference"], int(bool(row.get("ingest_allowed", False))),
-         int(bool(row.get("display_allowed", False))), int(bool(row.get("cross_source_use_allowed", False))),
+         int(bool(row.get("display_allowed", False))),
+         int(bool(row.get("price_statistics_allowed", False))),
+         int(bool(row.get("cross_source_use_allowed", False))),
          int(bool(row.get("seller_analytics_allowed", False))), int(row["retention_days"]),
          int(row.get("listing_ttl_hours", 6)), row.get("expires_at"),
          int(bool(row.get("media_ai_allowed", False))),
@@ -1249,6 +1254,8 @@ def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str,
         if not _displayable(db, listing["source"]):
             continue
         policy = _policy(db, listing["source"], display=True)
+        if not policy["price_statistics_allowed"]:
+            continue
         history = db.execute("""SELECT * FROM observation
             WHERE source=? AND native_id=? AND observed_at<=?
             ORDER BY observed_at""", (listing["source"], listing["native_id"],

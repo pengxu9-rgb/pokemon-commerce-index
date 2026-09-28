@@ -42,4 +42,4 @@ python3 -m pokemon_index adapt-ebay-browse response.json \
 
 The adapter does not imply permission to import. Register an `ebay_us` source policy with the agreed rights scope first, then import. Search results are not treated as complete inventory and nonappearance never creates a sale event.
 
-[`examples/ebay_source_policy_pending.jsonl`](examples/ebay_source_policy_pending.jsonl) is the safe default: ingest, display, cross-source statistics and media AI are all disabled. Replace it only with the exact rights granted in writing and the resulting retention period. The current adapter and pilot cohort can be verified with synthetic fixtures while access is pending.
+[`examples/ebay_source_policy_pending.jsonl`](examples/ebay_source_policy_pending.jsonl) is the safe default: ingest, display, price statistics, cross-source use and media AI are all disabled. Replace it only with the exact rights granted in writing and the resulting retention period. The current adapter and pilot cohort can be verified with synthetic fixtures while access is pending.

@@ -11,7 +11,8 @@ class IndexTests(unittest.TestCase):
         core.init_db(self.db)
         core.register_source(self.db, {
             "source": "fixture", "rights_reference": "synthetic test data",
-            "ingest_allowed": True, "display_allowed": True, "retention_days": 365,
+            "ingest_allowed": True, "display_allowed": True,
+            "price_statistics_allowed": True, "retention_days": 365,
             "listing_ttl_hours": 24,
         })
         core.import_cards(self.db, [{
@@ -277,6 +278,23 @@ class IndexTests(unittest.TestCase):
         core.register_source(self.db, {"source": "fixture", "rights_reference": "synthetic test data",
                                        "ingest_allowed": True, "display_allowed": False, "retention_days": 365})
         self.assertEqual(core.offers(self.db, "ja:SV2A:173/165:standard"), [])
+
+    def test_price_statistics_need_separate_source_permission(self):
+        core.import_observations(self.db, [self.observation(
+            "a", "ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")])
+        unit = core.units_for_card(self.db, "ja:SV2A:173/165:standard")[0]["unit_id"]
+        self.assertEqual(core.index_for_unit(self.db, unit, "2026-09-22")
+                         ["series"]["ask"]["JPY"]["n"], 1)
+        core.register_source(self.db, {
+            "source": "fixture", "rights_reference": "synthetic display only",
+            "ingest_allowed": True, "display_allowed": True,
+            "price_statistics_allowed": False, "retention_days": 365,
+            "listing_ttl_hours": 24,
+        })
+        self.assertEqual(len(core.offers(self.db, "ja:SV2A:173/165:standard",
+                                         now="2026-09-22T09:30:00Z")), 1)
+        self.assertEqual(core.index_for_unit(self.db, unit, "2026-09-22")
+                         ["series"]["ask"], {})
 
     def test_calibration_uses_discovery_lane_and_reports_uncertainty(self):
         core.import_observations(self.db, [
