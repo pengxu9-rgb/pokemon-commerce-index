@@ -1,6 +1,6 @@
 # Google Cloud staging deployment
 
-The catalog API is packaged for a **private Cloud Run service** in `pivota-staging`, region `us-west1`. The image builds its SQLite catalog from the pinned JSONL inputs and a compressed, provenance-checked character/artist facet snapshot, then runs as a non-root user. It contains no marketplace credentials or live prices. The service exposes internal catalog routes only when started with `--internal-catalog-api`; Cloud Run IAM must remain enabled.
+The catalog API is packaged for a **private Cloud Run service** in `pivota-staging`, region `us-west1`. The image and local rebuild now use [`catalog-build-manifest.json`](catalog-build-manifest.json): 16 ordered, SHA-256 checked inputs with asserted output counts (55,167 internal identities; 33,543 match eligible; 19 identity exceptions; two denominator-conflict rules; zero public-display approvals). The image runs as a non-root user and contains no marketplace credentials or live prices. The service exposes internal catalog routes only when started with `--internal-catalog-api`; Cloud Run IAM must remain enabled.
 
 Deploy from the repository root:
 

@@ -3,27 +3,11 @@ FROM python:3.12-slim AS catalog-build
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 COPY pokemon_index /app/pokemon_index
-COPY catalog/ja-all-sets.jsonl catalog/ja-all-available.jsonl \
-     catalog/en-physical-sets.jsonl catalog/en-physical-cards.jsonl \
-     catalog/en-physical-ambiguous.jsonl \
-     catalog/en-api-sets.jsonl catalog/en-api-candidates.jsonl \
-     catalog/ptcg-jp-candidates.jsonl catalog/ptcg-jp-multi-record-candidates.jsonl \
-     catalog/ptcg-jp-reference.jsonl \
-     catalog/tcgdex-ambiguous-candidates.jsonl \
-     catalog/card-facets.jsonl.gz /app/catalog/
-RUN python -m pokemon_index --db /app/catalog.sqlite3 init \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/ja-all-sets.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/en-physical-sets.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-sets /app/catalog/en-api-sets.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ja-all-available.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/en-physical-cards.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/en-physical-ambiguous.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/en-api-candidates.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ptcg-jp-candidates.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/ptcg-jp-multi-record-candidates.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-cards /app/catalog/tcgdex-ambiguous-candidates.jsonl \
- && python -m pokemon_index --db /app/catalog.sqlite3 import-card-references /app/catalog/ptcg-jp-reference.jsonl
-RUN python -m pokemon_index --db /app/catalog.sqlite3 import-card-facets /app/catalog/card-facets.jsonl.gz
+COPY scripts/__init__.py scripts/build_catalog_snapshot.py /app/scripts/
+COPY catalog-build-manifest.json /app/catalog-build-manifest.json
+COPY catalog /app/catalog
+RUN python -m scripts.build_catalog_snapshot \
+    --manifest /app/catalog-build-manifest.json --db /app/catalog.sqlite3
 
 FROM python:3.12-slim
 WORKDIR /app

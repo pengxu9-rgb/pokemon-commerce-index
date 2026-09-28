@@ -154,7 +154,7 @@ def visual_gate(db: sqlite3.Connection, source: str, native_id: str,
         by_family.setdefault(row["model_family"], row)
     if len(by_family) < 2:
         return {"status": "need_independent_ai", "review_families": sorted(by_family),
-                "reason": "two distinct model families are required"}
+                "reason": "two operator-attested distinct model families are required"}
     reviews = list(by_family.values())
     identity = {r["identity_decision"] for r in reviews}
     finish = {r["finish_decision"] for r in reviews}
@@ -178,12 +178,12 @@ def visual_gate(db: sqlite3.Connection, source: str, native_id: str,
             "condition_bucket": conditions.pop(), "review_families": sorted(by_family),
             "image_hashes": {"front": media["front_sha256"], "back": media["back_sha256"]},
             "review_ids": sorted(r["review_id"] for r in reviews),
-            "scope": "AI-assisted raw condition bucket; no grader score or authenticity claim"}
+            "scope": "operator-attested AI reviews of raw condition; provider calls are not independently verified here; no grader score or authenticity claim"}
 
 
 def approve_visual_resolution(db: sqlite3.Connection, source: str, native_id: str,
                               observed_at: str, card_id: str) -> dict[str, Any]:
-    """Bind one current raw-card ask to two independent photo reviews.
+    """Bind one current raw-card ask to two operator-attested photo reviews.
 
     Every new listing observation must pass the gate again. This is a machine
     evidence decision, not a human attestation or an authenticity judgement.
@@ -237,7 +237,7 @@ def approve_visual_resolution(db: sqlite3.Connection, source: str, native_id: st
             (source,native_id,unit_id,method,rule_version,resolved_at,reason)
             VALUES (?,?,?,'explicit','visual-consensus-v1',?,?)""",
             (source, native_id, unit_id, approved_at,
-             "two independent model families agreed on identity, finish and raw condition"))
+             "two operator-attested model families agreed on identity, finish and raw condition"))
     return {"status": "approved", "unit_id": unit_id, "observed_at": at,
             "review_ids": gate["review_ids"],
             "scope": "one listing snapshot; current ask only"}
@@ -249,7 +249,7 @@ def _latest_artwork_edge(db: sqlite3.Connection, ja_card_id: str,
     return db.execute(
         """SELECT * FROM card_relationship_assertion
         WHERE left_card_id=? AND right_card_id=? AND relation_type='same_artwork'
-        ORDER BY rowid DESC LIMIT 1""", (left, right)).fetchone()
+        ORDER BY asserted_at DESC, rowid DESC LIMIT 1""", (left, right)).fetchone()
 
 
 def _relationship_context(edge: sqlite3.Row) -> dict[str, Any]:
@@ -261,6 +261,9 @@ def _relationship_context(edge: sqlite3.Row) -> dict[str, Any]:
             reviewers = evidence.get("reviewers") if isinstance(evidence, dict) else None
             if isinstance(reviewers, list):
                 count = len(reviewers)
+            elif (isinstance(evidence, dict) and isinstance(evidence.get("first_review"), dict)
+                  and isinstance(evidence.get("second_review"), dict)):
+                count = 2
         except (TypeError, ValueError):
             pass
     return {"relationship_status": edge["review_status"],
@@ -274,15 +277,7 @@ def _relationship_context(edge: sqlite3.Row) -> dict[str, Any]:
 
 
 def _quote_ready(offer: dict[str, Any]) -> bool:
-    quote = offer.get("quote")
-    if not quote or offer["current_price_minor"] is None:
-        return False
-    assumptions = quote["assumptions"]
-    return (type(assumptions.get("source_price_minor")) is int
-            and assumptions["source_price_minor"] == offer["current_price_minor"]
-            and assumptions.get("source_currency") == offer["currency"]
-            and all(isinstance(assumptions.get(key), str) and assumptions[key].strip()
-                    for key in ("fx_rate_ref", "fee_schedule_ref", "tax_basis")))
+    return core.quote_matches_current_offer(offer)
 
 
 def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str,
@@ -302,6 +297,9 @@ def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str
     if edge["review_status"] == "proposed" and edge["asserted_by"] != "ai-artwork-review-v1":
         return {"status": "blocked", "reason": "same-artwork proposal lacks AI image audit"}
     relation = _relationship_context(edge)
+    if edge["review_status"] != "verified":
+        return {"status": "blocked", "reason": "numeric cross-region spread requires a verified artwork relation",
+                **relation}
     instant = core.parse_time(now or core.utcnow()).isoformat()
     sides = {}
     for language, card_id in (("ja", ja_card_id), ("en", en_card_id)):

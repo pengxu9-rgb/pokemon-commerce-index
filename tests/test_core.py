@@ -31,7 +31,7 @@ class IndexTests(unittest.TestCase):
 
     def test_grade_and_condition_are_separate_units(self):
         core.import_observations(self.db, [
-            self.observation("a", "PSA10 ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z"),
+            self.observation("a", "PSA10 鑑定品 ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z"),
             self.observation("b", "ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z", condition_bucket="A"),
         ])
         units = core.units_for_card(self.db, "ja:SV2A:173/165:standard")
@@ -46,15 +46,40 @@ class IndexTests(unittest.TestCase):
 
     def test_title_matching_requires_set_and_handles_japanese_order_and_grade_claims(self):
         expected = "ja:SV2A:173/165:standard"
-        unit, _ = core.resolve(self.db, {"title": "【PSA10】ピカチュウ SV2a 拡張パック 173/165"})
+        unit, _ = core.resolve(self.db, {"title": "【PSA10】鑑定品 ピカチュウ SV2a 拡張パック 173/165"})
         self.assertEqual(unit.split("|")[:3], [expected, "PSA", "10"])
         self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ 173/165"})[0])
-        claimed, _ = core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 PSA9レベル？"})
-        self.assertEqual(claimed.split("|")[1:3], ["RAW", "raw"])
+        self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 PSA9レベル？"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 2枚セット"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "中国語 ピカチュウ SV2a 173/165"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "ピカチュウ SV2a 173/165 マスターボールミラー"})[0])
         self.assertIsNone(core.resolve(self.db, {"title": "リザードン SV2a 173/165"})[0])
+
+    def test_grade_claims_and_special_grades_fail_closed(self):
+        base = "ピカチュウ SV2a 173/165"
+        unsafe = ("PSA10狙える", "psa10候補", "PSA 10 目指せ",
+                  "元PSA10 ケースから出しました", "PSA9 PSA10 まとめ",
+                  "ARS10+ 鑑定品", "BGS 9.5 ブラックラベル 鑑定品",
+                  "PSA10")
+        for prefix in unsafe:
+            with self.subTest(prefix=prefix):
+                self.assertIsNone(core.resolve(self.db, {"title": prefix + " " + base})[0])
+        self.assertEqual(core.resolve(self.db, {
+            "title": "PSA10 鑑定品 " + base})[0].split("|")[1:3], ["PSA", "10"])
+
+    def test_vintage_edition_requires_decisive_marker(self):
+        cards = [{"language": "ja", "set_code": "E2", "collector_number": "009/092",
+                  "variant": variant, "name": "アリアドス", "provenance": "fixture",
+                  "rights_reference": "fixture", "display_allowed": True}
+                 for variant in ("holo_1st_edition", "holo_unlimited")]
+        core.import_cards(self.db, cards)
+        base = "アリアドス E2 009/092 ホロ"
+        self.assertIsNone(core.resolve(self.db, {"title": base})[0])
+        self.assertEqual(core.resolve(self.db, {"title": base + " 1st edition"})[0].split("|")[0],
+                         "ja:E2:009/092:holo_1st_edition")
+        self.assertEqual(core.resolve(self.db, {"title": base + " unlimited"})[0].split("|")[0],
+                         "ja:E2:009/092:holo_unlimited")
+        self.assertIsNone(core.resolve(self.db, {"title": base + " shadowless"})[0])
 
     def test_collector_number_padding_is_consistent_for_short_sets(self):
         core.import_cards(self.db, [{
@@ -89,7 +114,7 @@ class IndexTests(unittest.TestCase):
         self.assertEqual(core.resolve(self.db, {
             "title": "PSA10 メガリザードンex 116/080 MUR M2"}), (None, "unresolved"))
         unit, _ = core.resolve(self.db, {
-            "title": "PSA10 メガリザードンX ex 116/080 MUR M2"})
+            "title": "PSA10 鑑定品 メガリザードンX ex 116/080 MUR M2"})
         self.assertEqual(unit.split("|")[0], "ja:M2:116/080:holo")
 
     def test_internal_catalog_search_preserves_public_display_gate(self):
@@ -173,6 +198,9 @@ class IndexTests(unittest.TestCase):
         ])
         later = core.index_for_unit(self.db, unit, "2026-09-22")["series"]
         self.assertEqual(later["last_list_at_transition"], {})
+        as_known_before_reversion = core.index_for_unit(
+            self.db, unit, "2026-09-22", "2026-09-22T10:30:00Z")["series"]
+        self.assertEqual(as_known_before_reversion["last_list_at_transition"]["JPY"]["n"], 1)
 
     def test_historical_ask_uses_day_snapshot_not_current_status(self):
         title = "ピカチュウ SV2a 173/165"
@@ -196,11 +224,32 @@ class IndexTests(unittest.TestCase):
                            "tax": 0, "insurance": 0, "fx_spread": 0, "other": 0},
             "quoted_at": "2026-09-22T09:01:00Z", "expires_at": "2026-09-22T10:00:00Z",
             "evidence_ref": "test:quote",
+            "assumptions": {"source_price_minor": 400000, "source_currency": "JPY",
+                            "fx_rate_ref": "fixture:fx", "fee_schedule_ref": "fixture:fee",
+                            "tax_basis": "fixture:tax"},
         }])
         self.assertIsNone(core.recommend(self.db, unit, "HK", "2026-09-22T11:00:00Z")["recommendation"])
         result = core.recommend(self.db, unit, "HK", "2026-09-22T09:30:00Z")
         self.assertEqual(result["recommendation_type"], "price_only")
         self.assertEqual(result["recommendation"]["quote"]["total_minor"], 23000)
+
+    def test_recommendation_rejects_quote_bound_to_wrong_source_price(self):
+        core.import_observations(self.db, [self.observation(
+            "a", "ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")])
+        unit = core.units_for_card(self.db, "ja:SV2A:173/165:standard")[0]["unit_id"]
+        core.import_quotes(self.db, [{
+            "source": "fixture", "native_id": "a", "destination": "HK", "currency": "HKD",
+            "components": {"item": 1000, "domestic": 0, "service": 0,
+                           "international": 0, "tax": 0, "insurance": 0,
+                           "fx_spread": 0, "other": 0},
+            "quoted_at": "2026-09-22T09:01:00Z", "expires_at": "2026-09-22T10:00:00Z",
+            "evidence_ref": "fixture:stale-quote",
+            "assumptions": {"source_price_minor": 300000, "source_currency": "JPY",
+                            "fx_rate_ref": "fixture:fx", "fee_schedule_ref": "fixture:fee",
+                            "tax_basis": "fixture:tax"},
+        }])
+        self.assertIsNone(core.recommend(
+            self.db, unit, "HK", "2026-09-22T09:30:00Z")["recommendation"])
 
     def test_landed_quote_is_append_only_at_its_timestamp(self):
         core.import_observations(self.db, [self.observation(
@@ -259,7 +308,7 @@ class IndexTests(unittest.TestCase):
             core.offers(self.db, "ja:SV2A:173/165:standard", now="2026-09-22T09:30:00Z")
 
     def test_human_resolution_survives_new_observations(self):
-        base = self.observation("a", "PSA10 ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")
+        base = self.observation("a", "PSA10 鑑定品 ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")
         core.import_observations(self.db, [base])
         original = core.units_for_card(self.db, "ja:SV2A:173/165:standard")[0]["unit_id"]
         raw = core._unit(self.db, "ja:SV2A:173/165:standard", "RAW", "raw", "a")

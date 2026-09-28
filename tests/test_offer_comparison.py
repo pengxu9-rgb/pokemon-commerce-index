@@ -1,3 +1,4 @@
+import json
 import sqlite3
 import unittest
 
@@ -93,7 +94,36 @@ class OfferComparisonTests(unittest.TestCase):
                 self.review(source, native, card, "openai"),
             ])
 
+    def verify_artwork_edge(self):
+        event_id = "fixture-verified-artwork"
+        evidence = {
+            "schema": "pokemon.relationship_review.v1",
+            "review_event_id": event_id, "source_snapshot_sha256": "0" * 64,
+            "cards": [{"card_id": card, "source_ref": "fixture:" + card,
+                       "source_kind": "fixture", "identity_checked": True}
+                      for card in (self.en, self.ja)],
+            "first_review": {"reviewer": "first", "decision": "same_artwork",
+                             "reviewed_at": "2026-09-25T09:00:00Z"},
+            "second_review": {"reviewer": "second", "decision": "same_artwork",
+                              "reviewed_at": "2026-09-25T09:01:00Z"},
+            "artwork": {"outcome": "same", "note": "synthetic match"},
+            "finish": {"outcome": "same", "note": "synthetic finish"},
+            "rationale": "synthetic reviewed artwork relation",
+        }
+        discovery_graph.assert_relationships(self.db, [{
+            "assertion_id": event_id, "left_card_id": self.en,
+            "right_card_id": self.ja, "relation_type": "same_artwork",
+            "review_status": "verified", "evidence_ref": json.dumps(evidence),
+            "rights_reference": "synthetic fixture", "asserted_by": "fixture",
+            "reviewer": "second",
+        }])
+
     def test_landed_spread_requires_two_models_photos_and_bound_quotes(self):
+        result = offer_comparison.compare_landed_asks(
+            self.db, self.ja, self.en, "HK", "2026-09-25T09:30:00Z")
+        self.assertEqual(result["status"], "blocked")
+        self.assertNotIn("comparisons", result)
+        self.verify_artwork_edge()
         result = offer_comparison.compare_landed_asks(
             self.db, self.ja, self.en, "HK", "2026-09-25T09:30:00Z")
         self.assertEqual(result["status"], "insufficient_evidence")
@@ -101,11 +131,10 @@ class OfferComparisonTests(unittest.TestCase):
         result = offer_comparison.compare_landed_asks(
             self.db, self.ja, self.en, "HK", "2026-09-25T09:30:00Z")
         self.assertEqual(result["status"], "ready")
-        self.assertEqual(result["relationship_status"], "proposed")
-        self.assertEqual(result["relationship_basis"],
-                         "ai_visual_same_artwork_candidate")
-        self.assertEqual(result["artwork_review_count"], 1)
-        self.assertEqual(result["identity_certainty"], "artwork_candidate_only")
+        self.assertEqual(result["relationship_status"], "verified")
+        self.assertEqual(result["relationship_basis"], "reviewed_same_artwork")
+        self.assertEqual(result["artwork_review_count"], 2)
+        self.assertEqual(result["identity_certainty"], "reviewed_artwork_only")
         self.assertIn("paid_sale", result["excluded_dimensions"])
         comparison = result["comparisons"][0]
         self.assertEqual(comparison["en_minus_ja_minor"], 2000)
@@ -116,6 +145,7 @@ class OfferComparisonTests(unittest.TestCase):
             self.db, [self.review("jp_feed", "j1", self.ja, "google")]), 0)
 
     def test_conflicting_condition_blocks_numeric_gap(self):
+        self.verify_artwork_edge()
         self.accept_both()
         offer_comparison.import_visual_reviews(self.db, [
             self.review("en_feed", "e1", self.en, "openai", "light_played")])
@@ -126,6 +156,7 @@ class OfferComparisonTests(unittest.TestCase):
         self.assertEqual(result["status"], "insufficient_evidence")
 
     def test_photo_rights_and_quote_freshness_are_hard_gates(self):
+        self.verify_artwork_edge()
         self.accept_both()
         core.register_source(self.db, {
             "source": "en_feed", "rights_reference": "fixture permission changed",
@@ -145,6 +176,7 @@ class OfferComparisonTests(unittest.TestCase):
                 "rights_reference": "fixture"}])
 
     def test_price_change_invalidates_earlier_quote_and_visual_snapshot(self):
+        self.verify_artwork_edge()
         self.accept_both()
         core.import_observations(self.db, [{
             "source": "en_feed", "native_id": "e1", "title": "e1 updated",

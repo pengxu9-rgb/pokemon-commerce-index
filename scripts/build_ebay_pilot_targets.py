@@ -61,12 +61,9 @@ def build(db) -> tuple[list[dict], dict]:
                     row["provenance"].encode()).hexdigest()
                 identity.update({"character_bucket": character,
                                  "marketplace": "EBAY_US",
-                                 "query": f"Pokemon {row['name']} {row['set_code']} {row['collector_number']} "
-                                          + ("Japanese" if language == "ja" else "English"),
+                                 "search_query_status": "not_ready_marketplace_alias_required",
                                  "selection_status": "provisional_coverage_sample",
                                  "offer_matching_status": "photo_review_required"})
-                if len(identity["query"]) > 120:
-                    raise ValueError("eBay pilot query exceeds probe limit")
                 rows.append(identity)
                 counts[f"{language}:{character}"] += 1
     if len(rows) != 100 or len({row["card_id"] for row in rows}) != 100:
@@ -74,10 +71,10 @@ def build(db) -> tuple[list[dict], dict]:
     rows.sort(key=lambda row: (row["language"], row["character_bucket"], row["card_id"]))
     return rows, {"targets": len(rows), "buckets": dict(sorted(counts.items())),
                   "distinct_sets": len({(row["language"],row["set_code"]) for row in rows}),
-                  "marketplace": "EBAY_US", "planned_days": 14,
-                  "planned_search_calls_per_day": 100,
+                  "marketplace": "EBAY_US", "planned_days": None,
+                  "planned_search_calls_per_day": None,
                   "observed_market_demand": False,
-                  "scope": "provisional exact-printing coverage sample; no API observations or prices"}
+                  "scope": "identity coverage sample only; search vocabulary and rights not approved"}
 
 
 def main() -> None:

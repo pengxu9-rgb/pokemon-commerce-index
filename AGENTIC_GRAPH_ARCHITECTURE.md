@@ -128,7 +128,9 @@ simply a cheaper collecting alternative; those are different traversals.
    comparison response now exposes `relationship_status`,
    `relationship_basis`, `artwork_review_count`, `identity_certainty`,
    `comparison_scope` and `excluded_dimensions`. A proposed artwork edge
-   cannot be worded as a verified same-SKU price gap.
+   cannot produce a numeric cross-region gap; a verified artwork edge is
+   required, and even then the result is a contextual ask comparison rather
+   than a same-SKU price index.
 
 ## Build sequence
 

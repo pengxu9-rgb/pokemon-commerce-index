@@ -15,6 +15,18 @@ from . import number_conflicts, number_graph
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
 COMPONENTS = {"item", "domestic", "service", "international", "tax", "insurance", "fx_spread", "other"}
 GRADE_RE = re.compile(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)\s*(10|9(?:\.5)?|8(?:\.5)?|7(?:\.5)?|6(?:\.5)?|[1-5](?:\.5)?)(?![\d.])", re.I)
+GRADE_UNSAFE_RE = re.compile(
+    r"(?:元|旧|former\s*|ex[- ]?)(?:PSA|BGS|CGC|ARS|PGC)|"
+    r"(?:PSA|BGS|CGC|ARS|PGC)\s*(?:10|9(?:\.5)?|8(?:\.5)?|7(?:\.5)?|6(?:\.5)?|[1-5](?:\.5)?)"
+    r"\s*(?:\+|狙える|狙い|候補|目指せ|レベル|相当|級|鑑定予定)|"
+    r"ケースから出|ケースから取り出|ケース割|鑑定前|未鑑定|black\s*label|ブラックラベル|pristine|"
+    r"cracked\s*(?:out|slab)|out\s*of\s*(?:the\s*)?slab", re.I)
+SLAB_EVIDENCE_RE = re.compile(
+    r"鑑定品|鑑定済|スラブ|ケース入り|ケース付き|graded\s*card|sealed\s*slab|"
+    r"(?:cert(?:ificate)?|認証番号)\s*(?:no\.?|number|#|番号)?\s*\d{6,}", re.I)
+FIRST_EDITION_RE = re.compile(r"(?:1st\s*(?:edition|ed\.?|刷)|初版|初回版)", re.I)
+UNLIMITED_RE = re.compile(r"(?:unlimited|無制限版|無制限)", re.I)
+SHADOWLESS_RE = re.compile(r"(?:shadowless|シャドーレス)", re.I)
 NUMBER_RE = re.compile(r"(?<!\d)(\d{1,3}/\d{1,3})(?!\d)")
 CARD_RE = re.compile(r"\b([A-Za-z][A-Za-z0-9-]{0,11})\s+(\d{1,3}/\d{1,3})\b")
 BUNDLE_RE = re.compile(r"(?<!\d)(?:[2-9]|[1-9]\d+)枚|まとめ売り|連番|\d+枚組|[&＆]")
@@ -762,6 +774,11 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
         if len({choice["card_id"].rsplit(":", 1)[0] for choice in choices}) != 1:
             return None, "unresolved"
         lower = title.lower()
+        first_edition = bool(FIRST_EDITION_RE.search(title))
+        unlimited = bool(UNLIMITED_RE.search(title))
+        shadowless = bool(SHADOWLESS_RE.search(title))
+        if sum((first_edition, unlimited, shadowless)) > 1:
+            return None, "unresolved"
         if row.get("variant"):
             variant = str(row["variant"]).lower()
         elif "マスターボール" in title or "masterball" in lower or "master ball" in lower:
@@ -772,13 +789,30 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
             reverse = [choice["variant"] for choice in choices
                        if choice["variant"].startswith("reverse")]
             variant = reverse[0] if len(reverse) == 1 else None
+        elif ("ノンホロ" in title or "non-holo" in lower or "non holo" in lower):
+            variant = "normal"
         elif "ホロ" in title or "holo" in lower:
             variant = "holo"
         elif len(choices) == 1:
             variant = choices[0]["variant"]
         else:
             variant = None
-        selected = [choice for choice in choices if choice["variant"] == variant]
+        family = [choice for choice in choices if variant and (
+            choice["variant"] == variant or choice["variant"].startswith(variant + "_"))]
+        if first_edition:
+            selected = [choice for choice in family if "_1st_edition" in choice["variant"]]
+        elif unlimited:
+            selected = [choice for choice in family if "_unlimited" in choice["variant"]]
+        elif shadowless:
+            selected = [choice for choice in family if "shadowless" in choice["variant"]]
+        elif row.get("variant"):
+            selected = [choice for choice in choices if choice["variant"] == variant]
+        elif any(any(mark in choice["variant"] for mark in
+                     ("_1st_edition", "_unlimited", "shadowless")) for choice in family):
+            # A plain "holo" title cannot distinguish vintage editions.
+            selected = []
+        else:
+            selected = [choice for choice in choices if choice["variant"] == variant]
         if len(selected) != 1:
             return None, "unresolved"
         if _compact_identity_text(selected[0]["name"]) not in _compact_identity_text(title):
@@ -787,9 +821,12 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
         method = "exact"
     if not db.execute("SELECT 1 FROM card WHERE card_id=? AND match_eligible=1", (cid,)).fetchone():
         return None, "unresolved"
-    grade_match = GRADE_RE.search(title)
-    if grade_match and re.match(r"\s*(?:レベル|相当|級)", title[grade_match.end():]):
-        grade_match = None
+    grade_mentions = list(GRADE_RE.finditer(title))
+    if GRADE_UNSAFE_RE.search(title) or len(grade_mentions) > 1:
+        return None, "unresolved"
+    grade_match = grade_mentions[0] if grade_mentions else None
+    if grade_match and not SLAB_EVIDENCE_RE.search(title):
+        return None, "unresolved"
     company = grade_match.group(1).upper() if grade_match else "RAW"
     grade = grade_match.group(2) if grade_match else "raw"
     condition = str(row.get("condition_bucket") or ("graded" if grade_match else "unknown")).lower()
@@ -1125,7 +1162,7 @@ def recommend(db: sqlite3.Connection, unit_id: str, destination: str, now: str |
         raise ValueError("unknown priceable unit")
     _require_card_display(db, unit["card_id"])
     active = offers(db, unit["card_id"], destination, now, unit_id)
-    quoted = [item for item in active if item["quote"] is not None]
+    quoted = [item for item in active if quote_matches_current_offer(item)]
     currencies = {item["quote"]["currency"] for item in quoted}
     if len(currencies) > 1:
         return {"unit_id": unit_id, "destination": destination, "recommendation": None,
@@ -1139,32 +1176,56 @@ def recommend(db: sqlite3.Connection, unit_id: str, destination: str, now: str |
             "offers": active}
 
 
-def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str) -> dict[str, Any]:
+def quote_matches_current_offer(offer: dict[str, Any]) -> bool:
+    quote = offer.get("quote")
+    if not quote or offer.get("current_price_minor") is None:
+        return False
+    assumptions = quote["assumptions"]
+    return (type(assumptions.get("source_price_minor")) is int
+            and assumptions["source_price_minor"] == offer["current_price_minor"]
+            and assumptions.get("source_currency") == offer["currency"]
+            and all(isinstance(assumptions.get(key), str) and assumptions[key].strip()
+                    for key in ("fx_rate_ref", "fee_schedule_ref", "tax_basis")))
+
+
+def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str,
+                   as_of: str | None = None) -> dict[str, Any]:
     unit = db.execute("SELECT card_id FROM priceable_unit WHERE unit_id=?", (unit_id,)).fetchone()
     if not unit:
         raise ValueError("unknown priceable unit")
     _require_card_display(db, unit["card_id"])
     start = datetime.fromisoformat(date).replace(tzinfo=timezone.utc)
     end = start + timedelta(days=1)
+    knowledge_cutoff = parse_time(as_of or utcnow())
+    snapshot_cutoff = min(end, knowledge_cutoff)
     by_currency: dict[str, list[int]] = {}
     transition_prices: dict[str, list[int]] = {}
     actual: dict[str, list[int]] = {}
-    listing_ids = db.execute("SELECT source, native_id FROM listing WHERE unit_id=?", (unit_id,)).fetchall()
+    listing_ids = db.execute("""SELECT DISTINCT source, native_id FROM resolution_record
+        WHERE unit_id=? AND resolved_at<=?""", (unit_id, knowledge_cutoff.isoformat())).fetchall()
     contributing_sources: set[str] = set()
     for listing in listing_ids:
+        resolution = db.execute("""SELECT unit_id FROM resolution_record
+            WHERE source=? AND native_id=? AND resolved_at<=?
+            ORDER BY resolved_at DESC, id DESC LIMIT 1""",
+            (listing["source"], listing["native_id"], knowledge_cutoff.isoformat())).fetchone()
+        if not resolution or resolution["unit_id"] != unit_id:
+            continue
         if not _displayable(db, listing["source"]):
             continue
         policy = _policy(db, listing["source"], display=True)
-        history = db.execute("SELECT * FROM observation WHERE source=? AND native_id=? ORDER BY observed_at",
-                             (listing["source"], listing["native_id"])).fetchall()
+        history = db.execute("""SELECT * FROM observation
+            WHERE source=? AND native_id=? AND observed_at<=?
+            ORDER BY observed_at""", (listing["source"], listing["native_id"],
+                                       knowledge_cutoff.isoformat())).fetchall()
         eligible = [row for row in history if parse_time(row["observed_at"]) < end]
         if eligible:
             latest = eligible[-1]
             if (latest["status"] == "on_sale" and latest["price_minor"] is not None
-                    and parse_time(latest["observed_at"]) >= end - timedelta(hours=policy["listing_ttl_hours"])
+                    and parse_time(latest["observed_at"]) >= snapshot_cutoff - timedelta(hours=policy["listing_ttl_hours"])
                     and (not policy["photo_resolution_required"] or _visual_approval(
                         db, listing["source"], listing["native_id"], latest["observed_at"],
-                        unit_id))):
+                        unit_id, knowledge_cutoff.isoformat()))):
                 by_currency.setdefault(latest["currency"], []).append(latest["price_minor"])
                 contributing_sources.add(listing["source"])
         for offset, (prev, current) in enumerate(zip(history, history[1:])):
@@ -1174,21 +1235,27 @@ def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str) -> dict[str,
                 if (start <= timestamp < end and prev["price_minor"] is not None and not reverted
                         and (not policy["photo_resolution_required"] or _visual_approval(
                             db, listing["source"], listing["native_id"], prev["observed_at"],
-                            unit_id))):
+                            unit_id, knowledge_cutoff.isoformat()))):
                     transition_prices.setdefault(prev["currency"], []).append(prev["price_minor"])
                     contributing_sources.add(listing["source"])
         sales = db.execute(
             """SELECT paid_minor, currency, settled_at FROM verified_sale
-            WHERE source=? AND native_id=? AND settled_at>=? AND settled_at<?""",
-            (listing["source"], listing["native_id"], start.isoformat(), end.isoformat()),
+            WHERE source=? AND native_id=? AND settled_at>=? AND settled_at<?
+            AND settled_at<=?""",
+            (listing["source"], listing["native_id"], start.isoformat(), end.isoformat(),
+             knowledge_cutoff.isoformat()),
         ).fetchall()
         for row in sales:
-            if policy["photo_resolution_required"] and not db.execute(
-                    """SELECT 1 FROM visual_resolution_approval
-                    WHERE source=? AND native_id=? AND unit_id=? AND observed_at<=?
-                    LIMIT 1""", (listing["source"], listing["native_id"], unit_id,
-                                  row["settled_at"])).fetchone():
-                continue
+            if policy["photo_resolution_required"]:
+                last_on_sale = db.execute("""SELECT observed_at FROM observation
+                    WHERE source=? AND native_id=? AND status='on_sale'
+                    AND observed_at<=? ORDER BY observed_at DESC LIMIT 1""",
+                    (listing["source"], listing["native_id"], row["settled_at"])).fetchone()
+                if not last_on_sale or not _visual_approval(
+                        db, listing["source"], listing["native_id"],
+                        last_on_sale["observed_at"], unit_id,
+                        knowledge_cutoff.isoformat()):
+                    continue
             actual.setdefault(row["currency"], []).append(row["paid_minor"])
             contributing_sources.add(listing["source"])
     if len(contributing_sources) > 1 and any(
@@ -1200,7 +1267,8 @@ def index_for_unit(db: sqlite3.Connection, unit_id: str, date: str) -> dict[str,
                          ("verified_paid", actual)):
         series[name] = {currency: {"median_minor": median(values), "n": len(values)}
                         for currency, values in groups.items()}
-    return {"unit_id": unit_id, "date": date, "series": series,
+    return {"unit_id": unit_id, "date": date, "as_of": knowledge_cutoff.isoformat(),
+            "series": series,
             "definitions": {"ask": "current active listing prices",
                             "last_list_at_transition": "last observed list price before trading or sold_out; not a paid price",
                             "verified_paid": "payment or settlement evidence supplied by an authorized source"}}

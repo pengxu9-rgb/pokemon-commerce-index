@@ -5,6 +5,7 @@ import gzip
 import json
 import os
 from dataclasses import asdict
+from contextlib import closing
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -31,7 +32,7 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
             args = parse_qs(parsed.query)
             value = lambda name, default="": args.get(name, [default])[0]
             try:
-                with core.connect(db_path) as db:
+                with closing(core.connect(db_path)) as db, db:
                     if parsed.path == "/health":
                         result = {"ok": True}
                     elif parsed.path == "/discover":
@@ -49,7 +50,8 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                         result = core.seller_overlap(db, value("source"), value("unit_ids").split(","),
                                                      value("as_of") or None)
                     elif parsed.path == "/index":
-                        result = core.index_for_unit(db, value("unit_id"), value("date"))
+                        result = core.index_for_unit(db, value("unit_id"), value("date"),
+                                                     value("as_of") or None)
                     elif internal_catalog_api and parsed.path == "/catalog-status":
                         result = core.catalog_status(db)
                     elif internal_catalog_api and parsed.path == "/catalog-search":
@@ -117,6 +119,7 @@ def main() -> None:
         if command == "index":
             item.add_argument("unit_id")
             item.add_argument("date", help="UTC date YYYY-MM-DD")
+            item.add_argument("--as-of", help="knowledge cutoff for reproducible historical query")
     sub.add_parser("catalog-status", help="internal catalog coverage and display status")
     photo_candidates = sub.add_parser("adapt-mercari-photo-candidates")
     photo_candidates.add_argument("file")
@@ -243,7 +246,7 @@ def main() -> None:
                                 os.getenv("EBAY_PRODUCTION_APPROVED") == "1")
         print(json.dumps(client.search_shape(args.query), ensure_ascii=False, indent=2))
         return
-    with core.connect(args.db) as db:
+    with closing(core.connect(args.db)) as db, db:
         if args.command == "init":
             core.init_db(db)
             output = {"db": args.db, "initialized": True}
@@ -398,7 +401,7 @@ def main() -> None:
         elif args.command == "seller-overlap":
             output = core.seller_overlap(db, args.source, args.unit_ids.split(","), args.as_of)
         elif args.command == "index":
-            output = core.index_for_unit(db, args.unit_id, args.date)
+            output = core.index_for_unit(db, args.unit_id, args.date, args.as_of)
         else:
             output = core.purge_expired(db)
     print(json.dumps(output, ensure_ascii=False, indent=2, default=str))

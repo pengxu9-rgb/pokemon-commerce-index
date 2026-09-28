@@ -6,7 +6,7 @@
 
 Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
 
-eBay 独立数据路径的[接口核查、生产准入和 100 个版本试验方案](EBAY_ACCESS_AND_PILOT.md)已准备。Browse API 可技术性读取在售报价，但标准协议不足以授权本项目的跨平台价格指数与 Gemini 商品图像处理；这些用途需 eBay 另行书面确认。当前没有 eBay 凭据或生产授权，没有运行真实查询或价格采集。
+eBay 独立数据路径的[接口核查、生产准入和 100 个版本候选名单](EBAY_ACCESS_AND_PILOT.md)已准备。候选名单尚无经验证的 marketplace 查询词，不可当作可执行采集计划。Browse API 可技术性读取在售报价，但标准协议不足以授权本项目的跨平台价格指数与 Gemini 商品图像处理；这些用途需 eBay 另行书面确认。当前没有 eBay 凭据或生产授权，没有运行真实查询或价格采集。
 
 跨区卡片关系现已有 [AI 图像复核与价格可比性分级](AI_CARD_REVIEW.md)：88 组候选中 48 组同画、39 组不同画、1 组待补证；同画候选可用于内部发现，仍按不同语言与印刷版本保留价格序列。
 商品照片、独立 AI 复核与跨区到手挂牌价差的离线接入路径见 [商品级证据契约](OFFER_CONDITION_CONTRACT.md)。
@@ -62,25 +62,10 @@ python3 -m pokemon_index --db demo.sqlite3 export-pivota 'ja:SV2A:173/165:standa
 python3 -m unittest discover -s tests -v
 ```
 
-实际日英目录先导入到内部数据库，再查询身份与版本：
+内部日英目录以同一份固定哈希清单构建；Docker staging 和 CI 使用相同命令。输出必须是新文件；构建后强制核对 55,167 条身份、33,543 条可匹配身份、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m pokemon_index --db catalog.sqlite3 init
-python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/ja-all-sets.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/en-physical-sets.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-sets catalog/en-api-sets.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ja-all-available.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-physical-cards.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-physical-ambiguous.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/en-api-candidates.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-candidates.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/ptcg-jp-multi-record-candidates.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/s6a-secret-art-gap-candidates.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-cards catalog/tcgdex-ambiguous-candidates.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-card-identity-exceptions catalog/jp-card-identity-exceptions.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-card-references catalog/ptcg-jp-reference.jsonl
-python3 -m pokemon_index --db catalog.sqlite3 import-card-facets catalog/card-facets.jsonl.gz
-python3 -m pokemon_index --db catalog.sqlite3 import-card-classifications catalog/card-classifications.jsonl.gz
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20
@@ -90,6 +75,8 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'S6a 087/069'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --printing-type prism_star
 python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
+
+该部署快照故意不包含未经核实的跨语言关系断言、市场商品或价格。目录审核所用的编号别名和图片比较证据仍在独立数据文件中，可按对应审计文档另行导入到研究数据库。
 
 `catalog-search` 和 `catalog-card` 仅供内部开发查询，返回来源、展示标记与匹配资格。它们不会更改公开展示权限；示例中的 `SV2a 025/165` 会返回普通版、Master Ball 与 Poké Ball 三个不同身份。S6a 补充候选可以查到，但 `match_eligible=false`，不会进入自动报价匹配。
 

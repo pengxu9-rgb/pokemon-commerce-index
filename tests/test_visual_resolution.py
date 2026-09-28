@@ -112,6 +112,19 @@ class VisualResolutionTests(unittest.TestCase):
         self.assertEqual(removed["visual_resolution_approval"], 1)
         self.assertEqual(removed["observation"], 1)
 
+    def test_paid_series_rejects_stale_photo_approval(self):
+        self._media_and_reviews(self.at)
+        approved = offer_comparison.approve_visual_resolution(
+            self.db, "ebay_us", "v1|123|0", self.at, self.card)
+        self._observation(self.later)
+        settled = (datetime.now(timezone.utc) - timedelta(minutes=1)).isoformat()
+        core.import_verified_sales(self.db, [{
+            "source": "ebay_us", "native_id": "v1|123|0", "settled_at": settled,
+            "paid_minor": 1000, "currency": "USD", "evidence_ref": "fixture:payment",
+        }])
+        series = core.index_for_unit(self.db, approved["unit_id"], settled[:10])["series"]
+        self.assertEqual(series["verified_paid"], {})
+
 
 if __name__ == "__main__":
     unittest.main()

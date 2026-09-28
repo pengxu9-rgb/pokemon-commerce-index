@@ -39,7 +39,8 @@ second independent model family must agree before a listing becomes eligible.
 Missing backs, uncertain identity/finish and model conflicts block comparison.
 Fresh listing-bound landed quotes must include FX, fee and tax evidence refs.
 Japanese and English prices remain separate market series even when their
-artwork matches. The comparator returns a contextual landed **ask** spread,
+artwork matches. A proposed artwork edge now blocks the numeric comparator;
+only a verified edge can return a contextual landed **ask** spread,
 not a verified sale or same-SKU price index. All current offer tests use
 synthetic data; no live Buy&Ship feed or user-facing price is claimed.
 
