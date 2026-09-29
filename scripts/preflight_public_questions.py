@@ -53,6 +53,7 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
                 or not isinstance(row["anchor"], str)
                 or not row["anchor"].strip()
                 or len(row["anchor"].split()) > 25
+                or len(row["anchor"]) > 180
                 or not isinstance(row["source_context"], str)
                 or not 30 <= len(row["source_context"]) <= 1000
                 or row["observed_date"] != by_id[item_id]["observed_date"]):

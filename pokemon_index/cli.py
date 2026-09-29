@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, buyer_questions, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, tcgdex
 
 
 def read_jsonl(path: str):
@@ -176,6 +176,10 @@ def main() -> None:
     buyer_plan.add_argument("question_type", choices=sorted(buyer_questions.QUESTION_TYPES))
     buyer_plan.add_argument("--card-id")
     buyer_plan.add_argument("--target-language", choices=("ja", "en"))
+    route_plan = sub.add_parser("question-route-plan", help="plan from reviewed structured question facts")
+    route_plan.add_argument("file", help="JSON object with product scope, focus, identity and media facts")
+    route_plan.add_argument("--capability", action="append", default=[],
+                            choices=sorted(question_routing.CAPABILITIES))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
     number_explanation.add_argument("left_card_id")
     number_explanation.add_argument("right_card_id")
@@ -240,6 +244,11 @@ def main() -> None:
     args = parser.parse_args()
     if args.command == "serve":
         serve(args.db, args.host, args.port, args.internal_catalog_api)
+        return
+    if args.command == "question-route-plan":
+        facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
+        print(json.dumps(question_routing.plan_question(
+            facts, capabilities=set(args.capability)), ensure_ascii=False, indent=2))
         return
     if args.command == "adapt-tcgdex-set":
         payload = json.loads(Path(args.file).read_text(encoding="utf-8"))

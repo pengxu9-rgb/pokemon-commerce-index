@@ -1,0 +1,138 @@
+{
+  "astra_sha256": "ff59e6ce43b4822971bf4f926d2a36f221d2dbcfc536d9ad58725235701016c7",
+  "deterministic_plan_agreement": 6,
+  "field_agreement": {
+    "exact_printing": 8,
+    "focus": 6,
+    "language_scope": 7,
+    "named_card": 8,
+    "photos_available": 8,
+    "product_scope": 8,
+    "specific_copy": 7
+  },
+  "gemini_sha256": "6732c4f3b0d348f9e00b2892065fbe7eed85052144d7c47847b69e0c2e186679",
+  "interpretation": "Independent AI fact agreement; planner gates are deterministic; not human accuracy or market truth",
+  "jointly_reviewed": 8,
+  "manifest_sha256": "e66ecc24c9882058f69801edcd85451cf537eed9ab42ffd9fe49ea940ae2f403",
+  "planner_sha256": "67e1b05dcb744fedfe75261766920e16a03b48a2c78e3adce45e9114c5737095",
+  "questions": 8,
+  "results": [
+    {
+      "disagreements": [],
+      "id": "pubq4-001",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "cross_language_relation",
+        "language_scope": "other",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "tcg_single",
+        "specific_copy": false
+      },
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq4-002",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "price_comparison",
+        "language_scope": "unspecified",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "tcg_single",
+        "specific_copy": false
+      },
+      "split": "holdout",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "focus"
+      ],
+      "id": "pubq4-003",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "focus"
+      ],
+      "id": "pubq4-004",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq4-005",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "channel_choice",
+        "language_scope": "unspecified",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "marketplace_process",
+        "specific_copy": false
+      },
+      "split": "holdout",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "language_scope"
+      ],
+      "id": "pubq4-006",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq4-007",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "grading_decision",
+        "language_scope": "unspecified",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "tcg_single",
+        "specific_copy": false
+      },
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "specific_copy"
+      ],
+      "id": "pubq4-008",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    }
+  ],
+  "schema": "pokemon.public-question-facts-silver.v1",
+  "status_counts": {
+    "disputed": 4,
+    "silver_agreed": 4
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "accepted": 8,
+  "astra_sha256": "d05515b2eced4877402c481069b59d735e5c4fcfcc4fca1425e52e05cc39cfad",
+  "audit_statuses": {
+    "astra": {
+      "faithful": 8
+    },
+    "google": {
+      "faithful": 8
+    }
+  },
+  "candidate_sha256": "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+  "candidates": 8,
+  "decisions": [
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-001",
+      "source_url": "https://www.elitefourum.com/t/unique-art-in-other-languages-not-japanese-or-english/27171",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-002",
+      "source_url": "https://www.elitefourum.com/t/how-do-you-source-raw-vintage-in-2024/47585",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-003",
+      "source_url": "https://www.elitefourum.com/t/navigating-high-value-japanese-slabs-what-to-do/62514",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-004",
+      "source_url": "https://www.elitefourum.com/t/how-to-avoid-getting-scammed-when-selling-a-collection/33086",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-005",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11329106426",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-006",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q12329935772",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-007",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10324558415",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq4-008",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13331019558",
+      "verification_method": "opened_post"
+    }
+  ],
+  "eligible_sha256": "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+  "evidence_sha256": "24c04e9449808f34200d82543a746a329d9993062d59e160460273649b566034",
+  "gemini_sha256": "4f5e8d29cf2a3084b3244644ec41ab95b5f24ee02278c9c7093fd115b907f44e",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "225b01a0abdd153f62209344b2a32f189e56de3208f681c0e9cfe6e0961783e2"
+  ],
+  "rejected": 0,
+  "schema": "pokemon.public-question-preflight.v1"
+}

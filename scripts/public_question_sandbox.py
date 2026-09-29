@@ -91,8 +91,9 @@ def validate_source(rows: list[dict]) -> None:
         if row["text_form"] not in {"verbatim_excerpt", "source_condensed"}:
             raise ValueError("question text provenance is required")
         if (not isinstance(row["selection_bucket"], str)
-                or not row["selection_bucket"].startswith(("buyer_", "seller_"))):
-            raise ValueError("selection bucket must state buyer or seller coverage")
+                or not row["selection_bucket"].startswith((
+                    "buyer_", "seller_", "collector_", "observer_"))):
+            raise ValueError("selection bucket must state source actor coverage")
         if not isinstance(row["observed_date"], str) or len(row["observed_date"]) != 10:
             raise ValueError("observed date must be YYYY-MM-DD")
 
