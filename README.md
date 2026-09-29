@@ -16,6 +16,8 @@ Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的�
 
 新增[结构化问题证据路由](PUBLIC_QUESTION_SANDBOX.md#v4-structured-facts-and-a-deterministic-evidence-plan)：以日英各 4 条经过原帖核查的新问题做开发回归，Astra 与 Gemini 的七项事实完全一致 4/8，确定性行动计划一致 6/8。路由先判断产品范围，再列出解释、澄清和证据要求；实时价格、成交价、商家收购价和品相判断均有独立门槛。v4 已参与规则修订，不能作为盲测准确率。
 
+[v5 新问题测量](PUBLIC_QUESTION_SANDBOX.md#v5-fresh-questions-against-the-frozen-planner)在固定路由代码后完成来源门禁与日英双模型事实提取：12 条候选中 11 条进入冻结集，事实完全一致 2/11，行动计划一致 5/11。主要分歧来自产品对象与交易任务混在一个字段、印刷版本推断和未指明的“海外版”。[v2 字段与路由实施方案](QUESTION_ROUTING_V2_PLAN.md)据此形成；v5 保留原始结果，不用于回调分数。这些数据仍不代表问答准确率或实时市场表现。
+
 新[真实 listing 盲测协议和工具](BLIND_LISTING_BENCHMARK.md)现可冻结独立采样框、目录和 matcher，把标题预测与双人复核分离，并对卡片、印刷版本和评级分别计数。当前没有来自新授权来源的盲测样本，因此没有真实市场匹配精度结论。
 
 [AI 优先复核](AI_FIRST_REVIEW.md)允许两家独立模型在同一商品及照片哈希上达成高置信一致后暂列可接受候选；分歧和证据不足升级给真人，另随机抽查 AI 一致通过项。当前只实现离线分流与抽查计数，尚未调用真实模型或放行真实 offer。

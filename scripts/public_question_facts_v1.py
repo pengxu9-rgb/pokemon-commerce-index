@@ -25,9 +25,11 @@ def merge(frozen_dir: Path, astra_path: Path, gemini_path: Path,
         raise ValueError("fact agreement report needs a new path outside the repository")
     manifest_path = frozen_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    planner_sha = sha_file(Path(question_routing.__file__))
     if (manifest.get("schema") != SCHEMA or
             sha_file(frozen_dir / "blind_questions.jsonl") != manifest["blind_sha256"] or
-            sha_file(frozen_dir / "source_index.jsonl") != manifest["source_index_sha256"]):
+            sha_file(frozen_dir / "source_index.jsonl") != manifest["source_index_sha256"] or
+            manifest.get("planner_sha256", planner_sha) != planner_sha):
         raise ValueError("frozen cohort differs from its manifest")
     questions = {row["id"]: row for row in read_jsonl(frozen_dir / "blind_questions.jsonl")}
     sources = {row["id"]: row for row in read_jsonl(frozen_dir / "source_index.jsonl")}
@@ -70,7 +72,7 @@ def merge(frozen_dir: Path, astra_path: Path, gemini_path: Path,
               "manifest_sha256": sha_file(manifest_path),
               "astra_sha256": sha_file(astra_path),
               "gemini_sha256": sha_file(gemini_path),
-              "planner_sha256": sha_file(Path(question_routing.__file__)),
+              "planner_sha256": planner_sha,
               "questions": len(results), "jointly_reviewed": len(valid_rows),
               "status_counts": dict(sorted(Counter(r["status"] for r in results).items())),
               "field_agreement": {key: sum(key not in row["disagreements"]

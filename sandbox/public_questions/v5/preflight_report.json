@@ -1,0 +1,125 @@
+{
+  "accepted": 11,
+  "astra_sha256": "bae4bf10e861e3efc908d6730582ec0e163b595be8a42c9e8a0d1c0a7048ae1e",
+  "audit_statuses": {
+    "astra": {
+      "faithful": 12
+    },
+    "google": {
+      "faithful": 11,
+      "inferred_case": 1
+    }
+  },
+  "candidate_sha256": "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+  "candidates": 12,
+  "decisions": [
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-001",
+      "source_url": "https://www.elitefourum.com/t/thoughts-on-buying-raw-cards-from-a-seller-who-grades/32535",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-002",
+      "source_url": "https://www.elitefourum.com/t/i-dont-understand-grading/61267",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-003",
+      "source_url": "https://www.elitefourum.com/t/world-cards-and-japanese-focused-collections/60529",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-004",
+      "source_url": "https://www.elitefourum.com/t/southern-island-set-question/31858",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "astra_status": "faithful",
+      "gemini_status": "inferred_case",
+      "id": "pubq5-005",
+      "source_url": "https://www.elitefourum.com/t/textured-cards-chinese-korean/46644",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-006",
+      "source_url": "https://www.elitefourum.com/t/why-are-my-cards-darkened/56086",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-007",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13326093018",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-008",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14325457559",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-009",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11329065496",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-010",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13328114038",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-011",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q12329192037",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq5-012",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11308030051",
+      "verification_method": "opened_post"
+    }
+  ],
+  "eligible_sha256": "56b600cbcbd9281498cc26d59cb3bcd0d481637e1a280307f1a5434e3e531754",
+  "evidence_sha256": "1f9bfbc2d423bc1072e16a1dd62350dc746ef5cbc36ed9935e0a0000ed2e3468",
+  "gemini_sha256": "ff542ba57c5782d86d935dc7b9f8f3c5ac343358e32dfcc9756e6d966a0f7403",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442"
+  ],
+  "rejected": 1,
+  "schema": "pokemon.public-question-preflight.v1"
+}

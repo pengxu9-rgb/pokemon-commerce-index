@@ -51,6 +51,31 @@ class QuestionFactsTests(unittest.TestCase):
             self.assertEqual(report["status_counts"], {"disputed": 1})
             self.assertEqual(report["field_agreement"]["named_card"], 0)
             self.assertEqual(report["deterministic_plan_agreement"], 1)
+            manifest_path = frozen / "manifest.json"
+            manifest = json.loads(manifest_path.read_text())
+            manifest["planner_sha256"] = "0" * 64
+            manifest_path.write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(ValueError, "frozen cohort"):
+                merge(frozen, a_path, g_path, root / "locked-report.json")
+
+    def test_v5_archive_keeps_rejected_source_and_locked_report(self):
+        root = Path(__file__).resolve().parents[1] / "sandbox/public_questions/v5"
+        preflight = json.loads((root / "preflight_report.json").read_text())
+        manifest = json.loads((root / "manifest.json").read_text())
+        report = json.loads((root / "facts_report.json").read_text())
+        self.assertEqual((preflight["candidates"], preflight["accepted"],
+                          preflight["rejected"]), (12, 11, 1))
+        self.assertEqual(manifest["preflight_report_sha256"],
+                         sha_file(root / "preflight_report.json"))
+        self.assertEqual(manifest["source_sha256"],
+                         sha_file(root / "eligible_source_questions.jsonl"))
+        self.assertEqual(report["manifest_sha256"], sha_file(root / "manifest.json"))
+        self.assertEqual(report["planner_sha256"], manifest["planner_sha256"])
+        self.assertEqual((report["questions"], report["jointly_reviewed"],
+                          report["deterministic_plan_agreement"]), (11, 11, 5))
+        self.assertEqual(report["status_counts"], {"disputed": 9, "silver_agreed": 2})
+        self.assertEqual({row["id"] for row in read_jsonl(root / "plan_trace.jsonl")},
+                         {row["id"] for row in read_jsonl(root / "blind_questions.jsonl")})
 
 
 if __name__ == "__main__":

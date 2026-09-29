@@ -1,0 +1,163 @@
+{
+  "astra_sha256": "cc4356586e844eb121dcd737454cd06e6419c9d6dc031f37403b0ced7ab8d93a",
+  "deterministic_plan_agreement": 5,
+  "field_agreement": {
+    "exact_printing": 9,
+    "focus": 10,
+    "language_scope": 7,
+    "named_card": 11,
+    "photos_available": 11,
+    "product_scope": 7,
+    "specific_copy": 9
+  },
+  "gemini_sha256": "e0b30b2d9c09bdaf004d09a4d93744fe4e0d310d1ecb10ae36e36db4f6cf357f",
+  "interpretation": "Independent AI fact agreement; planner gates are deterministic; not human accuracy or market truth",
+  "jointly_reviewed": 11,
+  "manifest_sha256": "5c905222e102bb788ee8755dcafc50dc7372b587b594cd00d222dfc58fd6efae",
+  "planner_sha256": "67e1b05dcb744fedfe75261766920e16a03b48a2c78e3adce45e9114c5737095",
+  "questions": 11,
+  "results": [
+    {
+      "disagreements": [
+        "product_scope"
+      ],
+      "id": "pubq5-001",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "specific_copy"
+      ],
+      "id": "pubq5-002",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "language_scope",
+        "product_scope"
+      ],
+      "id": "pubq5-003",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "exact_printing",
+        "specific_copy"
+      ],
+      "id": "pubq5-004",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "language_scope"
+      ],
+      "id": "pubq5-006",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "exact_printing"
+      ],
+      "id": "pubq5-007",
+      "language": "ja",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "language_scope",
+        "product_scope"
+      ],
+      "id": "pubq5-008",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq5-009",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "grading_decision",
+        "language_scope": "unspecified",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "tcg_single",
+        "specific_copy": true
+      },
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq5-010",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "exact_printing": false,
+        "focus": "marketplace_policy",
+        "language_scope": "unspecified",
+        "named_card": false,
+        "photos_available": false,
+        "product_scope": "marketplace_process",
+        "specific_copy": true
+      },
+      "split": "holdout",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "product_scope"
+      ],
+      "id": "pubq5-011",
+      "language": "ja",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "focus",
+        "language_scope"
+      ],
+      "id": "pubq5-012",
+      "language": "ja",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "disputed"
+    }
+  ],
+  "schema": "pokemon.public-question-facts-silver.v1",
+  "status_counts": {
+    "disputed": 9,
+    "silver_agreed": 2
+  }
+}
