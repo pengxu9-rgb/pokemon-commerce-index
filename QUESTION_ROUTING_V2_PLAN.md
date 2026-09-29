@@ -42,3 +42,5 @@ The [v2 tests](tests/test_question_routing_v2.py) cover marketplace disputes abo
 ## Next evaluation gate
 
 The v2 schema, prompt and planner were frozen before the new, nonoverlapping [v6 cohort](sandbox/public_questions/v6/) was reviewed. Source fidelity accepted 11 of 12 posts. The v2 fact comparison has 8 jointly valid pairs, 2 exact agreements and 7 deterministic-plan agreements; Gemini returned three explicit validation errors. See [the source-gate and result analysis](PUBLIC_QUESTION_SANDBOX.md#v6-fresh-source-gate-and-v2-fact-extraction). No accuracy claim is supported until an independent adjudicator or observable evidence checks the route against the source question and available capabilities. Keep rejected, failed and disputed rows visible in their separate denominators.
+
+The resulting [v3 contract](QUESTION_ROUTING_V3.md) is a separate implementation. V6 remains a v2 measurement and a v3 development regression; it cannot be reused for a fresh v3 accuracy claim.

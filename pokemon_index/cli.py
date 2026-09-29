@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, buyer_questions, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, tcgdex
 
 
 def read_jsonl(path: str):
@@ -185,6 +185,11 @@ def main() -> None:
     route_plan_v2.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
     route_plan_v2.add_argument("--capability", action="append", default=[],
                                choices=sorted(question_routing_v2.V2_CAPABILITIES))
+    route_plan_v3 = sub.add_parser("question-route-plan-v3", help="plan with seller state, platform and rarity separated")
+    route_plan_v3.add_argument("file", help="v3 structured question facts JSON")
+    route_plan_v3.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
+    route_plan_v3.add_argument("--capability", action="append", default=[],
+                               choices=sorted(question_routing_v3.V3_CAPABILITIES))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
     number_explanation.add_argument("left_card_id")
     number_explanation.add_argument("right_card_id")
@@ -260,6 +265,14 @@ def main() -> None:
         resolution = (json.loads(Path(args.resolution).read_text(encoding="utf-8"))
                       if args.resolution else None)
         print(json.dumps(question_routing_v2.plan_question(
+            facts, resolution=resolution, capabilities=set(args.capability)),
+            ensure_ascii=False, indent=2))
+        return
+    if args.command == "question-route-plan-v3":
+        facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
+        resolution = (json.loads(Path(args.resolution).read_text(encoding="utf-8"))
+                      if args.resolution else None)
+        print(json.dumps(question_routing_v3.plan_question(
             facts, resolution=resolution, capabilities=set(args.capability)),
             ensure_ascii=False, indent=2))
         return
