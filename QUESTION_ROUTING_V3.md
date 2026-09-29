@@ -21,6 +21,26 @@ python3 -m pokemon_index question-route-plan-v3 facts-v3.json \
   --resolution catalog-resolution.json --capability internal_catalog
 ```
 
+The read-only catalog resolver can now supply that resolution directly from a local
+snapshot:
+
+```bash
+python3 -m pokemon_index question-route-plan-v3 facts-v3.json \
+  --catalog-db catalog-index.sqlite3 --capability internal_catalog
+```
+
+`--catalog-db` and `--resolution` are mutually exclusive. The output includes
+`catalog_lookup`: normalized query tokens, a bounded candidate list, total matches,
+the reason for the decision, and a SHA-256 reference to the query and matching row
+evidence. This reference is a lookup trace, not a hash or freshness guarantee for
+the entire database. A unique result requires one named card plus explicit language,
+set, number and exactly one eligible catalog row; rarity must be supported by the
+row when stated, and finish must match its recorded variant when stated. Missing
+coordinates or excluded/unverified rows ask for printing details. Multiple variants
+remain multiple candidates. A unique **catalog printing** still does not identify
+the condition, authenticity or final price of a marketplace copy. The resolver does
+not provide live offer or verified-sale capabilities.
+
 ## Extractor and error record
 
 The [Gemini v3.3 extractor](scripts/vertex_public_question_facts_v3.py) asks for the exact structured facts, a short rationale and direct question-text spans for platforms, merchant, rarity and finish. The validator checks these spans against the blind question; a rarity span must exactly match its code, so `MUR` cannot support `UR`. Linked or mentioned photos remain unavailable. Every call records a prompt hash, model version and response hash. Failed attempts record the stage, safe validation code, finish reason and response hash without keeping raw model text. The checkpoint is bound to the frozen question, prompt and code hashes.
