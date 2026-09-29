@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, tcgdex
 
 
 def read_jsonl(path: str):
@@ -190,6 +190,7 @@ def main() -> None:
     route_plan_v3.add_argument("file", help="v3 structured question facts JSON")
     route_plan_v3.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
     route_plan_v3.add_argument("--catalog-db", help="read-only catalog snapshot for automatic resolution")
+    route_plan_v3.add_argument("--catalog-resolver-version", choices=("v1", "v2"), default="v2")
     route_plan_v3.add_argument("--capability", action="append", default=[],
                                choices=sorted(question_routing_v3.V3_CAPABILITIES))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
@@ -280,7 +281,9 @@ def main() -> None:
             catalog_path = Path(args.catalog_db).resolve(strict=True)
             with closing(sqlite3.connect(f"{catalog_path.as_uri()}?mode=ro", uri=True)) as catalog_db:
                 catalog_db.row_factory = sqlite3.Row
-                plan = catalog_question_resolver.plan_question_with_catalog(
+                resolver = (catalog_question_resolver if args.catalog_resolver_version == "v1"
+                            else catalog_question_resolver_v2)
+                plan = resolver.plan_question_with_catalog(
                     catalog_db, facts, capabilities=set(args.capability))
         else:
             plan = question_routing_v3.plan_question(

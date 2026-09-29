@@ -1,0 +1,202 @@
+{
+  "by_split": {
+    "development": 6,
+    "holdout": 2
+  },
+  "catalog_snapshot_sha256": "360413e1d790ca1f3a8e34a222647dad19a5c3d7864fb23fa803b01355bfa67b",
+  "catalog_statuses": {
+    "multiple_candidates": 2,
+    "no_match": 2,
+    "not_attempted": 4
+  },
+  "facts_sha256": "bd6f27c6117261afbbbb4120652ed2e6491159af64a24c6c34255c098467fdc4",
+  "manifest_sha256": "0aedba85bb81988fbfc47a5939379532b27d930c44bcf03f06566d42902d0ca0",
+  "questions": 8,
+  "role": "fresh frozen cohort diagnostic; no independent fact truth or answer accuracy",
+  "rows": [
+    {
+      "actions": [
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [
+        "en:BASE1:058/102:normal",
+        "en:BASE1:058/102:normal_1999_2000_copyright",
+        "en:BASE1:058/102:normal_shadowless",
+        "en:BASE1:058/102:normal_shadowless_1st_edition",
+        "en:BASE1:058/102:normal_shadowless_red_cheek",
+        "en:BASE1:058/102:normal_shadowless_red_cheek_1st_edition",
+        "en:BASE1:058/102:normal_unlimited",
+        "en:BASE1:058/102:normal_unlimited_poketour_99"
+      ],
+      "catalog_reason": "ambiguous_catalog_printing",
+      "catalog_status": "multiple_candidates",
+      "fact_status": "ok",
+      "id": "pubq7-001",
+      "matched_total": 8,
+      "object_type": "single_card",
+      "primary_goal": "identify_variant",
+      "split": "holdout"
+    },
+    {
+      "actions": [
+        {
+          "action": "ask_target_card",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "fact_status": "ok",
+      "id": "pubq7-002",
+      "matched_total": 0,
+      "object_type": "card_collection",
+      "primary_goal": "cross_language_relation",
+      "split": "development"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "fact_status": "ok",
+      "id": "pubq7-003",
+      "matched_total": 0,
+      "object_type": "single_card",
+      "primary_goal": "other",
+      "split": "holdout"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [
+        "en:BASE2:054/064:normal",
+        "en:BASE2:054/064:normal_1st_edition",
+        "en:BASE4:077/130:normal",
+        "en:BASEP:007/053:normal",
+        "en:DET1:014/018:standard",
+        "en:ME02:076/094:normal",
+        "en:ME02:076/094:reverse",
+        "en:SM10:134/214:standard",
+        "en:SM115:041/068:standard",
+        "en:SM4:071/111:standard",
+        "en:SM8:133/214:standard",
+        "en:SV02:083/193:normal",
+        "en:SV02:083/193:reverse",
+        "en:SV03.5:039/165:normal",
+        "en:SV03.5:039/165:reverse",
+        "en:SV04.5:198/091:holo",
+        "en:SWSH3:067/189:normal",
+        "en:SWSH3:067/189:reverse",
+        "en:SWSH8:110/264:normal",
+        "en:SWSH8:110/264:reverse"
+      ],
+      "catalog_reason": "ambiguous_catalog_printing",
+      "catalog_status": "multiple_candidates",
+      "fact_status": "ok",
+      "id": "pubq7-004",
+      "matched_total": 43,
+      "object_type": "single_card",
+      "primary_goal": "authenticity",
+      "split": "development"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "fact_status": "ok",
+      "id": "pubq7-005",
+      "matched_total": 0,
+      "object_type": "single_card",
+      "primary_goal": "other",
+      "split": "development"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_scope",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "fact_status": "ok",
+      "id": "pubq7-006",
+      "matched_total": 0,
+      "object_type": "sealed_tcg",
+      "primary_goal": "identify_variant",
+      "split": "development"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "retrieve_buyback_terms",
+          "status": "blocked"
+        },
+        {
+          "action": "retrieve_selling_fees",
+          "status": "blocked"
+        },
+        {
+          "action": "retrieve_current_policy",
+          "status": "blocked"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "fact_status": "ok",
+      "id": "pubq7-007",
+      "matched_total": 0,
+      "object_type": "card_collection",
+      "primary_goal": "channel_choice",
+      "split": "development"
+    },
+    {
+      "actions": [
+        {
+          "action": "ask_product_type",
+          "status": "ready"
+        }
+      ],
+      "candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "fact_status": "ok",
+      "id": "pubq7-008",
+      "matched_total": 0,
+      "object_type": "unknown",
+      "primary_goal": "cross_language_relation",
+      "split": "development"
+    }
+  ],
+  "schema": "pokemon.question-v3-catalog-replay.v1",
+  "valid_facts": 8
+}

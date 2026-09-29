@@ -27,7 +27,10 @@ def _unique(rows: list[dict], name: str) -> dict[str, dict]:
 
 
 def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
-              priors: list[Path], out_dir: Path) -> dict:
+              priors: list[Path], out_dir: Path, *,
+              first_review_family: str = "astra") -> dict:
+    if first_review_family not in {"astra", "codex"}:
+        raise ValueError("unsupported first review family")
     if out_dir.exists():
         raise FileExistsError("preflight output must be new")
     candidates = read_jsonl(source)
@@ -59,7 +62,7 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
                 or row["observed_date"] != by_id[item_id]["observed_date"]):
             raise ValueError(f"invalid source evidence: {item_id}")
     audits = {}
-    for family, path in (("astra", astra), ("google", gemini)):
+    for family, path in ((first_review_family, astra), ("google", gemini)):
         rows = _unique(read_jsonl(path), family)
         if rows.keys() != by_id.keys():
             raise ValueError(f"{family} audit must cover every candidate")
@@ -76,13 +79,14 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
         audits[family] = rows
     decisions = []
     for item_id, candidate in by_id.items():
-        a, g = audits["astra"][item_id], audits["google"][item_id]
+        a, g = audits[first_review_family][item_id], audits["google"][item_id]
         method = evidence_rows[item_id]["verification_method"]
         accepted = method == "opened_post" and a["status"] == g["status"] == "faithful"
         decisions.append({"id": item_id, "accepted": accepted,
                           "source_url": candidate["source_url"],
                           "verification_method": method,
-                          "astra_status": a["status"], "gemini_status": g["status"]})
+                          f"{first_review_family}_status": a["status"],
+                          "gemini_status": g["status"]})
     accepted_ids = {row["id"] for row in decisions if row["accepted"]}
     if not accepted_ids:
         raise ValueError("no candidate passed the source gate")
@@ -92,7 +96,8 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
     report = {"schema": "pokemon.public-question-preflight.v1",
               "candidate_sha256": sha_file(source),
               "evidence_sha256": sha_file(evidence),
-              "astra_sha256": sha_file(astra), "gemini_sha256": sha_file(gemini),
+              f"{first_review_family}_sha256": sha_file(astra),
+              "gemini_sha256": sha_file(gemini),
               "prior_source_sha256": [sha_file(path) for path in priors],
               "eligible_sha256": sha_file(out_dir / "eligible_source_questions.jsonl"),
               "candidates": len(candidates), "accepted": len(accepted_ids),
@@ -111,13 +116,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--evidence", type=Path, required=True)
-    parser.add_argument("--astra", type=Path, required=True)
+    parser.add_argument("--astra", "--first-review", dest="astra", type=Path, required=True)
+    parser.add_argument("--first-review-family", choices=("astra", "codex"), default="astra")
     parser.add_argument("--gemini", type=Path, required=True)
     parser.add_argument("--prior-source", type=Path, action="append", default=[])
     parser.add_argument("--out-dir", type=Path, required=True)
     args = parser.parse_args()
     print(json.dumps(preflight(args.source, args.evidence, args.astra,
-                               args.gemini, args.prior_source, args.out_dir),
+                               args.gemini, args.prior_source, args.out_dir,
+                               first_review_family=args.first_review_family),
                      ensure_ascii=False))
 
 

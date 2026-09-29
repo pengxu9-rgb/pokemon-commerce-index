@@ -64,6 +64,30 @@ class PreflightTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "invalid astra audit"):
                 preflight(source_path, evidence_path, *paths, [], root / "changed")
 
+    def test_first_review_is_attributed_to_actual_reviewer(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            candidate = source("codex")
+            source_path, evidence_path = root / "source.jsonl", root / "evidence.jsonl"
+            write_jsonl(source_path, [candidate])
+            write_jsonl(evidence_path, [{"id": "codex", "source_url": candidate["source_url"],
+                "post_locator": "opening post", "anchor": "identify card",
+                "source_context": "The opening post asks how to identify a card and supplies no photo.",
+                "verification_method": "opened_post", "observed_date": "2026-09-29"}])
+            paths = []
+            for family in ("codex", "google"):
+                path = root / f"{family}.jsonl"
+                write_jsonl(path, [{"id": "codex", "model_family": family,
+                    "source_sha256": sha_file(source_path),
+                    "evidence_sha256": sha_file(evidence_path),
+                    "status": "faithful", "reason": "Same source question."}])
+                paths.append(path)
+            report = preflight(source_path, evidence_path, *paths, [], root / "out",
+                               first_review_family="codex")
+            self.assertEqual(report["codex_sha256"], sha_file(paths[0]))
+            self.assertNotIn("astra_sha256", report)
+            self.assertEqual(report["decisions"][0]["codex_status"], "faithful")
+
 
 if __name__ == "__main__":
     unittest.main()

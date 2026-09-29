@@ -1,0 +1,94 @@
+{
+  "accepted": 8,
+  "audit_statuses": {
+    "codex": {
+      "faithful": 8
+    },
+    "google": {
+      "faithful": 8
+    }
+  },
+  "candidate_sha256": "2d0a68cee2d642d690382c5ca56bea1d4f3b32165fb92b0b21ed6c3fc77a5e9c",
+  "candidates": 8,
+  "codex_sha256": "2e4ae4cc46bbd1751df15127c051b00ec102e7974236677305b265789839ebfc",
+  "decisions": [
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-001",
+      "source_url": "https://www.elitefourum.com/t/base-set-pikachu-versions-reprints/10839",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-002",
+      "source_url": "https://www.elitefourum.com/t/old-japanese-promo-cards/10563",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-003",
+      "source_url": "https://www.elitefourum.com/t/japanese-double-colourless-energy-ur-price-spike/19498",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-004",
+      "source_url": "https://www.elitefourum.com/t/is-this-imakuni-signature-authentic/52588",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-005",
+      "source_url": "https://www.elitefourum.com/t/price-market-on-the-battle-day-promos-395-397-sm-p/26366",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-006",
+      "source_url": "https://www.elitefourum.com/t/1999-movie-promo-set-two-different-packaging-style/29270",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-007",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14325960519",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq7-008",
+      "source_url": "https://www.elitefourum.com/t/japanese-vs-english/24863",
+      "verification_method": "opened_post"
+    }
+  ],
+  "eligible_sha256": "4871d80dee095779186bc4ca452613025e0fbdfc6eba394cf84f44474faf8bc9",
+  "evidence_sha256": "e703a0b9c661e7ac0987fbdc3c84fd05c5c43ad9ae8cfd7eb20f4aca93d39cce",
+  "gemini_sha256": "e21d953c289f731ee5e5994e191956539e1819d4f258bc49656e795ed0e41eda",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+    "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+    "3a39f7fecf9c9de27b5d067704c68737a7df78aedf1d13180be32d412ec12eab"
+  ],
+  "rejected": 0,
+  "schema": "pokemon.public-question-preflight.v1"
+}

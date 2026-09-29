@@ -29,6 +29,12 @@ python3 -m pokemon_index question-route-plan-v3 facts-v3.json \
   --catalog-db catalog-index.sqlite3 --capability internal_catalog
 ```
 
+The CLI now defaults to the v2 resolver, which uses only latest approved
+bilingual name concepts for cross-language name lookup. Use
+`--catalog-resolver-version v1` to replay the frozen v7 behavior. A name
+concept is a search alias, never a printing or price-equivalence claim. An
+alias can reach `unique` only when the target card also has a compatible
+reviewed catalog classification.
 `--catalog-db` and `--resolution` are mutually exclusive. The output includes
 `catalog_lookup`: normalized query tokens, a bounded candidate list, total matches,
 the reason for the decision, and a SHA-256 reference to the query and matching row
@@ -53,4 +59,4 @@ The replay demonstrates that v3 can encode a seller's sold-but-pending Mercari a
 
 ## Next evidence gate
 
-Before reporting v3 route quality, collect new original questions with no v1–v6 source overlap, run the source-fidelity gate, freeze the v3 planner and extractor hashes, and obtain independent fact reviews. Compare field validity, plan agreement and actual answer evidence separately. The next product integration step is an evidence-backed catalog resolver that can return `unique`, `multiple_candidates` or `no_match`; current pricing and transaction conclusions still require authorized listing and sale data.
+The [v7 source-checked diagnostic](QUESTION_ROUTING_V7_DIAGNOSTIC.md) now covers eight new posts with no v1–v6 URL overlap. It freezes the v3 planner, extractor and first catalog resolver before fact extraction. Gemini produced eight schema-valid fact records, and the resolver replay exposed cross-language name and market-trend routing gaps. These rows are diagnostic rather than independently adjudicated accuracy labels. The next version must preserve v7 as a regression set and gather new posts for any fresh quality estimate. Current pricing and transaction conclusions still require authorized listing and sale data.

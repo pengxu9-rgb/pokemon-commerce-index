@@ -1,0 +1,36 @@
+{
+  "blind_sha256": "aac4203c7da637b578d3c38a141238fbbf9ef75b18f6c8ee8148d73a76151710",
+  "by_language": {
+    "en": 7,
+    "ja": 1
+  },
+  "by_media": {
+    "referenced_not_collected": 1,
+    "text_only": 7
+  },
+  "by_platform": {
+    "elitefourum": 7,
+    "yahoo_chiebukuro": 1
+  },
+  "catalog_build_manifest_sha256": "346020b66ef5e0aa883333a0b01cb9425fa24d4258383efcfb9c8a25e3511e88",
+  "catalog_resolver_sha256": "02f7e895c7ed07521cfea3a67946250dca76940e2c84f2f473c6b4f0afdb90e5",
+  "catalog_snapshot_sha256": "360413e1d790ca1f3a8e34a222647dad19a5c3d7864fb23fa803b01355bfa67b",
+  "evaluation_role": "new_source_checked_cohort; fact extraction and route adjudication pending",
+  "holdout": 2,
+  "holdout_ratio": 0.25,
+  "preflight_report_sha256": "84457f502ac6d1a98673e7115a3ba7aada21e32d3f1fc19286a0e233f7a7f442",
+  "prior_source_cohorts": "v1-v6; source URLs checked by preflight report",
+  "questions": 8,
+  "schema": "pokemon.public-question-sandbox.v3",
+  "scope": "search-discovered public question situations; not representative; source-condensed text is not raw-language accuracy",
+  "seed": 20260929,
+  "source_evidence_sha256": "e703a0b9c661e7ac0987fbdc3c84fd05c5c43ad9ae8cfd7eb20f4aca93d39cce",
+  "source_gate": "Codex inspected original posts and wrote contexts; Gemini independently judged those contexts, not original pages; no human truth label",
+  "source_index_sha256": "c6060d2e0a3261d692d6dbd02d5eefeb75755fe57450abe16aef58dd966a4d1f",
+  "source_sha256": "4871d80dee095779186bc4ca452613025e0fbdfc6eba394cf84f44474faf8bc9",
+  "text_forms": {
+    "source_condensed": 8
+  },
+  "v3_fact_extractor_sha256": "3b41c2444aded10ed6b87e6dd23f438fac4ef8b7f589c4106d3790a98e1ed09b",
+  "v3_planner_sha256": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd"
+}
