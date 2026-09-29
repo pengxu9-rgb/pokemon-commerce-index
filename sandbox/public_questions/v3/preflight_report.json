@@ -1,0 +1,107 @@
+{
+  "accepted": 9,
+  "astra_sha256": "d1fa9c31ddaaebb029df01e28ead5f41e020f141bd99fb46378955ae98d4312e",
+  "audit_statuses": {
+    "astra": {
+      "faithful": 10
+    },
+    "google": {
+      "faithful": 9,
+      "unverifiable": 1
+    }
+  },
+  "candidate_sha256": "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+  "candidates": 10,
+  "decisions": [
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-001",
+      "source_url": "https://www.elitefourum.com/t/some-general-collecting-selling-and-grading-questions/30135",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-002",
+      "source_url": "https://www.elitefourum.com/t/price-websites-for-graded-cards/36947",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-003",
+      "source_url": "https://www.elitefourum.com/t/the-value-of-japanese-cards/21410",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-004",
+      "source_url": "https://www.elitefourum.com/t/only-for-those-who-sell-minimum-profit-to-grade-a-card-with-psa/35238",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-005",
+      "source_url": "https://www.elitefourum.com/t/buyers-asking-about-conditions-of-a-graded-card/25553",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-006",
+      "source_url": "https://www.elitefourum.com/t/buyer-complaining-about-card-condition/23165",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-007",
+      "source_url": "https://www.elitefourum.com/t/set-stamps/23835",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-008",
+      "source_url": "https://www.elitefourum.com/t/any-tips-for-a-private-pokemon-card-transaction/34511",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq3-009",
+      "source_url": "https://www.elitefourum.com/t/help-identifying-topps-pokemon-card/63233",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "astra_status": "faithful",
+      "gemini_status": "unverifiable",
+      "id": "pubq3-010",
+      "source_url": "https://www.elitefourum.com/t/need-help-regarding-which-cards-of-mine-i-should-send-for-grading-and-which-cards-should-be-sold-raw/47339",
+      "verification_method": "title_only"
+    }
+  ],
+  "eligible_sha256": "225b01a0abdd153f62209344b2a32f189e56de3208f681c0e9cfe6e0961783e2",
+  "evidence_sha256": "f8abac8113313f76fae293ce95335e7a80d867a803175c3dc996bf1d8dbcd652",
+  "gemini_sha256": "b150f82b987222d9ca4583ce7609f893c69e4b96370c78cd0053775998193a20",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79"
+  ],
+  "rejected": 1,
+  "schema": "pokemon.public-question-preflight.v1"
+}

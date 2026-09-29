@@ -1,0 +1,168 @@
+{
+  "astra_sha256": "ef3b4c80592df0d0a5bdf5194f03d3889dbc82d17c48a644209f83fc199ead09",
+  "core_routing_agreement": 2,
+  "disagreement_fields": {
+    "actor": 2,
+    "blocking_evidence": 3,
+    "forbidden_claims": 5,
+    "identity_state": 3,
+    "next_action": 4,
+    "object_type": 4,
+    "optional_evidence": 9,
+    "primary_intent": 3
+  },
+  "field_agreement": {
+    "actor": 7,
+    "blocking_evidence": 6,
+    "forbidden_claims": 4,
+    "identity_state": 6,
+    "missing_context": 9,
+    "next_action": 5,
+    "object_type": 5,
+    "optional_evidence": 0,
+    "primary_intent": 6
+  },
+  "gemini_sha256": "83422469539acf475e8e87c7bf6ec0ea6007b6e8b45e40013558472d48e42e63",
+  "interpretation": "Independent AI routing agreement on new public posts; not human accuracy, market truth, or visual accuracy",
+  "jointly_reviewed": 9,
+  "manifest_sha256": "b1a97d33c80818f7ba1693eb4cdb0d12cb37e6544852dbef6a38dea267fb4a1a",
+  "questions": 9,
+  "results": [
+    {
+      "disagreements": [
+        "identity_state",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq3-001",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_grading",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "primary_intent",
+        "next_action",
+        "blocking_evidence",
+        "optional_evidence"
+      ],
+      "id": "pubq3-002",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_price",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "primary_intent",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq3-003",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_relation",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "actor",
+        "next_action",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq3-004",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_grading",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq3-005",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_condition",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "optional_evidence"
+      ],
+      "id": "pubq3-006",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_dispute",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "next_action",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq3-007",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_variant",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "primary_intent",
+        "identity_state",
+        "optional_evidence"
+      ],
+      "id": "pubq3-008",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_merchant",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "actor",
+        "identity_state",
+        "next_action",
+        "blocking_evidence",
+        "optional_evidence"
+      ],
+      "id": "pubq3-009",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_authenticity",
+      "split": "development",
+      "status": "disputed"
+    }
+  ],
+  "schema": "pokemon.public-question-silver.v2",
+  "status_counts": {
+    "disputed": 9
+  }
+}

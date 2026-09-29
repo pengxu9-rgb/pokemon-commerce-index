@@ -1,0 +1,30 @@
+{
+  "blind_sha256": "72d8c9f2be8369d4d0c23c65b1210911a6afb8d0b21fba298fc276e3f2a01f19",
+  "by_language": {
+    "en": 9
+  },
+  "by_media": {
+    "referenced_not_collected": 2,
+    "text_only": 7
+  },
+  "by_platform": {
+    "elitefourum": 9
+  },
+  "candidates_before_preflight": 10,
+  "holdout": 2,
+  "holdout_ratio": 0.25,
+  "new_source_posts_vs_prior": 9,
+  "preflight_report_sha256": "2bcbb0a42cc64cab6adf589d8d24750a6c2dc36ff49ffbaf997b58653324380e",
+  "prior_source_sha256": "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+  "questions": 9,
+  "schema": "pokemon.public-question-sandbox.v2",
+  "scope": "search-discovered public question situations; not representative; source-condensed text is not raw-language accuracy",
+  "scope_note": "Nine English Elite Fourum posts; includes one deliberate non-TCG Topps boundary case; not representative.",
+  "seed": 20260929,
+  "source_fidelity_gate": "opened original post and faithful from both independent AI reviewers",
+  "source_index_sha256": "88b5bc88bbb1106a1dfef600f3c6164e94a3f8a94b1b2ff8f32f6151fba99d46",
+  "source_sha256": "225b01a0abdd153f62209344b2a32f189e56de3208f681c0e9cfe6e0961783e2",
+  "text_forms": {
+    "source_condensed": 9
+  }
+}
