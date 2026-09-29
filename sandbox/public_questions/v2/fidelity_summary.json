@@ -1,0 +1,67 @@
+{
+  "all_source_posts": 24,
+  "audit_sha256": "b9cbf6d18f2f5e81b9bff134718814af414bf47d376774cef27aad18f55cde32",
+  "faithful_field_agreement": {
+    "actor": {
+      "agreed": 10,
+      "denominator": 13
+    },
+    "blocking_evidence": {
+      "agreed": 7,
+      "denominator": 13
+    },
+    "forbidden_claims": {
+      "agreed": 1,
+      "denominator": 13
+    },
+    "identity_state": {
+      "agreed": 5,
+      "denominator": 13
+    },
+    "missing_context": {
+      "agreed": 8,
+      "denominator": 13
+    },
+    "next_action": {
+      "agreed": 7,
+      "denominator": 13
+    },
+    "object_type": {
+      "agreed": 11,
+      "denominator": 13
+    },
+    "optional_evidence": {
+      "agreed": 2,
+      "denominator": 13
+    },
+    "primary_intent": {
+      "agreed": 12,
+      "denominator": 13
+    }
+  },
+  "faithful_jointly_reviewed": 13,
+  "faithful_source_posts": 13,
+  "fidelity_counts": {
+    "faithful": 13,
+    "inferred_case": 5,
+    "mismatch": 2,
+    "unverifiable": 4
+  },
+  "flagged_ids": [
+    "pubq2-001",
+    "pubq2-002",
+    "pubq2-004",
+    "pubq2-005",
+    "pubq2-006",
+    "pubq2-007",
+    "pubq2-008",
+    "pubq2-012",
+    "pubq2-020",
+    "pubq2-021",
+    "pubq2-022"
+  ],
+  "interpretation": "Post-label source-fidelity filter; exploratory only, because audit followed model review",
+  "schema": "pokemon.public-question-fidelity-summary.v1",
+  "silver_sha256": "a3ccc6ce42da0482c5490a3da25cce9596dad842722ce1a810407054be295d78",
+  "source_sha256": "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79"
+}

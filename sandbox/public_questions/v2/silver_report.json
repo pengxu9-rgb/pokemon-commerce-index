@@ -1,0 +1,427 @@
+{
+  "astra_sha256": "d0a72945282842b03d6015d7509d433be459a65009f39c08d3dc793abc83ce6b",
+  "core_routing_agreement": 10,
+  "disagreement_fields": {
+    "actor": 3,
+    "blocking_evidence": 7,
+    "forbidden_claims": 21,
+    "identity_state": 13,
+    "missing_context": 11,
+    "next_action": 11,
+    "object_type": 6,
+    "optional_evidence": 21,
+    "primary_intent": 3
+  },
+  "field_agreement": {
+    "actor": 21,
+    "blocking_evidence": 17,
+    "forbidden_claims": 3,
+    "identity_state": 11,
+    "missing_context": 13,
+    "next_action": 13,
+    "object_type": 18,
+    "optional_evidence": 3,
+    "primary_intent": 21
+  },
+  "gemini_sha256": "c3e324d79a6e6391541e4526af33bd8354fc30fdf29eb1f5cb9e491e21d8301a",
+  "interpretation": "Independent AI routing agreement on new public posts; not human accuracy, market truth, or visual accuracy",
+  "jointly_reviewed": 24,
+  "manifest_sha256": "720186df46783a479a41046e6c4b7bec0fad0ef612fcacb52e8b6badf677dd4d",
+  "questions": 24,
+  "results": [
+    {
+      "disagreements": [
+        "object_type",
+        "primary_intent",
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-001",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_price",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-002",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_landed",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "actor",
+        "identity_state",
+        "next_action",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-003",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_relation",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-004",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_grading",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "next_action",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-005",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_collection",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-006",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_channel",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "primary_intent",
+        "identity_state",
+        "optional_evidence"
+      ],
+      "id": "pubq2-007",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_landed",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq2-008",
+      "label": {
+        "actor": "buyer",
+        "blocking_evidence": [],
+        "forbidden_claims": [
+          "seller_reliability"
+        ],
+        "identity_state": "not_applicable",
+        "missing_context": [],
+        "next_action": "general_explanation",
+        "object_type": "marketplace_service",
+        "optional_evidence": [
+          "marketplace_policy",
+          "seller_outcomes"
+        ],
+        "primary_intent": "merchant_reliability"
+      },
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_merchant",
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "primary_intent",
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-009",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_variant",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "identity_state",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-010",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_variant",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "actor",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-011",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_price",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-012",
+      "label": null,
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "seller_grading",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "actor",
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-013",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_channel",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "identity_state",
+        "next_action",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-014",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_grading",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-015",
+      "label": null,
+      "language": "en",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "buyer_condition",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq2-016",
+      "label": {
+        "actor": "unknown",
+        "blocking_evidence": [],
+        "forbidden_claims": [
+          "counterpart",
+          "same_artwork"
+        ],
+        "identity_state": "not_applicable",
+        "missing_context": [],
+        "next_action": "general_explanation",
+        "object_type": "card_single",
+        "optional_evidence": [
+          "card_metadata",
+          "official_release_source"
+        ],
+        "primary_intent": "cross_language_relation"
+      },
+      "language": "en",
+      "media_state": "text_only",
+      "selection_bucket": "buyer_relation",
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-017",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_collection",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-018",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_channel",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "object_type",
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-019",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_channel",
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "identity_state",
+        "next_action",
+        "missing_context",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-020",
+      "label": null,
+      "language": "ja",
+      "media_state": "referenced_not_collected",
+      "selection_bucket": "seller_condition",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-021",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_grading",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-022",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_price",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "identity_state",
+        "blocking_evidence",
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-023",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_condition_price",
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "optional_evidence",
+        "forbidden_claims"
+      ],
+      "id": "pubq2-024",
+      "label": null,
+      "language": "ja",
+      "media_state": "text_only",
+      "selection_bucket": "seller_condition_price",
+      "split": "development",
+      "status": "disputed"
+    }
+  ],
+  "schema": "pokemon.public-question-silver.v2",
+  "status_counts": {
+    "disputed": 22,
+    "silver_agreed": 2
+  }
+}

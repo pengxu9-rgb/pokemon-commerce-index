@@ -98,7 +98,7 @@ def validate_source(rows: list[dict]) -> None:
 
 
 def freeze(source: Path, out_dir: Path, *, seed: int = 20260929,
-           holdout_ratio: float = 0.25) -> dict:
+           holdout_ratio: float = 0.25, schema: str = SCHEMA) -> dict:
     if out_dir.exists() or out_dir.resolve().is_relative_to(ROOT):
         raise ValueError("frozen question output must be a new directory outside the repository")
     if not 0 < holdout_ratio < 1:
@@ -131,7 +131,7 @@ def freeze(source: Path, out_dir: Path, *, seed: int = 20260929,
     out_dir.mkdir(parents=True)
     write_jsonl(out_dir / "blind_questions.jsonl", blind)
     write_jsonl(out_dir / "source_index.jsonl", source_index)
-    manifest = {"schema": SCHEMA, "source_sha256": sha_file(source),
+    manifest = {"schema": schema, "source_sha256": sha_file(source),
                 "blind_sha256": sha_file(out_dir / "blind_questions.jsonl"),
                 "source_index_sha256": sha_file(out_dir / "source_index.jsonl"),
                 "seed": seed, "holdout_ratio": holdout_ratio,

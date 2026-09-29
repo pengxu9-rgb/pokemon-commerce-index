@@ -1,0 +1,126 @@
+{
+  "schema": "pokemon.public-question-source-fidelity.v1",
+  "items": [
+    {
+      "id": "pubq2-001",
+      "status": "unverifiable",
+      "reason": "Linked Reddit post could not be fetched and targeted searches did not recover its text."
+    },
+    {
+      "id": "pubq2-002",
+      "status": "inferred_case",
+      "reason": "Original is a first-person proxy-cost experience report with an existing profitability rule; paraphrase converts that case into a question."
+    },
+    {
+      "id": "pubq2-003",
+      "status": "faithful",
+      "reason": "Original mother asks why her son prefers Korean Giratina V SR over Japanese and why the versions differ; condensation omits set and listing-price context."
+    },
+    {
+      "id": "pubq2-004",
+      "status": "inferred_case",
+      "reason": "Original asks whether to sell raw holos to focus on slabs; grading owned cards is introduced by a reply, not the original question."
+    },
+    {
+      "id": "pubq2-005",
+      "status": "mismatch",
+      "reason": "Original explicitly says no sale planned, possibly never, and asks collection valuation and collecting priorities; paraphrase invents a sell-together-versus-singles goal."
+    },
+    {
+      "id": "pubq2-006",
+      "status": "inferred_case",
+      "reason": "Original is a sale advertisement already accepting individual/set offers and specifying bulk-only commons; it does not ask which sales format to choose."
+    },
+    {
+      "id": "pubq2-007",
+      "status": "unverifiable",
+      "reason": "Linked Reddit post could not be fetched and targeted searches did not recover its text."
+    },
+    {
+      "id": "pubq2-008",
+      "status": "mismatch",
+      "reason": "Original reports a tampered booster case containing junk cards; paraphrase changes it to a damaged single copy and invents a future-risk question."
+    },
+    {
+      "id": "pubq2-009",
+      "status": "faithful",
+      "reason": "Original asks Japanese-versus-English Shaymin EX texture/detail differences to decide which version to buy."
+    },
+    {
+      "id": "pubq2-010",
+      "status": "faithful",
+      "reason": "Original asks how to distinguish the English-language Pikachu in Japanese and English World Collection releases when buying."
+    },
+    {
+      "id": "pubq2-011",
+      "status": "faithful",
+      "reason": "Original seller asks for pricing guidance for Japanese-exclusive cards unavailable on eBay; condensation narrows the examples to promos."
+    },
+    {
+      "id": "pubq2-012",
+      "status": "inferred_case",
+      "reason": "Original asks whether to continue grading and selling duplicates generally; Japanese Shaymin is an example, not evidence that all owned duplicates are Japanese."
+    },
+    {
+      "id": "pubq2-013",
+      "status": "faithful",
+      "reason": "Original asks which childhood English/Japanese cards to grade and whether a shop taking a sales cut should help sell them."
+    },
+    {
+      "id": "pubq2-014",
+      "status": "faithful",
+      "reason": "Original asks how to grade/sell a first-edition-shadowless collection, including pregrading, value tiers and BGS-versus-PSA resale comparisons."
+    },
+    {
+      "id": "pubq2-015",
+      "status": "faithful",
+      "reason": "Original buyer asks fair value for an ink-altered 1999 Tropical Wind; condensation removes its asking price and future upgrade goal but preserves the valuation question."
+    },
+    {
+      "id": "pubq2-016",
+      "status": "faithful",
+      "reason": "Original collector asks how to verify Japanese promo exclusivity; different-artwork clarification comes from replies but preserves the central verification question."
+    },
+    {
+      "id": "pubq2-017",
+      "status": "faithful",
+      "reason": "Original owner of about three thousand old cards explicitly asks bulk dealer sale versus individual/app/auction sales."
+    },
+    {
+      "id": "pubq2-018",
+      "status": "faithful",
+      "reason": "Original seller explicitly asks shop buyback versus Mercari; condensation omits the 2007–2010 collection context."
+    },
+    {
+      "id": "pubq2-019",
+      "status": "faithful",
+      "reason": "Original wants the highest selling proceeds for roughly 100 cards worth 1,000–50,000 yen and compares Mercari with stores; effort framing is added from the answer."
+    },
+    {
+      "id": "pubq2-020",
+      "status": "unverifiable",
+      "reason": "Linked Yahoo question could not be fetched and targeted searches did not recover its text."
+    },
+    {
+      "id": "pubq2-021",
+      "status": "inferred_case",
+      "reason": "Original seller asks why graded Pikachu 001/SV-P costs more and whether grading fees are high; paraphrase turns explanation into a personal grade-before-sale decision."
+    },
+    {
+      "id": "pubq2-022",
+      "status": "unverifiable",
+      "reason": "Linked Yahoo question could not be fetched and targeted searches did not recover its text."
+    },
+    {
+      "id": "pubq2-023",
+      "status": "faithful",
+      "reason": "Original seller describes scratched Greninja MUR, three differing shop quotes and asks what damaged-card sale price to accept."
+    },
+    {
+      "id": "pubq2-024",
+      "status": "faithful",
+      "reason": "Original asks whether damaged old cards can sell, where to sell, and explains difficulty determining damaged-versus-mint prices; condensation preserves those concerns."
+    }
+  ],
+  "source_sha256": "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79"
+}
