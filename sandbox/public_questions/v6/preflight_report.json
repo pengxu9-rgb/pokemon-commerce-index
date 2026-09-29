@@ -1,0 +1,126 @@
+{
+  "accepted": 11,
+  "astra_sha256": "99467efc93325ca77aaeec4d983ef3f09b1304e41cda56d0c9aa5115ab676ad9",
+  "audit_statuses": {
+    "astra": {
+      "faithful": 11,
+      "unverifiable": 1
+    },
+    "google": {
+      "faithful": 12
+    }
+  },
+  "candidate_sha256": "3a39f7fecf9c9de27b5d067704c68737a7df78aedf1d13180be32d412ec12eab",
+  "candidates": 12,
+  "decisions": [
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-001",
+      "source_url": "https://www.elitefourum.com/t/japanese-vs-english-xy-era/56892",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-002",
+      "source_url": "https://www.elitefourum.com/t/how-common-are-print-lines-on-japanese-cards/33544",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-003",
+      "source_url": "https://www.elitefourum.com/t/questions-about-a-listing-and-general-buying-advice-university-magikarp-on-mercari/52314",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-004",
+      "source_url": "https://www.elitefourum.com/t/snap-bulbasaur-available-on-mercari-is-it-real-or-fake/47127",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-005",
+      "source_url": "https://www.elitefourum.com/t/other-options-for-buying-from-japan/47064",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-006",
+      "source_url": "https://www.elitefourum.com/t/need-a-legit-check-on-jp-e-reader-grail-card/54643",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-007",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10330661105",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-008",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13328070453",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-009",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14305057554",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-010",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10323959605",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "astra_status": "unverifiable",
+      "gemini_status": "faithful",
+      "id": "pubq6-011",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14320459934",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "astra_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq6-012",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13330972213",
+      "verification_method": "opened_post"
+    }
+  ],
+  "eligible_sha256": "adab3422b250e08b89824824165c69bc6b087d4e5a2fcd6327577e539fecbd83",
+  "evidence_sha256": "36d305e2496812cefb87172395ead6ed067863d26000ae7e412cd19db5866694",
+  "gemini_sha256": "7334b41a19e5ef55df5932ac7dbce0d1971fa0947d98918661dfb33283e75e0e",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+    "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8"
+  ],
+  "rejected": 1,
+  "schema": "pokemon.public-question-preflight.v1"
+}

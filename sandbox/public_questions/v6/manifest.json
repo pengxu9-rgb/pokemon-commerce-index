@@ -1,0 +1,32 @@
+{
+  "blind_sha256": "c5555c56c78746e617fd9e684572f9411649fc9d653c82a5c5fb11fe8413ca0b",
+  "by_language": {
+    "en": 6,
+    "ja": 5
+  },
+  "by_media": {
+    "referenced_not_collected": 4,
+    "text_only": 7
+  },
+  "by_platform": {
+    "elitefourum": 6,
+    "yahoo_chiebukuro": 5
+  },
+  "holdout": 3,
+  "holdout_ratio": 0.25,
+  "new_source_posts_vs_prior": 11,
+  "planner_sha256": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+  "preflight_report_sha256": "892db1eff299972230ba60e1f9a36bf7560425e623da8b1b630587052ca5a15f",
+  "prior_source_sha256": "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+  "questions": 11,
+  "schema": "pokemon.public-question-sandbox.v2",
+  "scope": "Search-discovered public question situations; bilingual convenience cohort; source-condensed text; not representative",
+  "scope_note": "Planner and extractor locked before independent v2 fact extraction. AI source agreement is not human accuracy or market truth.",
+  "seed": 20260929,
+  "source_index_sha256": "96b050a9bcb5a8147fe0375feb7da15c50abdf6d4844e7b013a4838e3b455ad4",
+  "source_sha256": "adab3422b250e08b89824824165c69bc6b087d4e5a2fcd6327577e539fecbd83",
+  "text_forms": {
+    "source_condensed": 11
+  },
+  "v2_fact_extractor_sha256": "7f2185df02944396fb864fa7290de3ed890179e44b9c04eb142f93dcf0ad52ae"
+}

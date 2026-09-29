@@ -1,0 +1,215 @@
+{
+  "astra_sha256": "641956bcefa3f61cb070b5367ef4e6b96bb0ba9b8edbf595ad36782764a58d43",
+  "by_language": {
+    "en": {
+      "exact_fact_agreement": 0,
+      "jointly_reviewed": 3,
+      "plan_agreement": 3,
+      "questions": 6
+    },
+    "ja": {
+      "exact_fact_agreement": 2,
+      "jointly_reviewed": 5,
+      "plan_agreement": 4,
+      "questions": 5
+    }
+  },
+  "by_split": {
+    "development": {
+      "exact_fact_agreement": 1,
+      "jointly_reviewed": 6,
+      "plan_agreement": 5,
+      "questions": 8
+    },
+    "holdout": {
+      "exact_fact_agreement": 1,
+      "jointly_reviewed": 2,
+      "plan_agreement": 2,
+      "questions": 3
+    }
+  },
+  "deterministic_plan_agreement": 7,
+  "extractor_sha256": "7f2185df02944396fb864fa7290de3ed890179e44b9c04eb142f93dcf0ad52ae",
+  "field_agreement": {
+    "destination": 8,
+    "identity_tokens.card_names": 8,
+    "identity_tokens.collector_number": 8,
+    "identity_tokens.finish": 6,
+    "identity_tokens.grade": 7,
+    "identity_tokens.language": 7,
+    "identity_tokens.set_name": 8,
+    "language_mentions": 8,
+    "media_state": 8,
+    "merchant_ref": 5,
+    "object_type": 7,
+    "primary_goal": 8,
+    "transaction_context": 5
+  },
+  "gemini_sha256": "fd568d25be9e8f65b80d5ce738e9e4432b9273d4e8a3ea69d91d4488444ebe7c",
+  "interpretation": "Independent AI fact agreement on a frozen question cohort; not human accuracy or market truth",
+  "jointly_reviewed": 8,
+  "manifest_sha256": "9c7aa2454b36000db18b1bd2764787d640f15a7c71108b9e75275f0549d9943f",
+  "planner_sha256": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+  "questions": 11,
+  "results": [
+    {
+      "disagreements": [
+        "object_type",
+        "identity_tokens.finish",
+        "identity_tokens.language"
+      ],
+      "id": "pubq6-001",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq6-002",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "holdout",
+      "status": "review_failed"
+    },
+    {
+      "disagreements": [
+        "merchant_ref",
+        "identity_tokens.grade"
+      ],
+      "id": "pubq6-003",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq6-004",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "review_failed"
+    },
+    {
+      "disagreements": [
+        "transaction_context"
+      ],
+      "id": "pubq6-005",
+      "language": "en",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq6-006",
+      "language": "en",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "review_failed"
+    },
+    {
+      "disagreements": [
+        "identity_tokens.finish"
+      ],
+      "id": "pubq6-007",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq6-008",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "destination": null,
+        "identity_tokens": {
+          "card_names": [
+            "ラティアスex",
+            "ラティオスex"
+          ],
+          "collector_number": null,
+          "finish": null,
+          "grade": null,
+          "language": null,
+          "set_name": "ADVギフトボックス"
+        },
+        "language_mentions": [],
+        "media_state": "none",
+        "merchant_ref": null,
+        "object_type": "card_collection",
+        "primary_goal": "seller_pricing",
+        "transaction_context": "owned"
+      },
+      "split": "development",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [],
+      "id": "pubq6-009",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": {
+        "destination": null,
+        "identity_tokens": {
+          "card_names": [
+            "ピカチュウ"
+          ],
+          "collector_number": null,
+          "finish": "マスターボールミラー",
+          "grade": null,
+          "language": null,
+          "set_name": "151"
+        },
+        "language_mentions": [],
+        "media_state": "none",
+        "merchant_ref": null,
+        "object_type": "single_card",
+        "primary_goal": "seller_pricing",
+        "transaction_context": "seller_buyback"
+      },
+      "split": "holdout",
+      "status": "silver_agreed"
+    },
+    {
+      "disagreements": [
+        "transaction_context",
+        "merchant_ref"
+      ],
+      "id": "pubq6-010",
+      "language": "ja",
+      "plan_agrees": false,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    },
+    {
+      "disagreements": [
+        "transaction_context",
+        "merchant_ref"
+      ],
+      "id": "pubq6-012",
+      "language": "ja",
+      "plan_agrees": true,
+      "silver_facts": null,
+      "split": "development",
+      "status": "disputed"
+    }
+  ],
+  "schema": "pokemon.public-question-facts-silver.v2",
+  "status_counts": {
+    "disputed": 6,
+    "review_failed": 3,
+    "silver_agreed": 2
+  }
+}

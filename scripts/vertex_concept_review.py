@@ -142,6 +142,10 @@ def _call_model(project: str, location: str, token: str,
             if exc.code not in {429, 500, 503} or attempt == 2:
                 raise RuntimeError(f"Vertex returned HTTP {exc.code}") from exc
             time.sleep(2 ** attempt)
+        except urllib.error.URLError:
+            if attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
     raise AssertionError("unreachable")
 
 
