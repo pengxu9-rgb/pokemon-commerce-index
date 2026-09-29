@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, tcgdex
 
 
 def read_jsonl(path: str):
@@ -193,6 +193,12 @@ def main() -> None:
     route_plan_v3.add_argument("--catalog-resolver-version", choices=("v1", "v2"), default="v2")
     route_plan_v3.add_argument("--capability", action="append", default=[],
                                choices=sorted(question_routing_v3.V3_CAPABILITIES))
+    route_plan_v4 = sub.add_parser("question-route-plan-v4", help="plan trend and buy-or-wait evidence")
+    route_plan_v4.add_argument("file", help="v4 structured question facts JSON")
+    route_plan_v4.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
+    route_plan_v4.add_argument("--catalog-db", help="read-only catalog snapshot for automatic resolution")
+    route_plan_v4.add_argument("--capability", action="append", default=[],
+                               choices=sorted(question_routing_v4.CAPABILITIES))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
     number_explanation.add_argument("left_card_id")
     number_explanation.add_argument("right_card_id")
@@ -288,6 +294,26 @@ def main() -> None:
         else:
             plan = question_routing_v3.plan_question(
                 facts, resolution=resolution, capabilities=set(args.capability))
+        print(json.dumps(plan, ensure_ascii=False, indent=2))
+        return
+    if args.command == "question-route-plan-v4":
+        facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
+        if args.resolution and args.catalog_db:
+            raise ValueError("choose --resolution or --catalog-db, not both")
+        resolution = (json.loads(Path(args.resolution).read_text(encoding="utf-8"))
+                      if args.resolution else None)
+        lookup = None
+        if args.catalog_db:
+            catalog_path = Path(args.catalog_db).resolve(strict=True)
+            with closing(sqlite3.connect(f"{catalog_path.as_uri()}?mode=ro", uri=True)) as catalog_db:
+                catalog_db.row_factory = sqlite3.Row
+                lookup = catalog_question_resolver_v2.resolve_question(
+                    catalog_db, question_routing_v4.catalog_projection(facts))
+            resolution = lookup["resolution"]
+        plan = question_routing_v4.plan_question(
+            facts, resolution=resolution, capabilities=set(args.capability))
+        if lookup is not None:
+            plan["catalog_lookup"] = lookup
         print(json.dumps(plan, ensure_ascii=False, indent=2))
         return
     if args.command == "adapt-tcgdex-set":
