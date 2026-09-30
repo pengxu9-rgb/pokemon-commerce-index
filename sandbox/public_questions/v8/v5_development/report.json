@@ -1,0 +1,284 @@
+{
+  "evaluation_role": "viewed v8 replay, not a new blind score or independent truth label",
+  "extraction_sha256": "e7eb63af81df20c7bed29297ccd5094eb97f6c55a4a0d4d49348c731bda80279",
+  "questions": 9,
+  "results": [
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_time_window",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "excluded_or_unverified_catalog_row",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-001",
+      "object_type": "single_card",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "price_trend",
+      "v5_goal": "price_trend"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_constraints",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-002",
+      "object_type": "single_card",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": "10月のシールド戦終了まで",
+      "v4_goal": "price_trend",
+      "v5_goal": "seller_timing"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_time_window",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-003",
+      "object_type": "single_card",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "price_trend",
+      "v5_goal": "price_trend"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "excluded_or_unverified_catalog_row",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "id": "pubq8-004",
+      "object_type": "single_card",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "price_trend",
+      "v5_goal": "price_comparison"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_comparable_cohort",
+          "status": "ready"
+        },
+        {
+          "action": "ask_comparison_period",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-005",
+      "object_type": "card_market_segment",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "price_trend",
+      "v5_goal": "relative_value_explanation"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_decision_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_purchase_constraints",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "unresolved_cross_language_name",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-006",
+      "object_type": "single_card",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "purchase_timing",
+      "v5_goal": "purchase_timing"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_market_scope",
+          "status": "ready"
+        },
+        {
+          "action": "ask_time_window",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-007",
+      "object_type": "card_market_segment",
+      "purchase_constraints": null,
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "price_trend",
+      "v5_goal": "price_trend"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_market_scope",
+          "status": "ready"
+        },
+        {
+          "action": "ask_decision_horizon",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-008",
+      "object_type": "card_collection",
+      "purchase_constraints": "around $80–90",
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": null,
+      "v4_goal": "purchase_timing",
+      "v5_goal": "purchase_timing"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_selection_factors",
+          "status": "ready"
+        },
+        {
+          "action": "ask_candidate_cards_or_preferences",
+          "status": "ready"
+        },
+        {
+          "action": "ask_listed_choices",
+          "status": "ready"
+        }
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-009",
+      "object_type": "single_card",
+      "purchase_constraints": "about $1,300",
+      "sale_constraints": null,
+      "status": "ok",
+      "time_window": "over five years",
+      "v4_goal": "collecting_preference",
+      "v5_goal": "collecting_preference"
+    }
+  ],
+  "schema": "pokemon.public-question-v5-development-report.v1",
+  "schema_valid": 9,
+  "source_blind_sha256": "4dc86c4759190ec550c2354f9ed1a11eab64c01fe0b3f8248fe8e72a8523448d",
+  "v4_goals": {
+    "collecting_preference": 1,
+    "price_trend": 6,
+    "purchase_timing": 2
+  },
+  "v5_extractor_sha256": "a992f4d573161bd098016cbaa9e86c06e3f217bffbf83bab8b3a3b4890751e95",
+  "v5_goals": {
+    "collecting_preference": 1,
+    "price_comparison": 1,
+    "price_trend": 3,
+    "purchase_timing": 2,
+    "relative_value_explanation": 1,
+    "seller_timing": 1
+  },
+  "v5_planner_sha256": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79"
+}

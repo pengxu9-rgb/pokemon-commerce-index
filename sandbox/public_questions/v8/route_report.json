@@ -1,0 +1,268 @@
+{
+  "evaluation_role": "new source-checked cohort, not population-representative or independently human-labelled",
+  "gemini_facts_sha256": "e923c7837a5905ca815207c32c64cbb09a1693a9aa1745dbaed2dff5fa5bdb23",
+  "manifest_sha256": "a8c98f5b4189cd1e171b4e451d35791773ef2bb8464d7d02834e5b6e82ea4d92",
+  "questions": 9,
+  "results": [
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "excluded_or_unverified_catalog_row",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-001",
+      "language": "ja",
+      "object_type": "single_card",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "marketplace_listing",
+      "split": "holdout",
+      "status": "ok",
+      "time_window": "半年ほど前から",
+      "transaction_context": "listed_for_sale"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-002",
+      "language": "ja",
+      "object_type": "single_card",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "development",
+      "status": "ok",
+      "time_window": "10月のシールド戦終了まで",
+      "transaction_context": "owned"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-003",
+      "language": "ja",
+      "object_type": "single_card",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "holdout",
+      "status": "ok",
+      "time_window": "今後",
+      "transaction_context": "prospective_buy"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "excluded_or_unverified_catalog_row",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-004",
+      "language": "ja",
+      "object_type": "single_card",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "development",
+      "status": "ok",
+      "time_window": "今後",
+      "transaction_context": "prospective_buy"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_market_scope",
+          "status": "ready"
+        },
+        {
+          "action": "ask_time_window",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-005",
+      "language": "en",
+      "object_type": "card_market_segment",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "development",
+      "status": "ok",
+      "time_window": null,
+      "transaction_context": "none"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_decision_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_purchase_constraints",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "unresolved_cross_language_name",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-006",
+      "language": "en",
+      "object_type": "single_card",
+      "primary_goal": "purchase_timing",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "holdout",
+      "status": "ok",
+      "time_window": null,
+      "transaction_context": "prospective_buy"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_market_scope",
+          "status": "ready"
+        },
+        {
+          "action": "ask_time_window",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-007",
+      "language": "en",
+      "object_type": "card_market_segment",
+      "primary_goal": "price_trend",
+      "purchase_constraints": null,
+      "seller_channel": "none",
+      "split": "holdout",
+      "status": "ok",
+      "time_window": null,
+      "transaction_context": "none"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "ask_market_scope",
+          "status": "ready"
+        },
+        {
+          "action": "ask_decision_horizon",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "id": "pubq8-008",
+      "language": "en",
+      "object_type": "card_collection",
+      "primary_goal": "purchase_timing",
+      "purchase_constraints": "around $80–90",
+      "seller_channel": "none",
+      "split": "development",
+      "status": "ok",
+      "time_window": null,
+      "transaction_context": "prospective_buy"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidate_ids": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "id": "pubq8-009",
+      "language": "en",
+      "object_type": "single_card",
+      "primary_goal": "collecting_preference",
+      "purchase_constraints": "about $1,300",
+      "seller_channel": "none",
+      "split": "development",
+      "status": "ok",
+      "time_window": "over five years",
+      "transaction_context": "prospective_buy"
+    }
+  ],
+  "schema": "pokemon.public-question-v4-fresh-route-report.v1",
+  "valid_facts": 9
+}
