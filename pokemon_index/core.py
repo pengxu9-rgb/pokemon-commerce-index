@@ -11,6 +11,7 @@ from statistics import median
 from typing import Any, Iterable
 
 from . import number_conflicts, number_graph
+from .card_rarity import OFFICIAL_ICON_RARITIES
 
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
 COMPONENTS = {"item", "domestic", "service", "international", "tax", "insurance", "fx_spread", "other"}
@@ -58,6 +59,26 @@ def connect(path: str | Path) -> sqlite3.Connection:
 
 def init_db(db: sqlite3.Connection) -> None:
     db.executescript(Path(__file__).with_name("schema.sql").read_text())
+    rarity_columns = {row[1]: row for row in db.execute("PRAGMA table_info(card_rarity_correction)")}
+    if rarity_columns["original_rarity"][3]:
+        # Earlier overlays corrected non-null values only. Preserve their evidence
+        # while allowing a verified fill of a source's missing rarity.
+        with db:
+            db.execute("""CREATE TABLE card_rarity_correction_nullable (
+                card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+                original_name TEXT NOT NULL, original_rarity TEXT,
+                source_provenance TEXT NOT NULL, corrected_rarity TEXT NOT NULL,
+                reference_provenance TEXT NOT NULL, official_url TEXT NOT NULL,
+                official_page_sha256 TEXT NOT NULL, official_rarity_icon TEXT NOT NULL,
+                applied_at TEXT NOT NULL)""")
+            db.execute("""INSERT INTO card_rarity_correction_nullable
+                (card_id,original_name,original_rarity,source_provenance,corrected_rarity,
+                 reference_provenance,official_url,official_page_sha256,official_rarity_icon,applied_at)
+                SELECT card_id,original_name,original_rarity,source_provenance,corrected_rarity,
+                 reference_provenance,official_url,official_page_sha256,official_rarity_icon,applied_at
+                FROM card_rarity_correction""")
+            db.execute("DROP TABLE card_rarity_correction")
+            db.execute("ALTER TABLE card_rarity_correction_nullable RENAME TO card_rarity_correction")
     policy_columns = {row[1] for row in db.execute("PRAGMA table_info(source_policy)")}
     if "price_statistics_allowed" not in policy_columns:
         db.execute("ALTER TABLE source_policy ADD COLUMN price_statistics_allowed INTEGER NOT NULL DEFAULT 0")
@@ -297,16 +318,17 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
 def apply_card_rarity_corrections(db: sqlite3.Connection,
                                   rows: Iterable[dict[str, Any]]) -> int:
     """Apply official rarity icons to source-bound cards without changing eligibility."""
-    icon_rarity = {"ic_rare_ar.gif": "AR", "ic_rare_sr_c.gif": "SR",
-                   "ic_rare_sar.gif": "SAR", "ic_rare_MUR.gif": "MUR"}
     fields = ("original_name", "original_rarity", "source_provenance",
               "corrected_rarity", "reference_provenance", "official_url",
               "official_page_sha256", "official_rarity_icon")
     count = 0
     with db:
         for row in rows:
-            _required(row, "card_id", *fields)
-            if (icon_rarity.get(row["official_rarity_icon"]) != row["corrected_rarity"]
+            _required(row, "card_id", *(field for field in fields if field != "original_rarity"))
+            if ("original_rarity" not in row
+                    or row["original_rarity"] is not None and not isinstance(row["original_rarity"], str)):
+                raise ValueError("rarity correction must record the original rarity, including null")
+            if (OFFICIAL_ICON_RARITIES.get(row["official_rarity_icon"]) != row["corrected_rarity"]
                     or not re.fullmatch(r"https://www\.pokemon-card\.com/card-search/details\.php/card/\d+",
                                         row["official_url"])
                     or not re.fullmatch(r"[0-9a-f]{64}", row["official_page_sha256"])

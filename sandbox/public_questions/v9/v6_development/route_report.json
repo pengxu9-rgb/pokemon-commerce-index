@@ -1,0 +1,229 @@
+{
+  "catalog_snapshot_sha256": "7c707e5d7b3b886b2af4c69fcf7713667e60be25e4c7bd383c7340e63e0dd222",
+  "evaluation_role": "viewed v9 development replay; no fresh accuracy estimate",
+  "final_extractor_sha256": "f21c1a9a12aa6ffa7d2240a5266bafcd1b6ada6cf4d43883c71b9bf54e8cc5b0",
+  "final_planner_sha256": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e",
+  "final_valid": 6,
+  "initial_errors": 1,
+  "initial_facts_sha256": "32a965aa2d696890973ceae05ea2bb01daf13b237c7067d3176fff91f1282379",
+  "initial_invocation_manifest_sha256": "b975dc1019173a6949d97a43416a203f5f4178a72851a723821b697c27bcd414",
+  "initial_valid": 5,
+  "results": [
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "extraction_source": "initial",
+      "id": "pubq9-002",
+      "market_action_ready": false,
+      "primary_goal": "seller_timing",
+      "sale_formats": [],
+      "sale_scope": null,
+      "status": "ok"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_saleability_factors",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_goal",
+          "status": "ready"
+        },
+        {
+          "action": "ask_analysis_period",
+          "status": "ready"
+        },
+        {
+          "action": "ask_target_condition",
+          "status": "ready"
+        },
+        {
+          "action": "retrieve_sale_candidates",
+          "status": "blocked"
+        },
+        {
+          "action": "review_sale_cohort",
+          "status": "blocked"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "extraction_source": "initial",
+      "id": "pubq9-003",
+      "market_action_ready": false,
+      "primary_goal": "seller_saleability",
+      "sale_formats": [
+        "single",
+        "evolution_line"
+      ],
+      "sale_scope": "最近のノーマル仕様のポケモンカード",
+      "status": "ok"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "retrieve_buyback_terms",
+          "status": "blocked"
+        }
+      ],
+      "catalog_candidates": [
+        {
+          "card_id": "ja:SV4A:347/190:holo",
+          "collector_number": "347/190",
+          "language": "ja",
+          "match_eligible": 1,
+          "name": "ミュウex",
+          "rarity": "SAR",
+          "set_code": "SV4A",
+          "variant": "holo"
+        }
+      ],
+      "catalog_reason": "insufficient_printing_coordinates",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "extraction_source": "retry_max_tokens",
+      "id": "pubq9-004",
+      "market_action_ready": false,
+      "primary_goal": "channel_choice",
+      "sale_formats": [],
+      "sale_scope": null,
+      "status": "ok"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "ask_collection_inventory",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "extraction_source": "initial",
+      "id": "pubq9-005",
+      "market_action_ready": false,
+      "primary_goal": "collection_triage",
+      "sale_formats": [],
+      "sale_scope": "約30年前のポケモンカード",
+      "status": "ok"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_constraints",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "extraction_source": "initial",
+      "id": "pubq9-006",
+      "market_action_ready": false,
+      "primary_goal": "seller_timing",
+      "sale_formats": [],
+      "sale_scope": null,
+      "status": "ok"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_selection_factors",
+          "status": "ready"
+        },
+        {
+          "action": "ask_candidate_cards_or_preferences",
+          "status": "ready"
+        },
+        {
+          "action": "ask_budget_and_condition",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "extraction_source": "initial",
+      "id": "pubq9-008",
+      "market_action_ready": false,
+      "primary_goal": "collecting_preference",
+      "sale_formats": [],
+      "sale_scope": null,
+      "status": "ok"
+    }
+  ],
+  "retry_facts_sha256": "d9ef5e94b43c06bf210c7b5ab5a90d10151314bc96bb2adaa63deb1eb9164772",
+  "retry_invocation_manifest_sha256": "d18a1bb840f727cd059d82ebe64f3665a8767ae813ba2a0695717f6aec076cef",
+  "retry_valid": 1,
+  "schema": "pokemon.question-v6-development.v1"
+}

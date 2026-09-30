@@ -103,7 +103,7 @@ def build(manifest_path: Path, output: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", type=Path, default=Path("catalog-build-manifest.json"))
+    parser.add_argument("--manifest", type=Path, default=Path("catalog-build-manifest-rarity-v2.json"))
     parser.add_argument("--db", type=Path, required=True)
     args = parser.parse_args()
     print(json.dumps(build(args.manifest, args.db), ensure_ascii=False, indent=2))

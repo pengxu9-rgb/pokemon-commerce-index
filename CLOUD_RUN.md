@@ -1,6 +1,6 @@
 # Google Cloud staging deployment
 
-The catalog API is packaged for a **private Cloud Run service** in `pivota-staging`, region `us-west1`. The image and local rebuild now use [`catalog-build-manifest.json`](catalog-build-manifest.json): 16 ordered, SHA-256 checked inputs with asserted output counts (55,167 internal identities; 33,543 match eligible; 19 identity exceptions; two denominator-conflict rules; zero public-display approvals). The image runs as a non-root user and contains no marketplace credentials or live prices. The service exposes internal catalog routes only when started with `--internal-catalog-api`; Cloud Run IAM must remain enabled.
+The catalog API is packaged for a **private Cloud Run service** in `pivota-staging`, region `us-west1`. The current image build uses [`catalog-build-manifest-rarity-v2.json`](catalog-build-manifest-rarity-v2.json): 19 ordered, SHA-256 checked inputs with asserted output counts (55,167 internal identities; 33,543 match eligible; 532 official rarity overlays; 19 identity exceptions; two denominator-conflict rules; zero public-display approvals). Earlier manifests remain available for frozen research cohorts. This describes the build configuration; a new cloud deployment has not been performed for this revision. The image runs as a non-root user and contains no marketplace credentials or live prices. The service exposes internal catalog routes only when started with `--internal-catalog-api`; Cloud Run IAM must remain enabled.
 
 Deploy from the repository root:
 

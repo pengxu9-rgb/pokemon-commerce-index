@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS card_identity_exception (
 CREATE TABLE IF NOT EXISTS card_rarity_correction (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),
   original_name TEXT NOT NULL,
-  original_rarity TEXT NOT NULL,
+  original_rarity TEXT,
   source_provenance TEXT NOT NULL,
   corrected_rarity TEXT NOT NULL,
   reference_provenance TEXT NOT NULL,

@@ -39,6 +39,7 @@ eBay 独立数据路径的[接口核查、生产准入和 100 个版本候选名
 
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
 M6 秘密编号卡的官方稀有度核对及独立修正版快照见 [CATALOG_M6_RARITY_AUDIT.md](CATALOG_M6_RARITY_AUDIT.md)。
+新增[缺稀有度补证](CATALOG_MISSING_RARITY_AUDIT.md)：500 张官方页面核对中补齐 497 张，覆盖 13 个卡组；SV4a 347/190 已确认为 SAR，另 3 张人物限定词差异暂缓。[v6 泛品类卖出路由](QUESTION_ROUTING_V6.md)先确定卡片范围和售卖方式，再规划逐个可计价单元的成交、费用和关系证据；已知问题回放不是新的盲测准确率。
 新版问题路由在未参与开发的真实提问上的小样本诊断见 [QUESTION_ROUTING_V9_DIAGNOSTIC.md](QUESTION_ROUTING_V9_DIAGNOSTIC.md)。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
@@ -90,10 +91,10 @@ python3 -m pokemon_index --db demo.sqlite3 export-pivota 'ja:SV2A:173/165:standa
 python3 -m unittest discover -s tests -v
 ```
 
-内部日英目录以同一份固定哈希清单构建；Docker staging 和 CI 使用相同命令。输出必须是新文件；构建后强制核对 55,167 条身份、33,543 条可匹配身份、19 条身份例外与 2 条编号冲突规则：
+内部日英目录以同一份固定哈希清单构建；Docker staging 使用当前修正版清单，测试另保留早期冻结快照的重建检查。输出必须是新文件；构建后强制核对 55,167 条身份、33,543 条可匹配身份、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest.json --db catalog.sqlite3
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-rarity-v2.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20
