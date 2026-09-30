@@ -1,0 +1,109 @@
+{
+  "schema": "pokemon.catalog-build.v1",
+  "purpose": "private catalog snapshot with official M6 secret-card rarity corrections; no marketplace observations",
+  "steps": [
+    {
+      "operation": "import-sets",
+      "path": "catalog/ja-all-sets.jsonl",
+      "sha256": "fca83b7d3946935bcab4be3d563f351660fc4af9f039446294e89bd66016d26f"
+    },
+    {
+      "operation": "import-sets",
+      "path": "catalog/en-physical-sets.jsonl",
+      "sha256": "00b67b6e36043ccc70cddf596fc898c05c26ee61053c51c3e5b0fafedb441d21"
+    },
+    {
+      "operation": "import-sets",
+      "path": "catalog/en-api-sets.jsonl",
+      "sha256": "d1ccfb487e20e40d742e7f2fd9bd42555610b9331b0d0adde0b0836f52042341"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ja-all-available.jsonl",
+      "sha256": "980391d63131ecf0d29bbd8d29bc28bb1886d6f37b6174d65cd4e2b584adc774"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-physical-cards.jsonl",
+      "sha256": "e1b1e0247b6e387281d7af4dda3305aa2e00fe234a4f7c49bd80177c5ec55cbc"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-physical-ambiguous.jsonl",
+      "sha256": "11c6d4e4accc411eec9964101947bcd2623dc3abc448888335f8eef37cb068c0"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-api-candidates.jsonl",
+      "sha256": "ccf2a973f3d8cd5775376361d44a5612243bc0fa2de76cacc6591f302c64504f"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ptcg-jp-candidates.jsonl",
+      "sha256": "fa8c21fad603ec782b2e638860f79926e7866fa6e58b8363ceb8897fb15ee42c"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ptcg-jp-multi-record-candidates.jsonl",
+      "sha256": "42df1561f5989c83c64c541afb604d437bf7fcceb367af4778f1dbaa656d5d1e"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/s6a-secret-art-gap-candidates.jsonl",
+      "sha256": "edc41f9d218418fac245801ea1884aff3237d65bef3e5e3e89c84cdcfef98dfb"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/tcgdex-ambiguous-candidates.jsonl",
+      "sha256": "eac0994b2d9bf944896b4270e0da0569d33c0889d3c486320d3435b3b326b251"
+    },
+    {
+      "operation": "import-card-identity-exceptions",
+      "path": "catalog/jp-card-identity-exceptions.jsonl",
+      "sha256": "e28bf8fd55bd64e90308b34ea29c025070cdf5bb4cde478d4ef3091f0b80f81d"
+    },
+    {
+      "operation": "import-card-number-conflicts",
+      "path": "catalog/ja-number-denominator-conflict-rules.jsonl",
+      "sha256": "c463d5a1eb8caa9b97f6e4459ae648a77f888266f5cd29b2a9124c0fa2e53af4"
+    },
+    {
+      "operation": "import-card-references",
+      "path": "catalog/ptcg-jp-reference.jsonl",
+      "sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d"
+    },
+    {
+      "operation": "import-card-facets",
+      "path": "catalog/card-facets.jsonl.gz",
+      "sha256": "a1a05c4da6e68171c77864c4c719bce3f60d197c25806846e48d5eb5283fc5dc"
+    },
+    {
+      "operation": "import-card-classifications",
+      "path": "catalog/card-classifications.jsonl.gz",
+      "sha256": "6c496a83997122ec458b957711c53bc4eda846887e29130c453f678ca5f20ad5"
+    },
+    {
+      "operation": "import-ai-artwork-proposals",
+      "path": "catalog/relationship-scale-v1-proposed-edges-v4.jsonl",
+      "sha256": "3fd17ee08c0c84f3e06412dfc6e6f31add57089207240d257f9c6516ee1aabb0"
+    },
+    {
+      "operation": "import-card-rarity-corrections",
+      "path": "catalog/m6-secret-rarity-corrections.jsonl",
+      "sha256": "40a7ac21cfc3a1889fb6ca29c74192344c6b5bdf054da45c5de9db47fde76b2d"
+    }
+  ],
+  "expected": {
+    "printings": 55167,
+    "sets": 543,
+    "match_eligible": 33543,
+    "display_approved": 0,
+    "reference_records": 24039,
+    "identity_exceptions": 19,
+    "number_conflict_rules": 2,
+    "relationship_assertions": 657,
+    "verified_relationships": 0,
+    "ai_artwork_proposals": 657,
+    "rarity_corrections": 35
+  }
+}

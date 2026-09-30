@@ -224,6 +224,13 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
                                (cid,)).fetchone()
         if exception and exception["source_provenance"] != row["provenance"]:
             raise ValueError("re-imported card source differs from its identity exception")
+        rarity_correction = db.execute(
+            "SELECT source_provenance, original_name, original_rarity FROM card_rarity_correction WHERE card_id=?",
+            (cid,)).fetchone()
+        if rarity_correction and (rarity_correction["source_provenance"] != row["provenance"]
+                                  or rarity_correction["original_name"] != row["name"]
+                                  or rarity_correction["original_rarity"] != row.get("rarity")):
+            raise ValueError("re-imported card differs from its rarity correction source")
         previous = db.execute("SELECT provenance FROM card WHERE card_id=?", (cid,)).fetchone()
         scan_evidence = db.execute("SELECT 1 FROM card_multi_record_scan_evidence WHERE card_id=?",
                                    (cid,)).fetchone()
@@ -260,6 +267,8 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
             name=COALESCE((SELECT corrected_name FROM card_identity_exception
                            WHERE card_id=excluded.card_id), excluded.name),
             rarity=COALESCE((SELECT corrected_rarity FROM card_identity_exception
+                             WHERE card_id=excluded.card_id),
+                            (SELECT corrected_rarity FROM card_rarity_correction
                              WHERE card_id=excluded.card_id), excluded.rarity),
             provenance=excluded.provenance,
             rights_reference=excluded.rights_reference,
@@ -282,6 +291,53 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         })
         count += 1
     db.commit()
+    return count
+
+
+def apply_card_rarity_corrections(db: sqlite3.Connection,
+                                  rows: Iterable[dict[str, Any]]) -> int:
+    """Apply official rarity icons to source-bound cards without changing eligibility."""
+    icon_rarity = {"ic_rare_ar.gif": "AR", "ic_rare_sr_c.gif": "SR",
+                   "ic_rare_sar.gif": "SAR", "ic_rare_MUR.gif": "MUR"}
+    fields = ("original_name", "original_rarity", "source_provenance",
+              "corrected_rarity", "reference_provenance", "official_url",
+              "official_page_sha256", "official_rarity_icon")
+    count = 0
+    with db:
+        for row in rows:
+            _required(row, "card_id", *fields)
+            if (icon_rarity.get(row["official_rarity_icon"]) != row["corrected_rarity"]
+                    or not re.fullmatch(r"https://www\.pokemon-card\.com/card-search/details\.php/card/\d+",
+                                        row["official_url"])
+                    or not re.fullmatch(r"[0-9a-f]{64}", row["official_page_sha256"])
+                    or not row["source_provenance"].startswith("tcgdex:")
+                    or not row["reference_provenance"].startswith("ptcg-database:")):
+                raise ValueError("rarity correction lacks consistent official evidence")
+            card = db.execute("SELECT name,rarity,provenance FROM card WHERE card_id=?",
+                              (row["card_id"],)).fetchone()
+            if (not card or card["name"] != row["original_name"]
+                    or card["provenance"] != row["source_provenance"]
+                    or db.execute("SELECT 1 FROM card_identity_exception WHERE card_id=?",
+                                  (row["card_id"],)).fetchone()):
+                raise ValueError("rarity correction does not bind an unambiguous source card")
+            existing = db.execute("SELECT * FROM card_rarity_correction WHERE card_id=?",
+                                  (row["card_id"],)).fetchone()
+            expected = tuple(row[key] for key in fields)
+            if existing:
+                if tuple(existing[key] for key in fields) != expected:
+                    raise ValueError("existing rarity correction differs")
+            elif card["rarity"] != row["original_rarity"]:
+                raise ValueError("rarity correction does not bind the original rarity")
+            else:
+                db.execute("""INSERT INTO card_rarity_correction
+                    (card_id, original_name, original_rarity, source_provenance,
+                     corrected_rarity, reference_provenance, official_url,
+                     official_page_sha256, official_rarity_icon, applied_at)
+                    VALUES (?,?,?,?,?,?,?,?,?,?)""",
+                           (row["card_id"], *expected, utcnow()))
+            db.execute("UPDATE card SET rarity=? WHERE card_id=?",
+                       (row["corrected_rarity"], row["card_id"]))
+            count += 1
     return count
 
 
@@ -724,9 +780,12 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
         WHERE card_id=? ORDER BY facet_type, value""", (cid,)
     )]
     exception = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?", (cid,)).fetchone()
+    rarity_correction = db.execute(
+        "SELECT * FROM card_rarity_correction WHERE card_id=?", (cid,)).fetchone()
     return {"card": _catalog_card_dict(row),
             "number_context": number_graph.card_number_context(db, cid),
             "identity_exception": dict(exception) if exception else None,
+            "rarity_correction": dict(rarity_correction) if rarity_correction else None,
             "variants_at_number": siblings,
             "set": ({**dict(set_row),
                      "name_ja": set_row["name"] if row["language"] == "ja" else None,

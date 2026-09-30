@@ -66,6 +66,20 @@ CREATE TABLE IF NOT EXISTS card_identity_exception (
   applied_at TEXT NOT NULL
 );
 
+-- Verified rarity-only corrections preserve otherwise eligible card identities.
+CREATE TABLE IF NOT EXISTS card_rarity_correction (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  original_name TEXT NOT NULL,
+  original_rarity TEXT NOT NULL,
+  source_provenance TEXT NOT NULL,
+  corrected_rarity TEXT NOT NULL,
+  reference_provenance TEXT NOT NULL,
+  official_url TEXT NOT NULL,
+  official_page_sha256 TEXT NOT NULL,
+  official_rarity_icon TEXT NOT NULL,
+  applied_at TEXT NOT NULL
+);
+
 -- A pinned-source numbering conflict blocks exact offer matching for the
 -- affected catalog denominator while preserving its internal card identity.
 CREATE TABLE IF NOT EXISTS card_number_conflict_rule (

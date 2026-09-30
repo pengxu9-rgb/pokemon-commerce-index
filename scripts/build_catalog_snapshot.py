@@ -27,6 +27,7 @@ OPERATIONS = {
     "import-sets": core.import_sets,
     "import-cards": core.import_cards,
     "import-card-identity-exceptions": core.apply_card_identity_exceptions,
+    "import-card-rarity-corrections": core.apply_card_rarity_corrections,
     "import-card-number-conflicts": number_conflicts.apply_rules,
     "import-card-references": core.import_card_references,
     "import-card-facets": core.import_card_facets,
@@ -87,6 +88,9 @@ def build(manifest_path: Path, output: Path) -> dict:
                           """SELECT COUNT(*) FROM card_relationship_assertion
                           WHERE relation_type='same_artwork' AND review_status='proposed'
                           AND asserted_by='ai-artwork-review-v1'""").fetchone()[0]}
+            if "rarity_corrections" in manifest.get("expected", {}):
+                actual["rarity_corrections"] = db.execute(
+                    "SELECT COUNT(*) FROM card_rarity_correction").fetchone()[0]
             if actual != manifest.get("expected"):
                 raise ValueError(f"catalog build counts differ: {actual}")
         os.replace(temporary, output)

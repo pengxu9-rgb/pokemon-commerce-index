@@ -1,0 +1,182 @@
+{
+  "evaluation_role": "fresh six-post source-checked diagnostic, not representative accuracy",
+  "extraction_sha256": "c5f6dc15586f113883c6887cec01179328200ad8a00c0216e00d869fc5f0fee4",
+  "manifest_sha256": "b2f0c7b52d30e3936edc64037d6fe088a12b2662b15cfdfd0140007e0580955d",
+  "questions": 6,
+  "results": [
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-002",
+      "object_type": "single_card",
+      "primary_goal": "seller_timing",
+      "seller_channel": "none",
+      "status": "ok",
+      "transaction_context": "owned"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-003",
+      "object_type": "card_market_segment",
+      "primary_goal": "other",
+      "seller_channel": "none",
+      "status": "ok",
+      "transaction_context": "none"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        },
+        {
+          "action": "retrieve_buyback_terms",
+          "status": "blocked"
+        }
+      ],
+      "catalog_candidates": [
+        "ja:SV4A:347/190:holo"
+      ],
+      "catalog_reason": "rarity_not_verified",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-004",
+      "object_type": "single_card",
+      "primary_goal": "channel_choice",
+      "seller_channel": "store_buyback",
+      "status": "ok",
+      "transaction_context": "owned"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_general",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": null,
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-005",
+      "object_type": "card_collection",
+      "primary_goal": "channel_choice",
+      "seller_channel": "none",
+      "status": "ok",
+      "transaction_context": "owned"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_market_context",
+          "status": "ready"
+        },
+        {
+          "action": "explain_catalog_gap",
+          "status": "ready"
+        },
+        {
+          "action": "ask_printing_details",
+          "status": "ready"
+        },
+        {
+          "action": "ask_selling_channel",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_horizon",
+          "status": "ready"
+        },
+        {
+          "action": "ask_sale_constraints",
+          "status": "ready"
+        },
+        {
+          "action": "ask_front_back_photos",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "no_catalog_row",
+      "catalog_status": "no_match",
+      "claim_status": "general_explanation_only",
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-006",
+      "object_type": "single_card",
+      "primary_goal": "seller_timing",
+      "seller_channel": "none",
+      "status": "ok",
+      "transaction_context": "owned"
+    },
+    {
+      "actions": [
+        {
+          "action": "explain_selection_factors",
+          "status": "ready"
+        },
+        {
+          "action": "ask_candidate_cards_or_preferences",
+          "status": "ready"
+        },
+        {
+          "action": "ask_budget_and_condition",
+          "status": "ready"
+        }
+      ],
+      "catalog_candidates": [],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "claim_status": "general_explanation_only",
+      "forbidden_live_action_ready": false,
+      "id": "pubq9-008",
+      "object_type": "card_market_segment",
+      "primary_goal": "collecting_preference",
+      "seller_channel": "none",
+      "status": "ok",
+      "transaction_context": "none"
+    }
+  ],
+  "schema": "pokemon.question-route-v5-fresh.v1",
+  "valid_extractions": 6
+}

@@ -38,6 +38,8 @@ eBay 独立数据路径的[接口核查、生产准入和 100 个版本候选名
 商品照片、独立 AI 复核与跨区到手挂牌价差的离线接入路径见 [商品级证据契约](OFFER_CONDITION_CONTRACT.md)。
 
 卡片目录已独立扩展，数量与来源限制见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
+M6 秘密编号卡的官方稀有度核对及独立修正版快照见 [CATALOG_M6_RARITY_AUDIT.md](CATALOG_M6_RARITY_AUDIT.md)。
+新版问题路由在未参与开发的真实提问上的小样本诊断见 [QUESTION_ROUTING_V9_DIAGNOSTIC.md](QUESTION_ROUTING_V9_DIAGNOSTIC.md)。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
 

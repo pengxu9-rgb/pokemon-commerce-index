@@ -1,0 +1,97 @@
+{
+  "accepted": 6,
+  "audit_statuses": {
+    "codex": {
+      "faithful": 8
+    },
+    "google": {
+      "faithful": 6,
+      "unverifiable": 2
+    }
+  },
+  "candidate_sha256": "3386e629fae75589f0acf8541bcbb402b43fffd34cdeeae0e04ce6dae288ae9e",
+  "candidates": 8,
+  "codex_sha256": "85d9527af7c5568fcf0745451831f1b87e4f989257e066bed3ef0911792f5475",
+  "decisions": [
+    {
+      "accepted": false,
+      "codex_status": "faithful",
+      "gemini_status": "unverifiable",
+      "id": "pubq9-001",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11330870371",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-002",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11330955796",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-003",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13328251953",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-004",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10328991840",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-005",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14327252419",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-006",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10329400245",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "faithful",
+      "gemini_status": "unverifiable",
+      "id": "pubq9-007",
+      "source_url": "https://www.elitefourum.com/t/what-should-i-buy-2026-edition/59827",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "pubq9-008",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1tov818/thoughts_on_foreign_cards_vs_english/",
+      "verification_method": "opened_post"
+    }
+  ],
+  "eligible_sha256": "8fbffd9468104a9f95a4a556de3da511431d9ec456a76060185b1a81b12dd1dc",
+  "evidence_sha256": "d109a6b3afb854952eb8fc3c91c41001fd4bc2880fcb4eecdbb5213a781dd9cc",
+  "gemini_sha256": "99e51df82d4fc1264aaf0f9ae01c19a07ee70d961f4e70c1a8d5d84db9f738c0",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+    "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+    "3a39f7fecf9c9de27b5d067704c68737a7df78aedf1d13180be32d412ec12eab",
+    "2d0a68cee2d642d690382c5ca56bea1d4f3b32165fb92b0b21ed6c3fc77a5e9c",
+    "111e1e75ed8d88f6a70768b5bfb484557e66dd9e3bd53b1bdd3a4b725845ab2d"
+  ],
+  "rejected": 2,
+  "schema": "pokemon.public-question-preflight.v1"
+}

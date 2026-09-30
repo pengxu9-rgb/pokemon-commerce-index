@@ -24,7 +24,7 @@ PTCG_REVISION = "bc5a2698eb9af858feb0280d579fd5fd0f0273e2"
 NUMBER = re.compile(r"(\d{1,3})&nbsp;/&nbsp;([A-Za-z0-9-]+)&nbsp;")
 TITLE = re.compile(r'<h1[^>]*class="Heading1 mt20"[^>]*>(.*?)</h1>', re.S)
 SET = re.compile(r'/card/regulation_logo_1/([^/]+)\.gif"[^>]*alt="([^"]+)"')
-RARITY_ICON = re.compile(r'/card/rarity/(ic_[a-z0-9_]+\.gif)')
+RARITY_ICON = re.compile(r'/card/rarity/(ic_[a-z0-9_]+\.gif)', re.I)
 
 
 def compact(name: str) -> str:
