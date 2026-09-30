@@ -1,40 +1,66 @@
-# Pokémon Commerce Index：构建顺序
+# Active build sequence — 30 September 2026
 
-## 产品目标
+## Product objective
 
-用户可先探索卡组、语言和印刷版本，逐步锁定目标；明确版本后看到对应的跨渠道**在售报价**与预计到手价，再看到可解释的卖家选择。成交价和流动性只有在交易证据与采集覆盖率通过验证后才提供。Agentic discovery 使用这套数据，不单独制造价格或商家结论。
+Help a collector explore Pokémon cards, choose an exact printing, compare fresh authorized offers and destination-specific landed costs, and hand the selected URL/quote to Buy&Ship. Merchant recommendations must explain their price and condition evidence; reliability scores require fulfillment outcomes.
 
-## 当前状态
+The [holistic alignment decision](HOLISTIC_ALIGNMENT_20260930.md) is the current plan. The [independent adversarial review](ADVERSARIAL_ALIGNMENT_REVIEW_20260930.md) challenges its assumptions and the implementation. Earlier review rounds and question cohorts remain historical diagnostics, not competing current schedules.
 
-| 层 | 已有 | 尚缺 |
-| --- | --- | --- |
-| 卡片目录 | 55,167 条日英内部身份、543 个有卡片的语言＋卡组组合、24,039 条日文第二来源参考记录。日文 27,094 条；英文 28,073 条，其中 9,208 条来自官方 API 卡组清单，版本未核实。固定清单构建后 33,543 条保留自动匹配资格，但尚无真实商品匹配精度测量 | API 候选的版本核验、来源冲突、公开展示权利、按真实供给决定深入整理优先级 |
-| 关系图与探索目标 | 同语言、同卡组／编号的版本邻居可确定性查询；28,361 个身份带角色 ID、31,071 个带画师；英文名到日文同角色候选可查询。跨卡印刷关系有证据、人工审核和撤销历史；探索约束／shortlist／精确目标按版本保存 | 从真实用户问题验证澄清顺序；人工核实高价值日英 counterpart；账号和通知集成 |
-| 报价指数 | 观测、来源权限、`ask`／最后挂牌／已验证支付价分离及计算逻辑 | 获准持续使用的**商品与价格 API**、调度、配额、去重与新鲜度监控；目前只有合成数据和旧 demo 测试样本 |
-| 商家推荐 | 同一可计价单元的完整到手价比较、卖家库存重合度、Pivota 输出契约；当前推荐明确标为 `price_only` | Buy&Ship 费用／配送报价、真实 offer、商家履约结果、商品实际品相证据；目前不能给出真实综合推荐 |
-| 人工复核 | 68 条旧样本的 AI 草稿和本地双审工具 | 真正的盲标结果；不是上述三层的开发前置条件 |
+## Current implementation
 
-## 先做的垂直切片
+| Layer | Evidence | Main remaining gap |
+|---|---|---|
+| Catalog | 55,167 internal identities; 33,543 structurally eligible; reproducible manifest; 532 official rarity corrections | Positive supported-printing allowlist, localized release metadata and marketplace vocabulary; eligible is not validated accuracy |
+| Graph | Character/artist facets, structural version neighbors, 657 proposed artwork assertions in the current manifest | Executable family/checklist tasks, independently evaluated relationships; zero verified relation events |
+| Bilingual retrieval | 122 reviewed aliases in research artifacts | Current deployed-manifest snapshot contains zero alias revisions; import selected aliases with evidence and manifest checks |
+| Agent discovery | Local structured exploration and frozen question-routing diagnostics | Actual catalog results from natural-language requests; no real-user answer quality score |
+| Pricing | Observation/resolution/index contracts; ask, last-list-at-transition and paid amounts separate | Zero live observations; separate authorized listing feed, real matching audit and sustained freshness |
+| Merchant/checkout | Synthetic landed-cost ranking and Buy&Ship URL-to-quote preview; Pivota contract | Real offer-bound quotes, condition/fulfillment evidence, confirmed payment/order lifecycle |
+| Cloud | Recorded private read-only catalog deployment | Recoverable market/session storage, ingestion/retention scheduling and monitoring before live use |
 
-1. **卡片身份与探索状态可查询。** 宽目录已建立，保留来源、版本和不确定性；内部支持卡名／卡号搜索。同卡组、编号的印刷版本作为结构性邻居返回；日英 counterpart、相同画作和收藏替代项必须有证据并经人工核实。用户可先保存结构化约束及 shortlist，选定精确 `card_id` 后才进入报价跟踪。仅对明确的版本启用自动报价匹配，补充候选先作发现与后续核验。无展示权的图片不进入产品。真实 listing 量决定后续优先核验哪些卡组。
-2. **一条获准的真实报价 API 接通。** 只通过获授权的商品／报价 API 获取实时 listing，不以网页爬虫制造实时价格。先签清采集、历史存储、价格统计、跨渠道比较、卖家分析、图片处理和产品展示范围，再完成 API 搜索／详情适配、去重、历史观测、配额保护、过期处理和来源权利开关。优先与 Buy&Ship 核对其 Mercari／Yahoo 网关及数据使用权；同时寻找可书面授权独立使用的渠道。eBay Browse API 的具体用途须按其现行条款单独确认。SNKRDUNK 不作为未经许可的爬虫目标。
-3. **发布第一版 ask index。** 每张卡的同一版本／评级分别展示挂牌价格、样本数、时间和来源，并标明数据新鲜度。商品打包、语言冲突或版本不明的 listing 不进入单卡价格。没有支付凭证时不称“成交价”。
-4. **到手价、品相与商家建议。** 先将每条 API 商品关联到明确语言、卡组、编号、版本、评级和卖家；身份不确定时保留待核验。把 item、境内段、转运、税费和汇率组成可审计报价。对允许处理的商品正反面图与描述保留品相证据，记录角、边、表面、居中与缺失视角；机器输出只作辅助，人工可复核。只有身份、报价及品相证据足够时才给出综合购买建议；当前实现仅能给 `price_only` 排序。Buy&Ship 的实际履约结果到位后再考虑可靠性评分。
-5. **Discovery／agent 层。** 先用已存的探索约束、shortlist 与审核关系回答版本澄清问题；之后在报价索引上解释价格变化和商家建议。每个购买结论引用具体卡片、offer 和报价时间。
+Public card display approvals remain zero. Catalog-only internal work can proceed; a public shopping product cannot yet launch.
 
-## 并行验证，不挡住主线
+## Next sequence while Buy&Ship's feed is unavailable
 
-- 从开发期开始抽查少量高价、跨语言、多卡和反闪难例，以发现身份规则错误；AI 草稿用于回归，不作为上线精度。
-- [盲测工具与预注册口径](BLIND_LISTING_BENCHMARK.md)已准备：先从新获授权商品构造独立采样框，再冻结目录／matcher，双人独立复核并分别报告身份、精确版本、评级和联合单元的精度、弃答与未知字段。现阶段只有合成流程测试，没有真实盲测精度。
-- 对售出／撤单状态、轮询频率和漏掉快销单独做 Gate 1。该门槛决定能否发布成交价或流动性，不妨碍 ask index 与到手价 MVP。
-- [公开买卖家问题 sandbox](PUBLIC_QUESTION_SANDBOX.md) 已用 24 个带来源的真实讨论情境完成 Astra/Gemini 独立分流；23 条双模型有效结果中，意图一致 20 条、首步动作一致 14 条，完整六字段一致 2 条。这是标签定义和证据路由的初测，不是用户问答准确率。下一轮先修订动作与证据标签，再从未看过的新帖子建立独立盲集；不要拿旧 holdout 宣称新方案泛化。
-- 第二批 24 个新帖子改写提示已冻结并复核：意图一致 21/24、首步动作一致 13/24、身份状态一致 11/24。后置来源审计仅判 13 条忠实于原帖问题，5 条为推演、2 条错误改写、4 条暂无法核实；不能把整批当作真实用户盲测。v1/v2 来源、标签和审计均已归档，回放评估器已建。下一批先完成来源忠实度审计再冻结，随后对目标 agent 的独立输出做分字段检查，并针对无照片却判断品相、旧论坛挂牌冒充现价等可直接观察的越界建立硬门槛。两批问题都已参与标签设计，新的准确率盲测需要第三批帖子。
+### 1. Make one identity slice dependable
 
-## Buy&Ship feed 等待期间的开发顺序
+Select 100 modern Japanese exact-printing targets and the English identities required by collector journeys. This is an engineering cohort, not measured market coverage.
 
-1. **探索状态正确性与决策契约。** 已修复关系断言的重复审核、暂停状态仍显示可跟踪、修改硬身份约束后目标仍保留等问题。内部 `exploration-decision` 按实际候选返回无匹配、多版本、待核验、待确认、已选目标或暂停状态，并只提出一个下一步问题。预算、评级及目的地是已保存偏好，不会被假装用于过滤没有真实报价的目录。
-2. **补齐可靠探索属性。** 固定 TCGdex 源的 Pokémon `dexId` 与画师已提取、逐文件校验并接入内部查询；日英同角色检索保留 `same_character` 标识和双边证据。固定快照的 [10 组 buyer journeys](DISCOVERY_JOURNEYS.md)已有 15 步工程回归，含语言、卡组、编号、工艺逐轮澄清；没有测量真实用户相关性。657 条 AI 同画面提议边现进入固定内部快照，已核实关系仍为 0。[买家问题证据门槛](BUYER_QUESTION_LAYER.md)可按精确卡片回答结构化问题，并将 AI 关系候选、已核实边、价格及品相证据分开；离线盲测评估器也已准备，尚无真实问题金标准或得分。已建首批日英关系审核包：19 个日文锚点检索出 40 个候选，1 个身份缺少检索属性。下一步用独立的真实用户问题测召回与澄清顺序，并对最常需要的关系补卡片级证据。相同角色、同画面候选与跨语言同印刷是不同关系；前两者不能自动产生 counterpart 边。
-3. **整理少量有证据的日英对应卡。** 独立 Astra 审查后的 [关系图实施方案](RELATIONSHIP_GRAPH_PLAN.md) 已落地第一阶段的约束与审核事件修复：明确角色／画师仅是检索候选，双人同意后才可建立已核实边，复核改变意见时写撤销事件。另建 [30 张独立盲审锚点](RELATIONSHIP_COVERAGE.md) 用于后续召回评估；完整角色集合及有上限的弱信号回退使有候选锚点从 12 张增至 17 张，但候选数由 40 增至 67，不能把这个数字当召回率。从实际探索需求及之后的 listing 量选优先卡，记录卡组、编号、版本、画作证据并由真人复核；当前首批 40 对候选仍全部待审。只发布已核实的边；对争议边保留提案／拒绝状态。
-4. **上线前的持久探索状态。** 本地 SQLite 支持版本历史，但 Cloud Run 仍是只读目录快照。增加经认证的 owner 隔离、删除与保留期限、可恢复存储及重启测试后，再开放会话写入和通知。当前不接收真实用户会话。
+- Add an explicit, evidence-backed supported allowlist; omitted/unverified eligibility must fail closed through imports, migrations and re-imports.
+- Audit each supported name, release, number and physical variant. Correct known release metadata conflicts, including SV4A's set title, using official evidence.
+- Add sourced printed codes, localized set names and marketplace aliases shared by discovery, matching and feed queries.
+- Include selected reviewed bilingual aliases and their review events in an ordered manifest. Translation is not printing equivalence.
 
-Buy&Ship API feed、配额和用途授权仍待对方提供。收到后按每个渠道的书面使用范围接入 `authorized API → immutable observation → versioned product resolution → ask index → landed quote → condition evidence → recommendation`，补上定时拉取、配额保护与新鲜度监控。详细字段与推荐门槛见 [OFFER_CONDITION_CONTRACT.md](OFFER_CONDITION_CONTRACT.md)。Gate 1 继续决定能否提供成交价与流动性。公开卡片元数据展示权也须单独确认；不伪造实时价格、品相或到手价。
+**Done when:** every supported target has positive evidence and no unresolved identity conflict, ambiguity abstains, and local/container/staging membership and alias counts agree.
+
+### 2. Execute collector discovery tasks
+
+Connect natural-language facts to an actual result: exact-card clarification, character/artist retrieval, a scoped cross-language family checklist, structural printing neighbors and separately labelled artwork/counterpart evidence. Record sources and omissions; unknown dates and unsupported cameos remain visible.
+
+Reuse existing graph primitives. AI can collect evidence and review routine cases; disagreement escalates and confident approvals also need a random audit. AI agreement is not an accuracy score. Keep weak links proposed under the existing verification policy.
+
+Fix mixed planned-purchase/resale facts only enough to preserve the task and avoid invented paid costs. Defer broader selling economics, store directories and another generic taxonomy round.
+
+**Done when:** a frozen 30-question suite tests returned card IDs/results and useful clarification, with a proposed internal target of 27 useful outcomes and zero unsupported market, same-printing or completeness claims. This is task acceptance, not population accuracy. Hand-authored structured constraints alone do not satisfy it.
+
+### 3. Rehearse the commerce path on the same slice
+
+Exercise exact target → normalized offer → immutable observation → versioned resolution → fresh ask → bound landed quote → price-only recommendation → Buy&Ship URL preview with explicitly synthetic fixtures. Verify mutation, expiry, unknown costs, bundles and ambiguous condition behavior.
+
+Add recoverable storage, bounded retry/quota controls, freshness monitoring and permission-driven retention cleanup before scheduled live ingestion. Cloud Run's catalog file remains a read-only snapshot; it cannot persist observation or session writes.
+
+**Done when:** a source-independent rehearsal produces a fully traceable recommendation or a specific evidence blocker, survives restart/retry, and does not present fixtures as live prices.
+
+## When external access arrives
+
+1. Confirm source-specific discovery/search, detail, stable IDs, statuses, quota, storage/display/statistics/media-AI scope and partner URL support. Run actual Gate 0 probes. Buy&Ship's URL-to-quote API is a separate transaction capability, not a listing feed.
+2. Freeze an authorized real listing sampling frame and evaluate exact printing/grade precision. Use [AI-first review](AI_FIRST_REVIEW.md) plus uncertainty escalation and random approval auditing. The [existing proposed gate](BLIND_LISTING_BENCHMARK.md) requires at least 300 fully evaluable accepted joint labels, a Wilson 95% lower bound of at least 0.98, and zero accepted multi-card listings. Preserve failures, unknowns and abstention in reporting.
+3. Run a narrow ask-only pilot with exact units, source, sample count, timestamp and freshness. Attach live destination-specific landed quotes where available.
+4. Run the original sweep-fidelity Gate 1, including sample-size and panel-representativeness checks, before transition-price or liquidity claims. A passed sweep does not establish paid prices; those require settlement evidence.
+5. Connect Pivota's agreed identity/offer/quote contracts and confirmed checkout lifecycle. Fulfillment evidence and calibrated condition assistance precede comprehensive merchant ranking.
+
+## Main progress measures
+
+Track source-backed supported printing coverage, useful executed collector outcomes, independently evaluated graph coverage, real exact-unit match precision/abstention, fresh offer coverage, valid landed quotes and eventual sale/fulfillment evidence. Catalog totals, AI agreement and engineering test counts are supporting diagnostics.
+
+Detailed rationale, acceptance criteria and evidence: [HOLISTIC_ALIGNMENT_20260930.md](HOLISTIC_ALIGNMENT_20260930.md), [SQL evidence](HOLISTIC_ALIGNMENT_EVIDENCE_20260930.json). Earlier plan: [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md). Earlier independent review response: [INDEPENDENT_REVIEW_RESPONSE.md](INDEPENDENT_REVIEW_RESPONSE.md).

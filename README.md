@@ -4,7 +4,7 @@
 
 **主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份及探索关系 → 获准的 API 报价 → 商品关联与 ask index → 到手价／品相辅助判断／商家建议。探索状态先支持用户逐步选定目标；购买建议仍等待真实报价证据。人工双审是并行质检工具，不是前三层的开工门槛。**
 
-Buy&Ship API feed 暂时等待对方提供。独立审查和不依赖 feed 的实施顺序见 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)。
+Buy&Ship API feed 暂时等待对方提供。**2026-09-30 的当前主线见 [整体复盘与重排](HOLISTIC_ALIGNMENT_20260930.md)和 [独立对抗审查](ADVERSARIAL_ALIGNMENT_REVIEW_20260930.md)：可信卡片小范围与检索词 → 能执行并返回目录结果的收藏探索 → 同范围的报价链路演练 → 获准真实 feed。** 早期审查 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)保留为历史记录。
 
 新的 [buyer discovery journey 回归评估](DISCOVERY_JOURNEYS.md)在固定目录上覆盖 10 个手写场景、15 个结构化步骤；全部达到预期的澄清和目标选择。固定快照现含 657 条 AI 提议的同画面内部候选边，已核实跨区关系仍为 0，提议边不用于价格等价或报价合并。这是工程回归，不是自然语言理解或真实用户相关性测量。
 
@@ -107,7 +107,7 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-search --printing-type pri
 python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
 
-该部署快照故意不包含未经核实的跨语言关系断言、市场商品或价格。目录审核所用的编号别名和图片比较证据仍在独立数据文件中，可按对应审计文档另行导入到研究数据库。
+当前部署构建清单包含 657 条标为 `proposed` 的 AI 同画面内部候选断言，已核实关系为 0；不包含市场商品或价格。122 条已审核日英名称别名仍在研究文件中，尚未由当前部署清单导入；部署快照中的别名版本数为 0。目录审核所用的编号别名和图片比较证据仍在独立数据文件中，可按对应审计文档另行导入到研究数据库。
 
 `catalog-search` 和 `catalog-card` 仅供内部开发查询，返回来源、展示标记与匹配资格。它们不会更改公开展示权限；示例中的 `SV2a 025/165` 会返回普通版、Master Ball 与 Poké Ball 三个不同身份。S6a 补充候选可以查到，但 `match_eligible=false`，不会进入自动报价匹配。
 
@@ -261,7 +261,7 @@ S6a 在 TCGdex 中仍缺日文逐卡名称；第二来源提供 87 条 set+numbe
 
 ## 下一步
 
-下一步可独立核验高价值的补充候选和来源冲突；与此同时接入一条有明确数据使用权的真实报价来源，运行持续观测并发布带样本数与新鲜度的 ask index；再用 Buy&Ship 报价组成到手价及商家建议。Buy&Ship 网关文档与授权到位后验证当前适配器；Pivota 的 `content_key` 映射及 Buy&Ship 购买交接仍须由双方接口负责人确认。当前代码是 Gate 0 的工程底座，不声称已经拥有实时渠道覆盖或实际成交价指数。
+下一步按 [当前整体方案](HOLISTIC_ALIGNMENT_20260930.md)先建立有正向证据的 100 张现代日文卡工程范围，补来源冲突、卡组检索词和部署别名，再实现可返回真实目录结果的收藏探索；与此同时接入一条有明确数据使用权的真实报价来源，运行持续观测并发布带样本数与新鲜度的 ask index；再用 Buy&Ship 报价组成到手价及商家建议。Buy&Ship 网关文档与授权到位后验证当前适配器；Pivota 的 `content_key` 映射及 Buy&Ship 购买交接仍须由双方接口负责人确认。当前代码是 Gate 0 的工程底座，不声称已经拥有实时渠道覆盖或实际成交价指数。
 
 新增 [卖家问题路由 v7](QUESTION_ROUTING_V7.md)：保留整套出售、商家收购规则、城市店铺发现、多商家与混合卡牌范围；净收益证据按成交、费用、运费及收购报价分别规划。已见 v10 样本用于回归，新问题泛化需要另一次冻结验证。
 

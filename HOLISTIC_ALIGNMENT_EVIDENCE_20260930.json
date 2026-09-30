@@ -1,0 +1,97 @@
+{
+  "schema": "pokemon.holistic-review-evidence.v1",
+  "review_date": "2026-09-30",
+  "reviewed_commit": "f6cd01be84ad4d8cfec0dcb567467399db98700d",
+  "catalog_snapshot": "catalog-index-rarity-v2.sqlite3",
+  "catalog_snapshot_sha256": "7c707e5d7b3b886b2af4c69fcf7713667e60be25e4c7bd383c7340e63e0dd222",
+  "build_manifest": "catalog-build-manifest-rarity-v2.json",
+  "build_manifest_sha256": "eb9893b0fbec76d428f25e0db9955f865ad20955b88f48c828d671d8c3a2e0ff",
+  "cloud_receipt_manifest_matches": true,
+  "cloud_evidence_scope": "Recorded receipt only; cloud was not queried during this review",
+  "measurements": {
+    "cards": {
+      "value": 55167,
+      "sql": "SELECT COUNT(*) FROM card"
+    },
+    "match_eligible": {
+      "value": 33543,
+      "sql": "SELECT COUNT(*) FROM card WHERE match_eligible=1"
+    },
+    "display_approved": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM card WHERE display_allowed=1"
+    },
+    "reference_records": {
+      "value": 24039,
+      "sql": "SELECT COUNT(*) FROM card_reference"
+    },
+    "proposed_artwork_events": {
+      "value": 657,
+      "sql": "SELECT COUNT(*) FROM card_relationship_assertion WHERE relation_type='same_artwork' AND review_status='proposed'"
+    },
+    "verified_relationship_events": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM card_relationship_assertion WHERE review_status='verified'"
+    },
+    "bilingual_alias_revisions": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM bilingual_concept_revision"
+    },
+    "concept_review_events": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM concept_review_event"
+    },
+    "listings": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM listing"
+    },
+    "observations": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM observation"
+    },
+    "verified_sales": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM verified_sale"
+    },
+    "landed_quotes": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM landed_quote"
+    },
+    "offer_visual_reviews": {
+      "value": 0,
+      "sql": "SELECT COUNT(*) FROM offer_visual_review"
+    },
+    "eligible_ja_without_same_set_number_reference": {
+      "value": 4056,
+      "sql": "SELECT COUNT(*) FROM card c WHERE c.language='ja' AND c.match_eligible=1 AND NOT EXISTS(SELECT 1 FROM card_reference r WHERE r.set_code=c.set_code AND r.collector_number=c.collector_number)"
+    },
+    "cards_without_release_date": {
+      "value": 9788,
+      "sql": "SELECT COUNT(*) FROM card c LEFT JOIN catalog_set_localized s ON c.language=s.language AND c.set_code=s.set_code WHERE s.release_date IS NULL OR s.release_date=''"
+    },
+    "eligible_without_release_date": {
+      "value": 441,
+      "sql": "SELECT COUNT(*) FROM card c LEFT JOIN catalog_set_localized s ON c.language=s.language AND c.set_code=s.set_code WHERE c.match_eligible=1 AND (s.release_date IS NULL OR s.release_date='')"
+    }
+  },
+  "fresh_rebuild": {
+    "manifest": "catalog-build-manifest-rarity-v2.json",
+    "expected_counts_reproduced": true,
+    "steps": 19,
+    "scope": "Local logical rebuild, not byte-identical SQLite; timestamps can differ"
+  },
+  "tests": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "passed": 330,
+    "runtime_seconds": 19.4,
+    "python": "3.14.7",
+    "scope": "Local engineering tests; not marketplace precision or user answer quality",
+    "warnings": "ResourceWarnings for unclosed test connections observed"
+  },
+  "limitations": [
+    "Missing second-source reference is a coverage gap, not proof of wrong identity.",
+    "Eligible does not mean marketplace-validated.",
+    "Reviewed research aliases in other snapshots are not present in this deployed-manifest snapshot.",
+    "No live feed, model calls, rights decisions or cloud changes performed in this review."
+  ]
+}
