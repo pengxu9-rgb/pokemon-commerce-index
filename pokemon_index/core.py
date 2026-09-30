@@ -50,8 +50,11 @@ def parse_time(value: str) -> datetime:
     return parsed.astimezone(timezone.utc)
 
 
-def connect(path: str | Path) -> sqlite3.Connection:
-    db = sqlite3.connect(path)
+def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
+    if readonly:
+        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True)
+    else:
+        db = sqlite3.connect(path)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
     return db

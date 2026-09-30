@@ -7,7 +7,8 @@ COPY scripts/__init__.py scripts/build_catalog_snapshot.py /app/scripts/
 COPY catalog-build-manifest-rarity-v2.json /app/catalog-build-manifest-rarity-v2.json
 COPY catalog /app/catalog
 RUN python -m scripts.build_catalog_snapshot \
-    --manifest /app/catalog-build-manifest-rarity-v2.json --db /app/catalog.sqlite3
+    --manifest /app/catalog-build-manifest-rarity-v2.json --db /app/catalog.sqlite3 \
+    && chmod 0444 /app/catalog.sqlite3
 
 FROM python:3.12-slim
 WORKDIR /app

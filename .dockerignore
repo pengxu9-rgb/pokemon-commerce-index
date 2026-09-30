@@ -21,8 +21,14 @@ catalog/*
 !catalog/jp-card-identity-exceptions.jsonl
 !catalog/ja-number-denominator-conflict-rules.jsonl
 !catalog/card-classifications.jsonl.gz
+!catalog/relationship-scale-v1-proposed-edges-v4.jsonl
+!catalog/m6-secret-rarity-corrections.jsonl
+!catalog/missing-rarity-v1/
+catalog/missing-rarity-v1/*
+!catalog/missing-rarity-v1/corrections.jsonl
 examples/
 scripts/*
 !scripts/__init__.py
 !scripts/build_catalog_snapshot.py
 tests/
+sandbox/

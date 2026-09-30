@@ -33,7 +33,7 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
             args = parse_qs(parsed.query)
             value = lambda name, default="": args.get(name, [default])[0]
             try:
-                with closing(core.connect(db_path)) as db, db:
+                with closing(core.connect(db_path, readonly=True)) as db, db:
                     if parsed.path == "/health":
                         result = {"ok": True}
                     elif parsed.path == "/discover":

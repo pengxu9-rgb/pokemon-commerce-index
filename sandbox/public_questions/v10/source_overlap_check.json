@@ -1,0 +1,9 @@
+{
+  "candidate_post_ids": 16,
+  "checked_scope": "all top-level JSONL source/index/evidence records from v1-v9",
+  "normalization": "Reddit comment-thread ID regardless of slug; Yahoo exact question path",
+  "overlap": [],
+  "prior_unique_post_ids": 115,
+  "schema": "pokemon.source-post-overlap-check.v1",
+  "source_sha256": "580b154708f25724da4e25c5b3a28122f9bdb9b6bc0d3ae5abebaa0948eb5678"
+}

@@ -52,4 +52,4 @@ python3 -m scripts.build_catalog_snapshot --db catalog.sqlite3
 
 The v9 SV4a 347/190 question now exposes the SAR candidate instead of failing on `rarity_not_verified`. It still lacks explicit card-language evidence, so its result is `insufficient_printing_coordinates`. Supplying Japanese language resolves the exact catalog identity. It does not supply condition, a priceable unit or a current quote.
 
-Docker now builds this corrected manifest. This revision has not been deployed to Cloud Run.
+Docker builds this corrected manifest. It was deployed to private Cloud Run on 2026-09-30; authenticated checks confirmed the current counts and the SV4a SAR correction. See [deployment evidence](CLOUD_RUN.md#verified-revision--2026-09-30).

@@ -1,0 +1,59 @@
+{
+  "project": "pivota-staging",
+  "region": "us-west1",
+  "service": "pokemon-commerce-index",
+  "revision": "pokemon-commerce-index-00010-w7b",
+  "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+  "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:81e83d11eb1e1e2ec971ca3f3647b654f718707164f0c077ff5843b24a75a020",
+  "private_iam_verified": true,
+  "checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "path": "/catalog-status",
+      "status": 200,
+      "result": {
+        "printings": 55167,
+        "sets": 543,
+        "reference_records": 24039,
+        "display_approved": 0,
+        "match_eligible": 33543
+      }
+    },
+    {
+      "path": "/catalog-card?card_id=ja%3ASV4A%3A347%2F190%3Aholo",
+      "status": 200,
+      "result": {
+        "card_id": "ja:SV4A:347/190:holo",
+        "rarity": "SAR",
+        "rarity_correction": {
+          "card_id": "ja:SV4A:347/190:holo",
+          "original_name": "ミュウex",
+          "original_rarity": null,
+          "source_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+          "corrected_rarity": "SAR",
+          "reference_provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/SV4a/45133.json:sha256:1b97826e9244a3f42a88dd63f5cc2a060243a0c0d0617f800063765a33133329",
+          "official_url": "https://www.pokemon-card.com/card-search/details.php/card/45133",
+          "official_page_sha256": "bca2d660e23fdb25dc7e838130a888e264a3b7b40a525f0aed4e60353ecf9301",
+          "official_rarity_icon": "ic_rare_sar.gif",
+          "applied_at": "2026-09-30T12:15:45+00:00"
+        }
+      }
+    }
+  ],
+  "unauthenticated_http_status": 403,
+  "verified_date": "2026-09-30",
+  "catalog_build_manifest_sha256": "eb9893b0fbec76d428f25e0db9955f865ad20955b88f48c828d671d8c3a2e0ff",
+  "runtime_files_sha256": {
+    "Dockerfile": "be79d5fe32eb417b09c5a0640accc2885894ace073e71164bfe1c5782108d142",
+    "pokemon_index/core.py": "c40cd99f7cde0ec496474ea2839b3d21a2a2dabf09f5b258be82d80e7540f94e",
+    "pokemon_index/cli.py": "89f5b114c678611f6dfbbf4636e158f7890c5ffa72164e0a91bbb8c054010f5f",
+    ".gcloudignore": "baec8987502b9512a36e6589002241f5ad3f06bad0d775763c8aaa53cf7e42ac",
+    ".dockerignore": "e224cf54a3802867a17e360721d3c6bc4035566b919fd11042fb8673cf41a0b8"
+  }
+}

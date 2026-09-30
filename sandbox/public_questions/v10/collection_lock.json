@@ -1,0 +1,21 @@
+{
+  "catalog_snapshot_sha256": "7c707e5d7b3b886b2af4c69fcf7713667e60be25e4c7bd383c7340e63e0dd222",
+  "code_sha256": {
+    "catalog-build-manifest-rarity-v2.json": "eb9893b0fbec76d428f25e0db9955f865ad20955b88f48c828d671d8c3a2e0ff",
+    "pokemon_index/catalog_question_resolver_v2.py": "4cc13ff0774abdb3e3f450d394ec1bf738353c29b2207fd1824ad76ba9291c59",
+    "pokemon_index/question_routing_v6.py": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e",
+    "scripts/vertex_public_question_facts_v6.py": "f21c1a9a12aa6ffa7d2240a5266bafcd1b6ada6cf4d43883c71b9bf54e8cc5b0"
+  },
+  "evaluation_role": "fresh source questions for unchanged v6; researcher qualitative expectations are not human ground truth",
+  "freeze_rule": "no planner or extractor changes until first results archived; source gate before extraction",
+  "observed_date": "2026-09-30",
+  "schema": "pokemon.public-question-collection-lock.v1",
+  "selection_plan": [
+    "seller class saleability",
+    "single vs lot vs bulk",
+    "store buying policy",
+    "net proceeds by channel",
+    "unseen image and mixed TCG scope",
+    "sealed buyer scope control"
+  ]
+}

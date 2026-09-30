@@ -1,0 +1,44 @@
+{
+  "blind_sha256": "ae4ce44619aaff8e5102a20d4211edc3d76c5f8d1340da91823b3957d1ac7d64",
+  "by_language": {
+    "en": 7,
+    "ja": 8
+  },
+  "by_media": {
+    "referenced_not_collected": 2,
+    "text_only": 13
+  },
+  "by_platform": {
+    "reddit": 7,
+    "yahoo_chiebukuro": 8
+  },
+  "catalog_build_manifest_sha256": "eb9893b0fbec76d428f25e0db9955f865ad20955b88f48c828d671d8c3a2e0ff",
+  "catalog_resolver_sha256": "4cc13ff0774abdb3e3f450d394ec1bf738353c29b2207fd1824ad76ba9291c59",
+  "catalog_snapshot_sha256": "7c707e5d7b3b886b2af4c69fcf7713667e60be25e4c7bd383c7340e63e0dd222",
+  "evaluation_role": "fresh source-checked questions for unchanged v6; no human ground truth",
+  "holdout": 4,
+  "holdout_ratio": 0.25,
+  "preflight_report_sha256": "4470ebf2921e8f739c2e1969116a138dc046e3cf40eafe5624805d3e245b0ca5",
+  "prior_source_cohorts": "v1-v9 canonical post IDs checked before freeze",
+  "questions": 15,
+  "researcher_expectations_sha256": "4dff1fa4261f3f7632dee7295e5411ae9386182a43a2105c05fa755815ed9465",
+  "runtime_dependency_sha256": {
+    "pokemon_index/core.py": "c40cd99f7cde0ec496474ea2839b3d21a2a2dabf09f5b258be82d80e7540f94e",
+    "pokemon_index/question_routing_v2.py": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+    "pokemon_index/question_routing_v3.py": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd",
+    "pokemon_index/question_routing_v4.py": "17f67ef36a0c4905eac57038dc4f6228ce20e224deab8949332eec769d0d342c",
+    "pokemon_index/question_routing_v5.py": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79"
+  },
+  "schema": "pokemon.public-question-sandbox.v3",
+  "scope": "search-discovered public question situations; not representative; source-condensed text is not raw-language accuracy",
+  "seed": 20260930,
+  "source_evidence_sha256": "cbfb2f453c5688ccfc9af4e44f8c8ee7825cf7bc77a0121e7d199cbea2044eaf",
+  "source_gate": "Codex original-page inspection + Gemini transcribed-context fidelity check; both AI evidence",
+  "source_index_sha256": "d8d2108ae45cd91ca6379ca949ddfb100684a4c91a1f7539f97650589b9edc78",
+  "source_sha256": "9ac0c348184e39db37e9c7c9bfcdc7e473335b5f1fa79142e9816c16dd70e48f",
+  "text_forms": {
+    "source_condensed": 15
+  },
+  "v6_fact_extractor_sha256": "f21c1a9a12aa6ffa7d2240a5266bafcd1b6ada6cf4d43883c71b9bf54e8cc5b0",
+  "v6_planner_sha256": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e"
+}

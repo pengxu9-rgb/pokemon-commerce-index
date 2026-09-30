@@ -41,8 +41,10 @@ eBay 独立数据路径的[接口核查、生产准入和 100 个版本候选名
 M6 秘密编号卡的官方稀有度核对及独立修正版快照见 [CATALOG_M6_RARITY_AUDIT.md](CATALOG_M6_RARITY_AUDIT.md)。
 新增[缺稀有度补证](CATALOG_MISSING_RARITY_AUDIT.md)：500 张官方页面核对中补齐 497 张，覆盖 13 个卡组；SV4a 347/190 已确认为 SAR，另 3 张人物限定词差异暂缓。[v6 泛品类卖出路由](QUESTION_ROUTING_V6.md)先确定卡片范围和售卖方式，再规划逐个可计价单元的成交、费用和关系证据；已知问题回放不是新的盲测准确率。
 新版问题路由在未参与开发的真实提问上的小样本诊断见 [QUESTION_ROUTING_V9_DIAGNOSTIC.md](QUESTION_ROUTING_V9_DIAGNOSTIC.md)。
+新增 [v10 新问题诊断](QUESTION_ROUTING_V10_DIAGNOSTIC.md)：16 个新来源候选中 15 个通过核查，日文 8、英文 7；15 条结构有效，14 条意图落在预先研究判断内，13 条有售卖方式预期的案例中 12 条一致。整套出售、商家收购规则、东京店铺推荐仍有具体路由缺口；这些数字不是问答准确率。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
+2026-09-30 已部署修正版目录到私有 staging，认证接口核对通过，未登录请求返回 403；当前云端服务提供目录查询，问题提取与路由验证仍通过 sandbox／CLI 运行。
 
 第二步对 Buy&Ship 的接口与数据授权请求已整理在 [SOURCE_ACCESS_REQUEST.md](SOURCE_ACCESS_REQUEST.md)。
 API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONTRACT.md](OFFER_CONDITION_CONTRACT.md)。
