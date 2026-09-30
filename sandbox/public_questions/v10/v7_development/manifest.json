@@ -1,0 +1,22 @@
+{
+  "blind_sha256": "7a9b246e06d2d09720703f74e5f18b89114ce8157780a40b144795e005dc1e78",
+  "catalog_resolver_sha256": "4cc13ff0774abdb3e3f450d394ec1bf738353c29b2207fd1824ad76ba9291c59",
+  "catalog_snapshot_sha256": "7c707e5d7b3b886b2af4c69fcf7713667e60be25e4c7bd383c7340e63e0dd222",
+  "evaluation_role": "Previously viewed v10 source-condensed cases; targeted development regression; no untouched holdout or human ground truth",
+  "evaluator_sha256": "7c28a91f0c33677691705f93b0cd4462262bb8a7658a33ab81654347605bac4d",
+  "parent_manifest_sha256": "4c16dd87fb9683675fd5bd7768a8a93b0ec14039bdc1bdb7e6b9d6ac3a5282fb",
+  "questions": 8,
+  "researcher_expectations_sha256": "4c3fc8dd453fb762678d151f2cb3c1c5f055dd7df21ea7c2bfd45d01229e0108",
+  "runtime_dependency_sha256": {
+    "pokemon_index/core.py": "c40cd99f7cde0ec496474ea2839b3d21a2a2dabf09f5b258be82d80e7540f94e",
+    "pokemon_index/question_routing_v2.py": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+    "pokemon_index/question_routing_v3.py": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd",
+    "pokemon_index/question_routing_v4.py": "17f67ef36a0c4905eac57038dc4f6228ce20e224deab8949332eec769d0d342c",
+    "pokemon_index/question_routing_v5.py": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79",
+    "pokemon_index/question_routing_v6.py": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e"
+  },
+  "schema": "pokemon.question-v7-development-freeze.v1",
+  "source_index_sha256": "9a9f24ca8928a6091bab53c09043a771264d51034e3e94b711c3ec778c2c914a",
+  "v7_fact_extractor_sha256": "0e9a490ed80a36d050380eb2613018021788d3c44aaf8ec23c3ef3fb5bbdde95",
+  "v7_planner_sha256": "ac5f161f8a9a2f3de015a6c38facfb74d32e8919b572c6768a059057182e3986"
+}

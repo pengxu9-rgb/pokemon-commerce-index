@@ -1,0 +1,39 @@
+{
+  "cases_with_retries": 1,
+  "errors": 0,
+  "evaluation_role": "known-case development replay; not unseen accuracy",
+  "facts_sha256": "f8ee8518f34072c2c23c76678938353c271075ca69b87786519807abcc9ce1fc",
+  "field_disagreements": [
+    {
+      "actual": [],
+      "effect": "primary_goal preserved; planner derives the explicit primary task",
+      "expected": [
+        "merchant_acceptance"
+      ],
+      "field": "seller_tasks",
+      "id": "pubq10-012"
+    },
+    {
+      "actual": [],
+      "effect": "primary_goal preserved; planner derives the explicit primary task",
+      "expected": [
+        "net_proceeds"
+      ],
+      "field": "seller_tasks",
+      "id": "pubq10-014"
+    }
+  ],
+  "location": "global",
+  "manifest_sha256": "1faffa4dad08b84133bcb1df8dc9cd5fc88575f40b2f2641d58fa074d03bb3eb",
+  "project": "pivota-prod",
+  "questions": 8,
+  "requested_model": "gemini-3.8-flash",
+  "route_report_sha256": "b99f36144deae809f0a92bce74bdde6b33c59bc2afedf0bcc13e61e9dbd947ea",
+  "runtime_note": "transport helper hash recorded after invocation; planner and extractor were pinned before invocation",
+  "runtime_transport_dependency_sha256": {
+    "scripts/vertex_concept_review.py": "da0b6e2f7221b1505c2c56c211884bf13064c79844612b95e63d849ce6b9bff4"
+  },
+  "schema": "pokemon.question-v7-development-invocation.v1",
+  "total_extraction_attempts": 9,
+  "valid": 8
+}

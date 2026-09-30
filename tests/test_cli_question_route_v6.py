@@ -9,11 +9,14 @@ from pathlib import Path
 
 from pokemon_index import core, question_routing_v6
 from tests.test_question_routing_v6 import facts
+from tests.test_question_routing_v7 import facts as facts_v7
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class QuestionRouteV6CliTests(unittest.TestCase):
+    make_facts = staticmethod(facts)
+    route_command = "question-route-plan-v6"
     def test_cli_checks_cohort_evidence_in_read_only_catalog(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -28,9 +31,9 @@ class QuestionRouteV6CliTests(unittest.TestCase):
                 cohort = question_routing_v6.build_sale_cohort(db, [unit])
             finally:
                 db.close()
-            source.write_text(json.dumps(facts(channel="marketplace_listing")))
+            source.write_text(json.dumps(self.make_facts(channel="marketplace_listing")))
             cohort_file.write_text(json.dumps(cohort))
-            command = [sys.executable, "-m", "pokemon_index", "question-route-plan-v6", str(source),
+            command = [sys.executable, "-m", "pokemon_index", self.route_command, str(source),
                        "--catalog-db", str(catalog), "--sale-cohort", str(cohort_file)]
             before = hashlib.sha256(catalog.read_bytes()).hexdigest()
             result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
@@ -43,6 +46,11 @@ class QuestionRouteV6CliTests(unittest.TestCase):
             stale = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
             self.assertNotEqual(stale.returncode, 0)
             self.assertIn("sale cohort evidence changed", stale.stderr)
+
+
+class QuestionRouteV7CliTests(QuestionRouteV6CliTests):
+    make_facts = staticmethod(lambda **kw: facts_v7("seller_saleability", **kw))
+    route_command = "question-route-plan-v7"
 
 
 if __name__ == "__main__":

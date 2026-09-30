@@ -1,0 +1,710 @@
+{
+  "errors": 0,
+  "evaluation_role": "previously viewed v10 cases; development replay, not unseen generalization or human ground truth",
+  "expected_fields_agreement": 6,
+  "facts_sha256": "f8ee8518f34072c2c23c76678938353c271075ca69b87786519807abcc9ce1fc",
+  "formats_agreement": 7,
+  "formats_evaluated": 7,
+  "goal_agreement": 8,
+  "goals": {
+    "authenticity": 1,
+    "channel_choice": 1,
+    "merchant_acceptance": 3,
+    "merchant_discovery": 1,
+    "seller_net_proceeds": 1,
+    "seller_saleability": 1
+  },
+  "manifest_sha256": "1faffa4dad08b84133bcb1df8dc9cd5fc88575f40b2f2641d58fa074d03bb3eb",
+  "market_ready_cases": 0,
+  "missing_action_cases": 0,
+  "questions": 8,
+  "results": [
+    {
+      "allowed_goals": [
+        "seller_saleability"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": [
+        "single",
+        "lot"
+      ],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-001",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_saleability_ranking_without_reviewed_units_and_market_evidence",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_from_gross_asks_without_fees_shipping_and_cost_basis",
+          "no_cross_unit_price_pooling",
+          "no_evolution_line_from_unreviewed_relations",
+          "no_bulk_or_bundle_price_from_summing_single_card_asks"
+        ],
+        "claim_status": "general_explanation_only",
+        "cost_basis": null,
+        "merchant_location": null,
+        "merchant_refs": [],
+        "object_type": "card_collection",
+        "primary_goal": "seller_saleability",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [
+          "single",
+          "lot"
+        ],
+        "sale_scope": "Base Set non-holo commons and uncommons, some first edition, plus Jungle, Fossil and Japanese cards",
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "none",
+        "seller_tasks": [],
+        "steps": [
+          {
+            "action": "explain_saleability_factors",
+            "reason": "Explain demand, condition, net proceeds and listing effort without naming profitable cards.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_selling_channel",
+            "reason": "Net proceeds depend on marketplace selling or store buyback.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_sale_goal",
+            "reason": "Ask for acceptable proceeds, effort and time to sell.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_analysis_period",
+            "reason": "Sales frequency and coverage need a defined observation period.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_target_condition",
+            "reason": "Raw condition and graded status must remain separate.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "retrieve_sale_candidates",
+            "reason": "Retrieve metadata candidates for the stated scope, without asserting saleability.",
+            "requires_capability": "internal_catalog",
+            "status": "ready"
+          },
+          {
+            "action": "review_sale_cohort",
+            "reason": "Resolve exact priceable units and inventory condition before market evidence retrieval.",
+            "requires_capability": "internal_catalog",
+            "status": "ready"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "seller_saleability",
+      "sale_formats": [
+        "single",
+        "lot"
+      ],
+      "sale_scope": "Base Set non-holo commons and uncommons, some first edition, plus Jungle, Fossil and Japanese cards",
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "channel_choice"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": [
+        "lot"
+      ],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-007",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "general_explanation_only",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [],
+        "object_type": "card_collection",
+        "primary_goal": "channel_choice",
+        "sale_cohort": null,
+        "sale_constraints": "looking to get 90% of market value",
+        "sale_formats": [
+          "lot"
+        ],
+        "sale_scope": null,
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "needs_scope",
+        "seller_channel": "none",
+        "seller_tasks": [],
+        "steps": [
+          {
+            "action": "ask_product_type",
+            "reason": "Establish the supported Pokémon TCG product scope.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_collection_inventory",
+            "reason": "Retain the selling request while clarifying inventory and supported game scope.",
+            "requires_capability": null,
+            "status": "ready"
+          }
+        ],
+        "tcg_scope": "unknown",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "channel_choice",
+      "sale_formats": [
+        "lot"
+      ],
+      "sale_scope": null,
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "unknown"
+    },
+    {
+      "allowed_goals": [
+        "merchant_acceptance"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": [],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-011",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [
+        "ブックオフ"
+      ],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "retrieval_and_quality_review_required",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [
+          "ブックオフ"
+        ],
+        "object_type": "card_collection",
+        "primary_goal": "merchant_acceptance",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": "ポケカのノーマルカード",
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "store_buyback",
+        "seller_tasks": [
+          "merchant_acceptance"
+        ],
+        "steps": [
+          {
+            "action": "explain_selling_factors",
+            "reason": "Distinguish merchant acceptance, channel proceeds, condition and selling effort.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "retrieve_buyback_terms",
+            "reason": "Check current acceptance, rotation, sorting and submission rules separately for each named store.",
+            "requires_capability": "merchant_buyback_terms",
+            "status": "blocked"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "merchant_acceptance",
+      "sale_formats": [],
+      "sale_scope": "ポケカのノーマルカード",
+      "seller_tasks": [
+        "merchant_acceptance"
+      ],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "merchant_acceptance"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": false,
+      "expected_formats": [],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-012",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [
+        "駿河屋"
+      ],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "retrieval_and_quality_review_required",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [
+          "駿河屋"
+        ],
+        "object_type": "card_collection",
+        "primary_goal": "merchant_acceptance",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": "見積もり200円以上のポケカ",
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "store_buyback",
+        "seller_tasks": [
+          "merchant_acceptance"
+        ],
+        "steps": [
+          {
+            "action": "explain_selling_factors",
+            "reason": "Distinguish merchant acceptance, channel proceeds, condition and selling effort.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "retrieve_buyback_terms",
+            "reason": "Check current acceptance, rotation, sorting and submission rules separately for each named store.",
+            "requires_capability": "merchant_buyback_terms",
+            "status": "blocked"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "merchant_acceptance",
+      "sale_formats": [],
+      "sale_scope": "見積もり200円以上のポケカ",
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "merchant_discovery"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": [],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-013",
+      "market_action_ready": false,
+      "merchant_location": "東京",
+      "merchant_refs": [],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "retrieval_and_quality_review_required",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": "東京",
+        "merchant_refs": [],
+        "object_type": "card_collection",
+        "primary_goal": "merchant_discovery",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": "FGHの頃まで遊んだポケモンカード",
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "store_buyback",
+        "seller_tasks": [
+          "merchant_discovery"
+        ],
+        "steps": [
+          {
+            "action": "explain_selling_factors",
+            "reason": "Distinguish merchant acceptance, channel proceeds, condition and selling effort.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "retrieve_merchant_candidates",
+            "reason": "Find current stores in the stated location without asserting reliability or best payout.",
+            "requires_capability": "current_merchant_directory",
+            "status": "blocked"
+          },
+          {
+            "action": "retrieve_buyback_terms",
+            "reason": "Verify each candidate store accepts the stated card class and selling format.",
+            "requires_actions": [
+              "retrieve_merchant_candidates"
+            ],
+            "requires_capability": "merchant_buyback_terms",
+            "status": "blocked"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "merchant_discovery",
+      "sale_formats": [],
+      "sale_scope": "FGHの頃まで遊んだポケモンカード",
+      "seller_tasks": [
+        "merchant_discovery"
+      ],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "seller_net_proceeds"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": false,
+      "expected_formats": [],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-014",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "retrieval_and_quality_review_required",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [],
+        "object_type": "card_market_segment",
+        "primary_goal": "seller_net_proceeds",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": null,
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "comparing_channels",
+        "seller_tasks": [
+          "net_proceeds"
+        ],
+        "steps": [
+          {
+            "action": "explain_selling_factors",
+            "reason": "Distinguish merchant acceptance, channel proceeds, condition and selling effort.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_sale_scope",
+            "reason": "Identify the inventory, card class, language and era.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_sale_format",
+            "reason": "Ask whether selling singles, a whole lot, evolution lines or bulk.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_sale_goal",
+            "reason": "Ask about desired proceeds, time and listing effort.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_collection_inventory",
+            "reason": "Obtain inventory and condition before comparable net-proceeds calculations.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "review_sale_cohort",
+            "reason": "Bind the requested inventory to exact priceable units.",
+            "requires_capability": "internal_catalog",
+            "status": "ready"
+          },
+          {
+            "action": "ask_cost_basis",
+            "reason": "Profit requires paid acquisition costs; gross proceeds alone are not profit.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_analysis_period",
+            "reason": "A paid-sale comparison needs a defined observation period.",
+            "requires_capability": null,
+            "status": "ready"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "none"
+      },
+      "primary_goal": "seller_net_proceeds",
+      "sale_formats": [],
+      "sale_scope": null,
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "authenticity"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": null,
+      "formats_agree_with_researcher": null,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-015",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "general_explanation_only",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [],
+        "object_type": "sealed_tcg",
+        "primary_goal": "authenticity",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": null,
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "unsupported_product",
+        "seller_channel": "none",
+        "seller_tasks": [],
+        "steps": [
+          {
+            "action": "explain_scope",
+            "reason": "The index currently covers physical Pokémon TCG cards.",
+            "requires_capability": null,
+            "status": "ready"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "prospective_buy"
+      },
+      "primary_goal": "authenticity",
+      "sale_formats": [],
+      "sale_scope": null,
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "allowed_goals": [
+        "merchant_acceptance",
+        "merchant_discovery"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": [],
+      "formats_agree_with_researcher": true,
+      "goal_agrees_with_researcher": true,
+      "id": "pubq10-016",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [
+        "ゲオ",
+        "TSUTAYA",
+        "BOOKOFF"
+      ],
+      "missing_expected_actions": [],
+      "plan": {
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_store_acceptance_without_current_merchant_terms",
+          "no_merchant_ranking_from_directory_or_platform_stars",
+          "no_payout_from_buyer_asks",
+          "no_sales_from_asks_or_disappearance",
+          "no_profit_without_cost_basis_fees_shipping_and_settlement",
+          "no_lot_price_from_sum_of_single_asks",
+          "no_cross_unit_price_pooling",
+          "no_mixed_tcg_catalog_assumption",
+          "no_reliability_claim_without_fulfilment_evidence"
+        ],
+        "claim_status": "general_explanation_only",
+        "cost_basis": null,
+        "destination": null,
+        "merchant_location": null,
+        "merchant_refs": [
+          "ゲオ",
+          "TSUTAYA",
+          "BOOKOFF"
+        ],
+        "object_type": "card_collection",
+        "primary_goal": "merchant_acceptance",
+        "sale_cohort": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": "ノーマル",
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "needs_scope",
+        "seller_channel": "store_buyback",
+        "seller_tasks": [
+          "merchant_acceptance",
+          "merchant_discovery"
+        ],
+        "steps": [
+          {
+            "action": "ask_supported_tcg_scope",
+            "reason": "Separate Pokémon TCG cards from other games before catalog or merchant comparison.",
+            "requires_capability": null,
+            "status": "ready"
+          }
+        ],
+        "tcg_scope": "mixed_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "merchant_acceptance",
+      "sale_formats": [],
+      "sale_scope": "ノーマル",
+      "seller_tasks": [
+        "merchant_acceptance",
+        "merchant_discovery"
+      ],
+      "status": "ok",
+      "tcg_scope": "mixed_tcg"
+    }
+  ],
+  "schema": "pokemon.question-v7-development-replay.v1",
+  "valid": 8
+}

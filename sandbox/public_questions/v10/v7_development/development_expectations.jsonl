@@ -1,0 +1,8 @@
+{"allowed_goals": ["seller_saleability"], "explicit_sale_formats": ["single", "lot"], "fields": {}, "id": "pubq10-001", "required_actions": []}
+{"allowed_goals": ["channel_choice"], "explicit_sale_formats": ["lot"], "fields": {}, "id": "pubq10-007", "required_actions": ["ask_collection_inventory"]}
+{"allowed_goals": ["merchant_acceptance"], "explicit_sale_formats": [], "fields": {"merchant_refs": ["ブックオフ"], "seller_tasks": ["merchant_acceptance"]}, "id": "pubq10-011", "required_actions": ["retrieve_buyback_terms"]}
+{"allowed_goals": ["merchant_acceptance"], "explicit_sale_formats": [], "fields": {"merchant_refs": ["駿河屋"], "seller_tasks": ["merchant_acceptance"]}, "id": "pubq10-012", "required_actions": ["retrieve_buyback_terms"]}
+{"allowed_goals": ["merchant_discovery"], "explicit_sale_formats": [], "fields": {"destination": null, "merchant_location": "東京"}, "id": "pubq10-013", "required_actions": ["retrieve_merchant_candidates", "retrieve_buyback_terms"]}
+{"allowed_goals": ["seller_net_proceeds"], "explicit_sale_formats": [], "fields": {"seller_tasks": ["net_proceeds"]}, "id": "pubq10-014", "required_actions": ["ask_collection_inventory", "ask_cost_basis", "review_sale_cohort"]}
+{"allowed_goals": ["authenticity"], "explicit_sale_formats": null, "fields": {}, "id": "pubq10-015", "required_actions": ["explain_scope"]}
+{"allowed_goals": ["merchant_acceptance", "merchant_discovery"], "explicit_sale_formats": [], "fields": {"merchant_ref": null, "merchant_refs": ["ゲオ", "TSUTAYA", "BOOKOFF"], "tcg_scope": "mixed_tcg"}, "id": "pubq10-016", "required_actions": ["ask_supported_tcg_scope"]}

@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, tcgdex
+from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
 
 
 def read_jsonl(path: str):
@@ -205,13 +205,13 @@ def main() -> None:
     route_plan_v5.add_argument("--catalog-db", help="read-only catalog snapshot for automatic resolution")
     route_plan_v5.add_argument("--capability", action="append", default=[],
                                choices=sorted(question_routing_v5.CAPABILITIES))
-    route_plan_v6 = sub.add_parser("question-route-plan-v6", help="plan card-class saleability and net-proceeds evidence")
-    route_plan_v6.add_argument("file", help="v6 structured question facts JSON")
-    route_plan_v6.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
-    route_plan_v6.add_argument("--catalog-db", help="read-only catalog snapshot for resolution and cohort checks")
-    route_plan_v6.add_argument("--sale-cohort", help="unit cohort JSON whose evidence is verified against --catalog-db")
-    route_plan_v6.add_argument("--capability", action="append", default=[],
-                               choices=sorted(question_routing_v6.CAPABILITIES))
+    for version, module in (("v6", question_routing_v6), ("v7", question_routing_v7)):
+        route = sub.add_parser(f"question-route-plan-{version}", help="plan seller scope, merchant and proceeds evidence")
+        route.add_argument("file", help=f"{version} structured question facts JSON")
+        route.add_argument("--resolution", help="optional evidence-backed catalog resolution JSON")
+        route.add_argument("--catalog-db", help="read-only catalog snapshot for resolution and cohort checks")
+        route.add_argument("--sale-cohort", help="unit cohort JSON verified against --catalog-db")
+        route.add_argument("--capability", action="append", default=[], choices=sorted(module.CAPABILITIES))
     number_explanation = sub.add_parser("number-explanation", help="internal release-scoped number comparison")
     number_explanation.add_argument("left_card_id")
     number_explanation.add_argument("right_card_id")
@@ -329,8 +329,9 @@ def main() -> None:
             plan["catalog_lookup"] = lookup
         print(json.dumps(plan, ensure_ascii=False, indent=2))
         return
-    if args.command in {"question-route-plan-v5", "question-route-plan-v6"}:
-        routing = question_routing_v6 if args.command.endswith("v6") else question_routing_v5
+    if args.command in {"question-route-plan-v5", "question-route-plan-v6", "question-route-plan-v7"}:
+        routing = {"v5": question_routing_v5, "v6": question_routing_v6,
+                   "v7": question_routing_v7}[args.command.rsplit("-", 1)[-1]]
         facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
         routing.validate_facts(facts)
         if args.resolution and args.catalog_db:
@@ -349,11 +350,11 @@ def main() -> None:
                 lookup = catalog_question_resolver_v2.resolve_question(
                     catalog_db, routing.catalog_projection(facts))
                 if cohort is not None:
-                    question_routing_v6.validate_sale_cohort(cohort)
-                    if cohort != question_routing_v6.build_sale_cohort(catalog_db, cohort["unit_ids"]):
+                    routing.validate_sale_cohort(cohort)
+                    if cohort != routing.build_sale_cohort(catalog_db, cohort["unit_ids"]):
                         raise ValueError("sale cohort evidence changed or does not match the catalog")
             resolution = lookup["resolution"]
-        extra = {"sale_cohort": cohort} if args.command.endswith("v6") else {}
+        extra = {"sale_cohort": cohort} if not args.command.endswith("v5") else {}
         plan = routing.plan_question(facts, resolution=resolution,
                                      capabilities=set(args.capability), **extra)
         if lookup is not None:
