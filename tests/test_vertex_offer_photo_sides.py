@@ -38,7 +38,7 @@ class PhotoSideTests(unittest.TestCase):
                                       "ingest_allowed": True, "display_allowed": True,
                                       "media_ai_allowed": True, "retention_days": 30,
                                       "listing_ttl_hours": 24})
-            core.import_cards(db, [{"language": "ja", "set_code": "S1",
+            core.import_cards(db, [{"match_eligible": True, "variant": "standard", "language": "ja", "set_code": "S1",
                                     "collector_number": "001/100", "name": "カード",
                                     "provenance": "fixture", "rights_reference": "fixture",
                                     "display_allowed": True}])

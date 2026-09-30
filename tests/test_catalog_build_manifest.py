@@ -16,7 +16,7 @@ class CatalogBuildManifestTests(unittest.TestCase):
     def test_rebuilds_documented_snapshot(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "catalog.sqlite3"
-            result = build(ROOT / "catalog-build-manifest.json", output)
+            result = build(ROOT / "catalog-build-manifest-discovery-v1.json", output)
             self.assertEqual((result["printings"], result["match_eligible"]),
                              (55167, 33543))
             self.assertEqual((result["ai_artwork_proposals"], result["verified_relationships"]),
@@ -43,7 +43,7 @@ class CatalogBuildManifestTests(unittest.TestCase):
                 db.close()
 
     def test_manifest_hash_mismatch_fails_before_writing(self):
-        manifest = ROOT / "catalog-build-manifest.json"
+        manifest = ROOT / "catalog-build-manifest-discovery-v1.json"
         with tempfile.TemporaryDirectory() as directory:
             data = json.loads(manifest.read_text())
             data["steps"][0]["sha256"] = "0" * 64

@@ -15,7 +15,7 @@ class BuyerQuestionEvaluationTests(unittest.TestCase):
     def setUp(self):
         self.db = core.connect(":memory:")
         core.init_db(self.db)
-        core.import_cards(self.db, [dict(
+        core.import_cards(self.db, [dict(match_eligible=True,
             language="ja", set_code="SV2a", collector_number="025/165",
             variant="normal", name="ピカチュウ", provenance="fixture",
             rights_reference="fixture")])

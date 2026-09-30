@@ -24,7 +24,7 @@ class QuestionRouteV6CliTests(unittest.TestCase):
             db = core.connect(catalog)
             try:
                 core.init_db(db)
-                core.import_cards(db, [{"language": "ja", "set_code": "SV4A", "collector_number": "347/190",
+                core.import_cards(db, [{"match_eligible": True, "language": "ja", "set_code": "SV4A", "collector_number": "347/190",
                     "variant": "holo", "name": "ミュウex", "provenance": "fixture", "rights_reference": "fixture"}])
                 unit = core._unit(db, "ja:SV4A:347/190:holo", "RAW", "raw", "a")
                 db.commit()

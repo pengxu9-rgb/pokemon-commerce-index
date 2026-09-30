@@ -10,7 +10,7 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from pokemon_index import core, discovery_graph, number_conflicts
+from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog
 from pokemon_index.cli import read_jsonl
 
 def import_ai_artwork_proposals(db, rows) -> int:
@@ -33,6 +33,11 @@ OPERATIONS = {
     "import-card-facets": core.import_card_facets,
     "import-card-classifications": core.import_card_classifications,
     "import-ai-artwork-proposals": import_ai_artwork_proposals,
+    "import-release-evidence": supported_catalog.import_releases,
+    "import-catalog-vocabulary": supported_catalog.import_vocabulary,
+    "import-supported-cards": supported_catalog.import_supported,
+    "import-character-families": supported_catalog.import_families,
+    "import-concept-review-bundle": core.import_concept_review_bundle,
 }
 
 
@@ -70,7 +75,10 @@ def build(manifest_path: Path, output: Path) -> dict:
         with closing(core.connect(temporary)) as db:
             core.init_db(db)
             for operation, path in verified:
-                OPERATIONS[operation](db, read_jsonl(str(path)))
+                if operation == "import-concept-review-bundle":
+                    core.import_concept_review_bundle(db, json.loads(path.read_text()))
+                else:
+                    OPERATIONS[operation](db, read_jsonl(str(path)))
             status = core.catalog_status(db)
             actual = {"printings": status["printings"], "sets": status["sets"],
                       "match_eligible": status["match_eligible"],
@@ -91,6 +99,11 @@ def build(manifest_path: Path, output: Path) -> dict:
             if "rarity_corrections" in manifest.get("expected", {}):
                 actual["rarity_corrections"] = db.execute(
                     "SELECT COUNT(*) FROM card_rarity_correction").fetchone()[0]
+            supported = supported_catalog.status(db)
+            for key in ("current_supported_targets", "bilingual_alias_revisions", "concept_review_events",
+                        "release_evidence_records", "vocabulary_records", "character_families"):
+                if key in manifest.get("expected", {}):
+                    actual[key] = supported[key]
             if actual != manifest.get("expected"):
                 raise ValueError(f"catalog build counts differ: {actual}")
         os.replace(temporary, output)
@@ -103,7 +116,7 @@ def build(manifest_path: Path, output: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", type=Path, default=Path("catalog-build-manifest-rarity-v2.json"))
+    parser.add_argument("--manifest", type=Path, default=Path("catalog-build-manifest-discovery-v1.json"))
     parser.add_argument("--db", type=Path, required=True)
     args = parser.parse_args()
     print(json.dumps(build(args.manifest, args.db), ensure_ascii=False, indent=2))

@@ -54,7 +54,7 @@ class EbayBrowseTests(unittest.TestCase):
             core.register_source(db, {"source": "ebay_us", "rights_reference": "synthetic test fixture",
                                       "ingest_allowed": True, "display_allowed": False,
                                       "retention_days": 1, "listing_ttl_hours": 6})
-            core.import_cards(db, [{"language": "ja", "set_code": "SV2a",
+            core.import_cards(db, [{"match_eligible": True, "language": "ja", "set_code": "SV2a",
                                     "collector_number": "173/165", "variant": "standard",
                                     "name": "Pikachu", "provenance": "fixture",
                                     "rights_reference": "fixture", "display_allowed": False}])

@@ -20,7 +20,7 @@ class PartnerPreviewTests(unittest.TestCase):
         self.db.row_factory = sqlite3.Row
         core.init_db(self.db)
         self.register_source(handoff=True)
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True,
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
             "variant": "standard", "name": "ピカチュウ AR", "rarity": "AR",
             "provenance": "synthetic test", "rights_reference": "synthetic test",

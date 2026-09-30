@@ -8,7 +8,7 @@ class DiscoveryJourneyEvalTests(unittest.TestCase):
     def setUp(self):
         self.db = core.connect(":memory:")
         core.init_db(self.db)
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SV2a",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SV2a",
                                      "collector_number": "025/165", "variant": "normal",
                                      "name": "ピカチュウ", "provenance": "fixture",
                                      "rights_reference": "fixture"}])

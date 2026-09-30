@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS card (
   provenance TEXT NOT NULL,
   rights_reference TEXT NOT NULL,
   display_allowed INTEGER NOT NULL CHECK (display_allowed IN (0, 1)),
-  match_eligible INTEGER NOT NULL DEFAULT 1 CHECK (match_eligible IN (0, 1)),
+  match_eligible INTEGER NOT NULL DEFAULT 0 CHECK (match_eligible IN (0, 1)),
   attributes_json TEXT NOT NULL DEFAULT '{}',
   UNIQUE(language, set_code, collector_number, variant)
 );
@@ -51,6 +51,40 @@ CREATE TABLE IF NOT EXISTS card_number_context (
 );
 CREATE INDEX IF NOT EXISTS card_number_context_scope_number
   ON card_number_context(number_scope_id, full_number_key);
+
+-- Positive, source-bound internal support is separate from structural eligibility.
+CREATE TABLE IF NOT EXISTS supported_card (
+  card_id TEXT PRIMARY KEY REFERENCES card(card_id),
+  evidence_json TEXT NOT NULL,
+  identity_sha256 TEXT NOT NULL,
+  support_scope TEXT NOT NULL CHECK (support_scope='catalog_discovery_and_listing_review')
+);
+CREATE TABLE IF NOT EXISTS catalog_release_evidence (
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  evidence_json TEXT NOT NULL,
+  PRIMARY KEY(language,set_code)
+);
+CREATE TABLE IF NOT EXISTS catalog_vocabulary (
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  alias TEXT NOT NULL,
+  alias_kind TEXT NOT NULL CHECK (alias_kind IN ('set_name','printed_code')),
+  evidence_json TEXT NOT NULL,
+  PRIMARY KEY(language,set_code,alias)
+);
+CREATE TABLE IF NOT EXISTS character_family (
+  family_id TEXT PRIMARY KEY,
+  record_json TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS character_family_member (
+  family_id TEXT NOT NULL REFERENCES character_family(family_id),
+  dex_id INTEGER NOT NULL CHECK (dex_id>0),
+  name_ja TEXT NOT NULL,
+  name_en TEXT NOT NULL,
+  parent_dex_id INTEGER,
+  PRIMARY KEY(family_id,dex_id)
+);
 
 -- Source snapshots remain immutable; official-page corrections overlay them.
 CREATE TABLE IF NOT EXISTS card_identity_exception (

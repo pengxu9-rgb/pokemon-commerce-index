@@ -37,7 +37,7 @@ class ConceptReviewPacketTests(unittest.TestCase):
         for language, set_code, number, name, category, subtype, artist in values:
             card_id = f"{language}:{set_code}:{number}:normal"
             provenance = f"tcgdex:{'a'*40}:data/{language}/{set_code}/{number.split('/')[0]}.ts:sha256:{'b'*64}"
-            core.import_cards(self.db, [dict(
+            core.import_cards(self.db, [dict(match_eligible=True,
                 language=language, set_code=set_code, collector_number=number,
                 variant="normal", name=name,
                 provenance=provenance,

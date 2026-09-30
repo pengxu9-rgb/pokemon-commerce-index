@@ -18,7 +18,7 @@ class AIReviewTriageTests(unittest.TestCase):
         catalog = self.root / "catalog.sqlite3"
         db = core.connect(str(catalog))
         core.init_db(db)
-        core.import_cards(db, [{"language": "ja", "set_code": "SV2a",
+        core.import_cards(db, [{"match_eligible": True, "language": "ja", "set_code": "SV2a",
                                 "collector_number": "173/165", "variant": "standard",
                                 "name": "ピカチュウ", "provenance": "synthetic fixture",
                                 "rights_reference": "synthetic fixture"}])

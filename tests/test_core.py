@@ -15,7 +15,7 @@ class IndexTests(unittest.TestCase):
             "price_statistics_allowed": True, "retention_days": 365,
             "listing_ttl_hours": 24,
         })
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True, "variant": "standard",
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
             "name": "ピカチュウ", "rarity": "AR", "provenance": "test fixture",
             "rights_reference": "synthetic fixture", "display_allowed": True,
@@ -69,7 +69,7 @@ class IndexTests(unittest.TestCase):
             "title": "PSA10 鑑定品 " + base})[0].split("|")[1:3], ["PSA", "10"])
 
     def test_vintage_edition_requires_decisive_marker(self):
-        cards = [{"language": "ja", "set_code": "E2", "collector_number": "009/092",
+        cards = [{"match_eligible": True, "language": "ja", "set_code": "E2", "collector_number": "009/092",
                   "variant": variant, "name": "アリアドス", "provenance": "fixture",
                   "rights_reference": "fixture", "display_allowed": True}
                  for variant in ("holo_1st_edition", "holo_unlimited")]
@@ -83,7 +83,7 @@ class IndexTests(unittest.TestCase):
         self.assertIsNone(core.resolve(self.db, {"title": base + " shadowless"})[0])
 
     def test_collector_number_padding_is_consistent_for_short_sets(self):
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True,
             "language": "ja", "set_code": "SV1a", "collector_number": "80/73",
             "variant": "holo", "name": "コイキング", "provenance": "test fixture",
             "rights_reference": "synthetic fixture", "display_allowed": True,
@@ -94,10 +94,10 @@ class IndexTests(unittest.TestCase):
 
     def test_mega_dream_name_outweighs_ma_artwork_shorthand(self):
         core.import_cards(self.db, [
-            {"language": "ja", "set_code": "M2a", "collector_number": "223/193",
+            {"match_eligible": True, "language": "ja", "set_code": "M2a", "collector_number": "223/193",
              "variant": "holo", "name": "メガリザードンXex", "provenance": "fixture",
              "rights_reference": "fixture", "display_allowed": True},
-            {"language": "ja", "set_code": "MA", "collector_number": "223/193",
+            {"match_eligible": True, "language": "ja", "set_code": "MA", "collector_number": "223/193",
              "variant": "normal", "name": "別カード", "provenance": "fixture",
              "rights_reference": "fixture", "display_allowed": True},
         ])
@@ -107,7 +107,7 @@ class IndexTests(unittest.TestCase):
         self.assertEqual(unit.split("|")[0], "ja:M2A:223/193:holo")
 
     def test_missing_x_in_mega_charizard_name_abstains(self):
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True,
             "language": "ja", "set_code": "M2", "collector_number": "116/080",
             "variant": "holo", "name": "メガリザードンXex", "provenance": "fixture",
             "rights_reference": "fixture", "display_allowed": True,
@@ -125,7 +125,7 @@ class IndexTests(unittest.TestCase):
             "provenance": "test fixture", "rights_reference": "synthetic fixture",
             "display_allowed": False,
         }])
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True,
             "language": "ja", "set_code": "SV1a", "collector_number": "80/73",
             "variant": "holo", "name": "コイキング", "provenance": "test fixture",
             "rights_reference": "synthetic fixture", "display_allowed": False,
@@ -150,7 +150,7 @@ class IndexTests(unittest.TestCase):
             "provenance": "test fixture", "rights_reference": "synthetic fixture",
             "display_allowed": False,
         }])
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True, "variant": "standard",
             "language": "en", "set_code": "SV2A", "collector_number": "173/165",
             "name": "English Pikachu", "provenance": "test fixture",
             "rights_reference": "synthetic fixture", "display_allowed": False,

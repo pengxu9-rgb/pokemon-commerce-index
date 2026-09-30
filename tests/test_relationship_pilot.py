@@ -17,13 +17,13 @@ class RelationshipPilotTests(unittest.TestCase):
         self.en = "en:SV03.5:025/165:normal"
         self.other = "en:SVP:085/225:normal"
         core.import_cards(self.db, [
-            dict(language="ja", set_code="SV2A", collector_number="025/165",
+            dict(match_eligible=True, language="ja", set_code="SV2A", collector_number="025/165",
                  variant="normal", name="ピカチュウ", provenance="fixture:ja",
                  rights_reference="fixture", display_allowed=False),
-            dict(language="en", set_code="SV03.5", collector_number="025/165",
+            dict(match_eligible=True, language="en", set_code="SV03.5", collector_number="025/165",
                  variant="normal", name="Pikachu", provenance="fixture:en",
                  rights_reference="fixture", display_allowed=False),
-            dict(language="en", set_code="SVP", collector_number="085/225",
+            dict(match_eligible=True, language="en", set_code="SVP", collector_number="085/225",
                  variant="normal", name="Pikachu with Grey Felt Hat",
                  provenance="fixture:promo", rights_reference="fixture",
                  display_allowed=False),
@@ -83,7 +83,7 @@ class RelationshipPilotTests(unittest.TestCase):
             ("en", "SM10", "222/214", "Partial pair"),
             ("en", "SM10", "223/214", "Extra character"),
         ]
-        core.import_cards(self.db, [dict(language=language, set_code=set_code,
+        core.import_cards(self.db, [dict(match_eligible=True, language=language, set_code=set_code,
             collector_number=number, variant="holo", name=name,
             provenance="fixture", rights_reference="fixture", display_allowed=False)
             for language, set_code, number, name in cards])
@@ -112,7 +112,7 @@ class RelationshipPilotTests(unittest.TestCase):
             ("en", "SM10", "221/214", "Full pair"),
             ("en", "SM10", "222/214", "Full pair variant"),
         ]
-        core.import_cards(self.db, [dict(language=language, set_code=set_code,
+        core.import_cards(self.db, [dict(match_eligible=True, language=language, set_code=set_code,
             collector_number=number, variant="holo", name=name,
             provenance="fixture", rights_reference="fixture", display_allowed=False)
             for language, set_code, number, name in cards])

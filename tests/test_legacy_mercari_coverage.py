@@ -26,7 +26,7 @@ class LegacyCoverageTests(unittest.TestCase):
         db = sqlite3.connect(":memory:")
         db.row_factory = sqlite3.Row
         core.init_db(db)
-        core.import_cards(db, [{"language": "ja", "set_code": "S6a",
+        core.import_cards(db, [{"match_eligible": True, "language": "ja", "set_code": "S6a",
                                 "collector_number": "048/069", "variant": "standard",
                                 "name": "ブラッキーVMAX", "provenance": "fixture",
                                 "rights_reference": "fixture", "display_allowed": False}])

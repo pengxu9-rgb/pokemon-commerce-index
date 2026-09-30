@@ -102,9 +102,29 @@ def init_db(db: sqlite3.Connection) -> None:
     if "display_allowed" not in card_columns:
         db.execute("ALTER TABLE card ADD COLUMN display_allowed INTEGER NOT NULL DEFAULT 0")
     if "match_eligible" not in card_columns:
-        db.execute("ALTER TABLE card ADD COLUMN match_eligible INTEGER NOT NULL DEFAULT 1")
+        db.execute("ALTER TABLE card ADD COLUMN match_eligible INTEGER NOT NULL DEFAULT 0")
     if "attributes_json" not in card_columns:
         db.execute("ALTER TABLE card ADD COLUMN attributes_json TEXT NOT NULL DEFAULT '{}'")
+    # Rebuild the old default while preserving existing flags as historical
+    # structural decisions. New rows are never implicitly eligible.
+    if str(next(row[4] for row in db.execute("PRAGMA table_info(card)")
+                if row[1] == "match_eligible")) == "1":
+        db.commit()
+        db.execute("PRAGMA foreign_keys=OFF")
+        try:
+            db.execute("BEGIN")
+            with db:
+                definition = db.execute("SELECT sql FROM sqlite_master WHERE name='card'").fetchone()[0]
+                definition = re.sub(r"CREATE TABLE(?: IF NOT EXISTS)? [\"`]?card[\"`]?", "CREATE TABLE card_v2", definition, count=1, flags=re.I)
+                definition = re.sub(r"(match_eligible\s+INTEGER\s+NOT\s+NULL\s+DEFAULT)\s+1", r"\1 0", definition, count=1, flags=re.I)
+                db.execute(definition)
+                db.execute("INSERT INTO card_v2 SELECT * FROM card")
+                db.execute("DROP TABLE card")
+                db.execute("ALTER TABLE card_v2 RENAME TO card")
+                if db.execute("PRAGMA foreign_key_check").fetchone():
+                    raise ValueError("card eligibility migration broke a foreign key")
+        finally:
+            db.execute("PRAGMA foreign_keys=ON")
     exception_columns = {row[1] for row in db.execute("PRAGMA table_info(card_identity_exception)")}
     if "source_provenance" not in exception_columns:
         db.execute("ALTER TABLE card_identity_exception ADD COLUMN source_provenance TEXT NOT NULL DEFAULT ''")
@@ -242,6 +262,8 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         _required(row, "language", "set_code", "collector_number", "name", "provenance",
                   "rights_reference")
         variant = str(row.get("variant") or "standard").lower()
+        if "match_eligible" in row and type(row["match_eligible"]) is not bool:
+            raise ValueError("match_eligible must be an explicit boolean")
         number = normalize_collector_number(row["collector_number"])
         cid = card_id(row["language"], row["set_code"], number, variant)
         exception = db.execute("SELECT source_provenance FROM card_identity_exception WHERE card_id=?",
@@ -304,7 +326,7 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
             (cid, row["language"].lower(), row["set_code"].upper(),
              number, variant, row["name"], row.get("rarity"), row["provenance"],
              row["rights_reference"], int(bool(row.get("display_allowed", False))),
-             int(bool(row.get("match_eligible", True)) and number_conflict is None
+             int(row.get("match_eligible", False) and bool(row.get("variant")) and number_conflict is None
                  and variant != "unverified_multi_record"),
              json.dumps(row.get("attributes", {}), ensure_ascii=False, sort_keys=True)),
         )
@@ -428,6 +450,13 @@ def import_sets(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         set_code = str(row["set_code"]).upper()
         name = row.get("name") if language == "en" else row.get("name_ja")
         release_date = row.get("release_date") if language == "en" else row.get("release_date_ja")
+        overlay = db.execute("SELECT evidence_json FROM catalog_release_evidence WHERE language=? AND set_code=?",
+                             (language, set_code)).fetchone()
+        if overlay:
+            evidence = json.loads(overlay[0])
+            if row["provenance"] != evidence["source_provenance"] or name not in {evidence["original_name"], evidence["name"]}:
+                raise ValueError("re-imported release differs from its official overlay")
+            name, release_date = evidence["name"], evidence["release_date"]
         values = (set_code, name, release_date, official, row["provenance"],
                   row["rights_reference"], int(bool(row.get("display_allowed", False))))
         db.execute(
@@ -859,12 +888,22 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
         set_codes = [value[0] for value in db.execute("SELECT DISTINCT set_code FROM card")]
         mentioned_sets = {code for code in set_codes if re.search(
             rf"(?<![A-Za-z0-9]){re.escape(code)}(?![A-Za-z0-9])", title, re.I)}
+        for alias in db.execute("SELECT language,set_code,alias,alias_kind FROM catalog_vocabulary"):
+            if requested_language and alias["language"] != requested_language:
+                continue
+            token = unicodedata.normalize("NFKC", alias["alias"])
+            matched = (bool(re.search(r"(?<![A-Za-z0-9])" + re.escape(token) + r"(?![A-Za-z0-9])", title,re.I))
+                       if alias["alias_kind"] == "printed_code" else token.casefold() in title.casefold())
+            if matched:
+                mentioned_sets.add(alias["set_code"])
         # Marketplace "MA" can mean the artwork rarity. The printed set name
         # is stronger evidence for M2a than that short token.
         if ("MEGAドリーム" in title.upper() or "メガドリーム" in title) and "M2A" in set_codes:
             mentioned_sets = {"M2A"}
         elif "M2A" in mentioned_sets:
             mentioned_sets.discard("MA")
+        if len(mentioned_sets) > 1:
+            return None, "unresolved"
         if not mentioned_sets:
             return None, "unresolved"
         number_marks = ",".join("?" for _ in numbers)
@@ -941,7 +980,8 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
     return _unit(db, cid, company, grade, condition), method
 
 
-def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> dict[str, int]:
+def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], *,
+                        commit: bool = True) -> dict[str, int]:
     counts = {"imported": 0, "unresolved": 0}
     for row in rows:
         _required(row, "source", "native_id", "title", "url", "observed_at", "status", "currency", "evidence_ref")
@@ -992,7 +1032,8 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) 
                 (row["source"], row["native_id"], unit_id, method, "deterministic-v1", observed_at))
         counts["imported"] += 1
         counts["unresolved"] += unit_id is None
-    db.commit()
+    if commit:
+        db.commit()
     return counts
 
 

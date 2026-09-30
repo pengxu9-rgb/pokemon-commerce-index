@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
+from . import collector_discovery, supported_catalog
 
 
 def read_jsonl(path: str):
@@ -55,6 +56,11 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
                                                      value("as_of") or None)
                     elif internal_catalog_api and parsed.path == "/catalog-status":
                         result = core.catalog_status(db)
+                    elif internal_catalog_api and parsed.path == "/supported-status":
+                        result = supported_catalog.status(db)
+                    elif internal_catalog_api and parsed.path == "/collector-discovery":
+                        result = collector_discovery.execute(db,value("q"),
+                                   limit=int(value("limit","50")),offset=int(value("offset","0")))
                     elif internal_catalog_api and parsed.path == "/catalog-search":
                         result = core.catalog_search_internal(
                             db, value("q"), set_code=value("set_code") or None,
@@ -226,6 +232,11 @@ def main() -> None:
     decision.add_argument("session_id")
     decision.add_argument("--owner-key", required=True)
     server = sub.add_parser("serve")
+    collector = sub.add_parser("collector-discovery", help="execute internal source-backed collector tasks")
+    collector.add_argument("question")
+    collector.add_argument("--limit", type=int, default=50)
+    collector.add_argument("--offset", type=int, default=0)
+    sub.add_parser("supported-status", help="positive metadata support and deployed alias coverage")
     server.add_argument("--host", default="127.0.0.1")
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
     server.add_argument("--internal-catalog-api", action="store_true",
@@ -437,6 +448,10 @@ def main() -> None:
             output = discovery_graph.save_exploration(db, rows[0])
         elif args.command == "catalog-status":
             output = core.catalog_status(db)
+        elif args.command == "supported-status":
+            output = supported_catalog.status(db)
+        elif args.command == "collector-discovery":
+            output = collector_discovery.execute(db,args.question,limit=args.limit,offset=args.offset)
         elif args.command == "catalog-search":
             output = core.catalog_search_internal(db, args.query, set_code=args.set_code,
                                                   variant=args.variant,

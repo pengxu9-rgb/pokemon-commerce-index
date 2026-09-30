@@ -1,0 +1,287 @@
+{
+  "schema": "pokemon.supported-commerce-rehearsal.v1",
+  "scope": "synthetic_engineering_rehearsal_only",
+  "catalog_sha256": "d3b00f29d4464dd393b84aa4bb5bb529be94926c8b4c1a2383e41a5bdf7f6356",
+  "targets": 100,
+  "real_marketplace_observations": 0,
+  "automatic_live_offer_approval": false,
+  "display_override_scope": "isolated rehearsal database only; source catalog remains unapproved",
+  "retry": {
+    "status": "retry",
+    "job_id": "slice-v1",
+    "code": "transient_feed_failure"
+  },
+  "ingestion": {
+    "status": "done",
+    "job_id": "slice-v1",
+    "attempt": 2,
+    "imported": 100,
+    "unresolved": 0,
+    "duplicates": 0
+  },
+  "replay": {
+    "status": "done",
+    "job_id": "slice-replay",
+    "attempt": 1,
+    "imported": 0,
+    "unresolved": 0,
+    "duplicates": 100
+  },
+  "ask": {
+    "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+    "date": "2026-10-01",
+    "as_of": "2026-10-01T00:06:00+00:00",
+    "series": {
+      "ask": {
+        "JPY": {
+          "median_minor": 380000,
+          "n": 1
+        }
+      },
+      "last_list_at_transition": {},
+      "verified_paid": {}
+    },
+    "definitions": {
+      "ask": "current active listing prices",
+      "last_list_at_transition": "last observed list price before trading or sold_out; not a paid price",
+      "verified_paid": "payment or settlement evidence supplied by an authorized source"
+    }
+  },
+  "quote_preview": {
+    "status": "quote_ready_for_review",
+    "purchasable": false,
+    "purchase_action": null,
+    "order_created": false,
+    "card_id": "ja:SV4A:347/190:holo",
+    "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+    "listing": {
+      "source": "supported_slice_synthetic_fixture",
+      "native_id": "fixture-086",
+      "url": "https://example.invalid/fixture-086",
+      "title": "ミュウex SV4A 347/190 holo",
+      "observed_at": "2026-10-01T00:00:00+00:00",
+      "ask": {
+        "currency": "JPY",
+        "subunit_amount": 380000
+      },
+      "identity_basis": "exact"
+    },
+    "buyship": {
+      "reference_id": "fixture-reference-1",
+      "variant_key": "fixture-variant-1",
+      "canonical_url": "https://example.invalid/fixture-086",
+      "merchant_domain": "example.invalid",
+      "resolve_price": {
+        "currency": "JPY",
+        "subunit_amount": 380000
+      },
+      "resolve_price_differs_from_observation": false,
+      "quote_id": "fixture-quote-1",
+      "expires_at": "2026-10-01T00:20:00Z",
+      "quoted_at": "2026-10-01T00:06:00+00:00",
+      "destination": {
+        "country": "HK"
+      },
+      "currency": "HKD",
+      "unit_price": {
+        "currency": "HKD",
+        "subunit_amount": 21000
+      },
+      "components": {
+        "items": {
+          "currency": "HKD",
+          "subunit_amount": 21000
+        },
+        "local_shipping": {
+          "currency": "HKD",
+          "subunit_amount": 0
+        },
+        "international_shipping": {
+          "currency": "HKD",
+          "subunit_amount": 1800
+        },
+        "duties": {
+          "currency": "HKD",
+          "subunit_amount": 0
+        },
+        "bns_service_fee": {
+          "currency": "HKD",
+          "subunit_amount": 1260
+        }
+      },
+      "grand_total": {
+        "currency": "HKD",
+        "subunit_amount": 24060
+      }
+    }
+  },
+  "price_only_recommendation": {
+    "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+    "destination": "HK",
+    "recommendation": {
+      "source": "supported_slice_synthetic_fixture",
+      "native_id": "fixture-086",
+      "title": "ミュウex SV4A 347/190 holo",
+      "url": "https://example.invalid/fixture-086",
+      "seller_native_id": null,
+      "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+      "resolution_method": "exact",
+      "first_seen": "2026-10-01T00:00:00+00:00",
+      "last_seen": "2026-10-01T00:00:00+00:00",
+      "current_status": "on_sale",
+      "current_price_minor": 380000,
+      "currency": "JPY",
+      "grade_company": "RAW",
+      "grade_value": "raw",
+      "condition_bucket": "a",
+      "quote": {
+        "source": "supported_slice_synthetic_fixture",
+        "native_id": "fixture-086",
+        "destination": "HK",
+        "currency": "HKD",
+        "total_minor": 24060,
+        "quoted_at": "2026-10-01T00:06:00+00:00",
+        "expires_at": "2026-10-01T00:20:00+00:00",
+        "evidence_ref": "buyship-partner:v1:sha256:b89e299c73fa860a0e02902277570337dd3362103f7cecefdbff94aaecf01530",
+        "components": {
+          "domestic": 0,
+          "fx_spread": 0,
+          "insurance": 0,
+          "international": 1800,
+          "item": 21000,
+          "other": 0,
+          "service": 1260,
+          "tax": 0
+        },
+        "assumptions": {
+          "provider": "buyship_partner_v1",
+          "quote_id": "fixture-quote-1",
+          "reference_id": "fixture-reference-1",
+          "resolve_price": {
+            "currency": "JPY",
+            "subunit_amount": 380000
+          },
+          "resolve_price_differs_from_observation": false,
+          "source_currency": "JPY",
+          "source_observed_at": "2026-10-01T00:00:00+00:00",
+          "source_price_minor": 380000,
+          "source_url": "https://example.invalid/fixture-086",
+          "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+          "variant_key": "fixture-variant-1"
+        }
+      }
+    },
+    "recommendation_type": "price_only",
+    "reason": "lowest current complete landed quote",
+    "offers": [
+      {
+        "source": "supported_slice_synthetic_fixture",
+        "native_id": "fixture-086",
+        "title": "ミュウex SV4A 347/190 holo",
+        "url": "https://example.invalid/fixture-086",
+        "seller_native_id": null,
+        "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+        "resolution_method": "exact",
+        "first_seen": "2026-10-01T00:00:00+00:00",
+        "last_seen": "2026-10-01T00:00:00+00:00",
+        "current_status": "on_sale",
+        "current_price_minor": 380000,
+        "currency": "JPY",
+        "grade_company": "RAW",
+        "grade_value": "raw",
+        "condition_bucket": "a",
+        "quote": {
+          "source": "supported_slice_synthetic_fixture",
+          "native_id": "fixture-086",
+          "destination": "HK",
+          "currency": "HKD",
+          "total_minor": 24060,
+          "quoted_at": "2026-10-01T00:06:00+00:00",
+          "expires_at": "2026-10-01T00:20:00+00:00",
+          "evidence_ref": "buyship-partner:v1:sha256:b89e299c73fa860a0e02902277570337dd3362103f7cecefdbff94aaecf01530",
+          "components": {
+            "domestic": 0,
+            "fx_spread": 0,
+            "insurance": 0,
+            "international": 1800,
+            "item": 21000,
+            "other": 0,
+            "service": 1260,
+            "tax": 0
+          },
+          "assumptions": {
+            "provider": "buyship_partner_v1",
+            "quote_id": "fixture-quote-1",
+            "reference_id": "fixture-reference-1",
+            "resolve_price": {
+              "currency": "JPY",
+              "subunit_amount": 380000
+            },
+            "resolve_price_differs_from_observation": false,
+            "source_currency": "JPY",
+            "source_observed_at": "2026-10-01T00:00:00+00:00",
+            "source_price_minor": 380000,
+            "source_url": "https://example.invalid/fixture-086",
+            "unit_id": "ja:SV4A:347/190:holo|RAW|raw|a",
+            "variant_key": "fixture-variant-1"
+          }
+        }
+      }
+    ]
+  },
+  "fresh_monitor": {
+    "source": "supported_slice_synthetic_fixture",
+    "as_of": "2026-10-01T00:06:00+00:00",
+    "fresh_on_sale": 100,
+    "stale_on_sale": 0,
+    "job_states": {
+      "done": 3,
+      "failed": 1
+    }
+  },
+  "stale_monitor": {
+    "source": "supported_slice_synthetic_fixture",
+    "as_of": "2026-10-01T02:00:00+00:00",
+    "fresh_on_sale": 0,
+    "stale_on_sale": 100,
+    "job_states": {
+      "done": 3,
+      "failed": 1
+    }
+  },
+  "retention": {
+    "observation": 101,
+    "raw_item_blob": 0,
+    "verified_sale": 0,
+    "landed_quote": 1,
+    "offer_visual_review": 0,
+    "offer_media_snapshot": 0,
+    "visual_resolution_approval": 0,
+    "resolution_record": 100,
+    "listing": 100,
+    "feed_job": 4,
+    "ingest_receipt": 101
+  },
+  "checks": {
+    "retry_survived_restart": true,
+    "exact_slice_resolved": true,
+    "replay_idempotent": true,
+    "bundle_abstains": true,
+    "unknown_condition_not_merged": true,
+    "missing_costs_block": true,
+    "quote_survived_restart": true,
+    "quote_expiry_blocks": true,
+    "conflicting_observation_blocks": true,
+    "newer_observation_invalidates_quote": true,
+    "freshness_monitor_detects_expiry": true,
+    "retention_removes_observations": true,
+    "retention_removes_journal": true,
+    "no_orders": true
+  },
+  "passed": true,
+  "limitations": [
+    "No live adapter, scheduled cloud worker or managed market storage enabled",
+    "Fixture titles cannot estimate real printing, variant, grade or condition precision",
+    "Deployment remains a separate private read-only catalog snapshot"
+  ]
+}

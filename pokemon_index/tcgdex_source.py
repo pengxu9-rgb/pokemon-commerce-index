@@ -207,4 +207,5 @@ def parse_card_source(source: str, *, set_id: str, official_count: int,
         "variant": variant, "name": name, "rarity": rarity,
         "provenance": f"tcgdex:{revision}:{path}:sha256:{digest}",
         "rights_reference": rights, "display_allowed": False,
+        "match_eligible": bool(variants),
     } for variant in names]

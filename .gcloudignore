@@ -32,3 +32,12 @@ scripts/*
 tests/
 sandbox/
 .venv/
+
+!catalog/ja-available-explicit-eligibility-v1.jsonl.gz
+!catalog/supported-discovery-v1/
+catalog/supported-discovery-v1/*
+!catalog/supported-discovery-v1/releases.jsonl
+!catalog/supported-discovery-v1/vocabulary.jsonl
+!catalog/supported-discovery-v1/supported-cards.jsonl
+!catalog/supported-discovery-v1/families.jsonl
+!catalog/*consensus*.bundle.json

@@ -12,10 +12,10 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.db.row_factory = sqlite3.Row
         core.init_db(self.db)
         core.import_cards(self.db, [
-            dict(language="ja", set_code="SV2a", collector_number="025/165",
+            dict(match_eligible=True, language="ja", set_code="SV2a", collector_number="025/165",
                  variant="normal", name="ピカチュウ", provenance="fixture",
                  rights_reference="fixture", display_allowed=False),
-            dict(language="ja", set_code="SV2a", collector_number="025/165",
+            dict(match_eligible=True, language="ja", set_code="SV2a", collector_number="025/165",
                  variant="reverse_masterball", name="ピカチュウ", provenance="fixture",
                  rights_reference="fixture", display_allowed=False),
             dict(language="en", set_code="ME1", collector_number="025/165",
@@ -207,10 +207,10 @@ class DiscoveryGraphTests(unittest.TestCase):
 
     def test_character_alias_is_discovery_only_and_artist_can_filter(self):
         core.import_cards(self.db, [
-            dict(language="en", set_code="ME1", collector_number="026/165",
+            dict(match_eligible=True, language="en", set_code="ME1", collector_number="026/165",
                  variant="normal", name="Pikachu & Zekrom", provenance="fixture",
                  rights_reference="fixture", display_allowed=False),
-            dict(language="ja", set_code="SV2a", collector_number="026/165",
+            dict(match_eligible=True, language="ja", set_code="SV2a", collector_number="026/165",
                  variant="normal", name="ゼクロム", provenance="fixture",
                  rights_reference="fixture", display_allowed=False),
         ])

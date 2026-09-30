@@ -22,7 +22,7 @@ class VisualResolutionTests(unittest.TestCase):
         self.assertEqual(self.db.execute(
             "SELECT photo_resolution_required FROM source_policy WHERE source='ebay_us'"
         ).fetchone()[0], 1)
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True,
             "language": "en", "set_code": "SV1", "collector_number": "001/100",
             "variant": "holo", "name": "Pikachu", "provenance": "fixture",
             "rights_reference": "fixture", "display_allowed": True,

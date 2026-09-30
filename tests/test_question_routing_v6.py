@@ -67,7 +67,7 @@ class QuestionRoutingV6Tests(unittest.TestCase):
         db.row_factory = sqlite3.Row
         try:
             core.init_db(db)
-            seed = {"language": "ja", "set_code": "SV4A", "collector_number": "347/190",
+            seed = {"match_eligible": True, "language": "ja", "set_code": "SV4A", "collector_number": "347/190",
                     "variant": "holo", "name": "ミュウex", "rarity": "SAR",
                     "provenance": "fixture", "rights_reference": "fixture"}
             core.import_cards(db, [seed])

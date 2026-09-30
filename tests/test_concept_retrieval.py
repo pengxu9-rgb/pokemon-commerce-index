@@ -11,7 +11,7 @@ class ConceptRetrievalTests(unittest.TestCase):
         self.db.row_factory = sqlite3.Row
         core.init_db(self.db)
         core.import_cards(self.db, [
-            dict(language=language, set_code=set_code, collector_number=number,
+            dict(match_eligible=True, language=language, set_code=set_code, collector_number=number,
                  variant="normal", name=name, provenance="fixture", rights_reference="fixture",
                  display_allowed=False)
             for language, set_code, number, name in (
@@ -107,7 +107,7 @@ class ConceptRetrievalTests(unittest.TestCase):
         self.assertEqual(audit["gaps"][0]["reason"], "ambiguous_concept_candidates")
 
     def test_energy_concept_channel_and_ambiguous_alias_abstention(self):
-        core.import_cards(self.db, [dict(
+        core.import_cards(self.db, [dict(match_eligible=True,
             language=language, set_code="E1", collector_number=number,
             variant="normal", name=name, provenance="fixture", rights_reference="fixture",
             display_allowed=False) for language, number, name in (

@@ -20,7 +20,7 @@ class NumberAliasTests(unittest.TestCase):
         self.rules = [json.loads(line) for line in (
             CATALOG / "ja-number-denominator-conflict-rules.jsonl").read_text().splitlines()]
         self.row = json.loads((CATALOG / "ja-number-alias-candidates.jsonl").read_text().splitlines()[0])
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SM10b",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SM10b",
             "collector_number": self.row["catalog_number"], "variant": self.row["card_id"].rsplit(":", 1)[-1],
             "name": self.row["catalog_name"], "provenance": self.row["source_provenance"],
             "rights_reference": "fixture", "display_allowed": False}])
@@ -40,7 +40,7 @@ class NumberAliasTests(unittest.TestCase):
         self.assertEqual(context["match_eligible"], 0)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_number_alias_candidate").fetchone()[0], 1)
         with self.assertRaisesRegex(ValueError, "number alias evidence"):
-            core.import_cards(self.db, [{"language": "ja", "set_code": "SM10b",
+            core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SM10b",
                 "collector_number": self.row["catalog_number"],
                 "variant": self.row["card_id"].rsplit(":", 1)[-1],
                 "name": "違うカード", "provenance": self.row["source_provenance"],
@@ -66,7 +66,7 @@ class NumberAliasTests(unittest.TestCase):
         visual = next(json.loads(line) for line in (
             CATALOG / "ja-number-alias-visual-crosswalk.jsonl").read_text().splitlines()
                       if '"card_id": "ja:SV11B:001/174:normal"' in line)
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SV11B",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SV11B",
             "collector_number": row["catalog_number"], "variant": "normal",
             "name": row["catalog_name"], "provenance": row["source_provenance"],
             "rights_reference": "fixture", "display_allowed": False}])
@@ -101,7 +101,7 @@ class NumberAliasTests(unittest.TestCase):
         recovery = next(json.loads(line) for line in (
             CATALOG / "ja-number-alias-visual-recovery.jsonl").read_text().splitlines()
                         if f'"card_id": "{cid}"' in line)
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SV11B",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SV11B",
             "collector_number": alias["catalog_number"], "variant": "normal",
             "name": alias["catalog_name"], "provenance": alias["source_provenance"],
             "rights_reference": "fixture", "display_allowed": False}])
@@ -132,7 +132,7 @@ class NumberAliasTests(unittest.TestCase):
         candidate = next(json.loads(line) for line in (
             CATALOG / "ja-sv11b-scan-candidates.jsonl").read_text().splitlines()
                          if f'"card_id": "{cid}"' in line)
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SV11B",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SV11B",
             "collector_number": alias["catalog_number"], "variant": "reverse_pokeball",
             "name": alias["catalog_name"], "provenance": alias["source_provenance"],
             "rights_reference": "fixture", "display_allowed": False}])
@@ -157,7 +157,7 @@ class NumberAliasTests(unittest.TestCase):
     def test_secondary_number_lead_does_not_change_offer_status(self):
         row = json.loads((CATALOG / "ja-sm10b-secondary-number-candidates.jsonl")
                          .read_text().splitlines()[0])
-        core.import_cards(self.db, [{"language": "ja", "set_code": "SM10b",
+        core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SM10b",
             "collector_number": row["catalog_number"], "variant": "holo",
             "name": row["catalog_name"], "provenance": row["source_provenance"],
             "rights_reference": "fixture", "display_allowed": False}])
@@ -174,7 +174,7 @@ class NumberAliasTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "two independent merchant"):
             number_aliases.apply_secondary_candidates(self.db, [altered])
         with self.assertRaisesRegex(ValueError, "secondary number evidence"):
-            core.import_cards(self.db, [{"language": "ja", "set_code": "SM10b",
+            core.import_cards(self.db, [{"match_eligible": True, "language": "ja", "set_code": "SM10b",
                 "collector_number": row["catalog_number"], "variant": "holo",
                 "name": "違うカード", "provenance": row["source_provenance"],
                 "rights_reference": "fixture", "display_allowed": False}])

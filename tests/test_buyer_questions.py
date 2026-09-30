@@ -9,13 +9,13 @@ class BuyerQuestionPlanTests(unittest.TestCase):
         self.db = core.connect(":memory:")
         core.init_db(self.db)
         core.import_cards(self.db, [
-            dict(language="ja", set_code="SV2a", collector_number="025/165",
+            dict(match_eligible=True, language="ja", set_code="SV2a", collector_number="025/165",
                  variant="normal", name="ピカチュウ", provenance="fixture",
                  rights_reference="fixture"),
-            dict(language="ja", set_code="SV2a", collector_number="025/165",
+            dict(match_eligible=True, language="ja", set_code="SV2a", collector_number="025/165",
                  variant="reverse_masterball", name="ピカチュウ", provenance="fixture",
                  rights_reference="fixture"),
-            dict(language="en", set_code="ME1", collector_number="025/165",
+            dict(match_eligible=True, language="en", set_code="ME1", collector_number="025/165",
                  variant="normal", name="Pikachu", provenance="fixture",
                  rights_reference="fixture"),
         ])

@@ -10,7 +10,7 @@ class NumberGraphTests(unittest.TestCase):
         self.db.row_factory = sqlite3.Row
         core.init_db(self.db)
         core.import_cards(self.db, [
-            dict(language=language, set_code=set_code, collector_number=number,
+            dict(match_eligible=True, language=language, set_code=set_code, collector_number=number,
                  variant=variant, name=name, provenance="fixture",
                  rights_reference="fixture", display_allowed=False)
             for language, set_code, number, variant, name in (

@@ -1,6 +1,7 @@
 """Official rarity corrections must preserve card identity and source binding."""
 
 import json
+import hashlib
 import sqlite3
 import tempfile
 import unittest
@@ -11,6 +12,20 @@ from scripts.build_catalog_snapshot import build
 from scripts.audit_jp_source_conflicts import RARITY_ICON
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def historical_rarity_fixture(manifest, output):
+    # Preserve the frozen historical manifest. This regression uses its rarity
+    # inputs with the now-explicit structural seed rather than the old default.
+    data=json.loads(manifest.read_text())
+    for step in data['steps']:
+        if step['path']=='catalog/ja-all-available.jsonl':
+            step['path']='catalog/ja-available-explicit-eligibility-v1.jsonl.gz'
+            step['sha256']=hashlib.sha256((ROOT/step['path']).read_bytes()).hexdigest()
+    with tempfile.NamedTemporaryFile(mode='w',suffix='.json',dir=ROOT,delete=False) as temp:
+        path=Path(temp.name);temp.write(json.dumps(data))
+    try:return build(path,output)
+    finally:path.unlink()
 
 
 class CardRarityCorrectionTests(unittest.TestCase):
@@ -94,7 +109,7 @@ class CardRarityCorrectionTests(unittest.TestCase):
     def test_versioned_catalog_fixes_known_no_match_without_inventing_printing(self):
         with tempfile.TemporaryDirectory() as directory:
             db_path = Path(directory) / "catalog.sqlite3"
-            result = build(ROOT / "catalog-build-manifest-rarity-v1.json", db_path)
+            result = historical_rarity_fixture(ROOT / "catalog-build-manifest-rarity-v1.json", db_path)
             self.assertEqual(result["rarity_corrections"], 35)
             with sqlite3.connect(f"file:{db_path}?mode=ro", uri=True) as db:
                 db.row_factory = sqlite3.Row
@@ -113,7 +128,7 @@ class CardRarityCorrectionTests(unittest.TestCase):
     def test_missing_rarity_batch_rebuilds_and_still_requires_explicit_language(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "catalog.sqlite3"
-            result = build(ROOT / "catalog-build-manifest-rarity-v2.json", path)
+            result = build(ROOT / "catalog-build-manifest-discovery-v1.json", path)
             self.assertEqual((result["rarity_corrections"], result["match_eligible"]), (532, 33543))
             db = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
             db.row_factory = sqlite3.Row

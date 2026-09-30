@@ -16,7 +16,7 @@ class RelationshipCoverageTests(unittest.TestCase):
             ("en", "SV03.5", "025/165", "Pikachu"),
             ("en", "SV03.5", "026/165", "Trainer"),
         ]
-        core.import_cards(self.db, [dict(
+        core.import_cards(self.db, [dict(match_eligible=True,
             language=language, set_code=set_code, collector_number=number,
             variant="normal", name=name, provenance="tcgdex:fixture",
             rights_reference="fixture", display_allowed=False,

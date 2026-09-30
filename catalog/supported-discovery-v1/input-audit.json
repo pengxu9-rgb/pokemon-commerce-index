@@ -1,0 +1,23 @@
+{
+  "schema": "pokemon.supported-discovery-inputs.v1",
+  "targets": 100,
+  "rarity_strata": {
+    "AR": 4,
+    "SAR": 8,
+    "SR": 5,
+    "SSR": 18,
+    "UR": 6,
+    "S": 59
+  },
+  "pilot_set": "SV4A",
+  "families": {
+    "ralts": 4,
+    "eevee": 9,
+    "pikachu": 3
+  },
+  "release_evidence": 3,
+  "vocabulary": 6,
+  "marketplace_query_count": 100,
+  "automatic_offer_join_allowed": false,
+  "scope": "Source-backed internal metadata cohort; no live precision, prices, images, public-display permission or verified counterpart assertions."
+}

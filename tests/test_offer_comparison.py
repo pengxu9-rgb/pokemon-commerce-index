@@ -19,10 +19,10 @@ class OfferComparisonTests(unittest.TestCase):
                 "listing_ttl_hours": 24,
             })
         core.import_cards(self.db, [
-            {"language": "ja", "set_code": "S1", "collector_number": "001/100",
+            {"match_eligible": True, "language": "ja", "set_code": "S1", "collector_number": "001/100",
              "variant": "normal", "name": "カード", "provenance": "fixture",
              "rights_reference": "fixture", "display_allowed": True},
-            {"language": "en", "set_code": "E1", "collector_number": "002/100",
+            {"match_eligible": True, "language": "en", "set_code": "E1", "collector_number": "002/100",
              "variant": "normal", "name": "Card", "provenance": "fixture",
              "rights_reference": "fixture", "display_allowed": True},
         ])

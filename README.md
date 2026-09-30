@@ -6,6 +6,8 @@
 
 Buy&Ship API feed 暂时等待对方提供。**2026-09-30 的当前主线见 [整体复盘与重排](HOLISTIC_ALIGNMENT_20260930.md)和 [独立对抗审查](ADVERSARIAL_ALIGNMENT_REVIEW_20260930.md)：可信卡片小范围与检索词 → 能执行并返回目录结果的收藏探索 → 同范围的报价链路演练 → 获准真实 feed。** 早期审查 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)保留为历史记录。
 
+**2026-10-01 实施结果：** 新增 100 个来源证据绑定的 SV4A 元数据目标、3 个官方卡组名称／日期补证、6 个检索词，以及拉鲁拉丝／伊布／皮卡丘三个官方进化家族；122 个已复核别名及 460 条复核事件进入新构建清单。`collector-discovery` 可从普通问题返回卡片、按日期分页的清单及版本澄清。手写开发问题首次 28/30，修正回放 30/30；100 目标的合成 commerce 演练通过 14 项检查，工程测试 351 项通过。详细范围与运行方式见 [SUPPORTED_DISCOVERY_IMPLEMENTATION.md](SUPPORTED_DISCOVERY_IMPLEMENTATION.md)。这些结果不代表真人提问准确率或真实 listing 精度；实际工艺仍未认证，自动关联 live offer 的正向批准数为 0。
+
 新的 [buyer discovery journey 回归评估](DISCOVERY_JOURNEYS.md)在固定目录上覆盖 10 个手写场景、15 个结构化步骤；全部达到预期的澄清和目标选择。固定快照现含 657 条 AI 提议的同画面内部候选边，已核实跨区关系仍为 0，提议边不用于价格等价或报价合并。这是工程回归，不是自然语言理解或真实用户相关性测量。
 
 [买家问题证据门槛](BUYER_QUESTION_LAYER.md)新增内部 `buyer-question-plan`：针对精确卡片，区分同编号版本、已核实跨语言关系、AI 同画面线索，以及仍需实时报价或商品照片的问题。独立问题集的离线评测入口已准备，但当前尚无真实用户问题盲测成绩。
@@ -44,7 +46,7 @@ M6 秘密编号卡的官方稀有度核对及独立修正版快照见 [CATALOG_M
 新增 [v10 新问题诊断](QUESTION_ROUTING_V10_DIAGNOSTIC.md)：16 个新来源候选中 15 个通过核查，日文 8、英文 7；15 条结构有效，14 条意图落在预先研究判断内，13 条有售卖方式预期的案例中 12 条一致。整套出售、商家收购规则、东京店铺推荐仍有具体路由缺口；这些数字不是问答准确率。
 内部查询快照 `catalog-index.sqlite3` 可从种子重建，未提交到 GitHub；无实时市场报价。
 私有 Google Cloud staging 部署方式见 [CLOUD_RUN.md](CLOUD_RUN.md)；生产项目在部署脚本中被禁止。
-2026-09-30 已部署修正版目录到私有 staging，认证接口核对通过，未登录请求返回 403；当前云端服务提供目录查询，问题提取与路由验证仍通过 sandbox／CLI 运行。
+2026-10-01 的私有 staging 提供目录及有限模式的收藏探索查询；认证接口核对通过，未登录请求返回 403。模型问题提取及路由验证仍通过 sandbox／CLI 运行；实时市场写入未启用。
 
 第二步对 Buy&Ship 的接口与数据授权请求已整理在 [SOURCE_ACCESS_REQUEST.md](SOURCE_ACCESS_REQUEST.md)。
 API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONTRACT.md](OFFER_CONDITION_CONTRACT.md)。
@@ -96,7 +98,7 @@ python3 -m unittest discover -s tests -v
 内部日英目录以同一份固定哈希清单构建；Docker staging 使用当前修正版清单，测试另保留早期冻结快照的重建检查。输出必须是新文件；构建后强制核对 55,167 条身份、33,543 条可匹配身份、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-rarity-v2.json --db catalog.sqlite3
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-discovery-v1.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20

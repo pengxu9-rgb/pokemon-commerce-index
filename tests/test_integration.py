@@ -71,7 +71,7 @@ class HandoffAndRetentionTests(unittest.TestCase):
             "ingest_allowed": True, "display_allowed": True,
             "retention_days": 1, "listing_ttl_hours": 24,
         })
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True, "variant": "standard",
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
             "name": "ピカチュウ", "rarity": "AR", "provenance": "synthetic fixture",
             "rights_reference": "synthetic fixture", "display_allowed": True,
@@ -114,7 +114,7 @@ class HandoffAndRetentionTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM listing").fetchone()[0], 0)
 
     def test_catalog_not_approved_for_display_cannot_export(self):
-        core.import_cards(self.db, [{
+        core.import_cards(self.db, [{"match_eligible": True, "variant": "standard",
             "language": "ja", "set_code": "SV2a", "collector_number": "173/165",
             "name": "ピカチュウ AR", "provenance": "internal seed",
             "rights_reference": "internal use only", "display_allowed": False,
