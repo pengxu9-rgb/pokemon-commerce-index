@@ -1,0 +1,186 @@
+{
+  "errors": 1,
+  "evaluation_role": "previously viewed v10 cases; development replay, not unseen generalization or human ground truth",
+  "expected_fields_agreement": 1,
+  "facts_sha256": "1fd6fef684fd13e0fbd1dd4702b2cb3bc9df4bacdf4f2df61cf5accd7d90b8e8",
+  "formats_agreement": 0,
+  "formats_evaluated": 0,
+  "goal_agreement": 0,
+  "goals": {
+    "seller_pricing": 1
+  },
+  "manifest_sha256": "b1c6d41b4e3c16f595fa75e72ab6f4d40ce23acc5bcc81bb9436dd13b61a78ac",
+  "market_ready_cases": 0,
+  "missing_action_cases": 1,
+  "questions": 2,
+  "results": [
+    {
+      "allowed_goals": [
+        "seller_net_proceeds",
+        "seller_saleability"
+      ],
+      "catalog_reason": "single_named_card_required",
+      "catalog_status": "not_attempted",
+      "expected_fields_agree": true,
+      "expected_formats": null,
+      "formats_agree_with_researcher": null,
+      "goal_agrees_with_researcher": false,
+      "id": "pubq11-002",
+      "market_action_ready": false,
+      "merchant_location": null,
+      "merchant_refs": [],
+      "missing_expected_actions": [
+        "ask_collection_inventory",
+        "ask_cost_basis"
+      ],
+      "plan": {
+        "answer_mode": "explain_then_evidence",
+        "catalog_query": {
+          "card_names": [],
+          "collector_number": null,
+          "finish": null,
+          "grade": null,
+          "language": null,
+          "rarity": null,
+          "set_name": null
+        },
+        "catalog_resolution": {
+          "candidate_ids": [],
+          "evidence_ref": null,
+          "status": "not_attempted"
+        },
+        "claim_guards": [
+          "no_unique_printing_without_catalog_evidence",
+          "no_live_price_without_authorized_offer",
+          "no_paid_sale_without_settlement_evidence",
+          "no_seller_payout_from_buyer_asks",
+          "no_condition_or_grade_guarantee_from_text_or_photos",
+          "no_cross_printing_price_join_from_same_artwork"
+        ],
+        "cost_basis": null,
+        "merchant_location": null,
+        "merchant_refs": [],
+        "object_type": "single_card",
+        "platform_refs": [
+          "eBay"
+        ],
+        "primary_goal": "seller_pricing",
+        "purchase_constraints": null,
+        "sale_constraints": null,
+        "sale_formats": [],
+        "sale_scope": null,
+        "schema": "pokemon.question-route-plan.v7",
+        "scope_status": "supported_card_object",
+        "seller_channel": "marketplace_listing",
+        "seller_tasks": [],
+        "steps": [
+          {
+            "action": "explain_general",
+            "reason": "Explain decision factors without claiming a case-specific result.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_front_back_photos",
+            "reason": "Seller payout depends on the actual copy's condition.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "ask_target_card",
+            "reason": "Choose one named card before comparing a printing or price.",
+            "requires_capability": null,
+            "status": "ready"
+          },
+          {
+            "action": "retrieve_selling_fees",
+            "reason": "Estimate net proceeds after current platform fees.",
+            "requires_capability": "current_selling_fees",
+            "status": "blocked"
+          },
+          {
+            "action": "retrieve_current_policy",
+            "reason": "Authentication and dispute rules affect the sale channel.",
+            "requires_capability": "current_marketplace_policy",
+            "status": "blocked"
+          }
+        ],
+        "tcg_scope": "pokemon_tcg",
+        "time_window": null,
+        "transaction_context": "owned"
+      },
+      "primary_goal": "seller_pricing",
+      "sale_formats": [],
+      "sale_scope": null,
+      "seller_tasks": [],
+      "status": "ok",
+      "tcg_scope": "pokemon_tcg"
+    },
+    {
+      "errors": [
+        {
+          "attempt": 1,
+          "error_type": "ValueError",
+          "finish_reason": "STOP",
+          "model_version": "gemini-3.8-flash",
+          "requested_output_tokens": 8192,
+          "response_sha256": "6a65cee36e49d273f67fb3b17fc2ce6bc33c10fdbb471da32e6b47129553178f",
+          "stage": "facts_and_evidence",
+          "usage_metadata": {
+            "candidatesTokenCount": 508,
+            "candidatesTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 508
+              }
+            ],
+            "promptTokenCount": 2306,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 2306
+              }
+            ],
+            "thoughtsTokenCount": 2969,
+            "totalTokenCount": 5783,
+            "trafficType": "ON_DEMAND"
+          },
+          "validation_code": "seller channel conflicts with buyer transaction"
+        },
+        {
+          "attempt": 2,
+          "error_type": "ValueError",
+          "finish_reason": "STOP",
+          "model_version": "gemini-3.8-flash",
+          "requested_output_tokens": 8192,
+          "response_sha256": "8209f47b4f97c5c85fccbb42c8f2c2bd4d49a44efd77317345771fbd9970ef6f",
+          "stage": "facts_and_evidence",
+          "usage_metadata": {
+            "candidatesTokenCount": 491,
+            "candidatesTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 491
+              }
+            ],
+            "promptTokenCount": 2306,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 2306
+              }
+            ],
+            "thoughtsTokenCount": 1835,
+            "totalTokenCount": 4632,
+            "trafficType": "ON_DEMAND"
+          },
+          "validation_code": "seller channel conflicts with buyer transaction"
+        }
+      ],
+      "id": "pubq11-016",
+      "status": "extraction_error"
+    }
+  ],
+  "schema": "pokemon.question-v7-development-replay.v1",
+  "valid": 1
+}

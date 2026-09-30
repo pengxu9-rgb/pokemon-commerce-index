@@ -1,0 +1,24 @@
+{
+  "evaluation_role": "first frozen run, all fresh posts evaluated once; no untouched holdout",
+  "execution_note": "Source and fact calls independent, max concurrency three. Original v7 prompt and bounded attempts unchanged. Source context review does not fetch URLs. All model and transport failures retained.",
+  "fact_cases_with_retries": 3,
+  "fact_extraction_attempts": 19,
+  "fact_reviews": 16,
+  "facts_sha256": "e98e1abfcc8f9d0c1d6a7493aaf716bdc035c0b3ab49f385fbf6a3d82720aba4",
+  "field_expectations_all_cases": 16,
+  "field_expectations_valid_cases": 14,
+  "first_run_errors": [
+    "pubq11-002",
+    "pubq11-016"
+  ],
+  "location": "global",
+  "manifest_sha256": "be7134fc14a7833d44912e334caa5d67f73863965f648ecd08f7ac29fa4ff109",
+  "project": "pivota-prod",
+  "requested_model": "gemini-3.8-flash",
+  "required_action_expectations_all_cases": 12,
+  "required_action_expectations_valid_cases": 10,
+  "route_report_sha256": "eb23f96fccb81839f4a887c30171b586d86b5b29de32c366039d9758bc3e7870",
+  "schema": "pokemon.question-v11-invocation.v1",
+  "source_review_attempts": 17,
+  "source_reviews": 16
+}

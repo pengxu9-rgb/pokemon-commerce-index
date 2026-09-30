@@ -1,0 +1,12 @@
+{
+  "runner_sha256": "1291322e01cc5366ee9a1a20481884842ca72be3a15bdf8f7e66e15a2a595ca9",
+  "source_sha256": "f7a93e88e6ca0481042dd6cae94f8ea898d57cff2c9a5191d8026222ffbd0bb8",
+  "evidence_sha256": "955908a1af2eb2536cd5b8d61b10a7024170d7a5ecec3507c8e5a55be07b9f7c",
+  "prompt_module_sha256": "750562fb7f6ba0f7bd5b42ee360f2e8fbd36a3b424e5410bf312de811a025fd4",
+  "source_output_budget": 8192,
+  "retry_budget": 16384,
+  "max_attempts": 2,
+  "max_concurrency": 3,
+  "expectations_sha256": "f4f6f3160e9381cc939986ef38f098f511bd0dfc43a409a168240524156de325",
+  "note": "Runner and source fidelity budgets pinned after collection and before source model calls; original v7 extraction prompt unchanged"
+}
