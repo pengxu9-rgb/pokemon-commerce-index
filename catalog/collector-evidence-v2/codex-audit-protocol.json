@@ -1,0 +1,26 @@
+{
+  "schema": "pokemon.codex-visual-audit.v1",
+  "queue_sha256": "87b28bc010936347f1507fb343f22068b6c95afccde39a82dd8058241c84d7dd",
+  "sample_card_ids": [
+    "ja:SV2A:181/165:holo",
+    "ja:SV-P:197/SV-P:normal",
+    "ja:SV2A:174/165:holo",
+    "ja:SV2A:171/165:holo",
+    "ja:SV2A:180/165:holo",
+    "ja:SV2A:177/165:holo",
+    "ja:SV2A:168/165:holo",
+    "ja:SV2A:176/165:holo",
+    "ja:SV2A:173/165:holo",
+    "ja:SV2A:169/165:holo"
+  ],
+  "sampling": "Ten of eighteen valid prior reviews, deterministic hash rank, independent of returned species. Prior cohort purposive.",
+  "prior_findings_supplied": false,
+  "reviewer": "Codex root",
+  "human_review": false,
+  "checks": [
+    "printed identity",
+    "visible species and role",
+    "uncertainty"
+  ],
+  "limitations": "AI reviewer, not human ground truth or population precision. Gemini re-enumeration is same-family replication; all AI findings remain proposed."
+}

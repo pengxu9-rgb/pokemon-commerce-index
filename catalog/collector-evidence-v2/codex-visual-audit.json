@@ -1,0 +1,244 @@
+{
+  "schema": "pokemon.codex-visual-audit.v1",
+  "protocol_sha256": "751da233c985641341fea641534c0f41c3d05a6fc1d29b0d9a954d05d6ee9fd1",
+  "findings": [
+    {
+      "card_id": "ja:SV2A:181/165:holo",
+      "identity_match": "match",
+      "read_name": "カビゴン",
+      "read_number": "181/165",
+      "image_sha256": "a1a22d64ff35abcadfd8a52be8cedf20fe890629c2efef1688c47876aeca96e4",
+      "depictions": [
+        {
+          "dex_id": 143,
+          "role": "subject",
+          "detail": "Sleeping central Snorlax"
+        },
+        {
+          "dex_id": 21,
+          "role": "cameo",
+          "detail": "Crested brown bird perched on belly"
+        },
+        {
+          "dex_id": 50,
+          "role": "cameo",
+          "detail": "Brown head emerging at right foreground"
+        }
+      ],
+      "uncertainties": "",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV-P:197/SV-P:normal",
+      "identity_match": "match",
+      "read_name": "ピカチュウ",
+      "read_number": "197/SV-P",
+      "image_sha256": "591525ab768def988abf317864c1c529bb519a922e35f592c5974bca37f7ce20",
+      "depictions": [
+        {
+          "dex_id": 25,
+          "role": "subject",
+          "detail": "Foreground yellow Pikachu"
+        },
+        {
+          "dex_id": 151,
+          "role": "cameo",
+          "detail": "Pink floating figure on upper left"
+        }
+      ],
+      "uncertainties": "",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:174/165:holo",
+      "identity_match": "match",
+      "read_name": "ニドキング",
+      "read_number": "174/165",
+      "image_sha256": "ac4d59ae132358311cfe1053aa476d898f0ff6166139dbb017b2ca68d015692a",
+      "depictions": [
+        {
+          "dex_id": 34,
+          "role": "subject",
+          "detail": "Central horned purple Nidoking"
+        }
+      ],
+      "uncertainties": "Evolution circle is excluded; no other clearly identified scene species.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:171/165:holo",
+      "identity_match": "match",
+      "read_name": "カメール",
+      "read_number": "171/165",
+      "image_sha256": "a2c54445e81e6ec360d2a5ab10bd533d73092134d8caccb85c7411eb155fb20c",
+      "depictions": [
+        {
+          "dex_id": 8,
+          "role": "subject",
+          "detail": "Central blue Wartortle with curled tail"
+        }
+      ],
+      "uncertainties": "Evolution circle is excluded.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:180/165:holo",
+      "identity_match": "match",
+      "read_name": "オムナイト",
+      "read_number": "180/165",
+      "image_sha256": "38f5003d041fa0ce2f9cab2a91eb24b0696dcbd9e548b2a62754d454bbc4cb61",
+      "depictions": [
+        {
+          "dex_id": 138,
+          "role": "subject",
+          "detail": "Foreground green tentacled Omanyte"
+        },
+        {
+          "dex_id": 140,
+          "role": "cameo",
+          "detail": "Brown shell with dark underside at left"
+        }
+      ],
+      "uncertainties": "Distant tentacled spiral-shell figures are less clear; Omastar identification uncertain from this image alone. Official caption knowledge was available to this reviewer.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:177/165:holo",
+      "identity_match": "match",
+      "read_name": "ゴーリキー",
+      "read_number": "177/165",
+      "image_sha256": "13b77b7d4cd0a9ecf2a643fa93e65df35056e92f15a90bedaa0ee079dcd02e0a",
+      "depictions": [
+        {
+          "dex_id": 67,
+          "role": "subject",
+          "detail": "Multiple belt-wearing Machoke carrying items"
+        },
+        {
+          "dex_id": 52,
+          "role": "cameo",
+          "detail": "Cream cat with forehead coin at left"
+        }
+      ],
+      "uncertainties": "Two partial brown figures at right are not confidently identified.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:168/165:holo",
+      "identity_match": "match",
+      "read_name": "ヒトカゲ",
+      "read_number": "168/165",
+      "image_sha256": "b45a18c0503c6e0197ac751b3dc8299025d1052e37410f4df56aaedcaef26504",
+      "depictions": [
+        {
+          "dex_id": 4,
+          "role": "subject",
+          "detail": "Orange Charmander on canyon ledge"
+        }
+      ],
+      "uncertainties": "",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:176/165:holo",
+      "identity_match": "match",
+      "read_name": "ニョロゾ",
+      "read_number": "176/165",
+      "image_sha256": "38b00ab6955a0e01c6e96f2f2d9b8c92b0a7a90419915ac9dd3aab8d7d685334",
+      "depictions": [
+        {
+          "dex_id": 61,
+          "role": "subject",
+          "detail": "Central blue Poliwhirl and its reflected image"
+        }
+      ],
+      "uncertainties": "Reflection is not another species; evolution circle excluded.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:173/165:holo",
+      "identity_match": "match",
+      "read_name": "ピカチュウ",
+      "read_number": "173/165",
+      "image_sha256": "206140be783defffc37b7465de7df41a15962df6ac03a53e9cbdefda383c54f5",
+      "depictions": [
+        {
+          "dex_id": 25,
+          "role": "subject",
+          "detail": "Central running Pikachu"
+        },
+        {
+          "dex_id": 58,
+          "role": "cameo",
+          "detail": "Orange striped canine at right"
+        },
+        {
+          "dex_id": 94,
+          "role": "cameo",
+          "detail": "Purple Gengar lower left"
+        },
+        {
+          "dex_id": 39,
+          "role": "cameo",
+          "detail": "Pink round figures behind and in front of Pikachu"
+        },
+        {
+          "dex_id": 12,
+          "role": "cameo",
+          "detail": "Winged Butterfree upper right"
+        },
+        {
+          "dex_id": 54,
+          "role": "cameo",
+          "detail": "Yellow Psyduck at left"
+        },
+        {
+          "dex_id": 29,
+          "role": "cameo",
+          "detail": "Blue Nidoran on upper street"
+        },
+        {
+          "dex_id": 32,
+          "role": "cameo",
+          "detail": "Pink Nidoran on upper street"
+        },
+        {
+          "dex_id": 46,
+          "role": "cameo",
+          "detail": "Orange mushroom-backed Paras on tree branch"
+        }
+      ],
+      "uncertainties": "Small figures behind shoppers unresolved. Official caption knowledge available; previous Gemini findings not supplied.",
+      "reviewer": "Codex root",
+      "human_review": false
+    },
+    {
+      "card_id": "ja:SV2A:169/165:holo",
+      "identity_match": "match",
+      "read_name": "リザード",
+      "read_number": "169/165",
+      "image_sha256": "9dc2ce269efe0168fdb0316e518f24cf5ba74c481cc8e30c30b903f29fa67620",
+      "depictions": [
+        {
+          "dex_id": 5,
+          "role": "subject",
+          "detail": "Red Charmeleon on ledge"
+        }
+      ],
+      "uncertainties": "Evolution circle excluded.",
+      "reviewer": "Codex root",
+      "human_review": false
+    }
+  ],
+  "previous_gemini_findings_supplied": false,
+  "known_prior_official_captions": true,
+  "interpretation": "Independent model-family AI spot check of a deterministic sample, not a human or fully blinded benchmark; uncertain/omitted species do not establish absence. No approval promotion."
+}

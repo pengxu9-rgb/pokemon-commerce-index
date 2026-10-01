@@ -1,0 +1,795 @@
+{
+  "schema": "pokemon.collector-evidence-expansion-audit.v1",
+  "visual_targets": 100,
+  "new_targets": 80,
+  "sets": [
+    "SV-P",
+    "SV2A",
+    "SV4A",
+    "SV5K",
+    "SV5M",
+    "SV6",
+    "SV8"
+  ],
+  "qualified_reviews": 94,
+  "excluded": [
+    {
+      "card_id": "ja:SV4A:352/190:holo",
+      "status": "review_failed",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV6:125/101:holo",
+      "status": "reviewed",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV8:133/106:holo",
+      "status": "reviewed",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV5M:074/071:holo",
+      "status": "review_failed",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV5M:075/071:holo",
+      "status": "evidence_unavailable",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV5K:073/071:holo",
+      "status": "review_failed",
+      "reason": "review or printed identity unresolved"
+    }
+  ],
+  "codex_sample": 10,
+  "comparisons": [
+    {
+      "card_id": "ja:SV2A:166/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "6898494cdf376dbed9235f3bc6a3f45340e9e90c5486218eea76d8808ec71ec8",
+      "fresh_image_sha256": "6898494cdf376dbed9235f3bc6a3f45340e9e90c5486218eea76d8808ec71ec8",
+      "old_pairs": [
+        [
+          1,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          1,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV-P:120/SV-P:normal",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "2bdd76fc8a2484c1e0d629b4d0ea6bcf4d2ad8fd7d23cee5bd6f9b6ce69b5c40",
+      "fresh_image_sha256": "2bdd76fc8a2484c1e0d629b4d0ea6bcf4d2ad8fd7d23cee5bd6f9b6ce69b5c40",
+      "old_pairs": [
+        [
+          6,
+          "cameo"
+        ],
+        [
+          25,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          6,
+          "cameo"
+        ],
+        [
+          25,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV-P:197/SV-P:normal",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "591525ab768def988abf317864c1c529bb519a922e35f592c5974bca37f7ce20",
+      "fresh_image_sha256": "591525ab768def988abf317864c1c529bb519a922e35f592c5974bca37f7ce20",
+      "old_pairs": [
+        [
+          25,
+          "subject"
+        ],
+        [
+          151,
+          "cameo"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          25,
+          "subject"
+        ],
+        [
+          151,
+          "cameo"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          25,
+          "subject"
+        ],
+        [
+          151,
+          "cameo"
+        ]
+      ],
+      "codex_uncertainties": ""
+    },
+    {
+      "card_id": "ja:SV2A:167/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "17f832e35328ec23cf0c05134a9acc4605bc4dd9fea1745b5558c016e501b558",
+      "fresh_image_sha256": "17f832e35328ec23cf0c05134a9acc4605bc4dd9fea1745b5558c016e501b558",
+      "old_pairs": [
+        [
+          2,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          2,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:168/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "b45a18c0503c6e0197ac751b3dc8299025d1052e37410f4df56aaedcaef26504",
+      "fresh_image_sha256": "b45a18c0503c6e0197ac751b3dc8299025d1052e37410f4df56aaedcaef26504",
+      "old_pairs": [
+        [
+          4,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          4,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          4,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": ""
+    },
+    {
+      "card_id": "ja:SV2A:169/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "9dc2ce269efe0168fdb0316e518f24cf5ba74c481cc8e30c30b903f29fa67620",
+      "fresh_image_sha256": "9dc2ce269efe0168fdb0316e518f24cf5ba74c481cc8e30c30b903f29fa67620",
+      "old_pairs": [
+        [
+          5,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          5,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          5,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": "Evolution circle excluded."
+    },
+    {
+      "card_id": "ja:SV2A:170/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "a97fc2f103cd145f10745965a43f845d8647c1c5a345c4508b38a029ba031df4",
+      "fresh_image_sha256": "a97fc2f103cd145f10745965a43f845d8647c1c5a345c4508b38a029ba031df4",
+      "old_pairs": [
+        [
+          7,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          7,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:171/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "a2c54445e81e6ec360d2a5ab10bd533d73092134d8caccb85c7411eb155fb20c",
+      "fresh_image_sha256": "a2c54445e81e6ec360d2a5ab10bd533d73092134d8caccb85c7411eb155fb20c",
+      "old_pairs": [
+        [
+          8,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          8,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          8,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": "Evolution circle is excluded."
+    },
+    {
+      "card_id": "ja:SV2A:174/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "ac4d59ae132358311cfe1053aa476d898f0ff6166139dbb017b2ca68d015692a",
+      "fresh_image_sha256": "ac4d59ae132358311cfe1053aa476d898f0ff6166139dbb017b2ca68d015692a",
+      "old_pairs": [
+        [
+          34,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          34,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          34,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": "Evolution circle is excluded; no other clearly identified scene species."
+    },
+    {
+      "card_id": "ja:SV2A:172/165:holo",
+      "old_status": "review_failed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "9ae2d7380687fae5e10bcad7ecc8e1d21bc6d89a9903bbec053f1af6bb530de9",
+      "fresh_image_sha256": "9ae2d7380687fae5e10bcad7ecc8e1d21bc6d89a9903bbec053f1af6bb530de9",
+      "old_pairs": [],
+      "fresh_pairs": [
+        [
+          10,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [
+        [
+          10,
+          "subject"
+        ]
+      ],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:176/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "38b00ab6955a0e01c6e96f2f2d9b8c92b0a7a90419915ac9dd3aab8d7d685334",
+      "fresh_image_sha256": "38b00ab6955a0e01c6e96f2f2d9b8c92b0a7a90419915ac9dd3aab8d7d685334",
+      "old_pairs": [
+        [
+          61,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          61,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          61,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": "Reflection is not another species; evolution circle excluded."
+    },
+    {
+      "card_id": "ja:SV2A:175/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "b4560dc3bd195b08c0f413483f5d40d3b4bb44b135281bf88bcdb22eff49b810",
+      "fresh_image_sha256": "b4560dc3bd195b08c0f413483f5d40d3b4bb44b135281bf88bcdb22eff49b810",
+      "old_pairs": [
+        [
+          54,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          54,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:173/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "206140be783defffc37b7465de7df41a15962df6ac03a53e9cbdefda383c54f5",
+      "fresh_image_sha256": "206140be783defffc37b7465de7df41a15962df6ac03a53e9cbdefda383c54f5",
+      "old_pairs": [
+        [
+          9,
+          "cameo"
+        ],
+        [
+          12,
+          "cameo"
+        ],
+        [
+          16,
+          "cameo"
+        ],
+        [
+          25,
+          "subject"
+        ],
+        [
+          29,
+          "cameo"
+        ],
+        [
+          32,
+          "cameo"
+        ],
+        [
+          35,
+          "cameo"
+        ],
+        [
+          54,
+          "cameo"
+        ],
+        [
+          58,
+          "cameo"
+        ],
+        [
+          79,
+          "cameo"
+        ],
+        [
+          94,
+          "cameo"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          9,
+          "cameo"
+        ],
+        [
+          12,
+          "cameo"
+        ],
+        [
+          16,
+          "cameo"
+        ],
+        [
+          25,
+          "subject"
+        ],
+        [
+          29,
+          "cameo"
+        ],
+        [
+          32,
+          "cameo"
+        ],
+        [
+          54,
+          "cameo"
+        ],
+        [
+          58,
+          "cameo"
+        ],
+        [
+          79,
+          "cameo"
+        ],
+        [
+          94,
+          "cameo"
+        ],
+        [
+          113,
+          "cameo"
+        ]
+      ],
+      "fresh_only_pairs": [
+        [
+          113,
+          "cameo"
+        ]
+      ],
+      "old_not_returned_pairs": [
+        [
+          35,
+          "cameo"
+        ]
+      ],
+      "codex_pairs": [
+        [
+          12,
+          "cameo"
+        ],
+        [
+          25,
+          "subject"
+        ],
+        [
+          29,
+          "cameo"
+        ],
+        [
+          32,
+          "cameo"
+        ],
+        [
+          39,
+          "cameo"
+        ],
+        [
+          46,
+          "cameo"
+        ],
+        [
+          54,
+          "cameo"
+        ],
+        [
+          58,
+          "cameo"
+        ],
+        [
+          94,
+          "cameo"
+        ]
+      ],
+      "codex_uncertainties": "Small figures behind shoppers unresolved. Official caption knowledge available; previous Gemini findings not supplied."
+    },
+    {
+      "card_id": "ja:SV2A:178/165:holo",
+      "old_status": "review_failed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "a0ad13ea9a2b93512c551cc298fc663544180b212d1cd0ed6455fca342f1054b",
+      "fresh_image_sha256": "a0ad13ea9a2b93512c551cc298fc663544180b212d1cd0ed6455fca342f1054b",
+      "old_pairs": [],
+      "fresh_pairs": [
+        [
+          114,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [
+        [
+          114,
+          "subject"
+        ]
+      ],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:179/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "ac10f8a22e105569c7fb49a12212b27c1f2626c2db9c71edbb7d87b917fc13fe",
+      "fresh_image_sha256": "ac10f8a22e105569c7fb49a12212b27c1f2626c2db9c71edbb7d87b917fc13fe",
+      "old_pairs": [
+        [
+          122,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          122,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:180/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "38f5003d041fa0ce2f9cab2a91eb24b0696dcbd9e548b2a62754d454bbc4cb61",
+      "fresh_image_sha256": "38f5003d041fa0ce2f9cab2a91eb24b0696dcbd9e548b2a62754d454bbc4cb61",
+      "old_pairs": [
+        [
+          138,
+          "subject"
+        ],
+        [
+          140,
+          "cameo"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          138,
+          "subject"
+        ],
+        [
+          139,
+          "cameo"
+        ],
+        [
+          140,
+          "cameo"
+        ]
+      ],
+      "fresh_only_pairs": [
+        [
+          139,
+          "cameo"
+        ]
+      ],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          138,
+          "subject"
+        ],
+        [
+          140,
+          "cameo"
+        ]
+      ],
+      "codex_uncertainties": "Distant tentacled spiral-shell figures are less clear; Omastar identification uncertain from this image alone. Official caption knowledge was available to this reviewer."
+    },
+    {
+      "card_id": "ja:SV2A:177/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "13b77b7d4cd0a9ecf2a643fa93e65df35056e92f15a90bedaa0ee079dcd02e0a",
+      "fresh_image_sha256": "13b77b7d4cd0a9ecf2a643fa93e65df35056e92f15a90bedaa0ee079dcd02e0a",
+      "old_pairs": [
+        [
+          16,
+          "cameo"
+        ],
+        [
+          52,
+          "cameo"
+        ],
+        [
+          67,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          16,
+          "cameo"
+        ],
+        [
+          21,
+          "cameo"
+        ],
+        [
+          52,
+          "cameo"
+        ],
+        [
+          67,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [
+        [
+          21,
+          "cameo"
+        ]
+      ],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          52,
+          "cameo"
+        ],
+        [
+          67,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": "Two partial brown figures at right are not confidently identified."
+    },
+    {
+      "card_id": "ja:SV2A:181/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "a1a22d64ff35abcadfd8a52be8cedf20fe890629c2efef1688c47876aeca96e4",
+      "fresh_image_sha256": "a1a22d64ff35abcadfd8a52be8cedf20fe890629c2efef1688c47876aeca96e4",
+      "old_pairs": [
+        [
+          16,
+          "cameo"
+        ],
+        [
+          50,
+          "cameo"
+        ],
+        [
+          143,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          16,
+          "cameo"
+        ],
+        [
+          50,
+          "cameo"
+        ],
+        [
+          143,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": [
+        [
+          21,
+          "cameo"
+        ],
+        [
+          50,
+          "cameo"
+        ],
+        [
+          143,
+          "subject"
+        ]
+      ],
+      "codex_uncertainties": ""
+    },
+    {
+      "card_id": "ja:SV2A:183/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "fc4500ef0396e942f2550765fc978dada530685182f80aa567bcb802ff2b4320",
+      "fresh_image_sha256": "fc4500ef0396e942f2550765fc978dada530685182f80aa567bcb802ff2b4320",
+      "old_pairs": [
+        [
+          150,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          150,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    },
+    {
+      "card_id": "ja:SV2A:182/165:holo",
+      "old_status": "reviewed",
+      "fresh_status": "reviewed",
+      "old_image_sha256": "cd6206be10391ec4f492e2efac1b21b3a1913341dd520c3e2d911e8f8337d438",
+      "fresh_image_sha256": "cd6206be10391ec4f492e2efac1b21b3a1913341dd520c3e2d911e8f8337d438",
+      "old_pairs": [
+        [
+          148,
+          "subject"
+        ]
+      ],
+      "fresh_pairs": [
+        [
+          148,
+          "subject"
+        ]
+      ],
+      "fresh_only_pairs": [],
+      "old_not_returned_pairs": [],
+      "codex_pairs": null,
+      "codex_uncertainties": null
+    }
+  ],
+  "appended_events": 146,
+  "prior_events": 44,
+  "total_events": 190,
+  "active": {
+    "active_source_supported": 13,
+    "active_proposed": 142,
+    "stale_findings": 0,
+    "physical_finish_approvals": 0,
+    "verified_card_pair_edges_added": 0,
+    "automatic_offer_join_approvals": 0
+  },
+  "source_supported_added": 4,
+  "events_sha256": "80239a7d3002ac75b6a659f4a6e1460b8645cea6dc2bb564bfb234aab1aad2c5",
+  "queue_sha256": "87b28bc010936347f1507fb343f22068b6c95afccde39a82dd8058241c84d7dd",
+  "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+  "review_sha256": "a4cb9c27645cbf454ae8175e0251ece76dc5f7ab318c68749daaa1ddddfcd4a7",
+  "codex_audit_sha256": "df688b4230ca3246b87cf100764667d6ffab3f93dd7b45cd1be707f91b069c34",
+  "images_redistributed": false,
+  "interpretation": "Purposive expansion plus deterministic AI sample audit. Gemini repeat passes share a model family; Codex is another AI with known prior official captions. No human truth set or population precision; all image-only findings remain proposed. Omission is not absence."
+}

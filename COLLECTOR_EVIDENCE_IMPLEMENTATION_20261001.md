@@ -1,5 +1,7 @@
 # Source-bound artwork and printing context — 1 October 2026
 
+This document records the first packet. The [100-target expansion and calibration](COLLECTOR_EVIDENCE_EXPANSION_20261001.md) is the current implementation; original results below are retained.
+
 ## Delivered
 
 The catalog now has a separate collector-evidence ledger, with immutable events, identity fingerprints, explicit revision heads and withdrawal support. It contains **44 findings: nine official source declarations and 35 proposed AI visual findings**. The new [34-input deployment manifest](catalog-build-manifest-evidence-v1.json) pins this packet and asserts its counts.

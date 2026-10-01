@@ -1,0 +1,46 @@
+{
+  "bindings": [
+    {
+      "card_id": "ja:SV6:109/101:holo",
+      "source_url": "https://www.pokemon-card.com/ex/sv6/index.html",
+      "preview_asset": "ar-card-5.png",
+      "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+      "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+      "depictions": [
+        {
+          "dex_id": 532,
+          "name_ja": "ドッコラー",
+          "role": "subject"
+        },
+        {
+          "dex_id": 533,
+          "name_ja": "ドテッコツ",
+          "role": "cameo"
+        }
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:339/190:holo",
+      "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html",
+      "preview_asset": "card/card-339.png",
+      "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+      "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+      "depictions": [
+        {
+          "dex_id": 964,
+          "name_ja": "イルカマン",
+          "role": "subject"
+        },
+        {
+          "dex_id": 963,
+          "name_ja": "ナミイルカ",
+          "role": "cameo"
+        }
+      ]
+    }
+  ],
+  "operator": "Codex root",
+  "human_review": false,
+  "preview_number_and_name_read": true,
+  "physical_finish_verified": false
+}

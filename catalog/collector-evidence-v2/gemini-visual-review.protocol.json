@@ -1,0 +1,20 @@
+{
+  "concurrency": 3,
+  "interpretation": "Fresh image enumeration; repeat Gemini passes share a model family and are not independent model validation.",
+  "location": "global",
+  "max_targets": 100,
+  "model": "gemini-3.8-flash",
+  "prior_findings_supplied": false,
+  "project": "pivota-prod",
+  "prompt_template_sha256": "bbfe1f52e871adefee059f779b6e6d9723dc5c7658cc430224f2dcb1ef127e27",
+  "prompt_version": "collector-depicted-pokemon-v2",
+  "queue_sha256": "87b28bc010936347f1507fb343f22068b6c95afccde39a82dd8058241c84d7dd",
+  "runtime_files_sha256": {
+    "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/review_collector_artwork.py": "a3833ab0108be4c6276f99aa2af6aa94a45963f2983bee11f06a8f49b8998063",
+    "scripts/audit_jp_source_conflicts.py": "35a566e2cd427065fed7daac8e1e02870d533d0dca3becc51fce177501cc2652",
+    "scripts/official_jp_image_evidence.py": "b9c545671a14986e444812d77a915603d36930f0c3d8a99ade6d332f0a0de51b",
+    "scripts/vertex_concept_review.py": "da0b6e2f7221b1505c2c56c211884bf13064c79844612b95e63d849ce6b9bff4"
+  },
+  "schema": "pokemon.visual-review-protocol.v2",
+  "source_revision": "bc5a2698eb9af858feb0280d579fd5fd0f0273e2"
+}

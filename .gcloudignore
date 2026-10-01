@@ -44,3 +44,7 @@ catalog/supported-discovery-v1/*
 !catalog/collector-evidence-v1/
 catalog/collector-evidence-v1/*
 !catalog/collector-evidence-v1/evidence-events.jsonl
+
+!catalog/collector-evidence-v2/
+catalog/collector-evidence-v2/*
+!catalog/collector-evidence-v2/evidence-events.jsonl

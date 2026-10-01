@@ -1,0 +1,2789 @@
+{
+  "schema": "pokemon.collector-expansion-rehearsal.v1",
+  "queries": [
+    {
+      "question": "Japanese Gurdurr cameos in card art",
+      "expected_card_ids": [
+        "ja:SV6:109/101:holo"
+      ],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Gurdurr cameos in card art",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "scoped_artwork_partial",
+        "cards": [
+          {
+            "card_id": "ja:SV6:109/101:holo",
+            "language": "ja",
+            "set_code": "SV6",
+            "collector_number": "109/101",
+            "variant": "holo",
+            "name": "ドッコラー",
+            "rarity": "Illustration rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/109.ts:sha256:71cd408629e0a5e7b13c6344d878a880a6b8be2249e3802c6ee15ac5d64f7b49",
+            "set_name": "変幻の仮面",
+            "release_date": "2024-04-26",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:1522c01c7607480dbbd7db028bcf4636",
+                  "evidence": {
+                    "finding": "Timburr: Visible in the center carrying a long wooden beam on a scaffold, with another individual visible in the upper-left carrying red beams up stairs",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "c9d5440f36bce8e2902e45d48edf0f5a6d8e7cde30721308d12ffd55ece6f236",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "d8a726cd68acb83a44b8b723af985dcde7aca3d909a0f330d517ccc70b48ca2c",
+                      "uncertainties": ""
+                    },
+                    "source_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45851"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:9dfb233e0fa8c83b6d5db16a3a7d2c1a",
+                  "evidence": {
+                    "declared_character_ja": "ドッコラー",
+                    "finding": "Official scene caption identifies ドッコラー in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:b69aac686ee8d41aee1341336d3f0465",
+                  "evidence": {
+                    "declared_character_ja": "ドテッコツ",
+                    "finding": "Official scene caption identifies ドテッコツ in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 533,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "expanded_source_bound_artwork_coverage"
+        ],
+        "artwork_review_leads": [],
+        "requested_depicted_dex_ids": [
+          533
+        ],
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": true
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "question": "日本語 ドテッコツ カメオ",
+      "expected_card_ids": [
+        "ja:SV6:109/101:holo"
+      ],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "日本語 ドテッコツ カメオ",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "scoped_artwork_partial",
+        "cards": [
+          {
+            "card_id": "ja:SV6:109/101:holo",
+            "language": "ja",
+            "set_code": "SV6",
+            "collector_number": "109/101",
+            "variant": "holo",
+            "name": "ドッコラー",
+            "rarity": "Illustration rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/109.ts:sha256:71cd408629e0a5e7b13c6344d878a880a6b8be2249e3802c6ee15ac5d64f7b49",
+            "set_name": "変幻の仮面",
+            "release_date": "2024-04-26",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:1522c01c7607480dbbd7db028bcf4636",
+                  "evidence": {
+                    "finding": "Timburr: Visible in the center carrying a long wooden beam on a scaffold, with another individual visible in the upper-left carrying red beams up stairs",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "c9d5440f36bce8e2902e45d48edf0f5a6d8e7cde30721308d12ffd55ece6f236",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "d8a726cd68acb83a44b8b723af985dcde7aca3d909a0f330d517ccc70b48ca2c",
+                      "uncertainties": ""
+                    },
+                    "source_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45851"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:9dfb233e0fa8c83b6d5db16a3a7d2c1a",
+                  "evidence": {
+                    "declared_character_ja": "ドッコラー",
+                    "finding": "Official scene caption identifies ドッコラー in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:b69aac686ee8d41aee1341336d3f0465",
+                  "evidence": {
+                    "declared_character_ja": "ドテッコツ",
+                    "finding": "Official scene caption identifies ドテッコツ in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 533,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "expanded_source_bound_artwork_coverage"
+        ],
+        "artwork_review_leads": [],
+        "requested_depicted_dex_ids": [
+          533
+        ],
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": true
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "question": "Japanese Finizen cameos in card art",
+      "expected_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Finizen cameos in card art",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "scoped_artwork_partial",
+        "cards": [
+          {
+            "card_id": "ja:SV4A:339/190:holo",
+            "language": "ja",
+            "set_code": "SV4A",
+            "collector_number": "339/190",
+            "variant": "holo",
+            "name": "イルカマン",
+            "rarity": "AR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/339.ts:sha256:f15ca82cf4e8a941c1bde194a6c355ff47bf562e644b4406e4a453942f5c1f76",
+            "set_name": "シャイニートレジャーex",
+            "release_date": "2023-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+            "structural_match_eligible": true,
+            "support_status": "supported_for_internal_review",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:017ae4e14350a899b0e0d47930c0d4c4",
+                  "evidence": {
+                    "declared_character_ja": "イルカマン",
+                    "finding": "Official scene caption identifies イルカマン in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:61e3d33317a57b19811ee291ee425d48",
+                  "evidence": {
+                    "finding": "Eelektrik: swimming near the coral in the lower right",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 603,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:934e9689ee34cefaf97d90449ab81292",
+                  "evidence": {
+                    "finding": "Lanturn: swimming in the dark water in the upper right with its lure glowing",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 171,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:c7b6dcbcc186a416e8f90e0951af1ac2",
+                  "evidence": {
+                    "finding": "Palafin: central shiny Hero Form swimming vertically upward through the deep ocean",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:e1342b4b56ccc218b01ed97ef4ccd45c",
+                  "evidence": {
+                    "declared_character_ja": "ナミイルカ",
+                    "finding": "Official scene caption identifies ナミイルカ in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 963,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "expanded_source_bound_artwork_coverage"
+        ],
+        "artwork_review_leads": [
+          {
+            "actor": "collector-evidence-v2",
+            "claim": "depicted_pokemon",
+            "event_id": "colevidence-v2:9401612c37b263d88f2b7c7ab0ce4ee6",
+            "evidence": {
+              "finding": "Finizen: swimming underwater near the bottom of the scene below the diving Wattrel",
+              "image_sha256": "4522ef190b85a6fff0e5b9afd5ebdbdf89b6a3df8daca11e540a7bbf18fa4a75",
+              "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045847_P_KAIDEN.jpg",
+              "kind": "ai_visual",
+              "locator": "illustrated scene only",
+              "official_card_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+              "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45847",
+              "review": {
+                "audit": {
+                  "ai_agreement_is_accuracy": false,
+                  "re_enumeration": "returned",
+                  "same_model_family_replication": true
+                },
+                "identity_match": "match",
+                "model": "gemini-3.8-flash",
+                "prompt_sha256": "4bcb8ded5234ce627d757c57e147737e94362ea5c59068c6555e91dba92346ab",
+                "prompt_version": "collector-depicted-pokemon-v2",
+                "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                "response_sha256": "bfe960035a05434c41db437c0aea233ff7fa935b5fcec3bb86b7fbe3b5ab37bf",
+                "uncertainties": ""
+              },
+              "source_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+              "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45847"
+            },
+            "expected_head": null,
+            "identity_sha256": "fa00befc276e688774cb18f00f9dc19bae93fc369b07b725441bcb15c7a7b0de",
+            "recorded_at": "2026-10-01T08:00:00+00:00",
+            "role": "cameo",
+            "schema": "pokemon.collector-evidence.v1",
+            "status": "proposed",
+            "subject_id": "ja:SV6:105/101:holo",
+            "subject_kind": "card",
+            "value": 963,
+            "current_identity": true
+          }
+        ],
+        "requested_depicted_dex_ids": [
+          963
+        ],
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": true
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "question": "日本語 ナミイルカ カメオ",
+      "expected_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "日本語 ナミイルカ カメオ",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "scoped_artwork_partial",
+        "cards": [
+          {
+            "card_id": "ja:SV4A:339/190:holo",
+            "language": "ja",
+            "set_code": "SV4A",
+            "collector_number": "339/190",
+            "variant": "holo",
+            "name": "イルカマン",
+            "rarity": "AR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/339.ts:sha256:f15ca82cf4e8a941c1bde194a6c355ff47bf562e644b4406e4a453942f5c1f76",
+            "set_name": "シャイニートレジャーex",
+            "release_date": "2023-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+            "structural_match_eligible": true,
+            "support_status": "supported_for_internal_review",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:017ae4e14350a899b0e0d47930c0d4c4",
+                  "evidence": {
+                    "declared_character_ja": "イルカマン",
+                    "finding": "Official scene caption identifies イルカマン in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:61e3d33317a57b19811ee291ee425d48",
+                  "evidence": {
+                    "finding": "Eelektrik: swimming near the coral in the lower right",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 603,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:934e9689ee34cefaf97d90449ab81292",
+                  "evidence": {
+                    "finding": "Lanturn: swimming in the dark water in the upper right with its lure glowing",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 171,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:c7b6dcbcc186a416e8f90e0951af1ac2",
+                  "evidence": {
+                    "finding": "Palafin: central shiny Hero Form swimming vertically upward through the deep ocean",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:e1342b4b56ccc218b01ed97ef4ccd45c",
+                  "evidence": {
+                    "declared_character_ja": "ナミイルカ",
+                    "finding": "Official scene caption identifies ナミイルカ in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 963,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "expanded_source_bound_artwork_coverage"
+        ],
+        "artwork_review_leads": [
+          {
+            "actor": "collector-evidence-v2",
+            "claim": "depicted_pokemon",
+            "event_id": "colevidence-v2:9401612c37b263d88f2b7c7ab0ce4ee6",
+            "evidence": {
+              "finding": "Finizen: swimming underwater near the bottom of the scene below the diving Wattrel",
+              "image_sha256": "4522ef190b85a6fff0e5b9afd5ebdbdf89b6a3df8daca11e540a7bbf18fa4a75",
+              "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045847_P_KAIDEN.jpg",
+              "kind": "ai_visual",
+              "locator": "illustrated scene only",
+              "official_card_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+              "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45847",
+              "review": {
+                "audit": {
+                  "ai_agreement_is_accuracy": false,
+                  "re_enumeration": "returned",
+                  "same_model_family_replication": true
+                },
+                "identity_match": "match",
+                "model": "gemini-3.8-flash",
+                "prompt_sha256": "4bcb8ded5234ce627d757c57e147737e94362ea5c59068c6555e91dba92346ab",
+                "prompt_version": "collector-depicted-pokemon-v2",
+                "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                "response_sha256": "bfe960035a05434c41db437c0aea233ff7fa935b5fcec3bb86b7fbe3b5ab37bf",
+                "uncertainties": ""
+              },
+              "source_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+              "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45847"
+            },
+            "expected_head": null,
+            "identity_sha256": "fa00befc276e688774cb18f00f9dc19bae93fc369b07b725441bcb15c7a7b0de",
+            "recorded_at": "2026-10-01T08:00:00+00:00",
+            "role": "cameo",
+            "schema": "pokemon.collector-evidence.v1",
+            "status": "proposed",
+            "subject_id": "ja:SV6:105/101:holo",
+            "subject_kind": "card",
+            "value": 963,
+            "current_identity": true
+          }
+        ],
+        "requested_depicted_dex_ids": [
+          963
+        ],
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": true
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "question": "English Gurdurr cameos",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "English Gurdurr cameos",
+        "languages": [
+          "en"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Gurdurr cameos SV2A",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Gurdurr cameos SV2A",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Gurdurr cameos SV6 110/101",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Gurdurr cameos SV6 110/101",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Gurdurr cameos SV6 109/101 non-holo",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Gurdurr cameos SV6 109/101 non-holo",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Gurdurr cameos SV6 109/101 master ball",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Gurdurr cameos SV6 109/101 master ball",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "English Finizen cameos",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "English Finizen cameos",
+        "languages": [
+          "en"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Finizen cameos SV2A",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Finizen cameos SV2A",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Finizen cameos SV4A 340/190",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Finizen cameos SV4A 340/190",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Finizen cameos SV4A 339/190 non-holo",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Finizen cameos SV4A 339/190 non-holo",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    },
+    {
+      "question": "Japanese Finizen cameos SV4A 339/190 master ball",
+      "expected_card_ids": [],
+      "actual": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese Finizen cameos SV4A 339/190 master ball",
+        "languages": [
+          "ja"
+        ],
+        "task": "artwork_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "verified_depicted_character_artwork_annotations"
+        ]
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "payload": {
+        "question": "Japanese Gurdurr cameos in card art",
+        "owned_items": []
+      },
+      "actual": {
+        "schema": "pokemon.collector-inventory.v1",
+        "question": "Japanese Gurdurr cameos in card art",
+        "scope": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Japanese Gurdurr cameos in card art",
+          "languages": [
+            "ja"
+          ],
+          "task": "artwork_evidence_needed",
+          "status": "scoped_artwork_partial",
+          "cards": [
+            {
+              "card_id": "ja:SV6:109/101:holo",
+              "language": "ja",
+              "set_code": "SV6",
+              "collector_number": "109/101",
+              "variant": "holo",
+              "name": "ドッコラー",
+              "rarity": "Illustration rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/109.ts:sha256:71cd408629e0a5e7b13c6344d878a880a6b8be2249e3802c6ee15ac5d64f7b49",
+              "set_name": "変幻の仮面",
+              "release_date": "2024-04-26",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "collector_evidence": {
+                "schema": "pokemon.collector-evidence-context.v1",
+                "findings": [
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:1522c01c7607480dbbd7db028bcf4636",
+                    "evidence": {
+                      "finding": "Timburr: Visible in the center carrying a long wooden beam on a scaffold, with another individual visible in the upper-left carrying red beams up stairs",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "c9d5440f36bce8e2902e45d48edf0f5a6d8e7cde30721308d12ffd55ece6f236",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "d8a726cd68acb83a44b8b723af985dcde7aca3d909a0f330d517ccc70b48ca2c",
+                        "uncertainties": ""
+                      },
+                      "source_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45851"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 532,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:9dfb233e0fa8c83b6d5db16a3a7d2c1a",
+                    "evidence": {
+                      "declared_character_ja": "ドッコラー",
+                      "finding": "Official scene caption identifies ドッコラー in the illustrated scene.",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "official_description",
+                      "locator": "ar-card-5.png and adjacent scene caption",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                      "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 532,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:b69aac686ee8d41aee1341336d3f0465",
+                    "evidence": {
+                      "declared_character_ja": "ドテッコツ",
+                      "finding": "Official scene caption identifies ドテッコツ in the illustrated scene.",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "official_description",
+                      "locator": "ar-card-5.png and adjacent scene caption",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                      "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 533,
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "physical_finish_verified": false,
+                "copy_condition_verified": false,
+                "card_pair_relationship_verified": false,
+                "price_comparable": false,
+                "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+              }
+            }
+          ],
+          "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+          "market_status": "no_live_market_evidence",
+          "live_offers": [],
+          "prices": [],
+          "public_display_allowed": false,
+          "unfulfilled_constraints": [
+            "artwork_coverage_completeness"
+          ],
+          "complete_answer_established": false,
+          "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+          "required_evidence": [
+            "expanded_source_bound_artwork_coverage"
+          ],
+          "artwork_review_leads": [],
+          "requested_depicted_dex_ids": [
+            533
+          ],
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 100,
+            "has_more": false,
+            "undated_records": 0,
+            "release_metadata_missing": 0,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": true
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "status": "comparison_ready",
+        "inventory_entries": [],
+        "owned_in_scope": [],
+        "possible_owned": [],
+        "missing_catalog_records": [
+          {
+            "card_id": "ja:SV6:109/101:holo",
+            "language": "ja",
+            "set_code": "SV6",
+            "collector_number": "109/101",
+            "variant": "holo",
+            "name": "ドッコラー",
+            "rarity": "Illustration rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/109.ts:sha256:71cd408629e0a5e7b13c6344d878a880a6b8be2249e3802c6ee15ac5d64f7b49",
+            "set_name": "変幻の仮面",
+            "release_date": "2024-04-26",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:1522c01c7607480dbbd7db028bcf4636",
+                  "evidence": {
+                    "finding": "Timburr: Visible in the center carrying a long wooden beam on a scaffold, with another individual visible in the upper-left carrying red beams up stairs",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "c9d5440f36bce8e2902e45d48edf0f5a6d8e7cde30721308d12ffd55ece6f236",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "d8a726cd68acb83a44b8b723af985dcde7aca3d909a0f330d517ccc70b48ca2c",
+                      "uncertainties": ""
+                    },
+                    "source_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45851"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:9dfb233e0fa8c83b6d5db16a3a7d2c1a",
+                  "evidence": {
+                    "declared_character_ja": "ドッコラー",
+                    "finding": "Official scene caption identifies ドッコラー in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 532,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:b69aac686ee8d41aee1341336d3f0465",
+                  "evidence": {
+                    "declared_character_ja": "ドテッコツ",
+                    "finding": "Official scene caption identifies ドテッコツ in the illustrated scene.",
+                    "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                    "kind": "official_description",
+                    "locator": "ar-card-5.png and adjacent scene caption",
+                    "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                    "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                    "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV6:109/101:holo",
+                  "subject_kind": "card",
+                  "value": 533,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "duplicates": [],
+        "outside_scope": [],
+        "unresolved_items": [],
+        "ownership_assertions_verified": false,
+        "physical_copy_verification": false,
+        "comparison_complete_for_submitted_catalog_scope": true,
+        "complete_missing_list_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "inventory_persisted": false,
+        "interpretation": "Not found in the submitted resolved inventory relative to this catalog query. Unresolved items may cover additional records; no exhaustive physical-printing checklist or verified ownership is established.",
+        "coverage": {
+          "scoped_catalog_records": 1,
+          "asserted_owned_records": 0,
+          "possible_owned_records": 0,
+          "not_in_resolved_inventory": 1,
+          "unresolved_inventory_entries": 0,
+          "unknown_inventory_may_cover_missing_records": false,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false
+        },
+        "next_question": "Inspect the remaining catalog candidates within this scope before selecting a physical copy.",
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ]
+      },
+      "synthetic": true
+    },
+    {
+      "payload": {
+        "question": "Japanese Gurdurr cameos in card art",
+        "owned_items": [
+          {
+            "item_id": "synthetic",
+            "card_id": "ja:SV6:109/101:holo"
+          }
+        ]
+      },
+      "actual": {
+        "schema": "pokemon.collector-inventory.v1",
+        "question": "Japanese Gurdurr cameos in card art",
+        "scope": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Japanese Gurdurr cameos in card art",
+          "languages": [
+            "ja"
+          ],
+          "task": "artwork_evidence_needed",
+          "status": "scoped_artwork_partial",
+          "cards": [
+            {
+              "card_id": "ja:SV6:109/101:holo",
+              "language": "ja",
+              "set_code": "SV6",
+              "collector_number": "109/101",
+              "variant": "holo",
+              "name": "ドッコラー",
+              "rarity": "Illustration rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/109.ts:sha256:71cd408629e0a5e7b13c6344d878a880a6b8be2249e3802c6ee15ac5d64f7b49",
+              "set_name": "変幻の仮面",
+              "release_date": "2024-04-26",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "collector_evidence": {
+                "schema": "pokemon.collector-evidence-context.v1",
+                "findings": [
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:1522c01c7607480dbbd7db028bcf4636",
+                    "evidence": {
+                      "finding": "Timburr: Visible in the center carrying a long wooden beam on a scaffold, with another individual visible in the upper-left carrying red beams up stairs",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "c9d5440f36bce8e2902e45d48edf0f5a6d8e7cde30721308d12ffd55ece6f236",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "d8a726cd68acb83a44b8b723af985dcde7aca3d909a0f330d517ccc70b48ca2c",
+                        "uncertainties": ""
+                      },
+                      "source_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45851"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 532,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:9dfb233e0fa8c83b6d5db16a3a7d2c1a",
+                    "evidence": {
+                      "declared_character_ja": "ドッコラー",
+                      "finding": "Official scene caption identifies ドッコラー in the illustrated scene.",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "official_description",
+                      "locator": "ar-card-5.png and adjacent scene caption",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                      "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 532,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:b69aac686ee8d41aee1341336d3f0465",
+                    "evidence": {
+                      "declared_character_ja": "ドテッコツ",
+                      "finding": "Official scene caption identifies ドテッコツ in the illustrated scene.",
+                      "image_sha256": "c16ab363bd41288ce66b9808cabc41df6a350a076282614e221e96e08a61292a",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045851_P_DOKKORA.jpg",
+                      "kind": "official_description",
+                      "locator": "ar-card-5.png and adjacent scene caption",
+                      "official_card_page_sha256": "7dcf4280203c5774f4828479d697981f1c7491284de2751dc559bba965375292",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45851",
+                      "preview_sha256": "2e978a3694d5a77c359872c18c6db79ac0d2722df1f523f53d4533da53e4dae3",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv6/assets/images/ar-card-5.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "2b071ba603836d6c4c448a4d2eec21e9dc0189f96899e552c7fa0b22f9a7f3a7",
+                      "source_url": "https://www.pokemon-card.com/ex/sv6/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "dd519b71cc66295d44f122d09c70b2dc920e1e26ee5ad777d3b73079caa4ccf8",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV6:109/101:holo",
+                    "subject_kind": "card",
+                    "value": 533,
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "physical_finish_verified": false,
+                "copy_condition_verified": false,
+                "card_pair_relationship_verified": false,
+                "price_comparable": false,
+                "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+              }
+            }
+          ],
+          "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+          "market_status": "no_live_market_evidence",
+          "live_offers": [],
+          "prices": [],
+          "public_display_allowed": false,
+          "unfulfilled_constraints": [
+            "artwork_coverage_completeness"
+          ],
+          "complete_answer_established": false,
+          "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+          "required_evidence": [
+            "expanded_source_bound_artwork_coverage"
+          ],
+          "artwork_review_leads": [],
+          "requested_depicted_dex_ids": [
+            533
+          ],
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 100,
+            "has_more": false,
+            "undated_records": 0,
+            "release_metadata_missing": 0,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": true
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "status": "comparison_ready",
+        "inventory_entries": [
+          {
+            "item_id": "synthetic",
+            "quantity": 1,
+            "ownership_evidence": "user_assertion_only",
+            "candidate_card_ids": [],
+            "status": "asserted_exact_record",
+            "card_id": "ja:SV6:109/101:holo"
+          }
+        ],
+        "owned_in_scope": [
+          {
+            "card_id": "ja:SV6:109/101:holo",
+            "quantity": 1,
+            "item_ids": [
+              "synthetic"
+            ]
+          }
+        ],
+        "possible_owned": [],
+        "missing_catalog_records": [],
+        "duplicates": [],
+        "outside_scope": [],
+        "unresolved_items": [],
+        "ownership_assertions_verified": false,
+        "physical_copy_verification": false,
+        "comparison_complete_for_submitted_catalog_scope": true,
+        "complete_missing_list_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "inventory_persisted": false,
+        "interpretation": "Not found in the submitted resolved inventory relative to this catalog query. Unresolved items may cover additional records; no exhaustive physical-printing checklist or verified ownership is established.",
+        "coverage": {
+          "scoped_catalog_records": 1,
+          "asserted_owned_records": 1,
+          "possible_owned_records": 0,
+          "not_in_resolved_inventory": 0,
+          "unresolved_inventory_entries": 0,
+          "unknown_inventory_may_cover_missing_records": false,
+          "returned": 0,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false
+        },
+        "next_question": "Inspect the remaining catalog candidates within this scope before selecting a physical copy.",
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ]
+      },
+      "synthetic": true
+    },
+    {
+      "payload": {
+        "question": "Japanese Finizen cameos in card art",
+        "owned_items": []
+      },
+      "actual": {
+        "schema": "pokemon.collector-inventory.v1",
+        "question": "Japanese Finizen cameos in card art",
+        "scope": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Japanese Finizen cameos in card art",
+          "languages": [
+            "ja"
+          ],
+          "task": "artwork_evidence_needed",
+          "status": "scoped_artwork_partial",
+          "cards": [
+            {
+              "card_id": "ja:SV4A:339/190:holo",
+              "language": "ja",
+              "set_code": "SV4A",
+              "collector_number": "339/190",
+              "variant": "holo",
+              "name": "イルカマン",
+              "rarity": "AR",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/339.ts:sha256:f15ca82cf4e8a941c1bde194a6c355ff47bf562e644b4406e4a453942f5c1f76",
+              "set_name": "シャイニートレジャーex",
+              "release_date": "2023-12-01",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+              "structural_match_eligible": true,
+              "support_status": "supported_for_internal_review",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "collector_evidence": {
+                "schema": "pokemon.collector-evidence-context.v1",
+                "findings": [
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:017ae4e14350a899b0e0d47930c0d4c4",
+                    "evidence": {
+                      "declared_character_ja": "イルカマン",
+                      "finding": "Official scene caption identifies イルカマン in the illustrated scene.",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "official_description",
+                      "locator": "card/card-339.png and adjacent scene caption",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                      "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 964,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:61e3d33317a57b19811ee291ee425d48",
+                    "evidence": {
+                      "finding": "Eelektrik: swimming near the coral in the lower right",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 603,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:934e9689ee34cefaf97d90449ab81292",
+                    "evidence": {
+                      "finding": "Lanturn: swimming in the dark water in the upper right with its lure glowing",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 171,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:c7b6dcbcc186a416e8f90e0951af1ac2",
+                    "evidence": {
+                      "finding": "Palafin: central shiny Hero Form swimming vertically upward through the deep ocean",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 964,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:e1342b4b56ccc218b01ed97ef4ccd45c",
+                    "evidence": {
+                      "declared_character_ja": "ナミイルカ",
+                      "finding": "Official scene caption identifies ナミイルカ in the illustrated scene.",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "official_description",
+                      "locator": "card/card-339.png and adjacent scene caption",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                      "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 963,
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "physical_finish_verified": false,
+                "copy_condition_verified": false,
+                "card_pair_relationship_verified": false,
+                "price_comparable": false,
+                "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+              }
+            }
+          ],
+          "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+          "market_status": "no_live_market_evidence",
+          "live_offers": [],
+          "prices": [],
+          "public_display_allowed": false,
+          "unfulfilled_constraints": [
+            "artwork_coverage_completeness"
+          ],
+          "complete_answer_established": false,
+          "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+          "required_evidence": [
+            "expanded_source_bound_artwork_coverage"
+          ],
+          "artwork_review_leads": [
+            {
+              "actor": "collector-evidence-v2",
+              "claim": "depicted_pokemon",
+              "event_id": "colevidence-v2:9401612c37b263d88f2b7c7ab0ce4ee6",
+              "evidence": {
+                "finding": "Finizen: swimming underwater near the bottom of the scene below the diving Wattrel",
+                "image_sha256": "4522ef190b85a6fff0e5b9afd5ebdbdf89b6a3df8daca11e540a7bbf18fa4a75",
+                "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045847_P_KAIDEN.jpg",
+                "kind": "ai_visual",
+                "locator": "illustrated scene only",
+                "official_card_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+                "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45847",
+                "review": {
+                  "audit": {
+                    "ai_agreement_is_accuracy": false,
+                    "re_enumeration": "returned",
+                    "same_model_family_replication": true
+                  },
+                  "identity_match": "match",
+                  "model": "gemini-3.8-flash",
+                  "prompt_sha256": "4bcb8ded5234ce627d757c57e147737e94362ea5c59068c6555e91dba92346ab",
+                  "prompt_version": "collector-depicted-pokemon-v2",
+                  "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                  "response_sha256": "bfe960035a05434c41db437c0aea233ff7fa935b5fcec3bb86b7fbe3b5ab37bf",
+                  "uncertainties": ""
+                },
+                "source_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+                "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45847"
+              },
+              "expected_head": null,
+              "identity_sha256": "fa00befc276e688774cb18f00f9dc19bae93fc369b07b725441bcb15c7a7b0de",
+              "recorded_at": "2026-10-01T08:00:00+00:00",
+              "role": "cameo",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "proposed",
+              "subject_id": "ja:SV6:105/101:holo",
+              "subject_kind": "card",
+              "value": 963,
+              "current_identity": true
+            }
+          ],
+          "requested_depicted_dex_ids": [
+            963
+          ],
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 100,
+            "has_more": false,
+            "undated_records": 0,
+            "release_metadata_missing": 0,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": true
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "status": "comparison_ready",
+        "inventory_entries": [],
+        "owned_in_scope": [],
+        "possible_owned": [],
+        "missing_catalog_records": [
+          {
+            "card_id": "ja:SV4A:339/190:holo",
+            "language": "ja",
+            "set_code": "SV4A",
+            "collector_number": "339/190",
+            "variant": "holo",
+            "name": "イルカマン",
+            "rarity": "AR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/339.ts:sha256:f15ca82cf4e8a941c1bde194a6c355ff47bf562e644b4406e4a453942f5c1f76",
+            "set_name": "シャイニートレジャーex",
+            "release_date": "2023-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+            "structural_match_eligible": true,
+            "support_status": "supported_for_internal_review",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:017ae4e14350a899b0e0d47930c0d4c4",
+                  "evidence": {
+                    "declared_character_ja": "イルカマン",
+                    "finding": "Official scene caption identifies イルカマン in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:61e3d33317a57b19811ee291ee425d48",
+                  "evidence": {
+                    "finding": "Eelektrik: swimming near the coral in the lower right",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 603,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:934e9689ee34cefaf97d90449ab81292",
+                  "evidence": {
+                    "finding": "Lanturn: swimming in the dark water in the upper right with its lure glowing",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 171,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:c7b6dcbcc186a416e8f90e0951af1ac2",
+                  "evidence": {
+                    "finding": "Palafin: central shiny Hero Form swimming vertically upward through the deep ocean",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "ai_visual",
+                    "locator": "illustrated scene only",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "review": {
+                      "audit": {
+                        "ai_agreement_is_accuracy": false,
+                        "re_enumeration": "returned",
+                        "same_model_family_replication": true
+                      },
+                      "identity_match": "match",
+                      "model": "gemini-3.8-flash",
+                      "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                      "prompt_version": "collector-depicted-pokemon-v2",
+                      "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                      "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                      "uncertainties": "none"
+                    },
+                    "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "subject",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "proposed",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 964,
+                  "current_identity": true
+                },
+                {
+                  "actor": "collector-evidence-v2",
+                  "claim": "depicted_pokemon",
+                  "event_id": "colevidence-v2:e1342b4b56ccc218b01ed97ef4ccd45c",
+                  "evidence": {
+                    "declared_character_ja": "ナミイルカ",
+                    "finding": "Official scene caption identifies ナミイルカ in the illustrated scene.",
+                    "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                    "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                    "kind": "official_description",
+                    "locator": "card/card-339.png and adjacent scene caption",
+                    "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                    "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                    "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                    "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                    "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                    "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                    "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                  "recorded_at": "2026-10-01T08:00:00+00:00",
+                  "role": "cameo",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV4A:339/190:holo",
+                  "subject_kind": "card",
+                  "value": 963,
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "duplicates": [],
+        "outside_scope": [],
+        "unresolved_items": [],
+        "ownership_assertions_verified": false,
+        "physical_copy_verification": false,
+        "comparison_complete_for_submitted_catalog_scope": true,
+        "complete_missing_list_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "inventory_persisted": false,
+        "interpretation": "Not found in the submitted resolved inventory relative to this catalog query. Unresolved items may cover additional records; no exhaustive physical-printing checklist or verified ownership is established.",
+        "coverage": {
+          "scoped_catalog_records": 1,
+          "asserted_owned_records": 0,
+          "possible_owned_records": 0,
+          "not_in_resolved_inventory": 1,
+          "unresolved_inventory_entries": 0,
+          "unknown_inventory_may_cover_missing_records": false,
+          "returned": 1,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false
+        },
+        "next_question": "Inspect the remaining catalog candidates within this scope before selecting a physical copy.",
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ]
+      },
+      "synthetic": true
+    },
+    {
+      "payload": {
+        "question": "Japanese Finizen cameos in card art",
+        "owned_items": [
+          {
+            "item_id": "synthetic",
+            "card_id": "ja:SV4A:339/190:holo"
+          }
+        ]
+      },
+      "actual": {
+        "schema": "pokemon.collector-inventory.v1",
+        "question": "Japanese Finizen cameos in card art",
+        "scope": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Japanese Finizen cameos in card art",
+          "languages": [
+            "ja"
+          ],
+          "task": "artwork_evidence_needed",
+          "status": "scoped_artwork_partial",
+          "cards": [
+            {
+              "card_id": "ja:SV4A:339/190:holo",
+              "language": "ja",
+              "set_code": "SV4A",
+              "collector_number": "339/190",
+              "variant": "holo",
+              "name": "イルカマン",
+              "rarity": "AR",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/339.ts:sha256:f15ca82cf4e8a941c1bde194a6c355ff47bf562e644b4406e4a453942f5c1f76",
+              "set_name": "シャイニートレジャーex",
+              "release_date": "2023-12-01",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+              "structural_match_eligible": true,
+              "support_status": "supported_for_internal_review",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "collector_evidence": {
+                "schema": "pokemon.collector-evidence-context.v1",
+                "findings": [
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:017ae4e14350a899b0e0d47930c0d4c4",
+                    "evidence": {
+                      "declared_character_ja": "イルカマン",
+                      "finding": "Official scene caption identifies イルカマン in the illustrated scene.",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "official_description",
+                      "locator": "card/card-339.png and adjacent scene caption",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                      "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 964,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:61e3d33317a57b19811ee291ee425d48",
+                    "evidence": {
+                      "finding": "Eelektrik: swimming near the coral in the lower right",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 603,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:934e9689ee34cefaf97d90449ab81292",
+                    "evidence": {
+                      "finding": "Lanturn: swimming in the dark water in the upper right with its lure glowing",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 171,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:c7b6dcbcc186a416e8f90e0951af1ac2",
+                    "evidence": {
+                      "finding": "Palafin: central shiny Hero Form swimming vertically upward through the deep ocean",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "ai_visual",
+                      "locator": "illustrated scene only",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "review": {
+                        "audit": {
+                          "ai_agreement_is_accuracy": false,
+                          "re_enumeration": "returned",
+                          "same_model_family_replication": true
+                        },
+                        "identity_match": "match",
+                        "model": "gemini-3.8-flash",
+                        "prompt_sha256": "0d42998ac7008243f9f7352c23cdc7457d551ae5753c1fc93029b11d7873d766",
+                        "prompt_version": "collector-depicted-pokemon-v2",
+                        "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                        "response_sha256": "7b7fdf359982c7f87b8ef96721a399ab3c28c6e9fa3cd2266b6db6cb803dabe9",
+                        "uncertainties": "none"
+                      },
+                      "source_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45125"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "subject",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "proposed",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 964,
+                    "current_identity": true
+                  },
+                  {
+                    "actor": "collector-evidence-v2",
+                    "claim": "depicted_pokemon",
+                    "event_id": "colevidence-v2:e1342b4b56ccc218b01ed97ef4ccd45c",
+                    "evidence": {
+                      "declared_character_ja": "ナミイルカ",
+                      "finding": "Official scene caption identifies ナミイルカ in the illustrated scene.",
+                      "image_sha256": "ce25fd37443de3a64a2ad0fd741e923f85243f2d61eae003e2660137edc712ef",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV4a/045125_P_IRUKAMAN.jpg",
+                      "kind": "official_description",
+                      "locator": "card/card-339.png and adjacent scene caption",
+                      "official_card_page_sha256": "4a88991251a880ef4650a6161823efd9bf053db0a8c0bdbd79fb0dca7379136b",
+                      "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45125",
+                      "preview_sha256": "f9cb256980de382b6f016f033ca67302ae309e43538110bc36f7982ea9cab8a9",
+                      "preview_url": "https://www.pokemon-card.com/ex/sv4a/assets/images/card/card-339.png",
+                      "source_binding": "Operator read exact preview number/name; pinned official detail and image identity checked. Does not certify physical finish or copy.",
+                      "source_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+                      "source_url": "https://www.pokemon-card.com/ex/sv4a/index.html"
+                    },
+                    "expected_head": null,
+                    "identity_sha256": "8f4e2e9c1a1f73232c4fe21fe02003a6900409dc08f5623e8e00a414be437ee2",
+                    "recorded_at": "2026-10-01T08:00:00+00:00",
+                    "role": "cameo",
+                    "schema": "pokemon.collector-evidence.v1",
+                    "status": "source_supported",
+                    "subject_id": "ja:SV4A:339/190:holo",
+                    "subject_kind": "card",
+                    "value": 963,
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "physical_finish_verified": false,
+                "copy_condition_verified": false,
+                "card_pair_relationship_verified": false,
+                "price_comparable": false,
+                "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+              }
+            }
+          ],
+          "next_question": "These official descriptions support a partial cameo list. Which release should we inspect next?",
+          "market_status": "no_live_market_evidence",
+          "live_offers": [],
+          "prices": [],
+          "public_display_allowed": false,
+          "unfulfilled_constraints": [
+            "artwork_coverage_completeness"
+          ],
+          "complete_answer_established": false,
+          "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+          "required_evidence": [
+            "expanded_source_bound_artwork_coverage"
+          ],
+          "artwork_review_leads": [
+            {
+              "actor": "collector-evidence-v2",
+              "claim": "depicted_pokemon",
+              "event_id": "colevidence-v2:9401612c37b263d88f2b7c7ab0ce4ee6",
+              "evidence": {
+                "finding": "Finizen: swimming underwater near the bottom of the scene below the diving Wattrel",
+                "image_sha256": "4522ef190b85a6fff0e5b9afd5ebdbdf89b6a3df8daca11e540a7bbf18fa4a75",
+                "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045847_P_KAIDEN.jpg",
+                "kind": "ai_visual",
+                "locator": "illustrated scene only",
+                "official_card_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+                "official_card_url": "https://www.pokemon-card.com/card-search/details.php/card/45847",
+                "review": {
+                  "audit": {
+                    "ai_agreement_is_accuracy": false,
+                    "re_enumeration": "returned",
+                    "same_model_family_replication": true
+                  },
+                  "identity_match": "match",
+                  "model": "gemini-3.8-flash",
+                  "prompt_sha256": "4bcb8ded5234ce627d757c57e147737e94362ea5c59068c6555e91dba92346ab",
+                  "prompt_version": "collector-depicted-pokemon-v2",
+                  "protocol_sha256": "2e308b343be8781a61c603b3f0ad39910cad07a7c896184c7bc3e9a1b4818ad4",
+                  "response_sha256": "bfe960035a05434c41db437c0aea233ff7fa935b5fcec3bb86b7fbe3b5ab37bf",
+                  "uncertainties": ""
+                },
+                "source_page_sha256": "63143cf1a26d43ed372f171d81000be36e2797feb492af33742881642ea3492b",
+                "source_url": "https://www.pokemon-card.com/card-search/details.php/card/45847"
+              },
+              "expected_head": null,
+              "identity_sha256": "fa00befc276e688774cb18f00f9dc19bae93fc369b07b725441bcb15c7a7b0de",
+              "recorded_at": "2026-10-01T08:00:00+00:00",
+              "role": "cameo",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "proposed",
+              "subject_id": "ja:SV6:105/101:holo",
+              "subject_kind": "card",
+              "value": 963,
+              "current_identity": true
+            }
+          ],
+          "requested_depicted_dex_ids": [
+            963
+          ],
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 100,
+            "has_more": false,
+            "undated_records": 0,
+            "release_metadata_missing": 0,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": true
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "status": "comparison_ready",
+        "inventory_entries": [
+          {
+            "item_id": "synthetic",
+            "quantity": 1,
+            "ownership_evidence": "user_assertion_only",
+            "candidate_card_ids": [],
+            "status": "asserted_exact_record",
+            "card_id": "ja:SV4A:339/190:holo"
+          }
+        ],
+        "owned_in_scope": [
+          {
+            "card_id": "ja:SV4A:339/190:holo",
+            "quantity": 1,
+            "item_ids": [
+              "synthetic"
+            ]
+          }
+        ],
+        "possible_owned": [],
+        "missing_catalog_records": [],
+        "duplicates": [],
+        "outside_scope": [],
+        "unresolved_items": [],
+        "ownership_assertions_verified": false,
+        "physical_copy_verification": false,
+        "comparison_complete_for_submitted_catalog_scope": true,
+        "complete_missing_list_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "inventory_persisted": false,
+        "interpretation": "Not found in the submitted resolved inventory relative to this catalog query. Unresolved items may cover additional records; no exhaustive physical-printing checklist or verified ownership is established.",
+        "coverage": {
+          "scoped_catalog_records": 1,
+          "asserted_owned_records": 1,
+          "possible_owned_records": 0,
+          "not_in_resolved_inventory": 0,
+          "unresolved_inventory_entries": 0,
+          "unknown_inventory_may_cover_missing_records": false,
+          "returned": 0,
+          "offset": 0,
+          "limit": 50,
+          "has_more": false
+        },
+        "next_question": "Inspect the remaining catalog candidates within this scope before selecting a physical copy.",
+        "unfulfilled_constraints": [
+          "artwork_coverage_completeness"
+        ]
+      },
+      "synthetic": true
+    }
+  ],
+  "checks": {
+    "new_bilingual_source_scopes": true,
+    "release_number_language_finish_guards": true,
+    "inventory_uses_only_official_scope": true,
+    "ai_findings_not_promoted": true,
+    "no_live_or_physical_approvals": true,
+    "catalog_bytes_unchanged": true
+  },
+  "catalog_sha256": "94fef4d4a62e023bf63d9654d7151f0d775ae8444d8e7e48c23403231325d970",
+  "calibration": {
+    "official_named_depictions_not_returned_by_fresh_model": [
+      {
+        "card_id": "ja:SV2A:173/165:holo",
+        "dex_id": 39,
+        "role": "cameo"
+      },
+      {
+        "card_id": "ja:SV6:109/101:holo",
+        "dex_id": 533,
+        "role": "cameo"
+      },
+      {
+        "card_id": "ja:SV4A:339/190:holo",
+        "dex_id": 963,
+        "role": "cameo"
+      }
+    ],
+    "old_valid_reviews": 18,
+    "same_positive_species_role_sets": 15,
+    "changed_positive_sets": [
+      "ja:SV2A:173/165:holo",
+      "ja:SV2A:180/165:holo",
+      "ja:SV2A:177/165:holo"
+    ],
+    "recovered_prior_failed_reviews": [
+      "ja:SV2A:172/165:holo",
+      "ja:SV2A:178/165:holo"
+    ],
+    "codex_positive_differences": [
+      {
+        "card_id": "ja:SV2A:173/165:holo",
+        "codex_only": [
+          [
+            39,
+            "cameo"
+          ],
+          [
+            46,
+            "cameo"
+          ]
+        ],
+        "gemini_only": [
+          [
+            9,
+            "cameo"
+          ],
+          [
+            16,
+            "cameo"
+          ],
+          [
+            79,
+            "cameo"
+          ],
+          [
+            113,
+            "cameo"
+          ]
+        ]
+      },
+      {
+        "card_id": "ja:SV2A:180/165:holo",
+        "codex_only": [],
+        "gemini_only": [
+          [
+            139,
+            "cameo"
+          ]
+        ]
+      },
+      {
+        "card_id": "ja:SV2A:177/165:holo",
+        "codex_only": [],
+        "gemini_only": [
+          [
+            16,
+            "cameo"
+          ],
+          [
+            21,
+            "cameo"
+          ]
+        ]
+      },
+      {
+        "card_id": "ja:SV2A:181/165:holo",
+        "codex_only": [
+          [
+            21,
+            "cameo"
+          ]
+        ],
+        "gemini_only": [
+          [
+            16,
+            "cameo"
+          ]
+        ]
+      }
+    ],
+    "interpretation": "Differences between positive species/role observations and official named facts; not precision/recall, because neither AI enumeration is a complete human ground truth. Same-family agreement cannot resolve shared omissions."
+  },
+  "real_market_observations": 0,
+  "baseline_replay_sha256": "f7825526a2626bb1f637e63dc2265046ec7ec0424715e2fb3ad05bc5c7808a95"
+}

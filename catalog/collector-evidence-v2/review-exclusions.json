@@ -1,0 +1,74 @@
+{
+  "schema": "pokemon.visual-review-exclusions.v1",
+  "review_sha256": "a4cb9c27645cbf454ae8175e0251ece76dc5f7ab318c68749daaa1ddddfcd4a7",
+  "excluded": [
+    {
+      "card_id": "ja:SV4A:352/190:holo",
+      "status": "review_failed",
+      "error_type": "URLError",
+      "expected_name": "ネルケ",
+      "read_name": null,
+      "expected_number": "352/190",
+      "read_number": null,
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    },
+    {
+      "card_id": "ja:SV6:125/101:holo",
+      "status": "reviewed",
+      "error_type": null,
+      "expected_name": "オーガポン みどりのめんex",
+      "read_name": "オーガポンみどりのめんex",
+      "expected_number": "125/101",
+      "read_number": "125/101",
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    },
+    {
+      "card_id": "ja:SV8:133/106:holo",
+      "status": "reviewed",
+      "error_type": null,
+      "expected_name": "サザンドラex",
+      "read_name": "サザンドラex",
+      "expected_number": "133/106",
+      "read_number": "133/106 SAR",
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    },
+    {
+      "card_id": "ja:SV5M:074/071:holo",
+      "status": "review_failed",
+      "error_type": "URLError",
+      "expected_name": "メブキジカ",
+      "read_name": null,
+      "expected_number": "074/071",
+      "read_number": null,
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    },
+    {
+      "card_id": "ja:SV5M:075/071:holo",
+      "status": "evidence_unavailable",
+      "error_type": "URLError",
+      "expected_name": "ニャビー",
+      "read_name": null,
+      "expected_number": "075/071",
+      "read_number": null,
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    },
+    {
+      "card_id": "ja:SV5K:073/071:holo",
+      "status": "review_failed",
+      "error_type": "URLError",
+      "expected_name": "ユキハミ",
+      "read_name": null,
+      "expected_number": "073/071",
+      "read_number": null,
+      "imported_findings": 0,
+      "next_action": "New frozen recovery queue; keep this attempt unchanged. Examine bounded printed-text normalization separately; do not repair received responses."
+    }
+  ],
+  "qualifying_reviews": 94,
+  "images_redistributed": false
+}
