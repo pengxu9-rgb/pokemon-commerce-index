@@ -6,13 +6,15 @@ import subprocess
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from contextlib import closing
 from urllib.error import HTTPError,URLError
 from urllib.parse import urlencode
 from urllib.request import Request,urlopen
 from scripts.public_question_sandbox import sha_file
+from pokemon_index import core,collector_inventory
 
 
-def verify(local_report: Path, output: Path):
+def verify(local_report: Path, output: Path, inventory_db: Path | None = None):
     if output.exists():raise FileExistsError('deployment evidence must be new')
     project='pivota-staging';region='us-west1';name='pokemon-commerce-index'
     def gcloud(*args):
@@ -26,10 +28,14 @@ def verify(local_report: Path, output: Path):
     assert sum(t['percent'] for t in service['status']['traffic'] if t.get('revisionName')==revision)==100
     token=subprocess.check_output(['gcloud','auth','print-identity-token'],text=True).strip()
     url=service['status']['url']
-    transient_errors=[]; error_lock=threading.Lock()
-    def query(path,params=None,auth=True):
+    transient_errors=[]; error_lock=threading.Lock(); request_counts={'authenticated':0,'unauthenticated':0}
+    def query(path,params=None,auth=True,body=None,raw_body=None):
+        headers={'Authorization':'Bearer '+token} if auth else {}
+        data=json.dumps(body).encode() if body is not None else raw_body
+        if data is not None:headers['Content-Type']='application/json'
         request=Request(url+path+('?' + urlencode(params) if params else ''),
-                        headers={'Authorization':'Bearer '+token} if auth else {})
+                        headers=headers,data=data)
+        with error_lock:request_counts['authenticated' if auth else 'unauthenticated']+=1
         for attempt in range(1,4):
             try:
                 with urlopen(request,timeout=30) as response:return response.status,json.load(response)
@@ -45,6 +51,9 @@ def verify(local_report: Path, output: Path):
     for q in ['Japanese card 151/165','English card 151/165']:
         code,guard=query('/collector-discovery',{'q':q})
         assert code==200 and guard['task']=='need_release_scope' and not guard['cards']
+    code,ordinary=query('/collector-discovery',{'q':'Help me figure out only Japanese Pikachu cards','limit':1})
+    assert code==200 and ordinary['task']=='character_cards' and ordinary['cards']
+    assert ordinary['languages']==['ja']
     local=json.loads(local_report.read_text())
     assert local['cases'] and local['failed']==0
     def case(expected):
@@ -65,22 +74,61 @@ def verify(local_report: Path, output: Path):
             assert first.get(key)==expected['first_page'].get(key),(expected['id'],key)
         return dict(id=expected['id'],task=first['task'],matched_records=len(cards),requests=requests,passed=True)
     with ThreadPoolExecutor(max_workers=3) as pool:checks=list(pool.map(case,local['results']))
+    inventory_checks=[]
+    if inventory_db is not None:
+        before=sha_file(inventory_db)
+        cid='ja:SV4A:347/190:holo'; question='Japanese SV4A 347/190'
+        owned=dict(item_id='synthetic-owned',card_id=cid)
+        payloads=[('empty_scoped_inventory',dict(question=question,owned_items=[])),
+            ('asserted_exact_record',dict(question=question,owned_items=[owned])),
+            ('duplicate_quantity',dict(question=question,owned_items=[owned,dict(item_id='synthetic-duplicate',card_id=cid,quantity=2)])),
+            ('unspecified_version',dict(question=question,owned_items=[dict(item_id='synthetic-uncertain',language='ja',set_code='SV4A',collector_number='347/190')])),
+            ('unknown_record',dict(question=question,owned_items=[dict(item_id='synthetic-unknown',card_id='unknown:fixture')])),
+            ('market_evidence_blocker',dict(question='Cheapest Pikachu card',owned_items=[])),
+            ('missing_page_1',dict(question='Japanese Pikachu cards',owned_items=[],limit=3)),
+            ('missing_page_2',dict(question='Japanese Pikachu cards',owned_items=[],limit=3,offset=3))]
+        with closing(core.connect(inventory_db,readonly=True)) as db:
+            assert db.execute('SELECT card_id FROM card WHERE card_id=?',(cid,)).fetchone()
+            for case_id,payload in payloads:
+                expected=collector_inventory.compare(db,payload)
+                code,actual=query('/collector-inventory',body=payload)
+                assert code==200,(case_id,code)
+                for key in ['status','inventory_entries','owned_in_scope','possible_owned','duplicates',
+                            'outside_scope','unresolved_items','coverage','unfulfilled_constraints','next_question',
+                            'comparison_complete_for_submitted_catalog_scope','complete_missing_list_established']:
+                    assert actual.get(key)==expected.get(key),(case_id,key)
+                assert [c['card_id'] for c in actual['missing_catalog_records']]==[c['card_id'] for c in expected['missing_catalog_records']],case_id
+                for key in ['inventory_persisted','ownership_assertions_verified','physical_copy_verification','public_display_allowed','prices','live_offers']:
+                    assert not actual[key],(case_id,key)
+                inventory_checks.append(dict(id=case_id,passed=True,synthetic=True,
+                    payload=payload,status=actual['status'],coverage=actual.get('coverage')))
+        assert query('/collector-inventory',body=dict(question=question,owned_items=[dict(owned,quantity=True)]))[0]==400
+        assert query('/collector-inventory',raw_body=b'not json')[0]==400
+        assert query('/collector-inventory',body=dict(question=question,owned_items=[]),auth=False)[0]==403
+        assert sha_file(inventory_db)==before
     # Detect another rollout during the diagnostic instead of attributing mixed results.
     assert gcloud('run','services','describe',name,'--region='+region)['status']['latestReadyRevisionName']==revision
     report=dict(project=project,region=region,service=name,revision=revision,url=url,
                 image_digest=detail['status']['imageDigest'],private_iam_verified=True,
                 unauthenticated_http_status=403,catalog_status=status,supported_status=support,
-                collector_checks=checks,authenticated_http_requests=3+sum(c['requests'] for c in checks)+3,
+                collector_checks=checks,inventory_checks=inventory_checks,
+                inventory_invalid_input_checks=2 if inventory_db is not None else 0,
+                inventory_unauthenticated_http_status=403 if inventory_db is not None else None,
+                inventory_assertions_synthetic=True if inventory_db is not None else None,
+                authenticated_http_requests=request_counts['authenticated'],
+                unauthenticated_http_requests=request_counts['unauthenticated'],
                 numeric_release_guard_checks=2,
+                ordinary_figure_out_phrase_check=True,
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
-                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile','catalog-build-manifest-discovery-v1.json']},
+                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile','catalog-build-manifest-discovery-v1.json']},
                 verified_date='2026-10-01',real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps(dict(revision=revision,collector_cases=len(checks),authenticated_http_requests=report['authenticated_http_requests'],unauthenticated_status=403)))
+    print(json.dumps(dict(revision=revision,collector_cases=len(checks),inventory_cases=len(inventory_checks),authenticated_http_requests=report['authenticated_http_requests'],unauthenticated_status=403)))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--local-report',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    a=p.parse_args();verify(a.local_report,a.output)
+    p.add_argument('--inventory-db',type=Path)
+    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db)

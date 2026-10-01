@@ -1,0 +1,13 @@
+{
+  "baseline_catalog_sha256": "d3b00f29d4464dd393b84aa4bb5bb529be94926c8b4c1a2383e41a5bdf7f6356",
+  "discovery_evidence_sha256": "d6a464df532c0155b07539d77c7c2b2acd4ccc48505723a91833ff7fac755571",
+  "tables": [
+    "card",
+    "card_facet",
+    "catalog_set_localized",
+    "catalog_vocabulary",
+    "character_family",
+    "character_family_member"
+  ],
+  "scope": "All columns and ordered rows of discovery identity/facet/release/family tables. Marketplace state and independently versioned support review timestamps are outside this replay fingerprint."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "pokemon.collector-source-lock.v1",
+  "candidate_count": 3,
+  "source_sha256": "3da4903d481c11eff593d9b19e034178c3ae02cbb4c060542e945bb958178fac",
+  "evidence_sha256": "59326180d99a5b6c3132fcff1edb88e38ab8e9896250c83476db1a85bddfbe14",
+  "runner_sha256": "1291322e01cc5366ee9a1a20481884842ca72be3a15bdf8f7e66e15a2a595ca9",
+  "prompt_module_sha256": "750562fb7f6ba0f7bd5b42ee360f2e8fbd36a3b424e5410bf312de811a025fd4",
+  "expectations_sha256": "f6f439f910c2af8b31e82dafdbd880bccd949d21fbba228789aefdb30e2131ac",
+  "catalog_sha256": "d3b00f29d4464dd393b84aa4bb5bb529be94926c8b4c1a2383e41a5bdf7f6356",
+  "initial_runtime_sha256": {
+    "pokemon_index/collector_discovery.py": "9a3c8a7124dec92bad8b79c796e63c5e0b5fc0cd86961c0f65254858f68a2f06",
+    "pokemon_index/supported_catalog.py": "136472aa89796fd73385358dc8f832e39312b322c73cf53c799a43e9b55c00ad",
+    "pokemon_index/core.py": "cbee7e8f017face6c0ff87582a6c7f97663bc6b3c0d952207879ca78eedc39c8",
+    "pokemon_index/discovery_graph.py": "23dd5dd1526a5eeb38636c528bb32f8b5e3c1c597fabc86883549c0ec29894af",
+    "catalog-build-manifest-discovery-v1.json": "7875de771abbf2eab31f158e5d90c944e56c82c412d07ce1c5dd7c56b1c16661"
+  },
+  "selection": "Context-only recovery for three original candidates; not additional fresh questions or replacement of first decisions.",
+  "source_fidelity": "Gemini reviews researcher-supplied original question context, not independently fetched pages.",
+  "recovery_of_collection_lock_sha256": "a73f9c311630b3b0a5e1b6b945365b65a78ac15852dfd3293923691b3b29ff8c"
+}

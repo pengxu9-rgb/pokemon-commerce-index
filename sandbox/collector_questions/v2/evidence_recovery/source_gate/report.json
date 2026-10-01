@@ -1,0 +1,61 @@
+{
+  "accepted": 3,
+  "audit_statuses": {
+    "codex": {
+      "faithful": 3
+    },
+    "google": {
+      "faithful": 3
+    }
+  },
+  "candidate_sha256": "3da4903d481c11eff593d9b19e034178c3ae02cbb4c060542e945bb958178fac",
+  "candidates": 3,
+  "codex_sha256": "23770d8f720c15f96def636dc615ccfb047043e9446be7ff6ae293c26c5da1bd",
+  "decisions": [
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq2-004",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1s8qobo/where_to_find_list_of_all_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq2-006",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/19dyqt8/gengar_master_list/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq2-011",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1m8j758",
+      "verification_method": "opened_post"
+    }
+  ],
+  "deduplication": "Stable platform post IDs across URL slugs and host aliases; fallback normalized host/path",
+  "eligible_sha256": "3da4903d481c11eff593d9b19e034178c3ae02cbb4c060542e945bb958178fac",
+  "evidence_sha256": "59326180d99a5b6c3132fcff1edb88e38ab8e9896250c83476db1a85bddfbe14",
+  "gemini_sha256": "a9e7d3b71335c25d23b87d6907e13a92cc8a3a81c1c4ec744db88318b2353ee8",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "f5050e6baed5f5c5d39be1fa5d787fd8c2408f028a6d446485768d8e113ade64",
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "580b154708f25724da4e25c5b3a28122f9bdb9b6bc0d3ae5abebaa0948eb5678",
+    "f7a93e88e6ca0481042dd6cae94f8ea898d57cff2c9a5191d8026222ffbd0bb8",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+    "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+    "3a39f7fecf9c9de27b5d067704c68737a7df78aedf1d13180be32d412ec12eab",
+    "2d0a68cee2d642d690382c5ca56bea1d4f3b32165fb92b0b21ed6c3fc77a5e9c",
+    "111e1e75ed8d88f6a70768b5bfb484557e66dd9e3bd53b1bdd3a4b725845ab2d",
+    "3386e629fae75589f0acf8541bcbb402b43fffd34cdeeae0e04ce6dae288ae9e"
+  ],
+  "rejected": 0,
+  "schema": "pokemon.public-question-preflight.v1"
+}

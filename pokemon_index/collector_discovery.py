@@ -26,6 +26,12 @@ def _mentioned(text: str, term: str) -> bool:
 def _languages(text: str) -> list[str]:
     ja = bool(re.search(r"japanese|\bjp\b|日本語|日文|日版|日英", text))
     en = bool(re.search(r"english|\ben\b|英語|英文|英版|日英", text))
+    # A user's Japanese example in a general checklist request is not an
+    # instruction to discard every English record.
+    if (ja and not en and re.search(r'\b(?:my|have|own)\s+(?:a\s+)?japanese\b',text)
+            and re.search(r'\b(?:list|checklist|all|every)\b',text)
+            and not re.search(r'\b(?:all|only|every)\s+japanese\b|\bin japanese\b',text)):
+        ja=False
     return ["ja", "en"] if ja == en else ["ja"] if ja else ["en"]
 
 
@@ -149,6 +155,10 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "prices":[], "public_display_allowed":False,
               "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
+    if re.search(r'\bfigures?\b(?!\s+out\b)|フィギュア',text):
+        return dict(result,task='other_product_evidence_needed',status='blocked',
+                    required_evidence=['official_non_card_product_identity_and_authenticity_source'],
+                    next_question='Which exact figure or other product should be checked against its official release source? Card identities cannot verify merchandise.')
     if re.search(r'\bkorean\b|\bfrench\b|\bgerman\b|\bchinese\b|韓国語|韓版|法文|德文|中文版', text):
         return dict(result, task='unsupported_language', status='unsupported_scope',
                     required_evidence=['catalog_and_release_evidence_for_requested_languages'],
@@ -157,37 +167,82 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="unsupported_game", status="unsupported_scope",
                     next_question="Would you like to search physical Pokémon TCG cards?")
     market_text=re.sub(r"price (?:does not|doesn't|doesn’t) matter|(?:it )?(?:does not|doesn't|doesn’t) matter (?:the )?price|価格(?:は)?関係ない",'',text)
-    if re.search(r"\bprice\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
+    if re.search(r"\bprices?\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|sources? of raw cards|where can i (?:find|buy).*raw cards|売って|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
         return dict(result, task="market_evidence_needed", status="blocked",
                     required_evidence=["exact_printing_target", "authorized_fresh_offers_or_relevant_market_evidence"],
                     next_question="Which exact printing should we track when an authorized feed is available?")
+    # Product context precedes species names or incidental illustrator words.
+    if re.search(r'\bvideo\b|動画',text) and re.search(r'list|checklist|リスト',text):
+        return dict(result,task='collection_scope_needed',status='clarification_needed',
+                    required_evidence=['referenced_checklist_text_and_release_scope'],
+                    next_question='Share the checklist text or printed release name from the video so we can compare actual records.')
+    if re.search(r'裏面.*(?:違|模様)|card backs?.*(?:different|differ)',text):
+        return dict(result,task='release_history_evidence_needed',status='blocked',
+                    required_evidence=['official_historical_design_and_regional_release_source'],
+                    next_question='Which release era and region should we check? Catalog metadata does not establish the historical reason for a design difference.')
+    if re.search(r'公式.*(?:カードリスト|カード検索).*(?:検索|機能)',text):
+        return dict(result,task='official_search_evidence_needed',status='blocked',
+                    required_evidence=['official_search_interface_or_help_evidence'],
+                    next_question='Which official search page or filter should we inspect? Our catalog cannot confirm another website’s current controls.')
+    if re.search(r'psa.*(?:アイテム|入力|submission|submit)|grading.*submission',text):
+        return dict(result,task='grading_policy_evidence_needed',status='blocked',
+                    required_evidence=['official_grader_submission_search_instructions','exact_printing_coordinates'],
+                    next_question='Confirm the printed release and number, then check the grader’s own submission instructions; catalog matching cannot validate its form selections.')
+    if re.search(r'同じタイトル.*同じカード|同じ物.*内容|sealed.*contents|starter.*(?:contents|same cards)',text):
+        return dict(result,task='sealed_contents_evidence_needed',status='blocked',
+                    required_evidence=['exact_sealed_product_release','official_contents_or_randomization_source'],
+                    next_question='Which exact starter product should we check? Individual card rows do not establish a sealed box’s fixed or random contents.')
+    if re.search(r'ex.*(?:全部|全種類)|(?:全部|全種類).*ex',text):
+        return dict(result,task='card_type_scope_needed',status='clarification_needed',
+                    required_evidence=['card_type_era_and_collection_scope','single_cards_vs_sealed_contents_plan'],
+                    next_question='Do you mean modern ex cards or another era, and which releases? Starter boxes and booster packs are not proof of a complete card-type checklist.')
+    if re.search(r'\bshiny\b|色違い',text) and re.search(r'all|dex|list|全部|一覧|図鑑',text):
+        return dict(result,task='classification_evidence_needed',status='blocked',
+                    required_evidence=['source_bound_shiny_depiction_and_card_type_annotations'],
+                    next_question='Should we scope the shiny depiction checklist to a release? Shiny Pokémon, shiny paper, Radiant and Shining card types need distinct evidence.')
+    if re.search(r'black star.*white|黒.*星.*白|白.*星.*黒',text):
+        return dict(result,task='release_variant_evidence_needed',status='blocked',
+                    required_evidence=['printed_release_code_and_number','source_bound_variant_table_or_copy_photos'],
+                    next_question='Share the printed set code and number for the two copies. Star color alone cannot determine every version in a release.')
     if re.search(r"\bdeck\b|デッキ|卡组构筑", text):
         return dict(result, task="gameplay_evidence_needed", status="blocked",
                     next_question="Which game format and deck goal should be checked against a rules/card-text source?")
     artists=_artists(db,text)
-    inventory=bool(re.search(r'check off|ones i (?:have|still)|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って',text))
+    inventory=bool(re.search(r'check off|ones i (?:have|still)|what i (?:have|own)|my inventory|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って',text))
     if inventory:
         result['unfulfilled_constraints'].append('owned_inventory')
         result['next_question']='Share your owned-card list and language/version scope so we can compare it with these catalog records.'
+    for constraint,pattern in [
+            ('external_checklist',r'linked.*(?:list|checklist)|my.*(?:checklist|catalog)|my.*missing anything'),
+            ('future_language_scope',r'\bkr\b.*future|korean.*future'),
+            ('sealed_opening_strategy',r'open (?:a )?sets?|pull.*then buy|until.*pull'),
+            ('binder_organization_preferences',r'organiz.*binder|sort.*(?:date|language)|how.*organize'),
+            ('all_language_coverage',r'all languages|全言語'),
+            ('stamp_variants',r'stamp.*vari|stamped|スタッフ|staff'),
+            ('non_card_product_request',r'(?:buy|purchase).*binder|binder.*msrp'),
+            ('external_catalog_comparison',r'bulbapedia.*serebii|serebii.*bulbapedia'),
+            ('jumbo_exclusion_and_specific_release_omissions',r'excludes?.*jumbo|does not include.*jumbo'),
+            ('art_style_description',r'art style|イラストレーター.*特徴')]:
+        if re.search(pattern,text):result['unfulfilled_constraints'].append(constraint)
     if re.search(r'\bcustoms?\b|\bcarddass\b|\btopps\b|カスタム',text):
         return dict(result,task='collection_scope_needed',status='clarification_needed',
                     required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
                     next_question='Should we first list official physical Pokémon TCG cards? Custom and other product lines need their own sources; share your inventory to check omissions.')
     edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',text))
-    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|鑑定|评级',text))
+    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|grading|鑑定|评级',text))
     if graded or (edition and len(artists)!=1):
         return dict(result, task='copy_evidence_needed', status='blocked',
                     required_evidence=['exact_base_printing','edition_or_grading_copy_evidence'],
                     next_question='This catalog cannot verify edition or a graded copy. Which base printing should we explore before reviewing copy evidence?')
     if edition:result['unfulfilled_constraints'].append('edition_variants')
-    exclusive=bool(re.search(r'exclusiv|only released in japan|never made it to america|日本限定|海外未発売',text))
+    exclusive=bool(re.search(r'exclusiv|only released in japan|only printed in english|only.*language.*printed|never made it to america|日本限定|海外未発売',text))
     if exclusive and len(artists)!=1:
         return dict(result,task='regional_evidence_needed',status='blocked',
                     required_evidence=['verified_regional_release_and_artwork_coverage'],
                     next_question='Which exact artwork or release should we compare? Missing catalog matches do not establish regional exclusivity.')
     if exclusive:result['unfulfilled_constraints'].append('regional_exclusivity')
     explicit_family=bool(re.search(r'family|evolution|進化|进化|家族',text))
-    cameo=bool(re.search(r'cameo|in (?:the )?(?:card )?art\b|appears in|appearances|カメオ|客串|映って|写って',text))
+    cameo=bool(re.search(r'cameo|in (?:the )?(?:card )?art\b|appears in|appearances|カメオ|客串|映って|写って|写りこん|写り込',text))
     if cameo and not explicit_family:
         return dict(result,task='artwork_evidence_needed',status='blocked',
                     required_evidence=['verified_depicted_character_artwork_annotations'],
@@ -275,7 +330,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         result.update(task="character_cards", status="results", dex_ids=ids,
                       claim_basis="source character ID; not shared artwork or cross-region counterpart")
     else:
-        return dict(result, task="need_character_or_coordinates", next_question="Which character, illustrator or printed set/number should I search?")
+        return dict(result, task="need_character_or_coordinates",required_evidence=['explicit_character_artist_or_release_scope'],
+                    next_question="Which character, illustrator or printed set/number should I search? Multiple characters or an unnamed checklist need a clear collection scope.")
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
     rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
                  (*languages, *ids))

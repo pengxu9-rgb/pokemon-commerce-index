@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
-from . import collector_discovery, supported_catalog
+from . import collector_discovery, collector_inventory, supported_catalog
 
 
 def read_jsonl(path: str):
@@ -27,8 +27,30 @@ def read_jsonl(path: str):
                     raise ValueError(f"{path}:{line_number}: {exc}") from exc
 
 
-def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False) -> None:
+def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False):
     class Handler(BaseHTTPRequestHandler):
+        def do_POST(self):
+            if not internal_catalog_api or urlparse(self.path).path!='/collector-inventory':
+                self.send_error(404);return
+            try:
+                length=self.headers.get('Content-Length','')
+                if not length.isdecimal() or not 1<=int(length)<=262144:
+                    raise ValueError('Content-Length must be 1–262144 bytes')
+                if self.headers.get('Content-Type','').split(';')[0].strip().lower()!='application/json':
+                    raise ValueError('Content-Type must be application/json')
+                if self.headers.get('Transfer-Encoding'):raise ValueError('Transfer-Encoding is unsupported')
+                self.connection.settimeout(10)
+                raw=self.rfile.read(int(length))
+                if len(raw)!=int(length):raise ValueError('incomplete JSON request body')
+                payload=json.loads(raw.decode('utf-8'))
+                with closing(core.connect(db_path,readonly=True)) as db:
+                    result=collector_inventory.compare(db,payload)
+                body=json.dumps(result,ensure_ascii=False).encode();self.send_response(200)
+            except (ValueError,KeyError,TimeoutError) as exc:
+                body=json.dumps({'error':str(exc)}).encode();self.send_response(400)
+            self.send_header('Content-Type','application/json; charset=utf-8')
+            self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
+
         def do_GET(self):
             parsed = urlparse(self.path)
             args = parse_qs(parsed.query)
@@ -99,8 +121,13 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
             self.end_headers()
             self.wfile.write(body)
 
-    print(f"Serving http://{host}:{port}")
-    ThreadingHTTPServer((host, port), Handler).serve_forever()
+    return ThreadingHTTPServer((host,port),Handler)
+
+
+def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False) -> None:
+    with create_server(db_path,host,port,internal_catalog_api) as server:
+        print(f"Serving http://{host}:{server.server_address[1]}")
+        server.serve_forever()
 
 
 def main() -> None:
@@ -236,6 +263,8 @@ def main() -> None:
     collector.add_argument("question")
     collector.add_argument("--limit", type=int, default=50)
     collector.add_argument("--offset", type=int, default=0)
+    inventory=sub.add_parser('collector-inventory',help='compare a user-asserted inventory to scoped internal catalog records')
+    inventory.add_argument('file',help='JSON containing question, owned_items and optional pagination')
     sub.add_parser("supported-status", help="positive metadata support and deployed alias coverage")
     server.add_argument("--host", default="127.0.0.1")
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
@@ -288,6 +317,10 @@ def main() -> None:
     if args.command == "serve":
         serve(args.db, args.host, args.port, args.internal_catalog_api)
         return
+    if args.command=='collector-inventory':
+        with closing(core.connect(args.db,readonly=True)) as db:
+            output=collector_inventory.compare(db,json.loads(Path(args.file).read_text(encoding='utf-8')))
+        print(json.dumps(output,ensure_ascii=False,indent=2));return
     if args.command == "question-route-plan":
         facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
         print(json.dumps(question_routing.plan_question(

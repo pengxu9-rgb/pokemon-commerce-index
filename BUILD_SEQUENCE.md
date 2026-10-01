@@ -13,7 +13,7 @@ The [holistic alignment decision](HOLISTIC_ALIGNMENT_20260930.md) is the current
 | Catalog | 55,167 internal identities; 33,543 structurally eligible; 532 official rarity corrections; 100 source-bound metadata targets, three release overlays and six vocabulary records | Physical finish/copy evidence and real listing precision remain unverified; supported metadata does not approve automatic joins |
 | Graph | Character/artist facets, structural version neighbors, three official evolution families; 657 proposed artwork assertions | Independently evaluated artwork/counterpart relationships; zero verified relation events |
 | Bilingual retrieval | 122 reviewed aliases and 460 review events included in the new ordered deployment manifest | Translation evidence is not printing equivalence; real marketplace vocabulary recall remains unmeasured |
-| Agent discovery | Authored 30-task replay; 30 fresh candidates, 16 source-qualified; corrected replay has eight catalog partials and eight evidence blockers | Thirty qualified diverse fresh questions, artwork/region evidence and owned-inventory comparison; no real-user answer quality score |
+| Agent discovery | Authored 30-task replay; first source cohort has 16 qualified questions; a second fresh 30-question cohort has eight catalog partials and 22 evidence blockers; stateless inventory comparison | Artwork/region/printing evidence, controlled agent integration and an independent held-out outcome evaluation; no real-user answer quality score |
 | Pricing | Observation/resolution/index contracts; ask, last-list-at-transition and paid amounts separate | Zero live observations; separate authorized listing feed, real matching audit and sustained freshness |
 | Merchant/checkout | 100-target synthetic ingestion rehearsal; complete quote, restart, expiry and URL preview checks; Pivota contract | Real offer-bound quotes, condition/fulfillment evidence, confirmed payment/order lifecycle |
 | Cloud | Recorded private read-only catalog deployment | Recoverable market/session storage, ingestion/retention scheduling and monitoring before live use |
@@ -45,7 +45,7 @@ Fix mixed planned-purchase/resale facts only enough to preserve the task and avo
 
 **Done when:** a frozen 30-question suite tests returned card IDs/results and useful clarification, with a proposed internal target of 27 useful outcomes and zero unsupported market, same-printing or completeness claims. This is task acceptance, not population accuracy. Hand-authored structured constraints alone do not satisfy it.
 
-**Development implementation delivered:** raw authored questions execute without manual fact translation; the first run was 28/30 and retained, and the corrected replay is 30/30. An independently sourced fresh question set remains the next acceptance measurement.
+**Development implementation delivered:** raw authored questions execute without manual fact translation; the first run was 28/30 and retained, and the corrected replay is 30/30. A second fresh source-qualified diagnostic now has 30 originals (18 English, 12 Japanese); first runtime 7/30, corrected replay eight catalog partials plus 22 evidence blockers. The sampling-size milestone is met, but source selection and fixes were performed with knowledge of the implementation. This is not an independent held-out acceptance measurement or evidence of complete answers. Stateless owned-inventory comparison is implemented without physical ownership claims or persistence. See [the implementation and diagnostic](COLLECTOR_INVENTORY_IMPLEMENTATION_20261001.md).
 
 ### 3. Rehearse the commerce path on the same slice
 
@@ -59,8 +59,8 @@ Add recoverable storage, bounded retry/quota controls, freshness monitoring and 
 
 ## Next implementation and measurement
 
-1. Continue independently sourced collector validation. The first 30-candidate diagnostic qualified 16 sources; its unchanged-runtime 2/16 and corrected 16/16 are retained, with partials and blockers separate. Obtain a distinct diverse cohort of at least 30 qualified questions, with more Japanese coverage, before claiming the proposed task acceptance gate is met. Evidence and next steps: [COLLECTOR_SOURCE_DIAGNOSTIC_20261001.md](COLLECTOR_SOURCE_DIAGNOSTIC_20261001.md).
-2. Expand source-backed metadata/printed vocabulary to additional modern releases, prioritized by those tasks. Independently evidence physical finishes before promoting any live-offer allowlist entry. Current automatic-live-join-ready count is zero.
+1. Prioritize source-bound artwork, depicted-character and printing-version evidence from the second diagnostic's 22 blockers. Use permitted reference material and independent annotation auditing; do not promote text-only forum assertions into verified graph edges. Preserve the first 2/16 and second 7/30 initial outputs. Further acceptance measurement must use held-out questions and distinguish useful results from correct evidence blockers.
+2. Connect stateless inventory comparison to the controlled agent journey, resolving uncertain versions before suggesting purchase targets. Expand source-backed metadata/printed vocabulary to additional modern releases when those tasks justify it. Independently evidence physical finishes before promoting any live-offer allowlist entry. Current automatic-live-join-ready count is zero.
 3. Select managed market storage and a separate ingestion worker deployment. Add provider-specific adapter, pagination, request timeout, quota and retention behavior only against the confirmed feed contract. Keep market/session state outside the read-only catalog image.
 4. Execute the external feed and real-listing gates below when access arrives. No catalog totals or fixture scores substitute for them.
 

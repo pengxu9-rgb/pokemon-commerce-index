@@ -135,6 +135,49 @@ class SupportedCollectorTests(unittest.TestCase):
         scoped=collector_discovery.execute(self.db,'Japanese 151 cards 151/165')
         self.assertEqual(scoped['task'],'exact_coordinates')
 
+    def test_shiny_pokemon_query_is_not_a_foil_or_single_release_filter(self):
+        result=collector_discovery.execute(self.db,'List all shiny Pokemon for a dex, including Radiant and Shining cards from Hidden Fates and other sets')
+        self.assertEqual(result['task'],'classification_evidence_needed')
+        self.assertEqual(result['cards'],[])
+        self.assertIn('source_bound_shiny_depiction_and_card_type_annotations',result['required_evidence'])
+
+    def test_unsupported_product_and_unavailable_reference_do_not_select_a_species(self):
+        for q,task in [('Is the Chinese Eevee figure collection official?','other_product_evidence_needed'),
+                       ('Give me the exact master list Danny Phantump uses in this video','collection_scope_needed')]:
+            result=collector_discovery.execute(self.db,q)
+            self.assertEqual(result['task'],task);self.assertEqual(result['cards'],[])
+        ordinary=collector_discovery.execute(self.db,'Help me figure out my Japanese Pikachu checklist')
+        self.assertEqual(ordinary['task'],'character_cards')
+        self.assertTrue(ordinary['cards'])
+
+    def test_grader_form_question_and_sealed_contents_are_separate_from_cards(self):
+        cases=[('PSAのアイテム検索でアルセウスURを入力しても出てきません','grading_policy_evidence_needed'),
+               ('同じタイトルのスターターデッキは同じカードが入りますか？','sealed_contents_evidence_needed'),
+               ('ポケカ公式のカードリストでサポートSRを検索する機能は？','official_search_evidence_needed')]
+        for q,task in cases:
+            result=collector_discovery.execute(self.db,q)
+            self.assertEqual(result['task'],task);self.assertTrue(result['required_evidence'])
+
+    def test_examples_and_future_languages_do_not_replace_current_collection_scope(self):
+        result=collector_discovery.execute(self.db,'A full Yuka Morii list: my Japanese Aipom is missing from another catalog')
+        self.assertEqual(result['languages'],['ja','en'])
+        explicit=collector_discovery.execute(self.db,'Only Japanese Yuka Morii cards: my Japanese Aipom is missing')
+        self.assertEqual(explicit['languages'],['ja'])
+        future=collector_discovery.execute(self.db,'Gengar EN/JP cards, maybe KR in the future, compare my linked list')
+        self.assertEqual(future['task'],'character_cards')
+        self.assertIn('future_language_scope',future['unfulfilled_constraints'])
+        self.assertIn('external_checklist',future['unfulfilled_constraints'])
+
+    def test_source_market_request_blocks_without_treating_negated_slabs_as_a_target(self):
+        result=collector_discovery.execute(self.db,'Kanako Eo: where can I find raw cards? I am not interested in graded slabs')
+        self.assertEqual(result['task'],'market_evidence_needed')
+        self.assertEqual(result['live_offers'],[])
+
+    def test_release_star_difference_does_not_return_every_gengar_printing(self):
+        result=collector_discovery.execute(self.db,'Perfect Order Gengar: one black star and one white; are these all versions?')
+        self.assertEqual(result['task'],'release_variant_evidence_needed')
+        self.assertEqual(result['cards'],[])
+
     def test_stale_identity_reference_and_release_each_invalidate_support(self):
         cid='ja:SV4A:347/190:holo'
         for sql in ["UPDATE card SET name='Wrong' WHERE card_id=?",

@@ -1,0 +1,17 @@
+{
+  "revision": "pokemon-commerce-index-00016-f7q",
+  "failed_control": {
+    "question": "Help me figure out my Japanese Pikachu checklist",
+    "expected_languages": [
+      "ja"
+    ],
+    "actual_languages": [
+      "ja",
+      "en"
+    ],
+    "task": "character_cards"
+  },
+  "cause": "The newly authored cloud control assumed a Japanese-only scope; the existing example-language guard treats my Japanese + checklist as a general checklist. The frozen source cohort and its expectations were unchanged.",
+  "replacement_control": "Help me figure out only Japanese Pikachu cards",
+  "interpretation": "Correction to an engineering control. Does not establish language-scope accuracy for real user questions."
+}

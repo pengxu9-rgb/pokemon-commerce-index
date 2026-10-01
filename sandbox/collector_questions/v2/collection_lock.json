@@ -1,0 +1,19 @@
+{
+  "schema": "pokemon.collector-source-lock.v1",
+  "candidate_count": 30,
+  "source_sha256": "3e74689a0219433cf2d70cf46f3e77ee449ebfb181ba597543737e979fd96301",
+  "evidence_sha256": "6d6660ac79df24b17cf4fc244f9c57a384605de593d4cdb5772b08c9ea5cb7d4",
+  "runner_sha256": "1291322e01cc5366ee9a1a20481884842ca72be3a15bdf8f7e66e15a2a595ca9",
+  "prompt_module_sha256": "750562fb7f6ba0f7bd5b42ee360f2e8fbd36a3b424e5410bf312de811a025fd4",
+  "expectations_sha256": "9b6af22b119c478930a5ba6344b3725b631e524809f0020ab901a1872cc4011e",
+  "catalog_sha256": "d3b00f29d4464dd393b84aa4bb5bb529be94926c8b4c1a2383e41a5bdf7f6356",
+  "initial_runtime_sha256": {
+    "pokemon_index/collector_discovery.py": "9a3c8a7124dec92bad8b79c796e63c5e0b5fc0cd86961c0f65254858f68a2f06",
+    "pokemon_index/supported_catalog.py": "136472aa89796fd73385358dc8f832e39312b322c73cf53c799a43e9b55c00ad",
+    "pokemon_index/core.py": "cbee7e8f017face6c0ff87582a6c7f97663bc6b3c0d952207879ca78eedc39c8",
+    "pokemon_index/discovery_graph.py": "23dd5dd1526a5eeb38636c528bb32f8b5e3c1c597fabc86883549c0ec29894af",
+    "catalog-build-manifest-discovery-v1.json": "7875de771abbf2eab31f158e5d90c944e56c82c412d07ce1c5dd7c56b1c16661"
+  },
+  "selection": "Purposive fresh public-question diagnostic with 18 English and 12 Japanese originals. Researcher knows implementation; not blind or representative.",
+  "source_fidelity": "Gemini reviews researcher-supplied original question context, not independently fetched pages."
+}
