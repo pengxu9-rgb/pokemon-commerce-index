@@ -1,0 +1,52 @@
+{
+  "schema": "pokemon.japanese-metadata-review-queue-audit.v1",
+  "requested_sets": [
+    "SV8A",
+    "SV-P",
+    "SV8",
+    "SV7A",
+    "SV7",
+    "SV6A",
+    "SV6",
+    "SV5A",
+    "SV5M",
+    "SV5K",
+    "SV4K",
+    "SV4M",
+    "SV4A"
+  ],
+  "queued_set_number_groups": 1497,
+  "queued_catalog_records": 1497,
+  "set_distribution": {
+    "SV8A": 3,
+    "SV-P": 278,
+    "SV8": 138,
+    "SV7A": 94,
+    "SV7": 135,
+    "SV6A": 94,
+    "SV6": 133,
+    "SV5A": 96,
+    "SV5M": 100,
+    "SV5K": 100,
+    "SV4K": 95,
+    "SV4M": 95,
+    "SV4A": 136
+  },
+  "exclusions": {
+    "multiple_source_versions": 238,
+    "already_official_metadata": 89,
+    "reference_identity_conflict": 2,
+    "missing_or_multiple_references": 40,
+    "original_supported_cohort": 100
+  },
+  "queue_sha256": "419963ef80a3816c062e53c2fcfb24bcb40aff98e122ec7e8be7c5831ac06851",
+  "baseline_manifest": "catalog-build-manifest-metadata-v1.json",
+  "baseline_manifest_sha256": "39d35cb8dc1c376af6c8514a0147337df712bbb2bad83258e4803a096de810ad",
+  "baseline_snapshot_sha256": "5bea23ce27b4b0eaa30170a11b8e8cea1b9d70378a753757dfd1a37c9c0dfb3f",
+  "selection_uses_market_volume": false,
+  "official_pages_fetched": 0,
+  "approved_records": 0,
+  "scope": "review queue only; no physical equivalence or commerce approval",
+  "queue_bytes_match_original": true,
+  "original_queue_sha256": "419963ef80a3816c062e53c2fcfb24bcb40aff98e122ec7e8be7c5831ac06851"
+}

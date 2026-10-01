@@ -28,7 +28,7 @@ def graph_semantic_response(response):
     return value
 
 
-def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None, expansion_rehearsal: Path | None = None, manifest: Path = Path('catalog-build-manifest-evidence-v1.json'), journey_rehearsal: Path | None = None):
+def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None, expansion_rehearsal: Path | None = None, manifest: Path = Path('catalog-build-manifest-evidence-v1.json'), journey_rehearsal: Path | None = None, verified_date='2026-10-01'):
     if output.exists():raise FileExistsError('deployment evidence must be new')
     project='pivota-staging';region='us-west1';name='pokemon-commerce-index'
     def gcloud(*args):
@@ -232,7 +232,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
                 deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/card_metadata.py','pokemon_index/metadata_views.sql','pokemon_index/discovery_graph.py','pokemon_index/card_rarity.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
-                verified_date='2026-10-01',real_market_observations=0,live_feed_enabled=False,
+                verified_date=verified_date,real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(dict(revision=revision,collector_cases=len(checks),inventory_cases=len(inventory_checks),authenticated_http_requests=report['authenticated_http_requests'],unauthenticated_status=403)))
@@ -245,4 +245,5 @@ if __name__=='__main__':
     p.add_argument('--expansion-rehearsal',type=Path)
     p.add_argument('--manifest',type=Path,default=Path('catalog-build-manifest-evidence-v1.json'))
     p.add_argument('--journey-rehearsal',type=Path)
-    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal,a.expansion_rehearsal,a.manifest,a.journey_rehearsal)
+    p.add_argument('--verified-date',default='2026-10-01')
+    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal,a.expansion_rehearsal,a.manifest,a.journey_rehearsal,a.verified_date)

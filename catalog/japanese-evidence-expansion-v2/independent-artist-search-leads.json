@@ -1,0 +1,24 @@
+{
+  "schema": "pokemon.artist-independent-search-leads.v1",
+  "searched_date": "2026-10-02",
+  "automatic_import_allowed": false,
+  "findings": [
+    {
+      "card_id": "ja:M6:110/076:holo",
+      "credit": "Kazuki Minami",
+      "sources": [
+        "https://www.pokemon-card.com/card-search/details.php/card/50551/regu/all",
+        "https://asia.pokemon-card.com/tw/card-search/detail/19664/"
+      ],
+      "scope": "Search results corroborate the credit on official Japanese and regional pages. A regional number match is not a counterpart/printing assertion. No seed correction or artist alias imported."
+    },
+    {
+      "card_id": "ja:M-P:046/M-P:normal",
+      "credit": "5ban GraSV-Phics",
+      "sources": [
+        "https://www.pokemon-card.com/card-search/details.php/card/48481"
+      ],
+      "scope": "Independent search reproduces the conflicting official string. It does not prove the printed credit or a typo correction."
+    }
+  ]
+}

@@ -13,6 +13,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CatalogBuildManifestTests(unittest.TestCase):
+    def test_second_japanese_cohort_is_disjoint_and_preserves_evidence_gates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)/'metadata-v2.sqlite3'
+            result=build(ROOT/'catalog-build-manifest-metadata-v2.json',output)
+            self.assertEqual((result['current_official_metadata_cards'],result['official_known_rarity_cards']), (2497,1900))
+            self.assertEqual((result['match_eligible'],result['current_supported_targets']), (33543,100))
+            first=[json.loads(l) for l in (ROOT/'catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl').read_text().splitlines()]
+            second=[json.loads(l) for l in (ROOT/'catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.jsonl').read_text().splitlines()]
+            self.assertFalse({r['card_id'] for r in first}&{r['card_id'] for r in second})
+            with sqlite3.connect(output) as db:
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM active_card_metadata_evidence e JOIN supported_card s ON e.card_id=s.card_id').fetchone()[0],0)
+                self.assertTrue(all(db.execute('SELECT evidence_id FROM card_metadata_evidence WHERE card_id=?',(r['card_id'],)).fetchone()[0]==r['evidence_id'] for r in first))
+                for cid in ['ja:SV-P:111/SV-P:normal','ja:SV-P:198/SV-P:normal','ja:SV8:012/106:normal']:
+                    self.assertEqual(db.execute("SELECT COUNT(*) FROM discovery_card_facet WHERE card_id=? AND facet_type='illustrator'",(cid,)).fetchone()[0],0)
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM observation').fetchone()[0],0)
+                self.assertEqual(db.execute('SELECT SUM(display_allowed) FROM card').fetchone()[0],0)
+
     def test_japanese_metadata_batch_preserves_printing_and_offer_gates(self):
         with tempfile.TemporaryDirectory() as directory:
             output=Path(directory)/'metadata.sqlite3'

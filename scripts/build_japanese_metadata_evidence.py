@@ -21,7 +21,10 @@ def build(queue, audit, baseline, output):
     try:
         for review in reviewed:
             if review['decision'] != 'exact_metadata_agreement':
-                holds.append(review['queue']['collector_number'])
+                holds.append(dict(set_code=review['queue']['set_code'],
+                    collector_number=review['queue']['collector_number'],
+                    decision=review['decision'],official_url=review['queue']['candidate_official_url'],
+                    error_type=review.get('error_type')))
                 continue
             q, official = review['queue'], review['official']
             for seed in q['catalog_records']:

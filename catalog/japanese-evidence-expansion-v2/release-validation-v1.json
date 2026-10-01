@@ -1,0 +1,38 @@
+{
+  "schema": "pokemon.japanese-metadata-release-validation.v1",
+  "date": "2026-10-02",
+  "python_tests": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "passed": 433,
+    "failed": 0
+  },
+  "queue_hold_artifact_regression": {
+    "command": "python3 -m unittest tests.test_japanese_metadata_queue -q",
+    "passed": 2,
+    "failed": 0
+  },
+  "node_tests": {
+    "command": "node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs",
+    "passed": 11,
+    "failed": 0
+  },
+  "independent_accuracy_measurement": false,
+  "real_market_observations": 0,
+  "discovery_rehearsal": {
+    "constructed_questions": 20,
+    "numbered_part_journeys": 4,
+    "graph_checks": 7
+  },
+  "cloud_revision": "pokemon-commerce-index-00026-9lt",
+  "cloud_authenticated_logical_requests": 48,
+  "evidence_sha256": {
+    "catalog-build-manifest-metadata-v2.json": "b1820dcf12c53bb6cdaec051b0cfbc4324cb202c9356ffef99cc47de0fdee593",
+    "catalog/japanese-evidence-expansion-v2/queue.jsonl": "419963ef80a3816c062e53c2fcfb24bcb40aff98e122ec7e8be7c5831ac06851",
+    "catalog/japanese-evidence-expansion-v2/official-audit-v1.jsonl": "022f9d8ce24fd295634166c72f84c17133fa86a7fe06143fd0bbc741d48b4ae8",
+    "catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.jsonl": "3c7450fff02ff605786c64feb2bef3ed2d43ee143b19185d64d3f49ec640ff05",
+    "catalog/japanese-evidence-expansion-v2/discovery-rehearsal-v1.json": "aaeb1221fa653523fb668bffba71725facb56fcea66aec646fda1a7fc324b8d2",
+    "catalog/japanese-evidence-expansion-v2/next-evidence-holds.jsonl": "d487d19f54469b7989cdf7015946975f66896f0505adc599215b52ac5f9fda3a",
+    "cloud-deployment-20261002-japanese-metadata-v2.json": "d2541c440a25fefe74648dd18fd97288dbae47759ba42a2800001b1f5ba4b3b2"
+  },
+  "limitation": "Coordinate metadata only. Ten artist conflicts remain withheld. Gemini advisory text lacked grounding supports; no AI-based artist correction imported. Physical-copy, counterpart, public-display and live-feed gates remain open."
+}

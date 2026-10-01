@@ -16,12 +16,23 @@ QUESTIONS=['Japanese M6A 136/103','Japanese M6 110/076','Japanese M-P 135/M-P',
  'English counterpart of Japanese M-P 135/M-P','Cheapest Japanese Pikachu card']
 
 
-def run(path, baseline, output):
+def run(path, baseline, output, queue=None, metadata_count=1000):
     if output.exists():raise FileExistsError(output)
     before=hashlib.sha256(path.read_bytes()).hexdigest();results=[];journeys=[];graphs=[]
+    questions=QUESTIONS
+    queued=[]
+    if queue is not None:
+        queued=[json.loads(l) for l in queue.read_text().splitlines()]
+        by_set={}
+        for row in queued:by_set.setdefault(row['set_code'],[]).append(row)
+        # Constructed source-coordinate regression cases, not a blind sample.
+        questions=['Japanese '+s+' '+max(rows,key=lambda r:int(r['collector_number'].split('/')[0]))['collector_number']
+                   for s,rows in by_set.items()]
+        questions+=QUESTIONS[9:13]+['Japanese Yuka Morii cards',
+            'English counterpart of Japanese SV8 132/106','Cheapest Japanese Pikachu card']
     with closing(core.connect(path,readonly=True)) as db,closing(core.connect(baseline,readonly=True)) as old:
         revision=collector_journey.catalog_revision(db)
-        for i,q in enumerate(QUESTIONS):
+        for i,q in enumerate(questions):
             ids=[];offset=0;first=None
             while True:
                 r=collector_discovery.execute(db,q,limit=100,offset=offset)
@@ -42,15 +53,16 @@ def run(path, baseline, output):
             assert all(n.get('price_comparable') is False for n in r['metadata_neighbors'].values() if n.get('total'))
             assert r['relationships']==[]
             graphs.append(r)
+        batch_filter=(' AND e.card_id IN ('+','.join('?' for _ in queued)+')') if queued else ''
         candidates=db.execute("""SELECT e.card_id FROM active_card_metadata_evidence e
           WHERE json_extract(record_json,'$.official.page_kind')='single_number'
           AND json_array_length(record_json,'$.official.illustrators')>0
           AND NOT EXISTS(SELECT 1 FROM card_facet f WHERE f.card_id=e.card_id AND facet_type='illustrator')
-          ORDER BY e.card_id LIMIT 5""").fetchall()
+          """+batch_filter+" ORDER BY e.card_id LIMIT 5",[r['catalog_records'][0]['card_id'] for r in queued]).fetchall()
         for row in candidates:
             r=discovery_graph.card_neighborhood(db,row['card_id']);assert r['metadata_neighbors']['same_illustrator']['total']>0
             graphs.append(r)
-        assert card_metadata.status(db)['current_official_metadata_cards']==1000
+        assert card_metadata.status(db)['current_official_metadata_cards']==metadata_count
         assert db.execute('SELECT COUNT(*) FROM observation').fetchone()[0]==0
         summary=core.catalog_status(db);summary.pop('set_coverage')
     assert before==hashlib.sha256(path.read_bytes()).hexdigest()
@@ -65,4 +77,6 @@ def run(path, baseline, output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('db','baseline','output'):p.add_argument('--'+name,type=Path,required=True)
-    a=p.parse_args();print(json.dumps(run(a.db,a.baseline,a.output),ensure_ascii=False))
+    p.add_argument('--queue',type=Path)
+    p.add_argument('--metadata-count',type=int,default=1000)
+    a=p.parse_args();print(json.dumps(run(a.db,a.baseline,a.output,a.queue,a.metadata_count),ensure_ascii=False))

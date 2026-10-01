@@ -175,7 +175,7 @@ The [prepared 1,000-record review queue](catalog/japanese-evidence-next-v1/queue
 
 ## 1 October 2026 — 1,000 official Japanese metadata records
 
-The current [`catalog-build-manifest-metadata-v1.json`](catalog-build-manifest-metadata-v1.json) adds one SHA-256 checked input to the previous 38. It imports [1,000 append-only metadata evidence records](catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl), each bound to its original catalog identity, pinned source reference, exact official page, response hash and retrieval timestamp. These enrich existing identities; the catalog remains **70,005 internal records**, with **33,543 structurally eligible records**. The existing 100-target supported cohort remains separately defined and disjoint from this metadata batch. No physical-printing allowlist or market permission expands.
+The first metadata [`catalog-build-manifest-metadata-v1.json`](catalog-build-manifest-metadata-v1.json) adds one SHA-256 checked input to the previous 38. It imports [1,000 append-only metadata evidence records](catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl), each bound to its original catalog identity, pinned source reference, exact official page, response hash and retrieval timestamp. These enrich existing identities; the catalog remains **70,005 internal records**, with **33,543 structurally eligible records**. The existing 100-target supported cohort remains separately defined and disjoint from this metadata batch. No physical-printing allowlist or market permission expands.
 
 | Measure | Result |
 |---|---:|
@@ -215,6 +215,43 @@ python3 -m scripts.build_catalog_snapshot \
 ```
 
 Next evidence work should resolve the seven artist conflicts from independent exact-card sources and image credits, extend the remaining Japanese coordinate cohort, and keep physical finish/edition and cross-language price equivalence as separate evidence tasks. The 251 pages without a rarity declaration must not be filled by filename or rarity-distribution guesses.
+
+## 2 October 2026 — another 1,497 official Japanese coordinates
+
+The current [`catalog-build-manifest-metadata-v2.json`](catalog-build-manifest-metadata-v2.json) has **40 ordered SHA-256 checked inputs**. It adds [1,497 official metadata records](catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.jsonl), disjoint from the previous 1,000 and the original 100 supported targets. All 1,497 official pages agree on name, release code and collector number. The catalog still contains **70,005 source-version/family records**, **33,543 structurally eligible records** and zero public display approvals; this batch strengthens existing metadata rather than adding physical-printing identities.
+
+| Measure | This batch | Cumulative official metadata |
+|---|---:|---:|
+| Exact source-coordinate records | 1,497 | 2,497 |
+| Recognized official rarity | 1,151 | 1,900 |
+| No official rarity icon | 346 | 597 |
+| Unrecognized rarity icon | 0 | 0 |
+| Numbered-part page records | 0 | 4 |
+| Artist conflicts excluded from discovery facets | 3 | 10 |
+
+The [queue](catalog/japanese-evidence-expansion-v2/queue.jsonl), [initial selection audit](catalog/japanese-evidence-expansion-v2/queue.summary.json), [exact reproduction check](catalog/japanese-evidence-expansion-v2/queue-reproduction-check.json), [official audit](catalog/japanese-evidence-expansion-v2/official-audit-v1.summary.json) and [import evidence summary](catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.summary.json) are frozen. Release distribution: SV8A 3, SV-P 278, SV8 138, SV7A 94, SV7 135, SV6A 94, SV6 133, SV5A 96, SV5M 100, SV5K 100, SV4K 95, SV4M 95 and SV4A 136. The deterministic selector excludes 238 groups with multiple source versions, 89 already checked groups, 100 original supported targets, 40 missing/multiple reference groups and two reference-name conflicts. The 280 pending source/identity groups are retained with original variants, names and references in [the next evidence queue](catalog/japanese-evidence-expansion-v2/next-evidence-holds.jsonl). Those omissions need separate evidence; they are not silently resolved. Selection is engineering coverage, not observed demand or GMV.
+
+Most of this cohort already had seed facets. Effective character/artist discovery coverage rises from 40,662 / 45,493 to **40,666 / 45,500** after conflict suppression. The benefit is exact official provenance and rarity evidence across another 1,497 coordinates, not 1,497 new graph relationships. Original source rows, original 1,000 metadata events, supported-target membership and physical-copy gates remain unchanged.
+
+Three new artist conflicts are held: SV-P 111/SV-P and SV8 012/106 have seed `0313` versus official display `313`; SV-P 198/SV-P has Susumu Maeya versus Kariya. A search-enabled Gemini retry for the original seven conflicts returned six advisory responses and one timeout; [its assessment](catalog/japanese-evidence-expansion-v2/previous-artist-retry-assessment.json) records that none returned grounding chunks/supports. The [new-conflict assessment](catalog/japanese-evidence-expansion-v2/new-artist-triage-assessment.json) records one ungrounded advisory response and two timeouts. Suggested URLs and confident explanations are research leads, not independent scan or search evidence. All ten conflicting artist facets remain excluded. Separate [official search leads](catalog/japanese-evidence-expansion-v2/independent-artist-search-leads.json) corroborate two page declarations but do not import a seed correction, artist alias or cross-region assertion.
+
+The [constructed development rehearsal](catalog/japanese-evidence-expansion-v2/discovery-rehearsal-v1.json) covers one exact coordinate in each of the 13 releases, a character/artist scope, blocked counterpart/price requests, four preserved numbered-part journey blockers and seven graph checks. **433 Python and 11 Node tests pass**. Private Cloud Run revision `pokemon-commerce-index-00026-9lt` passed [48 authenticated logical requests](cloud-deployment-20261002-japanese-metadata-v2.json), with unauthenticated access rejected. These checks verify engineering behavior, not blind real-listing precision or independent recommendation accuracy. No marketplace listing, price, paid transaction or fulfillment outcome was added.
+
+Rebuild and prepare the same untouched-coordinate queue using new output files:
+
+```bash
+python3 -m scripts.build_catalog_snapshot \
+  --manifest catalog-build-manifest-metadata-v1.json --db /tmp/japanese-metadata-baseline.sqlite3
+python3 -m scripts.prepare_japanese_metadata_queue \
+  --baseline /tmp/japanese-metadata-baseline.sqlite3 \
+  --manifest catalog-build-manifest-metadata-v1.json \
+  --sets SV8A SV-P SV8 SV7A SV7 SV6A SV6 SV5A SV5M SV5K SV4K SV4M SV4A \
+  --output /tmp/japanese-next-queue.jsonl
+python3 -m scripts.build_catalog_snapshot \
+  --manifest catalog-build-manifest-metadata-v2.json --db /tmp/japanese-metadata-v2.sqlite3
+```
+
+Next prioritize source-name conflicts and multiple-version groups with exact official pages and printed-credit/variant evidence. Unknown rarity declarations stay unknown; a printing split or offer permission requires its own positive evidence. Authorized live listing discovery, matching/freshness measurement and Buy&Ship transaction handoff remain the external gates.
 
 ## Character and artist discovery facets
 

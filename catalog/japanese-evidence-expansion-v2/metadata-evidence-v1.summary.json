@@ -1,0 +1,66 @@
+{
+  "queue_sha256": "419963ef80a3816c062e53c2fcfb24bcb40aff98e122ec7e8be7c5831ac06851",
+  "audit_sha256": "022f9d8ce24fd295634166c72f84c17133fa86a7fe06143fd0bbc741d48b4ae8",
+  "evidence_sha256": "3c7450fff02ff605786c64feb2bef3ed2d43ee143b19185d64d3f49ec640ff05",
+  "reviewed_number_groups": 1497,
+  "official_metadata_records": 1497,
+  "recognized_rarity": 1151,
+  "no_rarity_icon": 346,
+  "unrecognized_rarity": 0,
+  "numbered_parts": 0,
+  "set_distribution": {
+    "SV8A": 3,
+    "SV-P": 278,
+    "SV8": 138,
+    "SV7A": 94,
+    "SV7": 135,
+    "SV6A": 94,
+    "SV6": 133,
+    "SV5A": 96,
+    "SV5M": 100,
+    "SV5K": 100,
+    "SV4K": 95,
+    "SV4M": 95,
+    "SV4A": 136
+  },
+  "held_number_groups": [],
+  "facet_disagreements": [
+    {
+      "card_id": "ja:SV-P:111/SV-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "0313"
+      ],
+      "official_page_values": [
+        "313"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/44406"
+    },
+    {
+      "card_id": "ja:SV-P:198/SV-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "Susumu Maeya"
+      ],
+      "official_page_values": [
+        "Kariya"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/49610"
+    },
+    {
+      "card_id": "ja:SV8:012/106:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "0313"
+      ],
+      "official_page_values": [
+        "313"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/46352"
+    }
+  ],
+  "scope": "official coordinate metadata; version/physical copy and cross-region price equivalence unverified"
+}
