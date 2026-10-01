@@ -10,7 +10,7 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog
+from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence
 from pokemon_index.cli import read_jsonl
 
 def import_ai_artwork_proposals(db, rows) -> int:
@@ -38,6 +38,7 @@ OPERATIONS = {
     "import-supported-cards": supported_catalog.import_supported,
     "import-character-families": supported_catalog.import_families,
     "import-concept-review-bundle": core.import_concept_review_bundle,
+    "import-collector-evidence": collector_evidence.import_evidence,
 }
 
 
@@ -104,6 +105,10 @@ def build(manifest_path: Path, output: Path) -> dict:
                         "release_evidence_records", "vocabulary_records", "character_families"):
                 if key in manifest.get("expected", {}):
                     actual[key] = supported[key]
+            if 'collector_evidence_events' in manifest.get('expected',{}):
+                actual['collector_evidence_events']=db.execute('SELECT COUNT(*) FROM catalog_collector_evidence').fetchone()[0]
+                for key,value in collector_evidence.status(db).items():
+                    if 'collector_'+key in manifest['expected']:actual['collector_'+key]=value
             if actual != manifest.get("expected"):
                 raise ValueError(f"catalog build counts differ: {actual}")
         os.replace(temporary, output)

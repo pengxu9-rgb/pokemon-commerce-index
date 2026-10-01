@@ -14,7 +14,7 @@ from scripts.public_question_sandbox import sha_file
 from pokemon_index import core,collector_inventory
 
 
-def verify(local_report: Path, output: Path, inventory_db: Path | None = None):
+def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None):
     if output.exists():raise FileExistsError('deployment evidence must be new')
     project='pivota-staging';region='us-west1';name='pokemon-commerce-index'
     def gcloud(*args):
@@ -106,12 +106,38 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None):
         assert query('/collector-inventory',raw_body=b'not json')[0]==400
         assert query('/collector-inventory',body=dict(question=question,owned_items=[]),auth=False)[0]==403
         assert sha_file(inventory_db)==before
+    evidence_checks=[]
+    if evidence_rehearsal is not None:
+        rehearsal=json.loads(evidence_rehearsal.read_text())
+        code,current=query('/collector-evidence-status')
+        assert code==200 and current==rehearsal['status']
+        for item in rehearsal['source_queries']:
+            code,actual=query('/collector-discovery',{'q':item['question']})
+            assert code==200 and actual==item['actual'],item['question']
+            evidence_checks.append(dict(question=item['question'],passed=True))
+        code,mew=query('/collector-discovery',{'q':'Japanese Mew cameos in card art'})
+        assert code==200 and mew==rehearsal['mew_proposed_only'] and not mew['cards']
+        code,context=query('/catalog-evidence',{'card_id':'ja:SV2A:173/165:holo'})
+        assert code==200 and context==rehearsal['source_queries'][0]['actual']['cards'][0]['collector_evidence']
+        for k in ['synthetic_owned_inventory','ai_only_inventory_blocker']:
+            expected=rehearsal[k]
+            payload=dict(question=expected['question'],owned_items=[dict(item_id='synthetic',card_id='ja:SV2A:173/165:holo')] if k=='synthetic_owned_inventory' else [])
+            code,actual=query('/collector-inventory',body=payload)
+            assert code==200 and actual==expected,k
+        assert query('/catalog-evidence',{'card_id':'unknown'})[0]==400
+        for question in ['Japanese 151 Mew cameos','Japanese Mew cameos SV-P 120/SV-P',
+                         'Japanese Gengar cameos SV2A 180/165','English Gengar cameos','Japanese Gengar cameos master ball']:
+            code,scoped=query('/collector-discovery',{'q':question})
+            assert code==200 and not scoped['cards'] and not scoped.get('artwork_review_leads'),question
+            evidence_checks.append(dict(question=question,passed=True,scope_guard=True))
+        evidence_checks.extend([dict(id=k,passed=True) for k in ['status','mew_proposed_only','card_context','owned_cameo_inventory','ai_only_inventory_blocked','unknown_card_rejected']])
     # Detect another rollout during the diagnostic instead of attributing mixed results.
     assert gcloud('run','services','describe',name,'--region='+region)['status']['latestReadyRevisionName']==revision
     report=dict(project=project,region=region,service=name,revision=revision,url=url,
                 image_digest=detail['status']['imageDigest'],private_iam_verified=True,
                 unauthenticated_http_status=403,catalog_status=status,supported_status=support,
                 collector_checks=checks,inventory_checks=inventory_checks,
+                collector_evidence_checks=evidence_checks,
                 inventory_invalid_input_checks=2 if inventory_db is not None else 0,
                 inventory_unauthenticated_http_status=403 if inventory_db is not None else None,
                 inventory_assertions_synthetic=True if inventory_db is not None else None,
@@ -121,7 +147,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None):
                 ordinary_figure_out_phrase_check=True,
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
-                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile','catalog-build-manifest-discovery-v1.json']},
+                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_evidence.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile','catalog-build-manifest-evidence-v1.json']},
                 verified_date='2026-10-01',real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
@@ -131,4 +157,5 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--local-report',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--inventory-db',type=Path)
-    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db)
+    p.add_argument('--evidence-rehearsal',type=Path)
+    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal)

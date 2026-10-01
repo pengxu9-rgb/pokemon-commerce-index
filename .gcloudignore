@@ -41,3 +41,6 @@ catalog/supported-discovery-v1/*
 !catalog/supported-discovery-v1/supported-cards.jsonl
 !catalog/supported-discovery-v1/families.jsonl
 !catalog/*consensus*.bundle.json
+!catalog/collector-evidence-v1/
+catalog/collector-evidence-v1/*
+!catalog/collector-evidence-v1/evidence-events.jsonl

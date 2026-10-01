@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "card_id": "ja:SV-P:197/SV-P:normal",
+      "image_sha256": "591525ab768def988abf317864c1c529bb519a922e35f592c5974bca37f7ce20",
+      "reviewer": "Codex visual inspection",
+      "reviewer_kind": "AI",
+      "review_scope": "independent inspection before Gemini result",
+      "dex_id": 151,
+      "outcome": "visible",
+      "detail": "Pink Mew with long curved tail is clearly visible on the left side of the stadium illustration.",
+      "agrees_with_gemini": true,
+      "review_status": "proposed",
+      "physical_finish_verified": false
+    },
+    {
+      "card_id": "ja:SV-P:120/SV-P:normal",
+      "image_sha256": "2bdd76fc8a2484c1e0d629b4d0ea6bcf4d2ad8fd7d23cee5bd6f9b6ce69b5c40",
+      "reviewer": "Codex visual inspection",
+      "reviewer_kind": "AI",
+      "review_scope": "independent inspection before Gemini result",
+      "dex_id": 6,
+      "outcome": "visible",
+      "detail": "Charizard with blue-green inner wings and a visible flame appears on the right side of the stadium illustration.",
+      "agrees_with_gemini": true,
+      "review_status": "proposed",
+      "physical_finish_verified": false
+    }
+  ],
+  "sample_selection": "Two contrasting promos selected from the source question; not a random precision audit.",
+  "verified_edges_added": 0,
+  "interpretation": "AI spot checks, not human labeling or population accuracy. Both findings remain proposed."
+}

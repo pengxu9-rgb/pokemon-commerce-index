@@ -1,0 +1,13 @@
+{
+  "schema": "pokemon.collector-research-record.v1",
+  "recorded_after_review": true,
+  "queue_sha256": "4776c439dd4585261b3a894e1e0637866262ad0eb5e2d4eb2cac9ceb3d29b4bf",
+  "checkpoint_sha256": "33c57e7bcf367f5c74fe2d61aeb863c03827b53b34779678595ea21a5666ae10",
+  "runtime_files_sha256": {
+    "scripts/review_collector_artwork.py": "ca6be212e49a549b258244852c0172baf771cd7a1ef0bbd06a43b0f7be483128",
+    "scripts/official_jp_image_evidence.py": "b9c545671a14986e444812d77a915603d36930f0c3d8a99ade6d332f0a0de51b",
+    "scripts/vertex_concept_review.py": "da0b6e2f7221b1505c2c56c211884bf13064c79844612b95e63d849ce6b9bff4",
+    "scripts/build_collector_evidence.py": "8f04ec66c7f2568c506626db2c0420246111173a36ecd0d073779d40c9c9c671"
+  },
+  "interpretation": "Retrospective runtime provenance for this completed research batch; not a preregistered or held-out review lock. Queue and model prompt/image hashes are retained individually."
+}

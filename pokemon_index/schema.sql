@@ -87,6 +87,22 @@ CREATE TABLE IF NOT EXISTS character_family_member (
 );
 
 -- Source snapshots remain immutable; official-page corrections overlay them.
+-- Collector evidence is scoped research, separate from verified card-pair edges.
+CREATE TABLE IF NOT EXISTS catalog_collector_evidence (
+  event_id TEXT PRIMARY KEY,
+  subject_kind TEXT NOT NULL CHECK(subject_kind IN ('card','release')),
+  subject_id TEXT NOT NULL,
+  claim TEXT NOT NULL CHECK(claim IN ('depicted_pokemon','finish_exists')),
+  value TEXT NOT NULL,
+  role TEXT NOT NULL,
+  evidence_kind TEXT NOT NULL,
+  status TEXT NOT NULL CHECK(status IN ('source_supported','proposed','withdrawn')),
+  identity_sha256 TEXT NOT NULL,
+  record_json TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS collector_evidence_lookup
+  ON catalog_collector_evidence(subject_kind,subject_id,claim,value);
+
 CREATE TABLE IF NOT EXISTS card_identity_exception (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),
   original_name TEXT NOT NULL,

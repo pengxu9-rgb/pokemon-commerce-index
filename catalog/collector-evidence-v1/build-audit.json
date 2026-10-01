@@ -1,0 +1,33 @@
+{
+  "visual_targets": 20,
+  "model_reviews_completed": 18,
+  "excluded": [
+    {
+      "card_id": "ja:SV2A:172/165:holo",
+      "status": "review_failed",
+      "reason": "review or printed identity unresolved"
+    },
+    {
+      "card_id": "ja:SV2A:178/165:holo",
+      "status": "review_failed",
+      "reason": "review or printed identity unresolved"
+    }
+  ],
+  "source_supported": 9,
+  "proposed": 35,
+  "official_named_depictions_not_returned_by_model": [
+    {
+      "card_id": "ja:SV2A:173/165:holo",
+      "dex_id": 39
+    },
+    {
+      "card_id": "ja:SV2A:180/165:holo",
+      "dex_id": 139
+    }
+  ],
+  "events_sha256": "2aec4e1500da8f13363f9308547a45f8aa837398a5ab4d3b4b06c2e6fdf4c6a1",
+  "queue_sha256": "4776c439dd4585261b3a894e1e0637866262ad0eb5e2d4eb2cac9ceb3d29b4bf",
+  "review_sha256": "33c57e7bcf367f5c74fe2d61aeb863c03827b53b34779678595ea21a5666ae10",
+  "images_redistributed": false,
+  "interpretation": "Source declarations and proposed visual findings; purposive non-blind diagnostic, not depiction precision, physical printing verification or graph-pair promotion."
+}

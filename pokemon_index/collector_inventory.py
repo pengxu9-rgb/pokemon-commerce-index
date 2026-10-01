@@ -9,7 +9,7 @@ from . import core,collector_discovery
 
 MAX_ITEMS=1000
 MAX_SCOPE=10000
-SCOPED_TASKS={'artist_cards','character_cards','family_checklist','set_cards','exact_coordinates','printing_variants'}
+SCOPED_TASKS={'artist_cards','character_cards','family_checklist','set_cards','exact_coordinates','printing_variants','artwork_evidence_needed'}
 
 
 def _text(value, field, maximum=100):

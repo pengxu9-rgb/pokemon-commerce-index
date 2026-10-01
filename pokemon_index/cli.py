@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
-from . import collector_discovery, collector_inventory, supported_catalog
+from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence
 
 
 def read_jsonl(path: str):
@@ -80,6 +80,10 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                         result = core.catalog_status(db)
                     elif internal_catalog_api and parsed.path == "/supported-status":
                         result = supported_catalog.status(db)
+                    elif internal_catalog_api and parsed.path == '/collector-evidence-status':
+                        result=collector_evidence.status(db)
+                    elif internal_catalog_api and parsed.path == '/catalog-evidence':
+                        result=collector_evidence.card_context(db,value('card_id'))
                     elif internal_catalog_api and parsed.path == "/collector-discovery":
                         result = collector_discovery.execute(db,value("q"),
                                    limit=int(value("limit","50")),offset=int(value("offset","0")))
@@ -266,6 +270,11 @@ def main() -> None:
     inventory=sub.add_parser('collector-inventory',help='compare a user-asserted inventory to scoped internal catalog records')
     inventory.add_argument('file',help='JSON containing question, owned_items and optional pagination')
     sub.add_parser("supported-status", help="positive metadata support and deployed alias coverage")
+    sub.add_parser('collector-evidence-status',help='scoped official declarations and proposed artwork findings')
+    evidence_import=sub.add_parser('import-collector-evidence')
+    evidence_import.add_argument('file')
+    evidence_context=sub.add_parser('catalog-evidence')
+    evidence_context.add_argument('card_id')
     server.add_argument("--host", default="127.0.0.1")
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
     server.add_argument("--internal-catalog-api", action="store_true",
@@ -320,6 +329,11 @@ def main() -> None:
     if args.command=='collector-inventory':
         with closing(core.connect(args.db,readonly=True)) as db:
             output=collector_inventory.compare(db,json.loads(Path(args.file).read_text(encoding='utf-8')))
+        print(json.dumps(output,ensure_ascii=False,indent=2));return
+    if args.command in {'catalog-evidence','collector-evidence-status'}:
+        with closing(core.connect(args.db,readonly=True)) as db:
+            output=(collector_evidence.card_context(db,args.card_id) if args.command=='catalog-evidence'
+                    else collector_evidence.status(db))
         print(json.dumps(output,ensure_ascii=False,indent=2));return
     if args.command == "question-route-plan":
         facts = json.loads(Path(args.file).read_text(encoding="utf-8"))
@@ -483,6 +497,8 @@ def main() -> None:
             output = core.catalog_status(db)
         elif args.command == "supported-status":
             output = supported_catalog.status(db)
+        elif args.command=='import-collector-evidence':
+            output={'evidence_events':collector_evidence.import_evidence(db,read_jsonl(args.file))}
         elif args.command == "collector-discovery":
             output = collector_discovery.execute(db,args.question,limit=args.limit,offset=args.offset)
         elif args.command == "catalog-search":

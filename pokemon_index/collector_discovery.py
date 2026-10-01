@@ -9,7 +9,7 @@ import json
 import re
 import sqlite3
 import unicodedata
-from . import core, discovery_graph, supported_catalog
+from . import core, discovery_graph, supported_catalog, collector_evidence
 
 
 def _norm(text: str) -> str:
@@ -43,6 +43,8 @@ def _card_result(db, row) -> dict:
                 structural_match_eligible=bool(row["match_eligible"]),
                 support_status=supported_catalog.support_for_card(db, row["card_id"])["status"],
                 price_comparable=False, automatic_offer_join_allowed=False)
+    context=collector_evidence.card_context(db,row['card_id'])
+    if context['findings'] or context['stale_findings']:card['collector_evidence']=context
     return card
 
 
@@ -244,6 +246,41 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     explicit_family=bool(re.search(r'family|evolution|進化|进化|家族',text))
     cameo=bool(re.search(r'cameo|in (?:the )?(?:card )?art\b|appears in|appearances|カメオ|客串|映って|写って|写りこん|写り込',text))
     if cameo and not explicit_family:
+        focus=re.search(r'カード名に(.+?)(?:と書|という|が)',text)
+        target_ids=_character_ids(db,focus[1] if focus else text)
+        if len(target_ids)==1:
+            ids,leads=collector_evidence.artwork_candidates(db,target_ids,languages)
+            # Depictions do not transfer across releases, numbers or finishes.
+            pool=sorted(set(ids)|{r['subject_id'] for r in leads})
+            if pool:
+                candidate_rows=_rows(db,'c.card_id IN ('+','.join('?' for _ in pool)+')',tuple(pool))
+                codes=_release_codes(db,text,languages)
+                numbers={core.normalize_collector_number(n).upper() for n in re.findall(r'\b\d{1,3}/[a-z0-9\-]+\b',text)}
+                exact=re.search(r'\b(ja|en):([a-z0-9.\-]+):([^\s:]+):([a-z0-9_\-]+)',text)
+                exact_id=core.card_id(exact[1],exact[2],exact[3].upper(),exact[4]) if exact else None
+                allowed=set()
+                for row in candidate_rows:
+                    if codes and row['set_code'] not in codes:continue
+                    if numbers and row['collector_number'] not in numbers:continue
+                    if exact_id and row['card_id']!=exact_id:continue
+                    filtered=_finish_result(db,dict(result,task='artwork_evidence_needed'),[row],1,0)
+                    if filtered['cards']:allowed.add(row['card_id'])
+                ids=[cid for cid in ids if cid in allowed]
+                leads=[r for r in leads if r['subject_id'] in allowed]
+            if ids:
+                rows=_rows(db,'c.card_id IN ('+','.join('?' for _ in ids)+')',tuple(ids))
+                partial=_finish_result(db,dict(result,task='artwork_evidence_needed',status='scoped_artwork_partial',
+                    required_evidence=['expanded_source_bound_artwork_coverage'],
+                    next_question='These official descriptions support a partial cameo list. Which release should we inspect next?',
+                    artwork_review_leads=leads,requested_depicted_dex_ids=target_ids),rows,limit,offset)
+                partial['coverage']['artwork_cameos_supported']=True
+                partial['unfulfilled_constraints'].append('artwork_coverage_completeness')
+                return partial
+            if leads:
+                return dict(result,task='artwork_evidence_needed',status='artwork_review_needed',
+                    artwork_review_leads=leads,requested_depicted_dex_ids=target_ids,
+                    required_evidence=['independent_depiction_review','expanded_source_bound_artwork_coverage'],
+                    next_question='Inspect these source-bound AI artwork leads before adding them to a confirmed collection checklist.')
         return dict(result,task='artwork_evidence_needed',status='blocked',
                     required_evidence=['verified_depicted_character_artwork_annotations'],
                     next_question='Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.')

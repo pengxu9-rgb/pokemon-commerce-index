@@ -13,11 +13,15 @@ from pokemon_index import core, collector_discovery
 from scripts.public_question_sandbox import read_jsonl, sha_file
 
 
-def catalog_fingerprint(db) -> str:
+def catalog_fingerprint(db, *, include_collector_evidence=True) -> str:
     """Stable discovery identity/facet evidence, independent of SQLite file layout."""
     h=hashlib.sha256()
-    for table in ['card','card_facet','catalog_set_localized','catalog_vocabulary',
-                  'character_family','character_family_member']:
+    tables=['card','card_facet','catalog_set_localized','catalog_vocabulary',
+            'character_family','character_family_member']
+    if (include_collector_evidence and db.execute("SELECT 1 FROM sqlite_master WHERE name='catalog_collector_evidence'").fetchone()
+            and db.execute('SELECT 1 FROM catalog_collector_evidence LIMIT 1').fetchone()):
+        tables.append('catalog_collector_evidence')
+    for table in tables:
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]
         h.update(json.dumps([table,columns]).encode())
         for row in db.execute('SELECT * FROM '+table+' ORDER BY '+','.join(columns)):
