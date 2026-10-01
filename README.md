@@ -75,7 +75,7 @@ API 报价、商品身份和品相证据如何汇合，见 [OFFER_CONDITION_CONT
 - 对要求照片复核的 API 来源，商品必须有两家独立 AI 对正反面、卡片身份、印刷工艺和裸卡品相的一致证据，才能把**单次商品快照**关联到可计价单元。后续商品快照重新锁定；普通人工改判入口不能绕过。eBay 默认强制此门槛，其来源权限目前仍全部关闭。
 - TCGdex 日文卡组 JSON 的文本元数据适配器；不导入卡图、图片 URL、徽标或规则文本。
 - 固定 TCGdex commit 的日文目录：16,347 条可区分版本元数据；第二来源另补 10,233 条单记录与 462 条多记录同名候选，保留 24,039 条参考记录；TCGdex 另有 50 条版本歧义候选。历史 Mercari 样本指出的 S6a 094/069、095/069 另增 2 条不可自动匹配候选。日文合计 27,094 条。
-- 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。日英合计 **55,167 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。两组[官方编号分母冲突](CATALOG_COVERAGE.md)使 395 条卡暂缓精确报价匹配；加上先前 19 条身份例外，现有 **33,543 条保留自动匹配资格**。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
+- 同一固定 commit 的英文实体卡目录覆盖 Base、Mega Evolution、Scarlet & Violet、Sword & Shield、Sun & Moon：79 个卡组、18,730 条可解析版本身份及 135 条版本歧义候选。另通过官方 TCGdex 卡组 API 冻结 126 个缺口卡组的清单，新增 9,208 条未核实印刷版本的卡组＋编号候选，4 个卡组清单为空。按语言隔离卡组元数据；Pokémon TCG Pocket 数字卡不在实体卡目录。扩展前的日英基线合计 **55,167 条内部身份、543 个有卡片的语言＋卡组组合**，公开展示批准数为 0。两组[官方编号分母冲突](CATALOG_COVERAGE.md)使 395 条卡暂缓精确报价匹配；加上先前 19 条身份例外，现有 **33,543 条保留自动匹配资格**。所有身份均无实时价格；API 候选和版本歧义卡禁止自动报价匹配。
 - 内部目录命令可查卡名／卡组／卡号、同卡号的不同版本、来源和各卡组覆盖数量；该命令不对外提供 HTTP 路由，公开 API 仍遵守 `display_allowed`。
 - 内部关系图可查询同卡组／编号的版本邻居；日英对应、相同画作和收藏替代项仅作为带证据的断言进入库，经过人工核实才可作事实性探索。状态改变以新断言记录，不覆盖旧证据。结构化探索 session 保存语言、卡组、预算等约束、shortlist 和最后选定的精确卡片；只有 `match_eligible` 的卡片可进入后续 offer 跟踪。当前有 AI 提出的跨语言同画面候选边，没有自动确认的日英对应边或真实用户 session。
 - 固定 TCGdex 源另提供 59,710 条内部角色 ID／画师属性记录，覆盖 28,361 个带角色 ID 的卡片身份与 31,071 个带画师的身份。英文角色名可通过同一 Pokédex ID 找到日文的**同角色候选**，结果标记 `same_character`，不会创建同画作或日英对应印刷关系。具体范围与 4 个非标准 ID 缺口见 [CATALOG_COVERAGE.md](CATALOG_COVERAGE.md)。
@@ -105,10 +105,10 @@ python3 -m pokemon_index --db demo.sqlite3 export-pivota 'ja:SV2A:173/165:standa
 python3 -m unittest discover -s tests -v
 ```
 
-内部日英目录以同一份固定哈希清单构建；Docker staging 使用当前修正版清单，测试另保留早期冻结快照的重建检查。输出必须是新文件；构建后强制核对 55,167 条身份、33,543 条可匹配身份、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
+当前日英目录为 70,005 条内部来源版本／未解家族记录，不等于 70,005 张已验证实体卡。本次补齐 15 个英文历史系列的 14,838 条版本记录，丰富 9,135 个已有编号组合，新增 26 个组合及角色／画师信息；新增记录全部禁止报价匹配和公开展示。详见 [目录扩展审计](CATALOG_COVERAGE.md)。Docker 使用 coverage-v1 固定哈希清单；原始清单和重建测试保留。输出必须是新文件；构建核对 70,005 条记录、33,543 条原有结构匹配资格、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-discovery-v1.json --db catalog.sqlite3
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-coverage-v1.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20

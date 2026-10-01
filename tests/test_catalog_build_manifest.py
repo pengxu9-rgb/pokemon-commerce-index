@@ -13,6 +13,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CatalogBuildManifestTests(unittest.TestCase):
+    def test_coverage_expansion_keeps_source_versions_out_of_commerce(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "expanded.sqlite3"
+            result = build(ROOT / "catalog-build-manifest-coverage-v1.json", output)
+            self.assertEqual((result["printings"], result["match_eligible"]), (70005, 33543))
+            db = sqlite3.connect(f"file:{output}?mode=ro", uri=True)
+            try:
+                self.assertEqual(db.execute("""SELECT COUNT(*),SUM(match_eligible),SUM(display_allowed)
+                    FROM card WHERE json_extract(attributes_json,'$.expansion_batch')='english-history-v1'""").fetchone(), (14838, 0, 0))
+                self.assertEqual(db.execute("SELECT name FROM card WHERE card_id='en:2011BW:001/012:holo'").fetchone()[0], "Snivy")
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM card_facet WHERE card_id='en:2011BW:001/012:holo'").fetchone()[0], 2)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM card_relationship_assertion WHERE review_status='verified'").fetchone()[0], 0)
+                self.assertEqual(result["current_supported_targets"], 100)
+            finally:
+                db.close()
+
     def test_rebuilds_documented_snapshot(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "catalog.sqlite3"

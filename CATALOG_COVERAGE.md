@@ -147,6 +147,32 @@ Batch image and official-page review must resolve the exact printing before
 any catalog split or offer matching. No new card identities or match permissions
 were added by either queue.
 
+## 1 October 2026 — English historical source coverage
+
+The current build is [`catalog-build-manifest-coverage-v1.json`](catalog-build-manifest-coverage-v1.json): **70,005 internal records**, comprising 27,094 Japanese and 42,911 English records across the same 543 card-bearing language/set combinations. These are source-declared version identities and unresolved family placeholders, **not 70,005 verified distinct physical cards**. There are 24,144 Japanese and 21,293 English set/number groups; language, printing, finish and cross-region equivalence remain separate questions.
+
+This batch parses the remaining 15 English physical series in the same pinned TCGdex revision: XY, Black & White, Diamond & Pearl, Platinum, HeartGold & SoulSilver, EX, E-Card, Neo, Gym, Legendary Collection, Call of Legends, POP, McDonald's Collection, Trainer kits and Miscellaneous. The [batch audit](catalog/english-history-v1/audit.json) distinguishes:
+
+- **14,838 added source-version records** in 121 already indexed sets.
+- **9,135 previously indexed set/number groups enriched**, plus **26 new groups**. Most of the increase adds metadata to previously list-only families; it does not expand unique-card breadth by 14,838.
+- 26,592 new role/artist facet rows, including Pokédex IDs on 12,225 records and illustrator names on 14,326. Total facet coverage is now 40,586 records with character IDs and 45,397 with illustrator names.
+- 14,793 added category/subtype declarations; 45 records remain unclassified. There are 153 extraction gaps, including 33 ambiguous variant files. These are retained in the source gap audit.
+- Every added record is **match-disabled and display-disabled**. Existing eligibility remains 33,543; supported metadata targets remain 100; verified counterpart assertions and approved automatic offer joins remain zero. No prices, offers or marketplace photos were imported.
+
+API family IDs are retained for provenance and existing references. They are not silently equated with newly parsed source variants. A physical printing, price comparison or owned-copy equivalence needs its own evidence. Character/artist retrieval can use the new facets immediately; a shared character or artist is not a cross-language printing edge.
+
+The batch verifies **9,454 source Git blobs** (card files, headers and license) against the pinned tree before extraction. The recovered complete source archive has SHA-256 `858b99b8e2a0f1dc5f74ffcb102cb47ba59a46e8a71a8f9ad52ad58be76e1c39`. The previous download was truncated; it was not used for this import. The original sparse checkout fetch failed, and recovery used the complete archive with Git-object verification.
+
+Expansion exposed a parser bug: an attack's nested `name` could be read before the card's top-level `name`. The parser now requires the top-level card property and abstains when it is missing. All 35,077 earlier directly parsed TCGdex records were rechecked against their card-name properties: zero disagreements. Baseline inputs remain unchanged. The [baseline parser audit](catalog/english-history-v1/baseline-name-parser-audit.json) and original failed extraction in the local work directory preserve the diagnosis.
+
+The [14-question rehearsal](catalog/english-history-v1/discovery-rehearsal.json) checks character, artist, historical coordinates, current Japanese coordinates and blocked price/counterpart requests. Questions were constructed during development; this is a regression diagnostic, not independent accuracy. English Pikachu retrieval increases from 199 to 313 source-version records; Eevee increases from 81 to 130. These are catalog retrieval counts, not distinct physical-copy counts. All returned records retain false price-comparability and automatic-join flags. The full test suite passed 416 tests. Private Cloud Run revision `pokemon-commerce-index-00024-8qz` also passed [35 authenticated logical checks](cloud-deployment-20261001-coverage-v1.json), with unauthenticated requests rejected.
+
+### Japanese gaps and the next expansion batch
+
+A fresh [Japanese API gap audit](catalog/ja-api-gap-refresh-20261001.json) checked all 40 API-listed sets absent from the runtime catalog. All returned empty card lists, after retrying five plus-sign set IDs with proper URL encoding. This API check adds **zero Japanese cards**; an empty response does not establish that the set has no cards.
+
+Next, expand the **evidence-supported Japanese cohort** beyond the current 100 records. Prioritize modern Japanese chase cards and promos whose official set/number/name/rarity can be bound to an exact official page, then older numbered records and printing conflicts. Report newly covered set/number groups, corrected metadata and newly supported targets separately from source-version record totals. The [prepared 1,000-record review queue](catalog/japanese-evidence-next-v1/queue.jsonl) selects 1,000 unique set/number groups from a 3,305-group pool across nine modern Japanese releases. It binds baseline card/reference provenance and candidate official URLs; zero pages have been verified and zero records approved from this queue. Selection uses release priority and metadata needs, not measured demand or GMV. Next, fetch exact-page evidence and use AI-assisted review for unresolved cases; the approved batch may shrink if the evidence fails. Physical finish, cross-region equivalence and prices keep their existing gates. Buy&Ship is needed for authorized live offers and transaction handoff, not this catalog work.
+
 ## Character and artist discovery facets
 
 The pinned TCGdex source also supplies **59,710 provenance-checked, text-only facet rows** for the 35,077 Japanese and English identities extracted directly from its card files: 28,361 cards have a usable Pokédex character ID and 31,071 have an illustrator. Facets are stored separately in [`catalog/card-facets.jsonl.gz`](catalog/card-facets.jsonl.gz), with a [build audit](catalog/card-facets-audit.json). Four legacy source files use a decimal `dexId` such as `384.1`; those IDs are omitted and listed in the audit rather than coerced to a different character. API-only and supplemental candidates have no TCGdex facet assertion from this batch.

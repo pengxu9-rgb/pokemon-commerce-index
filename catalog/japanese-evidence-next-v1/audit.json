@@ -1,0 +1,24 @@
+{
+  "schema": "pokemon.japanese-metadata-review-queue-audit.v1",
+  "candidate_pool": 3305,
+  "queued_set_number_groups": 1000,
+  "queued_catalog_records": 1000,
+  "set_distribution": {
+    "M6A": 131,
+    "M6": 110,
+    "M-P": 126,
+    "SV11W": 94,
+    "SV11B": 94,
+    "SV10": 132,
+    "SV9A": 92,
+    "SV9": 132,
+    "SV8A": 89
+  },
+  "queue_sha256": "31de84490190c20d1ca2e6da38f05c40f044caaefc00c0dc6c2180906ea64a49",
+  "baseline_manifest": "catalog-build-manifest-coverage-v1.json",
+  "baseline_manifest_sha256": "58db9ac05aab79299e0ccfca7010f196c2154ad85defbd52cb479aba137155f1",
+  "selection_uses_market_volume": false,
+  "official_pages_fetched": 0,
+  "approved_records": 0,
+  "scope": "review queue only; no catalog import or physical equivalence assertion"
+}

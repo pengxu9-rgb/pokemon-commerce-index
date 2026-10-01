@@ -59,6 +59,53 @@ def _object_field(source: str, key: str, opening: str, closing: str) -> str | No
     return _balanced(source, match.end() - 1, opening, closing)
 
 
+def _card_field_source(source: str, key: str) -> str:
+    """Find a card property at depth zero, excluding attack names and comments."""
+    root = re.search(r"\bconst\s+card\s*(?::[^=]+)?=\s*\{", source)
+    if not root:
+        raise ValueError("card object declaration missing")
+    body = _balanced(source, root.end() - 1, "{", "}")
+    property_pattern = re.compile(r"(?:[A-Za-z_$][\w$]*|'(?:\\.|[^'\\])*'|\"(?:\\.|[^\"\\])*\")\s*:")
+    offset, depth = 0, 0
+    while offset < len(body):
+        if body.startswith("//", offset):
+            newline = body.find("\n", offset)
+            offset = len(body) if newline < 0 else newline + 1
+            continue
+        if body.startswith("/*", offset):
+            end = body.find("*/", offset + 2)
+            if end < 0:
+                raise ValueError("unclosed TypeScript comment")
+            offset = end + 2
+            continue
+        if depth == 0:
+            found = property_pattern.match(body, offset)
+            if found:
+                if found.group().rsplit(":", 1)[0].strip().strip("'\"") == key:
+                    return body[offset:]
+                offset = found.end()
+                continue
+        char = body[offset]
+        if char in ("'", '"', "`"):
+            quote = char
+            offset += 1
+            while offset < len(body):
+                if body[offset] == "\\":
+                    offset += 2
+                elif body[offset] == quote:
+                    offset += 1
+                    break
+                else:
+                    offset += 1
+            continue
+        if char in "{[":
+            depth += 1
+        elif char in "}]":
+            depth -= 1
+        offset += 1
+    return ""
+
+
 def parse_set_source(source: str) -> tuple[str, int]:
     set_id = _string_field(source, "id")
     count = _object_field(source, "cardCount", "{", "}")
@@ -167,13 +214,13 @@ def parse_card_source(source: str, *, set_id: str, official_count: int,
     local_id = filename.stem
     if not local_id:
         raise ValueError("card filename lacks local id")
-    name_block = _object_field(source, "name", "{", "}")
+    name_block = _object_field(_card_field_source(source, "name"), "name", "{", "}")
     if language not in {"ja", "en"}:
         raise ValueError("unsupported card language")
     name = _string_field(name_block or "", language)
     if not name:
         raise ValueError(f"card source lacks {language} name")
-    rarity = _string_field(source, "rarity")
+    rarity = _string_field(_card_field_source(source, "rarity"), "rarity")
     if not re.fullmatch(r"[A-Za-z0-9]+", local_id):
         raise ValueError("card filename is not an alphanumeric collector id")
     width = max(3, len(local_id), len(str(official_count)))

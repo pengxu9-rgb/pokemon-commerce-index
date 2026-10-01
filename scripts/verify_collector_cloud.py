@@ -44,7 +44,8 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 with error_lock:transient_errors.append(dict(path=path,attempt=attempt,error_type=type(error).__name__))
                 if attempt==3:raise
     assert query('/health')[0]==200
-    code,status=query('/catalog-status');assert code==200 and status['printings']==55167 and status['display_approved']==0
+    expected_catalog=json.loads(manifest.read_text())['expected']
+    code,status=query('/catalog-status');assert code==200 and all(status[key]==expected_catalog[key] for key in ('printings','sets','match_eligible','display_approved','reference_records'))
     code,support=query('/supported-status');assert code==200 and support['current_supported_targets']==100 and support['automatic_offer_join_ready']==0
     assert query('/health',auth=False)[0]==403
     assert query('/collector-discovery',{'q':'Eevee','limit':101})[0]==400

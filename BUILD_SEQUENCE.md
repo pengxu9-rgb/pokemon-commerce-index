@@ -8,9 +8,12 @@ The [holistic alignment decision](HOLISTIC_ALIGNMENT_20260930.md) is the current
 
 ## Current implementation
 
+The 1 October catalog expansion adds 14,838 source-declared English versions, enriching 9,135 existing number groups and adding 26 new groups. See [coverage and Japanese follow-up](CATALOG_COVERAGE.md). The next catalog batch targets 1,000 Japanese evidence candidates, with results separated into metadata support, identity gaps and printing uncertainty. Live feed work remains held for Buy&Ship.
+
+
 | Layer | Evidence | Main remaining gap |
 |---|---|---|
-| Catalog | 55,167 internal identities; 33,543 structurally eligible; 532 official rarity corrections; 100 source-bound metadata targets, three release overlays and six vocabulary records | Physical finish/copy evidence and real listing precision remain unverified; supported metadata does not approve automatic joins |
+| Catalog | 70,005 internal source-version/family records; 45,437 language/set/number groups; 33,543 structurally eligible; 532 official rarity corrections; 100 source-bound metadata targets, three release overlays and six vocabulary records | Physical finish/copy evidence and real listing precision remain unverified; supported metadata does not approve automatic joins |
 | Graph | Character/artist facets, structural version neighbors, three official evolution families; 657 proposed card-pair artwork assertions; 13 active official collector declarations and 142 proposed visual findings | Independently audited depictions, artwork/counterpart relationships and exact printing coverage; zero verified pair relation events |
 | Bilingual retrieval | 122 reviewed aliases and 460 review events included in the new ordered deployment manifest | Translation evidence is not printing equivalence; real marketplace vocabulary recall remains unmeasured |
 | Agent discovery | Authored 30-task replay; first source cohort has 16 qualified questions; a second fresh 30-question cohort has eight catalog partials and 22 evidence blockers; stateless inventory comparison; 20 bounded collector journeys / 59 prefix requests; Node caller and eight new source-led development journeys | Active Pivota registration/service identity, artwork/region/printing evidence and an independent held-out outcome evaluation; no real-user answer quality score |

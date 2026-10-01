@@ -1,0 +1,90 @@
+{
+  "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "source_cards": 14838,
+  "classified_cards": 14793,
+  "by_category": {
+    "Energy": 583,
+    "Pokemon": 12200,
+    "Trainer": 2010
+  },
+  "unclassified_cards": 45,
+  "parse_gaps": [
+    {
+      "source_path": "data/Diamond & Pearl/Legends Awakened/136.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/Diamond & Pearl/Legends Awakened/137.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/118.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/123.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/126.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/128.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/130.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/131.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/133.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/135.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/E-Card/Expedition Base Set/136.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Team Rocket Returns/84.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Team Rocket Returns/85.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Team Rocket Returns/91.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Team Rocket Returns/92.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Team Rocket Returns/93.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/EX/Deoxys/86.ts",
+      "reason": "invalid energy subtype"
+    },
+    {
+      "source_path": "data/Platinum/Rising Rivals/95.ts",
+      "reason": "invalid trainer subtype"
+    },
+    {
+      "source_path": "data/POP/POP Series 2/9.ts",
+      "reason": "invalid trainer subtype"
+    }
+  ],
+  "scope": "internal category retrieval only; no cross-region printing equivalence"
+}

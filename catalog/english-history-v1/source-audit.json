@@ -1,0 +1,1277 @@
+{
+  "source": "https://github.com/tcgdex/cards-database/tree/a211f11f3ba57d56c65c5ac33be35b77d3280757/data",
+  "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "series": [
+    "Black & White",
+    "Call of Legends",
+    "Diamond & Pearl",
+    "E-Card",
+    "EX",
+    "Gym",
+    "HeartGold & SoulSilver",
+    "Legendary Collection",
+    "McDonald's Collection",
+    "Miscellaneous",
+    "Neo",
+    "POP",
+    "Platinum",
+    "Trainer kits",
+    "XY"
+  ],
+  "scope": "English physical-card identity text only; no art, rules or prices",
+  "display_approved": false,
+  "sets": 121,
+  "source_files": 9310,
+  "parsed_files": 9161,
+  "identities": 14838,
+  "match_eligible": 14174,
+  "gap_count": 153,
+  "gap_reasons": {
+    "two source variants collapse to the same identity": 33,
+    "card filename is not an alphanumeric collector id": 2,
+    "missing English set name or duplicate set id": 3,
+    "set header could not be parsed": 105,
+    "unclosed TypeScript {": 1,
+    "card source lacks en name": 9
+  },
+  "set_coverage": [
+    {
+      "path": "data/Black & White/BW Black Star Promos",
+      "source_files": 101,
+      "parsed_files": 101,
+      "identities": 101,
+      "gaps": 0,
+      "set_id": "bwp",
+      "official_card_count": 101,
+      "name_en": "BW Black Star Promos"
+    },
+    {
+      "path": "data/Black & White/Black & White",
+      "source_files": 115,
+      "parsed_files": 115,
+      "identities": 115,
+      "gaps": 0,
+      "set_id": "bw1",
+      "official_card_count": 114,
+      "name_en": "Black & White"
+    },
+    {
+      "path": "data/Black & White/Boundaries Crossed",
+      "source_files": 153,
+      "parsed_files": 153,
+      "identities": 153,
+      "gaps": 0,
+      "set_id": "bw7",
+      "official_card_count": 149,
+      "name_en": "Boundaries Crossed"
+    },
+    {
+      "path": "data/Black & White/Dark Explorers",
+      "source_files": 111,
+      "parsed_files": 111,
+      "identities": 111,
+      "gaps": 0,
+      "set_id": "bw5",
+      "official_card_count": 108,
+      "name_en": "Dark Explorers"
+    },
+    {
+      "path": "data/Black & White/Dragon Vault",
+      "source_files": 21,
+      "parsed_files": 21,
+      "identities": 21,
+      "gaps": 0,
+      "set_id": "dv1",
+      "official_card_count": 20,
+      "name_en": "Dragon Vault"
+    },
+    {
+      "path": "data/Black & White/Dragons Exalted",
+      "source_files": 128,
+      "parsed_files": 128,
+      "identities": 128,
+      "gaps": 0,
+      "set_id": "bw6",
+      "official_card_count": 124,
+      "name_en": "Dragons Exalted"
+    },
+    {
+      "path": "data/Black & White/Emerging Powers",
+      "source_files": 98,
+      "parsed_files": 98,
+      "identities": 98,
+      "gaps": 0,
+      "set_id": "bw2",
+      "official_card_count": 98,
+      "name_en": "Emerging Powers"
+    },
+    {
+      "path": "data/Black & White/Legendary Treasures",
+      "source_files": 140,
+      "parsed_files": 140,
+      "identities": 140,
+      "gaps": 0,
+      "set_id": "bw11",
+      "official_card_count": 113,
+      "name_en": "Legendary Treasures"
+    },
+    {
+      "path": "data/Black & White/Next Destinies",
+      "source_files": 103,
+      "parsed_files": 103,
+      "identities": 103,
+      "gaps": 0,
+      "set_id": "bw4",
+      "official_card_count": 99,
+      "name_en": "Next Destinies"
+    },
+    {
+      "path": "data/Black & White/Noble Victories",
+      "source_files": 102,
+      "parsed_files": 102,
+      "identities": 104,
+      "gaps": 0,
+      "set_id": "bw3",
+      "official_card_count": 101,
+      "name_en": "Noble Victories"
+    },
+    {
+      "path": "data/Black & White/Plasma Blast",
+      "source_files": 105,
+      "parsed_files": 105,
+      "identities": 108,
+      "gaps": 0,
+      "set_id": "bw10",
+      "official_card_count": 101,
+      "name_en": "Plasma Blast"
+    },
+    {
+      "path": "data/Black & White/Plasma Freeze",
+      "source_files": 122,
+      "parsed_files": 122,
+      "identities": 122,
+      "gaps": 0,
+      "set_id": "bw9",
+      "official_card_count": 116,
+      "name_en": "Plasma Freeze"
+    },
+    {
+      "path": "data/Black & White/Plasma Storm",
+      "source_files": 138,
+      "parsed_files": 138,
+      "identities": 138,
+      "gaps": 0,
+      "set_id": "bw8",
+      "official_card_count": 135,
+      "name_en": "Plasma Storm"
+    },
+    {
+      "path": "data/Call of Legends/Call of Legends",
+      "source_files": 106,
+      "parsed_files": 106,
+      "identities": 198,
+      "gaps": 0,
+      "set_id": "col1",
+      "official_card_count": 95,
+      "name_en": "Call of Legends"
+    },
+    {
+      "path": "data/Diamond & Pearl/DP Black Star Promos",
+      "source_files": 56,
+      "parsed_files": 55,
+      "identities": 85,
+      "gaps": 1,
+      "set_id": "dpp",
+      "official_card_count": 56,
+      "name_en": "DP Black Star Promos"
+    },
+    {
+      "path": "data/Diamond & Pearl/Diamond & Pearl",
+      "source_files": 130,
+      "parsed_files": 130,
+      "identities": 302,
+      "gaps": 0,
+      "set_id": "dp1",
+      "official_card_count": 130,
+      "name_en": "Diamond & Pearl"
+    },
+    {
+      "path": "data/Diamond & Pearl/Great Encounters",
+      "source_files": 106,
+      "parsed_files": 106,
+      "identities": 248,
+      "gaps": 0,
+      "set_id": "dp4",
+      "official_card_count": 106,
+      "name_en": "Great Encounters"
+    },
+    {
+      "path": "data/Diamond & Pearl/Legends Awakened",
+      "source_files": 146,
+      "parsed_files": 146,
+      "identities": 327,
+      "gaps": 0,
+      "set_id": "dp6",
+      "official_card_count": 146,
+      "name_en": "Legends Awakened"
+    },
+    {
+      "path": "data/Diamond & Pearl/Majestic Dawn",
+      "source_files": 100,
+      "parsed_files": 100,
+      "identities": 241,
+      "gaps": 0,
+      "set_id": "dp5",
+      "official_card_count": 100,
+      "name_en": "Majestic Dawn"
+    },
+    {
+      "path": "data/Diamond & Pearl/Mysterious Treasures",
+      "source_files": 124,
+      "parsed_files": 124,
+      "identities": 270,
+      "gaps": 0,
+      "set_id": "dp2",
+      "official_card_count": 123,
+      "name_en": "Mysterious Treasures"
+    },
+    {
+      "path": "data/Diamond & Pearl/Secret Wonders",
+      "source_files": 132,
+      "parsed_files": 132,
+      "identities": 313,
+      "gaps": 0,
+      "set_id": "dp3",
+      "official_card_count": 132,
+      "name_en": "Secret Wonders"
+    },
+    {
+      "path": "data/Diamond & Pearl/Stormfront",
+      "source_files": 106,
+      "parsed_files": 106,
+      "identities": 228,
+      "gaps": 0,
+      "set_id": "dp7",
+      "official_card_count": 100,
+      "name_en": "Stormfront"
+    },
+    {
+      "path": "data/E-Card/Aquapolis",
+      "source_files": 186,
+      "parsed_files": 182,
+      "identities": 336,
+      "gaps": 4,
+      "set_id": "ecard2",
+      "official_card_count": 147,
+      "name_en": "Aquapolis"
+    },
+    {
+      "path": "data/E-Card/Best of game",
+      "source_files": 9,
+      "parsed_files": 1,
+      "identities": 1,
+      "gaps": 8,
+      "set_id": "bog",
+      "official_card_count": 9,
+      "name_en": "Best of game"
+    },
+    {
+      "path": "data/E-Card/Expedition Base Set",
+      "source_files": 165,
+      "parsed_files": 162,
+      "identities": 335,
+      "gaps": 3,
+      "set_id": "ecard1",
+      "official_card_count": 165,
+      "name_en": "Expedition Base Set"
+    },
+    {
+      "path": "data/E-Card/Skyridge",
+      "source_files": 182,
+      "parsed_files": 182,
+      "identities": 343,
+      "gaps": 0,
+      "set_id": "ecard3",
+      "official_card_count": 144,
+      "name_en": "Skyridge"
+    },
+    {
+      "path": "data/EX/Crystal Guardians",
+      "source_files": 100,
+      "parsed_files": 99,
+      "identities": 223,
+      "gaps": 1,
+      "set_id": "ex14",
+      "official_card_count": 100,
+      "name_en": "Crystal Guardians"
+    },
+    {
+      "path": "data/EX/Delta Species",
+      "source_files": 114,
+      "parsed_files": 114,
+      "identities": 261,
+      "gaps": 0,
+      "set_id": "ex11",
+      "official_card_count": 113,
+      "name_en": "Delta Species"
+    },
+    {
+      "path": "data/EX/Deoxys",
+      "source_files": 108,
+      "parsed_files": 108,
+      "identities": 237,
+      "gaps": 0,
+      "set_id": "ex8",
+      "official_card_count": 107,
+      "name_en": "Deoxys"
+    },
+    {
+      "path": "data/EX/Dragon",
+      "source_files": 100,
+      "parsed_files": 100,
+      "identities": 200,
+      "gaps": 0,
+      "set_id": "ex3",
+      "official_card_count": 97,
+      "name_en": "Dragon"
+    },
+    {
+      "path": "data/EX/Dragon Frontiers",
+      "source_files": 101,
+      "parsed_files": 100,
+      "identities": 211,
+      "gaps": 1,
+      "set_id": "ex15",
+      "official_card_count": 101,
+      "name_en": "Dragon Frontiers"
+    },
+    {
+      "path": "data/EX/Emerald",
+      "source_files": 107,
+      "parsed_files": 107,
+      "identities": 228,
+      "gaps": 0,
+      "set_id": "ex9",
+      "official_card_count": 106,
+      "name_en": "Emerald"
+    },
+    {
+      "path": "data/EX/FireRed & LeafGreen",
+      "source_files": 116,
+      "parsed_files": 116,
+      "identities": 252,
+      "gaps": 0,
+      "set_id": "ex6",
+      "official_card_count": 112,
+      "name_en": "FireRed & LeafGreen"
+    },
+    {
+      "path": "data/EX/Hidden Legends",
+      "source_files": 102,
+      "parsed_files": 101,
+      "identities": 229,
+      "gaps": 1,
+      "set_id": "ex5",
+      "official_card_count": 101,
+      "name_en": "Hidden Legends"
+    },
+    {
+      "path": "data/EX/Holon Phantoms",
+      "source_files": 111,
+      "parsed_files": 111,
+      "identities": 217,
+      "gaps": 0,
+      "set_id": "ex13",
+      "official_card_count": 110,
+      "name_en": "Holon Phantoms"
+    },
+    {
+      "path": "data/EX/Legend Maker",
+      "source_files": 93,
+      "parsed_files": 93,
+      "identities": 198,
+      "gaps": 0,
+      "set_id": "ex12",
+      "official_card_count": 92,
+      "name_en": "Legend Maker"
+    },
+    {
+      "path": "data/EX/Poké Card Creator Pack",
+      "source_files": 5,
+      "parsed_files": 5,
+      "identities": 5,
+      "gaps": 0,
+      "set_id": "ex5.5",
+      "official_card_count": 5,
+      "name_en": "Poké Card Creator Pack"
+    },
+    {
+      "path": "data/EX/Power Keepers",
+      "source_files": 108,
+      "parsed_files": 108,
+      "identities": 222,
+      "gaps": 0,
+      "set_id": "ex16",
+      "official_card_count": 108,
+      "name_en": "Power Keepers"
+    },
+    {
+      "path": "data/EX/Ruby & Sapphire",
+      "source_files": 109,
+      "parsed_files": 108,
+      "identities": 282,
+      "gaps": 1,
+      "set_id": "ex1",
+      "official_card_count": 109,
+      "name_en": "Ruby & Sapphire"
+    },
+    {
+      "path": "data/EX/Sandstorm",
+      "source_files": 100,
+      "parsed_files": 99,
+      "identities": 220,
+      "gaps": 1,
+      "set_id": "ex2",
+      "official_card_count": 100,
+      "name_en": "Sandstorm"
+    },
+    {
+      "path": "data/EX/Team Magma vs Team Aqua",
+      "source_files": 97,
+      "parsed_files": 97,
+      "identities": 206,
+      "gaps": 0,
+      "set_id": "ex4",
+      "official_card_count": 95,
+      "name_en": "Team Magma vs Team Aqua"
+    },
+    {
+      "path": "data/EX/Team Rocket Returns",
+      "source_files": 111,
+      "parsed_files": 111,
+      "identities": 238,
+      "gaps": 0,
+      "set_id": "ex7",
+      "official_card_count": 109,
+      "name_en": "Team Rocket Returns"
+    },
+    {
+      "path": "data/EX/Unseen Forces",
+      "source_files": 117,
+      "parsed_files": 117,
+      "identities": 244,
+      "gaps": 0,
+      "set_id": "ex10",
+      "official_card_count": 115,
+      "name_en": "Unseen Forces"
+    },
+    {
+      "path": "data/EX/Unseen Forces Unown Collection",
+      "source_files": 28,
+      "parsed_files": 26,
+      "identities": 26,
+      "gaps": 2,
+      "set_id": "exu",
+      "official_card_count": 28,
+      "name_en": "Unseen Forces Unown Collection"
+    },
+    {
+      "path": "data/Gym/Gym Challenge",
+      "source_files": 132,
+      "parsed_files": 130,
+      "identities": 264,
+      "gaps": 2,
+      "set_id": "gym2",
+      "official_card_count": 132,
+      "name_en": "Gym Challenge"
+    },
+    {
+      "path": "data/Gym/Gym Heroes",
+      "source_files": 132,
+      "parsed_files": 132,
+      "identities": 267,
+      "gaps": 0,
+      "set_id": "gym1",
+      "official_card_count": 132,
+      "name_en": "Gym Heroes"
+    },
+    {
+      "path": "data/HeartGold & SoulSilver/HGSS Black Star Promos",
+      "source_files": 25,
+      "parsed_files": 25,
+      "identities": 33,
+      "gaps": 0,
+      "set_id": "hgssp",
+      "official_card_count": 25,
+      "name_en": "HGSS Black Star Promos"
+    },
+    {
+      "path": "data/HeartGold & SoulSilver/HeartGold SoulSilver",
+      "source_files": 124,
+      "parsed_files": 124,
+      "identities": 307,
+      "gaps": 0,
+      "set_id": "hgss1",
+      "official_card_count": 123,
+      "name_en": "HeartGold SoulSilver"
+    },
+    {
+      "path": "data/HeartGold & SoulSilver/Triumphant",
+      "source_files": 103,
+      "parsed_files": 101,
+      "identities": 223,
+      "gaps": 2,
+      "set_id": "hgss4",
+      "official_card_count": 102,
+      "name_en": "Triumphant"
+    },
+    {
+      "path": "data/HeartGold & SoulSilver/Undaunted",
+      "source_files": 91,
+      "parsed_files": 91,
+      "identities": 188,
+      "gaps": 0,
+      "set_id": "hgss3",
+      "official_card_count": 90,
+      "name_en": "Undaunted"
+    },
+    {
+      "path": "data/HeartGold & SoulSilver/Unleashed",
+      "source_files": 96,
+      "parsed_files": 95,
+      "identities": 220,
+      "gaps": 1,
+      "set_id": "hgss2",
+      "official_card_count": 95,
+      "name_en": "Unleashed"
+    },
+    {
+      "path": "data/Legendary Collection/Legendary Collection",
+      "source_files": 110,
+      "parsed_files": 106,
+      "identities": 213,
+      "gaps": 4,
+      "set_id": "lc",
+      "official_card_count": 110,
+      "name_en": "Legendary Collection"
+    },
+    {
+      "path": "data/McDonald's Collection/Collection McDonald's 2013",
+      "source_files": 12,
+      "parsed_files": 0,
+      "identities": 0,
+      "gaps": 13
+    },
+    {
+      "path": "data/McDonald's Collection/Collection McDonald's 2018",
+      "source_files": 40,
+      "parsed_files": 0,
+      "identities": 0,
+      "gaps": 41
+    },
+    {
+      "path": "data/McDonald's Collection/Collection McDonald's 2019",
+      "source_files": 41,
+      "parsed_files": 0,
+      "identities": 0,
+      "gaps": 42
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2011",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2011bw",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2011"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2012",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2012bw",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2012"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2014",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2014xy",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2014"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2015",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2015xy",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2015"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2016",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2016xy",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2016"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2017",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2017sm",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2017"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2018",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "2018sm",
+      "official_card_count": 12,
+      "name_en": "McDonald's Collection 2018"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2019",
+      "source_files": 12,
+      "parsed_files": 0,
+      "identities": 0,
+      "gaps": 13
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2021",
+      "source_files": 25,
+      "parsed_files": 25,
+      "identities": 50,
+      "gaps": 0,
+      "set_id": "2021swsh",
+      "official_card_count": 25,
+      "name_en": "McDonald's Collection 2021"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2022",
+      "source_files": 15,
+      "parsed_files": 15,
+      "identities": 15,
+      "gaps": 0,
+      "set_id": "2022swsh",
+      "official_card_count": 15,
+      "name_en": "McDonald's Collection 2022"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2023",
+      "source_files": 15,
+      "parsed_files": 15,
+      "identities": 15,
+      "gaps": 0,
+      "set_id": "2023sv",
+      "official_card_count": 15,
+      "name_en": "McDonald's Collection 2023"
+    },
+    {
+      "path": "data/McDonald's Collection/McDonald's Collection 2024",
+      "source_files": 15,
+      "parsed_files": 15,
+      "identities": 15,
+      "gaps": 0,
+      "set_id": "2024sv",
+      "official_card_count": 15,
+      "name_en": "McDonald's Collection 2024"
+    },
+    {
+      "path": "data/Miscellaneous/Miscellaneous Promos",
+      "source_files": 1,
+      "parsed_files": 1,
+      "identities": 1,
+      "gaps": 0,
+      "set_id": "miscp",
+      "official_card_count": 1,
+      "name_en": "Miscellaneous Promos"
+    },
+    {
+      "path": "data/Neo/Neo Destiny",
+      "source_files": 113,
+      "parsed_files": 113,
+      "identities": 226,
+      "gaps": 0,
+      "set_id": "neo4",
+      "official_card_count": 105,
+      "name_en": "Neo Destiny"
+    },
+    {
+      "path": "data/Neo/Neo Discovery",
+      "source_files": 75,
+      "parsed_files": 75,
+      "identities": 150,
+      "gaps": 0,
+      "set_id": "neo2",
+      "official_card_count": 75,
+      "name_en": "Neo Discovery"
+    },
+    {
+      "path": "data/Neo/Neo Genesis",
+      "source_files": 111,
+      "parsed_files": 111,
+      "identities": 225,
+      "gaps": 0,
+      "set_id": "neo1",
+      "official_card_count": 111,
+      "name_en": "Neo Genesis"
+    },
+    {
+      "path": "data/Neo/Neo Revelation",
+      "source_files": 66,
+      "parsed_files": 66,
+      "identities": 132,
+      "gaps": 0,
+      "set_id": "neo3",
+      "official_card_count": 64,
+      "name_en": "Neo Revelation"
+    },
+    {
+      "path": "data/Neo/Southern Islands",
+      "source_files": 18,
+      "parsed_files": 18,
+      "identities": 18,
+      "gaps": 0,
+      "set_id": "si1",
+      "official_card_count": 18,
+      "name_en": "Southern Islands"
+    },
+    {
+      "path": "data/POP/Nintendo Black Star Promos",
+      "source_files": 40,
+      "parsed_files": 37,
+      "identities": 68,
+      "gaps": 3,
+      "set_id": "np",
+      "official_card_count": 40,
+      "name_en": "Nintendo Black Star Promos"
+    },
+    {
+      "path": "data/POP/POP Series 1",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "pop1",
+      "official_card_count": 17,
+      "name_en": "POP Series 1"
+    },
+    {
+      "path": "data/POP/POP Series 2",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "pop2",
+      "official_card_count": 17,
+      "name_en": "POP Series 2"
+    },
+    {
+      "path": "data/POP/POP Series 3",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "pop3",
+      "official_card_count": 17,
+      "name_en": "POP Series 3"
+    },
+    {
+      "path": "data/POP/POP Series 4",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "pop4",
+      "official_card_count": 17,
+      "name_en": "POP Series 4"
+    },
+    {
+      "path": "data/POP/POP Series 5",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 24,
+      "gaps": 0,
+      "set_id": "pop5",
+      "official_card_count": 17,
+      "name_en": "POP Series 5"
+    },
+    {
+      "path": "data/POP/POP Series 6",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 26,
+      "gaps": 0,
+      "set_id": "pop6",
+      "official_card_count": 17,
+      "name_en": "POP Series 6"
+    },
+    {
+      "path": "data/POP/POP Series 7",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 28,
+      "gaps": 0,
+      "set_id": "pop7",
+      "official_card_count": 17,
+      "name_en": "POP Series 7"
+    },
+    {
+      "path": "data/POP/POP Series 8",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 29,
+      "gaps": 0,
+      "set_id": "pop8",
+      "official_card_count": 17,
+      "name_en": "POP Series 8"
+    },
+    {
+      "path": "data/POP/POP Series 9",
+      "source_files": 17,
+      "parsed_files": 17,
+      "identities": 23,
+      "gaps": 0,
+      "set_id": "pop9",
+      "official_card_count": 17,
+      "name_en": "POP Series 9"
+    },
+    {
+      "path": "data/Platinum/Arceus",
+      "source_files": 111,
+      "parsed_files": 111,
+      "identities": 216,
+      "gaps": 0,
+      "set_id": "pl4",
+      "official_card_count": 99,
+      "name_en": "Arceus"
+    },
+    {
+      "path": "data/Platinum/Platinum",
+      "source_files": 133,
+      "parsed_files": 133,
+      "identities": 305,
+      "gaps": 0,
+      "set_id": "pl1",
+      "official_card_count": 127,
+      "name_en": "Platinum"
+    },
+    {
+      "path": "data/Platinum/Pokémon Rumble",
+      "source_files": 16,
+      "parsed_files": 16,
+      "identities": 16,
+      "gaps": 0,
+      "set_id": "ru1",
+      "official_card_count": 16,
+      "name_en": "Pokémon Rumble"
+    },
+    {
+      "path": "data/Platinum/Rising Rivals",
+      "source_files": 120,
+      "parsed_files": 120,
+      "identities": 267,
+      "gaps": 0,
+      "set_id": "pl2",
+      "official_card_count": 111,
+      "name_en": "Rising Rivals"
+    },
+    {
+      "path": "data/Platinum/Supreme Victors",
+      "source_files": 162,
+      "parsed_files": 153,
+      "identities": 319,
+      "gaps": 9,
+      "set_id": "pl3",
+      "official_card_count": 147,
+      "name_en": "Supreme Victors"
+    },
+    {
+      "path": "data/Trainer kits/BW trainer Kit (Excadrill)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-bw-e",
+      "official_card_count": 30,
+      "name_en": "BW trainer Kit (Excadrill)"
+    },
+    {
+      "path": "data/Trainer kits/BW trainer Kit (Zoroark)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-bw-z",
+      "official_card_count": 30,
+      "name_en": "BW trainer Kit (Zoroark)"
+    },
+    {
+      "path": "data/Trainer kits/DP trainer Kit (Lucario)",
+      "source_files": 11,
+      "parsed_files": 11,
+      "identities": 11,
+      "gaps": 0,
+      "set_id": "tk-dp-l",
+      "official_card_count": 11,
+      "name_en": "DP trainer Kit (Lucario)"
+    },
+    {
+      "path": "data/Trainer kits/DP trainer Kit (Manaphy)",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "tk-dp-m",
+      "official_card_count": 12,
+      "name_en": "DP trainer Kit (Manaphy)"
+    },
+    {
+      "path": "data/Trainer kits/EX trainer Kit (Latias)",
+      "source_files": 10,
+      "parsed_files": 10,
+      "identities": 10,
+      "gaps": 0,
+      "set_id": "tk-ex-latia",
+      "official_card_count": 10,
+      "name_en": "EX trainer Kit (Latias)"
+    },
+    {
+      "path": "data/Trainer kits/EX trainer Kit (Latios)",
+      "source_files": 10,
+      "parsed_files": 10,
+      "identities": 10,
+      "gaps": 0,
+      "set_id": "tk-ex-latio",
+      "official_card_count": 10,
+      "name_en": "EX trainer Kit (Latios)"
+    },
+    {
+      "path": "data/Trainer kits/EX trainer Kit 2 (Minun)",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "tk-ex-m",
+      "official_card_count": 12,
+      "name_en": "EX trainer Kit 2 (Minun)"
+    },
+    {
+      "path": "data/Trainer kits/EX trainer Kit 2 (Plusle)",
+      "source_files": 12,
+      "parsed_files": 12,
+      "identities": 12,
+      "gaps": 0,
+      "set_id": "tk-ex-p",
+      "official_card_count": 12,
+      "name_en": "EX trainer Kit 2 (Plusle)"
+    },
+    {
+      "path": "data/Trainer kits/HS trainer Kit (Gyarados)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-hs-g",
+      "official_card_count": 30,
+      "name_en": "HS trainer Kit (Gyarados)"
+    },
+    {
+      "path": "data/Trainer kits/HS trainer Kit (Raichu)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-hs-r",
+      "official_card_count": 30,
+      "name_en": "HS trainer Kit (Raichu)"
+    },
+    {
+      "path": "data/Trainer kits/SM trainer Kit (Alolan Raichu)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-sm-r",
+      "official_card_count": 30,
+      "name_en": "SM trainer Kit (Alolan Raichu)"
+    },
+    {
+      "path": "data/Trainer kits/SM trainer Kit (Lycanroc)",
+      "source_files": 18,
+      "parsed_files": 18,
+      "identities": 18,
+      "gaps": 0,
+      "set_id": "tk-sm-l",
+      "official_card_count": 30,
+      "name_en": "SM trainer Kit (Lycanroc)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Bisharp)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-b",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Bisharp)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Latias)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-latia",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Latias)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Latios)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-latio",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Latios)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Noivern)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-n",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Noivern)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Pikachu Libre)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-p",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Pikachu Libre)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Suicune)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-su",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Suicune)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Sylveon)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-sy",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Sylveon)"
+    },
+    {
+      "path": "data/Trainer kits/XY trainer Kit (Wigglytuff)",
+      "source_files": 30,
+      "parsed_files": 30,
+      "identities": 30,
+      "gaps": 0,
+      "set_id": "tk-xy-w",
+      "official_card_count": 30,
+      "name_en": "XY trainer Kit (Wigglytuff)"
+    },
+    {
+      "path": "data/XY/Ancient Origins",
+      "source_files": 101,
+      "parsed_files": 101,
+      "identities": 101,
+      "gaps": 0,
+      "set_id": "xy7",
+      "official_card_count": 98,
+      "name_en": "Ancient Origins"
+    },
+    {
+      "path": "data/XY/BREAKpoint",
+      "source_files": 126,
+      "parsed_files": 126,
+      "identities": 126,
+      "gaps": 0,
+      "set_id": "xy9",
+      "official_card_count": 122,
+      "name_en": "BREAKpoint"
+    },
+    {
+      "path": "data/XY/BREAKthrough",
+      "source_files": 165,
+      "parsed_files": 165,
+      "identities": 165,
+      "gaps": 0,
+      "set_id": "xy8",
+      "official_card_count": 162,
+      "name_en": "BREAKthrough"
+    },
+    {
+      "path": "data/XY/Double Crisis",
+      "source_files": 34,
+      "parsed_files": 34,
+      "identities": 34,
+      "gaps": 0,
+      "set_id": "dc1",
+      "official_card_count": 34,
+      "name_en": "Double Crisis"
+    },
+    {
+      "path": "data/XY/Evolutions",
+      "source_files": 113,
+      "parsed_files": 113,
+      "identities": 113,
+      "gaps": 0,
+      "set_id": "xy12",
+      "official_card_count": 108,
+      "name_en": "Evolutions"
+    },
+    {
+      "path": "data/XY/Fates Collide",
+      "source_files": 129,
+      "parsed_files": 129,
+      "identities": 129,
+      "gaps": 0,
+      "set_id": "xy10",
+      "official_card_count": 124,
+      "name_en": "Fates Collide"
+    },
+    {
+      "path": "data/XY/Flashfire",
+      "source_files": 110,
+      "parsed_files": 110,
+      "identities": 110,
+      "gaps": 0,
+      "set_id": "xy2",
+      "official_card_count": 106,
+      "name_en": "Flashfire"
+    },
+    {
+      "path": "data/XY/Furious Fists",
+      "source_files": 114,
+      "parsed_files": 114,
+      "identities": 114,
+      "gaps": 0,
+      "set_id": "xy3",
+      "official_card_count": 111,
+      "name_en": "Furious Fists"
+    },
+    {
+      "path": "data/XY/Generations",
+      "source_files": 117,
+      "parsed_files": 117,
+      "identities": 117,
+      "gaps": 0,
+      "set_id": "g1",
+      "official_card_count": 83,
+      "name_en": "Generations"
+    },
+    {
+      "path": "data/XY/Kalos Starter Set",
+      "source_files": 39,
+      "parsed_files": 39,
+      "identities": 39,
+      "gaps": 0,
+      "set_id": "xy0",
+      "official_card_count": 39,
+      "name_en": "Kalos Starter Set"
+    },
+    {
+      "path": "data/XY/Phantom Forces",
+      "source_files": 124,
+      "parsed_files": 124,
+      "identities": 124,
+      "gaps": 0,
+      "set_id": "xy4",
+      "official_card_count": 119,
+      "name_en": "Phantom Forces"
+    },
+    {
+      "path": "data/XY/Primal Clash",
+      "source_files": 164,
+      "parsed_files": 164,
+      "identities": 164,
+      "gaps": 0,
+      "set_id": "xy5",
+      "official_card_count": 160,
+      "name_en": "Primal Clash"
+    },
+    {
+      "path": "data/XY/Roaring Skies",
+      "source_files": 112,
+      "parsed_files": 112,
+      "identities": 112,
+      "gaps": 0,
+      "set_id": "xy6",
+      "official_card_count": 108,
+      "name_en": "Roaring Skies"
+    },
+    {
+      "path": "data/XY/Steam Siege",
+      "source_files": 116,
+      "parsed_files": 116,
+      "identities": 116,
+      "gaps": 0,
+      "set_id": "xy11",
+      "official_card_count": 114,
+      "name_en": "Steam Siege"
+    },
+    {
+      "path": "data/XY/XY",
+      "source_files": 146,
+      "parsed_files": 146,
+      "identities": 146,
+      "gaps": 0,
+      "set_id": "xy1",
+      "official_card_count": 146,
+      "name_en": "XY"
+    },
+    {
+      "path": "data/XY/XY Black Star Promos",
+      "source_files": 216,
+      "parsed_files": 216,
+      "identities": 216,
+      "gaps": 0,
+      "set_id": "xyp",
+      "official_card_count": 211,
+      "name_en": "XY Black Star Promos"
+    },
+    {
+      "path": "data/XY/Yellow A Alternate",
+      "source_files": 6,
+      "parsed_files": 6,
+      "identities": 6,
+      "gaps": 0,
+      "set_id": "xya",
+      "official_card_count": 6,
+      "name_en": "Yellow A Alternate"
+    }
+  ]
+}

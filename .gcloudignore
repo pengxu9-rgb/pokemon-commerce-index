@@ -48,3 +48,9 @@ catalog/collector-evidence-v1/*
 !catalog/collector-evidence-v2/
 catalog/collector-evidence-v2/*
 !catalog/collector-evidence-v2/evidence-events.jsonl
+
+!catalog/english-history-v1/
+catalog/english-history-v1/*
+!catalog/english-history-v1/cards.jsonl.gz
+!catalog/english-history-v1/facets.jsonl.gz
+!catalog/english-history-v1/classifications.jsonl.gz
