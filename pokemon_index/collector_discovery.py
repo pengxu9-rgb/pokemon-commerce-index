@@ -79,6 +79,9 @@ def _card_result(db, row) -> dict:
         if metadata['status'] == 'official_coordinate_metadata_supported' and metadata['official']['rarity']:
             card['source_rarity'] = card['rarity']
             card['rarity'] = metadata['official']['rarity']
+    from . import coordinate_family
+    family=coordinate_family.context(db,row['card_id'])
+    if family:card['official_coordinate_family']=family
     return card
 
 
@@ -147,6 +150,10 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     if parts and result['task']=='exact_coordinates':
         result['unfulfilled_constraints'].append('numbered_part_copy_evidence')
         result['next_question']='The official page lists multiple numbered parts. Confirm the requested part and inspect the listing photos before selecting a physical copy.'
+    families=[c for c in result['cards'] if c.get('official_coordinate_family',{}).get('copy_evidence_needed')]
+    if families and result['task']=='exact_coordinates':
+        result['unfulfilled_constraints'].append('coordinate_family_copy_evidence')
+        result['next_question']='Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.'
     return result
 
 

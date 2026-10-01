@@ -1,0 +1,25 @@
+{
+  "schema": "pokemon.coordinate-family-release-validation.v1",
+  "date": "2026-10-02",
+  "python_tests_passed": 439,
+  "node_tests_passed": 11,
+  "constructed_question_cases": 20,
+  "family_copy_blockers": 9,
+  "numbered_part_blockers": 4,
+  "graph_checks": 5,
+  "cloud_revision": "pokemon-commerce-index-00027-z58",
+  "authenticated_cloud_requests": 56,
+  "source_family_events": 280,
+  "supported_coordinate_families": 269,
+  "held_coordinate_families": 11,
+  "independent_listing_accuracy_measured": false,
+  "physical_printing_approvals": 0,
+  "evidence_sha256": {
+    "catalog-build-manifest-families-v1.json": "7343db8bb2b511d5e1f98269efa4d661f93ecd20c9d6cdd1919a10c3b1f384c6",
+    "catalog/coordinate-family-evidence-v1/evidence-v1.jsonl": "2a54db2c03b575f76e732d90d14bbe434e05f4da5d292b598de6a163a849e384",
+    "catalog/coordinate-family-evidence-v1/official-audit-v2.jsonl": "595b21a1638be83e42f85c2429921890995d28c1bf7607fea255d429373c2924",
+    "catalog/coordinate-family-evidence-v1/whole-catalog-quality-v2.json": "211bae9ad35b674dfc02433459fdbf223e00f4e14b6d68965436c37fcfd02d60",
+    "catalog/coordinate-family-evidence-v1/discovery-rehearsal-v2.json": "f3bfe20f69923db488229edeea1b9fb780cfc5574a0331e24c64013538c09acb",
+    "cloud-deployment-20261002-coordinate-families-v1.json": "339cae586624450a661692073b46ef6c30cfaf939b4a017643757d5b73c68253"
+  }
+}

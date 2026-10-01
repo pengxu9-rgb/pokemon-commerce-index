@@ -811,7 +811,9 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
 
 
 def _with_metadata(db, card):
-    from . import card_metadata
+    from . import card_metadata,coordinate_family
+    family=coordinate_family.context(db,card['card_id'])
+    if family:card['official_coordinate_family']=family
     evidence = card_metadata.context(db, card['card_id'])
     if evidence:
         card['official_metadata'] = evidence

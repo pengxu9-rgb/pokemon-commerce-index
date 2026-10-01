@@ -1,0 +1,1224 @@
+{
+  "schema": "pokemon.catalog-graph-quality.v1",
+  "audited_date": "2026-10-02",
+  "catalog_sha256": "13eed6b763e70e9b9b0384e839376e7c1fd516b5e63cdaeda7ec1dc07dcd7082",
+  "manifest_sha256": "7343db8bb2b511d5e1f98269efa4d661f93ecd20c9d6cdd1919a10c3b1f384c6",
+  "catalog_summary": {
+    "printings": 70005,
+    "sets": 543,
+    "reference_records": 24039,
+    "facet_coverage": {
+      "dex_id": 40666,
+      "illustrator": 45500
+    },
+    "official_printing_type_coverage": {
+      "prism_star": 15
+    },
+    "display_approved": 0,
+    "match_eligible": 33543,
+    "scope": "internal catalog inventory; not a public display authorization"
+  },
+  "integrity": {
+    "foreign_key_violations": [],
+    "invalid_card_ids": [],
+    "invalid_attributes_json": [],
+    "required_field_missing": {
+      "name": 0,
+      "language": 0,
+      "set_code": 0,
+      "collector_number": 0,
+      "variant": 0,
+      "provenance": 0,
+      "rights_reference": 0
+    },
+    "duplicate_identity_tuples": 0,
+    "missing_number_contexts": 0,
+    "manifested_inputs_verified": 41
+  },
+  "completeness": {
+    "language_counts": {
+      "ja": 27094,
+      "en": 42911
+    },
+    "source_families": {
+      "tcgdex": 50100,
+      "tcgdex-api": 9208,
+      "ptcg-database": 10695,
+      "public-metadata-crosscheck": 2
+    },
+    "language_set_number_groups": 45437,
+    "unverified_label_records": 20090,
+    "raw_missing_or_none_rarity": 19106,
+    "classification_records": 49866,
+    "release_gap_records": 9788,
+    "release_gap_groups": 215,
+    "release_gaps": [
+      {
+        "language": "ja",
+        "set_code": "SI",
+        "records": 427
+      },
+      {
+        "language": "ja",
+        "set_code": "SMP",
+        "records": 408
+      },
+      {
+        "language": "ja",
+        "set_code": "S-P",
+        "records": 316
+      },
+      {
+        "language": "ja",
+        "set_code": "XYP",
+        "records": 296
+      },
+      {
+        "language": "ja",
+        "set_code": "XY",
+        "records": 259
+      },
+      {
+        "language": "ja",
+        "set_code": "BWP",
+        "records": 229
+      },
+      {
+        "language": "ja",
+        "set_code": "SVM",
+        "records": 175
+      },
+      {
+        "language": "ja",
+        "set_code": "SVD",
+        "records": 139
+      },
+      {
+        "language": "ja",
+        "set_code": "CP4",
+        "records": 131
+      },
+      {
+        "language": "ja",
+        "set_code": "SMH",
+        "records": 131
+      },
+      {
+        "language": "ja",
+        "set_code": "DPP",
+        "records": 127
+      },
+      {
+        "language": "ja",
+        "set_code": "SD",
+        "records": 127
+      },
+      {
+        "language": "ja",
+        "set_code": "S3",
+        "records": 110
+      },
+      {
+        "language": "ja",
+        "set_code": "WCP",
+        "records": 108
+      },
+      {
+        "language": "ja",
+        "set_code": "S2",
+        "records": 106
+      },
+      {
+        "language": "ja",
+        "set_code": "CP6",
+        "records": 103
+      },
+      {
+        "language": "ja",
+        "set_code": "XY3",
+        "records": 103
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-B",
+        "records": 100
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT1-B",
+        "records": 96
+      },
+      {
+        "language": "ja",
+        "set_code": "XY4",
+        "records": 95
+      },
+      {
+        "language": "ja",
+        "set_code": "BW10-B",
+        "records": 93
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-B",
+        "records": 92
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-B",
+        "records": 90
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-B",
+        "records": 90
+      },
+      {
+        "language": "ja",
+        "set_code": "XY9-B",
+        "records": 88
+      },
+      {
+        "language": "ja",
+        "set_code": "XY10-B",
+        "records": 87
+      },
+      {
+        "language": "ja",
+        "set_code": "XY2",
+        "records": 87
+      },
+      {
+        "language": "ja",
+        "set_code": "S3A",
+        "records": 85
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7-B",
+        "records": 84
+      },
+      {
+        "language": "ja",
+        "set_code": "LP",
+        "records": 79
+      },
+      {
+        "language": "ja",
+        "set_code": "S1A",
+        "records": 78
+      },
+      {
+        "language": "ja",
+        "set_code": "S2A",
+        "records": 78
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BG",
+        "records": 78
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BT",
+        "records": 78
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6-B",
+        "records": 78
+      },
+      {
+        "language": "ja",
+        "set_code": "20TH",
+        "records": 77
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-B",
+        "records": 77
+      },
+      {
+        "language": "ja",
+        "set_code": "L3-B",
+        "records": 77
+      },
+      {
+        "language": "ja",
+        "set_code": "BW9-B",
+        "records": 76
+      },
+      {
+        "language": "ja",
+        "set_code": "BW7-B",
+        "records": 70
+      },
+      {
+        "language": "ja",
+        "set_code": "BW4-B",
+        "records": 69
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BHG",
+        "records": 69
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BSS",
+        "records": 69
+      },
+      {
+        "language": "ja",
+        "set_code": "S1H",
+        "records": 68
+      },
+      {
+        "language": "ja",
+        "set_code": "S1W",
+        "records": 68
+      },
+      {
+        "language": "ja",
+        "set_code": "SMA",
+        "records": 68
+      },
+      {
+        "language": "ja",
+        "set_code": "BW2-B",
+        "records": 66
+      },
+      {
+        "language": "ja",
+        "set_code": "SVI",
+        "records": 66
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BB",
+        "records": 64
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BR",
+        "records": 64
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BX",
+        "records": 63
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BY",
+        "records": 63
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BC",
+        "records": 59
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BF",
+        "records": 59
+      },
+      {
+        "language": "ja",
+        "set_code": "SH",
+        "records": 59
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BB",
+        "records": 58
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BR",
+        "records": 58
+      },
+      {
+        "language": "ja",
+        "set_code": "SML",
+        "records": 57
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BB",
+        "records": 53
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BW",
+        "records": 53
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHK",
+        "records": 53
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHM",
+        "records": 53
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BH",
+        "records": 52
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BP",
+        "records": 52
+      },
+      {
+        "language": "ja",
+        "set_code": "SVG",
+        "records": 52
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRF",
+        "records": 51
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRN",
+        "records": 51
+      },
+      {
+        "language": "ja",
+        "set_code": "DPTP",
+        "records": 51
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRN",
+        "records": 50
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRZ",
+        "records": 50
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-P",
+        "records": 49
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-S",
+        "records": 49
+      },
+      {
+        "language": "ja",
+        "set_code": "WAK",
+        "records": 47
+      },
+      {
+        "language": "ja",
+        "set_code": "MDB",
+        "records": 46
+      },
+      {
+        "language": "ja",
+        "set_code": "SVN",
+        "records": 45
+      },
+      {
+        "language": "ja",
+        "set_code": "MA",
+        "records": 43
+      },
+      {
+        "language": "ja",
+        "set_code": "SCS",
+        "records": 41
+      },
+      {
+        "language": "ja",
+        "set_code": "HXY",
+        "records": 39
+      },
+      {
+        "language": "ja",
+        "set_code": "LL",
+        "records": 39
+      },
+      {
+        "language": "ja",
+        "set_code": "CP5",
+        "records": 38
+      },
+      {
+        "language": "ja",
+        "set_code": "SMI",
+        "records": 38
+      },
+      {
+        "language": "ja",
+        "set_code": "SVF",
+        "records": 38
+      },
+      {
+        "language": "ja",
+        "set_code": "SMJ",
+        "records": 35
+      },
+      {
+        "language": "ja",
+        "set_code": "SF",
+        "records": 33
+      },
+      {
+        "language": "ja",
+        "set_code": "CP3",
+        "records": 32
+      },
+      {
+        "language": "ja",
+        "set_code": "SO",
+        "records": 32
+      },
+      {
+        "language": "ja",
+        "set_code": "SMK",
+        "records": 31
+      },
+      {
+        "language": "ja",
+        "set_code": "SMM",
+        "records": 31
+      },
+      {
+        "language": "ja",
+        "set_code": "SJ",
+        "records": 30
+      },
+      {
+        "language": "ja",
+        "set_code": "SK",
+        "records": 30
+      },
+      {
+        "language": "ja",
+        "set_code": "SMD",
+        "records": 30
+      },
+      {
+        "language": "ja",
+        "set_code": "WCS23",
+        "records": 30
+      },
+      {
+        "language": "ja",
+        "set_code": "SMN",
+        "records": 29
+      },
+      {
+        "language": "ja",
+        "set_code": "SVB",
+        "records": 28
+      },
+      {
+        "language": "ja",
+        "set_code": "XYH",
+        "records": 26
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-P",
+        "records": 25
+      },
+      {
+        "language": "ja",
+        "set_code": "SMP2",
+        "records": 25
+      },
+      {
+        "language": "ja",
+        "set_code": "SB",
+        "records": 24
+      },
+      {
+        "language": "ja",
+        "set_code": "SGI",
+        "records": 24
+      },
+      {
+        "language": "ja",
+        "set_code": "SN",
+        "records": 24
+      },
+      {
+        "language": "ja",
+        "set_code": "MP1",
+        "records": 23
+      },
+      {
+        "language": "ja",
+        "set_code": "SLL",
+        "records": 23
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAM",
+        "records": 23
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAW",
+        "records": 23
+      },
+      {
+        "language": "ja",
+        "set_code": "XYC",
+        "records": 23
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-MRP09",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "MBD",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "MBG",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "SLD",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "SPD",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "SPZ",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "XYE",
+        "records": 22
+      },
+      {
+        "language": "ja",
+        "set_code": "BTV",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SC2",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SEF",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SGG",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SMC",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SME",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAL",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SVC",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJL",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "XYA",
+        "records": 21
+      },
+      {
+        "language": "ja",
+        "set_code": "DS",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "MEE",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "MEZ",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "SC",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "SEK",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEL",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEM",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOM",
+        "records": 20
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SB",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SH",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "RAN",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJP",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOD",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "XYG",
+        "records": 19
+      },
+      {
+        "language": "ja",
+        "set_code": "BKB",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "BKR",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "BKW",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "BKZ",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SE",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SG",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "KK",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "MEM",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "XYB",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "XYD",
+        "records": 18
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SGF",
+        "records": 17
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SLP",
+        "records": 17
+      },
+      {
+        "language": "ja",
+        "set_code": "PPD",
+        "records": 17
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SG",
+        "records": 16
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SL",
+        "records": 16
+      },
+      {
+        "language": "ja",
+        "set_code": "PBG",
+        "records": 16
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-G",
+        "records": 16
+      },
+      {
+        "language": "ja",
+        "set_code": "XYF",
+        "records": 16
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPI",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPO",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "EL",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "GBR",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "HSM",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "HSP",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "HST",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "KLD",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "SMB",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "SZD",
+        "records": 15
+      },
+      {
+        "language": "ja",
+        "set_code": "BKC",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "BKT",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "BKV",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SD",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SG",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBNA",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "EM",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPM",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPP",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPT",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZM",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZP",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZT",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "X30",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "Y30",
+        "records": 14
+      },
+      {
+        "language": "ja",
+        "set_code": "BGST",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "BGSV",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPD",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPG",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPP",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBHI",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "SMP1",
+        "records": 13
+      },
+      {
+        "language": "ja",
+        "set_code": "BW",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "CPM",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "CPR",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "CPS",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "SM-XY",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "SMF",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "SMG",
+        "records": 12
+      },
+      {
+        "language": "ja",
+        "set_code": "BR",
+        "records": 11
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6",
+        "records": 11
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7",
+        "records": 11
+      },
+      {
+        "language": "ja",
+        "set_code": "BD",
+        "records": 10
+      },
+      {
+        "language": "ja",
+        "set_code": "BK",
+        "records": 10
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPO",
+        "records": 10
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPR",
+        "records": 10
+      },
+      {
+        "language": "ja",
+        "set_code": "BB",
+        "records": 9
+      },
+      {
+        "language": "ja",
+        "set_code": "MPS08",
+        "records": 9
+      },
+      {
+        "language": "ja",
+        "set_code": "SP2",
+        "records": 8
+      },
+      {
+        "language": "ja",
+        "set_code": "SP4",
+        "records": 8
+      },
+      {
+        "language": "ja",
+        "set_code": "PPP",
+        "records": 7
+      },
+      {
+        "language": "ja",
+        "set_code": "SP1",
+        "records": 7
+      },
+      {
+        "language": "ja",
+        "set_code": "SVP1",
+        "records": 7
+      },
+      {
+        "language": "ja",
+        "set_code": "SP3",
+        "records": 6
+      },
+      {
+        "language": "ja",
+        "set_code": "SP6",
+        "records": 6
+      },
+      {
+        "language": "ja",
+        "set_code": "SA",
+        "records": 5
+      },
+      {
+        "language": "ja",
+        "set_code": "SM0",
+        "records": 4
+      },
+      {
+        "language": "ja",
+        "set_code": "SP5",
+        "records": 4
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1M",
+        "records": 3
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1P",
+        "records": 3
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1T",
+        "records": 3
+      }
+    ],
+    "artist_conflict_records": [
+      "ja:M6:110/076:holo",
+      "ja:M-P:046/M-P:normal",
+      "ja:M-P:131/M-P:normal",
+      "ja:M-P:132/M-P:normal",
+      "ja:M-P:134/M-P:normal",
+      "ja:M-P:137/M-P:normal",
+      "ja:SV11W:088/086:holo",
+      "ja:SV-P:111/SV-P:normal",
+      "ja:SV-P:198/SV-P:normal",
+      "ja:SV8:012/106:normal"
+    ]
+  },
+  "graph": {
+    "latest_assertions": 657,
+    "latest_states": {
+      "proposed": 657
+    },
+    "relation_types": {
+      "same_artwork": 657
+    },
+    "assertion_nodes": 1268,
+    "proposed_pairs_touching_match_disabled": 36,
+    "proposed_pairs_touching_explicit_family_holds": 0,
+    "structural_multiversion_groups": 16868,
+    "structural_neighbor_pairs": 35405,
+    "structural_pair_scope": "computed sibling pairs; not persisted verified relationships",
+    "facets": {
+      "dex_id": {
+        "distinct_values": 1025,
+        "values_shared_across_languages": 1020,
+        "claim_scope": "retrieval metadata only; not localization/artwork equivalence"
+      },
+      "illustrator": {
+        "distinct_values": 427,
+        "values_shared_across_languages": 309,
+        "claim_scope": "retrieval metadata only; not localization/artwork equivalence"
+      }
+    },
+    "declared_evolution_families": 3,
+    "collector_evidence": {
+      "active_source_supported": 13,
+      "active_proposed": 142,
+      "stale_findings": 0,
+      "physical_finish_approvals": 0,
+      "verified_card_pair_edges_added": 0,
+      "automatic_offer_join_approvals": 0
+    },
+    "verified_counterpart_price_comparability": false
+  },
+  "gates": {
+    "official_card_metadata": {
+      "official_metadata_events": 2497,
+      "current_official_metadata_cards": 2497,
+      "official_metadata_stale_cards": 0,
+      "official_known_rarity_cards": 1900,
+      "official_numbered_parts_cards": 4
+    },
+    "coordinate_family_evidence": {
+      "coordinate_family_events": 280,
+      "current_coordinate_families": 269,
+      "held_coordinate_families": 11,
+      "stale_coordinate_families": 0
+    },
+    "supported_status": {
+      "official_metadata_events": 2497,
+      "current_official_metadata_cards": 2497,
+      "official_metadata_stale_cards": 0,
+      "official_known_rarity_cards": 1900,
+      "official_numbered_parts_cards": 4,
+      "coordinate_family_events": 280,
+      "current_coordinate_families": 269,
+      "held_coordinate_families": 11,
+      "stale_coordinate_families": 0,
+      "supported_records": 100,
+      "current_supported_targets": 100,
+      "stale_supported_targets": 0,
+      "automatic_offer_join_ready": 0,
+      "bilingual_alias_revisions": 122,
+      "concept_review_events": 460,
+      "release_evidence_records": 3,
+      "vocabulary_records": 6,
+      "character_families": 3,
+      "scope": "Internal source-backed metadata; physical copy, live matching precision and display rights remain separate"
+    },
+    "observations": 0,
+    "paid_sales": 0,
+    "live_listing_rows": 0
+  },
+  "independent_listing_precision_measured": false,
+  "physical_printing_count_verified": false,
+  "interpretation": "Integrity and evidence coverage audit of internal source records; not an independent semantic/printing accuracy evaluation."
+}

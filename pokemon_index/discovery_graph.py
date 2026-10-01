@@ -10,7 +10,7 @@ import uuid
 from collections import Counter
 from typing import Any, Iterable
 
-from . import core, number_graph, card_metadata
+from . import core, number_graph, card_metadata,coordinate_family
 
 RELATION_TYPES = {"localization_counterpart", "same_artwork", "collecting_alternative"}
 REVIEW_STATUSES = {"proposed", "verified", "rejected"}
@@ -315,6 +315,7 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
         }
     return {"card_id": card_id,
             "official_metadata": card_metadata.context(db, card_id),
+            "official_coordinate_family": coordinate_family.context(db,card_id),
             "number_context": source_number,
             "official_printing_type": printing["official_printing_type"] if printing else None,
             "variants_at_number": variants,

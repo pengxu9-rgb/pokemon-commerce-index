@@ -1,0 +1,13 @@
+{
+  "schema": "pokemon.coordinate-family-audit.v1",
+  "groups": 280,
+  "pages": 540,
+  "decisions": {
+    "coordinate_family_supported": 269,
+    "fetch_or_identity_hold": 3,
+    "missing_reference_hold": 8
+  },
+  "queue_sha256": "d487d19f54469b7989cdf7015946975f66896f0505adc599215b52ac5f9fda3a",
+  "audit_sha256": "25c4764a7b8ea368aef708e546d6f4bc6153471a1f7c199da79389e74a71db97",
+  "scope": "coordinate-family evidence only; page-to-finish assignment and copy/price equivalence unverified"
+}

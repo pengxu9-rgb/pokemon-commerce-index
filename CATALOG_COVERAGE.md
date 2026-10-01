@@ -253,6 +253,47 @@ python3 -m scripts.build_catalog_snapshot \
 
 Next prioritize source-name conflicts and multiple-version groups with exact official pages and printed-credit/variant evidence. Unknown rarity declarations stay unknown; a printing split or offer permission requires its own positive evidence. Authorized live listing discovery, matching/freshness measurement and Buy&Ship transaction handoff remain the external gates.
 
+## 2 October 2026 — unresolved coordinate families and whole-catalog quality
+
+The current [`catalog-build-manifest-families-v1.json`](catalog-build-manifest-families-v1.json) has **41 ordered inputs**. The 280 pending groups have now been audited against **541 official reference pages**. The [first audit](catalog/coordinate-family-evidence-v1/official-audit-v1.summary.json) retained only 540 parsed pages because it stopped before retaining one mismatched coordinate. The [complete second audit](catalog/coordinate-family-evidence-v1/official-audit-v2.summary.json) preserves that page as well. Results: **269 source-supported coordinate families covering 610 source-version records**, and **11 explicit holds**. The [immutable evidence](catalog/coordinate-family-evidence-v1/evidence-v1.jsonl) retains complete source-card/reference membership, official response hashes and source lineage. Existing 2,497 single-reference metadata records are unchanged; no physical printing, public display or offer permission is added.
+
+The 11 holds comprise eight basic-energy coordinates without pinned official references; two Professor's Research records whose pinned reference adds a character qualifier absent from the current official title; and SV-P 153/SV-P, whose second reference points to an official **154/SV-P** page. The Professor cases need printed-card/portrait evidence, rather than a guessed title alias. The reference-number error remains visible in its evidence. Both positive family evidence and holds require copy evidence before a journey can select a printing. That guard also applies when selecting a family member from a broad set/character query, so broad discovery cannot bypass exact-coordinate clarification. No official page is automatically assigned to a source finish or edition.
+
+`coordinate_family_evidence` is append-only and versioned. It checks the complete current card/reference snapshot; adding a sibling, changing a title/reference or replacing a source makes the prior evidence stale. Official-page names, rarity, character IDs and credits remain family-scoped facts and do not overwrite source variant fields or derive per-variant facets. Internal card, collector and graph responses expose this scope and the copy blocker. The previous single-reference evidence and frozen question resolvers remain intact.
+
+### Quality findings across the full catalog
+
+The [whole-catalog audit](catalog/coordinate-family-evidence-v1/whole-catalog-quality-v2.json) checks all 70,005 records, all 41 manifest inputs and **3,038 unique cached official pages** against raw-response hashes, receipts and deterministic parser output. No duplicate identity tuple, invalid ID/attributes JSON, missing mandatory field, missing number context or foreign-key violation was found. All checked primary pages match their stored metadata. This is reproducibility and structural integrity, not an independent semantic or physical-printing accuracy score.
+
+| Dimension | Measured state | Interpretation |
+|---|---:|---|
+| Internal source-version/family records | 70,005 | Not a verified physical SKU total |
+| Language/set/number groups | 45,437 | Provisional scopes; regional counterpart mappings still need evidence |
+| Explicitly unverified version labels | 20,090 | 28.7% of source records still lack a confirmed version identity |
+| Raw null/None rarity labels | 19,106 | Seed-field gap; not the effective official-overlay count |
+| Category/subtype records | 49,866 | Classification is incomplete outside the directly parsed source cohort |
+| Release name/date gaps | 9,788 Japanese records across 215 sets | 36.1% of Japanese records; some promo dates are inherently uncertain |
+| Character / artist facet coverage | 40,666 / 45,500 records | Useful retrieval facts; not card equivalence |
+| Official single-reference coordinates / supported families | 2,497 / 269 | Distinct cohorts; together 11.5% of the 24,144 Japanese numbered groups in these two evidence tiers |
+| Artist conflicts excluded from facets | 10 | No additional artist disagreement found among the 269 supported family groups |
+| Real listing observations / paid sales | 0 / 0 | Fresh price, sale and merchant-outcome accuracy cannot be measured yet |
+
+The graph has **657 latest same-artwork proposals involving 1,268 source records**, **zero verified card-pair assertions**, three official evolution-family declarations, 13 active official collector declarations and 142 active AI depiction proposals. Thirty-six proposed pairs touch match-disabled source identities and deserve priority in identity/evidence review. None touches the new eleven family holds. Structural variant neighborhoods span 16,868 groups and compute 35,405 sibling pairs; these are not independently verified relationship edges. Character metadata bridges 1,020 Pokédex values across Japanese/English; artist retrieval shares 309 normalized labels. This supports exploratory retrieval, while localization counterpart, exact artwork equivalence and price-comparable printing decisions remain separate.
+
+The [development replay](catalog/coordinate-family-evidence-v1/discovery-rehearsal-v2.json) covers 20 constructed questions, nine family-copy blockers, four numbered-part guards and five graph checks. **439 Python tests and 11 Node tests pass.** Private revision `pokemon-commerce-index-00027-z58` passed [56 authenticated logical checks](cloud-deployment-20261002-coordinate-families-v1.json), including direct-selection bypass rejection and exact local/cloud journey responses. The initial replay requested a holo variant that the SV4A 001 source does not declare; that engineering fixture was corrected to explicit non-holo, without changing the source or weakening the copy guard. These are not held-out marketplace labels.
+
+Rebuild with new output paths, then reproduce the source and graph quality audit:
+
+```bash
+python3 -m scripts.build_catalog_snapshot \
+  --manifest catalog-build-manifest-families-v1.json --db /tmp/coordinate-family-catalog.sqlite3
+python3 -m scripts.audit_catalog_graph_quality \
+  --db /tmp/coordinate-family-catalog.sqlite3 --manifest catalog-build-manifest-families-v1.json \
+  --official-cache ../../work/japanese-evidence-next-v1-cache --output /tmp/catalog-graph-quality.json
+```
+
+Primary HTML remains local and is excluded from Git/cloud. The next quality work should repair release metadata and localized code aliases, establish a small printing/copy cohort, and independently review a frozen subset of artwork proposals. Additional raw record totals will not close those gaps.
+
 ## Character and artist discovery facets
 
 The pinned TCGdex source also supplies **59,710 provenance-checked, text-only facet rows** for the 35,077 Japanese and English identities extracted directly from its card files: 28,361 cards have a usable Pokédex character ID and 31,071 have an illustrator. Facets are stored separately in [`catalog/card-facets.jsonl.gz`](catalog/card-facets.jsonl.gz), with a [build audit](catalog/card-facets-audit.json). Four legacy source files use a decimal `dexId` such as `384.1`; those IDs are omitted and listed in the audit rather than coerced to a different character. API-only and supplemental candidates have no TCGdex facet assertion from this batch.

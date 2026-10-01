@@ -152,10 +152,10 @@ def support_for_card(db: sqlite3.Connection, card_id: str) -> dict:
 
 
 def status(db: sqlite3.Connection) -> dict:
-    from . import card_metadata
+    from . import card_metadata,coordinate_family
     ids = [r[0] for r in db.execute("SELECT card_id FROM supported_card ORDER BY card_id")]
     ready = [cid for cid in ids if support_for_card(db, cid)["status"] == "supported_for_internal_review"]
-    return {**card_metadata.status(db), "supported_records": len(ids), "current_supported_targets": len(ready),
+    return {**card_metadata.status(db),**coordinate_family.status(db), "supported_records": len(ids), "current_supported_targets": len(ready),
             "stale_supported_targets": len(ids)-len(ready), "automatic_offer_join_ready": 0,
             "bilingual_alias_revisions": db.execute("SELECT COUNT(*) FROM bilingual_concept_revision").fetchone()[0],
             "concept_review_events": db.execute("SELECT COUNT(*) FROM concept_review_event").fetchone()[0],

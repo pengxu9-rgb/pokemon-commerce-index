@@ -17,14 +17,14 @@ def catalog_revision(db):
     h=hashlib.sha256(POLICY.encode())
     for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','card_rarity.py','core.py','cli.py']:
+                 'discovery_graph.py','number_graph.py','card_rarity.py','coordinate_family.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
         h.update(json.dumps([name,definition[0] if definition else None]).encode())
     tables=['card','card_facet','catalog_set_localized','catalog_vocabulary',
             'character_family','character_family_member','catalog_collector_evidence',
-            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence']
+            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence','coordinate_family_evidence']
     for table in tables:
         if not db.execute("SELECT 1 FROM sqlite_master WHERE name=?",(table,)).fetchone():continue
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]
@@ -141,6 +141,10 @@ def replay(db,request,*,revision=None):
         if previous['selection_blockers']:raise ValueError('resolve scope or inventory blockers before selecting a target')
         shown={c['card_id']:c for c in previous['cards']}
         if cid not in shown:raise ValueError('selected card was not shown in the preceding candidate page')
+        if shown[cid].get('official_coordinate_family',{}).get('copy_evidence_needed'):
+            raise ValueError('coordinate family needs qualified-title and physical-copy evidence before selecting a target')
+        if shown[cid].get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts':
+            raise ValueError('numbered part needs physical-copy evidence before selecting a target')
         target=shown[cid]
     for pos,turn in enumerate(turns):
         if not isinstance(turn,dict):raise ValueError('journey turn must be an object')

@@ -61,7 +61,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
     expected_catalog=json.loads(manifest.read_text())['expected']
     code,status=query('/catalog-status');assert code==200 and all(status[key]==expected_catalog[key] for key in ('printings','sets','match_eligible','display_approved','reference_records'))
     code,support=query('/supported-status');assert code==200 and support['current_supported_targets']==100 and support['automatic_offer_join_ready']==0
-    for key in ('official_metadata_events','current_official_metadata_cards','official_metadata_stale_cards','official_known_rarity_cards','official_numbered_parts_cards'):
+    for key in ('official_metadata_events','current_official_metadata_cards','official_metadata_stale_cards','official_known_rarity_cards','official_numbered_parts_cards','coordinate_family_events','current_coordinate_families','held_coordinate_families','stale_coordinate_families'):
         if key in expected_catalog:
             assert support[key]==expected_catalog[key],key
     assert query('/health',auth=False)[0]==403
@@ -106,6 +106,17 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
         metadata_graph_checks.append(dict(card_id=expected['card_id'],passed=True,
             ai_import_application_times=dict(local=[x['asserted_at'] for x in expected.get('ai_artwork_candidates',[])],
                                              cloud=[x['asserted_at'] for x in actual.get('ai_artwork_candidates',[])])))
+    family_journey_checks=[]
+    for item in local.get('coordinate_family_journey_checks',[]):
+        code,actual=query('/collector-journey',body=dict(turns=[dict(type='ask',question=item['question'])]))
+        assert code==200 and actual==item['result'],item['question']
+        assert not actual['selection_allowed'] and not actual['target_intent'] and 'coordinate_family_copy_evidence' in actual['selection_blockers']
+        family_journey_checks.append(dict(question=item['question'],passed=True))
+    family_broad_select_guard=False
+    if family_journey_checks:
+        assert query('/collector-journey',body=dict(turns=[dict(type='ask',question='Japanese SV8A cards'),
+            dict(type='select',card_id='ja:SV8A:001/187:normal')]))[0]==400
+        family_broad_select_guard=True
     inventory_checks=[]
     if inventory_db is not None:
         before=sha_file(inventory_db)
@@ -214,6 +225,8 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 collector_checks=checks,inventory_checks=inventory_checks,
                 metadata_numbered_part_journey_checks=metadata_journey_checks,
                 metadata_graph_checks=metadata_graph_checks,
+                coordinate_family_journey_checks=family_journey_checks,
+                coordinate_family_broad_select_guard=family_broad_select_guard,
                 collector_evidence_checks=evidence_checks,
                 collector_expansion_checks=expansion_checks,
                 collector_journey_checks=journey_checks,
@@ -231,7 +244,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 ordinary_figure_out_phrase_check=True,
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
-                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/card_metadata.py','pokemon_index/metadata_views.sql','pokemon_index/discovery_graph.py','pokemon_index/card_rarity.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
+                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/card_metadata.py','pokemon_index/coordinate_family.py','pokemon_index/metadata_views.sql','pokemon_index/discovery_graph.py','pokemon_index/card_rarity.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
                 verified_date=verified_date,real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

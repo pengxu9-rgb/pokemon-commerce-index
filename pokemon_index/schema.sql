@@ -259,6 +259,15 @@ CREATE TABLE IF NOT EXISTS card_facet (
   PRIMARY KEY(card_id, facet_type, value)
 );
 
+CREATE TABLE IF NOT EXISTS coordinate_family_evidence (
+  evidence_id TEXT PRIMARY KEY,
+  language TEXT NOT NULL,
+  set_code TEXT NOT NULL,
+  collector_number TEXT NOT NULL,
+  revision INTEGER NOT NULL CHECK(revision>0),
+  record_json TEXT NOT NULL,
+  UNIQUE(language,set_code,collector_number,revision)
+);
 CREATE TABLE IF NOT EXISTS card_metadata_evidence (
   evidence_id TEXT PRIMARY KEY,
   card_id TEXT NOT NULL REFERENCES card(card_id),
