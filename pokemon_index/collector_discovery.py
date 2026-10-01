@@ -51,7 +51,18 @@ def _rows(db, where: str, params: tuple) -> list:
 def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dict:
     text = _norm(result['question'])
     finish = None
-    if re.search(r'master\s*ball|マスターボール|大师球', text):
+    # A set-variant comparison needs all declared variants, not one ball filter.
+    if result['task']=='artist_cards' and re.search(r'base.*reverse|all.*(?:variants|versions|prints)|unique.*prints',text):
+        result['unfulfilled_constraints'].append('printing_variant_completeness')
+        result['physical_finish_verification']='not_established_by_catalog'
+    elif result['task'] == 'set_cards':
+        result['variant_summary'] = [dict(variant=v, records=sum(r['variant']==v for r in rows))
+                                     for v in sorted({r['variant'] for r in rows})]
+        result['rarity_summary'] = [dict(rarity=v, records=sum(r['rarity']==v for r in rows))
+                                    for v in sorted({r['rarity'] for r in rows}, key=lambda v:v or '')]
+        result['physical_finish_verification'] = 'not_established_by_catalog'
+        result['unfulfilled_constraints'].append('physical_variant_completeness')
+    elif re.search(r'master\s*ball|マスターボール|大师球', text):
         finish = {'reverse_masterball'}
     elif re.search(r'poke\s*ball|poké\s*ball|モンスターボール|精灵球', text):
         finish = {'reverse_pokeball'}
@@ -82,6 +93,33 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     return result
 
 
+def _release_codes(db, text: str, languages: list[str]) -> set[str]:
+    codes={r[0] for r in db.execute('SELECT DISTINCT set_code FROM card') if _mentioned(text,r[0])}
+    for row in db.execute('SELECT * FROM catalog_vocabulary'):
+        if row['language'] in languages and _mentioned(text,row['alias']):codes.add(row['set_code'])
+        # Numeric product titles (e.g. official ポケモンカード151) are only
+        # shorthand in explicit release context, never an isolated dex number.
+        short=re.fullmatch(r'ポケモンカード(\d+)',row['alias'])
+        if (short and row['language'] in languages and
+                re.search(r'(?<![a-z0-9/])'+re.escape(short[1])+r'(?![a-z0-9/])',text)
+                and re.search(r'japanese|日本語|日版|ポケモンカード',text)):
+            codes.add(row['set_code'])
+    for row in db.execute('SELECT language,set_code,name FROM catalog_set_localized'):
+        if row['language'] not in languages or not row['name']:continue
+        name=_norm(row['name'])
+        if len(name)<3:continue
+        if name.isdigit() and not re.search(r'\bset\b|\bcards?\b|拡張|カード',text):continue
+        if name.isdigit() and not re.search(r'(?<![a-z0-9/])'+re.escape(name)+r'(?![a-z0-9/])',text):continue
+        if _mentioned(text,name):codes.add(row['set_code'])
+    return codes
+
+
+def _artists(db, text: str) -> list[str]:
+    intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师',text))
+    return [r[0] for r in db.execute("SELECT DISTINCT value FROM card_facet WHERE facet_type='illustrator'")
+            if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
+
+
 def _character_ids(db, text: str) -> list[int]:
     # One character facet only: a team card name cannot name a single species.
     aliases = db.execute("""SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
@@ -109,23 +147,51 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "cards":[], "next_question":None,
               "market_status":"no_live_market_evidence", "live_offers":[],
               "prices":[], "public_display_allowed":False,
+              "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
     if re.search(r'\bkorean\b|\bfrench\b|\bgerman\b|\bchinese\b|韓国語|韓版|法文|德文|中文版', text):
         return dict(result, task='unsupported_language', status='unsupported_scope',
+                    required_evidence=['catalog_and_release_evidence_for_requested_languages'],
                     next_question='This executor currently searches Japanese and English catalog records. Which of those should we inspect?')
     if re.search(r"yugioh|yu-?gi-?oh|magic the gathering|遊戯王|游戏王", text):
         return dict(result, task="unsupported_game", status="unsupported_scope",
                     next_question="Would you like to search physical Pokémon TCG cards?")
-    if re.search(r"\bprice\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|価格|相場|いくら|買取|价格|价差|到手价", text):
+    market_text=re.sub(r"price (?:does not|doesn't|doesn’t) matter|(?:it )?(?:does not|doesn't|doesn’t) matter (?:the )?price|価格(?:は)?関係ない",'',text)
+    if re.search(r"\bprice\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
         return dict(result, task="market_evidence_needed", status="blocked",
                     required_evidence=["exact_printing_target", "authorized_fresh_offers_or_relevant_market_evidence"],
                     next_question="Which exact printing should we track when an authorized feed is available?")
     if re.search(r"\bdeck\b|デッキ|卡组构筑", text):
         return dict(result, task="gameplay_evidence_needed", status="blocked",
                     next_question="Which game format and deck goal should be checked against a rules/card-text source?")
-    if re.search(r'first[ -]edition|\b1st\b|unlimited|初版|\b(?:psa|bgs|cgc|ars|pgc)\b|graded|鑑定|评级', text):
+    artists=_artists(db,text)
+    inventory=bool(re.search(r'check off|ones i (?:have|still)|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って',text))
+    if inventory:
+        result['unfulfilled_constraints'].append('owned_inventory')
+        result['next_question']='Share your owned-card list and language/version scope so we can compare it with these catalog records.'
+    if re.search(r'\bcustoms?\b|\bcarddass\b|\btopps\b|カスタム',text):
+        return dict(result,task='collection_scope_needed',status='clarification_needed',
+                    required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
+                    next_question='Should we first list official physical Pokémon TCG cards? Custom and other product lines need their own sources; share your inventory to check omissions.')
+    edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',text))
+    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|鑑定|评级',text))
+    if graded or (edition and len(artists)!=1):
         return dict(result, task='copy_evidence_needed', status='blocked',
+                    required_evidence=['exact_base_printing','edition_or_grading_copy_evidence'],
                     next_question='This catalog cannot verify edition or a graded copy. Which base printing should we explore before reviewing copy evidence?')
+    if edition:result['unfulfilled_constraints'].append('edition_variants')
+    exclusive=bool(re.search(r'exclusiv|only released in japan|never made it to america|日本限定|海外未発売',text))
+    if exclusive and len(artists)!=1:
+        return dict(result,task='regional_evidence_needed',status='blocked',
+                    required_evidence=['verified_regional_release_and_artwork_coverage'],
+                    next_question='Which exact artwork or release should we compare? Missing catalog matches do not establish regional exclusivity.')
+    if exclusive:result['unfulfilled_constraints'].append('regional_exclusivity')
+    explicit_family=bool(re.search(r'family|evolution|進化|进化|家族',text))
+    cameo=bool(re.search(r'cameo|in (?:the )?(?:card )?art\b|appears in|appearances|カメオ|客串|映って|写って',text))
+    if cameo and not explicit_family:
+        return dict(result,task='artwork_evidence_needed',status='blocked',
+                    required_evidence=['verified_depicted_character_artwork_annotations'],
+                    next_question='Which depicted character should we inspect first? Subject-card metadata cannot verify cameo appearances; those need source-bound artwork evidence.')
 
     cid = re.search(r"\b(ja|en):([a-z0-9.\-]+):([^\s:]+):([a-z0-9_\-]+)", text)
     if cid:
@@ -157,10 +223,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if len(numbers) != 1:
             return dict(result, task="need_release_scope", next_question="Which one printed card number should we inspect first?")
         number = core.normalize_collector_number(next(iter(numbers))).upper()
-        sets = {r[0] for r in db.execute("SELECT DISTINCT set_code FROM card") if _mentioned(text, r[0])}
-        for row in db.execute("SELECT * FROM catalog_vocabulary"):
-            if _mentioned(text, row["alias"]):
-                sets.add(row["set_code"])
+        sets = _release_codes(db,text,languages)
         if len(sets) != 1:
             return dict(result, task="need_release_scope", next_question="Which printed set code or release name accompanies that number?")
         code = next(iter(sets)); marks = ",".join("?" for _ in languages)
@@ -176,9 +239,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                   next_question="Confirm this catalog printing before evaluating a marketplace copy." if len(rows)==1 else
                   "Which language and physical finish do you mean?"), rows, limit, offset)
 
-    if re.search(r"\bartist\b|illustrat|画師|绘师|插画师", text):
-        artists = [r[0] for r in db.execute("SELECT DISTINCT value FROM card_facet WHERE facet_type='illustrator'")
-                   if _mentioned(text, r[0])]
+    if artists or re.search(r"\bartist\b|illustrat|イラストレーター|画師|绘师|插画师", text):
         if len(artists) != 1:
             return dict(result, task="artist_cards", next_question="Which illustrator's credited name do you mean?")
         marks = ",".join("?" for _ in languages)
@@ -188,7 +249,15 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                         claim_basis="pinned source illustrator credits"), rows, limit, offset)
 
     ids = _character_ids(db, text)
-    family_task = bool(re.search(r"family|evolution|checklist|chronolog|release order|進化|一覧|チェックリスト|进化|家族|时间顺序", text))
+    sets=_release_codes(db,text,languages)
+    if sets and not ids and not explicit_family:
+        if len(sets)!=1:
+            return dict(result,task='need_release_scope',next_question='Which one language-specific release should we inspect first?')
+        code=next(iter(sets));marks=','.join('?' for _ in languages)
+        rows=_rows(db,f'c.set_code=? AND c.language IN ({marks})',(code,*languages))
+        return _finish_result(db,dict(result,task='set_cards',status='results' if rows else 'no_match',
+                              claim_basis='pinned language-specific release records and source-declared variants'),rows,limit,offset)
+    family_task = explicit_family
     if family_task:
         families = {r[0] for i in ids for r in db.execute("SELECT family_id FROM character_family_member WHERE dex_id=?", (i,))}
         if len(families) != 1:

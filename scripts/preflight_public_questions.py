@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 
 from scripts.public_question_sandbox import (read_jsonl, sha_file,
                                              validate_source, write_jsonl)
@@ -17,6 +19,23 @@ from scripts.public_question_sandbox_v2 import _url_key
 
 AUDIT_STATUSES = {"faithful", "inferred_case", "mismatch", "unverifiable"}
 EVIDENCE_METHODS = {"opened_post", "title_only", "search_snippet"}
+
+
+def source_post_key(url: str) -> tuple[str,str]:
+    """Identify a post across slugs, query strings and supported host aliases."""
+    parsed=urlparse(url); host=(parsed.hostname or '').lower();path=parsed.path.lower()
+    if host=='reddit.com' or host.endswith('.reddit.com'):
+        match=re.search(r'/comments/([a-z0-9]+)(?:/|$)',path)
+        if match:return 'reddit',match[1]
+    if host=='redd.it' and re.fullmatch(r'/[a-z0-9]+/?',path):
+        return 'reddit',path.strip('/')
+    if host=='detail.chiebukuro.yahoo.co.jp':
+        match=re.search(r'/question_detail/(q\d+)(?:/|$)',path)
+        if match:return 'yahoo_chiebukuro',match[1]
+    if host=='elitefourum.com' or host.endswith('.elitefourum.com'):
+        match=re.match(r'/t/(?:[^/]+/)?(\d+)(?:/|$)',path)
+        if match:return 'elitefourum',match[1]
+    return _url_key(url)
 
 
 def _unique(rows: list[dict], name: str) -> dict[str, dict]:
@@ -40,8 +59,11 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
     for prior in priors:
         rows = read_jsonl(prior)
         validate_source(rows)
-        prior_urls.update(_url_key(row["source_url"]) for row in rows)
-    if prior_urls & {_url_key(row["source_url"]) for row in candidates}:
+        prior_urls.update(source_post_key(row["source_url"]) for row in rows)
+    candidate_keys=[source_post_key(row['source_url']) for row in candidates]
+    if len(set(candidate_keys))!=len(candidate_keys):
+        raise ValueError('candidates reuse the same source post')
+    if prior_urls & set(candidate_keys):
         raise ValueError("candidate reuses a prior source post")
     evidence_rows = _unique(read_jsonl(evidence), "evidence")
     if evidence_rows.keys() != by_id.keys():
@@ -107,6 +129,7 @@ def preflight(source: Path, evidence: Path, astra: Path, gemini: Path,
                   for family, rows in audits.items()},
               "decisions": decisions,
               "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth"}
+    report['deduplication']='Stable platform post IDs across URL slugs and host aliases; fallback normalized host/path'
     (out_dir / "report.json").write_text(json.dumps(
         report, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     return report

@@ -13,7 +13,7 @@ The [holistic alignment decision](HOLISTIC_ALIGNMENT_20260930.md) is the current
 | Catalog | 55,167 internal identities; 33,543 structurally eligible; 532 official rarity corrections; 100 source-bound metadata targets, three release overlays and six vocabulary records | Physical finish/copy evidence and real listing precision remain unverified; supported metadata does not approve automatic joins |
 | Graph | Character/artist facets, structural version neighbors, three official evolution families; 657 proposed artwork assertions | Independently evaluated artwork/counterpart relationships; zero verified relation events |
 | Bilingual retrieval | 122 reviewed aliases and 460 review events included in the new ordered deployment manifest | Translation evidence is not printing equivalence; real marketplace vocabulary recall remains unmeasured |
-| Agent discovery | Actual card results and clarifications from bounded natural-language patterns; authored 30-task development replay passes | Fresh independently sourced questions and broader language/task coverage; no real-user answer quality score |
+| Agent discovery | Authored 30-task replay; 30 fresh candidates, 16 source-qualified; corrected replay has eight catalog partials and eight evidence blockers | Thirty qualified diverse fresh questions, artwork/region evidence and owned-inventory comparison; no real-user answer quality score |
 | Pricing | Observation/resolution/index contracts; ask, last-list-at-transition and paid amounts separate | Zero live observations; separate authorized listing feed, real matching audit and sustained freshness |
 | Merchant/checkout | 100-target synthetic ingestion rehearsal; complete quote, restart, expiry and URL preview checks; Pivota contract | Real offer-bound quotes, condition/fulfillment evidence, confirmed payment/order lifecycle |
 | Cloud | Recorded private read-only catalog deployment | Recoverable market/session storage, ingestion/retention scheduling and monitoring before live use |
@@ -59,7 +59,7 @@ Add recoverable storage, bounded retry/quota controls, freshness monitoring and 
 
 ## Next implementation and measurement
 
-1. Freeze independently sourced collector questions against the current executor and run source-faithfulness checks. Evaluate actual returned card IDs, pagination and useful clarification; preserve the first run. Resolve observed failure categories before adding broad taxonomy.
+1. Continue independently sourced collector validation. The first 30-candidate diagnostic qualified 16 sources; its unchanged-runtime 2/16 and corrected 16/16 are retained, with partials and blockers separate. Obtain a distinct diverse cohort of at least 30 qualified questions, with more Japanese coverage, before claiming the proposed task acceptance gate is met. Evidence and next steps: [COLLECTOR_SOURCE_DIAGNOSTIC_20261001.md](COLLECTOR_SOURCE_DIAGNOSTIC_20261001.md).
 2. Expand source-backed metadata/printed vocabulary to additional modern releases, prioritized by those tasks. Independently evidence physical finishes before promoting any live-offer allowlist entry. Current automatic-live-join-ready count is zero.
 3. Select managed market storage and a separate ingestion worker deployment. Add provider-specific adapter, pagination, request timeout, quota and retention behavior only against the confirmed feed contract. Keep market/session state outside the read-only catalog image.
 4. Execute the external feed and real-listing gates below when access arrives. No catalog totals or fixture scores substitute for them.

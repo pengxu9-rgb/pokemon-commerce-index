@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.preflight_public_questions import preflight
+from scripts.preflight_public_questions import preflight, source_post_key
 from scripts.public_question_sandbox import read_jsonl, sha_file, write_jsonl
 
 
@@ -16,6 +16,24 @@ def source(item_id):
 
 
 class PreflightTests(unittest.TestCase):
+    def test_post_ids_ignore_slugs_and_host_aliases(self):
+        urls=['https://www.reddit.com/r/PokemonTCG/comments/abc123/old_title/',
+              'https://old.reddit.com/r/Other/comments/abc123/new_title/?x=1',
+              'https://redd.it/abc123']
+        self.assertEqual(len({source_post_key(u) for u in urls}),1)
+        self.assertEqual(source_post_key('https://www.elitefourum.com/t/old/123/2'),
+                         source_post_key('https://elitefourum.com/t/new/123'))
+
+    def test_prior_post_overlap_cannot_hide_behind_a_changed_slug(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);a=source('one');b=source('two')
+            a['source_url']='https://www.reddit.com/r/PokemonTCG/comments/abc123/a/'
+            b['source_url']='https://www.reddit.com/r/Other/comments/abc123/b/'
+            write_jsonl(root/'prior.jsonl',[a]);write_jsonl(root/'new.jsonl',[b])
+            with self.assertRaisesRegex(ValueError,'reuses a prior source'):
+                preflight(root/'new.jsonl',root/'absent',root/'absent',root/'absent',
+                          [root/'prior.jsonl'],root/'out')
+
     def test_archived_v3_denominator_and_hashes(self):
         root = Path(__file__).resolve().parents[1] / "sandbox/public_questions/v3"
         report = json.loads((root / "preflight_report.json").read_text())

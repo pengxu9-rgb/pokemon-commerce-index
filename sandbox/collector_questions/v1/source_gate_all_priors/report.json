@@ -1,0 +1,280 @@
+{
+  "accepted": 16,
+  "audit_statuses": {
+    "codex": {
+      "faithful": 16,
+      "inferred_case": 2,
+      "unverifiable": 12
+    },
+    "google": {
+      "faithful": 16,
+      "mismatch": 2,
+      "unverifiable": 12
+    }
+  },
+  "candidate_sha256": "f5050e6baed5f5c5d39be1fa5d787fd8c2408f028a6d446485768d8e113ade64",
+  "candidates": 30,
+  "codex_sha256": "3ea40a916910856e1cc44fd99b87a6d50126a1e89a9be49d144dc99d8285a504",
+  "decisions": [
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-001",
+      "source_url": "https://www.reddit.com/r/PokemonTCG_UK/comments/1raq42y/check_list_for_yuka_morii_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-002",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1jpf0g5/yuka_morii_grandmaster_collection_prep/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-003",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/wetkb5/looking_for_a_complete_list_of_yuka_morii_artwork/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-004",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/1qh88dr/yuka_morii_master_set_list/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-005",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/1ssuqhs/im_trying_to_master_set_mew_but_i_cant_find_a/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-006",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1ear6tt/is_there_a_place_to_find_a_list_of_all_mew_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-007",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1irqn5y/website_that_lists_all_cards_cameos/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-008",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/1rg5xwg/is_there_a_search_tool_that_can_show_you_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-009",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/n81rv6/eeveelution_master_set_list_englishjapanese/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-010",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1vngviu/japanese_exclusive_arts_database/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-011",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/1v1ay5b/list_of_nonenglish_exclusive_full_art_trainer/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-012",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/156blbj/list_of_japanese_exclusive_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-013",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1dl1u80/pokemon_151_japanese_cards/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-014",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1hg51l4/enhanced_expansion_set_for_pokemon_151/",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-015",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/14c3pc8/should_i_wait_for_the_english_set_or_buy_japanese/",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-016",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1r3rhas/mew_cards_checklist/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "inferred_case",
+      "gemini_status": "mismatch",
+      "id": "cq1-017",
+      "source_url": "https://www.reddit.com/r/pkmntcgcollections/comments/1q8ie3o/today_i_complete_my_first_master_set_japanese_151/",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "inferred_case",
+      "gemini_status": "mismatch",
+      "id": "cq1-018",
+      "source_url": "https://www.reddit.com/r/PokemonTCG/comments/1onmh4a/anyone_collecting_tomokazu_komiya_cards_i_made_a/",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-019",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14273183359",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-020",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13279819623",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": true,
+      "codex_status": "faithful",
+      "gemini_status": "faithful",
+      "id": "cq1-021",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11299479826",
+      "verification_method": "opened_post"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-022",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q12269820797",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-023",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14191167304",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-024",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11285391956",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-025",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10325834080",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-026",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q11281531846",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-027",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q12307582132",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-028",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14284699729",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-029",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10330786380",
+      "verification_method": "search_snippet"
+    },
+    {
+      "accepted": false,
+      "codex_status": "unverifiable",
+      "gemini_status": "unverifiable",
+      "id": "cq1-030",
+      "source_url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10306907815",
+      "verification_method": "search_snippet"
+    }
+  ],
+  "deduplication": "Stable platform post IDs across URL slugs and host aliases; fallback normalized host/path",
+  "eligible_sha256": "aabede527c394a294409dabdabef5cb03e4b395c713348becbe7b038c5bed75b",
+  "evidence_sha256": "f1e75d509df024f36a281ce2e1a70295146e4005a29d84d4d1e29e673b187948",
+  "gemini_sha256": "19caab3241bc03ef6abf6b49a712acc4ea399fef108bd40d8a12ed6dccf53f27",
+  "interpretation": "Pre-freeze AI source-fidelity gate; dual agreement is not human accuracy or market truth",
+  "prior_source_sha256": [
+    "d0b0fb278eafdf9ccc1e12f84d245e0834d929d0782510cda8f10fab467ab63b",
+    "580b154708f25724da4e25c5b3a28122f9bdb9b6bc0d3ae5abebaa0948eb5678",
+    "f7a93e88e6ca0481042dd6cae94f8ea898d57cff2c9a5191d8026222ffbd0bb8",
+    "5424d5b7432b36de325776533923cf27dbc01a0de0be71f6d9122367c27fec79",
+    "4e9fc7b14ab4834e0d4dcc37bb820c35c155bc778a37f6e2757b17f2821c9a99",
+    "dbb4cab2b984ec684a51574b524fa3483845d8e61742f301a035d80e7181b442",
+    "63e24232926095246b23478831d15c6397671ac5b4e741d0172859b602cfd7e8",
+    "3a39f7fecf9c9de27b5d067704c68737a7df78aedf1d13180be32d412ec12eab",
+    "2d0a68cee2d642d690382c5ca56bea1d4f3b32165fb92b0b21ed6c3fc77a5e9c",
+    "111e1e75ed8d88f6a70768b5bfb484557e66dd9e3bd53b1bdd3a4b725845ab2d",
+    "3386e629fae75589f0acf8541bcbb402b43fffd34cdeeae0e04ce6dae288ae9e"
+  ],
+  "rejected": 14,
+  "schema": "pokemon.public-question-preflight.v1"
+}

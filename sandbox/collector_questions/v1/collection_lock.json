@@ -1,0 +1,19 @@
+{
+  "schema": "pokemon.collector-source-lock.v1",
+  "candidate_count": 30,
+  "source_sha256": "f5050e6baed5f5c5d39be1fa5d787fd8c2408f028a6d446485768d8e113ade64",
+  "evidence_sha256": "f1e75d509df024f36a281ce2e1a70295146e4005a29d84d4d1e29e673b187948",
+  "runner_sha256": "1291322e01cc5366ee9a1a20481884842ca72be3a15bdf8f7e66e15a2a595ca9",
+  "prompt_module_sha256": "750562fb7f6ba0f7bd5b42ee360f2e8fbd36a3b424e5410bf312de811a025fd4",
+  "expectations_sha256": "d45e73eef6c46da03c1b6b1d9f1df3de79ce9b3b418a390e8901c857eae4533b",
+  "catalog_sha256": "d3b00f29d4464dd393b84aa4bb5bb529be94926c8b4c1a2383e41a5bdf7f6356",
+  "initial_runtime_sha256": {
+    "pokemon_index/collector_discovery.py": "f04e09b285707058035f0d20ee92f15c05721e6b4d52cda85b31ad7e214ec438",
+    "pokemon_index/supported_catalog.py": "136472aa89796fd73385358dc8f832e39312b322c73cf53c799a43e9b55c00ad",
+    "pokemon_index/core.py": "cbee7e8f017face6c0ff87582a6c7f97663bc6b3c0d952207879ca78eedc39c8",
+    "pokemon_index/discovery_graph.py": "23dd5dd1526a5eeb38636c528bb32f8b5e3c1c597fabc86883549c0ec29894af",
+    "catalog-build-manifest-discovery-v1.json": "7875de771abbf2eab31f158e5d90c944e56c82c412d07ce1c5dd7c56b1c16661"
+  },
+  "selection": "Purposive source-backed discovery diagnostic; researcher knows implementation. Not a blind or representative user accuracy sample.",
+  "source_fidelity": "Codex and Gemini compare candidate to researcher-supplied context, not independently fetched full pages."
+}

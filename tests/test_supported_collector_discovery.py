@@ -69,6 +69,72 @@ class SupportedCollectorTests(unittest.TestCase):
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM card_relationship_assertion WHERE review_status='verified'").fetchone()[0],0)
         self.assertEqual(self.db.execute("SELECT name FROM catalog_set_localized WHERE language='ja' AND set_code='SV4A'").fetchone()[0],'シャイニートレジャーex')
 
+    def test_artist_credits_support_names_without_inventing_owned_inventory(self):
+        result=collector_discovery.execute(self.db,'Yuka Morii cards: check off my collection')
+        self.assertEqual(result['task'],'artist_cards');self.assertTrue(result['cards'])
+        self.assertIn('owned_inventory',result['unfulfilled_constraints'])
+        self.assertIn('owned-card list',result['next_question'])
+        self.assertFalse(result['complete_answer_established'])
+        japanese=collector_discovery.execute(self.db,'イラストレーターのtakeさんのカード')
+        self.assertEqual(japanese['task'],'artist_cards');self.assertEqual(japanese['illustrator'],'take')
+        generic=collector_discovery.execute(self.db,'Can you take a look at Pikachu cards?')
+        self.assertEqual(generic['task'],'character_cards')
+
+    def test_species_checklist_does_not_expand_into_evolutions(self):
+        for q in ['Mew chronological checklist','Pikachu checklist in release order']:
+            result=collector_discovery.execute(self.db,q)
+            self.assertEqual(result['task'],'character_cards')
+            self.assertNotIn('family_id',result)
+        family=collector_discovery.execute(self.db,'Pikachu evolution family checklist')
+        self.assertEqual(family['task'],'family_checklist')
+
+    def test_artwork_appearances_and_exclusivity_require_specific_evidence(self):
+        for q in ["Farfetch'd appears in Pokémon Trader art; what other cameos are there?",
+                  'レッドが映っているピカチュウのカードも知りたい']:
+            result=collector_discovery.execute(self.db,q)
+            self.assertEqual(result['task'],'artwork_evidence_needed')
+            self.assertEqual(result['cards'],[]);self.assertTrue(result['required_evidence'])
+        result=collector_discovery.execute(self.db,'Japanese exclusive cards such as Pikachu Illustrator')
+        self.assertEqual(result['task'],'regional_evidence_needed')
+        self.assertEqual(result['cards'],[])
+
+    def test_collection_edition_scope_can_return_artist_partial_without_copy_claim(self):
+        result=collector_discovery.execute(self.db,'All English Yuka Morii and JP exclusive cards, base, reverse holos, 1st editions, unlimited and unique prints')
+        expected=self.db.execute("SELECT COUNT(*) FROM card c WHERE c.language IN ('ja','en') AND EXISTS(SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value='Yuka Morii')").fetchone()[0]
+        self.assertEqual(result['task'],'artist_cards')
+        self.assertEqual(result['coverage']['matched_catalog_records'],expected)
+        self.assertIn('edition_variants',result['unfulfilled_constraints'])
+        self.assertIn('regional_exclusivity',result['unfulfilled_constraints'])
+        self.assertFalse(result['coverage']['global_printing_completeness_established'])
+        single=collector_discovery.execute(self.db,'Yuka Morii reverse holo cards')
+        self.assertTrue(all(c['variant'].startswith('reverse') for c in single['cards']))
+
+    def test_set_comparison_preserves_all_variants_and_language_scope(self):
+        q='Japanese 151 cards: does every card have Pokeball and Masterball holo?'
+        result=collector_discovery.execute(self.db,q)
+        self.assertEqual(result['task'],'set_cards')
+        self.assertTrue(all(c['set_code']=='SV2A' and c['language']=='ja' for c in result['cards']))
+        count=self.db.execute("SELECT COUNT(*) FROM card WHERE set_code='SV2A' AND language='ja'").fetchone()[0]
+        self.assertEqual(result['coverage']['matched_catalog_records'],count)
+        self.assertEqual(sum(r['records'] for r in result['variant_summary']),count)
+        self.assertIn('physical_variant_completeness',result['unfulfilled_constraints'])
+        unknown=collector_discovery.execute(self.db,'151')
+        self.assertNotEqual(unknown['task'],'set_cards')
+
+    def test_price_indifference_is_not_a_request_for_market_data(self):
+        result=collector_discovery.execute(self.db,'Every Mew including custom cards; price does not matter')
+        self.assertEqual(result['task'],'collection_scope_needed')
+        market=collector_discovery.execute(self.db,'Mew price does not matter, but which is cheapest?')
+        self.assertEqual(market['task'],'market_evidence_needed')
+
+    def test_numeric_release_title_cannot_be_inferred_from_card_number(self):
+        for q in ['Japanese card 151/165','English card 151/165']:
+            result=collector_discovery.execute(self.db,q)
+            self.assertEqual(result['task'],'need_release_scope')
+            self.assertEqual(result['cards'],[])
+        scoped=collector_discovery.execute(self.db,'Japanese 151 cards 151/165')
+        self.assertEqual(scoped['task'],'exact_coordinates')
+
     def test_stale_identity_reference_and_release_each_invalidate_support(self):
         cid='ja:SV4A:347/190:holo'
         for sql in ["UPDATE card SET name='Wrong' WHERE card_id=?",
