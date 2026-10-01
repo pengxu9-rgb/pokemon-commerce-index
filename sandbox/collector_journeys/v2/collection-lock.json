@@ -1,0 +1,19 @@
+{
+  "schema": "pokemon.collector-diagnostic-lock.v1",
+  "frozen_date": "2026-10-01",
+  "base_commit": "554acb3d7b0fbd1993fed04587f3170f01208a60",
+  "sources_sha256": "dc5532bb8d55d8c0fa7d3044dbb691f765b7ee6cbb3e279611ba356e85dce17f",
+  "suite_sha256": "72216f9927322502571f93804eff7bd152b244d952d62de27a4df1bd85f6e874",
+  "source_count": 8,
+  "steps": 37,
+  "source_selection_independent": false,
+  "labels_independent": false,
+  "real_followup_transcripts": false,
+  "selection_policy": "New search-discovered collector situations covering artist scope, missing checklists, languages, insufficient coordinates, counterparts, merchandise, market availability and next-goal ambiguity. Implementer-selected diagnostic; no sampling-frame or representative claims.",
+  "runtime_sha256": {
+    "pokemon_index/collector_journey.py": "86f3f13de36002665dc80f156ca162f170fc97e89e33b08f4d57852d983618ab",
+    "pokemon_index/collector_discovery.py": "5770961316dfd51c777e3cb8ec0ff3553eeba1ee0d4a3eb5ab33968b13726bf3",
+    "pokemon_index/collector_inventory.py": "961997a432a43f288ae2279f0e7e74a370c6face9fa5fc86edf8203853ec8ecf",
+    "pokemon_index/cli.py": "7a4e96b2e286776a372f5e8b78a974879a2864607a3dfbc93e4b3da9ff6523ee"
+  }
+}

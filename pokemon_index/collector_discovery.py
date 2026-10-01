@@ -198,10 +198,17 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
     if explicit:result['requested_scope']=explicit
-    if re.search(r'\bfigures?\b(?!\s+out\b)|フィギュア',text):
+    non_card_text=re.sub(r'(?:anything|everything)?\s*(?:other than|except|excluding)\s+(?:pokemon\s+)?cards?', '', text)
+    accessory_request=(re.search(r'\b(?:sleeves?|playmats?|deck boxes?)\b|スリーブ|プレイマット|デッキケース',non_card_text)
+                       and not re.search(r'\bcards?\b|\btcg\b|カード',non_card_text))
+    if re.search(r'\bfigures?\b(?!\s+out\b)|フィギュア',text) or accessory_request:
         return dict(result,task='other_product_evidence_needed',status='blocked',
                     required_evidence=['official_non_card_product_identity_and_authenticity_source'],
                     next_question='Which exact figure or other product should be checked against its official release source? Card identities cannot verify merchandise.')
+    if re.search(r'what (?:should|can|do) i collect next|what to collect next|次に何を集め|次.*集める.*おすすめ',text):
+        return dict(result,task='collection_preferences_needed',status='clarification_needed',
+                    required_evidence=['next_collection_character_artist_or_release_preferences'],
+                    next_question='Would you like a new character, illustrator or release collection? Your completed collection is context, not an instruction to search it again.')
     if re.search(r'\bkorean\b|\bfrench\b|\bgerman\b|\bchinese\b|韓国語|韓版|法文|德文|中文版', text):
         return dict(result, task='unsupported_language', status='unsupported_scope',
                     required_evidence=['catalog_and_release_evidence_for_requested_languages'],
@@ -210,7 +217,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="unsupported_game", status="unsupported_scope",
                     next_question="Would you like to search physical Pokémon TCG cards?")
     market_text=re.sub(r"price (?:does not|doesn't|doesn’t) matter|(?:it )?(?:does not|doesn't|doesn’t) matter (?:the )?price|価格(?:は)?関係ない",'',text)
-    if re.search(r"\bprices?\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|sources? of raw cards|where can i (?:find|buy).*raw cards|売って|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
+    if re.search(r"\bprices?\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|sources? of raw cards|where can i (?:find|buy).*raw cards|\bwhere\b.{0,80}\b(?:buy|purchase)\b|売って|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
         return dict(result, task="market_evidence_needed", status="blocked",
                     required_evidence=["exact_printing_target", "authorized_fresh_offers_or_relevant_market_evidence"],
                     next_question="Which exact printing should we track when an authorized feed is available?")
@@ -260,13 +267,14 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             ('future_language_scope',r'\bkr\b.*future|korean.*future'),
             ('sealed_opening_strategy',r'open (?:a )?sets?|pull.*then buy|until.*pull'),
             ('binder_organization_preferences',r'organiz.*binder|sort.*(?:date|language)|how.*organize'),
-            ('all_language_coverage',r'all languages|全言語'),
+            ('all_language_coverage',r'(?:all|every)\s+languages?|全言語'),
             ('stamp_variants',r'stamp.*vari|stamped|スタッフ|staff'),
             ('non_card_product_request',r'(?:buy|purchase).*binder|binder.*msrp'),
             ('external_catalog_comparison',r'bulbapedia.*serebii|serebii.*bulbapedia'),
             ('jumbo_exclusion_and_specific_release_omissions',r'excludes?.*jumbo|does not include.*jumbo'),
             ('art_style_description',r'art style|イラストレーター.*特徴')]:
-        if re.search(pattern,text):result['unfulfilled_constraints'].append(constraint)
+        if re.search(pattern,text) and not (constraint=='all_language_coverage' and 'language' in explicit):
+            result['unfulfilled_constraints'].append(constraint)
     if re.search(r'\bcustoms?\b|\bcarddass\b|\btopps\b|カスタム',text):
         return dict(result,task='collection_scope_needed',status='clarification_needed',
                     required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
@@ -335,7 +343,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         neighborhood = discovery_graph.card_neighborhood(db, card_id)
         if re.search(r"same artwork|same art|同画|同插画|同じイラスト", text):
             task, kinds = "same_artwork", {"same_artwork", "localization_counterpart"}
-        elif re.search(r"counterpart|对应|対応", text):
+        elif re.search(r"counterpart|对应|対応|(?:english|japanese) (?:version|equivalent)\b", text):
             task, kinds = "counterpart", {"localization_counterpart"}
         else:
             ids = [card_id] + [r["card_id"] for r in neighborhood["variants_at_number"]]
@@ -351,6 +359,12 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                     price_comparable=False, next_question=None if verified else
                     "Would you like to inspect the source-bound, unverified artwork leads?")
 
+    # A counterpart question does not become a base-card purchase request just
+    # because the user adds coordinates or narrows the browsing language.
+    if re.search(r'counterpart|(?:english|japanese) (?:version|equivalent)\b|英語版.*(?:ある|存在)|対応する.*(?:英語|日本語)',text):
+        return dict(result,task='cross_language_relation',status='blocked',price_comparable=False,
+                    required_evidence=['exact_base_printing_coordinates','verified_card_level_localization_relationship'],
+                    next_question='Confirm the original card’s printed language, release, number and version. A translated name or shared number cannot establish an English/Japanese counterpart; verified card-level relationship evidence is needed.')
     numbers = {explicit['collector_number']} if 'collector_number' in explicit else set(re.findall(r"\b\d{1,3}/[a-z0-9\-]+\b", text))
     if numbers:
         if len(numbers) != 1:

@@ -1,0 +1,18 @@
+{
+  "original_suite_sha256": "72216f9927322502571f93804eff7bd152b244d952d62de27a4df1bd85f6e874",
+  "initial_report_sha256": "7359957b2caa008981f08085dd0f09a44af0e4467905e6141dcd1748f021f51c",
+  "corrected_runtime_report_sha256": "875350ed2b96c5a35db4d1270691c02fc02e8f9f5468244339904ecf66b196f7",
+  "reviewed_suite_sha256": "cd3321d382e9bde26a4c86ab824d53f4c12d617a5292cd1806be23adeae9c5ed",
+  "changes": [
+    {
+      "case": "cjq2-004",
+      "reason": "Frozen expectations mistakenly assumed a normal variant would be available and Yes would select it. Actual catalog has only a source-declared holo record. Preserve absence/clarification, add explicit holo/Yes recovery; physical finish remains unverified."
+    },
+    {
+      "case": "cjq2-007",
+      "reason": "Frozen synthetic inventory used an unsupported title field. The strict coordinate/ID API correctly rejects it; use an explicitly unknown synthetic catalog ID to test inventory uncertainty."
+    }
+  ],
+  "frozen_questions_unchanged": true,
+  "independent_acceptance": false
+}
