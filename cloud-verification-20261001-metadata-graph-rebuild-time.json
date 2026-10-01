@@ -1,0 +1,65 @@
+{
+  "status": 200,
+  "diff": {
+    "ai_artwork_candidates": {
+      "expected": [
+        {
+          "assertion_id": "aiart-v1:42bbc016959ed57b9b35:de92f460e8ec490fd8b0b0d2",
+          "left_card_id": "en:ME04:055/086:holo",
+          "right_card_id": "ja:M-P:046/M-P:normal",
+          "relation_type": "same_artwork",
+          "review_status": "proposed",
+          "evidence_ref": "{\"artwork_decision\": \"same\", \"artwork_rationale\": \"Both cards feature the identical 3D illustration by 5ban Graphics of Krookodile ex lunging forward with an open jaw, tongue protruding, and claws raised, surrounded by dynamic brown and fiery speed lines and flying rock debris. The Japanese card includes a Pokémon Card Gym logo stamp and standard Japanese foil effects, but the underlying artwork is identical.\", \"candidate_id\": \"42bbc016959ed57b9b35\", \"cards\": [\"en:ME04:055/086:holo\", \"ja:M-P:046/M-P:normal\"], \"comparison_scope\": \"artwork_peer_only\", \"condition_checked\": false, \"en_image_identity\": \"match\", \"en_image_ref\": \"https://assets.tcgdex.net/en/me/me04/055/high.webp\", \"en_image_sha256\": \"a0e8ee388d060520c6561b9a0f1df5d75cfebdfe2090643542dc380080866e8b\", \"finish_checked\": false, \"ja_image_ref\": \"https://www.pokemon-card.com/card-search/details.php/card/48481\", \"ja_image_sha256\": \"6cd5428f7c8a93a3aefe78338e45ce3c4ce88f19f646d35d3b616645f33292dc\", \"model\": \"gemini-3.8-flash\", \"model_response_sha256\": \"0fbe9fa158218b1464320175bfdacdaa24452fe0706f7affffdc78fd255a159f\", \"price_comparable\": false, \"schema\": \"pokemon.ai_artwork_review.v1\", \"source_snapshot_sha256\": \"2ec4d1923bf5ee4e8a54d2f636010be06f1288de89bb827e31ed0d441103f1e5\"}",
+          "rights_reference": "internal image comparison only; source image rights remain separate",
+          "asserted_by": "ai-artwork-review-v1",
+          "reviewer": "gemini-3.8-flash",
+          "asserted_at": "2026-10-01T15:15:19+00:00",
+          "other_card_id": "en:ME04:055/086:holo",
+          "other_name": "Krookodile ex",
+          "other_language": "en",
+          "other_match_eligible": 1,
+          "other_display_allowed": 0,
+          "other_official_printing_type": null,
+          "number_alignment": "different_or_unparsed",
+          "same_provisional_scope": false,
+          "same_full_number": false,
+          "same_numerator": false,
+          "same_denominator": false,
+          "price_comparable": false,
+          "scope": "AI visual artwork proposal; finish and condition unverified"
+        }
+      ],
+      "actual": [
+        {
+          "assertion_id": "aiart-v1:42bbc016959ed57b9b35:de92f460e8ec490fd8b0b0d2",
+          "left_card_id": "en:ME04:055/086:holo",
+          "right_card_id": "ja:M-P:046/M-P:normal",
+          "relation_type": "same_artwork",
+          "review_status": "proposed",
+          "evidence_ref": "{\"artwork_decision\": \"same\", \"artwork_rationale\": \"Both cards feature the identical 3D illustration by 5ban Graphics of Krookodile ex lunging forward with an open jaw, tongue protruding, and claws raised, surrounded by dynamic brown and fiery speed lines and flying rock debris. The Japanese card includes a Pokémon Card Gym logo stamp and standard Japanese foil effects, but the underlying artwork is identical.\", \"candidate_id\": \"42bbc016959ed57b9b35\", \"cards\": [\"en:ME04:055/086:holo\", \"ja:M-P:046/M-P:normal\"], \"comparison_scope\": \"artwork_peer_only\", \"condition_checked\": false, \"en_image_identity\": \"match\", \"en_image_ref\": \"https://assets.tcgdex.net/en/me/me04/055/high.webp\", \"en_image_sha256\": \"a0e8ee388d060520c6561b9a0f1df5d75cfebdfe2090643542dc380080866e8b\", \"finish_checked\": false, \"ja_image_ref\": \"https://www.pokemon-card.com/card-search/details.php/card/48481\", \"ja_image_sha256\": \"6cd5428f7c8a93a3aefe78338e45ce3c4ce88f19f646d35d3b616645f33292dc\", \"model\": \"gemini-3.8-flash\", \"model_response_sha256\": \"0fbe9fa158218b1464320175bfdacdaa24452fe0706f7affffdc78fd255a159f\", \"price_comparable\": false, \"schema\": \"pokemon.ai_artwork_review.v1\", \"source_snapshot_sha256\": \"2ec4d1923bf5ee4e8a54d2f636010be06f1288de89bb827e31ed0d441103f1e5\"}",
+          "rights_reference": "internal image comparison only; source image rights remain separate",
+          "asserted_by": "ai-artwork-review-v1",
+          "reviewer": "gemini-3.8-flash",
+          "asserted_at": "2026-10-01T15:29:54+00:00",
+          "other_card_id": "en:ME04:055/086:holo",
+          "other_name": "Krookodile ex",
+          "other_language": "en",
+          "other_match_eligible": 1,
+          "other_display_allowed": 0,
+          "other_official_printing_type": null,
+          "number_alignment": "different_or_unparsed",
+          "same_provisional_scope": false,
+          "same_full_number": false,
+          "same_numerator": false,
+          "same_denominator": false,
+          "price_comparable": false,
+          "scope": "AI visual artwork proposal; finish and condition unverified"
+        }
+      ]
+    }
+  },
+  "schema": "pokemon.cloud-rebuild-time-diagnostic.v1",
+  "card_id": "ja:M-P:046/M-P:normal",
+  "initial_verifier_passed": false,
+  "interpretation": "Initial strict graph equality failed solely on asserted_at of an imported proposed AI edge. Both snapshots import the same fixed assertion/evidence with a local build application timestamp. Semantic comparison excludes only that field on proposed ai-artwork-review-v1 edges; all other fields and all official retrieval times remain compared."
+}

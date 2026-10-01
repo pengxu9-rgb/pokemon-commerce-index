@@ -259,6 +259,14 @@ CREATE TABLE IF NOT EXISTS card_facet (
   PRIMARY KEY(card_id, facet_type, value)
 );
 
+CREATE TABLE IF NOT EXISTS card_metadata_evidence (
+  evidence_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  revision INTEGER NOT NULL CHECK(revision>0),
+  record_json TEXT NOT NULL,
+  UNIQUE(card_id,revision)
+);
+
 -- Source classifications are retrieval signals, not printing relationships.
 CREATE TABLE IF NOT EXISTS card_classification (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),

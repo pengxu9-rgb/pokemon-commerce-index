@@ -16,11 +16,15 @@ def catalog_revision(db):
     """Portable evidence and runtime binding; excludes conversations/market state."""
     h=hashlib.sha256(POLICY.encode())
     for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py',
-                 'collector_evidence.py','supported_catalog.py','core.py','cli.py']:
+                 'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
+                 'discovery_graph.py','number_graph.py','card_rarity.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
+    for name in ('active_card_metadata_evidence','discovery_card_facet'):
+        definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
+        h.update(json.dumps([name,definition[0] if definition else None]).encode())
     tables=['card','card_facet','catalog_set_localized','catalog_vocabulary',
             'character_family','character_family_member','catalog_collector_evidence',
-            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence']
+            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence']
     for table in tables:
         if not db.execute("SELECT 1 FROM sqlite_master WHERE name=?",(table,)).fetchone():continue
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]

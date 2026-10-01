@@ -10,7 +10,7 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence
+from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata
 from pokemon_index.cli import read_jsonl
 
 def import_ai_artwork_proposals(db, rows) -> int:
@@ -39,6 +39,7 @@ OPERATIONS = {
     "import-character-families": supported_catalog.import_families,
     "import-concept-review-bundle": core.import_concept_review_bundle,
     "import-collector-evidence": collector_evidence.import_evidence,
+    "import-official-card-metadata": card_metadata.import_evidence,
 }
 
 
@@ -101,6 +102,9 @@ def build(manifest_path: Path, output: Path) -> dict:
                 actual["rarity_corrections"] = db.execute(
                     "SELECT COUNT(*) FROM card_rarity_correction").fetchone()[0]
             supported = supported_catalog.status(db)
+            for key,value in card_metadata.status(db).items():
+                if key in manifest.get('expected',{}):
+                    actual[key]=value
             for key in ("current_supported_targets", "bilingual_alias_revisions", "concept_review_events",
                         "release_evidence_records", "vocabulary_records", "character_families"):
                 if key in manifest.get("expected", {}):

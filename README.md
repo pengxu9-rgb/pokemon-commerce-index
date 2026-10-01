@@ -105,10 +105,10 @@ python3 -m pokemon_index --db demo.sqlite3 export-pivota 'ja:SV2A:173/165:standa
 python3 -m unittest discover -s tests -v
 ```
 
-当前日英目录为 70,005 条内部来源版本／未解家族记录，不等于 70,005 张已验证实体卡。本次补齐 15 个英文历史系列的 14,838 条版本记录，丰富 9,135 个已有编号组合，新增 26 个组合及角色／画师信息；新增记录全部禁止报价匹配和公开展示。详见 [目录扩展审计](CATALOG_COVERAGE.md)。Docker 使用 coverage-v1 固定哈希清单；原始清单和重建测试保留。输出必须是新文件；构建核对 70,005 条记录、33,543 条原有结构匹配资格、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
+当前日英目录为 70,005 条内部来源版本／未解家族记录，不等于 70,005 张已验证实体卡。本次补齐 15 个英文历史系列的 14,838 条版本记录，丰富 9,135 个已有编号组合，新增 26 个组合及角色／画师信息；新增记录全部禁止报价匹配和公开展示。详见 [目录扩展审计](CATALOG_COVERAGE.md)。现已完成 1,000 个日文编号的官方元数据补证：749 个有稀有度图标，251 个官网未标明；4 个多部件页面保留购买目标阻断，7 项画师冲突暂停参与检索。角色／画师检索覆盖为 40,662／45,493 条身份，共同署名可用于关联检索。Docker 使用 metadata-v1 的 39 项固定哈希清单；原始清单和重建测试保留。输出必须是新文件；构建核对 70,005 条记录、33,543 条原有结构匹配资格、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-coverage-v1.json --db catalog.sqlite3
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-metadata-v1.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20
@@ -119,7 +119,7 @@ python3 -m pokemon_index --db catalog.sqlite3 catalog-search --printing-type pri
 python3 -m pokemon_index --db catalog.sqlite3 catalog-neighborhood 'ja:SV2A:025/165:normal'
 ```
 
-当前部署构建清单包含 657 条标为 `proposed` 的 AI 同画面内部候选断言，已核实关系为 0；不包含市场商品或价格。122 条已审核日英名称别名仍在研究文件中，尚未由当前部署清单导入；部署快照中的别名版本数为 0。目录审核所用的编号别名和图片比较证据仍在独立数据文件中，可按对应审计文档另行导入到研究数据库。
+当前部署构建清单包含 657 条标为 `proposed` 的 AI 同画面内部候选断言，已核实关系为 0；不包含市场商品或价格。当前部署清单亦包含 122 条已审核日英名称别名及 460 条审核记录；名称翻译不构成印刷版本等价。目录审核所用的编号别名和图片比较证据仍在独立数据文件中，可按对应审计文档另行导入到研究数据库。
 
 `catalog-search` 和 `catalog-card` 仅供内部开发查询，返回来源、展示标记与匹配资格。它们不会更改公开展示权限；示例中的 `SV2a 025/165` 会返回普通版、Master Ball 与 Poké Ball 三个不同身份。S6a 补充候选可以查到，但 `match_eligible=false`，不会进入自动报价匹配。
 

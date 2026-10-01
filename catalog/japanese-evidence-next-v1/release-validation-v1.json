@@ -1,0 +1,32 @@
+{
+  "schema": "pokemon.japanese-metadata-release-validation.v1",
+  "date": "2026-10-01",
+  "python_tests": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "passed": 430,
+    "failed": 0
+  },
+  "node_tests": {
+    "command": "node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs",
+    "passed": 11,
+    "failed": 0
+  },
+  "independent_accuracy_measurement": false,
+  "real_market_observations": 0,
+  "discovery_rehearsal": {
+    "constructed_questions": 20,
+    "numbered_part_journeys": 4,
+    "graph_checks": 7
+  },
+  "cloud_revision": "pokemon-commerce-index-00025-zs7",
+  "cloud_authenticated_logical_requests": 49,
+  "evidence_sha256": {
+    "catalog-build-manifest-metadata-v1.json": "39d35cb8dc1c376af6c8514a0147337df712bbb2bad83258e4803a096de810ad",
+    "catalog/japanese-evidence-next-v1/queue.jsonl": "31de84490190c20d1ca2e6da38f05c40f044caaefc00c0dc6c2180906ea64a49",
+    "catalog/japanese-evidence-next-v1/official-audit-v2.jsonl": "29b2f86aef68cf7414ce57836e8107655601da78ba7ade510b59c807aa99956d",
+    "catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl": "68e4ade9a575f526a7d67c54bf8b23595c7866bab3966282a0e6a75c73e08850",
+    "catalog/japanese-evidence-next-v1/discovery-rehearsal-v2.json": "6be211e3d715fb608f47a91803d73939f2cfdd7410adfeb86005c44b64712f51",
+    "cloud-deployment-20261001-japanese-metadata-v1.json": "dc09288b7c50f27229173821274da649515283c10a79898e567cc1180097753d"
+  },
+  "limitation": "Coordinate metadata supports internal retrieval only. Seven artist conflicts stay withheld; Gemini search attempt timed out. Physical printing/copy, counterpart equivalence, public display and live feed gates remain open."
+}

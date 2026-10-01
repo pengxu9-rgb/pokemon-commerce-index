@@ -1,0 +1,359 @@
+{
+  "queue_sha256": "31de84490190c20d1ca2e6da38f05c40f044caaefc00c0dc6c2180906ea64a49",
+  "audit_sha256": "29b2f86aef68cf7414ce57836e8107655601da78ba7ade510b59c807aa99956d",
+  "evidence_sha256": "68e4ade9a575f526a7d67c54bf8b23595c7866bab3966282a0e6a75c73e08850",
+  "reviewed_number_groups": 1000,
+  "official_metadata_records": 1000,
+  "recognized_rarity": 749,
+  "no_rarity_icon": 251,
+  "unrecognized_rarity": 0,
+  "numbered_parts": 4,
+  "set_distribution": {
+    "M6A": 131,
+    "M6": 110,
+    "M-P": 126,
+    "SV11W": 94,
+    "SV11B": 94,
+    "SV10": 132,
+    "SV9A": 92,
+    "SV9": 132,
+    "SV8A": 89
+  },
+  "held_number_groups": [],
+  "facet_disagreements": [
+    {
+      "card_id": "ja:M6A:151/103:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "Shinji Higuchi + Noriko Takaya"
+      ],
+      "official_page_values": [
+        "Noriko Takaya",
+        "Shinji Higuchi",
+        "樋口真嗣",
+        "高屋法子"
+      ],
+      "page_kind": "numbered_parts",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50728"
+    },
+    {
+      "card_id": "ja:M6:110/076:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "Kozuki Minami"
+      ],
+      "official_page_values": [
+        "Kazuki Minami"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+    },
+    {
+      "card_id": "ja:M-P:046/M-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban GraSV-Phics"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/48481"
+    },
+    {
+      "card_id": "ja:M-P:131/M-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "YOSHIROTTEN"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+    },
+    {
+      "card_id": "ja:M-P:132/M-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "takuyoa"
+      ],
+      "official_page_values": [
+        "YOSHIROTTEN"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+    },
+    {
+      "card_id": "ja:M-P:134/M-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "UKUMO uiti"
+      ],
+      "official_page_values": [
+        "HACCAN"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50485"
+    },
+    {
+      "card_id": "ja:M-P:137/M-P:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "AKIRA EGAWA"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50488"
+    },
+    {
+      "card_id": "ja:SV11W:088/086:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "0313"
+      ],
+      "official_page_values": [
+        "313"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/48000"
+    },
+    {
+      "card_id": "ja:SV10:112/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Hideki Ishikawa"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47516"
+    },
+    {
+      "card_id": "ja:SV10:114/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "aky CG Works"
+      ],
+      "official_page_values": [
+        "Hideki Ishikawa",
+        "aky CG Works"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47518"
+    },
+    {
+      "card_id": "ja:SV10:116/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Hideki Ishikawa"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47520"
+    },
+    {
+      "card_id": "ja:SV10:117/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Taira Akitsu"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47521"
+    },
+    {
+      "card_id": "ja:SV10:118/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Hideki Ishikawa"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47522"
+    },
+    {
+      "card_id": "ja:SV10:130/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "aky CG Works"
+      ],
+      "official_page_values": [
+        "Hideki Ishikawa",
+        "aky CG Works"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47534"
+    },
+    {
+      "card_id": "ja:SV10:131/098:holo",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Taira Akitsu"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47535"
+    },
+    {
+      "card_id": "ja:SV9A:080/063:standard",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Taira Akitsu"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47381"
+    },
+    {
+      "card_id": "ja:SV9A:081/063:standard",
+      "facet_type": "illustrator",
+      "source_values": [
+        "PLANETA Igarashi"
+      ],
+      "official_page_values": [
+        "Hideki Ishikawa",
+        "PLANETA Igarashi"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47382"
+    },
+    {
+      "card_id": "ja:SV9A:090/063:standard",
+      "facet_type": "illustrator",
+      "source_values": [
+        "aky CG Works"
+      ],
+      "official_page_values": [
+        "Hideki Ishikawa",
+        "aky CG Works"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47391"
+    },
+    {
+      "card_id": "ja:SV9A:091/063:standard",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "Taira Akitsu"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47392"
+    },
+    {
+      "card_id": "ja:SV9:114/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "DOM"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47234"
+    },
+    {
+      "card_id": "ja:SV9:115/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "DOM"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47235"
+    },
+    {
+      "card_id": "ja:SV9:117/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "takuyoa"
+      ],
+      "official_page_values": [
+        "DOM",
+        "takuyoa"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47237"
+    },
+    {
+      "card_id": "ja:SV9:118/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "aky CG Works"
+      ],
+      "official_page_values": [
+        "DOM",
+        "aky CG Works"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47238"
+    },
+    {
+      "card_id": "ja:SV9:130/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "5ban Graphics"
+      ],
+      "official_page_values": [
+        "5ban Graphics",
+        "DOM"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47250"
+    },
+    {
+      "card_id": "ja:SV9:131/100:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "takuyoa"
+      ],
+      "official_page_values": [
+        "DOM",
+        "takuyoa"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47251"
+    },
+    {
+      "card_id": "ja:SV8A:224/187:normal",
+      "facet_type": "illustrator",
+      "source_values": [
+        "Natsuko Shoji été"
+      ],
+      "official_page_values": [
+        "N-DESIGN",
+        "Natsuko Shoji été"
+      ],
+      "page_kind": "single_number",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/47145"
+    }
+  ],
+  "scope": "official coordinate metadata; version/physical copy and cross-region price equivalence unverified"
+}

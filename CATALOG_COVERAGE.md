@@ -149,7 +149,7 @@ were added by either queue.
 
 ## 1 October 2026 — English historical source coverage
 
-The current build is [`catalog-build-manifest-coverage-v1.json`](catalog-build-manifest-coverage-v1.json): **70,005 internal records**, comprising 27,094 Japanese and 42,911 English records across the same 543 card-bearing language/set combinations. These are source-declared version identities and unresolved family placeholders, **not 70,005 verified distinct physical cards**. There are 24,144 Japanese and 21,293 English set/number groups; language, printing, finish and cross-region equivalence remain separate questions.
+The English expansion build is [`catalog-build-manifest-coverage-v1.json`](catalog-build-manifest-coverage-v1.json): **70,005 internal records**, comprising 27,094 Japanese and 42,911 English records across the same 543 card-bearing language/set combinations. These are source-declared version identities and unresolved family placeholders, **not 70,005 verified distinct physical cards**. There are 24,144 Japanese and 21,293 English set/number groups; language, printing, finish and cross-region equivalence remain separate questions.
 
 This batch parses the remaining 15 English physical series in the same pinned TCGdex revision: XY, Black & White, Diamond & Pearl, Platinum, HeartGold & SoulSilver, EX, E-Card, Neo, Gym, Legendary Collection, Call of Legends, POP, McDonald's Collection, Trainer kits and Miscellaneous. The [batch audit](catalog/english-history-v1/audit.json) distinguishes:
 
@@ -171,7 +171,50 @@ The [14-question rehearsal](catalog/english-history-v1/discovery-rehearsal.json)
 
 A fresh [Japanese API gap audit](catalog/ja-api-gap-refresh-20261001.json) checked all 40 API-listed sets absent from the runtime catalog. All returned empty card lists, after retrying five plus-sign set IDs with proper URL encoding. This API check adds **zero Japanese cards**; an empty response does not establish that the set has no cards.
 
-Next, expand the **evidence-supported Japanese cohort** beyond the current 100 records. Prioritize modern Japanese chase cards and promos whose official set/number/name/rarity can be bound to an exact official page, then older numbered records and printing conflicts. Report newly covered set/number groups, corrected metadata and newly supported targets separately from source-version record totals. The [prepared 1,000-record review queue](catalog/japanese-evidence-next-v1/queue.jsonl) selects 1,000 unique set/number groups from a 3,305-group pool across nine modern Japanese releases. It binds baseline card/reference provenance and candidate official URLs; zero pages have been verified and zero records approved from this queue. Selection uses release priority and metadata needs, not measured demand or GMV. Next, fetch exact-page evidence and use AI-assisted review for unresolved cases; the approved batch may shrink if the evidence fails. Physical finish, cross-region equivalence and prices keep their existing gates. Buy&Ship is needed for authorized live offers and transaction handoff, not this catalog work.
+The [prepared 1,000-record review queue](catalog/japanese-evidence-next-v1/queue.jsonl) selected 1,000 unique set/number groups from a 3,305-group pool across nine modern Japanese releases. Selection used release priority and metadata needs, not measured demand or GMV. The official-page audit below completes this queue; its original preparation report remains unchanged.
+
+## 1 October 2026 — 1,000 official Japanese metadata records
+
+The current [`catalog-build-manifest-metadata-v1.json`](catalog-build-manifest-metadata-v1.json) adds one SHA-256 checked input to the previous 38. It imports [1,000 append-only metadata evidence records](catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl), each bound to its original catalog identity, pinned source reference, exact official page, response hash and retrieval timestamp. These enrich existing identities; the catalog remains **70,005 internal records**, with **33,543 structurally eligible records**. The existing 100-target supported cohort remains separately defined and disjoint from this metadata batch. No physical-printing allowlist or market permission expands.
+
+| Measure | Result |
+|---|---:|
+| Exact official name/set/number agreement | 1,000 |
+| Official rarity icon recognized | 749 |
+| Official page has no rarity icon | 251 |
+| Unknown rarity icons | 0 |
+| Pages covering multiple numbered parts | 4 |
+| Substantive artist conflicts withheld from discovery facets | 7 |
+| Effective character / illustrator facet coverage | 40,662 / 45,493 |
+| Live observations / verified card-pair relationships / approved offer joins | 0 / 0 / 0 |
+
+Release distribution: M6A 131, M6 110, M-P 126, SV11W 94, SV11B 94, SV10 132, SV9A 92, SV9 132 and SV8A 89. The [final source audit](catalog/japanese-evidence-next-v1/official-audit-v2.summary.json) and [evidence summary](catalog/japanese-evidence-next-v1/metadata-evidence-v1.summary.json) retain the decisions. The initial audit found 996 agreements and four parser holds; [that first result](catalog/japanese-evidence-next-v1/official-audit-v1.summary.json) is preserved. Those four pages explicitly list multiple numbered parts: LEGEND upper/lower and three stadium left/right pairs. The final parser binds the exact requested number and retains the other part coordinates. A journey cannot select these as an established physical copy without part/copy evidence; page-level combined credits do not become per-part character or artist assertions.
+
+Artist comparison found 26 differences: 18 additional coauthor declarations, one page-level LEGEND combined-credit case and seven substantive conflicts. Coauthors can support same-artist retrieval sharing any explicit credited name, with source provenance. The seven [conflict cases](catalog/japanese-evidence-next-v1/artist-conflict-queue.jsonl) suppress both conflicting seed and official values in the discovery projection. Raw declarations remain visible with a conflict status. No artist alias, physical identity or counterpart approval is inferred. A Vertex Gemini 3.8 Flash request with Google Search was attempted for these seven cases; it timed out without a response. [The protocol](catalog/japanese-evidence-next-v1/artist-conflict-gemini-protocol.json) and [unavailable result](catalog/japanese-evidence-next-v1/artist-conflict-gemini-unavailable.json) record that limitation. There are no model approvals from this attempt.
+
+Known official rarity now appears in internal catalog/collector responses with the original seed value retained as `source_rarity`; absence of an icon stays explicitly undeclared. Immutable seed rows and the historically frozen v1/v2 question resolvers remain unchanged. Active metadata is invalidated when its catalog identity or bound reference drifts. Journey revisions also bind metadata events, runtime code and actual derived-view definitions, so a stale journey cannot silently reuse an earlier projection.
+
+The [development rehearsal](catalog/japanese-evidence-next-v1/discovery-rehearsal-v2.json) passes 20 constructed questions with full pagination, four numbered-part journey blockers and seven graph checks, including coauthor retrieval and conflict exclusion. **430 Python tests and 11 Node tests pass.** Private Cloud Run revision `pokemon-commerce-index-00025-zs7` passed [49 authenticated logical checks](cloud-deployment-20261001-japanese-metadata-v1.json), including exact metadata/graph comparisons and the four numbered-part journey blockers. These are engineering checks, not blind marketplace precision or independent AI accuracy. Official HTML stays in a local cache and is excluded from Git/cloud; deployed text facts do not grant public image/display rights. Buy&Ship is still required for an authorized live listing feed and transaction handoff.
+
+Reproduction (outputs must be new files; the official cache may be reused after receipt/hash checks):
+
+```bash
+python3 -m scripts.build_catalog_snapshot \
+  --manifest catalog-build-manifest-coverage-v1.json --db /tmp/pokemon-coverage-expansion-v1.sqlite3
+python3 -m scripts.audit_japanese_metadata_batch \
+  --queue catalog/japanese-evidence-next-v1/queue.jsonl \
+  --cache ../../work/japanese-evidence-next-v1-cache \
+  --output /tmp/japanese-official-audit.jsonl
+python3 -m scripts.build_japanese_metadata_evidence \
+  --queue catalog/japanese-evidence-next-v1/queue.jsonl \
+  --audit catalog/japanese-evidence-next-v1/official-audit-v2.jsonl \
+  --baseline /tmp/pokemon-coverage-expansion-v1.sqlite3 \
+  --output /tmp/japanese-metadata-evidence.jsonl
+python3 -m scripts.build_catalog_snapshot \
+  --manifest catalog-build-manifest-metadata-v1.json --db /tmp/japanese-metadata-catalog.sqlite3
+```
+
+Next evidence work should resolve the seven artist conflicts from independent exact-card sources and image credits, extend the remaining Japanese coordinate cohort, and keep physical finish/edition and cross-language price equivalence as separate evidence tasks. The 251 pages without a rarity declaration must not be filled by filename or rarity-distribution guesses.
 
 ## Character and artist discovery facets
 

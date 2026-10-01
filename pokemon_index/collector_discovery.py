@@ -9,7 +9,7 @@ import json
 import re
 import sqlite3
 import unicodedata
-from . import core, discovery_graph, supported_catalog, collector_evidence
+from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata
 
 
 def _norm(text: str) -> str:
@@ -73,6 +73,12 @@ def _card_result(db, row) -> dict:
                 price_comparable=False, automatic_offer_join_allowed=False)
     context=collector_evidence.card_context(db,row['card_id'])
     if context['findings'] or context['stale_findings']:card['collector_evidence']=context
+    metadata = card_metadata.context(db, row['card_id'])
+    if metadata:
+        card['official_metadata'] = metadata
+        if metadata['status'] == 'official_coordinate_metadata_supported' and metadata['official']['rarity']:
+            card['source_rarity'] = card['rarity']
+            card['rarity'] = metadata['official']['rarity']
     return card
 
 
@@ -102,8 +108,9 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     elif result['task'] == 'set_cards':
         result['variant_summary'] = [dict(variant=v, records=sum(r['variant']==v for r in rows))
                                      for v in sorted({r['variant'] for r in rows})]
-        result['rarity_summary'] = [dict(rarity=v, records=sum(r['rarity']==v for r in rows))
-                                    for v in sorted({r['rarity'] for r in rows}, key=lambda v:v or '')]
+        rarities = [card_metadata.effective_rarity(db, r['card_id'], r['rarity']) for r in rows]
+        result['rarity_summary'] = [dict(rarity=v, records=rarities.count(v))
+                                    for v in sorted(set(rarities), key=lambda v:v or '')]
         result['physical_finish_verification'] = 'not_established_by_catalog'
         result['unfulfilled_constraints'].append('physical_variant_completeness')
     elif 'variant' in explicit:
@@ -136,6 +143,10 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
                             "missing_character_facets_excluded":True,
                             "artwork_cameos_supported":False},
                   ordering="release date ascending; unknown dates last; stable printing coordinates")
+    parts = [c for c in result['cards'] if c.get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts']
+    if parts and result['task']=='exact_coordinates':
+        result['unfulfilled_constraints'].append('numbered_part_copy_evidence')
+        result['next_question']='The official page lists multiple numbered parts. Confirm the requested part and inspect the listing photos before selecting a physical copy.'
     return result
 
 
@@ -162,14 +173,14 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
 
 def _artists(db, text: str) -> list[str]:
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师',text))
-    return [r[0] for r in db.execute("SELECT DISTINCT value FROM card_facet WHERE facet_type='illustrator'")
+    return [r[0] for r in db.execute("SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
 
 
 def _character_ids(db, text: str) -> list[int]:
     # One character facet only: a team card name cannot name a single species.
     aliases = db.execute("""SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
-        FROM card c JOIN card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
+        FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
         GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1""").fetchall()
     ids = set()
     for row in aliases:
@@ -379,7 +390,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         # An explicit card name is an additional identity constraint, never ignored.
         named_ids = _character_ids(db, text)
         if named_ids:
-            rows = [r for r in rows if _mentioned(text,r["name"]) or db.execute("SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='dex_id' AND CAST(value AS INTEGER) IN (" +
+            rows = [r for r in rows if _mentioned(text,r["name"]) or db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id' AND CAST(value AS INTEGER) IN (" +
                         ",".join("?" for _ in named_ids) + ")", (r["card_id"], *named_ids)).fetchone()]
         status = "target_candidate" if len(rows) == 1 else "printing_clarification_needed" if rows else "no_match"
         return _finish_result(db, dict(result, task="exact_coordinates", status=status,
@@ -390,7 +401,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if len(artists) != 1:
             return dict(result, task="artist_cards", next_question="Which illustrator's credited name do you mean?")
         marks = ",".join("?" for _ in languages)
-        rows = _rows(db, f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)",
+        rows = _rows(db, f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)",
                      (*languages, artists[0]))
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
                         claim_basis="pinned source illustrator credits"), rows, limit, offset)
@@ -425,6 +436,6 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="need_character_or_coordinates",required_evidence=['explicit_character_artist_or_release_scope'],
                     next_question="Which character, illustrator or printed set/number should I search? Multiple characters or an unnamed checklist need a clear collection scope.")
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
-    rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
+    rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
                  (*languages, *ids))
     return _finish_result(db, result, rows, limit, offset)

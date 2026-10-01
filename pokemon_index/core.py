@@ -57,11 +57,15 @@ def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
         db = sqlite3.connect(path)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
+    if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='discovery_card_facet'").fetchone():
+        db.execute('CREATE TEMP VIEW discovery_card_facet AS SELECT * FROM card_facet')
     return db
 
 
 def init_db(db: sqlite3.Connection) -> None:
     db.executescript(Path(__file__).with_name("schema.sql").read_text())
+    db.execute('DROP VIEW IF EXISTS discovery_card_facet')
+    db.execute('DROP VIEW IF EXISTS active_card_metadata_evidence')
     rarity_columns = {row[1]: row for row in db.execute("PRAGMA table_info(card_rarity_correction)")}
     if rarity_columns["original_rarity"][3]:
         # Earlier overlays corrected non-null values only. Preserve their evidence
@@ -169,6 +173,7 @@ def init_db(db: sqlite3.Connection) -> None:
     )
     number_graph.backfill_number_context(db)
     db.commit()
+    db.executescript(Path(__file__).with_name('metadata_views.sql').read_text())
 
 
 def _required(row: dict[str, Any], *names: str) -> None:
@@ -734,7 +739,7 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     )]
     references = db.execute("SELECT COUNT(*) FROM card_reference").fetchone()[0]
     facet_coverage = {row["facet_type"]: row["cards"] for row in db.execute(
-        "SELECT facet_type, COUNT(DISTINCT card_id) AS cards FROM card_facet GROUP BY facet_type"
+        "SELECT facet_type, COUNT(DISTINCT card_id) AS cards FROM discovery_card_facet GROUP BY facet_type"
     )}
     printing_type_coverage = {row["official_printing_type"]: row["cards"] for row in db.execute(
         """SELECT official_printing_type, COUNT(*) AS cards FROM card_identity_exception
@@ -778,9 +783,9 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
         LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
         WHERE (? IS NULL OR c.set_code=?) AND (? IS NULL OR c.variant=?)
         AND (? IS NULL OR e.official_printing_type=?)
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='dex_id' AND f.value=?))
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='illustrator' AND lower(f.value)=lower(?)))
         ORDER BY c.set_code, c.collector_number, c.variant""",
         (set_code.upper() if set_code else None, set_code.upper() if set_code else None,
@@ -801,8 +806,19 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
             "variant": variant.lower() if variant else None,
             "printing_type": printing_type, "dex_id": dex_id,
             "illustrator": illustrator, "total": len(found),
-            "offset": offset, "cards": found[offset:offset + limit],
+            "offset": offset, "cards": [_with_metadata(db,c) for c in found[offset:offset + limit]],
             "scope": "internal metadata only; display_allowed controls public APIs"}
+
+
+def _with_metadata(db, card):
+    from . import card_metadata
+    evidence = card_metadata.context(db, card['card_id'])
+    if evidence:
+        card['official_metadata'] = evidence
+        if evidence['status']=='official_coordinate_metadata_supported' and evidence['official']['rarity']:
+            card['source_rarity'] = card['rarity']
+            card['rarity'] = evidence['official']['rarity']
+    return card
 
 
 def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
@@ -830,13 +846,13 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
         item["attributes"] = json.loads(item.pop("attributes_json"))
         references.append(item)
     facets = [dict(facet) for facet in db.execute(
-        """SELECT facet_type, value, provenance, rights_reference FROM card_facet
+        """SELECT facet_type, value, provenance, rights_reference FROM discovery_card_facet
         WHERE card_id=? ORDER BY facet_type, value""", (cid,)
     )]
     exception = db.execute("SELECT * FROM card_identity_exception WHERE card_id=?", (cid,)).fetchone()
     rarity_correction = db.execute(
         "SELECT * FROM card_rarity_correction WHERE card_id=?", (cid,)).fetchone()
-    return {"card": _catalog_card_dict(row),
+    return {"card": _with_metadata(db, _catalog_card_dict(row)),
             "number_context": number_graph.card_number_context(db, cid),
             "identity_exception": dict(exception) if exception else None,
             "rarity_correction": dict(rarity_correction) if rarity_correction else None,

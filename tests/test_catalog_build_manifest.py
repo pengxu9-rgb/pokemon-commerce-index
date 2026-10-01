@@ -13,6 +13,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CatalogBuildManifestTests(unittest.TestCase):
+    def test_japanese_metadata_batch_preserves_printing_and_offer_gates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)/'metadata.sqlite3'
+            result=build(ROOT/'catalog-build-manifest-metadata-v1.json',output)
+            self.assertEqual((result['current_official_metadata_cards'],result['official_known_rarity_cards']), (1000,749))
+            self.assertEqual((result['match_eligible'],result['current_supported_targets']), (33543,100))
+            with sqlite3.connect(output) as db:
+                self.assertEqual(db.execute('SELECT COUNT(*) FROM active_card_metadata_evidence e JOIN supported_card s ON e.card_id=s.card_id').fetchone()[0],0)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM discovery_card_facet WHERE card_id='ja:M-P:046/M-P:normal' AND facet_type='illustrator'").fetchone()[0],0)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM discovery_card_facet WHERE card_id='ja:M6A:151/103:holo'").fetchone()[0],0)
+                self.assertEqual(db.execute("SELECT match_eligible FROM card WHERE card_id='ja:SV11B:001/174:normal'").fetchone()[0],0)
+
     def test_coverage_expansion_keeps_source_versions_out_of_commerce(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "expanded.sqlite3"

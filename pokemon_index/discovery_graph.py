@@ -10,7 +10,7 @@ import uuid
 from collections import Counter
 from typing import Any, Iterable
 
-from . import core, number_graph
+from . import core, number_graph, card_metadata
 
 RELATION_TYPES = {"localization_counterpart", "same_artwork", "collecting_alternative"}
 REVIEW_STATUSES = {"proposed", "verified", "rejected"}
@@ -278,29 +278,31 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
     metadata_neighbors = {}
     for facet_type, label in (("dex_id", "same_character"), ("illustrator", "same_illustrator")):
         source_facets = db.execute(
-            """SELECT value, provenance FROM card_facet WHERE card_id=? AND facet_type=?
+            """SELECT value, provenance FROM discovery_card_facet WHERE card_id=? AND facet_type=?
             ORDER BY value""", (card_id, facet_type),
         ).fetchall()
         # A multi-character card cannot safely seed one-character expansion.
         distinct_values = {row["value"].casefold() for row in source_facets}
-        if len(distinct_values) != 1:
+        if not distinct_values or (facet_type=='dex_id' and len(distinct_values) != 1):
             metadata_neighbors[label] = {"total": 0, "cards": [],
                                          "reason": "missing_or_ambiguous_source_facet"}
             continue
         source = source_facets[0]
-        values = (facet_type, source["value"], card_id)
+        source_values=sorted({r['value'] for r in source_facets})
+        marks=','.join('?' for _ in source_values)
+        values = (facet_type, *source_values, card_id)
         total = db.execute(
-            """SELECT COUNT(DISTINCT c.card_id) FROM card_facet f JOIN card c ON c.card_id=f.card_id
-            WHERE f.facet_type=? AND f.value=? COLLATE NOCASE AND f.card_id<>?""", values,
+            f"""SELECT COUNT(DISTINCT c.card_id) FROM discovery_card_facet f JOIN card c ON c.card_id=f.card_id
+            WHERE f.facet_type=? AND f.value COLLATE NOCASE IN ({marks}) AND f.card_id<>?""", values,
         ).fetchone()[0]
         rows = db.execute(
-            """SELECT c.card_id, c.language, c.set_code, c.collector_number,
+            f"""SELECT c.card_id, c.language, c.set_code, c.collector_number,
             c.variant, c.name, c.match_eligible, c.display_allowed,
             e.official_printing_type,
             MIN(f.provenance) AS target_provenance
-            FROM card_facet f JOIN card c ON c.card_id=f.card_id
+            FROM discovery_card_facet f JOIN card c ON c.card_id=f.card_id
             LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
-            WHERE f.facet_type=? AND f.value=? COLLATE NOCASE AND f.card_id<>?
+            WHERE f.facet_type=? AND f.value COLLATE NOCASE IN ({marks}) AND f.card_id<>?
             GROUP BY c.card_id
             ORDER BY c.match_eligible DESC, c.language, c.set_code, c.collector_number, c.variant
             LIMIT 12""", values,
@@ -308,9 +310,11 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
         metadata_neighbors[label] = {
             "total": total, "cards": [dict(row) for row in rows],
             "facet_value": source["value"], "source_provenance": source["provenance"],
+            "facet_values": source_values, "matching_scope": "at least one declared credit" if facet_type=='illustrator' else 'single species',
             "claim_status": "retrieval_only", "price_comparable": False,
         }
     return {"card_id": card_id,
+            "official_metadata": card_metadata.context(db, card_id),
             "number_context": source_number,
             "official_printing_type": printing["official_printing_type"] if printing else None,
             "variants_at_number": variants,
@@ -460,9 +464,9 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
         WHERE (? IS NULL OR c.language=?) AND (? IS NULL OR c.set_code=?)
         AND (? IS NULL OR c.collector_number=?) AND (? IS NULL OR c.variant=?)
         AND (? IS NULL OR e.official_printing_type=?)
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='dex_id' AND f.value=?))
-        AND (? IS NULL OR EXISTS (SELECT 1 FROM card_facet f WHERE f.card_id=c.card_id
+        AND (? IS NULL OR EXISTS (SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id
             AND f.facet_type='illustrator' AND lower(f.value)=lower(?)))
         ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
         (filters.get("language"), filters.get("language"),
@@ -480,12 +484,12 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
         if filters.get("printing_type") and card["official_printing_type"] != filters["printing_type"]:
             return False
         if filters.get("dex_id") and not db.execute(
-            """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='dex_id' AND value=?""",
+            """SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id' AND value=?""",
             (card["card_id"], str(filters["dex_id"])),
         ).fetchone():
             return False
         if filters.get("illustrator") and not db.execute(
-            """SELECT 1 FROM card_facet WHERE card_id=? AND facet_type='illustrator'
+            """SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='illustrator'
             AND value=? COLLATE NOCASE""",
             (card["card_id"], filters["illustrator"]),
         ).fetchone():
@@ -537,9 +541,9 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
     if terms and filters.get("language") and not found:
         alias_ids = {}
         for source in db.execute(
-            """SELECT c.card_id, c.name, f.value, f.provenance FROM card c JOIN card_facet f
+            """SELECT c.card_id, c.name, f.value, f.provenance FROM card c JOIN discovery_card_facet f
             ON f.card_id=c.card_id WHERE c.language<>? AND f.facet_type='dex_id'
-            AND (SELECT COUNT(*) FROM card_facet single_species
+            AND (SELECT COUNT(*) FROM discovery_card_facet single_species
                  WHERE single_species.card_id=c.card_id AND single_species.facet_type='dex_id')=1""",
             (filters["language"],),
         ):
@@ -555,7 +559,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                 c.name, c.rarity, c.match_eligible, c.display_allowed,
                 e.official_printing_type,
                 f.value AS dex_id, f.provenance AS facet_provenance
-                FROM card c JOIN card_facet f ON f.card_id=c.card_id
+                FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id
                 LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
                 WHERE c.language=? AND f.facet_type='dex_id'
                 ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",
@@ -590,7 +594,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
             alias_ids = {}
             for source in found:
                 facets_for_source = db.execute(
-                    """SELECT value, provenance FROM card_facet
+                    """SELECT value, provenance FROM discovery_card_facet
                     WHERE card_id=? AND facet_type='dex_id'""",
                     (source["card_id"],),
                 ).fetchall()
@@ -608,7 +612,7 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                     c.variant, c.name, c.rarity, c.match_eligible, c.display_allowed,
                     e.official_printing_type, f.value AS dex_id,
                     f.provenance AS facet_provenance
-                    FROM card c JOIN card_facet f ON f.card_id=c.card_id
+                    FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id
                     LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
                     WHERE c.language<>? AND f.facet_type='dex_id'
                     ORDER BY c.match_eligible DESC, c.set_code, c.collector_number, c.variant""",

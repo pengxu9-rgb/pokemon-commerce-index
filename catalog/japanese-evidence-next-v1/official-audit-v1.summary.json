@@ -1,0 +1,22 @@
+{
+  "queue_sha256": "31de84490190c20d1ca2e6da38f05c40f044caaefc00c0dc6c2180906ea64a49",
+  "audit_sha256": "2ced9df7904fa34242bd7b39b90c61d3690f0f81ab4ac5522e30418e3cc93e3d",
+  "reviewed": 1000,
+  "decisions": {
+    "exact_metadata_agreement": 996,
+    "fetch_or_parse_hold": 4
+  },
+  "rarity_icons": {
+    "ic_rare_rr.gif": 87,
+    "ic_rare_ar.gif": 192,
+    "ic_rare_sr_c.gif": 79,
+    "ic_rare_sar.gif": 70,
+    "ic_rare_MUR.gif": 1,
+    "ic_rare_c_c.gif": 161,
+    "ic_rare_r_c.gif": 36,
+    "ic_rare_u_c.gif": 104,
+    "ic_rare_bwr.gif": 2,
+    "ic_rare_ur_c.gif": 14
+  },
+  "scope": "exact official metadata only; no physical finish/copy, cross-region or market approval"
+}
