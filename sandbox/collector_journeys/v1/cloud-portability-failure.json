@@ -1,0 +1,18 @@
+{
+  "revision": "pokemon-commerce-index-00021-5z4",
+  "status": "failed",
+  "http_status": 400,
+  "error": "catalog or journey policy changed; replay without the old revision and reconfirm the target",
+  "request": {
+    "turns": [
+      {
+        "type": "ask",
+        "question": "Pikachu cards"
+      }
+    ],
+    "expected_revision": "ee6b74370cabe5a10e5c199988468f3da8c67434b5a9abd43eb263c1ab847e06"
+  },
+  "request_report_sha256": "6dd694ba42450af5b7b5b32cce308f86924976d353960806e27f6aad8b30b7e8",
+  "diagnosis": "The revision included local/container-specific rarity correction applied_at timestamps. Explicit metadata-only differences caused a false stale-revision rejection. Corrected revision excludes applied_at; source/identity/correction evidence changes still invalidate it.",
+  "complete_cloud_replay_established": false
+}

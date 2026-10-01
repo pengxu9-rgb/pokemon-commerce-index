@@ -16,6 +16,34 @@ def _norm(text: str) -> str:
     return unicodedata.normalize("NFKC", text).casefold()
 
 
+def validate_scope(value: dict | None) -> dict:
+    """Explicit follow-up choices override language/release/number/finish text.
+
+    These are catalog filters, never evidence of a physical printing.
+    """
+    if value is None:return {}
+    if not isinstance(value,dict) or set(value)-{'language','set_code','collector_number','variant'}:
+        raise ValueError('unsupported collector scope')
+    result={}
+    for key,item in value.items():
+        if not isinstance(item,str) or not item.strip():raise ValueError('invalid collector scope value')
+        item=unicodedata.normalize('NFKC',item).strip()
+        if key=='language':
+            item=item.lower()
+            if item not in {'ja','en'}:raise ValueError('unsupported collector language')
+        elif key=='set_code':
+            item=item.upper()
+            if not re.fullmatch(r'[A-Z0-9.\-]{1,32}',item):raise ValueError('invalid release code')
+        elif key=='collector_number':
+            item=core.normalize_collector_number(item).upper()
+            if not re.fullmatch(r'\d{1,3}/[A-Z0-9\-]{1,32}',item):raise ValueError('invalid collector number')
+        else:
+            item=item.lower()
+            if not re.fullmatch(r'[a-z0-9_\-]{1,64}',item):raise ValueError('invalid source-declared variant')
+        result[key]=item
+    return result
+
+
 def _mentioned(text: str, term: str) -> bool:
     term = _norm(term)
     if re.fullmatch(r"[a-z0-9 '\-\.]+", term):
@@ -58,6 +86,14 @@ def _rows(db, where: str, params: tuple) -> list:
 
 def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dict:
     text = _norm(result['question'])
+    explicit=result.get('requested_scope',{})
+    rows=[r for r in rows if all(r[k]==v for k,v in explicit.items())]
+    codes={explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,result['languages'])
+    # Incidental/omitted releases in an external checklist are not affirmative
+    # release filters. Explicit follow-up scope remains authoritative.
+    exclusions=re.search(r'except|exclud|(?:does not|not|doesn.t) (?:yet )?include|omit|除外|未収録',text)
+    if 'set_code' in explicit or (len(codes)==1 and not exclusions):
+        rows=[r for r in rows if r['set_code'] in codes]
     finish = None
     # A set-variant comparison needs all declared variants, not one ball filter.
     if result['task']=='artist_cards' and re.search(r'base.*reverse|all.*(?:variants|versions|prints)|unique.*prints',text):
@@ -70,6 +106,8 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
                                     for v in sorted({r['rarity'] for r in rows}, key=lambda v:v or '')]
         result['physical_finish_verification'] = 'not_established_by_catalog'
         result['unfulfilled_constraints'].append('physical_variant_completeness')
+    elif 'variant' in explicit:
+        finish={explicit['variant']}
     elif re.search(r'master\s*ball|マスターボール|大师球', text):
         finish = {'reverse_masterball'}
     elif re.search(r'poke\s*ball|poké\s*ball|モンスターボール|精灵球', text):
@@ -144,12 +182,14 @@ def _character_ids(db, text: str) -> list[int]:
 
 
 def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
-            offset: int = 0) -> dict:
+            offset: int = 0, scope: dict | None = None) -> dict:
     if not isinstance(question, str) or not 1 <= len(question.strip()) <= 2000:
         raise ValueError("question must contain 1–2000 characters")
     if type(limit) is not int or not 1 <= limit <= 100 or type(offset) is not int or offset < 0:
         raise ValueError("invalid collector pagination")
-    text = _norm(question); languages = _languages(text)
+    explicit=validate_scope(scope)
+    text = _norm(question); languages = [explicit['language']] if 'language' in explicit else _languages(text)
+    release_codes=lambda: {explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,languages)
     result = {"schema":"pokemon.collector-discovery.v1", "question":question,
               "languages":languages, "task":None, "status":"clarification_needed",
               "cards":[], "next_question":None,
@@ -157,6 +197,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "prices":[], "public_display_allowed":False,
               "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
+    if explicit:result['requested_scope']=explicit
     if re.search(r'\bfigures?\b(?!\s+out\b)|フィギュア',text):
         return dict(result,task='other_product_evidence_needed',status='blocked',
                     required_evidence=['official_non_card_product_identity_and_authenticity_source'],
@@ -254,8 +295,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             pool=sorted(set(ids)|{r['subject_id'] for r in leads})
             if pool:
                 candidate_rows=_rows(db,'c.card_id IN ('+','.join('?' for _ in pool)+')',tuple(pool))
-                codes=_release_codes(db,text,languages)
-                numbers={core.normalize_collector_number(n).upper() for n in re.findall(r'\b\d{1,3}/[a-z0-9\-]+\b',text)}
+                codes=release_codes()
+                numbers={explicit['collector_number']} if 'collector_number' in explicit else {core.normalize_collector_number(n).upper() for n in re.findall(r'\b\d{1,3}/[a-z0-9\-]+\b',text)}
                 exact=re.search(r'\b(ja|en):([a-z0-9.\-]+):([^\s:]+):([a-z0-9_\-]+)',text)
                 exact_id=core.card_id(exact[1],exact[2],exact[3].upper(),exact[4]) if exact else None
                 allowed=set()
@@ -310,12 +351,12 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                     price_comparable=False, next_question=None if verified else
                     "Would you like to inspect the source-bound, unverified artwork leads?")
 
-    numbers = set(re.findall(r"\b\d{1,3}/[a-z0-9\-]+\b", text))
+    numbers = {explicit['collector_number']} if 'collector_number' in explicit else set(re.findall(r"\b\d{1,3}/[a-z0-9\-]+\b", text))
     if numbers:
         if len(numbers) != 1:
             return dict(result, task="need_release_scope", next_question="Which one printed card number should we inspect first?")
         number = core.normalize_collector_number(next(iter(numbers))).upper()
-        sets = _release_codes(db,text,languages)
+        sets = release_codes()
         if len(sets) != 1:
             return dict(result, task="need_release_scope", next_question="Which printed set code or release name accompanies that number?")
         code = next(iter(sets)); marks = ",".join("?" for _ in languages)
@@ -341,7 +382,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                         claim_basis="pinned source illustrator credits"), rows, limit, offset)
 
     ids = _character_ids(db, text)
-    sets=_release_codes(db,text,languages)
+    sets=release_codes()
     if sets and not ids and not explicit_family:
         if len(sets)!=1:
             return dict(result,task='need_release_scope',next_question='Which one language-specific release should we inspect first?')

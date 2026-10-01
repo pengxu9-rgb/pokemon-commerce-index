@@ -1,0 +1,1946 @@
+{
+  "schema": "pokemon.collector-journey-rehearsal.v1",
+  "journeys": 20,
+  "steps": 59,
+  "passed": 56,
+  "failed": 3,
+  "results": [
+    {
+      "id": "pikachu-six-short-replies:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG1:035/102:normal",
+        "ja:PMCG1:035/102:normal_no_rarity",
+        "ja:PMCG2:024/048:normal",
+        "ja:PMCG5:036/096:normal",
+        "en:BASE1:058/102:normal",
+        "en:BASE1:058/102:normal_1999_2000_copyright",
+        "en:BASE1:058/102:normal_shadowless",
+        "en:BASE1:058/102:normal_shadowless_1st_edition",
+        "en:BASE1:058/102:normal_shadowless_red_cheek",
+        "en:BASE1:058/102:normal_shadowless_red_cheek_1st_edition",
+        "en:BASE1:058/102:normal_unlimited",
+        "en:BASE1:058/102:normal_unlimited_poketour_99",
+        "en:BASE2:060/064:normal",
+        "en:BASE2:060/064:normal_1st_edition",
+        "en:BASE2:060/064:normal_pikachu_tail",
+        "en:BASE2:060/064:normal_wotc",
+        "en:BASEP:001/053:normal",
+        "en:BASEP:001/053:normal_1st_edition_error",
+        "en:BASEP:001/053:normal_grey_star",
+        "en:BASEP:001/053:normal_pikachu_tail"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "adc6f66956a8f1d4a33b9270d7c46977f35209a04fcd3bfdb9913291003beae0",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "pikachu-six-short-replies:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG1:035/102:normal",
+        "ja:PMCG1:035/102:normal_no_rarity",
+        "ja:PMCG2:024/048:normal",
+        "ja:PMCG5:036/096:normal",
+        "ja:NEO1:036/096:normal",
+        "ja:WEB1:025/048:normal",
+        "ja:WEB1:025/048:normal_1st_edition",
+        "ja:E1:016/128:normal_1st_edition",
+        "ja:E1:016/128:normal_unlimited",
+        "ja:E4:033/088:normal_1st_edition",
+        "ja:E4:033/088:normal_unlimited",
+        "ja:PCG1:037/082:normal_1st_edition",
+        "ja:PCG1:037/082:normal_unlimited",
+        "ja:PCG7:041/052:normal_1st_edition",
+        "ja:PCG7:041/052:normal_unlimited",
+        "ja:CP2:008/027:holo",
+        "ja:SM3N:013/051:normal",
+        "ja:SM3P:029/072:normal",
+        "ja:SM4A:015/050:normal",
+        "ja:SM4P:028/114:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "5b9b0b69d6babd10ad9384bb4e0ff004186793590610c60a51a2f7e59abfca26",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "pikachu-six-short-replies:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:normal",
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball",
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "38eee511617ed0fc4e87b228889181f4636944d22a0bbc99912a985b55480b0d",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "pikachu-six-short-replies:4",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          },
+          {
+            "type": "reply",
+            "text": "025/165"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:normal",
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "94a9b9c01d2c4d80f915cc0555ef703ab791591cbb9d98ff8eb274781609a1d1",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "pikachu-six-short-replies:5",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          },
+          {
+            "type": "reply",
+            "text": "025/165"
+          },
+          {
+            "type": "reply",
+            "text": "Master Ball reverse"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "4262f20cbd2a14f301ce7c1ea80a5d1ef50605cc8f77a99eb8f83aa38f3cc088",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "pikachu-six-short-replies:6",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          },
+          {
+            "type": "reply",
+            "text": "025/165"
+          },
+          {
+            "type": "reply",
+            "text": "Master Ball reverse"
+          },
+          {
+            "type": "reply",
+            "text": "Yes"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball"
+      ],
+      "selected_card_id": "ja:SV2A:025/165:reverse_masterball",
+      "response_sha256": "7a104ef61e21e9b7bf2bb0e95766a55c3412dbfdaeab8df82379f449b220eb46",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "replace-original-language:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG1:035/102:normal",
+        "ja:PMCG1:035/102:normal_no_rarity",
+        "ja:PMCG2:024/048:normal",
+        "ja:PMCG5:036/096:normal",
+        "ja:NEO1:036/096:normal",
+        "ja:WEB1:025/048:normal",
+        "ja:WEB1:025/048:normal_1st_edition",
+        "ja:E1:016/128:normal_1st_edition",
+        "ja:E1:016/128:normal_unlimited",
+        "ja:E4:033/088:normal_1st_edition",
+        "ja:E4:033/088:normal_unlimited",
+        "ja:PCG1:037/082:normal_1st_edition",
+        "ja:PCG1:037/082:normal_unlimited",
+        "ja:PCG7:041/052:normal_1st_edition",
+        "ja:PCG7:041/052:normal_unlimited",
+        "ja:CP2:008/027:holo",
+        "ja:SM3N:013/051:normal",
+        "ja:SM3P:029/072:normal",
+        "ja:SM4A:015/050:normal",
+        "ja:SM4P:028/114:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "b7f85eb595376ed2114183be248e7020be185b664d5300b27902647baa5bd8aa",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "replace-original-language:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "English"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_language": "en"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "en:BASE1:058/102:normal",
+        "en:BASE1:058/102:normal_1999_2000_copyright",
+        "en:BASE1:058/102:normal_shadowless",
+        "en:BASE1:058/102:normal_shadowless_1st_edition",
+        "en:BASE1:058/102:normal_shadowless_red_cheek",
+        "en:BASE1:058/102:normal_shadowless_red_cheek_1st_edition",
+        "en:BASE1:058/102:normal_unlimited",
+        "en:BASE1:058/102:normal_unlimited_poketour_99",
+        "en:BASE2:060/064:normal",
+        "en:BASE2:060/064:normal_1st_edition",
+        "en:BASE2:060/064:normal_pikachu_tail",
+        "en:BASE2:060/064:normal_wotc",
+        "en:BASEP:001/053:normal",
+        "en:BASEP:001/053:normal_1st_edition_error",
+        "en:BASEP:001/053:normal_grey_star",
+        "en:BASEP:001/053:normal_pikachu_tail",
+        "en:BASEP:004/053:normal_1st_movie",
+        "en:BASEP:004/053:normal_1st_movie_inverted",
+        "en:BASEP:004/053:normal_pikachu_tail",
+        "en:BASEP:024/053:holo_cosmos"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "60b9e76f678320e290b1c2103928936cd950c983700fc15d3be32a6d5df65ebf",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-gengar-cameo:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a16da352007e67133b28a1f23fe2db299ad21e8be6d73d121d9ef276e1cdd9fd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-gengar-cameo:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "db7c7334103b908e3dcccd70c6511945d315c5be484a2a76aef14a073afaa7b7",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "gurdurr-single-record-still-needs-inventory-version:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "日本語 ドテッコツ カメオ"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV6:109/101:holo"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV6:109/101:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "fa7a9315ab2e4cfb2b0d11c6611e81c9e86f690aa784b9eb2f0eafd197f8ffeb",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "gurdurr-single-record-still-needs-inventory-version:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "日本語 ドテッコツ カメオ"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "owned",
+                "language": "ja",
+                "set_code": "SV6",
+                "collector_number": "109/101"
+              }
+            ]
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "inventory_review_needed"
+      },
+      "actual_status": "inventory_review_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "a1da007e78fabfa8a41dc12f9fb3ef7cae8c3980bd1d7927dc68cf0bcc192736",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "gurdurr-single-record-still-needs-inventory-version:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "日本語 ドテッコツ カメオ"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "owned",
+                "language": "ja",
+                "set_code": "SV6",
+                "collector_number": "109/101"
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "owned",
+            "card_id": "ja:SV6:109/101:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "submitted_scope_covered"
+      },
+      "actual_status": "submitted_scope_covered",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "9288cc6bb5597d666a3fd81f5ee27cec6066742a39e5b28652a3c6b4b23f72ea",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "finizen-cameo-select:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Finizen cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a10ae3444c111191db0f83db90f0ec2d4b598f210dac50bb5e075d086757f806",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "finizen-cameo-select:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Finizen cameos in card art"
+          },
+          {
+            "type": "reply",
+            "text": "日本語"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV4A:339/190:holo"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "d20ce9c36ff27f121948d648187e4953184e880caef9e3e2e20d720196696bc1",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "finizen-cameo-select:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Finizen cameos in card art"
+          },
+          {
+            "type": "reply",
+            "text": "日本語"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV4A:339/190:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV4A:339/190:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "selected_card_id": "ja:SV4A:339/190:holo",
+      "response_sha256": "2a39b19a1f96a2c12ab742ca8f3e8dfe3ec1382b24ad7ff849d9c7ce7bc14d3e",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "ai-only-mew-cannot-confirm:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Mew cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed",
+        "ai_lead": true
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "ae8cb4bc98398edf2617a0ab63463a483622cf5710a6a13a1d83c9034e8d101c",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "ai-only-mew-cannot-confirm:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Mew cameos in card art"
+          },
+          {
+            "type": "reply",
+            "text": "Yes"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "followup_clarification_needed"
+      },
+      "actual_status": "followup_clarification_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "2ad53740b6e19cf64a3477327f68cf200f5509ffd16b2b70d03750784d0780bd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "ai-only-mew-cannot-confirm:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Mew cameos in card art"
+          },
+          {
+            "type": "reply",
+            "text": "Yes"
+          },
+          {
+            "type": "ask",
+            "question": "Japanese Mew cards"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG3:033/048:holo",
+        "ja:E1:087/128:normal_1st_edition",
+        "ja:E1:087/128:normal_unlimited",
+        "ja:E1:119/128:holo_1st_edition",
+        "ja:E1:119/128:holo_unlimited",
+        "ja:PCG5:041/086:normal_1st_edition",
+        "ja:PCG5:041/086:normal_unlimited",
+        "ja:PCG9:015/068:normal_1st_edition",
+        "ja:PCG9:015/068:normal_unlimited",
+        "ja:SM3P:041/072:holo",
+        "ja:SM10:037/095:holo",
+        "ja:SM11:029/094:holo",
+        "ja:SM11:097/094:holo",
+        "ja:SM11:098/094:holo",
+        "ja:SM11:108/094:holo",
+        "ja:SM12A:052/173:holo",
+        "ja:SM12A:055/173:normal",
+        "ja:SM12A:222/173:holo",
+        "ja:S8:039/100:holo",
+        "ja:S8:040/100:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "422249efac568a8ec1ef5a4f5da7eea83b40a05e7cd3e1eee71149cd7d79b4e3",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-version-pikachu-inventory:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 025/165"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:normal",
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "3c8aa666ea2d00d6f31f68192ed4a7c539de385c293ce85618db0b2e67020786",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-version-pikachu-inventory:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 025/165"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "uncertain",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 2
+              }
+            ]
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "inventory_review_needed"
+      },
+      "actual_status": "inventory_review_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "5126fca5e8c3e76649950732b010ef1bf60aadf14d5e6054e0676703a7d6f289",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-version-pikachu-inventory:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 025/165"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "uncertain",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "uncertain",
+            "card_id": "ja:SV2A:025/165:normal"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "841a268157da5de99aa8edcc46d255cf4a85cdaae8a1f276b7f5149482e1aa76",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-version-pikachu-inventory:4",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 025/165"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "uncertain",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "uncertain",
+            "card_id": "ja:SV2A:025/165:normal"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:025/165:reverse_masterball"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball"
+      ],
+      "selected_card_id": "ja:SV2A:025/165:reverse_masterball",
+      "response_sha256": "c7bca5d36d41d38187afed42760eba42873a654898155a3a2e7f1cd2983639f9",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-cameo-owned-scope:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a16da352007e67133b28a1f23fe2db299ad21e8be6d73d121d9ef276e1cdd9fd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-cameo-owned-scope:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "owned",
+                "card_id": "ja:SV2A:173/165:holo"
+              }
+            ]
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "submitted_scope_covered"
+      },
+      "actual_status": "submitted_scope_covered",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "54b907444614d8bebd8f0bd2f3869dd774e28c0d3d91e12da70d73bc01a70903",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "duplicate-owned-cameo:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "日本語 ナミイルカ カメオ"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV4A:339/190:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "c0fc06cbd1d518035faf6885d4d4080ff8401d525db81c96e461c0f03d990020",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "duplicate-owned-cameo:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "日本語 ナミイルカ カメオ"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "one",
+                "card_id": "ja:SV4A:339/190:holo"
+              },
+              {
+                "item_id": "two",
+                "card_id": "ja:SV4A:339/190:holo",
+                "quantity": 2
+              }
+            ]
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "submitted_scope_covered",
+        "duplicate_quantity": 3
+      },
+      "actual_status": "submitted_scope_covered",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "27993c604b34f0cb74f22bc9dea07e20be5780bfde1daf72ee3b33a999e58418",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "new-goal-clears-selected-scope:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a16da352007e67133b28a1f23fe2db299ad21e8be6d73d121d9ef276e1cdd9fd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "new-goal-clears-selected-scope:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "db7c7334103b908e3dcccd70c6511945d315c5be484a2a76aef14a073afaa7b7",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "new-goal-clears-selected-scope:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          },
+          {
+            "type": "ask",
+            "question": "Japanese Gurdurr cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV6:109/101:holo",
+        "selected_card_id": null
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV6:109/101:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "f820bdf2c18d1e6d2e5f5291c929ef5fd4ba63901850e96e82963f2d425c5108",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "grade-budget-destination-await-evidence:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 173/165"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "27cebc5fa2cd4c8be476fa1be6c68f65ab95753f6fef23aa288ef603b9735933",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "grade-budget-destination-await-evidence:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 173/165"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "b7972687c1ffa32c8cb3109e1e298d203f3b3e8ae9216aa8cbfd78a4f7115022",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "grade-budget-destination-await-evidence:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards SV2A 173/165"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "grade_company": "PSA",
+              "grade_value": "10",
+              "budget_minor": 100000,
+              "currency": "JPY",
+              "destination": "HK"
+            }
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo",
+        "preferences_currency": "JPY"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "65a1eb045b928dbd4c86a0c15e42e78c74846843bbd4d70d634f8699d038fa65",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "market-goal-not-converted-to-catalog-answer:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Cheapest Pikachu card"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "395d6f7632f1235260cc72a75eb0690a707e00dccbaee9550a02d11c4a3ecedf",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "market-goal-not-converted-to-catalog-answer:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Cheapest Pikachu card"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "4a89100c9fc022cde574d5533bc7ec7c9d3018bf99e7c73d155c663173f9e18f",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "family-inventory-narrow-release:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Eevee evolution family checklist"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG2:020/048:holo",
+        "ja:PMCG2:023/048:holo",
+        "ja:PMCG2:026/048:holo",
+        "ja:PMCG2:037/048:normal",
+        "ja:PMCG4:016/065:normal",
+        "ja:PMCG4:023/065:normal",
+        "ja:PMCG4:029/065:normal",
+        "ja:PMCG4:049/065:normal",
+        "ja:PMCG5:042/096:normal",
+        "ja:PMCG5:062/096:normal",
+        "en:BASE2:003/064:holo",
+        "en:BASE2:003/064:holo_1st_edition",
+        "en:BASE2:003/064:holo_missing_expansion_symbol",
+        "en:BASE2:004/064:holo",
+        "en:BASE2:004/064:holo_1st_edition",
+        "en:BASE2:004/064:holo_missing_expansion_symbol",
+        "en:BASE2:012/064:holo",
+        "en:BASE2:012/064:holo_1st_edition",
+        "en:BASE2:012/064:holo_missing_expansion_symbol",
+        "en:BASE2:019/064:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "78312980241e30f110683437ddb983202a9bf5183d8ba1c5ad6d9bb9047c51ed",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "family-inventory-narrow-release:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Eevee evolution family checklist"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_language": "ja"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG2:020/048:holo",
+        "ja:PMCG2:023/048:holo",
+        "ja:PMCG2:026/048:holo",
+        "ja:PMCG2:037/048:normal",
+        "ja:PMCG4:016/065:normal",
+        "ja:PMCG4:023/065:normal",
+        "ja:PMCG4:029/065:normal",
+        "ja:PMCG4:049/065:normal",
+        "ja:PMCG5:042/096:normal",
+        "ja:PMCG5:062/096:normal",
+        "ja:NEO2:029/056:holo",
+        "ja:NEO2:040/056:holo",
+        "ja:NEO2:049/056:normal",
+        "ja:NEO4:019/113:normal",
+        "ja:NEO4:034/113:normal",
+        "ja:NEO4:043/113:normal",
+        "ja:NEO4:067/113:holo",
+        "ja:VS1:030/141:normal",
+        "ja:VS1:030/141:normal_1st_edition",
+        "ja:VS1:056/141:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "8ae57e0b63fd56aeb075c7006decaebe6907f1caa9dc0d29766bfecdf43afd4d",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "family-inventory-narrow-release:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Eevee evolution family checklist"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_set": "SV2A"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:133/165:normal",
+        "ja:SV2A:133/165:reverse_masterball",
+        "ja:SV2A:133/165:reverse_pokeball",
+        "ja:SV2A:134/165:holo",
+        "ja:SV2A:134/165:reverse_masterball",
+        "ja:SV2A:134/165:reverse_pokeball",
+        "ja:SV2A:135/165:holo",
+        "ja:SV2A:135/165:reverse_masterball",
+        "ja:SV2A:135/165:reverse_pokeball",
+        "ja:SV2A:136/165:holo",
+        "ja:SV2A:136/165:reverse_masterball",
+        "ja:SV2A:136/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "096b0665446aebb2fe48908c2e3cfa95ea3b73a0acd755f1ad9fee6a6bc6e497",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "family-inventory-narrow-release:4",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Eevee evolution family checklist"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_set": "SV2A"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:133/165:normal",
+        "ja:SV2A:133/165:reverse_masterball",
+        "ja:SV2A:133/165:reverse_pokeball",
+        "ja:SV2A:134/165:holo",
+        "ja:SV2A:134/165:reverse_masterball",
+        "ja:SV2A:134/165:reverse_pokeball",
+        "ja:SV2A:135/165:holo",
+        "ja:SV2A:135/165:reverse_masterball",
+        "ja:SV2A:135/165:reverse_pokeball",
+        "ja:SV2A:136/165:holo",
+        "ja:SV2A:136/165:reverse_masterball",
+        "ja:SV2A:136/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "83d2f4c193c69bcbc229e9eb3905c050b2184be6e84ceb2d65bc306e42d2c93d",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "artist-in-original-release-scope:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese cards illustrated by Naoyo Kimura SV2A"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_set": "SV2A"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:normal",
+        "ja:SV2A:025/165:reverse_masterball",
+        "ja:SV2A:025/165:reverse_pokeball",
+        "ja:SV2A:026/165:holo",
+        "ja:SV2A:026/165:reverse_masterball",
+        "ja:SV2A:026/165:reverse_pokeball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a5ae02d83d5e6979f67b0d1433d2c61ddc2e05243cc9f2e3c85cf2be6830b5d4",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "artist-in-original-release-scope:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese cards illustrated by Naoyo Kimura SV2A"
+          },
+          {
+            "type": "reply",
+            "text": "English"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "8506b23bbf3434da7efebf4ebb7667e90f154a29f1ce9c85cc897e321c062cf2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "number-first-needs-release:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "card 173/165"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "9bccad0fd6ecbcf97578f2785f1cd1f79d6a412a140a0312ab927a793e93abe2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "number-first-needs-release:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "card 173/165"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "7ba25afa7a112156507b238c92b5b9c8ebab3a438baea3f29866fec347c7427c",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "number-first-needs-release:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "card 173/165"
+          },
+          {
+            "type": "reply",
+            "text": "SV2A"
+          },
+          {
+            "type": "reply",
+            "text": "Yes"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "f1ff5df9a522843332b805915f3de9f6c0da217fdc324deaa1753ae6977f0a83",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "explicit-finish-overrides-original-text:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu SV2A 025/165 non-holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "b50642880de6b2ed5d64c694c9edf9d23419232cc3a3f8a4cb9fa366a707f2c7",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "explicit-finish-overrides-original-text:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu SV2A 025/165 non-holo"
+          },
+          {
+            "type": "reply",
+            "text": "Master Ball reverse"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "96f86ea15a77a8617e4ccc0a7123f8bb1c1aefb342cce30bdedb3dcf2121ae67",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "explicit-finish-overrides-original-text:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu SV2A 025/165 non-holo"
+          },
+          {
+            "type": "reply",
+            "text": "Master Ball reverse"
+          },
+          {
+            "type": "reply",
+            "text": "Yes"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:025/165:reverse_masterball"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:025/165:reverse_masterball"
+      ],
+      "selected_card_id": "ja:SV2A:025/165:reverse_masterball",
+      "response_sha256": "0da1f7ab3b20b2dbcfc227358ce41c71a0b0991a4d4ae405abac4c2ab0ca638c",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unclear-reply-does-not-invent-filter:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a16da352007e67133b28a1f23fe2db299ad21e8be6d73d121d9ef276e1cdd9fd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unclear-reply-does-not-invent-filter:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "reply",
+            "text": "Maybe a different holographic version"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "followup_clarification_needed",
+        "required_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "followup_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "c1ec5b8705b483a4659b1fe4d25c3e1abf7d3468af9e130a6ad2d3fdaaff7d87",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-inventory-then-explicit-correction:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "a16da352007e67133b28a1f23fe2db299ad21e8be6d73d121d9ef276e1cdd9fd",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-inventory-then-explicit-correction:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "unknown",
+                "card_id": "unknown:fixture"
+              }
+            ]
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "inventory_review_needed"
+      },
+      "actual_status": "inventory_review_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "e662f47298a910223971e7ba49247298a08008e0f3495bdf58da82c1cc4ad2eb",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-inventory-then-explicit-correction:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "unknown",
+                "card_id": "unknown:fixture"
+              }
+            ]
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "df2a404ed4b22401c8090e1a13328cabdd92a60a64153b157d98f0b3512204c2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unknown-inventory-then-explicit-correction:4",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Gengar cameos in card art"
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "unknown",
+                "card_id": "unknown:fixture"
+              }
+            ]
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          },
+          {
+            "type": "select",
+            "card_id": "ja:SV2A:173/165:holo"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "catalog_target_selected",
+      "returned_card_ids": [
+        "ja:SV2A:173/165:holo"
+      ],
+      "selected_card_id": "ja:SV2A:173/165:holo",
+      "response_sha256": "c7c7555a9affd11d22dd04ab8a81b291a4c17c7bbe29bacf8f205df796a686cf",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unsupported-game-not-bypassed:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Yu-Gi-Oh cards"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "e9f14a381101cc6adf03973fdaa870a2e8ce83ab959083cf63bd7f558878d990",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unsupported-game-not-bypassed:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Yu-Gi-Oh cards"
+          },
+          {
+            "type": "reply",
+            "text": "Japanese"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "evidence_or_scope_needed"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "9738c661839370dacae2d10826f575cbda703786c9d9e93368c223cff3aadbce",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-release-alias-followup:1",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed"
+      },
+      "actual_status": "candidate_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG1:035/102:normal",
+        "ja:PMCG1:035/102:normal_no_rarity",
+        "ja:PMCG2:024/048:normal",
+        "ja:PMCG5:036/096:normal",
+        "ja:NEO1:036/096:normal",
+        "ja:WEB1:025/048:normal",
+        "ja:WEB1:025/048:normal_1st_edition",
+        "ja:E1:016/128:normal_1st_edition",
+        "ja:E1:016/128:normal_unlimited",
+        "ja:E4:033/088:normal_1st_edition",
+        "ja:E4:033/088:normal_unlimited",
+        "ja:PCG1:037/082:normal_1st_edition",
+        "ja:PCG1:037/082:normal_unlimited",
+        "ja:PCG7:041/052:normal_1st_edition",
+        "ja:PCG7:041/052:normal_unlimited",
+        "ja:CP2:008/027:holo",
+        "ja:SM3N:013/051:normal",
+        "ja:SM3P:029/072:normal",
+        "ja:SM4A:015/050:normal",
+        "ja:SM4P:028/114:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "b7f85eb595376ed2114183be248e7020be185b664d5300b27902647baa5bd8aa",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "official-release-alias-followup:2",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "ポケモンカード151"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "only_set": "SV2A"
+      },
+      "actual_status": "followup_clarification_needed",
+      "returned_card_ids": [
+        "ja:PMCG1:035/102:normal",
+        "ja:PMCG1:035/102:normal_no_rarity",
+        "ja:PMCG2:024/048:normal",
+        "ja:PMCG5:036/096:normal",
+        "ja:NEO1:036/096:normal",
+        "ja:WEB1:025/048:normal",
+        "ja:WEB1:025/048:normal_1st_edition",
+        "ja:E1:016/128:normal_1st_edition",
+        "ja:E1:016/128:normal_unlimited",
+        "ja:E4:033/088:normal_1st_edition",
+        "ja:E4:033/088:normal_unlimited",
+        "ja:PCG1:037/082:normal_1st_edition",
+        "ja:PCG1:037/082:normal_unlimited",
+        "ja:PCG7:041/052:normal_1st_edition",
+        "ja:PCG7:041/052:normal_unlimited",
+        "ja:CP2:008/027:holo",
+        "ja:SM3N:013/051:normal",
+        "ja:SM3P:029/072:normal",
+        "ja:SM4A:015/050:normal",
+        "ja:SM4P:028/114:normal"
+      ],
+      "selected_card_id": null,
+      "response_sha256": "85942526f92ad96d87b78f6241e3ffb93dd1c7ce8e3d18ee64c4ca8c53ab2b39",
+      "passed": false,
+      "errors": [
+        "status differs",
+        "scope differs: set_code"
+      ]
+    },
+    {
+      "id": "official-release-alias-followup:3",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "ポケモンカード151"
+          },
+          {
+            "type": "reply",
+            "text": "173/165"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "candidate_clarification_needed",
+        "required_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "evidence_or_scope_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "a2fdc1f3dceb39ce0f221eecfd3ae04f055c8bba806ac672d46472f18b80b64b",
+      "passed": false,
+      "errors": [
+        "status differs",
+        "required candidate absent"
+      ]
+    },
+    {
+      "id": "official-release-alias-followup:4",
+      "request": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Japanese Pikachu cards"
+          },
+          {
+            "type": "reply",
+            "text": "ポケモンカード151"
+          },
+          {
+            "type": "reply",
+            "text": "173/165"
+          },
+          {
+            "type": "reply",
+            "text": "はい"
+          }
+        ],
+        "expected_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc"
+      },
+      "expect": {
+        "status": "catalog_target_selected",
+        "selected_card_id": "ja:SV2A:173/165:holo"
+      },
+      "actual_status": "followup_clarification_needed",
+      "returned_card_ids": [],
+      "selected_card_id": null,
+      "response_sha256": "028d36bfc9f63d4fad467ac738458f09e9192c0d0cb35f60b5a271c3b4d4fca6",
+      "passed": false,
+      "errors": [
+        "status differs",
+        "selected target differs"
+      ]
+    }
+  ],
+  "catalog_revision": "9333f3df95c4f7182a7c4aad6f4dcce77c2c37ec335f0eba51b7d12539bdc4fc",
+  "catalog_sha256": "94fef4d4a62e023bf63d9654d7151f0d775ae8444d8e7e48c23403231325d970",
+  "suite_sha256": "dce2f50d20c6c0c8dfca546596e1dc6a2360891e985de9831964252b972deffa",
+  "runtime_sha256": {
+    "pokemon_index/collector_journey.py": "12cf4c2a7060662b698d60fdd4685f88df55483bb96f16147476f86f0d9de0ce",
+    "pokemon_index/collector_discovery.py": "5770961316dfd51c777e3cb8ec0ff3553eeba1ee0d4a3eb5ab33968b13726bf3",
+    "pokemon_index/collector_inventory.py": "961997a432a43f288ae2279f0e7e74a370c6face9fa5fc86edf8203853ec8ecf",
+    "pokemon_index/cli.py": "7a4e96b2e286776a372f5e8b78a974879a2864607a3dfbc93e4b3da9ff6523ee"
+  },
+  "catalog_bytes_unchanged": true,
+  "inventory_assertions_synthetic": true,
+  "real_user_accuracy_established": false,
+  "interpretation": "Hand-authored raw initial questions and bounded short/typed follow-ups. Engineering regression, not held-out users or natural-language population accuracy."
+}

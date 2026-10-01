@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
-from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence
+from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence,collector_journey
 
 
 def read_jsonl(path: str):
@@ -28,9 +28,14 @@ def read_jsonl(path: str):
 
 
 def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False):
+    journey_revision=None
+    if internal_catalog_api:
+        with closing(core.connect(db_path,readonly=True)) as db:
+            journey_revision=collector_journey.catalog_revision(db)
     class Handler(BaseHTTPRequestHandler):
         def do_POST(self):
-            if not internal_catalog_api or urlparse(self.path).path!='/collector-inventory':
+            route=urlparse(self.path).path
+            if not internal_catalog_api or route not in {'/collector-inventory','/collector-journey'}:
                 self.send_error(404);return
             try:
                 length=self.headers.get('Content-Length','')
@@ -44,7 +49,8 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 if len(raw)!=int(length):raise ValueError('incomplete JSON request body')
                 payload=json.loads(raw.decode('utf-8'))
                 with closing(core.connect(db_path,readonly=True)) as db:
-                    result=collector_inventory.compare(db,payload)
+                    result=(collector_inventory.compare(db,payload) if route=='/collector-inventory' else
+                            collector_journey.replay(db,payload,revision=journey_revision))
                 body=json.dumps(result,ensure_ascii=False).encode();self.send_response(200)
             except (ValueError,KeyError,TimeoutError) as exc:
                 body=json.dumps({'error':str(exc)}).encode();self.send_response(400)
@@ -269,6 +275,8 @@ def main() -> None:
     collector.add_argument("--offset", type=int, default=0)
     inventory=sub.add_parser('collector-inventory',help='compare a user-asserted inventory to scoped internal catalog records')
     inventory.add_argument('file',help='JSON containing question, owned_items and optional pagination')
+    journey=sub.add_parser('collector-journey',help='replay caller-owned collector actions without storing a conversation')
+    journey.add_argument('file',help='JSON containing bounded turns and optional revision/limit')
     sub.add_parser("supported-status", help="positive metadata support and deployed alias coverage")
     sub.add_parser('collector-evidence-status',help='scoped official declarations and proposed artwork findings')
     evidence_import=sub.add_parser('import-collector-evidence')
@@ -326,9 +334,11 @@ def main() -> None:
     if args.command == "serve":
         serve(args.db, args.host, args.port, args.internal_catalog_api)
         return
-    if args.command=='collector-inventory':
+    if args.command in {'collector-inventory','collector-journey'}:
         with closing(core.connect(args.db,readonly=True)) as db:
-            output=collector_inventory.compare(db,json.loads(Path(args.file).read_text(encoding='utf-8')))
+            payload=json.loads(Path(args.file).read_text(encoding='utf-8'))
+            output=(collector_inventory.compare(db,payload) if args.command=='collector-inventory' else
+                    collector_journey.replay(db,payload))
         print(json.dumps(output,ensure_ascii=False,indent=2));return
     if args.command in {'catalog-evidence','collector-evidence-status'}:
         with closing(core.connect(args.db,readonly=True)) as db:

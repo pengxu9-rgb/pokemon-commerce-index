@@ -1,0 +1,18 @@
+{
+  "equivalent_rebuild_revision": true,
+  "sqlite_bytes_differ": true,
+  "snapshots": [
+    {
+      "path": "/tmp/pokemon-collector-evidence-expansion-v2.sqlite3",
+      "catalog_sha256": "94fef4d4a62e023bf63d9654d7151f0d775ae8444d8e7e48c23403231325d970",
+      "catalog_revision": "5fd2192a6e83f8e7c92d6e5e8ccf2282c9b8901d107123d6d9ab5a371a89d025"
+    },
+    {
+      "path": "/tmp/pokemon-journey-portability.sqlite3",
+      "catalog_sha256": "cbed19044946f78b1d4085cfbaa402f8128a4d441f947f618bd8e7c042a581c0",
+      "catalog_revision": "5fd2192a6e83f8e7c92d6e5e8ccf2282c9b8901d107123d6d9ab5a371a89d025"
+    }
+  ],
+  "build_manifest_sha256": "74cfdba668db0605fd2d9e13bd27c6b36d7bae10255075a26dfc5d000ff986f2",
+  "interpretation": "Evidence/runtime revision ignores only correction applied_at bookkeeping; evidence changes still invalidate it."
+}

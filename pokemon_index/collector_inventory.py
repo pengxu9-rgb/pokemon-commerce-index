@@ -49,7 +49,7 @@ def _entry(db, value):
 
 
 def compare(db, request: dict) -> dict:
-    if not isinstance(request,dict) or set(request)-{'question','owned_items','limit','offset'}:
+    if not isinstance(request,dict) or set(request)-{'question','owned_items','limit','offset','scope'}:
         raise ValueError('inventory request has unsupported fields')
     question=_text(request.get('question'),'question',2000)
     owned=request.get('owned_items')
@@ -60,7 +60,8 @@ def compare(db, request: dict) -> dict:
         raise ValueError('invalid inventory pagination')
     entries=[_entry(db,row) for row in owned]
     if len({r['item_id'] for r in entries})!=len(entries):raise ValueError('duplicate item_id')
-    scope=collector_discovery.execute(db,question,limit=100)
+    explicit=collector_discovery.validate_scope(request.get('scope'))
+    scope=collector_discovery.execute(db,question,limit=100,scope=explicit)
     result=dict(schema='pokemon.collector-inventory.v1',question=question,scope=scope,
                 status='scope_clarification_needed',inventory_entries=entries,
                 owned_in_scope=[],possible_owned=[],missing_catalog_records=[],
@@ -79,7 +80,7 @@ def compare(db, request: dict) -> dict:
         return result
     cards=list(scope['cards']);page=scope
     while page['coverage']['has_more']:
-        page=collector_discovery.execute(db,question,limit=100,offset=len(cards))
+        page=collector_discovery.execute(db,question,limit=100,offset=len(cards),scope=explicit)
         cards.extend(page['cards'])
     ids={c['card_id'] for c in cards}
     if len(cards)!=count or len(ids)!=count:raise ValueError('catalog scope changed during pagination')

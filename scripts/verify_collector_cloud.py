@@ -14,7 +14,7 @@ from scripts.public_question_sandbox import sha_file
 from pokemon_index import core,collector_inventory
 
 
-def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None, expansion_rehearsal: Path | None = None, manifest: Path = Path('catalog-build-manifest-evidence-v1.json')):
+def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None, expansion_rehearsal: Path | None = None, manifest: Path = Path('catalog-build-manifest-evidence-v1.json'), journey_rehearsal: Path | None = None):
     if output.exists():raise FileExistsError('deployment evidence must be new')
     project='pivota-staging';region='us-west1';name='pokemon-commerce-index'
     def gcloud(*args):
@@ -142,6 +142,38 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
             code,actual=query('/collector-inventory',body=item['payload'])
             assert code==200 and actual==item['actual']
             expansion_checks.append(dict(payload=item['payload'],passed=True,synthetic=True))
+    journey_checks=[];journey_guard_checks=[]
+    if journey_rehearsal is not None:
+        from scripts.rehearse_collector_journeys import response_digest
+        journey=json.loads(journey_rehearsal.read_text())
+        assert journey['failed']==0
+        def journey_case(item):
+            code,actual=query('/collector-journey',body=item['request'])
+            assert code==200,(item['id'],code)
+            assert response_digest(actual)==item['response_sha256'],item['id']
+            return dict(id=item['id'],passed=True,status=actual['status'],synthetic=True)
+        with ThreadPoolExecutor(max_workers=3) as pool:journey_checks=list(pool.map(journey_case,journey['results']))
+        first=journey['results'][0]['request']
+        invalid=[dict(first,purchase_ready=True),dict(first,expected_revision='0'*64),
+                 dict(turns=[dict(type='ask',question='Pikachu cards')]*21),
+                 dict(turns=[dict(type='ask',question='Japanese Mew cameos in card art'),
+                             dict(type='select',card_id='ja:SV-P:197/SV-P:normal')]),
+                 dict(turns=[dict(type='ask',question='Pikachu cards'),
+                             dict(type='select',card_id='unknown:fixture')])]
+        for payload in invalid:assert query('/collector-journey',body=payload)[0]==400
+        assert query('/collector-journey',body=first,auth=False)[0]==403
+        from pokemon_index import collector_journey
+        guard_requests=[dict(turns=[dict(type='ask',question='Japanese Pikachu cards excluding SV2A')]),
+            dict(turns=[dict(type='ask',question='Japanese Gengar cameos in card art'),
+                dict(type='select',card_id='ja:SV2A:173/165:holo'),dict(type='reply',text='Maybe another character'),
+                dict(type='preferences',preferences=dict(destination='HK'))])]
+        assert inventory_db is not None
+        with closing(core.connect(inventory_db,readonly=True)) as db:
+            for payload in guard_requests:
+                expected=collector_journey.replay(db,payload,revision=journey['catalog_revision'])
+                code,actual=query('/collector-journey',body=payload)
+                assert code==200 and actual==expected and not actual['target_intent'] and not actual['selection_allowed']
+                journey_guard_checks.append(dict(payload=payload,passed=True,status=actual['status']))
     # Detect another rollout during the diagnostic instead of attributing mixed results.
     assert gcloud('run','services','describe',name,'--region='+region)['status']['latestReadyRevisionName']==revision
     report=dict(project=project,region=region,service=name,revision=revision,url=url,
@@ -150,6 +182,11 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 collector_checks=checks,inventory_checks=inventory_checks,
                 collector_evidence_checks=evidence_checks,
                 collector_expansion_checks=expansion_checks,
+                collector_journey_checks=journey_checks,
+                collector_journey_guard_checks=journey_guard_checks,
+                journey_invalid_input_checks=5 if journey_rehearsal is not None else 0,
+                journey_unauthenticated_http_status=403 if journey_rehearsal is not None else None,
+                journey_rehearsal_sha256=sha_file(journey_rehearsal) if journey_rehearsal is not None else None,
                 expansion_rehearsal_sha256=sha_file(expansion_rehearsal) if expansion_rehearsal is not None else None,
                 inventory_invalid_input_checks=2 if inventory_db is not None else 0,
                 inventory_unauthenticated_http_status=403 if inventory_db is not None else None,
@@ -160,7 +197,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 ordinary_figure_out_phrase_check=True,
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
-                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_evidence.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
+                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
                 verified_date='2026-10-01',real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
@@ -173,4 +210,5 @@ if __name__=='__main__':
     p.add_argument('--evidence-rehearsal',type=Path)
     p.add_argument('--expansion-rehearsal',type=Path)
     p.add_argument('--manifest',type=Path,default=Path('catalog-build-manifest-evidence-v1.json'))
-    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal,a.expansion_rehearsal,a.manifest)
+    p.add_argument('--journey-rehearsal',type=Path)
+    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal,a.expansion_rehearsal,a.manifest,a.journey_rehearsal)
