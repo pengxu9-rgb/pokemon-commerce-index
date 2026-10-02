@@ -1,0 +1,629 @@
+{
+  "schema": "pokemon.cloud-catalog-card-diagnostic.v1",
+  "card_id": "ja:M6:110/076:holo",
+  "differences": [
+    {
+      "path": ".rarity_correction.applied_at",
+      "local": "2026-10-02T03:08:52+00:00",
+      "cloud": "2026-10-02T03:15:14+00:00"
+    }
+  ],
+  "local": {
+    "card": {
+      "card_id": "ja:M6:110/076:holo",
+      "language": "ja",
+      "set_code": "M6",
+      "collector_number": "110/076",
+      "variant": "holo",
+      "name": "メガレックウザex",
+      "rarity": "SAR",
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0,
+      "match_eligible": 1,
+      "official_printing_type": null,
+      "attributes": {},
+      "source_corrections": {
+        "schema": "pokemon.source-correction-context.v1",
+        "findings": [
+          {
+            "event_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+            "kind": "printed_artist",
+            "status": "source_corrected",
+            "value": "Kazuki Minami",
+            "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "reviewer_actors": [
+              "codex-printing-pilot-agent",
+              "codex-root-visual-review"
+            ],
+            "source_coordinate": {
+              "language": "ja",
+              "set_code": "M6",
+              "collector_number": "110/076"
+            },
+            "reference_exclusion": null,
+            "new_family_card_id": null
+          }
+        ],
+        "copy_evidence_needed": true,
+        "raw_sources_preserved": true,
+        "blind_accuracy_measured": false,
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false,
+        "page_to_variant_mapping_verified": false,
+        "names_are_exact_aliases": false,
+        "copy_condition_verified": false
+      },
+      "printing_source_evidence": {
+        "schema": "pokemon.printing-source-context.v1",
+        "findings": [
+          {
+            "automatic_offer_join_allowed": false,
+            "copy_condition_verified": false,
+            "display_allowed": false,
+            "event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "hold_reason": null,
+            "identity_sha256": "ecbe5fac834bf0320a6da8050cb8aae20bb031bdf6344f2f1d17c387d7021ebf",
+            "listing_copy_verified": false,
+            "names_are_exact_aliases": false,
+            "observations": [
+              {
+                "claim": "printed_artist",
+                "coordinate": {
+                  "collector_number": "110/076",
+                  "language": "ja",
+                  "set_code": "M6"
+                },
+                "locator": "bottom-left Illus. credit in exact publisher image",
+                "scope": "publisher_asset_only",
+                "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50551",
+                "value": "Kazuki Minami"
+              }
+            ],
+            "page_to_variant_mapping_verified": false,
+            "physical_finish_verified": false,
+            "price_comparable": false,
+            "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+            "reviewers": [
+              {
+                "actor": "codex-printing-pilot-agent",
+                "method": "direct_image_reading",
+                "observations_sha256": "c0cc87be127268277467cba2c2560c57d561a329901fbd32ba1b71a286909334",
+                "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                "source_image_sha256s": [
+                  "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9"
+                ]
+              },
+              {
+                "actor": "codex-root-visual-review",
+                "method": "direct_image_reading",
+                "observations_sha256": "c0cc87be127268277467cba2c2560c57d561a329901fbd32ba1b71a286909334",
+                "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                "source_image_sha256s": [
+                  "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9"
+                ]
+              }
+            ],
+            "revision": 1,
+            "schema": "pokemon.printing-source-evidence.v1",
+            "sources": [
+              {
+                "fetched_at": "2026-10-01T14:37:11+00:00",
+                "image_sha256": "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9",
+                "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M6/050551_P_MREKKUUZAIEKKUSU.jpg",
+                "page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+              }
+            ],
+            "status": "source_observed",
+            "subject_id": "ja:M6:110/076",
+            "subject_kind": "coordinate",
+            "current_identity": true
+          }
+        ],
+        "stale_findings": 0,
+        "copy_evidence_needed": true,
+        "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false,
+        "page_to_variant_mapping_verified": false,
+        "names_are_exact_aliases": false,
+        "copy_condition_verified": false
+      },
+      "printed_artist_credit": {
+        "value": "Kazuki Minami",
+        "evidence_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+        "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+        "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+        "reviewer_actors": [
+          "codex-printing-pilot-agent",
+          "codex-root-visual-review"
+        ],
+        "independent_blind_accuracy_measurement": false
+      },
+      "official_metadata": {
+        "status": "official_coordinate_metadata_supported",
+        "evidence_id": "official-metadata:af572d70f4dbabae524b8a721a7d96fc9b5f110378a3f9e9630a7226f123acf7",
+        "facet_status": {
+          "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+          "dex_id": "not_declared"
+        },
+        "printed_source_corrections": [
+          {
+            "event_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+            "kind": "printed_artist",
+            "status": "source_corrected",
+            "value": "Kazuki Minami",
+            "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "reviewer_actors": [
+              "codex-printing-pilot-agent",
+              "codex-root-visual-review"
+            ],
+            "source_coordinate": {
+              "language": "ja",
+              "set_code": "M6",
+              "collector_number": "110/076"
+            },
+            "reference_exclusion": null,
+            "new_family_card_id": null
+          }
+        ],
+        "official": {
+          "collector_number": "110/076",
+          "dex_id": null,
+          "fetched_at": "2026-10-01T14:37:11+00:00",
+          "illustrators": [
+            "Kazuki Minami"
+          ],
+          "name": "メガレックウザex",
+          "numbered_entries": [
+            {
+              "collector_number": "110/076",
+              "part_role": null,
+              "rarity": "SAR",
+              "rarity_icons": [
+                "ic_rare_sar.gif"
+              ],
+              "rarity_status": "recognized_icon",
+              "set_code": "M6"
+            }
+          ],
+          "page_kind": "single_number",
+          "page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+          "part_role": null,
+          "rarity": "SAR",
+          "rarity_icons": [
+            "ic_rare_sar.gif"
+          ],
+          "rarity_status": "recognized_icon",
+          "set_code": "M6",
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+        },
+        "claims_scope": "official page coordinates; physical printing/copy unverified",
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false
+      },
+      "source_rarity": "SAR"
+    },
+    "number_context": {
+      "card_id": "ja:M6:110/076:holo",
+      "number_scope_id": "ja:M6",
+      "scope_status": "provisional_language_set",
+      "printed_number": "110/076",
+      "full_number_key": "110/76",
+      "numerator_key": "110",
+      "denominator_key": "76",
+      "number_format": "numeric_fraction",
+      "variant_label": "holo",
+      "derivation": "card_metadata_v1",
+      "language": "ja",
+      "set_code": "M6",
+      "name": "メガレックウザex",
+      "match_eligible": 1,
+      "display_allowed": 0,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "region": null,
+      "finish": null,
+      "stamp": null,
+      "edition": null,
+      "physical_variant_status": "unverified",
+      "source_number_conflict": null,
+      "source_number_alias_candidate": null,
+      "secondary_number_alias_candidate": null,
+      "multi_record_visual_signal": null,
+      "multi_record_visual_recovery": null,
+      "scan_presentation_candidate": null,
+      "multi_record_scan_evidence": null
+    },
+    "identity_exception": null,
+    "rarity_correction": {
+      "card_id": "ja:M6:110/076:holo",
+      "original_name": "メガレックウザex",
+      "original_rarity": "Mega Hyper Rare",
+      "source_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "corrected_rarity": "SAR",
+      "reference_provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50551.json:sha256:ab9e4ca093a05cadbaf653d1b76ccf8b3b2e8522c98e7a64fb565c502d6dacff",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50551",
+      "official_page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+      "official_rarity_icon": "ic_rare_sar.gif",
+      "applied_at": "2026-10-02T03:08:52+00:00"
+    },
+    "variants_at_number": [
+      {
+        "card_id": "ja:M6:110/076:holo",
+        "variant": "holo"
+      }
+    ],
+    "set": {
+      "language": "ja",
+      "set_code": "M6",
+      "name": "ストームエメラルダ",
+      "release_date": "2026-07-31",
+      "official_card_count": 76,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0,
+      "name_ja": "ストームエメラルダ",
+      "release_date_ja": "2026-07-31"
+    },
+    "reference_records": [
+      {
+        "source": "ptcg-database",
+        "native_id": "50551",
+        "set_code": "M6",
+        "collector_number": "110/076",
+        "name": "メガレックウザex",
+        "rarity": "rare_sar",
+        "provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50551.json:sha256:ab9e4ca093a05cadbaf653d1b76ccf8b3b2e8522c98e7a64fb565c502d6dacff",
+        "rights_reference": "https://github.com/type-null/PTCG-database/blob/bc5a2698eb9af858feb0280d579fd5fd0f0273e2/LICENSE",
+        "display_allowed": 0,
+        "attributes": {
+          "card_type": "Pokémon",
+          "hp": 280,
+          "illustrator": [
+            "Kazuki Minami"
+          ],
+          "source_jp_id": 50551,
+          "types": [
+            "Colorless"
+          ]
+        }
+      }
+    ],
+    "discovery_facets": [
+      {
+        "facet_type": "dex_id",
+        "value": "384",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      {
+        "facet_type": "illustrator",
+        "value": "Kazuki Minami",
+        "provenance": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+        "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+      }
+    ],
+    "observed_priceable_units": [],
+    "scope": "internal metadata only; public APIs still enforce display permission"
+  },
+  "cloud": {
+    "card": {
+      "card_id": "ja:M6:110/076:holo",
+      "language": "ja",
+      "set_code": "M6",
+      "collector_number": "110/076",
+      "variant": "holo",
+      "name": "メガレックウザex",
+      "rarity": "SAR",
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0,
+      "match_eligible": 1,
+      "official_printing_type": null,
+      "attributes": {},
+      "source_corrections": {
+        "schema": "pokemon.source-correction-context.v1",
+        "findings": [
+          {
+            "event_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+            "kind": "printed_artist",
+            "status": "source_corrected",
+            "value": "Kazuki Minami",
+            "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "reviewer_actors": [
+              "codex-printing-pilot-agent",
+              "codex-root-visual-review"
+            ],
+            "source_coordinate": {
+              "language": "ja",
+              "set_code": "M6",
+              "collector_number": "110/076"
+            },
+            "reference_exclusion": null,
+            "new_family_card_id": null
+          }
+        ],
+        "copy_evidence_needed": true,
+        "raw_sources_preserved": true,
+        "blind_accuracy_measured": false,
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false,
+        "page_to_variant_mapping_verified": false,
+        "names_are_exact_aliases": false,
+        "copy_condition_verified": false
+      },
+      "printing_source_evidence": {
+        "schema": "pokemon.printing-source-context.v1",
+        "findings": [
+          {
+            "automatic_offer_join_allowed": false,
+            "copy_condition_verified": false,
+            "display_allowed": false,
+            "event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "hold_reason": null,
+            "identity_sha256": "ecbe5fac834bf0320a6da8050cb8aae20bb031bdf6344f2f1d17c387d7021ebf",
+            "listing_copy_verified": false,
+            "names_are_exact_aliases": false,
+            "observations": [
+              {
+                "claim": "printed_artist",
+                "coordinate": {
+                  "collector_number": "110/076",
+                  "language": "ja",
+                  "set_code": "M6"
+                },
+                "locator": "bottom-left Illus. credit in exact publisher image",
+                "scope": "publisher_asset_only",
+                "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50551",
+                "value": "Kazuki Minami"
+              }
+            ],
+            "page_to_variant_mapping_verified": false,
+            "physical_finish_verified": false,
+            "price_comparable": false,
+            "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+            "reviewers": [
+              {
+                "actor": "codex-printing-pilot-agent",
+                "method": "direct_image_reading",
+                "observations_sha256": "c0cc87be127268277467cba2c2560c57d561a329901fbd32ba1b71a286909334",
+                "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                "source_image_sha256s": [
+                  "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9"
+                ]
+              },
+              {
+                "actor": "codex-root-visual-review",
+                "method": "direct_image_reading",
+                "observations_sha256": "c0cc87be127268277467cba2c2560c57d561a329901fbd32ba1b71a286909334",
+                "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                "source_image_sha256s": [
+                  "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9"
+                ]
+              }
+            ],
+            "revision": 1,
+            "schema": "pokemon.printing-source-evidence.v1",
+            "sources": [
+              {
+                "fetched_at": "2026-10-01T14:37:11+00:00",
+                "image_sha256": "c9f4542fecc5a85d577ff800574d5122dd5dfa95f99bdfbcf7b0fa99cf3f06f9",
+                "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M6/050551_P_MREKKUUZAIEKKUSU.jpg",
+                "page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+              }
+            ],
+            "status": "source_observed",
+            "subject_id": "ja:M6:110/076",
+            "subject_kind": "coordinate",
+            "current_identity": true
+          }
+        ],
+        "stale_findings": 0,
+        "copy_evidence_needed": true,
+        "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false,
+        "page_to_variant_mapping_verified": false,
+        "names_are_exact_aliases": false,
+        "copy_condition_verified": false
+      },
+      "printed_artist_credit": {
+        "value": "Kazuki Minami",
+        "evidence_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+        "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+        "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+        "reviewer_actors": [
+          "codex-printing-pilot-agent",
+          "codex-root-visual-review"
+        ],
+        "independent_blind_accuracy_measurement": false
+      },
+      "official_metadata": {
+        "status": "official_coordinate_metadata_supported",
+        "evidence_id": "official-metadata:af572d70f4dbabae524b8a721a7d96fc9b5f110378a3f9e9630a7226f123acf7",
+        "facet_status": {
+          "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+          "dex_id": "not_declared"
+        },
+        "printed_source_corrections": [
+          {
+            "event_id": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+            "kind": "printed_artist",
+            "status": "source_corrected",
+            "value": "Kazuki Minami",
+            "parent_event_id": "printing-source:4fc4aec8c0e35af8d7c8e5e3efe5a2f5913dc7b2aba0df1f1ace46bbf03da19e",
+            "reviewer_actors": [
+              "codex-printing-pilot-agent",
+              "codex-root-visual-review"
+            ],
+            "source_coordinate": {
+              "language": "ja",
+              "set_code": "M6",
+              "collector_number": "110/076"
+            },
+            "reference_exclusion": null,
+            "new_family_card_id": null
+          }
+        ],
+        "official": {
+          "collector_number": "110/076",
+          "dex_id": null,
+          "fetched_at": "2026-10-01T14:37:11+00:00",
+          "illustrators": [
+            "Kazuki Minami"
+          ],
+          "name": "メガレックウザex",
+          "numbered_entries": [
+            {
+              "collector_number": "110/076",
+              "part_role": null,
+              "rarity": "SAR",
+              "rarity_icons": [
+                "ic_rare_sar.gif"
+              ],
+              "rarity_status": "recognized_icon",
+              "set_code": "M6"
+            }
+          ],
+          "page_kind": "single_number",
+          "page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+          "part_role": null,
+          "rarity": "SAR",
+          "rarity_icons": [
+            "ic_rare_sar.gif"
+          ],
+          "rarity_status": "recognized_icon",
+          "set_code": "M6",
+          "url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+        },
+        "claims_scope": "official page coordinates; physical printing/copy unverified",
+        "physical_finish_verified": false,
+        "listing_copy_verified": false,
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "display_allowed": false
+      },
+      "source_rarity": "SAR"
+    },
+    "number_context": {
+      "card_id": "ja:M6:110/076:holo",
+      "number_scope_id": "ja:M6",
+      "scope_status": "provisional_language_set",
+      "printed_number": "110/076",
+      "full_number_key": "110/76",
+      "numerator_key": "110",
+      "denominator_key": "76",
+      "number_format": "numeric_fraction",
+      "variant_label": "holo",
+      "derivation": "card_metadata_v1",
+      "language": "ja",
+      "set_code": "M6",
+      "name": "メガレックウザex",
+      "match_eligible": 1,
+      "display_allowed": 0,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "region": null,
+      "finish": null,
+      "stamp": null,
+      "edition": null,
+      "physical_variant_status": "unverified",
+      "source_number_conflict": null,
+      "source_number_alias_candidate": null,
+      "secondary_number_alias_candidate": null,
+      "multi_record_visual_signal": null,
+      "multi_record_visual_recovery": null,
+      "scan_presentation_candidate": null,
+      "multi_record_scan_evidence": null
+    },
+    "identity_exception": null,
+    "rarity_correction": {
+      "card_id": "ja:M6:110/076:holo",
+      "original_name": "メガレックウザex",
+      "original_rarity": "Mega Hyper Rare",
+      "source_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+      "corrected_rarity": "SAR",
+      "reference_provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50551.json:sha256:ab9e4ca093a05cadbaf653d1b76ccf8b3b2e8522c98e7a64fb565c502d6dacff",
+      "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50551",
+      "official_page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+      "official_rarity_icon": "ic_rare_sar.gif",
+      "applied_at": "2026-10-02T03:15:14+00:00"
+    },
+    "variants_at_number": [
+      {
+        "card_id": "ja:M6:110/076:holo",
+        "variant": "holo"
+      }
+    ],
+    "set": {
+      "language": "ja",
+      "set_code": "M6",
+      "name": "ストームエメラルダ",
+      "release_date": "2026-07-31",
+      "official_card_count": 76,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0,
+      "name_ja": "ストームエメラルダ",
+      "release_date_ja": "2026-07-31"
+    },
+    "reference_records": [
+      {
+        "source": "ptcg-database",
+        "native_id": "50551",
+        "set_code": "M6",
+        "collector_number": "110/076",
+        "name": "メガレックウザex",
+        "rarity": "rare_sar",
+        "provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/M6/50551.json:sha256:ab9e4ca093a05cadbaf653d1b76ccf8b3b2e8522c98e7a64fb565c502d6dacff",
+        "rights_reference": "https://github.com/type-null/PTCG-database/blob/bc5a2698eb9af858feb0280d579fd5fd0f0273e2/LICENSE",
+        "display_allowed": 0,
+        "attributes": {
+          "card_type": "Pokémon",
+          "hp": 280,
+          "illustrator": [
+            "Kazuki Minami"
+          ],
+          "source_jp_id": 50551,
+          "types": [
+            "Colorless"
+          ]
+        }
+      }
+    ],
+    "discovery_facets": [
+      {
+        "facet_type": "dex_id",
+        "value": "384",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      {
+        "facet_type": "illustrator",
+        "value": "Kazuki Minami",
+        "provenance": "source-correction:0a3b073abe35fd2d521f90027fbef0ef26ec783087a1c01bf84363846c967b1e",
+        "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+      }
+    ],
+    "observed_priceable_units": [],
+    "scope": "internal metadata only; public APIs still enforce display permission"
+  }
+}

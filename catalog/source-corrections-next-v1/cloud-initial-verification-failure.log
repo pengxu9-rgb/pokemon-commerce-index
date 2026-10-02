@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/verify_collector_cloud.py", line 287, in <module>
+    a=p.parse_args();verify(a.local_report,a.output,a.inventory_db,a.evidence_rehearsal,a.expansion_rehearsal,a.manifest,a.journey_rehearsal,a.verified_date)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/verify_collector_cloud.py", line 133, in verify
+    assert code==200 and actual==expected,expected['card']['card_id']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ja:M6:110/076:holo

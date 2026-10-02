@@ -58,14 +58,25 @@ def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
     if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='discovery_card_facet'").fetchone():
+        if db.execute("SELECT 1 FROM sqlite_master WHERE name='source_correction_evidence'").fetchone():
+            db.close()
+            raise ValueError('catalog correction view is missing; rebuild the snapshot')
         db.execute('CREATE TEMP VIEW discovery_card_facet AS SELECT * FROM card_facet')
+    if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='effective_card_reference'").fetchone():
+        if db.execute("SELECT 1 FROM sqlite_master WHERE name='source_correction_evidence'").fetchone():
+            db.close()
+            raise ValueError('catalog correction view is missing; rebuild the snapshot')
+        db.execute('CREATE TEMP VIEW effective_card_reference AS SELECT * FROM card_reference')
     return db
 
 
 def init_db(db: sqlite3.Connection) -> None:
     db.executescript(Path(__file__).with_name("schema.sql").read_text())
     db.execute('DROP VIEW IF EXISTS discovery_card_facet')
+    db.execute('DROP VIEW IF EXISTS base_discovery_card_facet')
     db.execute('DROP VIEW IF EXISTS active_card_metadata_evidence')
+    db.execute('DROP VIEW IF EXISTS effective_card_reference')
+    db.execute('DROP VIEW IF EXISTS active_source_correction_evidence')
     rarity_columns = {row[1]: row for row in db.execute("PRAGMA table_info(card_rarity_correction)")}
     if rarity_columns["original_rarity"][3]:
         # Earlier overlays corrected non-null values only. Preserve their evidence
@@ -811,10 +822,12 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
 
 
 def _with_metadata(db, card):
-    from . import card_metadata,coordinate_family,printing_evidence
+    from . import card_metadata,coordinate_family,printing_evidence,source_corrections
+    corrected=source_corrections.context(db,card['card_id'])
+    if corrected:card['source_corrections']=corrected
     printing=printing_evidence.context(db,card['card_id'])
     if printing:card['printing_source_evidence']=printing
-    artist=printing_evidence.supported_artist(db,card['card_id'])
+    artist=source_corrections.printed_artist(db,card['card_id'])
     if artist:card['printed_artist_credit']=artist
     family=coordinate_family.context(db,card['card_id'])
     if family:card['official_coordinate_family']=family
@@ -844,7 +857,7 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
     )]
     references = []
     for reference in db.execute(
-        """SELECT * FROM card_reference WHERE set_code=? AND collector_number=?
+        """SELECT * FROM effective_card_reference WHERE set_code=? AND collector_number=?
         ORDER BY source, native_id LIMIT 20""",
         (row["set_code"] if row["language"] == "ja" else "", row["collector_number"]),
     ):

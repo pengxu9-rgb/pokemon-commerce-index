@@ -102,8 +102,13 @@ def context(db, cid):
         source={r[0] for r in db.execute('SELECT value FROM card_facet WHERE card_id=? AND facet_type=?',(cid,kind))}
         facet_status[kind]=('page_level_only' if evidence['official']['page_kind']=='numbered_parts'
             else 'not_declared' if not values else 'source_conflict' if source-set(values) else 'source_supported')
+    from . import source_corrections
+    correction=source_corrections.context(db,cid)
+    printed=[f for f in correction['findings'] if f['kind']=='printed_artist' and f['status']=='source_corrected'] if correction else []
+    if printed:facet_status['illustrator']='printed_source_corrected_html_or_seed_conflict_preserved'
     return dict(status='official_coordinate_metadata_supported', evidence_id=evidence['evidence_id'],
                 facet_status=facet_status,
+                printed_source_corrections=printed,
                 official=evidence['official'], claims_scope='official page coordinates; physical printing/copy unverified',
                 **{k:False for k in FALSE_CLAIMS})
 

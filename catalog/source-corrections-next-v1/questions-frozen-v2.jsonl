@@ -1,0 +1,24 @@
+{"expected_artist": "5ban Graphics", "expected_number": "046/M-P", "expected_set": "M-P", "id": "credit-01", "kind": "artist", "question": "Japanese M-P 046/M-P cards by artist 5ban Graphics"}
+{"expected_artist": "0313", "expected_number": "111/SV-P", "expected_set": "SV-P", "id": "credit-02", "kind": "artist", "question": "Japanese SV-P 111/SV-P cards by artist 0313"}
+{"expected_artist": "0313", "expected_number": "012/106", "expected_set": "SV8", "id": "credit-03", "kind": "artist", "question": "Japanese SV8 012/106 cards by artist 0313"}
+{"expected_artist": "0313", "expected_number": "088/086", "expected_set": "SV11W", "id": "credit-04", "kind": "artist", "question": "Japanese SV11W 088/086 cards by artist 0313"}
+{"expected_artist": "Kazuki Minami", "expected_number": "110/076", "expected_set": "M6", "id": "credit-05", "kind": "artist", "question": "Japanese M6 110/076 cards by artist Kazuki Minami"}
+{"expected_artist": "YOSHIROTTEN", "expected_number": "131/M-P", "expected_set": "M-P", "id": "credit-06", "kind": "artist", "question": "Japanese M-P 131/M-P cards by artist YOSHIROTTEN"}
+{"expected_artist": "YOSHIROTTEN", "expected_number": "132/M-P", "expected_set": "M-P", "id": "credit-07", "kind": "artist", "question": "Japanese M-P 132/M-P cards by artist YOSHIROTTEN"}
+{"expected_artist": "HACCAN", "expected_number": "134/M-P", "expected_set": "M-P", "id": "credit-08", "kind": "artist", "question": "Japanese M-P 134/M-P cards by artist HACCAN"}
+{"expected_artist": "AKIRA EGAWA", "expected_number": "137/M-P", "expected_set": "M-P", "id": "credit-09", "kind": "artist", "question": "Japanese M-P 137/M-P cards by artist AKIRA EGAWA"}
+{"expected_artist": "Kariya", "expected_number": "198/SV-P", "expected_set": "SV-P", "id": "credit-10", "kind": "artist", "question": "Japanese SV-P 198/SV-P cards by artist Kariya"}
+{"expected_number": "021/SV-P", "expected_set": "SV-P", "id": "prof-sada", "kind": "coordinate", "question": "博士の研究 オーリム博士"}
+{"expected_number": "022/SV-P", "expected_set": "SV-P", "id": "prof-turo", "kind": "coordinate", "question": "博士の研究 フトゥー博士"}
+{"id": "prof-generic", "kind": "ambiguous", "question": "博士の研究"}
+{"id": "prof-wrong-number", "kind": "empty", "question": "Japanese SV-P 021/SV-P フトゥー博士"}
+{"id": "prof-both", "kind": "empty", "question": "博士の研究 オーリム博士 フトゥー博士"}
+{"id": "prof-language-conflict", "kind": "empty", "question": "English 博士の研究 オーリム博士"}
+{"expected_native_ids": ["45643"], "expected_number": "153/SV-P", "expected_set": "SV-P", "id": "nemo-153-reference", "kind": "references", "question": "Japanese SV-P 153/SV-P"}
+{"expected_native_ids": ["45644"], "expected_number": "154/SV-P", "expected_set": "SV-P", "id": "nemo-154-family", "kind": "family", "question": "Japanese SV-P 154/SV-P"}
+{"id": "nemo-foil", "kind": "abstain", "question": "Is Japanese SV-P 153/SV-P the same foil printing as SV-P 154/SV-P?"}
+{"id": "nemo-price", "kind": "abstain", "question": "What is the current cheapest delivered price for Japanese SV-P 154/SV-P?"}
+{"id": "graded-credit", "kind": "abstain", "question": "Show Japanese PSA 10 SV-P 111/SV-P by artist 0313"}
+{"expected_card_id": "ja:SM1M:018/060:normal", "id": "same-art-lanturn", "kind": "target", "question": "same artwork as en:SM1:050/149:standard"}
+{"expected_card_id": "ja:SV2A:063/165:reverse_pokeball", "id": "same-art-abra", "kind": "target", "question": "same artwork as en:SV03.5:063/165:normal"}
+{"id": "missing-merchant-evidence", "kind": "abstain", "question": "Which reliable merchant should I buy SV-P 154/SV-P from today?"}

@@ -95,6 +95,19 @@ CREATE TABLE IF NOT EXISTS character_family_member (
   PRIMARY KEY(family_id,dex_id)
 );
 
+-- Independently inspected publisher facts preserve immutable source rows.
+CREATE TABLE IF NOT EXISTS printing_source_evidence (
+ event_id TEXT PRIMARY KEY, subject_kind TEXT NOT NULL, subject_id TEXT NOT NULL,
+ revision INTEGER NOT NULL CHECK(revision>0), record_json TEXT NOT NULL,
+ UNIQUE(subject_kind,subject_id,revision)
+);
+CREATE TABLE IF NOT EXISTS source_correction_evidence (
+ event_id TEXT PRIMARY KEY, correction_key TEXT NOT NULL, revision INTEGER NOT NULL CHECK(revision>0),
+ kind TEXT NOT NULL CHECK(kind IN ('printed_artist','printed_qualifier','reference_boundary')),
+ language TEXT NOT NULL, set_code TEXT NOT NULL, collector_number TEXT NOT NULL, record_json TEXT NOT NULL,
+ UNIQUE(correction_key,revision)
+);
+
 -- Source snapshots remain immutable; official-page corrections overlay them.
 -- Collector evidence is scoped research, separate from verified card-pair edges.
 CREATE TABLE IF NOT EXISTS catalog_collector_evidence (

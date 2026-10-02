@@ -28,6 +28,18 @@ def graph_semantic_response(response):
     return value
 
 
+def catalog_card_semantic_response(response):
+    """Exclude only the local/container application time of a rarity overlay."""
+    value=json.loads(json.dumps(response))
+    correction=value.get('rarity_correction')
+    if correction is not None:
+        if correction['card_id']!=value['card']['card_id']:
+            raise ValueError('rarity correction is outside the returned card')
+        core.parse_time(correction['applied_at'])
+        correction.pop('applied_at')
+    return value
+
+
 def verify(local_report: Path, output: Path, inventory_db: Path | None = None, evidence_rehearsal: Path | None = None, expansion_rehearsal: Path | None = None, manifest: Path = Path('catalog-build-manifest-evidence-v1.json'), journey_rehearsal: Path | None = None, verified_date='2026-10-01'):
     if output.exists():raise FileExistsError('deployment evidence must be new')
     project='pivota-staging';region='us-west1';name='pokemon-commerce-index'
@@ -64,7 +76,8 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
     for key in ('official_metadata_events','current_official_metadata_cards','official_metadata_stale_cards','official_known_rarity_cards','official_numbered_parts_cards','coordinate_family_events','current_coordinate_families','held_coordinate_families','stale_coordinate_families',
                 'release_evidence_records','vocabulary_records','bilingual_alias_revisions','concept_review_events',
                 'printing_source_events','current_printing_source_observations','held_printing_sources','stale_printing_sources',
-                'two_review_printed_artist_coordinates','physical_printing_approvals','automatic_offer_approvals'):
+                'two_review_printed_artist_coordinates','physical_printing_approvals','automatic_offer_approvals',
+                'source_correction_events','active_source_corrections','stale_source_corrections'):
         if key in expected_catalog:
             assert support[key]==expected_catalog[key],key
     assert query('/health',auth=False)[0]==403
@@ -126,6 +139,20 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
         assert code==200 and actual==item['result'],item['id']
         assert not actual['prices'] and not actual['live_offers']
         priority_source_checks.append(dict(id=item['id'],question=item['question'],passed=True))
+    correction_detail_checks=[]
+    for expected in local.get('correction_detail_checks',[]):
+        code,actual=query('/catalog-card',{'card_id':expected['card']['card_id']})
+        assert code==200 and catalog_card_semantic_response(actual)==catalog_card_semantic_response(expected),expected['card']['card_id']
+        correction_detail_checks.append(dict(card_id=expected['card']['card_id'],passed=True,
+            rarity_application_times=dict(local=(expected.get('rarity_correction') or {}).get('applied_at'),
+                                           cloud=(actual.get('rarity_correction') or {}).get('applied_at'))))
+    source_family_guard=False
+    if local.get('source_family_journey_check'):
+        item=local['source_family_journey_check']
+        code,actual=query('/collector-journey',body=item['request'])
+        assert code==200 and actual==item['result'] and not actual['selection_allowed']
+        assert query('/collector-journey',body=item['invalid_select_request'])[0]==400
+        source_family_guard=True
     inventory_checks=[]
     if inventory_db is not None:
         before=sha_file(inventory_db)
@@ -237,6 +264,8 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 coordinate_family_journey_checks=family_journey_checks,
                 coordinate_family_broad_select_guard=family_broad_select_guard,
                 priority_source_checks=priority_source_checks,
+                correction_detail_checks=correction_detail_checks,
+                source_family_guard=source_family_guard,
                 collector_evidence_checks=evidence_checks,
                 collector_expansion_checks=expansion_checks,
                 collector_journey_checks=journey_checks,
@@ -254,7 +283,7 @@ def verify(local_report: Path, output: Path, inventory_db: Path | None = None, e
                 ordinary_figure_out_phrase_check=True,
                 invalid_pagination_http_status=400,source_replay_sha256=sha_file(local_report),
                 transport_errors=transient_errors,transport_attempts_per_request_max=3,
-                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/card_metadata.py','pokemon_index/coordinate_family.py','pokemon_index/printing_evidence.py','pokemon_index/metadata_views.sql','pokemon_index/discovery_graph.py','pokemon_index/number_graph.py','pokemon_index/offer_comparison.py','pokemon_index/card_rarity.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
+                deployed_source_files_sha256={p:sha_file(Path(p)) for p in ['pokemon_index/collector_discovery.py','pokemon_index/collector_inventory.py','pokemon_index/collector_journey.py','pokemon_index/collector_evidence.py','pokemon_index/card_metadata.py','pokemon_index/coordinate_family.py','pokemon_index/printing_evidence.py','pokemon_index/source_corrections.py','pokemon_index/metadata_views.sql','pokemon_index/discovery_graph.py','pokemon_index/number_graph.py','pokemon_index/offer_comparison.py','pokemon_index/card_rarity.py','pokemon_index/schema.sql','pokemon_index/cli.py','pokemon_index/core.py','pokemon_index/supported_catalog.py','Dockerfile',str(manifest)]},
                 verified_date=verified_date,real_market_observations=0,live_feed_enabled=False,
                 interpretation='Private staging logical equivalence against a development replay; no live marketplace or complete user-answer accuracy is established.')
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

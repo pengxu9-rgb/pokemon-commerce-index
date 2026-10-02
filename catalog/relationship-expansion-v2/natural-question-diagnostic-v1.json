@@ -1,0 +1,207 @@
+{
+  "schema": "pokemon.relationship-natural-question-diagnostic.v1",
+  "cases": 6,
+  "questions_sha256": "d3763b760dc02668f927b99a54335801058da07a6fe051731c9a9b7846da4b11",
+  "results": [
+    {
+      "question_id": "artwork-expansion-20261002-01",
+      "question": "I own Japanese Lanturn SM1M 018/060. Does English Sun & Moon 50/149 have the same picture, and why are the numbers different?",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "scoped_number_explanation"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:SM1:050/149:standard",
+        "ja:SM1M:018/060:normal"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "I own Japanese Lanturn SM1M 018/060. Does English Sun & Moon 50/149 have the same picture, and why are the numbers different?",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "need_release_scope",
+        "status": "clarification_needed",
+        "cards": [],
+        "next_question": "Which one printed card number should we inspect first?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"
+      },
+      "complete_answer_established": false
+    },
+    {
+      "question_id": "artwork-expansion-20261002-02",
+      "question": "日本語のバニプッチ SM2K 017/050 と英語の Vanillite 33/145 は同じイラストですか？番号が違うので別の絵か気になっています。",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "scoped_number_explanation"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:SM2:033/145:standard",
+        "ja:SM2K:017/050:normal"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "日本語のバニプッチ SM2K 017/050 と英語の Vanillite 33/145 は同じイラストですか？番号が違うので別の絵か気になっています。",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "need_release_scope",
+        "status": "clarification_needed",
+        "cards": [],
+        "next_question": "Which one printed card number should we inspect first?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"
+      },
+      "complete_answer_established": false
+    },
+    {
+      "question_id": "artwork-expansion-20261002-03",
+      "question": "Is Japanese Kadabra SV4a 074/190 the same artwork as English 151 064/165? Can I treat their reverse foil versions as the same printing?",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "finish_uncertainty"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:SV03.5:064/165:reverse",
+        "ja:SV4A:074/190:reverse"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Is Japanese Kadabra SV4a 074/190 the same artwork as English 151 064/165? Can I treat their reverse foil versions as the same printing?",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "need_release_scope",
+        "status": "clarification_needed",
+        "cards": [],
+        "next_question": "Which one printed card number should we inspect first?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"
+      },
+      "complete_answer_established": false
+    },
+    {
+      "question_id": "artwork-expansion-20261002-04",
+      "question": "Both catalog records say Master Ball for Dipplin: Japanese SV8a 009/187 and English 010/131. Can you prove that finish and tell me which is cheaper today?",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "physical_finish_blocker",
+        "live_price_blocker"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:SV08.5:010/131:reverse_masterball",
+        "ja:SV8A:009/187:reverse_masterball"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Both catalog records say Master Ball for Dipplin: Japanese SV8a 009/187 and English 010/131. Can you prove that finish and tell me which is cheaper today?",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "market_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which exact printing should we track when an authorized feed is available?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "exact_printing_target",
+          "authorized_fresh_offers_or_relevant_market_evidence"
+        ]
+      },
+      "complete_answer_established": false
+    },
+    {
+      "question_id": "artwork-expansion-20261002-05",
+      "question": "I collect pictures featuring Arceus, Dialga and Palkia together. Is English 156/236 the picture on Japanese SM12 065/095, or does this require three separate cards?",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "single_card_multi_subject_scope"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:SM12:156/236:standard",
+        "ja:SM12:065/095:holo"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "I collect pictures featuring Arceus, Dialga and Palkia together. Is English 156/236 the picture on Japanese SM12 065/095, or does this require three separate cards?",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "need_release_scope",
+        "status": "clarification_needed",
+        "cards": [],
+        "next_question": "Which one printed card number should we inspect first?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"
+      },
+      "complete_answer_established": false
+    },
+    {
+      "question_id": "artwork-expansion-20261002-06",
+      "question": "I like mashu’s Bulbasaur picture. Is Japanese M1L 064/063 the artwork on English Mega Evolution 133/132? Do those numbers mean only 63 or 132 copies were printed?",
+      "expected_evidence_intents": [
+        "same_artwork_relation",
+        "scoped_number_explanation",
+        "scarcity_claim_blocker"
+      ],
+      "source_bound_reviewed_pair": [
+        "en:ME01:133/132:holo",
+        "ja:M1L:064/063:holo"
+      ],
+      "response": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "I like mashu’s Bulbasaur picture. Is Japanese M1L 064/063 the artwork on English Mega Evolution 133/132? Do those numbers mean only 63 or 132 copies were printed?",
+        "languages": [
+          "ja",
+          "en"
+        ],
+        "task": "need_release_scope",
+        "status": "clarification_needed",
+        "cards": [],
+        "next_question": "Which one printed card number should we inspect first?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"
+      },
+      "complete_answer_established": false
+    }
+  ],
+  "independent_held_out_accuracy_measurement": false,
+  "interpretation": "Raw authored mixed questions expose remaining natural-language orchestration/clarification work. Existing artwork edges support downstream evidence tools but do not establish fully answered questions."
+}

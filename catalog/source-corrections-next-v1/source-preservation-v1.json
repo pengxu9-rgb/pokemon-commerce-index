@@ -1,0 +1,42 @@
+{
+  "schema": "pokemon.source-corrections-source-preservation.v1",
+  "tables": {
+    "card": {
+      "original_rows": 70005,
+      "new_rows": 1,
+      "original_sha256": "8448f355527d926431b7051275b9a226d476d7a850ba983ca94de3f04899ddb3",
+      "rebuild_original_subset_sha256": "8448f355527d926431b7051275b9a226d476d7a850ba983ca94de3f04899ddb3",
+      "all_original_rows_unchanged": true
+    },
+    "card_reference": {
+      "original_rows": 24039,
+      "new_rows": 1,
+      "original_sha256": "e9853cfe7b616af44129533a8c1dc1f2d0af3917fdf77b05bf15f8aa71ea59a1",
+      "rebuild_original_subset_sha256": "e9853cfe7b616af44129533a8c1dc1f2d0af3917fdf77b05bf15f8aa71ea59a1",
+      "all_original_rows_unchanged": true
+    },
+    "card_facet": {
+      "original_rows": 86302,
+      "new_rows": 0,
+      "original_sha256": "85ed19d86918a722a37943eb363089b0c79018d8f287d8a9eb5ae934bf989ad7",
+      "rebuild_original_subset_sha256": "85ed19d86918a722a37943eb363089b0c79018d8f287d8a9eb5ae934bf989ad7",
+      "all_original_rows_unchanged": true
+    },
+    "card_metadata_evidence": {
+      "original_rows": 2497,
+      "all_original_rows_unchanged": true
+    },
+    "coordinate_family_evidence": {
+      "original_rows": 280,
+      "all_original_rows_unchanged": true
+    },
+    "printing_source_evidence": {
+      "original_rows": 23,
+      "all_original_rows_unchanged": true
+    }
+  },
+  "prior45_steps_unchanged": true,
+  "steps": 47,
+  "manifest_sha256": "bc18feb9933d4ed2803e9f52b668d87300abe5a60ad7d8d763e031cc3b2e9fec",
+  "all_original_evidence_tables_preserved": true
+}

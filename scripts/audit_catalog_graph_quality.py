@@ -3,7 +3,7 @@ import argparse,hashlib,json
 from collections import Counter
 from contextlib import closing
 from pathlib import Path
-from pokemon_index import core,card_metadata,coordinate_family,collector_evidence,supported_catalog,printing_evidence
+from pokemon_index import core,card_metadata,coordinate_family,collector_evidence,supported_catalog,printing_evidence,source_corrections
 
 
 def release_completeness(db):
@@ -48,10 +48,12 @@ def audit(path,manifest,output,official_cache=None):
             rows=db.execute("SELECT lower(value),COUNT(DISTINCT language) AS languages,COUNT(DISTINCT f.card_id) AS cards FROM discovery_card_facet f JOIN card c ON c.card_id=f.card_id WHERE facet_type=? GROUP BY lower(value)",(kind,)).fetchall()
             shared[kind]=dict(distinct_values=len(rows),values_shared_across_languages=sum(r['languages']>1 for r in rows),
                              claim_scope='retrieval metadata only; not localization/artwork equivalence')
-        artist_conflicts=[]
+        artist_conflicts=[]; preserved_artist_conflicts=[]
         for row in db.execute('SELECT card_id FROM active_card_metadata_evidence'):
             context=card_metadata.context(db,row[0])
             if context['facet_status']['illustrator']=='source_conflict':artist_conflicts.append(row[0])
+            if context['facet_status']['illustrator']=='printed_source_corrected_html_or_seed_conflict_preserved':
+                preserved_artist_conflicts.append(row[0])
         releases=release_completeness(db)
         families=[]
         for row in db.execute('''SELECT e.record_json FROM coordinate_family_evidence e
@@ -77,13 +79,15 @@ def audit(path,manifest,output,official_cache=None):
             raw_missing_or_none_rarity=sum(c['rarity'] is None or str(c['rarity']).strip().lower() in {'','none','null'} for c in cards),
             classification_records=count('SELECT COUNT(*) FROM card_classification'),
             **releases,
-            artist_conflict_records=artist_conflicts)
+            artist_conflict_records=artist_conflicts,
+            printed_artist_corrected_with_raw_conflict_preserved=preserved_artist_conflicts)
         integrity=dict(foreign_key_violations=foreign_keys,invalid_card_ids=invalid_ids,invalid_attributes_json=invalid_json,
             required_field_missing=missing,duplicate_identity_tuples=count('SELECT COUNT(*) FROM (SELECT language,set_code,collector_number,variant FROM card GROUP BY 1,2,3,4 HAVING COUNT(*)>1)'),
             missing_number_contexts=count('SELECT COUNT(*) FROM card c LEFT JOIN card_number_context n USING(card_id) WHERE n.card_id IS NULL'),
             manifested_inputs_verified=len(checked))
         gates=dict(official_card_metadata=card_metadata.status(db),coordinate_family_evidence=coordinate_family.status(db),
             printing_source_evidence=printing_evidence.status(db),
+            source_corrections=source_corrections.status(db),
             supported_status=supported_catalog.status(db),observations=count('SELECT COUNT(*) FROM observation'),
             paid_sales=count('SELECT COUNT(*) FROM verified_sale'),live_listing_rows=count('SELECT COUNT(*) FROM listing'))
         primary_check=None

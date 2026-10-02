@@ -1,0 +1,44 @@
+{
+  "schema": "pokemon.source-corrections-adversarial-resolution.v1",
+  "recorded_at": "2026-10-02T03:21:22.394463+00:00",
+  "issues": [
+    {
+      "id": "historical_family_selection",
+      "observed": "An attribute-only source-family guard allowed flag removal to enable selection.",
+      "fix": "Historical new-card membership, reserved namespace/version and source provenance keep family-only selection blocked."
+    },
+    {
+      "id": "source_forgery",
+      "observed": "Family reference could carry an unproven rarity/name/provenance.",
+      "fix": "Exact schemas, same source name, bound page/image provenance, unknown rarity and false permissions are required."
+    },
+    {
+      "id": "raw_view_fallback",
+      "observed": "Missing effective views could restore quarantined seed facts.",
+      "fix": "Correction-capable read-only snapshots fail closed when reference/facet views are missing."
+    },
+    {
+      "id": "artist_and_person_scope",
+      "observed": "Known/unknown credits or multiple/mismatched professor names were silently ignored.",
+      "fix": "Named constraints now filter or clarify; unsupported English professor aliases are held."
+    },
+    {
+      "id": "inquiry_regression",
+      "observed": "Generic who/which artist or professor questions were interpreted as named constraints.",
+      "fix": "Role inquiries retain source facts; earlier two failing legacy professor questions are retained."
+    },
+    {
+      "id": "language_scope",
+      "observed": "Canonical EN card IDs narrowed requested result language.",
+      "fix": "Language inference excludes ID tokens; explicit natural-language/structured scope still applies."
+    },
+    {
+      "id": "chronology",
+      "observed": "Draft correction timestamps inherited parent review time.",
+      "fix": "Actual correction creation time is recorded; previous drafts remain excluded from runtime."
+    }
+  ],
+  "original_source_rows_preserved": true,
+  "source_image_reviews_are_ai": true,
+  "independent_population_accuracy_measured": false
+}

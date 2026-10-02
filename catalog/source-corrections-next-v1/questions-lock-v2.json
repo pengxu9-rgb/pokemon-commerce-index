@@ -1,0 +1,10 @@
+{
+  "schema": "pokemon.source-corrections-question-lock.v1",
+  "questions_sha256": "b923e194eea90eb0da57d6bd316724b96a0e52d5300465bbb198fd799305bf7d",
+  "frozen_at": "2026-10-02T02:46:59.713553+00:00",
+  "cases": 24,
+  "author": "codex-root",
+  "independent_held_out_accuracy_measurement": false,
+  "pre_execution_fixture_correction": "Abra English frozen endpoint variant is normal, not standard. Fixed from source-qualified cohort before any query execution. Original v1 retained.",
+  "interpretation": "Source-led development cases; expectations frozen before first execution. No independent collector acceptance/marketplace precision."
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "pokemon.source-correction-validation.v1",
+  "imported_events": {
+    "source_correction_events": 13,
+    "active_source_corrections": 13,
+    "stale_source_corrections": 0
+  },
+  "corrections_sha256": "a69de8c1db87f2a31bfa13634d4de60ef619df4978d5d3c11e93b6543df9ed93",
+  "created_at": [
+    "2026-10-02T02:56:09.362717+00:00"
+  ],
+  "drafts_superseded": [
+    "corrections-initial-development-v1.jsonl",
+    "corrections-v1.jsonl"
+  ],
+  "draft_timestamp_note": "Drafts reused source observation time; published v2 uses actual correction creation UTC and retains original source review chronology.",
+  "raw_reference_45644": {
+    "source": "ptcg-database",
+    "native_id": "45644",
+    "set_code": "SV-P",
+    "collector_number": "153/SV-P"
+  },
+  "effective_nemo_references": [
+    {
+      "source": "ptcg-database",
+      "native_id": "45643",
+      "set_code": "SV-P",
+      "collector_number": "153/SV-P"
+    },
+    {
+      "source": "official-printed-coordinate",
+      "native_id": "45644",
+      "set_code": "SV-P",
+      "collector_number": "154/SV-P"
+    }
+  ],
+  "historically_bound_family_guard": true,
+  "semantic_blind_accuracy_measured": false,
+  "physical_copy_finish_price_permissions_expanded": false
+}

@@ -1,0 +1,13 @@
+======================================================================
+FAIL: test_removing_mutable_family_attribute_does_not_promote_source_namespace (tests.test_source_family_journey.SourceFamilyJourneyTests.test_removing_mutable_family_attribute_does_not_promote_source_namespace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_source_family_journey.py", line 33, in test_removing_mutable_family_attribute_does_not_promote_source_namespace
+    with self.assertRaisesRegex(ValueError, 'source-only family'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.015s
+
+FAILED (failures=1)

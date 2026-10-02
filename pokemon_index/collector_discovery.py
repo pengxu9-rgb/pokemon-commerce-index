@@ -79,12 +79,14 @@ def _card_result(db, row) -> dict:
         if metadata['status'] == 'official_coordinate_metadata_supported' and metadata['official']['rarity']:
             card['source_rarity'] = card['rarity']
             card['rarity'] = metadata['official']['rarity']
-    from . import coordinate_family,printing_evidence
+    from . import coordinate_family,printing_evidence,source_corrections
+    corrected=source_corrections.context(db,row['card_id'])
+    if corrected:card['source_corrections']=corrected
     family=coordinate_family.context(db,row['card_id'])
     if family:card['official_coordinate_family']=family
     printing=printing_evidence.context(db,row['card_id'])
     if printing:card['printing_source_evidence']=printing
-    artist=printing_evidence.supported_artist(db,row['card_id'])
+    artist=source_corrections.printed_artist(db,row['card_id'])
     if artist:card['printed_artist_credit']=artist
     return card
 
@@ -101,6 +103,19 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     text = _norm(result['question'])
     explicit=result.get('requested_scope',{})
     rows=[r for r in rows if all(r[k]==v for k,v in explicit.items())]
+    requested_artists=_artists(db,text)
+    artist_inquiry=bool(re.search(r'who (?:is|was) (?:credited as )?(?:the )?(?:illustrator|artist)|who (?:illustrated|drew)|which (?:artist|illustrator) (?:is|was)|イラストレーターは誰|誰.*(?:描|イラスト)',text))
+    if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
+        rows=[r for r in rows if len(requested_artists)==1 and db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='illustrator' AND value=?",(r['card_id'],requested_artists[0])).fetchone()]
+        if not rows:result.update(status='no_match',next_question='That exact coordinate does not have the requested current source-backed illustrator credit.')
+    qualifiers=_qualifier_findings(db,text,result['languages'])
+    unsupported_professors=_unsupported_professors(db,text)
+    if qualifiers or unsupported_professors:
+        allowed={cid for f in qualifiers if f['active'] for cid in f['card_ids']} if len(qualifiers)==1 and not unsupported_professors else set()
+        rows=[r for r in rows if r['card_id'] in allowed]
+        result['requested_printed_qualifiers']=sorted({f['value'] for f in qualifiers})
+        result['unfulfilled_constraints'].append('publisher_qualifier_not_seller_copy_verified')
+        if not rows:result.update(status='no_match',next_question='The scoped printing does not satisfy the current source-backed professor subtitle; inspect the exact printed number and copy photos.')
     codes={explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,result['languages'])
     # Incidental/omitted releases in an external checklist are not affirmative
     # release filters. Explicit follow-up scope remains authoritative.
@@ -154,6 +169,11 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     if parts and result['task']=='exact_coordinates':
         result['unfulfilled_constraints'].append('numbered_part_copy_evidence')
         result['next_question']='The official page lists multiple numbered parts. Confirm the requested part and inspect the listing photos before selecting a physical copy.'
+    from . import source_corrections
+    source_families=[c for c in result['cards'] if source_corrections.family_scope_only(db,c['card_id'])]
+    if source_families and result['task']=='exact_coordinates':
+        result['unfulfilled_constraints'].append('source_family_copy_evidence')
+        result['next_question']='This publisher-source record supports a number family only. Confirm the physical edition, finish and seller-copy photos before selecting a purchase target.'
     families=[c for c in result['cards'] if c.get('official_coordinate_family',{}).get('copy_evidence_needed')]
     if families and result['task']=='exact_coordinates':
         result['unfulfilled_constraints'].append('coordinate_family_copy_evidence')
@@ -200,9 +220,31 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
 
 
 def _artists(db, text: str) -> list[str]:
-    intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师',text))
+    intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
     return [r[0] for r in db.execute("SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
+
+
+def _qualifier_findings(db,text,languages):
+    from . import source_corrections
+    if not source_corrections.available(db):return []
+    result=[]
+    for row in db.execute("SELECT e.*,a.event_id active_id FROM source_correction_evidence e LEFT JOIN active_source_correction_evidence a ON a.event_id=e.event_id WHERE e.kind='printed_qualifier' AND NOT EXISTS(SELECT 1 FROM source_correction_evidence later WHERE later.correction_key=e.correction_key AND later.revision>e.revision)"):
+        record=json.loads(row['record_json'])
+        if _mentioned(text,record['value']):result.append(dict(value=record['value'],active=bool(row['active_id']) and row['language'] in languages,card_ids=[c['card_id'] for c in record['snapshot']['cards']],evidence_id=row['event_id']))
+    return result
+
+
+def _unsupported_professors(db,text):
+    from . import source_corrections
+    names=re.findall(r'[一-龯ぁ-んァ-ヶー・]{2,30}博士',text.replace('博士の研究',' '))
+    english=re.findall(r'\bprofessor\s+([a-z][a-z\-\']{1,40})',text)
+    # These predicates ask who is shown; they do not supply a person's name.
+    inquiry_words={'research','is','was','are','were','appears','appear','printed',
+                   'shown','depicted','does','do','has','have','on','in'}
+    english=[name for name in english if name not in inquiry_words]
+    known={r[0] for r in db.execute("SELECT DISTINCT json_extract(record_json,'$.value') FROM source_correction_evidence WHERE kind='printed_qualifier'")} if source_corrections.available(db) else set()
+    return [name for name in names if not any(name.endswith(_norm(value)) for value in known)]+['professor '+name for name in english]
 
 
 def _character_ids(db, text: str) -> list[int]:
@@ -227,7 +269,9 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     if type(limit) is not int or not 1 <= limit <= 100 or type(offset) is not int or offset < 0:
         raise ValueError("invalid collector pagination")
     explicit=validate_scope(scope)
-    text = _norm(question); languages = [explicit['language']] if 'language' in explicit else _languages(text)
+    text = _norm(question)
+    language_text=re.sub(r'\b(?:ja|en):[a-z0-9.\-]+:[^\s:]+:[a-z0-9_\-]+',' ',text)
+    languages = [explicit['language']] if 'language' in explicit else _languages(language_text)
     release_codes=lambda: {explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,languages)
     release_context=bool(re.search(r'\bcards?\s+from\b|\b(?:set|release|checklist)\b|拡張パック|収録|のカード|カード一覧|カードリスト',text))
     identity_text=_without_release_names(db,text,languages) if release_context else text
@@ -436,6 +480,18 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                      (*languages, artists[0]))
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
                         claim_basis="pinned source illustrator credits"), rows, limit, offset)
+
+    qualifiers=_qualifier_findings(db,text,languages)
+    if _unsupported_professors(db,text):
+        return dict(result,task='printed_qualifier_evidence_needed',status='blocked',required_evidence=['source_bound_requested_professor_subtitle'],next_question='That named professor subtitle is not supported in the requested scope. Confirm the printed release and number before selecting a target.')
+    if qualifiers:
+        if len(qualifiers)!=1 or not qualifiers[0]['active']:
+            return dict(result,task='printed_qualifier_evidence_needed',status='blocked',required_evidence=['current_source_bound_qualified_title'],next_question='Choose one printed professor subtitle and confirm its language/set/number; stale or multiple source readings cannot select a target.')
+        ids=qualifiers[0]['card_ids'];rows=_rows(db,'c.card_id IN ('+','.join('?' for _ in ids)+')',tuple(ids))
+        return _finish_result(db,dict(result,task='qualified_title_cards',status='results',claim_basis='exact publisher printed subtitle; source seed/main HTML title retained',qualified_title_evidence=qualifiers[0]),rows,limit,offset)
+
+    if _mentioned(text,'博士の研究'):
+        return dict(result,task='printed_qualifier_scope_needed',status='clarification_needed',required_evidence=['printed_professor_subtitle_and_language_set_number'],next_question='Which printed professor subtitle and release number do you mean? The generic main title does not identify one professor or printing.')
 
     ids = _character_ids(db, identity_text)
     sets=release_codes()
