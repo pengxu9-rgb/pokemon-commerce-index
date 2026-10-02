@@ -1,0 +1,12 @@
+{
+  "schema": "pokemon.printing-source-replay-provenance.v1",
+  "initial_report": "initial-development-results-v1.json",
+  "initial_report_sha256": "1282ea384b50c3ddeb1a655a0d29c5fa029eb8dca7a801ebe164e3c00b7dbbca",
+  "initial_database": "/tmp/pokemon-coordinate-family-v1.sqlite3",
+  "initial_runtime_stage": "Current integrated collector runtime, pre-ledger database. Root card-context fields were added before this execution; no new printing ledger exists in the baseline DB.",
+  "pre_implementation_measurement": false,
+  "independent_held_out_accuracy_measurement": false,
+  "source_selection_before_initial_execution": true,
+  "first_findings_visible_to_second_reviewer": true,
+  "separate_actual_image_inspections": true
+}

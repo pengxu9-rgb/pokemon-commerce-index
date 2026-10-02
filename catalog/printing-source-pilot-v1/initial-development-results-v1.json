@@ -1,0 +1,3687 @@
+{
+  "schema": "pokemon.printing-source-development-rehearsal.v1",
+  "cases": 20,
+  "passed": 5,
+  "source_fact_cases": 15,
+  "source_fact_cases_supported": 0,
+  "unsupported_market_cases": 0,
+  "failed": 15,
+  "questions_sha256": "1e97f754e18dc6c5c014cee4335dd479025887612b4fe180a78a5838361340a5",
+  "evidence_sha256": "7fd553c986d0140c1c744f809b389285ec7a315d0edff2b60179c1e0e192f5b6",
+  "catalog_sha256": "13eed6b763e70e9b9b0384e839376e7c1fd516b5e63cdaeda7ec1dc07dcd7082",
+  "catalog_revision": "b69881abb064edffd2bf82339d4de9b1f67221cd9f3286c1bcaf309692038505",
+  "runtime_sha256": {
+    "core.py": "91d714f8723355d1ff3b958682c130a679e3ee19f0916ff8871adec2aaef5a77",
+    "collector_discovery.py": "a2ca00858ee7ca84b6e25224a90ea9c09ca309d89966f01941d39f19f0c96000",
+    "collector_journey.py": "1671f951177ac1787aae37e248316587df6df5830de6b574d818cd75f7566503",
+    "printing_evidence.py": "47fd99474cdd02d0d74bf386bcae3ef347a5fbbc8d1c5af0bfefa9f9c6d9d66a"
+  },
+  "independent_held_out_accuracy_measurement": false,
+  "results": [
+    {
+      "id": "printing-source-task-01",
+      "question": "Who is credited as the illustrator on Japanese M-P 046/M-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M-P:046/M-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "5ban Graphics",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M-P 046/M-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M-P:046/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "046/M-P",
+            "variant": "normal",
+            "name": "ワルビアルex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/046.ts:sha256:dbb00a5e089382c6231f42ce16f92e6a1f905fea102691ef47de088034cbf0d7",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:a2fe65281848317eae7263bb36a14dda140a925ea079e645b771c03feb566585",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "046/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:37:53+00:00",
+                "illustrators": [
+                  "5ban GraSV-Phics"
+                ],
+                "name": "ワルビアルex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "046/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "2143e00c4a54d63f583b67643bb3740047d23c8d8988550b60272dce11f92451",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/48481"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-02",
+      "question": "Who is credited as the illustrator on Japanese M6 110/076?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M6:110/076:holo"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "Kazuki Minami",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M6 110/076?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M6:110/076:holo",
+            "language": "ja",
+            "set_code": "M6",
+            "collector_number": "110/076",
+            "variant": "holo",
+            "name": "メガレックウザex",
+            "rarity": "SAR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/110.ts:sha256:5a10294d9335a16a752cbc531a3e1313d0b3a0a9d18b8a393c957635a265939c",
+            "set_name": "ストームエメラルダ",
+            "release_date": "2026-07-31",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:af572d70f4dbabae524b8a721a7d96fc9b5f110378a3f9e9630a7226f123acf7",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "110/076",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:37:11+00:00",
+                "illustrators": [
+                  "Kazuki Minami"
+                ],
+                "name": "メガレックウザex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "110/076",
+                    "part_role": null,
+                    "rarity": "SAR",
+                    "rarity_icons": [
+                      "ic_rare_sar.gif"
+                    ],
+                    "rarity_status": "recognized_icon",
+                    "set_code": "M6"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "67b8ea6c76ff284a930be7ebbc7efc993400e86bdb8fe14725ae8e2ac068bd0c",
+                "part_role": null,
+                "rarity": "SAR",
+                "rarity_icons": [
+                  "ic_rare_sar.gif"
+                ],
+                "rarity_status": "recognized_icon",
+                "set_code": "M6",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50551"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_rarity": "SAR"
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-03",
+      "question": "Who is credited as the illustrator on Japanese M-P 131/M-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M-P:131/M-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "YOSHIROTTEN",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M-P 131/M-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M-P:131/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "131/M-P",
+            "variant": "normal",
+            "name": "ピカチュウex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:7e09ede263b66c690f49f2136168816d5ffbd594cc9b5e64ff2075110d916ac7",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "131/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "YOSHIROTTEN"
+                ],
+                "name": "ピカチュウex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "131/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-04",
+      "question": "Who is credited as the illustrator on Japanese M-P 132/M-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M-P:132/M-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "YOSHIROTTEN",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M-P 132/M-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M-P:132/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "132/M-P",
+            "variant": "normal",
+            "name": "ピカチュウex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/132.ts:sha256:7532f17a3e7a99a9273628d8bc48f507656621f118473b6936bcba59ef044a2a",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:2be4575d68e5091327df1a091206fa27ec9d8c935aa3eb5d7d7e814ecad8b848",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "132/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "YOSHIROTTEN"
+                ],
+                "name": "ピカチュウex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "132/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "8982d195e656053da66939a801e78e4b223646dded96409f522f5fb028161921",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-05",
+      "question": "Who is credited as the illustrator on Japanese M-P 134/M-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M-P:134/M-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "HACCAN",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M-P 134/M-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M-P:134/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "134/M-P",
+            "variant": "normal",
+            "name": "イーブイ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/134.ts:sha256:ad954bf05b5db34f19516b4b9a1c12574345afa78770da2ec82b31d373a6b21f",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:3d360329edab3e13491ce3eb04104f38b22c619c41d9a9cfc95d82ca605cff32",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "source_supported"
+              },
+              "official": {
+                "collector_number": "134/M-P",
+                "dex_id": 133,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "HACCAN"
+                ],
+                "name": "イーブイ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "134/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "2e189507007fdb1b67bc02d35e28da97dcd18720f0ca45ad158deab97fd5ff18",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50485"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-06",
+      "question": "Who is credited as the illustrator on Japanese M-P 137/M-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:M-P:137/M-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "AKIRA EGAWA",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese M-P 137/M-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:M-P:137/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "137/M-P",
+            "variant": "normal",
+            "name": "メガエルレイドex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/137.ts:sha256:b2f06b88f2dbd12ac2659bbbab5ae73c58a581fd8a41d34d6eda20b5cfc51966",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:0f8eda62a6ff08b95d5ea9da40cc5da261772e824c747dc2d179aad9a6408a82",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "137/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:08+00:00",
+                "illustrators": [
+                  "AKIRA EGAWA"
+                ],
+                "name": "メガエルレイドex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "137/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "55b0bdb1caff5b6ee34be51da23a5f377755dfd91e2307b18c4b0664ec628ad3",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50488"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-07",
+      "question": "Who is credited as the illustrator on Japanese SV11W 088/086?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV11W:088/086:holo"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "0313",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese SV11W 088/086?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV11W:088/086:holo",
+            "language": "ja",
+            "set_code": "SV11W",
+            "collector_number": "088/086",
+            "variant": "holo",
+            "name": "クルマユ",
+            "rarity": "AR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV11W/088.ts:sha256:b613944f15d0e2f65d03a914c74fc021134b91e87d02b222085fb9e78a9e2ab7",
+            "set_name": "ホワイトフレア",
+            "release_date": "2025-06-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV11W.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:15989f83cb60f8408730287a2e2a4318ff7965442045c14c09189e6f0f11220e",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "source_supported"
+              },
+              "official": {
+                "collector_number": "088/086",
+                "dex_id": 541,
+                "fetched_at": "2026-10-01T14:38:11+00:00",
+                "illustrators": [
+                  "313"
+                ],
+                "name": "クルマユ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "088/086",
+                    "part_role": null,
+                    "rarity": "AR",
+                    "rarity_icons": [
+                      "ic_rare_ar.gif"
+                    ],
+                    "rarity_status": "recognized_icon",
+                    "set_code": "SV11W"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "17b0420b753564e48b543deea1795a5484ec6472357054d02ebb9355bd5b1755",
+                "part_role": null,
+                "rarity": "AR",
+                "rarity_icons": [
+                  "ic_rare_ar.gif"
+                ],
+                "rarity_status": "recognized_icon",
+                "set_code": "SV11W",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/48000"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_rarity": "Illustration rare"
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-08",
+      "question": "Who is credited as the illustrator on Japanese SV-P 111/SV-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:111/SV-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "0313",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese SV-P 111/SV-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:111/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "111/SV-P",
+            "variant": "normal",
+            "name": "バオップ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/111.ts:sha256:034cbcf8ad29ad50e54c3ca8fbe52009b7a7bd31ec20fdb4d57c2ad27c94391b",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:6e106981b246f4848d97043845ded0adfb3609fc2206554e7b2af8dba5c95863",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "source_supported"
+              },
+              "official": {
+                "collector_number": "111/SV-P",
+                "dex_id": 513,
+                "fetched_at": "2026-10-01T23:08:41+00:00",
+                "illustrators": [
+                  "313"
+                ],
+                "name": "バオップ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "111/SV-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "SV-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "a320ea41759e62d973d28103c009e0f8e512079f161fd98095c21707f0235205",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "SV-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/44406"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-09",
+      "question": "Who is credited as the illustrator on Japanese SV-P 198/SV-P?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:198/SV-P:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "Kariya",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese SV-P 198/SV-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:198/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "198/SV-P",
+            "variant": "normal",
+            "name": "イーブイ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/198.ts:sha256:05c9ef8c7dc017cd1fa7f4be1d76bae4aa143067fa26069ec9a62f6e8071a686",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:06a165e256a6369ef9e6741af58ac35c9c8b86eb757af610b066f57eb9e1502d",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "source_supported"
+              },
+              "official": {
+                "collector_number": "198/SV-P",
+                "dex_id": 133,
+                "fetched_at": "2026-10-01T23:09:06+00:00",
+                "illustrators": [
+                  "Kariya"
+                ],
+                "name": "イーブイ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "198/SV-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "SV-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "9ab3f4a186db4f9bb1f074b703ff8a7e264328ae1355b918e9f8b6fbafd83046",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "SV-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/49610"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-10",
+      "question": "Who is credited as the illustrator on Japanese SV8 012/106?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV8:012/106:normal"
+      ],
+      "expected_source_claim": "printed_artist",
+      "expected_source_value": "0313",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Who is credited as the illustrator on Japanese SV8 012/106?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV8:012/106:normal",
+            "language": "ja",
+            "set_code": "SV8",
+            "collector_number": "012/106",
+            "variant": "normal",
+            "name": "ビクティニ",
+            "rarity": "U",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/012.ts:sha256:f3dd1bbbc90087203fe52bf61e4db371bf9d039c59e75bed15a02d1c74c424e7",
+            "set_name": "超電ブレイカー",
+            "release_date": "2024-10-18",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:aca6f45cd42c2b586cb4e6de952ce1869fd04bf10e28fe5058ba0ac8957c3cd0",
+              "facet_status": {
+                "illustrator": "source_conflict",
+                "dex_id": "source_supported"
+              },
+              "official": {
+                "collector_number": "012/106",
+                "dex_id": 494,
+                "fetched_at": "2026-10-01T23:09:35+00:00",
+                "illustrators": [
+                  "313"
+                ],
+                "name": "ビクティニ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "012/106",
+                    "part_role": null,
+                    "rarity": "U",
+                    "rarity_icons": [
+                      "ic_rare_u_c.gif"
+                    ],
+                    "rarity_status": "recognized_icon",
+                    "set_code": "SV8"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "6c25340b885a6a5f1d13a2f03a9a4ce8f8758924ea4595995a4d015e7ff2d6d8",
+                "part_role": null,
+                "rarity": "U",
+                "rarity_icons": [
+                  "ic_rare_u_c.gif"
+                ],
+                "rarity_status": "recognized_icon",
+                "set_code": "SV8",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/46352"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_rarity": "Uncommon"
+          }
+        ],
+        "next_question": "Confirm this catalog printing before evaluating a marketplace copy.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-11",
+      "question": "Japanese SV-P 021/SV-P: which professor is printed beside the title?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:021/SV-P:normal"
+      ],
+      "expected_source_claim": "printed_qualifier",
+      "expected_source_value": "オーリム博士",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese SV-P 021/SV-P: which professor is printed beside the title?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:021/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "021/SV-P",
+            "variant": "normal",
+            "name": "博士の研究",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/021.ts:sha256:df33032ae132cc3ab1fde1a298719c32d25054a0956adf1e046d4ff05c1fb0f9",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "coordinate_family_evidence_hold",
+              "evidence_id": "coordinate-family:bbc6a47ad0effb3849796cf2c1f5fe68c70aa0f85d3ab4465da861d7d92d92d8",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "unresolved",
+              "hold_reason": "reference and current official title differ",
+              "official_names": [
+                "博士の研究"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "021/SV-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T23:36:10+00:00",
+                  "illustrators": [
+                    "kirisAki"
+                  ],
+                  "name": "博士の研究",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "021/SV-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "51b0e8c6d4fad33d356ac65d6a549c4e9c2c86d36f2a2d21567498302bdac514",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/43125"
+                }
+              ],
+              "source_record_count": 1,
+              "reference_count": 1,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-12",
+      "question": "Japanese SV-P 022/SV-P: which professor is printed beside the title?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:022/SV-P:normal"
+      ],
+      "expected_source_claim": "printed_qualifier",
+      "expected_source_value": "フトゥー博士",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese SV-P 022/SV-P: which professor is printed beside the title?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:022/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "022/SV-P",
+            "variant": "normal",
+            "name": "博士の研究",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/022.ts:sha256:450d612b4f67ce1426b0fd1c84933ff219e5a7fa02a6a63b89c7e4cd48b5d293",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "coordinate_family_evidence_hold",
+              "evidence_id": "coordinate-family:faff314b7cae0499029a4edd54508e9a429fd2df5ab04b2e9b481dbbcecb22a6",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "unresolved",
+              "hold_reason": "reference and current official title differ",
+              "official_names": [
+                "博士の研究"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "022/SV-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T23:36:11+00:00",
+                  "illustrators": [
+                    "kirisAki"
+                  ],
+                  "name": "博士の研究",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "022/SV-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "18483bb0b94134776590800fd1c71db6a365577e8a60e1a03276e7be04c5ffd3",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/43126"
+                }
+              ],
+              "source_record_count": 1,
+              "reference_count": 1,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-13",
+      "question": "Japanese SV-P 153/SV-P: do both official source images really show number 153?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:153/SV-P:normal"
+      ],
+      "expected_source_claim": "printed_number",
+      "expected_source_value": "154/SV-P",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Japanese SV-P 153/SV-P: do both official source images really show number 153?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:153/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "153/SV-P",
+            "variant": "normal",
+            "name": "ネモ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/153.ts:sha256:976c86e005cfab2fb99414e5efe87eb73eb8dfb69cee8ff1681320a0bf45271f",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "coordinate_family_evidence_hold",
+              "evidence_id": "coordinate-family:75279b1d449e070af0f11993ec57dcabf04e70b5b4c2afa9da79117ec3678fff",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "unresolved",
+              "hold_reason": "official coordinate differs",
+              "official_names": [
+                "ネモ"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "153/SV-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T23:36:11+00:00",
+                  "illustrators": [
+                    "Sanosuke Sakuma"
+                  ],
+                  "name": "ネモ",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "153/SV-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "54bf91f833897021bfd7f5c3c4080b86b39db50364f75ac0e6a759ef35a23880",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/45643"
+                },
+                {
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T23:36:11+00:00",
+                  "illustrators": [
+                    "Sanosuke Sakuma"
+                  ],
+                  "name": "ネモ",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "154/SV-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "e4d39a05df1ee00e23848f2be1c010856c3323d300cf151fa7ec9765bb4c335c",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/45644"
+                }
+              ],
+              "source_record_count": 1,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-14",
+      "question": "What mirror treatment does the manufacturer declare for Japanese SV8A?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV8A:001/187:normal",
+        "ja:SV8A:001/187:reverse",
+        "ja:SV8A:001/187:reverse_masterball",
+        "ja:SV8A:002/187:normal",
+        "ja:SV8A:002/187:reverse",
+        "ja:SV8A:002/187:reverse_masterball",
+        "ja:SV8A:003/187:holo",
+        "ja:SV8A:004/187:normal",
+        "ja:SV8A:004/187:reverse",
+        "ja:SV8A:004/187:reverse_masterball"
+      ],
+      "expected_source_claim": "manufacturer_finish_declaration",
+      "expected_source_value": "premium_mirror",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "What mirror treatment does the manufacturer declare for Japanese SV8A?",
+        "languages": [
+          "ja"
+        ],
+        "task": "set_cards",
+        "status": "results",
+        "cards": [
+          {
+            "card_id": "ja:SV8A:001/187:normal",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "001/187",
+            "variant": "normal",
+            "name": "スボミー",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/001.ts:sha256:7d7ea4141246c6c13a870b3e10e17bf63c486a675e5f475cab584c307562d3ae",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:c2601b132bb7a9cdc7c3a17258a8bc84e81d68def1f979bc049f2aab0b1ecfea",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "スボミー"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "6e4133d3ecabf560081d869db56e2aeb0f4a6208e4bb1404d2d58591643bd219",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46662"
+                },
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "622e0b7b0a06fea97bbaa24ba146306e6d551aa91cfb06b8e92ad1ee5018f342",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46849"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:001/187:reverse",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "001/187",
+            "variant": "reverse",
+            "name": "スボミー",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/001.ts:sha256:7d7ea4141246c6c13a870b3e10e17bf63c486a675e5f475cab584c307562d3ae",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:c2601b132bb7a9cdc7c3a17258a8bc84e81d68def1f979bc049f2aab0b1ecfea",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "スボミー"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "6e4133d3ecabf560081d869db56e2aeb0f4a6208e4bb1404d2d58591643bd219",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46662"
+                },
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "622e0b7b0a06fea97bbaa24ba146306e6d551aa91cfb06b8e92ad1ee5018f342",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46849"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:001/187:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "001/187",
+            "variant": "reverse_masterball",
+            "name": "スボミー",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/001.ts:sha256:7d7ea4141246c6c13a870b3e10e17bf63c486a675e5f475cab584c307562d3ae",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:c2601b132bb7a9cdc7c3a17258a8bc84e81d68def1f979bc049f2aab0b1ecfea",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "スボミー"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "6e4133d3ecabf560081d869db56e2aeb0f4a6208e4bb1404d2d58591643bd219",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46662"
+                },
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "622e0b7b0a06fea97bbaa24ba146306e6d551aa91cfb06b8e92ad1ee5018f342",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46849"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:002/187:normal",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "normal",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:002/187:reverse",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "reverse",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:002/187:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "reverse_masterball",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:003/187:holo",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "003/187",
+            "variant": "holo",
+            "name": "リーフィアex",
+            "rarity": "RR",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/003.ts:sha256:e317562366e73e83591a23bce1d2f11a009c4282a4ec9b5a01e0d61c1d3a0eb8",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:80944baa68d1c1ede37d158d926b5dd7b0d426f13b36a443df234b3b1476a56e",
+              "facet_status": {
+                "illustrator": "source_supported",
+                "dex_id": "not_declared"
+              },
+              "official": {
+                "collector_number": "003/187",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:41:07+00:00",
+                "illustrators": [
+                  "5ban Graphics"
+                ],
+                "name": "リーフィアex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "003/187",
+                    "part_role": null,
+                    "rarity": "RR",
+                    "rarity_icons": [
+                      "ic_rare_rr.gif"
+                    ],
+                    "rarity_status": "recognized_icon",
+                    "set_code": "SV8A"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "8bc5c0b316fe74419ca440659de36189a7cc508cd317dcc1d03cca060323fed1",
+                "part_role": null,
+                "rarity": "RR",
+                "rarity_icons": [
+                  "ic_rare_rr.gif"
+                ],
+                "rarity_status": "recognized_icon",
+                "set_code": "SV8A",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/46664"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_rarity": "Double rare"
+          },
+          {
+            "card_id": "ja:SV8A:004/187:normal",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "004/187",
+            "variant": "normal",
+            "name": "モンメン",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/004.ts:sha256:1a069b0e0e4901a5ea830867391f983fda568cf311529abf68ce6b344e6bb94f",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:87ca2a0bc68364e3f6666b3e29fd24dbb31089af4f89fbb6627af3f51e2ca90e",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "モンメン"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "4beefd68d26ab8908cc45de7e456ae4269bd8ae6460e824ad7ab4508e1b4637d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46665"
+                },
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "587e37e4be2aff8f4c5c7f836eddf033efb21a800976f9b4f12d458da911bfb1",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46851"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:004/187:reverse",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "004/187",
+            "variant": "reverse",
+            "name": "モンメン",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/004.ts:sha256:1a069b0e0e4901a5ea830867391f983fda568cf311529abf68ce6b344e6bb94f",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:87ca2a0bc68364e3f6666b3e29fd24dbb31089af4f89fbb6627af3f51e2ca90e",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "モンメン"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "4beefd68d26ab8908cc45de7e456ae4269bd8ae6460e824ad7ab4508e1b4637d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46665"
+                },
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "587e37e4be2aff8f4c5c7f836eddf033efb21a800976f9b4f12d458da911bfb1",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46851"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:004/187:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "004/187",
+            "variant": "reverse_masterball",
+            "name": "モンメン",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/004.ts:sha256:1a069b0e0e4901a5ea830867391f983fda568cf311529abf68ce6b344e6bb94f",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:87ca2a0bc68364e3f6666b3e29fd24dbb31089af4f89fbb6627af3f51e2ca90e",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "モンメン"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "4beefd68d26ab8908cc45de7e456ae4269bd8ae6460e824ad7ab4508e1b4637d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46665"
+                },
+                {
+                  "collector_number": "004/187",
+                  "dex_id": 546,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Kyoko Umemoto"
+                  ],
+                  "name": "モンメン",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "004/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "587e37e4be2aff8f4c5c7f836eddf033efb21a800976f9b4f12d458da911bfb1",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46851"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": null,
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "physical_variant_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "claim_basis": "pinned language-specific release records and source-declared variants",
+        "variant_summary": [
+          {
+            "variant": "holo",
+            "records": 35
+          },
+          {
+            "variant": "normal",
+            "records": 202
+          },
+          {
+            "variant": "reverse",
+            "records": 144
+          },
+          {
+            "variant": "reverse_masterball",
+            "records": 104
+          }
+        ],
+        "rarity_summary": [
+          {
+            "rarity": "None",
+            "records": 400
+          },
+          {
+            "rarity": "RR",
+            "records": 35
+          },
+          {
+            "rarity": "SAR",
+            "records": 33
+          },
+          {
+            "rarity": "SR",
+            "records": 12
+          },
+          {
+            "rarity": "UR",
+            "records": 5
+          }
+        ],
+        "physical_finish_verification": "not_established_by_catalog",
+        "coverage": {
+          "matched_catalog_records": 485,
+          "returned": 10,
+          "offset": 0,
+          "limit": 10,
+          "has_more": true,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-15",
+      "question": "What mirror treatment does the manufacturer declare for Japanese SV2A?",
+      "passed": false,
+      "source_fact_found": false,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV2A:001/165:normal",
+        "ja:SV2A:001/165:reverse_masterball",
+        "ja:SV2A:001/165:reverse_pokeball",
+        "ja:SV2A:002/165:normal",
+        "ja:SV2A:002/165:reverse_masterball",
+        "ja:SV2A:002/165:reverse_pokeball",
+        "ja:SV2A:003/165:holo",
+        "ja:SV2A:004/165:normal",
+        "ja:SV2A:004/165:reverse_masterball",
+        "ja:SV2A:004/165:reverse_pokeball"
+      ],
+      "expected_source_claim": "manufacturer_finish_declaration",
+      "expected_source_value": "pokeball_pattern_mirror",
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "What mirror treatment does the manufacturer declare for Japanese SV2A?",
+        "languages": [
+          "ja"
+        ],
+        "task": "set_cards",
+        "status": "results",
+        "cards": [
+          {
+            "card_id": "ja:SV2A:001/165:normal",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "001/165",
+            "variant": "normal",
+            "name": "フシギダネ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:001/165:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "001/165",
+            "variant": "reverse_masterball",
+            "name": "フシギダネ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:001/165:reverse_pokeball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "001/165",
+            "variant": "reverse_pokeball",
+            "name": "フシギダネ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:002/165:normal",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "002/165",
+            "variant": "normal",
+            "name": "フシギソウ",
+            "rarity": "Uncommon",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:002/165:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "002/165",
+            "variant": "reverse_masterball",
+            "name": "フシギソウ",
+            "rarity": "Uncommon",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:002/165:reverse_pokeball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "002/165",
+            "variant": "reverse_pokeball",
+            "name": "フシギソウ",
+            "rarity": "Uncommon",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:003/165:holo",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "003/165",
+            "variant": "holo",
+            "name": "フシギバナex",
+            "rarity": "Double rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/003.ts:sha256:69ecf967a86bf1b40d17a2cb4f1a54ab9f5a6a42748782460a372584dc5da31b",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:004/165:normal",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "004/165",
+            "variant": "normal",
+            "name": "ヒトカゲ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/004.ts:sha256:842cafd61b96c53de224ba013de813d19f02fe7fd1b90a6be65524f740186f5f",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:004/165:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "004/165",
+            "variant": "reverse_masterball",
+            "name": "ヒトカゲ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/004.ts:sha256:842cafd61b96c53de224ba013de813d19f02fe7fd1b90a6be65524f740186f5f",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          },
+          {
+            "card_id": "ja:SV2A:004/165:reverse_pokeball",
+            "language": "ja",
+            "set_code": "SV2A",
+            "collector_number": "004/165",
+            "variant": "reverse_pokeball",
+            "name": "ヒトカゲ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/004.ts:sha256:842cafd61b96c53de224ba013de813d19f02fe7fd1b90a6be65524f740186f5f",
+            "set_name": "ポケモンカード151",
+            "release_date": "2023-06-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "collector_evidence": {
+              "schema": "pokemon.collector-evidence-context.v1",
+              "findings": [
+                {
+                  "actor": "collector-evidence-v1",
+                  "claim": "finish_exists",
+                  "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                  "evidence": {
+                    "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                    "kind": "official_release_text",
+                    "locator": "anchor-mirror section",
+                    "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  },
+                  "expected_head": null,
+                  "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                  "recorded_at": "2026-10-01T00:00:00+00:00",
+                  "role": "release_declaration",
+                  "schema": "pokemon.collector-evidence.v1",
+                  "status": "source_supported",
+                  "subject_id": "ja:SV2A",
+                  "subject_kind": "release",
+                  "value": "reverse_pokeball",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "physical_finish_verified": false,
+              "copy_condition_verified": false,
+              "card_pair_relationship_verified": false,
+              "price_comparable": false,
+              "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+            }
+          }
+        ],
+        "next_question": null,
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "physical_variant_completeness"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "claim_basis": "pinned language-specific release records and source-declared variants",
+        "variant_summary": [
+          {
+            "variant": "holo",
+            "records": 82
+          },
+          {
+            "variant": "normal",
+            "records": 128
+          },
+          {
+            "variant": "reverse_masterball",
+            "records": 153
+          },
+          {
+            "variant": "reverse_pokeball",
+            "records": 153
+          }
+        ],
+        "rarity_summary": [
+          {
+            "rarity": "Common",
+            "records": 198
+          },
+          {
+            "rarity": "Double rare",
+            "records": 12
+          },
+          {
+            "rarity": "Illustration rare",
+            "records": 18
+          },
+          {
+            "rarity": "Mega Hyper Rare",
+            "records": 3
+          },
+          {
+            "rarity": "Rare",
+            "records": 75
+          },
+          {
+            "rarity": "Special illustration rare",
+            "records": 8
+          },
+          {
+            "rarity": "Ultra Rare",
+            "records": 16
+          },
+          {
+            "rarity": "Uncommon",
+            "records": 186
+          }
+        ],
+        "physical_finish_verification": "not_established_by_catalog",
+        "coverage": {
+          "matched_catalog_records": 516,
+          "returned": 10,
+          "offset": 0,
+          "limit": 10,
+          "has_more": true,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-16",
+      "question": "Can I buy the exact Japanese SV8A 001/187 Master Ball copy now?",
+      "passed": true,
+      "source_fact_found": null,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV8A:001/187:reverse_masterball"
+      ],
+      "expected_source_claim": null,
+      "expected_source_value": null,
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Can I buy the exact Japanese SV8A 001/187 Master Ball copy now?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV8A:001/187:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "001/187",
+            "variant": "reverse_masterball",
+            "name": "スボミー",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/001.ts:sha256:7d7ea4141246c6c13a870b3e10e17bf63c486a675e5f475cab584c307562d3ae",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:c2601b132bb7a9cdc7c3a17258a8bc84e81d68def1f979bc049f2aab0b1ecfea",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "スボミー"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "6e4133d3ecabf560081d869db56e2aeb0f4a6208e4bb1404d2d58591643bd219",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46662"
+                },
+                {
+                  "collector_number": "001/187",
+                  "dex_id": 406,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Yoriyuki Ikegami"
+                  ],
+                  "name": "スボミー",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "001/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "622e0b7b0a06fea97bbaa24ba146306e6d551aa91cfb06b8e92ad1ee5018f342",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46849"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "requested_source_variants": [
+          "reverse_masterball"
+        ],
+        "physical_finish_verification": "not_established_by_catalog",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-17",
+      "question": "Is every Japanese SV8A 002/187 source version the same physical finish?",
+      "passed": true,
+      "source_fact_found": null,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV8A:002/187:normal",
+        "ja:SV8A:002/187:reverse",
+        "ja:SV8A:002/187:reverse_masterball"
+      ],
+      "expected_source_claim": null,
+      "expected_source_value": null,
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Is every Japanese SV8A 002/187 source version the same physical finish?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "printing_clarification_needed",
+        "cards": [
+          {
+            "card_id": "ja:SV8A:002/187:normal",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "normal",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:002/187:reverse",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "reverse",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          },
+          {
+            "card_id": "ja:SV8A:002/187:reverse_masterball",
+            "language": "ja",
+            "set_code": "SV8A",
+            "collector_number": "002/187",
+            "variant": "reverse_masterball",
+            "name": "リーフィア",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/002.ts:sha256:6754ed9c149844d43336ff3b290e6622c35bda0c1f5de5218a845e94550686e3",
+            "set_name": "テラスタルフェスex",
+            "release_date": "2024-12-06",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "official_coordinate_family_supported",
+              "evidence_id": "coordinate-family:5377349ec909618302f58143486da5fe7039d8e7bde94183a45f2212084be46d",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "exact_name",
+              "hold_reason": null,
+              "official_names": [
+                "リーフィア"
+              ],
+              "official_pages": [
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:03+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "da2bf061d8a89bb1256e1ede4d98ad78a2c2b74ebedb731206e48b4206f8c14d",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46663"
+                },
+                {
+                  "collector_number": "002/187",
+                  "dex_id": 470,
+                  "fetched_at": "2026-10-01T23:35:04+00:00",
+                  "illustrators": [
+                    "Iori Suzuki"
+                  ],
+                  "name": "リーフィア",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "002/187",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "SV8A"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "38ef79a86760a2175dcefcead85d56f340f0279a253892605e7059b7a2147fd6",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "SV8A",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/46850"
+                }
+              ],
+              "source_record_count": 3,
+              "reference_count": 2,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 3,
+          "returned": 3,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-18",
+      "question": "Can you give me a confirmed paid price for Japanese SV-P 153/SV-P?",
+      "passed": true,
+      "source_fact_found": null,
+      "unsupported_market": false,
+      "returned_card_ids": [],
+      "expected_source_claim": null,
+      "expected_source_value": null,
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Can you give me a confirmed paid price for Japanese SV-P 153/SV-P?",
+        "languages": [
+          "ja"
+        ],
+        "task": "market_evidence_needed",
+        "status": "blocked",
+        "cards": [],
+        "next_question": "Which exact printing should we track when an authorized feed is available?",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "required_evidence": [
+          "exact_printing_target",
+          "authorized_fresh_offers_or_relevant_market_evidence"
+        ]
+      }
+    },
+    {
+      "id": "printing-source-task-19",
+      "question": "Can Japanese SV-P 037/SV-P be verified from a different-language card numbered037?",
+      "passed": true,
+      "source_fact_found": null,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:037/SV-P:normal"
+      ],
+      "expected_source_claim": null,
+      "expected_source_value": null,
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Can Japanese SV-P 037/SV-P be verified from a different-language card numbered037?",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:037/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "037/SV-P",
+            "variant": "normal",
+            "name": "基本草エネルギー",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/037.ts:sha256:e1975709c2e09e7c1ef70691b31142b4eadbdc3c6aca934742eaf2c88ea709e4",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "coordinate_family_evidence_hold",
+              "evidence_id": "coordinate-family:c5a2c02ca610c44f48e4061d6bfc697e220f93527b6fd77d932d9a21f5fca267",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "unresolved",
+              "hold_reason": "missing_reference_hold",
+              "official_names": [],
+              "official_pages": [],
+              "source_record_count": 1,
+              "reference_count": 0,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    },
+    {
+      "id": "printing-source-task-20",
+      "question": "Select Japanese SV-P 044/SV-P as a fully verified physical printing.",
+      "passed": true,
+      "source_fact_found": null,
+      "unsupported_market": false,
+      "returned_card_ids": [
+        "ja:SV-P:044/SV-P:normal"
+      ],
+      "expected_source_claim": null,
+      "expected_source_value": null,
+      "result": {
+        "schema": "pokemon.collector-discovery.v1",
+        "question": "Select Japanese SV-P 044/SV-P as a fully verified physical printing.",
+        "languages": [
+          "ja"
+        ],
+        "task": "exact_coordinates",
+        "status": "target_candidate",
+        "cards": [
+          {
+            "card_id": "ja:SV-P:044/SV-P:normal",
+            "language": "ja",
+            "set_code": "SV-P",
+            "collector_number": "044/SV-P",
+            "variant": "normal",
+            "name": "基本鋼エネルギー",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/044.ts:sha256:18bfe81494eae40028a6d8c12a7b536f6869bd5749cf50d70e6b362c22fbf4c4",
+            "set_name": "スカーレット&バイオレット プロモカード",
+            "release_date": "2022-11-29",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_coordinate_family": {
+              "status": "coordinate_family_evidence_hold",
+              "evidence_id": "coordinate-family:9a540f93af0a3b1c2cf4de63b67084b6673d766fedd8563d2fd17b0a3e50e15b",
+              "scope": "coordinate family; official page-to-source-variant assignment unverified",
+              "name_status": "unresolved",
+              "hold_reason": "missing_reference_hold",
+              "official_names": [],
+              "official_pages": [],
+              "source_record_count": 1,
+              "reference_count": 0,
+              "copy_evidence_needed": true,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false
+            }
+          }
+        ],
+        "next_question": "Official evidence supports this number family. Confirm the qualified card title and printed finish/edition from copy photos; official pages are not yet mapped to source variants.",
+        "market_status": "no_live_market_evidence",
+        "live_offers": [],
+        "prices": [],
+        "public_display_allowed": false,
+        "unfulfilled_constraints": [
+          "coordinate_family_copy_evidence"
+        ],
+        "complete_answer_established": false,
+        "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+        "coverage": {
+          "matched_catalog_records": 1,
+          "returned": 1,
+          "offset": 0,
+          "limit": 10,
+          "has_more": false,
+          "undated_records": 0,
+          "release_metadata_missing": 0,
+          "global_printing_completeness_established": false,
+          "missing_character_facets_excluded": true,
+          "artwork_cameos_supported": false
+        },
+        "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+      }
+    }
+  ],
+  "interpretation": "Twenty source-led authored diagnostics; first-page source-fact visibility and explicit abstention only. No claim of useful complete answers, global coverage, blind image accuracy or marketplace precision."
+}

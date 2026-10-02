@@ -1,0 +1,47 @@
+{
+  "schema": "pokemon.next-priorities-integration-validation.v1",
+  "source_row_digests": {
+    "card": {
+      "baseline_sha256": "939853e5f26ed7af544bd25c9332ffabf79b4dfd77ab529a6cb1481e02910cdb",
+      "integrated_sha256": "939853e5f26ed7af544bd25c9332ffabf79b4dfd77ab529a6cb1481e02910cdb"
+    },
+    "card_reference": {
+      "baseline_sha256": "aa82957c316b13d1c2d33fb13ea591874c93862db099e4b299e2ccb55d8d0859",
+      "integrated_sha256": "aa82957c316b13d1c2d33fb13ea591874c93862db099e4b299e2ccb55d8d0859"
+    }
+  },
+  "prior41_steps_unchanged": true,
+  "steps": 45,
+  "manifest_sha256": "319858fdf46faf25db7319b3d9f07a2a1e56b0e923473ef1d8ede28beaa061ca",
+  "supported_status": {
+    "official_metadata_events": 2497,
+    "current_official_metadata_cards": 2497,
+    "official_metadata_stale_cards": 0,
+    "official_known_rarity_cards": 1900,
+    "official_numbered_parts_cards": 4,
+    "coordinate_family_events": 280,
+    "current_coordinate_families": 269,
+    "held_coordinate_families": 11,
+    "stale_coordinate_families": 0,
+    "printing_source_events": 23,
+    "current_printing_source_observations": 14,
+    "held_printing_sources": 9,
+    "stale_printing_sources": 0,
+    "two_review_printed_artist_coordinates": 10,
+    "physical_printing_approvals": 0,
+    "automatic_offer_approvals": 0,
+    "supported_records": 100,
+    "current_supported_targets": 100,
+    "stale_supported_targets": 0,
+    "automatic_offer_join_ready": 0,
+    "bilingual_alias_revisions": 122,
+    "concept_review_events": 460,
+    "release_evidence_records": 21,
+    "vocabulary_records": 42,
+    "character_families": 3,
+    "scope": "Internal source-backed metadata; physical copy, live matching precision and display rights remain separate"
+  },
+  "python_tests_passed": 470,
+  "node_tests_passed": 11,
+  "scope": "Frozen source rows and internal evidence integration; not physical catalog or real-listing precision"
+}

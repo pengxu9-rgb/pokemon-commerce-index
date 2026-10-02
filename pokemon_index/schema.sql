@@ -73,6 +73,15 @@ CREATE TABLE IF NOT EXISTS catalog_vocabulary (
   evidence_json TEXT NOT NULL,
   PRIMARY KEY(language,set_code,alias)
 );
+-- Publisher image readings and release declarations never approve seller copies.
+CREATE TABLE IF NOT EXISTS printing_source_evidence (
+  event_id TEXT PRIMARY KEY,
+  subject_kind TEXT NOT NULL,
+  subject_id TEXT NOT NULL,
+  revision INTEGER NOT NULL CHECK (revision>0),
+  record_json TEXT NOT NULL,
+  UNIQUE(subject_kind,subject_id,revision)
+);
 CREATE TABLE IF NOT EXISTS character_family (
   family_id TEXT PRIMARY KEY,
   record_json TEXT NOT NULL

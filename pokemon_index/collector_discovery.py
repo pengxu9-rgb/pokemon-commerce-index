@@ -79,9 +79,13 @@ def _card_result(db, row) -> dict:
         if metadata['status'] == 'official_coordinate_metadata_supported' and metadata['official']['rarity']:
             card['source_rarity'] = card['rarity']
             card['rarity'] = metadata['official']['rarity']
-    from . import coordinate_family
+    from . import coordinate_family,printing_evidence
     family=coordinate_family.context(db,row['card_id'])
     if family:card['official_coordinate_family']=family
+    printing=printing_evidence.context(db,row['card_id'])
+    if printing:card['printing_source_evidence']=printing
+    artist=printing_evidence.supported_artist(db,row['card_id'])
+    if artist:card['printed_artist_credit']=artist
     return card
 
 
@@ -157,24 +161,41 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
     return result
 
 
+def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
+    """Prefer full release titles over nested titles or code-shaped words."""
+    names={(r['set_code'],r['alias']) for r in db.execute("SELECT * FROM catalog_vocabulary WHERE alias_kind='set_name'") if r['language'] in languages}
+    names.update((r['set_code'],r['name']) for r in db.execute('SELECT language,set_code,name FROM catalog_set_localized') if r['language'] in languages and r['name'])
+    candidates=[]
+    for code,name in names:
+        term=_norm(name)
+        if len(term)<3 or not _mentioned(text,term):continue
+        if term.isdigit() and not re.search(r'\bset\b|\bcards?\b|拡張|カード',text):continue
+        pattern=(r'(?<![a-z0-9/])'+re.escape(term)+r'(?![a-z0-9/])') if term.isdigit() else ((r'(?<![a-z0-9])'+re.escape(term)+r'(?![a-z0-9])') if re.fullmatch(r"[a-z0-9 '\-\.]+",term) else re.escape(term))
+        for match in re.finditer(pattern,text):candidates.append((code,match.start(),match.end(),term))
+    return sorted({m for m in candidates if not any(n[1]<=m[1] and n[2]>=m[2] and n[2]-n[1]>m[2]-m[1] for n in candidates)})
+
+
+def _without_release_names(db, text: str, languages: list[str]) -> str:
+    chars=list(text)
+    for _,start,end,_ in _release_name_mentions(db,text,languages):chars[start:end]=' '*(end-start)
+    return ''.join(chars)
+
+
 def _release_codes(db, text: str, languages: list[str]) -> set[str]:
-    codes={r[0] for r in db.execute('SELECT DISTINCT set_code FROM card') if _mentioned(text,r[0])}
+    names=_release_name_mentions(db,text,languages)
+    residual=list(text)
+    for _,start,end,_ in names:residual[start:end]=' '*(end-start)
+    residual=''.join(residual)
+    codes={code for code,_,_,_ in names}
+    codes.update(r[0] for r in db.execute('SELECT DISTINCT set_code FROM card') if _mentioned(residual,r[0]))
     for row in db.execute('SELECT * FROM catalog_vocabulary'):
-        if row['language'] in languages and _mentioned(text,row['alias']):codes.add(row['set_code'])
-        # Numeric product titles (e.g. official ポケモンカード151) are only
-        # shorthand in explicit release context, never an isolated dex number.
+        if row['language'] in languages and row['alias_kind']=='printed_code' and _mentioned(residual,row['alias']):codes.add(row['set_code'])
+        # Numeric product titles are shorthand only in explicit release context.
         short=re.fullmatch(r'ポケモンカード(\d+)',row['alias'])
         if (short and row['language'] in languages and
                 re.search(r'(?<![a-z0-9/])'+re.escape(short[1])+r'(?![a-z0-9/])',text)
                 and re.search(r'japanese|日本語|日版|ポケモンカード',text)):
             codes.add(row['set_code'])
-    for row in db.execute('SELECT language,set_code,name FROM catalog_set_localized'):
-        if row['language'] not in languages or not row['name']:continue
-        name=_norm(row['name'])
-        if len(name)<3:continue
-        if name.isdigit() and not re.search(r'\bset\b|\bcards?\b|拡張|カード',text):continue
-        if name.isdigit() and not re.search(r'(?<![a-z0-9/])'+re.escape(name)+r'(?![a-z0-9/])',text):continue
-        if _mentioned(text,name):codes.add(row['set_code'])
     return codes
 
 
@@ -208,6 +229,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     explicit=validate_scope(scope)
     text = _norm(question); languages = [explicit['language']] if 'language' in explicit else _languages(text)
     release_codes=lambda: {explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,languages)
+    release_context=bool(re.search(r'\bcards?\s+from\b|\b(?:set|release|checklist)\b|拡張パック|収録|のカード|カード一覧|カードリスト',text))
+    identity_text=_without_release_names(db,text,languages) if release_context else text
     result = {"schema":"pokemon.collector-discovery.v1", "question":question,
               "languages":languages, "task":None, "status":"clarification_needed",
               "cards":[], "next_question":None,
@@ -272,7 +295,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result,task='release_variant_evidence_needed',status='blocked',
                     required_evidence=['printed_release_code_and_number','source_bound_variant_table_or_copy_photos'],
                     next_question='Share the printed set code and number for the two copies. Star color alone cannot determine every version in a release.')
-    if re.search(r"\bdeck\b|デッキ|卡组构筑", text):
+    if (re.search(r"\bdeck\b|デッキ|卡组构筑", identity_text)
+            or re.search(r"how (?:do|can|should) (?:i|we) (?:play|build|use)|how to (?:play|build)|\bcompetitive\b|\bgameplay\b|\bstrategy\b|\brules?\b|デッキ構築|使い方|遊び方|対戦|環境で|大会",text)):
         return dict(result, task="gameplay_evidence_needed", status="blocked",
                     next_question="Which game format and deck goal should be checked against a rules/card-text source?")
     artists=_artists(db,text)
@@ -314,7 +338,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     cameo=bool(re.search(r'cameo|in (?:the )?(?:card )?art\b|appears in|appearances|カメオ|客串|映って|写って|写りこん|写り込',text))
     if cameo and not explicit_family:
         focus=re.search(r'カード名に(.+?)(?:と書|という|が)',text)
-        target_ids=_character_ids(db,focus[1] if focus else text)
+        target_ids=_character_ids(db,focus[1] if focus else identity_text)
         if len(target_ids)==1:
             ids,leads=collector_evidence.artwork_candidates(db,target_ids,languages)
             # Depictions do not transfer across releases, numbers or finishes.
@@ -395,7 +419,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         rows = _rows(db, f"c.set_code=? AND c.collector_number=? AND c.language IN ({marks})",
                      (code, number, *languages))
         # An explicit card name is an additional identity constraint, never ignored.
-        named_ids = _character_ids(db, text)
+        named_ids = _character_ids(db, identity_text)
         if named_ids:
             rows = [r for r in rows if _mentioned(text,r["name"]) or db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id' AND CAST(value AS INTEGER) IN (" +
                         ",".join("?" for _ in named_ids) + ")", (r["card_id"], *named_ids)).fetchone()]
@@ -413,8 +437,12 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
                         claim_basis="pinned source illustrator credits"), rows, limit, offset)
 
-    ids = _character_ids(db, text)
+    ids = _character_ids(db, identity_text)
     sets=release_codes()
+    if (sets and ids and not explicit_family and not release_context
+            and not re.search(r'\bcharacter\b|\bspecies\b',text)
+            and not _character_ids(db,_without_release_names(db,text,languages))):
+        return dict(result,task='need_release_scope',next_question='Do you mean that release title or a character? State the printed release code or ask for cards from the named set.')
     if sets and not ids and not explicit_family:
         if len(sets)!=1:
             return dict(result,task='need_release_scope',next_question='Which one language-specific release should we inspect first?')

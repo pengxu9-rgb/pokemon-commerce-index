@@ -3,7 +3,24 @@ import argparse,hashlib,json
 from collections import Counter
 from contextlib import closing
 from pathlib import Path
-from pokemon_index import core,card_metadata,coordinate_family,collector_evidence,supported_catalog
+from pokemon_index import core,card_metadata,coordinate_family,collector_evidence,supported_catalog,printing_evidence
+
+
+def release_completeness(db):
+    """Separate missing names from dates: a promo series may have no single date."""
+    rows=[dict(r) for r in db.execute("""SELECT c.language,c.set_code,COUNT(*) AS records,
+        CASE WHEN s.name IS NULL OR trim(s.name)='' THEN 1 ELSE 0 END AS missing_name,
+        CASE WHEN s.release_date IS NULL OR trim(s.release_date)='' THEN 1 ELSE 0 END AS missing_date
+        FROM card c LEFT JOIN catalog_set_localized s USING(language,set_code)
+        GROUP BY c.language,c.set_code ORDER BY records DESC,c.language,c.set_code""")]
+    gaps=[r for r in rows if r['missing_name'] or r['missing_date']]
+    return dict(release_gap_records=sum(r['records'] for r in gaps),release_gap_groups=len(gaps),
+        release_gaps=gaps,
+        release_missing_name_records=sum(r['records'] for r in rows if r['missing_name']),
+        release_missing_name_groups=sum(r['missing_name'] for r in rows),
+        release_missing_date_records=sum(r['records'] for r in rows if r['missing_date']),
+        release_missing_date_groups=sum(r['missing_date'] for r in rows),
+        release_date_scope='Missing date is unknown, not an assertion that a promo series has one release date.')
 
 
 def audit(path,manifest,output,official_cache=None):
@@ -35,9 +52,11 @@ def audit(path,manifest,output,official_cache=None):
         for row in db.execute('SELECT card_id FROM active_card_metadata_evidence'):
             context=card_metadata.context(db,row[0])
             if context['facet_status']['illustrator']=='source_conflict':artist_conflicts.append(row[0])
-        release_gaps=[dict(r) for r in db.execute("SELECT c.language,c.set_code,COUNT(*) AS records FROM card c LEFT JOIN catalog_set_localized s USING(language,set_code) WHERE s.name IS NULL OR s.name='' OR s.release_date IS NULL OR s.release_date='' GROUP BY c.language,c.set_code ORDER BY records DESC")]
+        releases=release_completeness(db)
         families=[]
-        for row in db.execute('SELECT record_json FROM coordinate_family_evidence'):
+        for row in db.execute('''SELECT e.record_json FROM coordinate_family_evidence e
+            WHERE e.revision=(SELECT MAX(x.revision) FROM coordinate_family_evidence x
+                WHERE x.language=e.language AND x.set_code=e.set_code AND x.collector_number=e.collector_number)'''):
             r=json.loads(row[0]);families.append(r)
         held_ids={c['card_id'] for r in families if r['status']=='evidence_hold' for c in r['snapshot']['cards']}
         disabled={c['card_id'] for c in cards if not c['match_eligible']}
@@ -57,13 +76,14 @@ def audit(path,manifest,output,official_cache=None):
             unverified_label_records=sum(c['variant'].startswith('unverified') for c in cards),
             raw_missing_or_none_rarity=sum(c['rarity'] is None or str(c['rarity']).strip().lower() in {'','none','null'} for c in cards),
             classification_records=count('SELECT COUNT(*) FROM card_classification'),
-            release_gap_records=sum(r['records'] for r in release_gaps),release_gap_groups=len(release_gaps),release_gaps=release_gaps,
+            **releases,
             artist_conflict_records=artist_conflicts)
         integrity=dict(foreign_key_violations=foreign_keys,invalid_card_ids=invalid_ids,invalid_attributes_json=invalid_json,
             required_field_missing=missing,duplicate_identity_tuples=count('SELECT COUNT(*) FROM (SELECT language,set_code,collector_number,variant FROM card GROUP BY 1,2,3,4 HAVING COUNT(*)>1)'),
             missing_number_contexts=count('SELECT COUNT(*) FROM card c LEFT JOIN card_number_context n USING(card_id) WHERE n.card_id IS NULL'),
             manifested_inputs_verified=len(checked))
         gates=dict(official_card_metadata=card_metadata.status(db),coordinate_family_evidence=coordinate_family.status(db),
+            printing_source_evidence=printing_evidence.status(db),
             supported_status=supported_catalog.status(db),observations=count('SELECT COUNT(*) FROM observation'),
             paid_sales=count('SELECT COUNT(*) FROM verified_sale'),live_listing_rows=count('SELECT COUNT(*) FROM listing'))
         primary_check=None

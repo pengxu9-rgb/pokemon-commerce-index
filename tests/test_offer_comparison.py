@@ -144,6 +144,16 @@ class OfferComparisonTests(unittest.TestCase):
         self.assertEqual(offer_comparison.import_visual_reviews(
             self.db, [self.review("jp_feed", "j1", self.ja, "google")]), 0)
 
+    def test_stored_artwork_cannot_support_numeric_gap_after_identity_disabled(self):
+        self.verify_artwork_edge()
+        self.accept_both()
+        self.db.execute("UPDATE card SET match_eligible=0 WHERE card_id=?", (self.en,))
+        result = offer_comparison.compare_landed_asks(self.db, self.ja, self.en, "HK", "2026-09-25T09:30:00Z")
+        self.assertEqual(result["status"], "blocked")
+        self.assertIn("endpoint identity", result["reason"])
+        self.assertNotIn("comparisons", result)
+        self.assertEqual(result["endpoint_identity_blockers"], {self.en: ["match_disabled_identity"]})
+
     def test_conflicting_condition_blocks_numeric_gap(self):
         self.verify_artwork_edge()
         self.accept_both()

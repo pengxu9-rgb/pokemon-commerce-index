@@ -1,0 +1,20 @@
+{
+  "schema": "pokemon.printing-source-pilot-summary.v1",
+  "events": 23,
+  "source_observed": 14,
+  "evidence_holds": 9,
+  "printed_artist_readings": 10,
+  "qualified_name_readings": 2,
+  "publisher_stamp_readings": 4,
+  "wrong_number_references": 1,
+  "manufacturer_release_declarations": 2,
+  "distinct_images_reviewed": 14,
+  "two_distinct_source_inspections": true,
+  "blind_review": false,
+  "independent_population_accuracy_measurement": false,
+  "physical_printing_approvals": 0,
+  "actual_seller_copy_approvals": 0,
+  "evidence_sha256": "7fd553c986d0140c1c744f809b389285ec7a315d0edff2b60179c1e0e192f5b6",
+  "root_review_sha256": "2da1e32c6a5a9595dedd84a3a72257d9c3232a8490cda9b8545d16e9fab2a6ec",
+  "interpretation": "13 publisher-image events have two actual inspections. Two release-level declarations have one text inspection. Eight absent-reference holds have no image review. All physical/copy/offer permissions remain false."
+}

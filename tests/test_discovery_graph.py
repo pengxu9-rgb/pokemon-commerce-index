@@ -59,6 +59,7 @@ class DiscoveryGraphTests(unittest.TestCase):
         return row
 
     def test_relationship_is_reviewed_and_reversible_without_losing_history(self):
+        self.db.execute("UPDATE card SET match_eligible=1 WHERE card_id=?", (self.en,))
         self.assertEqual(discovery_graph.assert_relationships(self.db, [self.assertion("proposed")]), 1)
         self.assertEqual(discovery_graph.assert_relationships(self.db, [self.assertion("proposed")]), 0)
         initial = discovery_graph.card_neighborhood(self.db, self.ja)
@@ -85,6 +86,7 @@ class DiscoveryGraphTests(unittest.TestCase):
             self.db, [restored]), 0)
 
     def test_explicit_assertion_id_is_retry_safe(self):
+        self.db.execute("UPDATE card SET match_eligible=1 WHERE card_id=?", (self.en,))
         row = self.assertion("verified", "reviewer-a", event_id="review-event-1")
         self.assertEqual(discovery_graph.assert_relationships(self.db, [row]), 1)
         self.assertEqual(discovery_graph.assert_relationships(self.db, [row]), 0)
@@ -103,6 +105,40 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertEqual(neighborhood["relationships"], [])
         self.assertEqual(len(neighborhood["ai_artwork_candidates"]), 1)
         self.assertFalse(neighborhood["ai_artwork_candidates"][0]["price_comparable"])
+
+    def test_disabled_endpoint_cannot_be_verified_by_complete_review_json(self):
+        self.db.execute("UPDATE card SET match_eligible=0 WHERE card_id=?", (self.en,))
+        row = self.assertion("verified", "reviewer-a")
+        with self.assertRaisesRegex(ValueError, "endpoint identity requires review"):
+            discovery_graph.assert_relationships(self.db, [row])
+        proposed = dict(self.assertion("proposed"), relation_type="same_artwork",
+                        asserted_by="ai-artwork-review-v1")
+        discovery_graph.assert_relationships(self.db, [proposed])
+        edge = discovery_graph.card_neighborhood(self.db, self.ja)["ai_artwork_candidates"][0]
+        self.assertTrue(edge["endpoint_identity_review_required"])
+        self.assertEqual(edge["endpoint_identity_blockers"], {self.en: ["match_disabled_identity"]})
+        self.assertFalse(edge["price_comparable"])
+        self.assertEqual(self.db.execute("SELECT match_eligible FROM card WHERE card_id=?", (self.en,)).fetchone()[0], 0)
+
+    def test_stored_verified_edge_is_withheld_after_endpoint_identity_disabled(self):
+        self.db.execute("UPDATE card SET match_eligible=1 WHERE card_id=?", (self.en,))
+        discovery_graph.assert_relationships(self.db, [self.assertion("verified", "reviewer-a")])
+        discovery_graph.save_exploration(self.db, dict(
+            session_id="drift", owner_key="user", expected_version=0,
+            constraints={"query": "Pikachu", "language": "ja"}))
+        self.assertEqual(discovery_graph.exploration_candidates(self.db, "drift", "user")["total"], 1)
+        self.db.execute("UPDATE card SET match_eligible=0 WHERE card_id=?", (self.en,))
+        view = discovery_graph.card_neighborhood(self.db, self.ja)
+        self.assertEqual(view["relationships"], [])
+        self.assertEqual(len(view["held_relationships"]), 1)
+        self.assertEqual(view["held_relationships"][0]["review_status"], "verified")
+        self.assertEqual(discovery_graph.exploration_candidates(self.db, "drift", "user")["total"], 0)
+        self.assertEqual(self.db.execute("SELECT review_status FROM card_relationship_assertion").fetchone()[0], "verified")
+        from pokemon_index import number_graph
+        numbers = number_graph.explain_number_pair(self.db, self.en, self.ja)
+        self.assertNotEqual(numbers["evidence_status"], "reviewed_relationship")
+        self.assertTrue(numbers["relationships"][0]["endpoint_identity_review_required"])
+        self.assertFalse(numbers["numeric_price_gap_available"])
 
     def test_relationship_import_handles_legacy_column_order(self):
         self.db.execute("DROP TABLE card_relationship_assertion")
@@ -149,6 +185,7 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertEqual(discovery_graph.card_neighborhood(self.db, self.en)["relationships"], [])
 
     def test_verified_counterpart_enables_cross_language_discovery(self):
+        self.db.execute("UPDATE card SET match_eligible=1 WHERE card_id=?", (self.en,))
         discovery_graph.save_exploration(self.db, dict(
             session_id="cross", owner_key="anonymous-1", expected_version=0,
             constraints={"query": "Pikachu", "language": "ja"}))
@@ -181,6 +218,7 @@ class DiscoveryGraphTests(unittest.TestCase):
         self.assertIn("Which card", decision["next_question"]["prompt"])
 
     def test_verified_counterpart_respects_explicit_character_and_artist(self):
+        self.db.execute("UPDATE card SET match_eligible=1 WHERE card_id=?", (self.en,))
         core.import_card_facets(self.db, [
             dict(card_id=self.ja, facet_type="dex_id", value="25",
                  provenance="fixture", rights_reference="fixture"),

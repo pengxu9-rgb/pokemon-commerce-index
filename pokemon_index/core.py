@@ -811,7 +811,11 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
 
 
 def _with_metadata(db, card):
-    from . import card_metadata,coordinate_family
+    from . import card_metadata,coordinate_family,printing_evidence
+    printing=printing_evidence.context(db,card['card_id'])
+    if printing:card['printing_source_evidence']=printing
+    artist=printing_evidence.supported_artist(db,card['card_id'])
+    if artist:card['printed_artist_credit']=artist
     family=coordinate_family.context(db,card['card_id'])
     if family:card['official_coordinate_family']=family
     evidence = card_metadata.context(db, card['card_id'])

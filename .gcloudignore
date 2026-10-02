@@ -66,3 +66,16 @@ catalog/japanese-evidence-expansion-v2/*
 !catalog/coordinate-family-evidence-v1/
 catalog/coordinate-family-evidence-v1/*
 !catalog/coordinate-family-evidence-v1/evidence-v1.jsonl
+
+!catalog/release-metadata-next-v1/
+catalog/release-metadata-next-v1/*
+!catalog/release-metadata-next-v1/metadata-v1.jsonl
+!catalog/release-metadata-next-v1/vocabulary-v1.jsonl
+
+!catalog/printing-source-pilot-v1/
+catalog/printing-source-pilot-v1/*
+!catalog/printing-source-pilot-v1/evidence-v1.jsonl
+
+!catalog/relationship-independent-priority-v1/
+catalog/relationship-independent-priority-v1/*
+!catalog/relationship-independent-priority-v1/verified-artwork-events.jsonl

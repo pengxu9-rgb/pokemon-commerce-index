@@ -4,15 +4,32 @@ import json
 import sqlite3
 import tempfile
 import unittest
+import hashlib
+from unittest.mock import patch
 from pathlib import Path
 
 from pokemon_index import discovery_graph
-from scripts.build_catalog_snapshot import build, import_ai_artwork_proposals
+from scripts.build_catalog_snapshot import build, import_ai_artwork_proposals,OPERATIONS
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class CatalogBuildManifestTests(unittest.TestCase):
+    def test_input_changed_during_ingestion_does_not_publish_mixed_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);source=root/'seed.jsonl';source.write_text('{}\n')
+            manifest=root/'manifest.json';output=root/'catalog.sqlite3'
+            expected={key:0 for key in ('printings','sets','match_eligible','display_approved','reference_records',
+                'identity_exceptions','number_conflict_rules','relationship_assertions','verified_relationships','ai_artwork_proposals')}
+            manifest.write_text(json.dumps(dict(schema='pokemon.catalog-build.v1',steps=[dict(operation='import-sets',
+                path='seed.jsonl',sha256=hashlib.sha256(source.read_bytes()).hexdigest())],expected=expected)))
+            def change_source(db,rows):
+                list(rows);source.write_text('{"changed":true}\n');return 0
+            with patch.dict(OPERATIONS,{'import-sets':change_source}):
+                with self.assertRaisesRegex(ValueError,'input changed during build'):
+                    build(manifest,output)
+            self.assertFalse(output.exists())
+
     def test_second_japanese_cohort_is_disjoint_and_preserves_evidence_gates(self):
         with tempfile.TemporaryDirectory() as directory:
             output=Path(directory)/'metadata-v2.sqlite3'

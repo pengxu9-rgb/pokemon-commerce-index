@@ -17,14 +17,15 @@ def catalog_revision(db):
     h=hashlib.sha256(POLICY.encode())
     for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','card_rarity.py','coordinate_family.py','core.py','cli.py']:
+                 'discovery_graph.py','number_graph.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
         h.update(json.dumps([name,definition[0] if definition else None]).encode())
     tables=['card','card_facet','catalog_set_localized','catalog_vocabulary',
             'character_family','character_family_member','catalog_collector_evidence',
-            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence','coordinate_family_evidence']
+            'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence','coordinate_family_evidence',
+            'card_relationship_assertion','printing_source_evidence']
     for table in tables:
         if not db.execute("SELECT 1 FROM sqlite_master WHERE name=?",(table,)).fetchone():continue
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]
@@ -33,7 +34,14 @@ def catalog_revision(db):
         if table=='card_rarity_correction':columns.remove('applied_at')
         h.update(json.dumps([table,columns]).encode())
         for row in db.execute('SELECT '+','.join(columns)+' FROM '+table+' ORDER BY '+','.join(columns)):
-            h.update(json.dumps(list(row),ensure_ascii=False,separators=(',',':')).encode());h.update(b'\n')
+            values=list(row)
+            if table=='card_relationship_assertion' and row['asserted_by']=='ai-artwork-review-v1' and row['review_status']=='proposed':
+                # Only the application time of frozen imported AI proposals is
+                # bookkeeping. Review times inside evidence and all other
+                # assertion timestamps remain part of the conversation proof.
+                core.parse_time(row['asserted_at'])
+                values[columns.index('asserted_at')]=None
+            h.update(json.dumps(values,ensure_ascii=False,separators=(',',':')).encode());h.update(b'\n')
     return h.hexdigest()
 
 

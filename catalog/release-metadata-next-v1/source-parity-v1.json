@@ -1,0 +1,152 @@
+{
+  "schema": "pokemon.release-metadata-source-parity.v1",
+  "records": 18,
+  "unique_official_pages": 35,
+  "cached_raw_hash_and_receipt_checked": true,
+  "official_coordinate_and_card_to_product_link_checked": true,
+  "date_literal_checked_for_dated_products": 15,
+  "deterministic_rebuild_matches_frozen_metadata_and_vocabulary": true,
+  "semantic_or_copy_accuracy_independently_measured": false,
+  "source_pages": [
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/30232",
+      "sha256": "7b99c5ae71f638dac712c64cbae4697359f34799750a480e46f5275ee29b7805"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/30376",
+      "sha256": "e2f5e012c2fd29f072576ef0f49070a1b9c1ad1205ed4db1980cc6c55f63197c"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/30480",
+      "sha256": "bda04a2c589d60f5bf4049a1ff0623518f0b86943268a6160b71d69620c75a2c"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/31866",
+      "sha256": "ad4f268fb2dedaf64eaf1a7ffc40316695cffba947919406d754ec31ad119ab6"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/32155",
+      "sha256": "eac837be8e349f2e935c98bf1fae7e8bc59d2d5e7f46125fabd39499c5884226"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/32207",
+      "sha256": "0c1ce60496688e59b6a40aaf60633883a08870ff330a959d0efab264214cae57"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/36718",
+      "sha256": "0b53e5c8eb934fe2ed99a2edac0bf8bda8e347e65ce0fa608c9aaa25f1e88bc8"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/37611",
+      "sha256": "bbf03284ce719ca14176c099d82ec067b5234daacac9af93eee0636efd5ed7c0"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/37671",
+      "sha256": "2674802ab50f2a0574b635c53b282fd92b826e8a4eb2454db6072a2e3196c5c6"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/37798",
+      "sha256": "33c0c8dca02a3bdfa27fbc148bfab706f82a9e63f1745b07664d70d57bdb1b47"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/37885",
+      "sha256": "e1ea5fea680b4a467eafc2f68ceb9bed0e017dce1b19e339dc86e8463ed6e8b7"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/38063",
+      "sha256": "70721fafb32563796db6694faee245eff2aee06a6cf9d50f4bf20917bf2d12af"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/38139",
+      "sha256": "a8c9b8b2864578e7def8cf565615e5a3e86f805e5880b64b450fbbc02deb28da"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/38273",
+      "sha256": "4123cf8cf1e60048e01fa00d1bb5deb979eb097cff5df75e7c1e55e4633958e2"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/38407",
+      "sha256": "0aad3d26834f773b2a4903819e682c51651b1c7c2c14e154430d0f3b5fcaecd3"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/40334",
+      "sha256": "623f54cf0c2368fb10b0329c7dfd2a5d672a47fae5b2adc4788fa240a737b7eb"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/43703",
+      "sha256": "4f3758359cc0490ed1f509a5286117b6b0b18e7702927c78fdb9f52fa4b1ac9f"
+    },
+    {
+      "url": "https://www.pokemon-card.com/card-search/details.php/card/46455",
+      "sha256": "2ae3e44bd2564b844be157d7b565e1d5b3fd98155be0b79c7e434d1c81206cae"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/s1/index.html",
+      "sha256": "580aa3ce0a5923117e014e41ecb7f18c6f3fdb0fe5f1c702bb83f8a9738da742"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/s2/index.html",
+      "sha256": "de7993a5aa54da2473d6e09a1f3781bf79423b60d85734efa816d11b9aa14c7c"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/s3/index.html",
+      "sha256": "6193bb536e7a13c7526226d615c6dc71803f0031945dc3631c0a1cd47a2b4025"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/sd/index.html",
+      "sha256": "746beb9976ae69780ad3ea2877d33ec8dabe30018378e41b2ade212b6f33cba9"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/si/index.html",
+      "sha256": "17eb40b02d1febe559d962e2b32cd1e6389221719a1e7ee9146f3eed14980db9"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/smp2/index.html",
+      "sha256": "efa8db329ce721e34b8b7c96d173f73b6ea0eb472d85fa818b7d3c1ec8e26986"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/svd/index.html",
+      "sha256": "558e366aac9deec881b912089be333fecb628b93fafb7b4078736ba86d597e1b"
+    },
+    {
+      "url": "https://www.pokemon-card.com/ex/svm/index.html",
+      "sha256": "c0bca422a095a4a80c0da56756fb81e4d63f4a30fbf177340809fea40b36e06c"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/s/s1a.html",
+      "sha256": "3073afe22a3a958adb9a232d0fa5aac91c3f441e2f904baf1bd13e6a80bd0c36"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/s/s2a.html",
+      "sha256": "6295f0030a8cb0d008b1681de42b54e0462b074d4fb0e6cf4ac2e16917cc37aa"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/s/s3a.html",
+      "sha256": "0d1df9c10cba60680492bd6b66aa61e1fc86a45e687b11470f8f24fe9ba06083"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/cp4.html",
+      "sha256": "cf5a5ce94876769058db6ed59804d9332935bef6daea97668bad90e2f919cbee"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/cp5.html",
+      "sha256": "b283a7c6eb52323844e546ac8661459cfd853d3ce19cf09d7fc8688abd014e4c"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/cp6.html",
+      "sha256": "20bb4511899d2639040feeae365c72465ad504a1e26a0cccf8b587c5b6515b50"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/xy2.html",
+      "sha256": "b752ddb54f317554c93374ef755f4a3fe73be72f40647d5bf1b9c1b4d4cda452"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/xy3.html",
+      "sha256": "109ed03af39485bc66f0fc4bb6d4114139c4b602887a26db2467ccd8e01632bf"
+    },
+    {
+      "url": "https://www.pokemon-card.com/products/xy/xy4.html",
+      "sha256": "9fc7c44d85774973d1a54115076da51a62d1acecf7dd5b6f3c661544ff3cdfab"
+    }
+  ]
+}

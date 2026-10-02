@@ -10,7 +10,7 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata,coordinate_family
+from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata,coordinate_family,printing_evidence
 from pokemon_index.cli import read_jsonl
 
 def import_ai_artwork_proposals(db, rows) -> int:
@@ -41,6 +41,9 @@ OPERATIONS = {
     "import-collector-evidence": collector_evidence.import_evidence,
     "import-official-card-metadata": card_metadata.import_evidence,
     "import-coordinate-families": coordinate_family.import_evidence,
+    "import-release-metadata": supported_catalog.import_release_metadata,
+    "import-printing-source-evidence": printing_evidence.import_evidence,
+    "import-reviewed-relationships": discovery_graph.assert_relationships,
 }
 
 
@@ -108,6 +111,8 @@ def build(manifest_path: Path, output: Path) -> dict:
                     actual[key]=value
             for key,value in coordinate_family.status(db).items():
                 if key in manifest.get('expected',{}):actual[key]=value
+            for key,value in printing_evidence.status(db).items():
+                if key in manifest.get('expected',{}):actual[key]=value
             for key in ("current_supported_targets", "bilingual_alias_revisions", "concept_review_events",
                         "release_evidence_records", "vocabulary_records", "character_families"):
                 if key in manifest.get("expected", {}):
@@ -118,6 +123,15 @@ def build(manifest_path: Path, output: Path) -> dict:
                     if 'collector_'+key in manifest['expected']:actual['collector_'+key]=value
             if actual != manifest.get("expected"):
                 raise ValueError(f"catalog build counts differ: {actual}")
+            # An operator may finish evidence while a long build is running.
+            # Reject that mixed snapshot instead of publishing it under the
+            # manifest hash validated before ingestion.
+            for step,(_,path) in zip(steps,verified):
+                with path.open('rb') as source:
+                    if hashlib.file_digest(source,'sha256').hexdigest()!=step['sha256']:
+                        raise ValueError('catalog input changed during build: '+step['path'])
+            if manifest_path.read_bytes()!=manifest_bytes:
+                raise ValueError('catalog manifest changed during build')
         os.replace(temporary, output)
     except BaseException:
         Path(temporary).unlink(missing_ok=True)

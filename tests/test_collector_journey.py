@@ -3,7 +3,7 @@ from pathlib import Path
 from contextlib import closing
 from urllib.request import Request,urlopen
 from urllib.error import HTTPError
-from pokemon_index import core,collector_journey,collector_evidence,supported_catalog
+from pokemon_index import core,collector_journey,collector_evidence,supported_catalog,discovery_graph
 from pokemon_index.cli import create_server
 
 
@@ -113,6 +113,23 @@ class CollectorJourneyTests(JourneyFixture,unittest.TestCase):
         with closing(core.connect(self.path)) as writer:
             writer.execute("UPDATE card_rarity_correction SET official_page_sha256=?",('b'*64,));writer.commit()
         self.assertNotEqual(collector_journey.catalog_revision(self.db),before)
+    def test_relationship_evidence_changes_invalidate_journey_but_import_time_does_not(self):
+        before=collector_journey.catalog_revision(self.db)
+        with closing(core.connect(self.path)) as writer:
+            discovery_graph.assert_relationships(writer,[dict(assertion_id='frozen-ai',
+                left_card_id=self.cid,right_card_id='en:FIX:001/100:normal',relation_type='same_artwork',
+                review_status='proposed',asserted_by='ai-artwork-review-v1',reviewer='fixture-ai',
+                evidence_ref='fixture:bound-images',rights_reference='fixture',asserted_at='2026-10-01T00:00:00Z')])
+        current=collector_journey.catalog_revision(self.db)
+        self.assertNotEqual(current,before)
+        with self.assertRaisesRegex(ValueError,'policy changed'):
+            self.run_turns(self.sequence(),expected_revision=before)
+        with closing(core.connect(self.path)) as writer:
+            writer.execute("UPDATE card_relationship_assertion SET asserted_at='2026-10-02T00:00:00Z'");writer.commit()
+        self.assertEqual(collector_journey.catalog_revision(self.db),current)
+        with closing(core.connect(self.path)) as writer:
+            writer.execute("UPDATE card_relationship_assertion SET evidence_ref='fixture:different-images'");writer.commit()
+        self.assertNotEqual(collector_journey.catalog_revision(self.db),current)
     def test_budget_is_a_preference_and_market_goal_cannot_be_bypassed(self):
         turns=[dict(type='ask',question='Cheapest Pikachu card'),dict(type='refine',scope=dict(set_code='FIX',collector_number='1/100'))]
         r=self.run_turns(turns);self.assertEqual(r['discovery']['task'],'market_evidence_needed');self.assertFalse(r['selection_allowed'])

@@ -149,6 +149,38 @@ def _check_pilot_freshness(db: sqlite3.Connection, event_id: str,
     raise ValueError("stale pilot pair head; recompile review against current graph")
 
 
+def endpoint_identity_blockers(db: sqlite3.Connection, card_id: str) -> list[str]:
+    """Artwork-only review still requires an unambiguous endpoint identity.
+
+    This does not approve finish, edition, condition, display or offer joins.
+    """
+    card = _card(db, card_id)
+    blockers = []
+    if not card["match_eligible"]:
+        blockers.append("match_disabled_identity")
+    family = coordinate_family.context(db, card_id)
+    if family and family["status"] in {
+            "coordinate_family_evidence_hold", "stale_coordinate_family_evidence"}:
+        blockers.append(family["status"])
+    return blockers
+
+
+def relationship_identity_blockers(db: sqlite3.Connection, edge: dict[str, Any] | sqlite3.Row) -> dict[str, list[str]]:
+    """Check current identities and, where recorded, reviewed endpoint snapshots."""
+    blockers = {cid: endpoint_identity_blockers(db, cid)
+                for cid in (edge["left_card_id"], edge["right_card_id"])}
+    if edge["review_status"] == "verified":
+        evidence = json.loads(edge["evidence_ref"])
+        for endpoint in evidence.get("cards", []):
+            snapshot = endpoint.get("identity_snapshot")
+            if snapshot is not None:
+                cid = endpoint["card_id"]
+                current = _card(db, cid)
+                if any(key not in current.keys() or current[key] != value for key, value in snapshot.items()):
+                    blockers[cid].append("reviewed_endpoint_snapshot_drift")
+    return {cid: reasons for cid, reasons in blockers.items() if reasons}
+
+
 def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
     """Append review events. Repeating the current claim is idempotent; reversal is possible."""
     prepared = []
@@ -167,6 +199,10 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
             raise ValueError("localization counterparts must use different languages")
         if row["review_status"] == "verified":
             _validate_verified_evidence(row, left, right)
+            blockers = relationship_identity_blockers(db, dict(row, left_card_id=left, right_card_id=right))
+            if blockers:
+                raise ValueError("verified relationship endpoint identity requires review: "
+                                 + json.dumps(blockers, sort_keys=True))
         asserted_at = core.parse_time(row.get("asserted_at") or core.utcnow()).isoformat()
         actor = str(row["asserted_by"])
         reviewer = str(row["reviewer"]) if row.get("reviewer") else None
@@ -230,6 +266,7 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
 def card_neighborhood(db: sqlite3.Connection, card_id: str,
                       include_proposed: bool = False) -> dict[str, Any]:
     """Internal view. Same set/number variants are structural; other edges need review."""
+    from . import printing_evidence
     card = _card(db, card_id)
     printing = db.execute("SELECT official_printing_type FROM card_identity_exception WHERE card_id=?",
                           (card_id,)).fetchone()
@@ -273,6 +310,15 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
             target_numbers[other] = number_graph.card_number_context(db, other)
         item.update(number_graph.number_alignment(source_number, target_numbers[other]))
         item["price_comparable"] = False
+        blockers = relationship_identity_blockers(db, item)
+        item["endpoint_identity_blockers"] = blockers
+        item["endpoint_identity_review_required"] = bool(blockers)
+    held_relationships = [item for item in reviewed
+                          if item["review_status"] == "verified" and item["endpoint_identity_review_required"]
+                          ]
+    reviewed = [item for item in reviewed if item not in held_relationships]
+    for item in held_relationships:
+        item["current_usability"] = "identity_hold; stored review preserved"
     for item in ai_artwork:
         item["scope"] = "AI visual artwork proposal; finish and condition unverified"
     metadata_neighbors = {}
@@ -316,10 +362,12 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
     return {"card_id": card_id,
             "official_metadata": card_metadata.context(db, card_id),
             "official_coordinate_family": coordinate_family.context(db,card_id),
+            "printing_source_evidence": printing_evidence.context(db,card_id),
+            "printed_artist_credit": printing_evidence.supported_artist(db,card_id),
             "number_context": source_number,
             "official_printing_type": printing["official_printing_type"] if printing else None,
             "variants_at_number": variants,
-            "relationships": reviewed, "ai_artwork_candidates": ai_artwork,
+            "relationships": reviewed, "held_relationships": held_relationships, "ai_artwork_candidates": ai_artwork,
             "metadata_neighbors": metadata_neighbors,
             "scope": "internal metadata; facet neighbors are discovery candidates, not printing counterparts"}
 
@@ -518,6 +566,8 @@ def exploration_candidates(db: sqlite3.Connection, session_id: str, owner_key: s
                          WHERE b.left_card_id=a.left_card_id AND b.right_card_id=a.right_card_id
                          AND b.relation_type=a.relation_type)"""
         ):
+            if relationship_identity_blockers(db, edge):
+                continue
             if edge["left_language"] == filters["language"]:
                 target_id, source_name = edge["left_card_id"], edge["right_name"]
             elif edge["right_language"] == filters["language"]:

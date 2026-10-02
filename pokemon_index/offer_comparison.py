@@ -300,6 +300,12 @@ def compare_landed_asks(db: sqlite3.Connection, ja_card_id: str, en_card_id: str
     if edge["review_status"] != "verified":
         return {"status": "blocked", "reason": "numeric cross-region spread requires a verified artwork relation",
                 **relation}
+    from . import discovery_graph
+    blockers = discovery_graph.relationship_identity_blockers(db, edge)
+    if blockers:
+        return {"status": "blocked", "reason": "reviewed artwork endpoint identity now requires review",
+                "endpoint_identity_blockers": {cid: reasons for cid, reasons in blockers.items() if reasons},
+                **relation}
     instant = core.parse_time(now or core.utcnow()).isoformat()
     sides = {}
     for language, card_id in (("ja", ja_card_id), ("en", en_card_id)):

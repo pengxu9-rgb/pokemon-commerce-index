@@ -63,6 +63,101 @@ def import_releases(db: sqlite3.Connection, rows: Iterable[dict]) -> int:
     return count
 
 
+def release_scope_snapshot(db: sqlite3.Connection, language: str, code: str) -> dict:
+    """Bind metadata to the current numbering scope, never a physical edition."""
+    cards = [{key: r[key] for key in ("card_id", "collector_number", "provenance")}
+             for r in db.execute("SELECT * FROM card WHERE language=? AND set_code=? ORDER BY card_id",
+                                 (language, code))]
+    return {"record_count": len(cards), "records_sha256": digest({"cards": cards}),
+            "denominators": sorted({r["collector_number"].split("/", 1)[1]
+                                    for r in cards if "/" in r["collector_number"]
+                                    and r["collector_number"].split("/", 1)[1].isdigit()
+                                    and int(r["collector_number"].split("/", 1)[1]) > 0}),
+            "unnumbered_records": sum(not re.fullmatch(r"[0-9]+/[0-9]+", r["collector_number"]) for r in cards)}
+
+
+def import_release_metadata(db: sqlite3.Connection, rows: Iterable[dict]) -> int:
+    """Fill missing release fields from official product + exact card-link evidence.
+
+    Dates describe a product family, not a particular copy or reprint. Multiple
+    dates stay unknown. Existing positive support and source identities survive.
+    """
+    count = 0
+    with db:
+        for row in rows:
+            if row.get("schema") != "pokemon.catalog-release-metadata.v1":
+                raise ValueError("unknown release metadata schema")
+            core._required(row, "language", "set_code", "name", "source_provenance",
+                           "official_url", "official_page_sha256", "scope_snapshot",
+                           "coordinate_reference")
+            if "original_release" not in row:
+                raise ValueError("release baseline snapshot is absent")
+            if row["language"] != "ja" or row["set_code"] != row["set_code"].upper():
+                raise ValueError("release metadata requires exact Japanese scope")
+            for flag in ("physical_finish_verified", "price_comparable", "automatic_offer_join_allowed", "display_allowed"):
+                if row.get(flag) is not False:
+                    raise ValueError("release metadata cannot widen physical or display permissions")
+            _hash(row["official_page_sha256"])
+            if not re.fullmatch(r"https://www\.pokemon-card\.com/(?:ex/[a-z0-9]+/(?:index\.html)?|products/[a-z0-9]+/[a-z0-9]+\.html)", row["official_url"]):
+                raise ValueError("release product URL is not official")
+            scope = release_scope_snapshot(db, row["language"], row["set_code"])
+            if not scope["record_count"] or scope != row["scope_snapshot"] or len(scope["denominators"]) != 1:
+                raise ValueError("release numbering scope is stale or combines products")
+            reference = row["coordinate_reference"]
+            core._required(reference, "native_id", "collector_number", "provenance", "official_url", "official_page_sha256", "product_href", "product_link_text")
+            _hash(reference["official_page_sha256"])
+            if reference["official_url"] != "https://www.pokemon-card.com/card-search/details.php/card/" + reference["native_id"]:
+                raise ValueError("release coordinate URL differs from its exact reference")
+            product_path = re.sub(r"/index\.html$", "/", row["official_url"].removeprefix("https://www.pokemon-card.com"))
+            if (reference["product_href"].rstrip("/") != product_path.rstrip("/")
+                    or re.sub(r"\s+", "", row["name"]) not in re.sub(r"\s+", "", reference["product_link_text"])):
+                raise ValueError("card does not link to the stated release product")
+            bound = db.execute("SELECT * FROM card_reference WHERE source='ptcg-database' AND native_id=? AND set_code=? AND collector_number=? AND provenance=?",
+                               (reference["native_id"], row["set_code"], reference["collector_number"], reference["provenance"])).fetchone()
+            if bound is None:
+                raise ValueError("release coordinate reference is stale")
+            date = row.get("release_date")
+            if date is not None:
+                if row.get("date_scope") != "initial_product_release_not_copy_date":
+                    raise ValueError("dated release needs an explicit product date scope")
+                core.parse_time(date + "T00:00:00Z")
+            elif row.get("date_scope") != "unknown_or_multiple_product_dates":
+                raise ValueError("unknown release date must remain explicit")
+            original = row["original_release"]
+            release = _release(db, row["language"], row["set_code"])
+            previous = db.execute("SELECT evidence_json FROM catalog_release_evidence WHERE language=? AND set_code=?",
+                                  (row["language"], row["set_code"])).fetchone()
+            encoded = json.dumps(row, ensure_ascii=False, sort_keys=True)
+            if previous:
+                if previous[0] != encoded:
+                    raise ValueError("conflicting release metadata evidence")
+                if not release or release["name"] != row["name"] or release["release_date"] != date:
+                    raise ValueError("imported release metadata has drifted")
+                count += 1
+                continue
+            if (dict(release) if release else None) != original:
+                raise ValueError("release metadata baseline is stale")
+            if release and release["name"] and release["name"] != row["name"]:
+                raise ValueError("release fill cannot silently overwrite a named source")
+            if release and release["release_date"] and release["release_date"] != date:
+                raise ValueError("release fill cannot silently overwrite a source date")
+            if row.get("original_name") != (original["name"] if original else None):
+                raise ValueError("original release name differs from snapshot")
+            provenance = original["provenance"] if original else "official-release:sha256:" + row["official_page_sha256"]
+            if row["source_provenance"] != provenance:
+                raise ValueError("release provenance differs from baseline")
+            official_count = int(scope["denominators"][0]) if scope["denominators"][0].isdigit() else 0
+            rights = original["rights_reference"] if original else "https://www.pokemon-card.com/rules/"
+            db.execute("INSERT OR IGNORE INTO catalog_release_evidence VALUES (?,?,?)", (row["language"], row["set_code"], encoded))
+            db.execute("INSERT INTO catalog_set_localized VALUES (?,?,?,?,?,?,?,?) ON CONFLICT(language,set_code) DO UPDATE SET name=excluded.name,release_date=excluded.release_date",
+                       (row["language"], row["set_code"], row["name"], date,
+                        original["official_card_count"] if original else official_count, provenance, rights, 0))
+            db.execute("INSERT INTO catalog_set VALUES (?,?,?,?,?,?,?) ON CONFLICT(set_code) DO UPDATE SET name_ja=excluded.name_ja,release_date_ja=excluded.release_date_ja",
+                       (row["set_code"], row["name"], date, original["official_card_count"] if original else official_count, provenance, rights, 0))
+            count += 1
+    return count
+
+
 def import_vocabulary(db: sqlite3.Connection, rows: Iterable[dict]) -> int:
     count = 0
     with db:
@@ -152,10 +247,10 @@ def support_for_card(db: sqlite3.Connection, card_id: str) -> dict:
 
 
 def status(db: sqlite3.Connection) -> dict:
-    from . import card_metadata,coordinate_family
+    from . import card_metadata,coordinate_family,printing_evidence
     ids = [r[0] for r in db.execute("SELECT card_id FROM supported_card ORDER BY card_id")]
     ready = [cid for cid in ids if support_for_card(db, cid)["status"] == "supported_for_internal_review"]
-    return {**card_metadata.status(db),**coordinate_family.status(db), "supported_records": len(ids), "current_supported_targets": len(ready),
+    return {**card_metadata.status(db),**coordinate_family.status(db),**printing_evidence.status(db), "supported_records": len(ids), "current_supported_targets": len(ready),
             "stale_supported_targets": len(ids)-len(ready), "automatic_offer_join_ready": 0,
             "bilingual_alias_revisions": db.execute("SELECT COUNT(*) FROM bilingual_concept_revision").fetchone()[0],
             "concept_review_events": db.execute("SELECT COUNT(*) FROM concept_review_event").fetchone()[0],

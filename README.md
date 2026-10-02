@@ -105,10 +105,10 @@ python3 -m pokemon_index --db demo.sqlite3 export-pivota 'ja:SV2A:173/165:standa
 python3 -m unittest discover -s tests -v
 ```
 
-当前日英目录为 70,005 条内部来源版本／未解家族记录，不等于 70,005 张已验证实体卡。本次补齐 15 个英文历史系列的 14,838 条版本记录，丰富 9,135 个已有编号组合，新增 26 个组合及角色／画师信息；新增记录全部禁止报价匹配和公开展示。详见 [目录扩展审计](CATALOG_COVERAGE.md)。现已完成 2,497 个日文编号的官方元数据补证：1,900 个有稀有度图标，597 个官网未标明；本轮增加 1,497 条，覆盖 13 个卡组／宣传卡系列。4 个多部件页面保留购买目标阻断，10 项画师冲突暂停参与检索。角色／画师检索覆盖为 40,666／45,500 条身份，共同署名可用于关联检索。新增 280 组家族补证：269 组确认官方编号／名称，11 组待审；各工艺版本仍须确认，广泛检索后也不能绕过该限制。全量目录与关系图质量报告见 [目录审计](CATALOG_COVERAGE.md)。Docker 使用 families-v1 的 41 项固定哈希清单；原始清单和重建测试保留。输出必须是新文件；构建核对 70,005 条记录、33,543 条原有结构匹配资格、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
+当前日英目录为 70,005 条内部来源版本／未解家族记录，不等于 70,005 张已验证实体卡。本次补齐 15 个英文历史系列的 14,838 条版本记录，丰富 9,135 个已有编号组合，新增 26 个组合及角色／画师信息；新增记录全部禁止报价匹配和公开展示。详见 [目录扩展审计](CATALOG_COVERAGE.md)。现已完成 2,497 个日文编号的官方元数据补证：1,900 个有稀有度图标，597 个官网未标明；本轮增加 1,497 条，覆盖 13 个卡组／宣传卡系列。4 个多部件页面保留购买目标阻断，10 项画师冲突暂停参与检索。角色／画师检索覆盖为 40,666／45,500 条身份，共同署名可用于关联检索。新增 280 组家族补证：269 组确认官方编号／名称，11 组待审；各工艺版本仍须确认，广泛检索后也不能绕过该限制。新增18组官方卡组信息、36条别名和23条印刷来源证据；3组日英同插画关系通过两位代理实际看图复核，36组身份不明关系保留待审。全量目录与关系图质量报告见 [目录审计](CATALOG_COVERAGE.md)。Docker 使用 priorities-v1 的 45 项固定哈希清单；原始清单和重建测试保留。输出必须是新文件；构建核对 70,005 条记录、33,543 条原有结构匹配资格、532 条官方稀有度证据、19 条身份例外与 2 条编号冲突规则：
 
 ```bash
-python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-families-v1.json --db catalog.sqlite3
+python3 -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-priorities-v1.json --db catalog.sqlite3
 python3 -m pokemon_index --db catalog.sqlite3 catalog-status
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search 'SV2a 025/165'
 python3 -m pokemon_index --db catalog.sqlite3 catalog-search --dex-id 25 --limit 20

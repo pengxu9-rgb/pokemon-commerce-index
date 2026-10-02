@@ -192,11 +192,17 @@ def explain_number_pair(db: sqlite3.Connection, left_card_id: str,
     endpoints = sorted((left_card_id, right_card_id))
     latest = {}
     for row in db.execute("""SELECT assertion_id,relation_type,review_status,
-        asserted_by,asserted_at,evidence_ref FROM card_relationship_assertion
+        asserted_by,asserted_at,evidence_ref,left_card_id,right_card_id FROM card_relationship_assertion
         WHERE left_card_id=? AND right_card_id=? ORDER BY rowid DESC""", endpoints):
         latest.setdefault(row["relation_type"], dict(row))
     relationships = [latest[key] for key in sorted(latest)]
-    active = [row for row in relationships if row["review_status"] in {"proposed", "verified"}]
+    from . import discovery_graph
+    for row in relationships:
+        blockers = discovery_graph.relationship_identity_blockers(db, row)
+        row["endpoint_identity_review_required"] = bool(blockers)
+        row["endpoint_identity_blockers"] = blockers
+    active = [row for row in relationships if row["review_status"] in {"proposed", "verified"}
+              and not (row["review_status"] == "verified" and row["endpoint_identity_review_required"])]
     if numbers["same_provisional_scope"] and numbers["same_full_number"]:
         evidence_status = "same_scope_number_variant_candidates"
     elif any(row["review_status"] == "verified" for row in active):

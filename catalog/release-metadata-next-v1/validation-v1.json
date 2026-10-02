@@ -1,0 +1,74 @@
+{
+  "schema": "pokemon.release-metadata-validation.v1",
+  "before": {
+    "n": 27094,
+    "names": 9788,
+    "dates": 9788,
+    "groups": 215
+  },
+  "after": {
+    "n": 27094,
+    "names": 7745,
+    "dates": 8114,
+    "groups": 200
+  },
+  "status": {
+    "official_metadata_events": 2497,
+    "current_official_metadata_cards": 2497,
+    "official_metadata_stale_cards": 0,
+    "official_known_rarity_cards": 1900,
+    "official_numbered_parts_cards": 4,
+    "coordinate_family_events": 280,
+    "current_coordinate_families": 269,
+    "held_coordinate_families": 11,
+    "stale_coordinate_families": 0,
+    "supported_records": 100,
+    "current_supported_targets": 100,
+    "stale_supported_targets": 0,
+    "automatic_offer_join_ready": 0,
+    "bilingual_alias_revisions": 122,
+    "concept_review_events": 460,
+    "release_evidence_records": 21,
+    "vocabulary_records": 42,
+    "character_families": 3,
+    "scope": "Internal source-backed metadata; physical copy, live matching precision and display rights remain separate"
+  },
+  "card_rows_unchanged": true,
+  "physical_permission_claims": false,
+  "matched_copy_or_reprint_accuracy_measured": false,
+  "source_name_date_declaration_conflicts": [
+    {
+      "set_code": "XY3",
+      "pinned_tcgdex_date": "2014-09-13",
+      "official_product_date": "2014-06-14"
+    },
+    {
+      "set_code": "CP5",
+      "pinned_tcgdex_name": "冷酷の反逆者",
+      "official_name": "幻・伝説ドリームキラコレクション"
+    }
+  ],
+  "held_scope_leads": [
+    {
+      "set_code": "XY",
+      "reason": "Mixed denominators/products; source header THE BEST OF XY cannot label entire scope"
+    },
+    {
+      "set_code": "SMH",
+      "reason": "Sample official card page has no product link; source-to-family binding pending"
+    },
+    {
+      "set_code": "DS",
+      "reason": "Official card-page product link absent"
+    },
+    {
+      "set_code": "SC",
+      "reason": "Official card-page product link absent"
+    },
+    {
+      "set_code": "LL",
+      "reason": "Official card-page product link absent"
+    }
+  ],
+  "scope": "Internal product-family name/date declarations; dates are initial product dates and never exact copy/reprint dates"
+}

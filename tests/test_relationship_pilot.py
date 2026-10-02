@@ -152,7 +152,7 @@ class RelationshipPilotTests(unittest.TestCase):
             self.db, self.ja)["relationships"][0]["other_card_id"], self.en)
         self.assertEqual(discovery_graph.assert_relationships(self.db, assertions), 0)
 
-    def test_match_disabled_card_can_have_reviewed_graph_relation(self):
+    def test_legacy_review_cannot_verify_a_currently_match_disabled_identity(self):
         self.db.execute("UPDATE card SET match_eligible=0 WHERE card_id=?", (self.other,))
         queue, audit = relationship_pilot.generate(self.db, [{"card_id": self.ja}])
         self.assertEqual(audit["pairs_with_offer_matching_disabled"], 1)
@@ -161,7 +161,9 @@ class RelationshipPilotTests(unittest.TestCase):
         target["review"].update(finish_outcome="different", finish_note="Promo finish differs")
         assertions, _ = relationship_pilot.compile_reviews([target], self.db)
         self.assertEqual(len(assertions), 1)
-        self.assertEqual(discovery_graph.assert_relationships(self.db, assertions), 1)
+        with self.assertRaisesRegex(ValueError,'endpoint identity requires review'):
+            discovery_graph.assert_relationships(self.db, assertions)
+        self.assertEqual(self.db.execute('SELECT COUNT(*) FROM card_relationship_assertion').fetchone()[0],0)
         self.assertEqual(self.db.execute(
             "SELECT match_eligible FROM card WHERE card_id=?", (self.other,)).fetchone()[0], 0)
 
