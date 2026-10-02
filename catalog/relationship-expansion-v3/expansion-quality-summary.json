@@ -1,0 +1,36 @@
+{
+  "schema": "pokemon.two-model-artwork-expansion-audit.v1",
+  "new_pairs": 40,
+  "japanese_releases": 20,
+  "unique_source_files": 80,
+  "source_hash_verified_images": 80,
+  "independently_recorded_model_families": [
+    "openai",
+    "google"
+  ],
+  "gemini_model_versions": [
+    "gemini-3.8-flash"
+  ],
+  "root_model_version_known": false,
+  "two_review_agreements": 40,
+  "transient_image_failures_recovered": 1,
+  "initial_model_timeout_records": 3,
+  "model_timeout_retries_recovered": 3,
+  "selection": "Existing AI same-artwork proposals with eligible endpoints; two per release, diversity ordering. Positive-enriched engineering review, not a random/market-volume sample.",
+  "no_population_or_copy_accuracy_claim": true,
+  "graph": {
+    "latest_pairs": 657,
+    "verified_pairs": 63,
+    "proposed_pairs": 594,
+    "identity_blocked_proposals": 36,
+    "live_observations": 0
+  },
+  "file_sha256": {
+    "cohort.jsonl": "48fc713612cf07ae48b7b0d7b48a795dd3efef424ae691ccdfce3b0976fef15c",
+    "root-review.jsonl": "f96a23e8951d12e07f53a2eafe80609599823fe378f7afc0ab7640f1030ec472",
+    "gemini-review-final.jsonl": "59759479eedb4d680edb5f3bf38b5d7d7dbb4157b3a0f5e2a826c59103c06ef0",
+    "image-evidence-final.json": "2896dc9c9786aaded904dfdf56b973917175508731aef1a7086c2ba4ddfccd69",
+    "verified-artwork-events.jsonl": "c0ed5ed23383e571754dc87fda2251d3bf889658b3ce99bf57dda96209bc41d4",
+    "questions-frozen-v1.jsonl": "81e01b0cb37865b017b39c08cae050af6e983cb4b2335144e0c0622f66ffe16d"
+  }
+}

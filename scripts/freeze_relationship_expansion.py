@@ -24,7 +24,10 @@ RELEASES=('SM1M','SM2K','SM3N','SM9','SM10','SM11','SM12',
           'SV2A','SV4A','SV8A','M1L','M1S','M2A')
 
 
-def freeze(db, archive):
+def freeze(db, archive, *, pairs_per_release=1, seed='artwork-expansion-20261002-v1'):
+    if type(pairs_per_release) is not int or not 1 <= pairs_per_release <= 5:
+        raise ValueError('pairs per release must be 1–5')
+    if not isinstance(seed,str) or not seed.strip():raise ValueError('selection seed is required')
     by_set={key:[] for key in RELEASES}
     for row in db.execute('''SELECT a.* FROM card_relationship_assertion a
         WHERE review_status='proposed' AND relation_type='same_artwork'
@@ -44,21 +47,23 @@ def freeze(db, archive):
         by_set[ja['set_code']].append((row,evidence,cards,signature))
     rows=[];seen=set()
     for release in RELEASES:
-        choices=sorted(by_set[release],key=lambda x:(x[3] in seen, any(c['variant'] not in {'normal','holo','standard'} for c in x[2]), digest({'seed':'artwork-expansion-20261002-v1','candidate':x[1]['candidate_id']})))
-        if not choices:raise ValueError('no qualified candidate for release '+release)
-        row,evidence,cards,signature=choices[0];seen.add(signature)
-        endpoints=[]
-        for card in cards:
-            side=card['language'];c={field:card[field] for field in FIELDS}
-            c.update(source_audit=source_bytes(c['provenance'],archive),identity_blockers=[],image_ref=evidence[side+'_image_ref'],
-                     image_sha256=evidence[side+'_image_sha256'],image_scope='coordinate artwork stock image; physical variant assignment unverified')
-            endpoints.append(c)
-        item=dict(schema='pokemon.relationship-identity-cohort.v1',candidate_id=evidence['candidate_id'],
-            expected_pair_head=row['assertion_id'],source_evidence_sha256=hashlib.sha256(row['evidence_ref'].encode()).hexdigest(),
-            original_source_snapshot_sha256=evidence['source_snapshot_sha256'],selection_reason='distinct_release_character_expansion',
-            status='awaiting_independent_artwork_reviews',endpoints=endpoints,relation_type='same_artwork',
-            price_comparable=False,physical_printing_verified=False,automatic_offer_join_allowed=False,display_allowed=False)
-        item['cohort_snapshot_sha256']=digest(item);check_current(db,item);rows.append(item)
+        available=list(by_set[release])
+        if len(available)<pairs_per_release:raise ValueError('insufficient qualified candidates for release '+release)
+        for _ in range(pairs_per_release):
+            row,evidence,cards,signature=min(available,key=lambda x:(x[3] in seen, any(c['variant'] not in {'normal','holo','standard'} for c in x[2]), digest({'seed':seed,'candidate':x[1]['candidate_id']})))
+            available.remove((row,evidence,cards,signature));seen.add(signature)
+            endpoints=[]
+            for card in cards:
+                side=card['language'];c={field:card[field] for field in FIELDS}
+                c.update(source_audit=source_bytes(c['provenance'],archive),identity_blockers=[],image_ref=evidence[side+'_image_ref'],
+                         image_sha256=evidence[side+'_image_sha256'],image_scope='coordinate artwork stock image; physical variant assignment unverified')
+                endpoints.append(c)
+            item=dict(schema='pokemon.relationship-identity-cohort.v1',candidate_id=evidence['candidate_id'],
+                expected_pair_head=row['assertion_id'],source_evidence_sha256=hashlib.sha256(row['evidence_ref'].encode()).hexdigest(),
+                original_source_snapshot_sha256=evidence['source_snapshot_sha256'],selection_reason='distinct_release_character_expansion',
+                status='awaiting_independent_artwork_reviews',endpoints=endpoints,relation_type='same_artwork',
+                price_comparable=False,physical_printing_verified=False,automatic_offer_join_allowed=False,display_allowed=False)
+            item['cohort_snapshot_sha256']=digest(item);check_current(db,item);rows.append(item)
     return rows
 
 
@@ -92,11 +97,13 @@ def fetch_asset(job, cache):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for key in ('db','source-archive','output','summary','assets','image-cache'):p.add_argument('--'+key,type=Path,required=True)
+    p.add_argument('--pairs-per-release',type=int,default=1)
+    p.add_argument('--seed',default='artwork-expansion-20261002-v1')
     args=p.parse_args()
     if any(p.exists() for p in (args.output,args.summary,args.assets)):raise FileExistsError('outputs must be new')
     args.image_cache.mkdir(parents=True,exist_ok=True)
     with sqlite3.connect(f'file:{args.db.resolve()}?mode=ro',uri=True) as db,tarfile.open(args.source_archive) as archive:
-        db.row_factory=sqlite3.Row;rows=freeze(db,archive)
+        db.row_factory=sqlite3.Row;rows=freeze(db,archive,pairs_per_release=args.pairs_per_release,seed=args.seed)
     jobs=[(r['candidate_id'],c) for r in rows for c in r['endpoints']]
     with ThreadPoolExecutor(max_workers=4) as pool:assets=list(pool.map(lambda job:fetch_asset(job,args.image_cache),jobs))
     args.output.write_text(''.join(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n' for r in rows))

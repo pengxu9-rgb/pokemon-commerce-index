@@ -167,11 +167,12 @@ def from_question(db, question):
                 if row['language'] != language:
                     continue
                 for term in [row['set_code'], row['name']]:
-                    if term and re.search(r'(?<![a-z0-9])'+re.escape(_norm(term))+r'(?![a-z0-9])', release_text):
+                    boundary='a-z0-9.-' if term==row['set_code'] else 'a-z0-9'
+                    if term and re.search(r'(?<!['+boundary+r'])'+re.escape(_norm(term))+r'(?!['+boundary+r'])', release_text):
                         found.add(row['set_code'])
             # An explicit unsupported code is preserved, never replaced with
             # another release inferred from the number or a graph neighbor.
-            code_tokens = re.findall(r'\b(?:(?:sv|sm|xy|bw|me)\d|s\d|m\d)[a-z0-9.\-]*\b', release_text)
+            code_tokens = re.findall(r'\b(?:(?:sv|sm|swsh|xy|bw|me)\d|s\d|m\d)[a-z0-9.\-]*\b', release_text)
             if code_tokens:
                 found.update(token.upper() for token in code_tokens)
             if len(found) > 1:

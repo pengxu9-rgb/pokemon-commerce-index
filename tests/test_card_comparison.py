@@ -113,11 +113,12 @@ class ComparisonTests(unittest.TestCase):
 
     def test_explicit_wrong_release_is_preserved_and_does_not_borrow_edge(self):
         self.edge()
-        result=card_comparison.from_question(self.db,
-            'Compare Japanese SM1M 18/60 and English SM999 50/149 same picture.')
-        self.assertEqual(result['right']['requested']['set_code'],'SM999')
-        self.assertEqual(result['right']['status'],'not_found')
-        self.assertEqual(result['artwork']['reviewed_links'],[])
+        for release in ['SM999','SWSH999']:
+            result=card_comparison.from_question(self.db,
+                f'Compare Japanese SM1M 18/60 and English {release} 50/149 same picture.')
+            self.assertEqual(result['right']['requested']['set_code'],release)
+            self.assertEqual(result['right']['status'],'not_found')
+            self.assertEqual(result['artwork']['reviewed_links'],[])
 
     def test_market_question_keeps_partial_catalog_facts_but_no_prices(self):
         result=collector_discovery.execute(self.db,
@@ -131,6 +132,16 @@ class ComparisonTests(unittest.TestCase):
         for q in ['Compare Japanese SM1M 18/60',
                   'Compare Japanese SM1M 18/60 English SM1 50/149 English SM1 51/149']:
             self.assertIsNone(card_comparison.from_question(self.db,q))
+
+    def test_decimal_release_code_does_not_match_shorter_prefix_release(self):
+        for code in ['SM1.5','SM1-EXTRA']:
+            self.db.execute('INSERT INTO catalog_set_localized VALUES (?,?,?,?,?,?,?,?)',
+                            ('en',code,'Fixture '+code,None,149,'fixture','fixture',0))
+            core.import_cards(self.db,[dict(language='en',set_code=code,collector_number='050/149',variant='normal',
+                name='Synthetic',provenance='fixture',rights_reference='fixture',match_eligible=True)])
+            result=card_comparison.from_question(self.db,f'Compare Japanese SM1M 18/60 and English {code} 50/149')
+            self.assertEqual(result['right']['requested']['set_code'],code)
+            self.assertEqual(result['status'],'catalog_partial')
 
     def test_bounded_ambiguous_release_does_not_use_truncated_candidates(self):
         self.edge()

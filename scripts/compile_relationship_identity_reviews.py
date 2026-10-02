@@ -65,6 +65,21 @@ def compile_reviews(db, cohort, first, second):
         if b.get('first_review_verdicts_visible') is not False:
             raise ValueError('second review must record verdict separation')
         ordered=sorted((a,b),key=lambda r:core.parse_time(r['reviewed_at']))
+        families=[r.get('model_family') for r in ordered]
+        if any(families) and not all(isinstance(f,str) and f.strip() for f in families):
+            raise ValueError('both reviews need model-family provenance when either records it')
+        model_scope=('Different recorded model families; separate source-image verdicts without prior decisions. Agreement is evidence, not independent ground truth or population accuracy.'
+                     if all(families) and families[0]!=families[1] else
+                     'Distinct reviewers with the same recorded model family; shared model risk remains, not population accuracy.'
+                     if all(families) else
+                     'Distinct agents with inherited parent model; second did not see first verdicts. Shared model risk remains; not a blind marketplace benchmark or accuracy score.')
+        def review_binding(review):
+            binding={k:review[k] for k in ('reviewer','decision','reviewed_at')}
+            if all(families):
+                binding.update({k:review[k] for k in ('model_family','model_version','model_version_note',
+                    'protocol_sha256','prompt_sha256','response_sha256','inspection_sheet_sha256') if k in review})
+                binding['review_record_sha256']=digest(review)
+            return binding
         fingerprint=digest({'cohort':frozen,'reviews':ordered})
         event_id=f'relpilot-v2:{cid}:r1:same_artwork'
         evidence=dict(schema='pokemon.relationship_review.v1',review_event_id=event_id,
@@ -72,12 +87,12 @@ def compile_reviews(db, cohort, first, second):
             expected_pair_head=frozen['expected_pair_head'],
             cards=[dict(card_id=c['card_id'],source_ref=c['image_ref'],source_kind='source-bound coordinate stock image',identity_checked=True,
                         identity_scope='printed name and scoped number only; physical version assignment unverified',source_provenance=c['provenance'],image_sha256=c['image_sha256'],identity_snapshot={field:c[field] for field in FIELDS}) for c in frozen['endpoints']],
-            first_review={k:ordered[0][k] for k in ('reviewer','decision','reviewed_at')},
-            second_review={k:ordered[1][k] for k in ('reviewer','decision','reviewed_at')},
+            first_review=review_binding(ordered[0]),
+            second_review=review_binding(ordered[1]),
             artwork=dict(outcome='same',note=art_a['note']+' Independent second review: '+art_b['note']),
             finish=dict(outcome='not_comparable',note=finish_a['note']+' '+finish_b['note']),
-            rationale='Two distinct AI agents inspected the same source-hashed stock images separately. Artwork composition and printed coordinate agree; physical variant, regional printing equivalence and price comparison remain unverified.',
-            independence_scope='Distinct agents with inherited parent model; second did not see first verdicts. Shared model risk remains; not a blind marketplace benchmark or accuracy score.',
+            rationale='Two distinct AI reviewers inspected the same source-hashed stock images separately. Artwork composition and printed coordinate agree; physical variant, regional printing equivalence and price comparison remain unverified.',
+            independence_scope=model_scope,
             physical_printing_verified=False,price_comparable=False,automatic_offer_join_allowed=False,display_allowed=False)
         left,right=sorted(c['card_id'] for c in frozen['endpoints'])
         row=dict(assertion_id=event_id,left_card_id=left,right_card_id=right,relation_type='same_artwork',review_status='verified',

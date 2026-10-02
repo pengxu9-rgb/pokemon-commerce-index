@@ -66,7 +66,7 @@ def main():
     summary=dict(frozen_pairs=len(keyed(args.cohort)),qualified_artwork_events=len(events),held_pairs=len(holds),
         hold_reasons=dict(Counter(r['reason'] for r in holds)),rejected_graph_events=0,
         physical_printings_approved=0,price_comparability_approved=0,live_offer_permissions=0,public_display_permissions=0,
-        independence_scope='Distinct AI agents, same inherited model; independent verdict records but shared model risks. Not a population accuracy measure.',
+        independence_scope='Distinct AI reviewer identities with separated verdicts; model-family provenance is retained per positive event. Shared source and error risks remain, not population accuracy.',
         file_sha256=hashlib.sha256(args.output.read_bytes()).hexdigest())
     args.summary.write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n');print(json.dumps(summary))
 

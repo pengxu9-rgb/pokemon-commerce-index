@@ -352,7 +352,7 @@ Private final revision `pokemon-commerce-index-00029-9cn` passes [100 authentica
 
 ## Effective corrections and graph expansion — 2 October 2026
 
-The current [47-input manifest](catalog-build-manifest-corrections-v1.json) adds 13 source-scoped corrections and 20 reviewed artwork-only events. Catalog records total **70,006**, with 45,438 language/set/number groups; matching eligibility remains 33,543 and display/live-offer approvals remain zero. The only new identity is the source-only 154/SV-P family. [Full original-row preservation](catalog/source-corrections-next-v1/source-preservation-v2.json) proves every earlier card, reference, facet and evidence row remains unchanged.
+The earlier [47-input manifest](catalog-build-manifest-corrections-v1.json) adds 13 source-scoped corrections and 20 reviewed artwork-only events. Catalog records total **70,006**, with 45,438 language/set/number groups; matching eligibility remains 33,543 and display/live-offer approvals remain zero. The only new identity is the source-only 154/SV-P family. [Full original-row preservation](catalog/source-corrections-next-v1/source-preservation-v2.json) proves every earlier card, reference, facet and evidence row remains unchanged.
 
 Effective illustrator coverage is **45,510**, with ten corrected printed credits and preserved raw conflicts. Professor subtitles bind 021/SV-P and 022/SV-P. Effective 153 keeps official 45643; original wrong 45644 remains in the audit table, and a separate official namespace binds 45644 to 154. Stale evidence removes corrected retrieval facts; missing correction-aware views cannot fall back to quarantined raw data.
 
@@ -361,3 +361,11 @@ Latest artwork heads are **23 verified / 634 proposed**; 36 disabled-identity pr
 [Whole-catalog audit](catalog/source-corrections-next-v1/whole-catalog-quality-v2.json) verifies 47 hashes, no structural failures and 3,038 official cached extraction comparisons. This is source/integrity parity, not independently measured semantic precision. Remaining version, release-name/date and no-rarity-icon gaps are unchanged. [Implementation, initial failures and next steps](SOURCE_CORRECTIONS_AND_GRAPH_20261002.md).
 
 Private revision `pokemon-commerce-index-00030-x8r` passes [160 authenticated logical checks](cloud-deployment-20261002-source-corrections-v1.json) and two unauthenticated 403 checks. No transport errors were recorded in the final run. The first comparison difference was solely the local/container application time of a rarity overlay; both originals are retained and only that bookkeeping time is excluded. No runtime or evidence fields were changed to repair the diagnostic.
+
+## Current artwork evidence expansion — 2 October 2026
+
+The [48-input manifest](catalog-build-manifest-artwork-v3.json) appends forty source-bound artwork events while preserving the earlier 47 steps, fourteen raw/evidence tables and all 680 prior graph events. Catalog/group/structural counts remain 70,006 / 45,438 / 33,543. Current artwork heads are **63 verified / 594 proposed**, including 36 blocked-identity proposals still held. These are qualified stock-artwork pairs, not physical-printing or cross-region price equivalence.
+
+The forty pairs across twenty Japanese releases have eighty checked source files/images and separately recorded root/OpenAI and Vertex Gemini 3.8 Flash verdicts. All forty agree, but the selection is enriched for likely artwork matches and does not establish population accuracy. [Evidence and scope](ARTWORK_EXPANSION_V3_20261002.md).
+
+Private revision `pokemon-commerce-index-00032-rdq` passes 104 new and 32 prior comparison cloud checks; both reports include two repeated unauthenticated 403 denials. The original fifty authored questions initially pass 44/50, expose a dotted release-code parser error, and pass all scope expectations after the repair. They cover five wording patterns, not fifty independent language patterns. Current checks bind source/runtime hashes and catalog revisions. Version-label, Japanese-name/date and physical-copy evidence gaps remain unchanged; live observations and automatic-offer approvals remain zero.

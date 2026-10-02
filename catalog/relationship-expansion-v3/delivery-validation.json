@@ -1,0 +1,39 @@
+{
+  "schema": "pokemon.artwork-expansion-delivery-validation.v1",
+  "manifest_inputs": 48,
+  "previous_47_steps_preserved": true,
+  "all_manifest_input_hashes_verified": true,
+  "local_database_sha256": "cecd45d965c10b2560c7024d14572d60ac22aadfc65796a3066197aa4a7ee9a6",
+  "runtime_and_evidence_hashes_verified": true,
+  "private_cloud_revision": "pokemon-commerce-index-00032-rdq",
+  "reports": {
+    "local-replay-v1.json": {
+      "sha256": "fde40e912522c6f17af899baa783d63ac217f815c3907ee9c2b448bfb494e84f",
+      "checks": 102,
+      "passed": 102,
+      "transport_errors": 0
+    },
+    "private-cloud-replay-v1.json": {
+      "sha256": "96af0b2bd3bf44f13f5eedf5b6b09c09ef31611faa6e5978e2bcf747f787545b",
+      "checks": 104,
+      "passed": 104,
+      "transport_errors": 1
+    },
+    "legacy-six-local-v1.json": {
+      "sha256": "2eac0e4744a5fd16373b7a460d3dddc9e34726506d5e3a6ee48ec4f7aae968ed",
+      "checks": 30,
+      "passed": 30,
+      "transport_errors": 0
+    },
+    "legacy-six-cloud-v1.json": {
+      "sha256": "a73cbc9cacca12af7253f5e5c8d0a256f97885545cc13fca94b8fd9ca7a085ce",
+      "checks": 32,
+      "passed": 32,
+      "transport_errors": 0
+    }
+  },
+  "verified_artwork_pairs": 63,
+  "new_artwork_pairs": 40,
+  "proposals": 594,
+  "physical_and_market_permissions_added": false
+}

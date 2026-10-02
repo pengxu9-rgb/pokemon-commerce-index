@@ -1,0 +1,25 @@
+[
+  {
+    "original": {
+      "candidate_id": "0e4090bb4b4744acbdba",
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1082)>",
+      "error_type": "URLError",
+      "expected_image_sha256": "0463796fe7958b6f8fa330884717dd32996f6151a2df80ea59c52e06e7f5fd7b",
+      "side": "ja",
+      "source_ref": "https://assets.tcgdex.net/ja/S/S9/057/high.webp",
+      "status": "asset_hold"
+    },
+    "retry": {
+      "candidate_id": "0e4090bb4b4744acbdba",
+      "side": "ja",
+      "source_ref": "https://assets.tcgdex.net/ja/S/S9/057/high.webp",
+      "expected_image_sha256": "0463796fe7958b6f8fa330884717dd32996f6151a2df80ea59c52e06e7f5fd7b",
+      "status": "source_hash_verified",
+      "image_url": "https://assets.tcgdex.net/ja/S/S9/057/high.webp",
+      "image_sha256": "0463796fe7958b6f8fa330884717dd32996f6151a2df80ea59c52e06e7f5fd7b",
+      "image_bytes": 131698,
+      "page_sha256": null,
+      "path": "/private/tmp/relationship-expansion-v3-images/0e4090bb4b4744acbdba-ja.webp"
+    }
+  }
+]
