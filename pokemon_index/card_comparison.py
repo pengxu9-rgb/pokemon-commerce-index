@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
-from . import core, discovery_graph, number_graph
+from . import core, discovery_graph, number_graph, number_evidence
 
 SCHEMA = 'pokemon.card-comparison.v1'
 MAX_CANDIDATES = 32
@@ -31,7 +31,7 @@ def _descriptor(value, *, partial=False):
     result = validate_scope(value)
     required = {'language', 'collector_number'} if partial else {'language', 'set_code', 'collector_number'}
     if not required <= set(result):
-        raise ValueError('comparison needs language, release and printed number on each side')
+            raise ValueError('comparison needs language, release and catalog number on each side')
     return result
 
 
@@ -49,10 +49,15 @@ def _side(db, descriptor):
     if len(coordinates) == 1 and count <= MAX_CANDIDATES:
         language, release, number = next(iter(coordinates))
         # Derive from current raw coordinates, not a possibly stale materialized number table.
-        context = dict(number_graph.parse_number(number), printed_number=number,
+        context = dict(number_graph.parse_number(number), printed_number=number, catalog_number=number,
+                       number_basis='catalog_coordinate_only',
+                       printed_number_semantics='legacy_catalog_coordinate_not_visual_evidence',
                        number_scope_id=language+':'+release, language=language, set_code=release)
+    observed = [dict(card_id=r['card_id'], evidence=evidence) for r in rows
+                if (evidence := number_evidence.context(db, r['card_id'])) is not None]
     return dict(requested=descriptor, status=status, matched_records=count, records=rows,
                 records_truncated=count > MAX_CANDIDATES, number_context=context,
+                observed_printed_numbers=observed,
                 physical_variant_verified=False)
 
 
@@ -101,8 +106,8 @@ def _compare(db, left_descriptor, right_descriptor):
     if left['number_context'] and right['number_context'] and not unresolved:
         numbers = dict(number_graph.number_alignment(left['number_context'], right['number_context']),
             left=left['number_context'], right=right['number_context'],
-            explanation='Printed numbers belong to language/release namespaces. Equal or different numbers alone establish neither matching artwork nor regional printing equivalence.',
-            print_run_explanation='The denominator is a release numbering label, not the quantity of printed copies. These numbers alone establish neither scarcity nor a price trend.',
+            explanation='This alignment compares catalog coordinates in language/release namespaces. Actual visible stock-image readings are separate exact-record evidence. Equal or different catalog numbers establish neither matching artwork nor regional printing equivalence.',
+            print_run_explanation='A catalog denominator can be a source inventory convention; it is not verified printed text or a quantity of printed copies. These coordinates establish neither scarcity nor a price trend.',
             print_run_quantity_established=False, scarcity_established=False,
             explanation_of_release_number_assignment_established=False)
     covered = {cid for e in reviewed+different for cid in (e['left_card_id'], e['right_card_id'])}

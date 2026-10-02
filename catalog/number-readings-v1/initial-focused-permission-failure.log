@@ -1,0 +1,24 @@
+.........................E........
+======================================================================
+ERROR: test_http_internal_only_and_read_only (tests.test_card_comparison.ComparisonTests.test_http_internal_only_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_card_comparison.py", line 190, in test_http_internal_only_and_read_only
+    server=create_server(str(self.path),'127.0.0.1',0,internal)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/cli.py", line 135, in create_server
+    return ThreadingHTTPServer((host,port),Handler)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/server.py", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.412s
+
+FAILED (errors=1)

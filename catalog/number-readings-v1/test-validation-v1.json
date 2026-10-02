@@ -1,0 +1,12 @@
+{
+  "python_tests": 541,
+  "node_tests": 12,
+  "new_number_evidence_tests": 14,
+  "log_sha256": {
+    "python-tests.log": "5f4abd849dedc908b652cce77929d63c9010fb671017fc65712afe13b358c767",
+    "node-tests.log": "223f53fc28fcac2a18a5354b512b327fc0ec75702954842d7e749e57c08c7a06",
+    "initial-focused-permission-failure.log": "55a5cf53bc83e9ac108f2a7955a20d1e1e420055cccf1257b54f6afe186fdf41"
+  },
+  "initial_failure": "Sandbox denied binding localhost for one HTTP test; permission granted and full 541-test suite passed. No code repair was needed for that failure.",
+  "real_marketplace_precision_established": false
+}

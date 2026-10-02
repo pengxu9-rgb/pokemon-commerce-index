@@ -1,0 +1,29 @@
+{
+  "schema": "pokemon.number-readings-delivery-validation.v1",
+  "complete": true,
+  "revision": "pokemon-commerce-index-00034-gvg",
+  "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:c20b61c2a12aafe582899811321f0aa909a56eccbe877e3d48beab67eac79dd5",
+  "catalog_revision": "2f30c8569e989bd06237cf64d688ffefff9d2b2cc06d56127f1ea6f3d986971e",
+  "catalog_sha256": "b284acb2af16e23d0cbbcfe04879373be15a4be2eb54f32dea2b63eb93c03e5f",
+  "report_sha256": {
+    "local-replay-v1.json": "398a30a4b324db59f6dce68e6062b3d21770345a4e3faacc8559a9b0d23b5f36",
+    "artwork-regression-local-v1.json": "fe7ddeddbcf75625749e1b2217668fea717762ec7791ecf3560dde681430da8a",
+    "private-cloud-replay-v1.json": "c4d4e70c6348565aea48e4ea40fded3af69762eb66dd94a26cfd689abf96b8d8",
+    "artwork-regression-cloud-v1.json": "a0fcb2218201db80007122b6c10c8409ce360a464d27fc0f57e4d72f1c94c545"
+  },
+  "all_report_runtime_and_snapshot_hashes_match": true,
+  "manifest_sha256": "d07f319a5c8af2cd56c1d61bab26eb8eddfe9075ba064a6557582188893cb9a3",
+  "manifest_inputs": 50,
+  "prior_49_inputs_preserved": true,
+  "all_input_hashes_verified": true,
+  "cloud_logical_checks": 164,
+  "repeated_unauthenticated_403_checks": 4,
+  "recovered_transport_errors": 1,
+  "final_logical_failures": 0,
+  "source_observations": 30,
+  "catalog_text_observed": 29,
+  "catalog_denominator_not_observed": 1,
+  "prior_semantic_tables_preserved": 42,
+  "physical_or_market_approvals_added": false,
+  "independent_real_listing_precision_established": false
+}

@@ -4,10 +4,10 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 COPY pokemon_index /app/pokemon_index
 COPY scripts/__init__.py scripts/build_catalog_snapshot.py /app/scripts/
-COPY catalog-build-manifest-artwork-controls-v1.json /app/catalog-build-manifest-artwork-controls-v1.json
+COPY catalog-build-manifest-number-readings-v1.json /app/catalog-build-manifest-number-readings-v1.json
 COPY catalog /app/catalog
 RUN python -m scripts.build_catalog_snapshot \
-    --manifest /app/catalog-build-manifest-artwork-controls-v1.json --db /app/catalog.sqlite3 \
+    --manifest /app/catalog-build-manifest-number-readings-v1.json --db /app/catalog.sqlite3 \
     && chmod 0444 /app/catalog.sqlite3
 
 FROM python:3.12-slim

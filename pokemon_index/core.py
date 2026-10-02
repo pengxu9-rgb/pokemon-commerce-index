@@ -730,6 +730,7 @@ def import_concept_review_bundle(db: sqlite3.Connection, bundle: dict[str, Any])
 
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
+    from . import number_evidence
     totals = db.execute(
         """SELECT COUNT(*) AS printings, COUNT(DISTINCT language || ':' || set_code) AS sets,
         SUM(CASE WHEN display_allowed=1 THEN 1 ELSE 0 END) AS display_approved,
@@ -761,6 +762,7 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
             "official_printing_type_coverage": printing_type_coverage,
             "display_approved": totals["display_approved"] or 0,
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
+            "number_reading_evidence": number_evidence.status(db),
             "scope": "internal catalog inventory; not a public display authorization"}
 
 

@@ -284,3 +284,5 @@ S6a 在 TCGdex 中仍缺日文逐卡名称；第二来源提供 87 条 set+numbe
 新增 [卖家问题路由 v7](QUESTION_ROUTING_V7.md)：保留整套出售、商家收购规则、城市店铺发现、多商家与混合卡牌范围；净收益证据按成交、费用、运费及收购报价分别规划。已见 v10 样本用于回归，新问题泛化需要另一次冻结验证。
 
 新增 [v11 未见问题诊断](QUESTION_ROUTING_V11_DIAGNOSTIC.md)：当前 v7 在收集前冻结，16 个新来源通过 AI 来源核查；首轮 14 条抽取有效、13 条意图符合预期，2 条失败保留。单独重试定位买入再出售的角色冲突、盈利任务漏保留，以及进化链清单/组牌查询缺口；不合并为准确率。
+
+Latest number evidence: [catalog coordinates versus observed printed text](NUMBER_EVIDENCE_20261002.md). Thirty source-image number readings are separate from catalog metadata; Cleffa records only `037`, without inventing `/225`. Prior 49 inputs and graph decisions remain unchanged.

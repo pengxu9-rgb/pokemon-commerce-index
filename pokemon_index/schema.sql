@@ -52,6 +52,15 @@ CREATE TABLE IF NOT EXISTS card_number_context (
 CREATE INDEX IF NOT EXISTS card_number_context_scope_number
   ON card_number_context(number_scope_id, full_number_key);
 
+-- Visible source-image readings are never backfilled from catalog metadata.
+CREATE TABLE IF NOT EXISTS card_number_reading_evidence (
+  event_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL,
+  revision INTEGER NOT NULL CHECK (revision > 0),
+  record_json TEXT NOT NULL,
+  UNIQUE(card_id, revision)
+);
+
 -- Positive, source-bound internal support is separate from structural eligibility.
 CREATE TABLE IF NOT EXISTS supported_card (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),

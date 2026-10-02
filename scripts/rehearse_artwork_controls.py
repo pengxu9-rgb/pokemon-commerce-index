@@ -117,7 +117,7 @@ def run(db_path,output,*,cloud=False):
         report=dict(schema='pokemon.artwork-controls-rehearsal.v1',completed=completed,planned_checks=107 if cloud else 105,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,
             source_led_authored_questions=54,unique_structured_pairs=30,node_caller_journeys=6,negative_neighborhoods=11,environment='private-staging' if cloud else 'local-http',deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=unchanged,catalog_revision=revision,transport_errors=errors,
             questions_sha256=sha(questions_path),diagnostic_contract_correction_sha256=sha(directory/'question-contract-correction-v1.json'),difference_events_sha256=sha(directory/'qualified-difference-events-final.jsonl'),
-            runtime_sha256={name:sha(root/'pokemon_index'/name) for name in ['card_comparison.py','discovery_graph.py','collector_discovery.py','collector_journey.py','cli.py']},
+            runtime_sha256={name:sha(root/'pokemon_index'/name) for name in ['card_comparison.py','discovery_graph.py','number_graph.py','number_evidence.py','collector_discovery.py','collector_journey.py','core.py','cli.py']},
             population_or_real_marketplace_accuracy_established=False,pivota_registration_established=False,physical_or_market_approvals_added=False)
         output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         if not unchanged:raise ValueError('rehearsal changed catalog bytes')

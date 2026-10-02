@@ -1,0 +1,19 @@
+{
+  "schema": "pokemon.number-readings-compilation.v1",
+  "subjects": 30,
+  "statuses": {
+    "catalog_text_observed": 29,
+    "catalog_denominator_not_observed": 1
+  },
+  "source_bytes_and_images_verified": true,
+  "original_inspections_reused_without_new_model_calls": true,
+  "graph_decisions_changed": false,
+  "review_file_sha256": {
+    "catalog/artwork-controls-v1/cohort.jsonl": "35be87bb3d33a4bbe09a783c89edd533f0d9af08df044ccf5c66403be5b96957",
+    "catalog/artwork-controls-v1/root-review.jsonl": "c80153c76ef0f3b8420ddd8daa7188e0484ebe0ed61187e5c4c400e4ec0b1dbc",
+    "catalog/artwork-controls-v1/gemini-review-final.jsonl": "c2da890aeda64ab0094dc3b8c3c143b3fe5019250c27228b74b10d06a36256f0",
+    "catalog/artwork-controls-v1/image-evidence-qualified.json": "8b4d3745229463d5c464c2322e88ee74c6d1f03aec2931799b038a57ab7bbd41"
+  },
+  "output_sha256": "f18e63523e724dcbb678a511aa2a2ed6d4f9a36e1ca9a47eb25c78c7e0099825",
+  "scope": "Constructed source-image controls; AI agreement is not measured marketplace precision or physical version approval."
+}

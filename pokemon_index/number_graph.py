@@ -69,6 +69,7 @@ def backfill_number_context(db: sqlite3.Connection) -> int:
 
 
 def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
+    from . import number_evidence
     row = db.execute("""SELECT n.*,c.language,c.set_code,c.name,c.match_eligible,
         c.display_allowed,c.provenance,c.rights_reference FROM card_number_context n
         JOIN card c ON c.card_id=n.card_id
@@ -149,7 +150,11 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                                "comparisons_to_first_record": evidence["comparisons_to_first_record"],
                                "physical_printing_status": "unverified",
                                "offer_matching_status": "blocked"}
-    return dict(row) | {"region": None, "finish": None, "stamp": None,
+    return dict(row) | {"catalog_number": row['printed_number'],
+                        "number_basis": "catalog_coordinate_only",
+                        "printed_number_semantics": "legacy_catalog_coordinate_not_visual_evidence",
+                        "observed_printed_number": number_evidence.context(db, card_id),
+                        "region": None, "finish": None, "stamp": None,
                         "edition": None, "physical_variant_status": "unverified",
                         "source_number_conflict": number_conflict,
                         "source_number_alias_candidate": number_alias,
@@ -176,6 +181,8 @@ def number_alignment(left: dict[str, Any], right: dict[str, Any]) -> dict[str, A
     else:
         alignment = "different_or_unparsed"
     return {"number_alignment": alignment, "same_provisional_scope": same_scope,
+            "number_alignment_basis": "catalog_coordinates_not_observed_printed_text",
+            "printed_number_equivalence_established": False,
             "same_full_number": same_full,
             "same_numerator": same_numerator if numerator_known else None,
             "same_denominator": same_denominator if denominator_known else None}
