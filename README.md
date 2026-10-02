@@ -286,3 +286,5 @@ S6a 在 TCGdex 中仍缺日文逐卡名称；第二来源提供 87 条 set+numbe
 新增 [v11 未见问题诊断](QUESTION_ROUTING_V11_DIAGNOSTIC.md)：当前 v7 在收集前冻结，16 个新来源通过 AI 来源核查；首轮 14 条抽取有效、13 条意图符合预期，2 条失败保留。单独重试定位买入再出售的角色冲突、盈利任务漏保留，以及进化链清单/组牌查询缺口；不合并为准确率。
 
 Latest number evidence: [catalog coordinates versus observed printed text](NUMBER_EVIDENCE_20261002.md). Thirty source-image number readings are separate from catalog metadata; Cleffa records only `037`, without inventing `/225`. Prior 49 inputs and graph decisions remain unchanged.
+
+Latest expansion: [fifty promo-number targets](PROMO_NUMBER_EXPANSION_20261002.md), yielding 44 qualified scoped observations, five name holds and one image hold. The catalog now has 74 usable number observations and five held; graph/commerce permissions remain unchanged.

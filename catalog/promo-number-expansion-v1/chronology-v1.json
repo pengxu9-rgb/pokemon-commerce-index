@@ -1,0 +1,16 @@
+{
+  "targets": 50,
+  "initial_assets": 24,
+  "initial_asset_holds": 26,
+  "official_reference_recoveries": 25,
+  "final_assets": 49,
+  "final_asset_holds": 1,
+  "source_files_verified": 50,
+  "first_root_verdicts_saved_before_vertex": true,
+  "gemini_expected_catalog_text_supplied": false,
+  "gemini_previous_verdicts_supplied": false,
+  "root_prior_queue_context_available": true,
+  "advisory_root_reinspection_after_comparison_not_qualified": true,
+  "root_transcription_error_retained_and_corrected_in_advisory": true,
+  "original_freeze_import_path_failure": "One /tmp helper launch could not import scripts; rerun with repository module path succeeded before any recoveries. No source/review results were lost."
+}

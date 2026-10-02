@@ -1,0 +1,82 @@
+{
+  "schema": "pokemon.received-cloud-latency-scope.v1",
+  "revision": "pokemon-commerce-index-00035-bk8",
+  "received_post_requests": [
+    {
+      "timestamp": "2026-10-02T09:40:46.555108Z",
+      "status": 200,
+      "latency": "0.017960300s"
+    },
+    {
+      "timestamp": "2026-10-02T09:40:40.562190Z",
+      "status": 200,
+      "latency": "0.023089344s"
+    },
+    {
+      "timestamp": "2026-10-02T09:40:09.721238Z",
+      "status": 200,
+      "latency": "0.046980885s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:50.589487Z",
+      "status": 200,
+      "latency": "0.033404199s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:34.745479Z",
+      "status": 200,
+      "latency": "0.040987655s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.625606Z",
+      "status": 200,
+      "latency": "0.003653310s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.620429Z",
+      "status": 200,
+      "latency": "0.004119829s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.610813Z",
+      "status": 200,
+      "latency": "0.003939869s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.135095Z",
+      "status": 200,
+      "latency": "0.003895719s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.116262Z",
+      "status": 200,
+      "latency": "0.004007629s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:28.106571Z",
+      "status": 200,
+      "latency": "0.004011380s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:27.643876Z",
+      "status": 200,
+      "latency": "0.003538669s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:27.624808Z",
+      "status": 200,
+      "latency": "0.003380239s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:27.613156Z",
+      "status": 200,
+      "latency": "0.004080249s"
+    },
+    {
+      "timestamp": "2026-10-02T09:39:27.143429Z",
+      "status": 200,
+      "latency": "0.004091489s"
+    }
+  ],
+  "scope": "A 30-entry Cloud Logging sample contains these received requests. It does not identify the failed Node attempts, measure end-to-end latency or establish availability. Request URLs and user content omitted."
+}

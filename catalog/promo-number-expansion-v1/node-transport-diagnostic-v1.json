@@ -1,0 +1,34 @@
+{
+  "schema": "pokemon.node-transport-diagnostic.v1",
+  "service_url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+  "node_version": "v24.10.0",
+  "timeout_ms": 10000,
+  "retry_attempts": 2,
+  "events": [
+    {
+      "at": "2026-10-02T12:08:00.595Z",
+      "event": "response_headers",
+      "elapsed_ms": 7005,
+      "status": 200
+    },
+    {
+      "at": "2026-10-02T12:08:07.652Z",
+      "event": "response_headers",
+      "elapsed_ms": 2715,
+      "status": 200
+    }
+  ],
+  "results": [
+    {
+      "id": "artcontrol-q:019",
+      "status": "accepted",
+      "elapsed_ms": 7057
+    },
+    {
+      "id": "artcontrol-q:025",
+      "status": "accepted",
+      "elapsed_ms": 3005
+    }
+  ],
+  "scope": "A fresh diagnostic of two previously timed-out question routes; does not reconstruct earlier failures or establish service availability."
+}

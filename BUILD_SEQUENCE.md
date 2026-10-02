@@ -150,3 +150,9 @@ Current private staging `pokemon-commerce-index-00033-kkh` passes [107 control c
 The next research queue contains fifty source-labeled promo coordinates, 25 per language, awaiting actual image readings. Expand that evidence and separately establish inventory-to-printed-number mappings before broadening promo-number matching. Do not infer new artwork edges from number agreement.
 
 Private staging `00034-gvg` passes 57 number checks and 107 artwork regressions, including four repeated 403 denials. [Delivery binding](catalog/number-readings-v1/delivery-validation-v1.json) retains the one recovered discovery transport error and proves current runtime/snapshot/input hashes. Full tests pass 541 Python / 12 Node.
+
+## Promo-number expansion — 2 October 2026
+
+[All fifty frozen targets processed](PROMO_NUMBER_EXPANSION_20261002.md): 49 actual images, 44 qualified number observations, five name holds and one image hold. The 51-input build preserves earlier 50 inputs, all prior source/graph data and thirty number events. Total usable number observations become 74, with five held; graph decisions and structural eligibility remain unchanged.
+
+Next: distinguish literal title text from type symbols/furigana and separately verified canonical-name normalization. The root's corrected あなあけ transcript remains advisory after comparison, not a new independent approval. Track the HGSS01 HP source-to-scan discrepancy separately from numbered identity.

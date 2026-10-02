@@ -381,3 +381,7 @@ Fifty-four authored questions support scoped comparison after Chinese-wording an
 ## Observed number text — 2 October 2026
 
 The [50-input build](catalog-build-manifest-number-readings-v1.json) preserves 70,006 records, 45,438 coordinates, 33,543 structural eligible records and the graph's 63 same-artwork approvals, eleven exact differences and 594 proposals. [Number evidence](NUMBER_EVIDENCE_20261002.md) adds thirty source-image readings separate from catalog coordinates: 29 catalog-text agreements and one unobserved denominator. These are observations of thirty exact images, not coverage of all 70,006 records or physical versions. The 50-target promo research queue remains pending. All 42 prior semantic tables are preserved, with original import-time differences retained.
+
+## Fifty-target promo-number expansion — 2 October 2026
+
+[The 51-input manifest](catalog-build-manifest-promo-numbers-v1.json) adds 49 exact number-evidence events, preserving 42 prior base tables and thirty earlier number events. There are 79 evidence subjects, 74 usable scoped readings, five name holds and zero stale findings; 25 usable readings do not establish the catalog denominator as printed text. One further research target lacks an image. These are source-image observations, not new physical SKUs or global coverage of all 70,006 records. [Batch outcomes and limitations](PROMO_NUMBER_EXPANSION_20261002.md).

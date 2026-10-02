@@ -72,7 +72,8 @@ def compile_readings(db, cohort, first, second, assets, archive):
         reviews = [r for g in values['review_groups'] for r in g['reviews']]
         row = dict(schema=number_evidence.SCHEMA, card_id=card_id, revision=1, **values,
                    status=number_evidence.classify(values['endpoint_snapshot']['collector_number'],
-                       [r['observed_number_text'] for r in reviews]),
+                       [r['observed_number_text'] for r in reviews],
+                       expected_name=values['endpoint_snapshot']['name'],observed_names=[r['observed_name'] for r in reviews]),
                    recorded_at=max((r['reviewed_at'] for r in reviews), key=core.parse_time),
                    **{k: False for k in number_evidence.FALSE_CLAIMS})
         row['event_id'] = number_evidence.event_id(row); number_evidence.validate(row); rows.append(row)

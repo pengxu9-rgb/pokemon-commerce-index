@@ -134,3 +134,29 @@ class NumberEvidenceTests(unittest.TestCase):
     def test_future_review_timestamp_rejected(self):
         bad=copy.deepcopy(self.row); bad['review_groups'][0]['reviews'][1]['reviewed_at']='2027-10-02T00:00:00Z'; self.sign(bad)
         with self.assertRaisesRegex(ValueError,'predates'): number_evidence.import_evidence(self.db,[bad])
+
+    def test_unreadable_number_is_null_and_never_backfilled(self):
+        row=copy.deepcopy(self.row)
+        row['review_groups'][0]['reviews'][1]['observed_number_text']=None
+        row['status']='reading_hold';self.sign(row);number_evidence.import_evidence(self.db,[row])
+        ctx=number_evidence.context(self.db,self.cid)
+        self.assertEqual(ctx['observed_number_texts'],[])
+        self.assertIsNone(ctx['review_groups'][0]['reviews'][1]['observed_number_text'])
+
+    def test_matching_number_with_wrong_or_missing_name_remains_held(self):
+        for name in ['Pikachu',None]:
+            row=copy.deepcopy(self.row);row['review_groups'][0]['reviews'][1]['observed_name']=name
+            row['status']='reading_hold';self.sign(row);number_evidence.import_evidence(self.db,[row])
+            self.assertFalse(number_evidence.context(self.db,self.cid)['visible_text_agreement'])
+            self.db.execute('DELETE FROM card_number_reading_evidence');self.db.commit()
+
+    def test_canonical_energy_name_cannot_be_inserted_in_place_of_visible_symbol(self):
+        self.assertEqual(number_evidence.classify('009/M-P',['009/M-P','009/M-P'],
+            expected_name='基本草エネルギー',observed_names=['基本エネルギー','基本エネルギー']),'reading_hold')
+
+    def test_catalog_number_preserves_source_case_separate_from_normalized_legacy_field(self):
+        core.import_cards(self.db,[dict(language='en',set_code='MEP',collector_number='001/mep',
+            variant='normal',name='Meganium',provenance='fixture',rights_reference='fixture')])
+        ctx=number_graph.card_number_context(self.db,'en:MEP:001/mep:normal')
+        self.assertEqual(ctx['catalog_number'],'001/mep')
+        self.assertEqual(ctx['printed_number'],'001/MEP')

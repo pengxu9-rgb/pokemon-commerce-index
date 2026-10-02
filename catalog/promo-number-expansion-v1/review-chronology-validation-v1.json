@@ -1,0 +1,15 @@
+{
+  "root_records": 50,
+  "google_records": 50,
+  "google_model_calls_with_complete_responses": 49,
+  "asset_holds_without_model_calls": 1,
+  "root_latest_review_at": "2026-10-02T09:20:52.857979+00:00",
+  "google_earliest_review_at": "2026-10-02T09:20:56.670872+00:00",
+  "root_before_google_verified": true,
+  "review_sha256": {
+    "root-review-v1.jsonl": "92e28876b001191f88a9305745879d853087f70f5d33a6bd3923a0b9f6cc418e",
+    "gemini-review-v1.jsonl": "c9b7c43cc21f21f93b79ff5b090ade419c69a67bc622105f18f587285eec38d5"
+  },
+  "root_has_prior_queue_context": true,
+  "independent_accuracy_established": false
+}

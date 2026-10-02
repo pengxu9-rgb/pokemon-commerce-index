@@ -54,6 +54,8 @@ def _source(value):
 def reading_key(text):
     # Formatting comparison only. Never synthesize a denominator or prefix.
     from .number_graph import parse_number
+    if text is None:
+        return None
     _text(text)
     parsed = parse_number(text)
     if parsed['number_format'] == 'other':
@@ -61,8 +63,12 @@ def reading_key(text):
     return parsed['full_number_key']
 
 
-def classify(catalog_number, readings):
+def classify(catalog_number, readings, *, expected_name=None, observed_names=None):
     from .number_graph import parse_number
+    if expected_name is not None and (not observed_names or any(
+            name is None or core._compact_identity_text(name) != core._compact_identity_text(expected_name)
+            for name in observed_names)):
+        return 'reading_hold'
     keys = {reading_key(text) for text in readings}
     if len(keys) != 1 or None in keys:
         return 'reading_hold'
@@ -111,8 +117,11 @@ def validate(row):
                     'reviewed_at', 'review_record_sha256', 'source_ref', 'image_sha256',
                     'observed_number_text', 'observed_name', 'prior_verdicts_visible'}:
                 raise ValueError('invalid number reviewer fields')
-            for k in ('actor', 'model_family', 'observed_number_text', 'observed_name'):
+            for k in ('actor', 'model_family'):
                 _text(review[k])
+            for k in ('observed_number_text', 'observed_name'):
+                if review[k] is not None:
+                    _text(review[k])
             _sha(review['review_record_sha256']); core.parse_time(review['reviewed_at'])
             if review['source_ref'] != row['source_ref'] or review['image_sha256'] != row['image_sha256']:
                 raise ValueError('number reviewer image differs')
@@ -124,7 +133,9 @@ def validate(row):
             readings.append(review['observed_number_text'])
         if len(actors) != 2 or len(families) != 2:
             raise ValueError('distinct number reviewers and model families required')
-    if row['status'] != classify(endpoint['collector_number'], readings):
+    names = [r['observed_name'] for g in groups for r in g['reviews']]
+    if row['status'] != classify(endpoint['collector_number'], readings,
+                               expected_name=endpoint['name'], observed_names=names):
         raise ValueError('number outcome differs from actual readings')
 
 
@@ -163,7 +174,8 @@ def context(db, card_id):
         current = snapshot(db, card_id) == row['endpoint_snapshot']
     except ValueError:
         current = False
-    readings = sorted({r['observed_number_text'] for g in row['review_groups'] for r in g['reviews']})
+    readings = sorted({r['observed_number_text'] for g in row['review_groups'] for r in g['reviews']
+                       if r['observed_number_text'] is not None})
     usable = current and row['status'] != 'reading_hold'
     return dict(schema='pokemon.number-reading-context.v1', event_id=row['event_id'],
                 current_endpoint=current, status=row['status'] if current else 'stale_endpoint',

@@ -70,7 +70,7 @@ def backfill_number_context(db: sqlite3.Connection) -> int:
 
 def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
     from . import number_evidence
-    row = db.execute("""SELECT n.*,c.language,c.set_code,c.name,c.match_eligible,
+    row = db.execute("""SELECT n.*,c.language,c.set_code,c.collector_number,c.name,c.match_eligible,
         c.display_allowed,c.provenance,c.rights_reference FROM card_number_context n
         JOIN card c ON c.card_id=n.card_id
         WHERE n.card_id=?""", (card_id,)).fetchone()
@@ -150,7 +150,7 @@ def card_number_context(db: sqlite3.Connection, card_id: str) -> dict[str, Any]:
                                "comparisons_to_first_record": evidence["comparisons_to_first_record"],
                                "physical_printing_status": "unverified",
                                "offer_matching_status": "blocked"}
-    return dict(row) | {"catalog_number": row['printed_number'],
+    return dict(row) | {"catalog_number": row['collector_number'],
                         "number_basis": "catalog_coordinate_only",
                         "printed_number_semantics": "legacy_catalog_coordinate_not_visual_evidence",
                         "observed_printed_number": number_evidence.context(db, card_id),

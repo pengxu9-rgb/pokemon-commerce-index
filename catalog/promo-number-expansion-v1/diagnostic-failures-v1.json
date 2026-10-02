@@ -1,0 +1,53 @@
+{
+  "schema": "pokemon.promo-diagnostic-failures.v1",
+  "initial_recovery_helper_import_path_failure": {
+    "before_any_recoveries": true,
+    "log": "initial-recovery-import-path-failure.log",
+    "resolution": "Rerun with repository module path; no source/review result lost."
+  },
+  "first_cloud_artwork_replay": {
+    "report": "artwork-regression-cloud-v1.json",
+    "completed": false,
+    "planned_checks": 107,
+    "recorded_checks": 90,
+    "passed_checks": 88,
+    "failed_node_results": [
+      {
+        "id": "artcontrol-q:019",
+        "route": "node-caller",
+        "result": {
+          "id": "artcontrol-q:019:1",
+          "error_code": "catalog_timeout"
+        }
+      },
+      {
+        "id": "artcontrol-q:025",
+        "route": "node-caller",
+        "result": {
+          "id": "artcontrol-q:025:1",
+          "error_code": "catalog_timeout"
+        }
+      }
+    ],
+    "node_timeout_ms": 10000,
+    "node_retry_attempts": 2
+  },
+  "fresh_probe": "node-transport-diagnostic-v1.json",
+  "failure_cause_established": false,
+  "client_policy_changed": false,
+  "scope": "Fresh success and received request latencies do not retrospectively establish why earlier calls timed out.",
+  "final_cloud_artwork_replay": {
+    "report": "artwork-regression-cloud-v2.json",
+    "completed": true,
+    "checks": 107,
+    "passed": 107,
+    "recovered_transport_errors": [
+      {
+        "path": "/card-comparison",
+        "attempt": 1,
+        "error_type": "URLError"
+      }
+    ],
+    "revision_unchanged": true
+  }
+}

@@ -1,0 +1,864 @@
+{
+  "schema": "pokemon.promo-number-adjudication.v1",
+  "targets": 50,
+  "number_evidence_events": 49,
+  "statuses": {
+    "catalog_denominator_not_observed": 24,
+    "held": 1,
+    "catalog_text_observed": 20,
+    "reading_hold": 5
+  },
+  "results": [
+    {
+      "target_id": "promo-001",
+      "card_id": "en:HGSSP:HGSS01/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:75309ebf3c12a48d0600d0c11c09041d131400715eb15f5e4c29fe2b2e7d7bd5",
+      "recorded_number_texts": [
+        "HGSS01",
+        "HGSS01"
+      ],
+      "recorded_name_texts": [
+        "Ho-Oh",
+        "Ho-Oh"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Ho-Oh",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-002",
+      "card_id": "en:HGSSP:HGSS02/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:5737c25428f02f65feffd1c1068740967d6c4579cdd949d9bffa59794b069976",
+      "recorded_number_texts": [
+        "HGSS02",
+        "HGSS02"
+      ],
+      "recorded_name_texts": [
+        "Lugia",
+        "Lugia"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Lugia",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-003",
+      "card_id": "en:HGSSP:HGSS03/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:52a2164ccf42a30e0aed29f657607611138c9ec20a38bc8a3269ea05d8515e38",
+      "recorded_number_texts": [
+        "HGSS03",
+        "HGSS03"
+      ],
+      "recorded_name_texts": [
+        "Pikachu",
+        "Pikachu"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Pikachu",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-004",
+      "card_id": "en:HGSSP:HGSS04/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:0317e99c5158c7727ca2922cd9de0b77c81688ea009a24d7149780fff35c8c8d",
+      "recorded_number_texts": [
+        "HGSS04",
+        "HGSS04"
+      ],
+      "recorded_name_texts": [
+        "Wobbuffet",
+        "Wobbuffet"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Wobbuffet",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-005",
+      "card_id": "en:HGSSP:HGSS05/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:778636e5a6e8f5dddcc6a0a6f48c7a0b0fc41a548b9da07156cf67a8c30eb937",
+      "recorded_number_texts": [
+        "HGSS05",
+        "HGSS05"
+      ],
+      "recorded_name_texts": [
+        "Hoothoot",
+        "Hoothoot"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Hoothoot",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-006",
+      "card_id": "en:HGSSP:HGSS06/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:bc7b1bfd927bcfae05888cbb303c3fbb7daf19171cce1f1487caeee82014e44c",
+      "recorded_number_texts": [
+        "HGSS06",
+        "HGSS06"
+      ],
+      "recorded_name_texts": [
+        "Noctowl",
+        "Noctowl"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Noctowl",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-007",
+      "card_id": "en:HGSSP:HGSS07/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:ac8f1f6c60ba80970c8224e7b0d568ec1b9e983a4c2c4885e16ee361c1d436a3",
+      "recorded_number_texts": [
+        "HGSS07",
+        "HGSS07"
+      ],
+      "recorded_name_texts": [
+        "Feraligatr",
+        "Feraligatr"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Feraligatr",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-008",
+      "card_id": "en:HGSSP:HGSS08/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:57d0fccf91ba41b7a377bc4acaa1ebb34da15b8550a0e67d055fd09f06f8151c",
+      "recorded_number_texts": [
+        "HGSS08",
+        "HGSS08"
+      ],
+      "recorded_name_texts": [
+        "Meganium",
+        "Meganium"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Meganium",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-009",
+      "card_id": "en:HGSSP:HGSS09/000025:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:ab86ead3e69a46dc95291fdec59e0697b6321fc0d8e3745aaaffd312932f5c0c",
+      "recorded_number_texts": [
+        "HGSS09",
+        "HGSS09"
+      ],
+      "recorded_name_texts": [
+        "Typhlosion",
+        "Typhlosion"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Typhlosion",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-010",
+      "card_id": "en:HGSSP:HGSS10/000025:holo_cosmos",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:121d4716aa836f393ab3e93dad560a41dd27f93f4032a0833cf01ed865a87ce7",
+      "recorded_number_texts": [
+        "HGSS10",
+        "HGSS10"
+      ],
+      "recorded_name_texts": [
+        "Latias",
+        "Latias"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Latias",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-011",
+      "card_id": "en:MEP:001/mep:holo_set_logo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:491ff5530a94b193cb0edea40f2d95bb522657ee136c1a53fa44bd28594a8276",
+      "recorded_number_texts": [
+        "001",
+        "001"
+      ],
+      "recorded_name_texts": [
+        "Meganium",
+        "Meganium"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Meganium",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-012",
+      "card_id": "en:MEP:002/mep:holo_set_logo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:3e8b4c49d3203fa77ca86ddcf5a6d51c7343df17657ba47b89fa8e8e651e3b5a",
+      "recorded_number_texts": [
+        "002",
+        "002"
+      ],
+      "recorded_name_texts": [
+        "Inteleon",
+        "Inteleon"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Inteleon",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-013",
+      "card_id": "en:MEP:003/mep:holo_set_logo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:a1120b44706dc34fde061d2d617d38f16f42e00b25718ade555e26022b09d878",
+      "recorded_number_texts": [
+        "003",
+        "003"
+      ],
+      "recorded_name_texts": [
+        "Alakazam",
+        "Alakazam"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Alakazam",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-014",
+      "card_id": "en:MEP:004/mep:holo_set_logo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:6486320358e35ee00cf99dcbc1c67f145e09ceef844d9693561e42d86eeb2fb8",
+      "recorded_number_texts": [
+        "004",
+        "004"
+      ],
+      "recorded_name_texts": [
+        "Lunatone",
+        "Lunatone"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Lunatone",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-015",
+      "card_id": "en:MEP:005/mep:holo_cosmos",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:b34955ddf544abb3a667e41082f51ee8dba826d48b73878cc97be68d8b89166a",
+      "recorded_number_texts": [
+        "005",
+        "005"
+      ],
+      "recorded_name_texts": [
+        "Drifloon",
+        "Drifloon"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Drifloon",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-016",
+      "card_id": "en:MEP:006/mep:holo_cosmos",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:670e125fdc752574a3b35c8bc569e9cd4a2b4a93703f1711cf14ae028fbde731",
+      "recorded_number_texts": [
+        "006",
+        "006"
+      ],
+      "recorded_name_texts": [
+        "Drifblim",
+        "Drifblim"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Drifblim",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-017",
+      "card_id": "en:MEP:007/mep:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:c5defd0c4fbc63919d84523db48ecc75d247dc02d2e64808f4d00ebb37276e63",
+      "recorded_number_texts": [
+        "007",
+        "007"
+      ],
+      "recorded_name_texts": [
+        "Psyduck",
+        "Psyduck"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Psyduck",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-018",
+      "card_id": "en:MEP:008/mep:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:a867192ab5c2ecaa55aa8b4241e61e7308c1935048d2e2f97fc9b2167fddd8f7",
+      "recorded_number_texts": [
+        "008",
+        "008"
+      ],
+      "recorded_name_texts": [
+        "Golduck",
+        "Golduck"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Golduck",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-019",
+      "card_id": "en:MEP:009/mep:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:99d49cd1f758712016196144fc1e5813e1783097d33eed7e5a9e9cebf5c66a84",
+      "recorded_number_texts": [
+        "009",
+        "009"
+      ],
+      "recorded_name_texts": [
+        "Alakazam",
+        "Alakazam"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Alakazam",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-020",
+      "card_id": "en:MEP:010/mep:holo",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:d6996ed328760eb5c431f3e52c0291bb6ac5489175340782d3cf9df7a29d0a50",
+      "recorded_number_texts": [
+        "010",
+        "010"
+      ],
+      "recorded_name_texts": [
+        "Riolu",
+        "Riolu"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Riolu",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-021",
+      "card_id": "en:MISCP:001/001:holo_cosmos",
+      "status": "held",
+      "reason": "source_asset_unavailable",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-022",
+      "card_id": "en:SMP:SM01/0248:normal",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:13933705a1f61eaf03315444fa2031fe3be694d6fa45f3802f61c3c57e6a063d",
+      "recorded_number_texts": [
+        "SM01",
+        "SM01"
+      ],
+      "recorded_name_texts": [
+        "Rowlet",
+        "Rowlet"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Rowlet",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-023",
+      "card_id": "en:SMP:SM02/0248:normal",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:6457cff8aa09ab034dd44dfb7220f3f6223c371c2d75918940c713aa8a73cf48",
+      "recorded_number_texts": [
+        "SM02",
+        "SM02"
+      ],
+      "recorded_name_texts": [
+        "Litten",
+        "Litten"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Litten",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-024",
+      "card_id": "en:SMP:SM03/0248:normal",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:932bb4d328f2e49c7afac65c59ed2e66003929fb4cf83798a7f076f46eeef6dc",
+      "recorded_number_texts": [
+        "SM03",
+        "SM03"
+      ],
+      "recorded_name_texts": [
+        "Popplio",
+        "Popplio"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Popplio",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-025",
+      "card_id": "en:SMP:SM04/0248:normal",
+      "status": "catalog_denominator_not_observed",
+      "number_event_id": "number-reading:f175d4d25159f7d6c6af5300b32d4ea951ffc8786c57e2bd7840d39974fb2a81",
+      "recorded_number_texts": [
+        "SM04",
+        "SM04"
+      ],
+      "recorded_name_texts": [
+        "Pikachu",
+        "Pikachu"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "Pikachu",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-026",
+      "card_id": "ja:M-P:001/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d84481625dd770437628004bd5f8c56d45acac4c010a540100b73270f18d2b6d",
+      "recorded_number_texts": [
+        "001/M-P",
+        "001/M-P"
+      ],
+      "recorded_name_texts": [
+        "チコリータ",
+        "チコリータ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "チコリータ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-027",
+      "card_id": "ja:M-P:002/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:ee12f4d707062dffcf8d73d556bb7275ec02dab703d145fadead73a9028b1294",
+      "recorded_number_texts": [
+        "002/M-P",
+        "002/M-P"
+      ],
+      "recorded_name_texts": [
+        "ラプラスex",
+        "ラプラスex"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ラプラスex",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-028",
+      "card_id": "ja:M-P:003/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:73095386f219680b85e933c99de4901a7ec231758a0742ed858fd4ae1ff46427",
+      "recorded_number_texts": [
+        "003/M-P",
+        "003/M-P"
+      ],
+      "recorded_name_texts": [
+        "マシマシラ",
+        "マシマシラ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "マシマシラ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-029",
+      "card_id": "ja:M-P:004/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d8b51abfea1fdc943cbe0f0258269195f1b524a95feac3bf89a12650f0ccfec2",
+      "recorded_number_texts": [
+        "004/M-P",
+        "004/M-P"
+      ],
+      "recorded_name_texts": [
+        "マクノシタ",
+        "マクノシタ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "マクノシタ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-030",
+      "card_id": "ja:M-P:005/M-P:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:cb28dbfb300ab44ba622bd9cd4b847a4923335c73a87602a3ee939ef8f0c5a5b",
+      "recorded_number_texts": [
+        "005/M-P",
+        "005/M-P"
+      ],
+      "recorded_name_texts": [
+        "あなぬけスコップ",
+        "あなあけスコップ"
+      ],
+      "name_text_matches_source": false,
+      "source_catalog_name": "あなあけスコップ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-031",
+      "card_id": "ja:M-P:006/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:9abb083f2d94f70a9cc0513b42cc2e60a3d6b037a955d6144bf3ae66be913b43",
+      "recorded_number_texts": [
+        "006/M-P",
+        "006/M-P"
+      ],
+      "recorded_name_texts": [
+        "カウンターゲイン",
+        "カウンターゲイン"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "カウンターゲイン",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-032",
+      "card_id": "ja:M-P:007/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:a0a64e81af16bf84dfa7fa2d19ec86a41cfb1ecbd850f0f8497ed85823dd161c",
+      "recorded_number_texts": [
+        "007/M-P",
+        "007/M-P"
+      ],
+      "recorded_name_texts": [
+        "リーリエの決心",
+        "リーリエの決心"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "リーリエの決心",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-033",
+      "card_id": "ja:M-P:008/M-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:da4db7de29535b71b221f0980a0a920d214743a6e619d3ce594b32ee28c4d2e4",
+      "recorded_number_texts": [
+        "008/M-P",
+        "008/M-P"
+      ],
+      "recorded_name_texts": [
+        "メガシグナル",
+        "メガシグナル"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "メガシグナル",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-034",
+      "card_id": "ja:M-P:009/M-P:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:54d309fe4abc988b1b7c1beddd526d85fb8c85161b5ff63e1d70f78f59b552b4",
+      "recorded_number_texts": [
+        "009/M-P",
+        "009/M-P"
+      ],
+      "recorded_name_texts": [
+        "基本エネルギー",
+        "基本エネルギー"
+      ],
+      "name_text_matches_source": false,
+      "source_catalog_name": "基本草エネルギー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-035",
+      "card_id": "ja:M-P:010/M-P:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:ec4e9db71cf3b9a564853d0cee5789eb1e4d832874fa5ded4e8241cb78dd9b16",
+      "recorded_number_texts": [
+        "010/M-P",
+        "010/M-P"
+      ],
+      "recorded_name_texts": [
+        "基本エネルギー",
+        "基本炎エネルギー"
+      ],
+      "name_text_matches_source": false,
+      "source_catalog_name": "基本炎エネルギー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-036",
+      "card_id": "ja:S-P:001/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1c8ed3d351a79ae9792fb181fa373b0043e611c97cc1756f88655ec42f39cd89",
+      "recorded_number_texts": [
+        "001/S-P",
+        "001/S-P"
+      ],
+      "recorded_name_texts": [
+        "ピカチュウ",
+        "ピカチュウ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ピカチュウ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-037",
+      "card_id": "ja:S-P:002/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:e0afa9ac18c898081ade00689362ce0a5cc03db7b3ae065c11ab2dd5326b4f46",
+      "recorded_number_texts": [
+        "002/S-P",
+        "002/S-P"
+      ],
+      "recorded_name_texts": [
+        "シブヤのピカチュウ",
+        "シブヤのピカチュウ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "シブヤのピカチュウ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-038",
+      "card_id": "ja:S-P:003/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:136ae37156e783bfd0731e51f89a7f55833f77ec16d7605e64302ef178e5f36a",
+      "recorded_number_texts": [
+        "003/S-P",
+        "003/S-P"
+      ],
+      "recorded_name_texts": [
+        "レックウザ",
+        "レックウザ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "レックウザ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-039",
+      "card_id": "ja:S-P:004/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:621a9ec55ef9550a671abb2a12842110cf559b15e7a946216777291269db4190",
+      "recorded_number_texts": [
+        "004/S-P",
+        "004/S-P"
+      ],
+      "recorded_name_texts": [
+        "ウールー",
+        "ウールー"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ウールー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-040",
+      "card_id": "ja:S-P:005/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:323c6709ac6031e546d24a7799ea0a9e544dc81e66d13deca21d6dcf20262dad",
+      "recorded_number_texts": [
+        "005/S-P",
+        "005/S-P"
+      ],
+      "recorded_name_texts": [
+        "ホップ",
+        "ホップ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ホップ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-041",
+      "card_id": "ja:S-P:006/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:39c42283fa025a3d01007a57a26dccfce67eb22d73f1c105bb90034b99436d5e",
+      "recorded_number_texts": [
+        "006/S-P",
+        "006/S-P"
+      ],
+      "recorded_name_texts": [
+        "ヒバニー",
+        "ヒバニー"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ヒバニー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-042",
+      "card_id": "ja:S-P:007/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d8dcc7da6143e66a2a625635a0fcac064f31cc8c5f6a57051195ec964252fbbf",
+      "recorded_number_texts": [
+        "007/S-P",
+        "007/S-P"
+      ],
+      "recorded_name_texts": [
+        "サルノリ",
+        "サルノリ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "サルノリ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-043",
+      "card_id": "ja:S-P:008/S-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:36eb2d4209851805e9e41b7e3a6e2763eea3dcd5f365294b0b252de2ad069637",
+      "recorded_number_texts": [
+        "008/S-P",
+        "008/S-P"
+      ],
+      "recorded_name_texts": [
+        "メッソン",
+        "メッソン"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "メッソン",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-044",
+      "card_id": "ja:S-P:009/S-P:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:ca13e61598f1346160efa1cbe4280d2fcab7739dee661d8b40c85a1370c802a4",
+      "recorded_number_texts": [
+        "009/S-P",
+        "009/S-P"
+      ],
+      "recorded_name_texts": [
+        "基本エネルギー",
+        "基本エネルギー"
+      ],
+      "name_text_matches_source": false,
+      "source_catalog_name": "基本草エネルギー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-045",
+      "card_id": "ja:S-P:010/S-P:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:ecf93a08459dad190d7e345959fa64466789b242ef6d3fb1f0fd103b9f277255",
+      "recorded_number_texts": [
+        "010/S-P",
+        "010/S-P"
+      ],
+      "recorded_name_texts": [
+        "基本エネルギー",
+        "基本炎エネルギー"
+      ],
+      "name_text_matches_source": false,
+      "source_catalog_name": "基本炎エネルギー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-046",
+      "card_id": "ja:SV-P:001/SV-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:fc0a46d20d80f233e8225c38b8ca7a039290e14d40648d305e367e72785b856a",
+      "recorded_number_texts": [
+        "001/SV-P",
+        "001/SV-P"
+      ],
+      "recorded_name_texts": [
+        "ピカチュウ",
+        "ピカチュウ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ピカチュウ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-047",
+      "card_id": "ja:SV-P:002/SV-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:f88ed66ac3fb7a0e6ff3b3cb3b7c8b10625a05f1042f87f90c7da402dbd21bae",
+      "recorded_number_texts": [
+        "002/SV-P",
+        "002/SV-P"
+      ],
+      "recorded_name_texts": [
+        "ワナイダー",
+        "ワナイダー"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ワナイダー",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-048",
+      "card_id": "ja:SV-P:003/SV-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:e11b96c17f1c2fe7265beded6e47de315d5cc7bc4ea34c97e3ec9f65393c764e",
+      "recorded_number_texts": [
+        "003/SV-P",
+        "003/SV-P"
+      ],
+      "recorded_name_texts": [
+        "ウインディ",
+        "ウインディ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ウインディ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-049",
+      "card_id": "ja:SV-P:004/SV-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:221508cd02f4dcf6e07d2d3b67c9acf39f5287935e030e44e502cfa72d5f5d27",
+      "recorded_number_texts": [
+        "004/SV-P",
+        "004/SV-P"
+      ],
+      "recorded_name_texts": [
+        "ヘイラッシャ",
+        "ヘイラッシャ"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ヘイラッシャ",
+      "graph_decisions_changed": false
+    },
+    {
+      "target_id": "promo-050",
+      "card_id": "ja:SV-P:005/SV-P:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:13dbad42e97e81d1043553f4c55534a8edef3c1b35e7e296f8d55877a7653664",
+      "recorded_number_texts": [
+        "005/SV-P",
+        "005/SV-P"
+      ],
+      "recorded_name_texts": [
+        "ミライドン",
+        "ミライドン"
+      ],
+      "name_text_matches_source": true,
+      "source_catalog_name": "ミライドン",
+      "graph_decisions_changed": false
+    }
+  ],
+  "source_and_image_bytes_verified": true,
+  "review_input_sha256": {
+    "catalog/promo-number-expansion-v1/cohort-v2.jsonl": "1cb199fce46383115746fdbd838cbb90c5ca3a3587c0a6b457ad0be6d15c4d04",
+    "catalog/promo-number-expansion-v1/assets-v2.json": "d1caa1afac58f120a0a6249aa14084968dc1bf645418a8b2da19ceda725e4be9",
+    "catalog/promo-number-expansion-v1/root-review-v1.jsonl": "92e28876b001191f88a9305745879d853087f70f5d33a6bd3923a0b9f6cc418e",
+    "catalog/promo-number-expansion-v1/gemini-review-v1.jsonl": "c9b7c43cc21f21f93b79ff5b090ade419c69a67bc622105f18f587285eec38d5"
+  },
+  "independent_ground_truth_or_marketplace_precision_established": false,
+  "graph_decisions_changed": false,
+  "observation_scope": "Stock-image name and number text only; holds include unreadable, disagreeing or source-name-unconfirmed readings. No physical variant or catalog-ID remapping.",
+  "output_sha256": "f08d4f60df419cb39bd48f5207756b82df9184e5d4a933956d692e9459410a0b"
+}

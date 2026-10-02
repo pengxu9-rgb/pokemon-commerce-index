@@ -1,0 +1,47 @@
+{
+  "schema": "pokemon.promo-number-delivery-validation.v1",
+  "complete": true,
+  "revision": "pokemon-commerce-index-00035-bk8",
+  "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:4b21e157f16333ebfaaf464afef321d03885b2ff9000598a7a2987377e0ea635",
+  "catalog_revision": "98646c7ae6c57cff2318d5acebe8361fa6fb5eadbb2e63c0809acee1415abe8c",
+  "catalog_sha256": "98170bc1acaf2947ddf136e6b49e4bbcfb62943d014516c26b55aba6cda029c9",
+  "report_sha256": {
+    "local-replay-v1.json": "27d565fdef1a34207e16e8d2bf0f3ee2fdb12497c1488ff2da1f8e95bd33036b",
+    "number-regression-local-v1.json": "17dbbab7699db7b0a7c6bbbb63299d9ef3d62c72d5830c99481de4884f979bb4",
+    "artwork-regression-local-v1.json": "bd90d0e494465e0a52cf2801154fedd72095cc66123cd427862bb4f7f63a3bd6",
+    "private-cloud-replay-v1.json": "63ccdfbaacc9a7eeca2631b8666174010a33cac1c7346bd59cd0d21f1dbdb17c",
+    "artwork-regression-cloud-v2.json": "7d7aeea45ad8ca75f8ed3ec261ee1a55c0d8b75c9be875435d5e3b687755fee7"
+  },
+  "all_report_runtime_and_snapshot_hashes_match": true,
+  "manifest_sha256": "466a030575d9d4dc18c7b780e60a1d9002472872f76813eb7676d46dbd35be80",
+  "manifest_inputs": 51,
+  "prior_50_inputs_preserved": true,
+  "all_input_hashes_verified": true,
+  "review_input_hashes_verified": true,
+  "cloud_logical_checks": 166,
+  "repeated_unauthenticated_403_checks": 4,
+  "recovered_transport_errors": 1,
+  "final_logical_failures": 0,
+  "prior_failed_node_calls_retained": 2,
+  "initial_failure_report": "artwork-regression-cloud-v1.json",
+  "node_timeout_ms_unchanged": 10000,
+  "node_retry_attempts_unchanged": 2,
+  "batch_outcomes": {
+    "catalog_denominator_not_observed": 24,
+    "held": 1,
+    "catalog_text_observed": 20,
+    "reading_hold": 5
+  },
+  "number_evidence_inventory": {
+    "number_reading_events": 79,
+    "number_reading_subjects": 79,
+    "current_agreed_number_readings": 74,
+    "number_reading_holds": 5,
+    "stale_number_readings": 0,
+    "catalog_denominator_not_observed": 25
+  },
+  "prior_semantic_tables_preserved": 42,
+  "prior_number_events_preserved": 30,
+  "physical_or_market_approvals_added": false,
+  "independent_real_listing_precision_established": false
+}
