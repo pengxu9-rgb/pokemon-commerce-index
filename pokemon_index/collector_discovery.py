@@ -301,6 +301,14 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     if re.search(r"yugioh|yu-?gi-?oh|magic the gathering|遊戯王|游戏王", text):
         return dict(result, task="unsupported_game", status="unsupported_scope",
                     next_question="Would you like to search physical Pokémon TCG cards?")
+    if not explicit:
+        from . import card_comparison
+        comparison = card_comparison.from_question(db, question)
+        if comparison is not None:
+            return dict(result, task='two_card_comparison', status=comparison['status'],
+                        comparison=comparison, next_question=comparison['next_question'],
+                        unfulfilled_constraints=comparison.get('unfulfilled_constraints', []),
+                        required_evidence=comparison['required_evidence'])
     market_text=re.sub(r"price (?:does not|doesn't|doesn’t) matter|(?:it )?(?:does not|doesn't|doesn’t) matter (?:the )?price|価格(?:は)?関係ない",'',text)
     if re.search(r"\bprices?\b|cheapest|\bcheaper\b|\bmerchant\b|\bprofit\b|\bpopular\b|\bworth\b|sources? of raw cards|where can i (?:find|buy).*raw cards|\bwhere\b.{0,80}\b(?:buy|purchase)\b|売って|価格|相場|いくら|買取|価値|价格|价差|到手价", market_text):
         return dict(result, task="market_evidence_needed", status="blocked",

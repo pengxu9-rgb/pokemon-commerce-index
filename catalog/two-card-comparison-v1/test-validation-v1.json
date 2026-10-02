@@ -1,0 +1,14 @@
+{
+  "python_full_tests": 509,
+  "node_tests": 12,
+  "python_final_focused_tests": 13,
+  "first_focused_environment_failure": "Loopback socket was blocked until network permission was granted.",
+  "logs": {
+    "focused-first-environment-failure.log": "7144968ab3945eddd8d9bc80d6b5674b5ef48594e459ec5a12ca2d0fbcf02618",
+    "python-full-tests.log": "dca1ee737d571164cf0e1680ecf91da623ad7069e0b371c0f65ebc39f7b53567",
+    "node-tests.log": "8eab773cd4295ebed52a2d42cafc9f9d46dbf92292b910b2096a5cd154f46950",
+    "python-focused-final.log": "864d4ea5278d391df2d4185e162460cb6885e2c9ac166728d1040ad67432c8b0"
+  },
+  "all_tests_are_engineering_regression": true,
+  "real_user_accuracy_established": false
+}

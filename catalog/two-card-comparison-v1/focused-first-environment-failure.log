@@ -1,0 +1,36 @@
+test_comparison_cannot_select_purchase_target_in_journey (test_card_comparison.ComparisonTests.test_comparison_cannot_select_purchase_target_in_journey) ... ok
+test_drift_and_disabled_endpoint_fail_closed (test_card_comparison.ComparisonTests.test_drift_and_disabled_endpoint_fail_closed) ... ok
+test_explicit_wrong_release_is_preserved_and_does_not_borrow_edge (test_card_comparison.ComparisonTests.test_explicit_wrong_release_is_preserved_and_does_not_borrow_edge) ... ok
+test_http_internal_only_and_read_only (test_card_comparison.ComparisonTests.test_http_internal_only_and_read_only) ... ERROR
+test_injected_evidence_incomplete_scopes_and_duplicate_ids_rejected (test_card_comparison.ComparisonTests.test_injected_evidence_incomplete_scopes_and_duplicate_ids_rejected) ... ok
+test_localization_type_is_not_stock_artwork_approval (test_card_comparison.ComparisonTests.test_localization_type_is_not_stock_artwork_approval) ... ok
+test_market_question_keeps_partial_catalog_facts_but_no_prices (test_card_comparison.ComparisonTests.test_market_question_keeps_partial_catalog_facts_but_no_prices) ... ok
+test_missing_release_is_not_inferred_from_artwork (test_card_comparison.ComparisonTests.test_missing_release_is_not_inferred_from_artwork) ... ok
+test_numbers_are_current_scoped_coordinates_not_price_or_quantity (test_card_comparison.ComparisonTests.test_numbers_are_current_scoped_coordinates_not_price_or_quantity) ... ok
+test_rejection_supersedes_verification_and_proposals_do_not_approve (test_card_comparison.ComparisonTests.test_rejection_supersedes_verification_and_proposals_do_not_approve) ... ok
+test_review_is_exact_endpoint_only_and_preserves_sibling_uncertainty (test_card_comparison.ComparisonTests.test_review_is_exact_endpoint_only_and_preserves_sibling_uncertainty) ... ok
+test_single_card_and_three_card_questions_do_not_enter_comparison (test_card_comparison.ComparisonTests.test_single_card_and_three_card_questions_do_not_enter_comparison) ... ok
+
+======================================================================
+ERROR: test_http_internal_only_and_read_only (test_card_comparison.ComparisonTests.test_http_internal_only_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_card_comparison.py", line 146, in test_http_internal_only_and_read_only
+    server=create_server(str(self.path),'127.0.0.1',0,internal)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/cli.py", line 135, in create_server
+    return ThreadingHTTPServer((host,port),Handler)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/server.py", line 148, in server_bind
+    socketserver.TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.264s
+
+FAILED (errors=1)

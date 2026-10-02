@@ -84,6 +84,19 @@ function validateResult(result, request) {
       if (intent[key] !== result.selected_catalog_target[selectedKey]) invalid();
     }
   } else if (intent !== null) invalid();
+  if (result.discovery?.task === 'two_card_comparison') {
+    const comparison = result.discovery.comparison;
+    if (!comparison || comparison.schema !== 'pokemon.card-comparison.v1'
+        || !['catalog_partial', 'scope_confirmation_needed'].includes(comparison.status)
+        || result.candidate_cards.length || result.selection_allowed || intent !== null
+        || ['same_physical_printing_established', 'physical_finish_verified',
+          'copy_condition_verified', 'price_comparable', 'price_series_merge_allowed',
+          'numeric_price_gap_available', 'automatic_offer_join_allowed', 'purchase_ready',
+          'public_display_allowed', 'complete_answer_established'].some(k => comparison[k] !== false)
+        || !Array.isArray(comparison.prices) || comparison.prices.length
+        || !Array.isArray(comparison.live_offers) || comparison.live_offers.length
+        || comparison.product_url !== null) invalid();
+  }
   return result;
 }
 async function readBounded(response, maxBytes) {

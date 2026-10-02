@@ -4,6 +4,8 @@
 
 **主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份及探索关系 → 获准的 API 报价 → 商品关联与 ask index → 到手价／品相辅助判断／商家建议。探索状态先支持用户逐步选定目标；购买建议仍等待真实报价证据。人工双审是并行质检工具，不是前三层的开工门槛。**
 
+**2026-10-02 双卡对比：** [实现与验证](TWO_CARD_COMPARISON_20261002.md)新增内部 `/card-comparison` 和自然语言双卡流程，展示分区编号、准确端点上的画作复核证据及未覆盖的版本。六个既有开发样例均达到预期，三个仍要求确认一侧卡组。实物工艺、品相、实时价差及购物批准继续保持未知；Pivota 调用组件可传递目录部分结果，生产注册尚未完成。
+
 Buy&Ship API feed 暂时等待对方提供。**2026-09-30 的当前主线见 [整体复盘与重排](HOLISTIC_ALIGNMENT_20260930.md)和 [独立对抗审查](ADVERSARIAL_ALIGNMENT_REVIEW_20260930.md)：可信卡片小范围与检索词 → 能执行并返回目录结果的收藏探索 → 同范围的报价链路演练 → 获准真实 feed。** 早期审查 [ASTRA_REVIEW_AND_PLAN.md](ASTRA_REVIEW_AND_PLAN.md)保留为历史记录。
 
 **2026-10-01 实施结果：** 新增 100 个来源证据绑定的 SV4A 元数据目标、3 个官方卡组名称／日期补证、6 个检索词，以及拉鲁拉丝／伊布／皮卡丘三个官方进化家族；122 个已复核别名及 460 条复核事件进入新构建清单。`collector-discovery` 可从普通问题返回卡片、按日期分页的清单及版本澄清。手写开发问题首次 28/30，修正回放 30/30；100 目标的合成 commerce 演练通过 14 项检查，工程测试 351 项通过。详细范围与运行方式见 [SUPPORTED_DISCOVERY_IMPLEMENTATION.md](SUPPORTED_DISCOVERY_IMPLEMENTATION.md)。这些结果不代表真人提问准确率或真实 listing 精度；实际工艺仍未认证，自动关联 live offer 的正向批准数为 0。

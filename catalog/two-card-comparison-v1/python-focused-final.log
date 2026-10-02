@@ -1,0 +1,23 @@
+test_bounded_ambiguous_release_does_not_use_truncated_candidates (test_card_comparison.ComparisonTests.test_bounded_ambiguous_release_does_not_use_truncated_candidates) ... ok
+test_comparison_cannot_select_purchase_target_in_journey (test_card_comparison.ComparisonTests.test_comparison_cannot_select_purchase_target_in_journey) ... ok
+test_drift_and_disabled_endpoint_fail_closed (test_card_comparison.ComparisonTests.test_drift_and_disabled_endpoint_fail_closed) ... ok
+test_explicit_wrong_release_is_preserved_and_does_not_borrow_edge (test_card_comparison.ComparisonTests.test_explicit_wrong_release_is_preserved_and_does_not_borrow_edge) ... ok
+test_http_internal_only_and_read_only (test_card_comparison.ComparisonTests.test_http_internal_only_and_read_only) ... 127.0.0.1 - - [02/Oct/2026 12:00:03] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 12:00:03] "POST /card-comparison HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2026 12:00:03] "POST /card-comparison HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+test_injected_evidence_incomplete_scopes_and_duplicate_ids_rejected (test_card_comparison.ComparisonTests.test_injected_evidence_incomplete_scopes_and_duplicate_ids_rejected) ... ok
+test_localization_type_is_not_stock_artwork_approval (test_card_comparison.ComparisonTests.test_localization_type_is_not_stock_artwork_approval) ... ok
+test_market_question_keeps_partial_catalog_facts_but_no_prices (test_card_comparison.ComparisonTests.test_market_question_keeps_partial_catalog_facts_but_no_prices) ... ok
+test_missing_release_is_not_inferred_from_artwork (test_card_comparison.ComparisonTests.test_missing_release_is_not_inferred_from_artwork) ... ok
+test_numbers_are_current_scoped_coordinates_not_price_or_quantity (test_card_comparison.ComparisonTests.test_numbers_are_current_scoped_coordinates_not_price_or_quantity) ... ok
+test_rejection_supersedes_verification_and_proposals_do_not_approve (test_card_comparison.ComparisonTests.test_rejection_supersedes_verification_and_proposals_do_not_approve) ... ok
+test_review_is_exact_endpoint_only_and_preserves_sibling_uncertainty (test_card_comparison.ComparisonTests.test_review_is_exact_endpoint_only_and_preserves_sibling_uncertainty) ... ok
+test_single_card_and_three_card_questions_do_not_enter_comparison (test_card_comparison.ComparisonTests.test_single_card_and_three_card_questions_do_not_enter_comparison) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.395s
+
+OK

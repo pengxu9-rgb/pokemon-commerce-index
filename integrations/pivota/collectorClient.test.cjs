@@ -122,3 +122,23 @@ test('service URL is trusted setup only, credentials/redirects/cleartext remote 
   assert.throws(() => createCollectorClient({baseUrl: 'https://catalog.example'}), e => e.code === 'invalid_client_configuration');
   assert.doesNotThrow(() => createCollectorClient({baseUrl: 'http://127.0.0.1:8766', allowLoopback: true}));
 });
+test('two-card discovery passes partial metadata and rejects nested commerce approvals', async () => {
+  const comparison = {schema: 'pokemon.card-comparison.v1', status: 'catalog_partial',
+    same_physical_printing_established: false, physical_finish_verified: false,
+    copy_condition_verified: false, price_comparable: false, price_series_merge_allowed: false,
+    numeric_price_gap_available: false, automatic_offer_join_allowed: false, purchase_ready: false,
+    public_display_allowed: false, complete_answer_established: false,
+    prices: [], live_offers: [], product_url: null};
+  for (const patch of [{}, {price_comparable: true}, {prices: [{amount: 1}]}, {physical_finish_verified: true}]) {
+    const c = client(async (_, options) => json(result(JSON.parse(options.body), {
+      status: 'evidence_or_scope_needed', selection_blockers: ['supported_catalog_scope_needed'],
+      discovery: {task: 'two_card_comparison', comparison: {...comparison, ...patch}},
+    })));
+    if (!Object.keys(patch).length) {
+      const call = await c.start({question: 'Compare Japanese SM1M 18/60 and English SM1 50/149'});
+      assert.equal(call.result.discovery.comparison.schema, comparison.schema);
+      assert.equal(call.target_intent, null);
+    } else await assert.rejects(c.start({question: 'Compare two cards'}),
+      error => error.code === 'invalid_catalog_response');
+  }
+});

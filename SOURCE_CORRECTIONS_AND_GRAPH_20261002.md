@@ -38,7 +38,7 @@ Six additional mixed natural-language collector questions are retained as a sepa
 
 ## Next steps
 
-1. Implement a scoped two-card comparison tool and agent flow: separate regional numbers, reviewed artwork, physical version uncertainty and market evidence. Reuse the current source-bound graph, and request only unresolved identity details.
+1. The [scoped two-card comparison tool and agent flow](TWO_CARD_COMPARISON_20261002.md) is now implemented. Six existing source-led questions meet their frozen expectations, preserving three release confirmations. Continue fresh question evaluation and qualified graph coverage while keeping physical-copy and market evidence separate.
 2. Continue qualified artwork expansion and prioritize explicit source conflicts rather than approving proposals by similarity alone.
 3. When Buy&Ship supplies an authorized search/listing feed, credentials and data-use scope, run real-listing exact-card/variant/grade calibration, freshness/quota measurement and URL transaction handoff. Ask indexing and seller/landed-cost ranking still have no live observations.
 

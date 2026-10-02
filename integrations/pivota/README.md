@@ -47,6 +47,8 @@ The audience is the configured service origin, without `/collector-journey`. The
 
 ## Session and target rules
 
+Two-card comparison questions now return a scoped partial under `result.discovery.comparison`. Number namespaces and exact reviewed source-image links are separate from physical printing and market evidence. Comparison results contain no candidate purchase targets, prices, offer URLs or target intents; nested commerce approvals are rejected by the caller. Missing releases remain unconfirmed. See [comparison implementation](../../TWO_CARD_COMPARISON_20261002.md). This uses the existing proposed `collector.explore` operation and does not register another active Pivota operation.
+
 - `session` contains the bounded action transcript, its initial page limit and the expected catalog revision. Pass the returned session unchanged on the next call; do not put it into `acp_state` or `ap2_state`.
 - At most 20 actions; no silent transcript trimming. Begin a new explicitly scoped journey if that bound is reached. Session storage/tenant ownership/retention belong to the caller and are not provided here.
 - A catalog revision change returns `status=catalog_changed`, with no session, result or target intent. Restart the question and reconfirm the target; the connector does not remove the revision and replay an old selection automatically.
