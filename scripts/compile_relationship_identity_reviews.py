@@ -21,15 +21,15 @@ def keyed(path):
     return {row['candidate_id']:row for row in rows}
 
 
-def checked_review(review, frozen):
+def checked_review(review, frozen, *, decision='same_artwork'):
     snapshot = review.get('cohort_snapshot_sha256',review.get('source_snapshot_sha256'))
     if snapshot != frozen['cohort_snapshot_sha256']:
         raise ValueError('review source snapshot differs')
-    if review['decision'] != 'same_artwork':
+    if decision not in {'same_artwork','different_artwork'} or review['decision'] != decision:
         raise ValueError('non-agreeing review requires adjudication')
     artwork=review.get('artwork') or {'outcome':review.get('artwork_outcome'),'note':review.get('artwork_note')}
     finish=review.get('finish') or {'outcome':review.get('finish_outcome'),'note':review.get('finish_note')}
-    if artwork['outcome']!='same' or not artwork.get('note'):
+    if artwork['outcome']!=('different' if decision=='different_artwork' else 'same') or not artwork.get('note'):
         raise ValueError('missing artwork evidence')
     if finish['outcome']!='not_comparable' or not finish.get('note'):
         raise ValueError('coordinate review cannot verify finish')

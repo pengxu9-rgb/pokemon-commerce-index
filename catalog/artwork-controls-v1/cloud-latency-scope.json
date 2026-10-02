@@ -1,0 +1,13 @@
+{
+  "revision": "pokemon-commerce-index-00033-kkh",
+  "observed_received_journey_requests": 35,
+  "status_counts": {
+    "200": 35
+  },
+  "median_service_request_latency_s": 0.05275591,
+  "maximum_service_request_latency_s": 0.106337308,
+  "raw_sha256": "730277199e636c67ec83856225559ec30960308fbc8e3894769b070ac40bd508",
+  "scope": "Cloud Run request log sample for received collector-journey POSTs only. Does not locate client timeouts or establish end-to-end latency, availability or a production SLA.",
+  "client_default_timeout_ms": 10000,
+  "client_timeout_policy_unchanged": true
+}

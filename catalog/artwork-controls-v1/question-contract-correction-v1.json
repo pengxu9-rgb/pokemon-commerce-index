@@ -1,0 +1,13 @@
+{
+  "schema": "pokemon.authored-diagnostic-contract-correction.v1",
+  "original_question_bytes_and_expectations_preserved": true,
+  "original_questions_sha256": "68003fd72239fa6abec2c355a88eb808b9ad97cfed2247c8f94de92b3561c672",
+  "original_report_sha256": "dab12c0f353d25286f578fe205121a8cb63137735cfa7fd82a142f22190fb239",
+  "original_task_label": "card_comparison",
+  "actual_public_task_label": "two_card_comparison",
+  "correction_scope": "Uniform spelling correction of an API task label for all 54 rows; questions, coordinate constraints and approval expectations remain unchanged. The original 0/54 is a diagnostic contract error, not classifier performance.",
+  "before_correct_task_routing": 47,
+  "total": 54,
+  "remaining_router_gaps": "One Chinese comparison phrase and six alphanumeric exact catalog IDs.",
+  "not_accuracy_estimate": true
+}

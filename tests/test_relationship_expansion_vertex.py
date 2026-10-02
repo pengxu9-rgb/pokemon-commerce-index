@@ -36,6 +36,14 @@ class VertexExpansionTests(unittest.TestCase):
         response=self.response();response['candidates'][0]['finishReason']='MAX_TOKENS'
         with self.assertRaisesRegex(ValueError,'incomplete'):parse(response,self.frozen)
 
+    def test_leading_zero_formatting_does_not_invent_missing_promo_denominator(self):
+        self.frozen['endpoints'][1].update(name='Cleffa',collector_number='037/225')
+        self.finding['readings'][1].update(name='Cleffa',collector_number='037')
+        self.assertFalse(parse(self.response(),self.frozen)[1])
+        self.frozen['endpoints'][1].update(name='Breloom',collector_number='005/073')
+        self.finding['readings'][1].update(name='Breloom',collector_number='5/73')
+        self.assertTrue(parse(self.response(),self.frozen)[1])
+
     def test_compiler_keeps_two_actual_model_provenance_and_hashes(self):
         fixture=fixtures.RelationshipIdentityReviewTests();fixture.setUp()
         try:

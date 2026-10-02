@@ -1,0 +1,23 @@
+{
+  "first_cloud_report": "private-cloud-replay-v1.json",
+  "first_cloud_report_sha256": "63a6ccd47c9015a2eec8556d09c7b134208a8ac4f7c1eb4b7b4f0c78f1b35666",
+  "first_cloud_recorded_checks": 85,
+  "first_cloud_recorded_passes": 84,
+  "first_cloud_failure": "First recorded actual Node caller returned catalog_timeout. Remaining results are unrecorded in that failed report; no completeness claim.",
+  "second_cloud_failure": "An authentication-loop route variable shadowed the frozen-question path, so final report serialization failed. The diagnostic was fixed and the complete suite rerun; no result inferred from that unsaved report.",
+  "final_cloud_report": "private-cloud-replay-v3.json",
+  "final_cloud_report_sha256": "ad03c0d7afd2085a795f8fbf32009f87d3a09a9926676eeda4cfa43ebb31226f",
+  "staging_runtime_or_data_changed_for_diagnostic_repairs": false,
+  "logs": {
+    "cloud-first-failure.log": "ac007b0052e28f8bc24e0f527f5d55ac6295fedc4e20ca5d8d0fcc233fc3756c",
+    "cloud-report-path-failure.log": "c0366bdb8ae0ff4de399626cec244a310c25dd0c41dcd7c400ccf84d15134e33"
+  },
+  "legacy_six_first_cloud_failure": {
+    "report": "legacy-six-cloud-v1.json",
+    "sha256": "3befe42d11e7820c54df05de9a6f12ff9da57bb1e84bb7ff682b22363aa2f956",
+    "recorded_checks": 28,
+    "recorded_passes": 27,
+    "failure": "Recorded Node collector-client catalog_timeout. Original partial report is retained; remaining unrecorded checks are not counted.",
+    "log_sha256": "bc680c4975dffa70858e2ba19f14486e292866c144ccc1376a8bfd745ef30659"
+  }
+}

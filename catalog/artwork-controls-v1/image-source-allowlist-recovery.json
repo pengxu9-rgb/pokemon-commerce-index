@@ -1,0 +1,25 @@
+[
+  {
+    "previous": {
+      "candidate_id": "c023a334b5b96722e217",
+      "side": "en",
+      "source_ref": "https://images.pokemontcg.io/sm35/5_hires.png",
+      "expected_image_sha256": "470d9d6cdbb98aa3f1cb0d539e18493a4cb28a330dccea403efc3efbdacdd390",
+      "status": "asset_hold",
+      "error_type": "ValueError",
+      "error": "unapproved stock image source"
+    },
+    "retry": {
+      "candidate_id": "c023a334b5b96722e217",
+      "side": "en",
+      "source_ref": "https://images.pokemontcg.io/sm35/5_hires.png",
+      "expected_image_sha256": "470d9d6cdbb98aa3f1cb0d539e18493a4cb28a330dccea403efc3efbdacdd390",
+      "status": "source_hash_verified",
+      "image_url": "https://images.pokemontcg.io/sm35/5_hires.png",
+      "image_sha256": "470d9d6cdbb98aa3f1cb0d539e18493a4cb28a330dccea403efc3efbdacdd390",
+      "image_bytes": 547869,
+      "page_sha256": null,
+      "path": "/private/tmp/artwork-controls-v1-images/c023a334b5b96722e217-en.png"
+    }
+  }
+]

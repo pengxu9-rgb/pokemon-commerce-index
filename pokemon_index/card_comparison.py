@@ -79,6 +79,7 @@ def _edges(db, left, right):
         edge['evidence'] = json.loads(edge.pop('evidence_ref'))
         edge['usable_artwork_evidence'] = (edge['relation_type'] == 'same_artwork' and
             edge['review_status'] == 'verified' and not edge['endpoint_identity_blockers'])
+        edge['usable_artwork_difference_evidence'] = discovery_graph.reviewed_artwork_difference_usable(db,row)
         edge['price_comparable'] = False
         rows.append(edge)
     return rows
@@ -93,6 +94,7 @@ def _compare(db, left_descriptor, right_descriptor):
         raise ValueError('choose two distinct cards')
     links = _edges(db, left, right)
     reviewed = [e for e in links if e['usable_artwork_evidence']]
+    different = [e for e in links if e['usable_artwork_difference_evidence']]
     unresolved = [name for name, side in [('left', left), ('right', right)]
                   if side['status'] in {'not_found', 'refinement_needed', 'release_confirmation_needed'}]
     numbers = None
@@ -103,14 +105,17 @@ def _compare(db, left_descriptor, right_descriptor):
             print_run_explanation='The denominator is a release numbering label, not the quantity of printed copies. These numbers alone establish neither scarcity nor a price trend.',
             print_run_quantity_established=False, scarcity_established=False,
             explanation_of_release_number_assignment_established=False)
-    covered = {cid for e in reviewed for cid in (e['left_card_id'], e['right_card_id'])}
+    covered = {cid for e in reviewed+different for cid in (e['left_card_id'], e['right_card_id'])}
     candidate_ids = {r['card_id'] for side in (left, right) for r in side['records']}
     return dict(schema=SCHEMA, status='scope_confirmation_needed' if unresolved else 'catalog_partial',
         left=left, right=right, unresolved_sides=unresolved, numbering=numbers,
-        artwork=dict(status='reviewed_endpoint_sources_only' if reviewed else 'unestablished',
-            reviewed_links=reviewed, other_pair_states=[e for e in links if not e['usable_artwork_evidence']],
+        artwork=dict(status='reviewed_endpoint_sources_only' if reviewed else
+            'reviewed_endpoint_differences_only' if different else 'unestablished',
+            reviewed_links=reviewed, reviewed_difference_links=different,
+            other_pair_states=[e for e in links if not e['usable_artwork_evidence'] and not e['usable_artwork_difference_evidence']],
             uncovered_record_ids=sorted(candidate_ids-covered),
             scope='Only the exact reviewed stock-image endpoints; no approval transfers to sibling source labels or physical copies.',
+            difference_scope='A reviewed difference rules out same artwork only for its exact source endpoints; an absent/rejected link alone is not difference evidence.',
             all_coordinate_variants_verified=False),
         required_evidence=['physical_finish_edition_and_copy_condition', 'authorized_fresh_offers'],
         next_question='Confirm the release on '+', '.join(unresolved)+' before choosing an exact catalog version.' if unresolved else
@@ -135,11 +140,11 @@ def from_question(db, question):
     bypass parsing. No LLM, network, hidden caller evidence or price inference.
     """
     text = _norm(question)
-    if not re.search(r'compar|same|different|artwork|picture|both|cheaper|イラスト|番号|比較|対比|对比|比对|同じ|同一|相同', text):
+    if not re.search(r'compar|same|different|artwork|picture|both|cheaper|イラスト|番号|比較|比较|対比|对比|比对|同じ|同一|相同', text):
         return None
-    ids = re.findall(r'\b(?:ja|en):[a-z0-9.\-]+:\d{1,3}/[a-z0-9\-]+:[a-z0-9_\-]+', text)
+    ids = re.findall(r'\b(?:ja|en):[a-z0-9.\-]+:[a-z0-9]{1,16}/[a-z0-9\-]{1,32}:[a-z0-9_\-]+', text)
     if ids:
-        if len(ids) != 2 or len(re.findall(r'\d{1,3}/[a-z0-9\-]+', text)) != 2:
+        if len(ids) != 2 or len(re.findall(r'(?<![a-z0-9/])[a-z0-9]{1,16}/[a-z0-9\-]{1,32}(?![a-z0-9/])', text)) != 2:
             return None
         lookup = {r['card_id'].casefold(): r['card_id'] for r in db.execute(
             'SELECT card_id FROM card WHERE lower(card_id) IN (?,?)', ids)}

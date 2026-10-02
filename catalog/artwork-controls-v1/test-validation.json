@@ -1,0 +1,12 @@
+{
+  "python_tests": 527,
+  "node_tests": 12,
+  "new_tests": "Ten source-bound artwork-difference guards, three question routing guards and one promo/leading-zero parsing guard.",
+  "log_sha256": {
+    "python-tests.log": "775a82ea423ed202bfb3603bfd3fbf9691931509afa2b21edfeeedbef227daf4",
+    "node-tests.log": "3298371988dc3d2e0c766ad08e67363919b9772799dae47806f2ee8a091f52e7",
+    "initial-focused-failure.log": "b77f268bf7556d2335c59e5feebaa3834d89b0badce380e68ef83f8dc3a7a430"
+  },
+  "initial_failure": "Four focused errors exposed sqlite3.Row versus dict validation input; fixed before final full-suite execution.",
+  "source_and_question_accuracy_established": false
+}

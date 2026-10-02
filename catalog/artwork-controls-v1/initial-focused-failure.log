@@ -1,0 +1,107 @@
+....E..EE..............127.0.0.1 - - [02/Oct/2026 15:31:24] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:31:24] "POST /card-comparison HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2026 15:31:24] "POST /card-comparison HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+......E..
+======================================================================
+ERROR: test_missing_or_withdrawn_link_is_not_a_difference_fact (tests.test_artwork_controls.ArtworkControlTests.test_missing_or_withdrawn_link_is_not_a_difference_fact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_artwork_controls.py", line 41, in test_missing_or_withdrawn_link_is_not_a_difference_fact
+    self.assertEqual(card_comparison.compare(self.db,self.payload)['artwork']['reviewed_difference_links'],[])
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 133, in compare
+    return _compare(db, _descriptor(payload['left']), _descriptor(payload['right']))
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 95, in _compare
+    links = _edges(db, left, right)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 82, in _edges
+    edge['usable_artwork_difference_evidence'] = discovery_graph.reviewed_artwork_difference_usable(db,row)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 119, in reviewed_artwork_difference_usable
+    _validate_artwork_difference_evidence(edge,edge['left_card_id'],edge['right_card_id'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 97, in _validate_artwork_difference_evidence
+    _validate_verified_evidence(row,left,right,artwork_difference=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 35, in _validate_verified_evidence
+    if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
+                      ^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+
+======================================================================
+ERROR: test_qualified_difference_is_scoped_idempotent_and_never_commerce_approval (tests.test_artwork_controls.ArtworkControlTests.test_qualified_difference_is_scoped_idempotent_and_never_commerce_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_artwork_controls.py", line 32, in test_qualified_difference_is_scoped_idempotent_and_never_commerce_approval
+    view=card_comparison.compare(self.db,self.payload)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 133, in compare
+    return _compare(db, _descriptor(payload['left']), _descriptor(payload['right']))
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 95, in _compare
+    links = _edges(db, left, right)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 82, in _edges
+    edge['usable_artwork_difference_evidence'] = discovery_graph.reviewed_artwork_difference_usable(db,row)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 119, in reviewed_artwork_difference_usable
+    _validate_artwork_difference_evidence(edge,edge['left_card_id'],edge['right_card_id'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 97, in _validate_artwork_difference_evidence
+    _validate_verified_evidence(row,left,right,artwork_difference=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 35, in _validate_verified_evidence
+    if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
+                      ^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+
+======================================================================
+ERROR: test_source_drift_withholds_difference_without_erasing_history (tests.test_artwork_controls.ArtworkControlTests.test_source_drift_withholds_difference_without_erasing_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_artwork_controls.py", line 45, in test_source_drift_withholds_difference_without_erasing_history
+    view=card_comparison.compare(self.db,self.payload)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 133, in compare
+    return _compare(db, _descriptor(payload['left']), _descriptor(payload['right']))
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 95, in _compare
+    links = _edges(db, left, right)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 82, in _edges
+    edge['usable_artwork_difference_evidence'] = discovery_graph.reviewed_artwork_difference_usable(db,row)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 119, in reviewed_artwork_difference_usable
+    _validate_artwork_difference_evidence(edge,edge['left_card_id'],edge['right_card_id'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 97, in _validate_artwork_difference_evidence
+    _validate_verified_evidence(row,left,right,artwork_difference=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 35, in _validate_verified_evidence
+    if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
+                      ^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+
+======================================================================
+ERROR: test_rejection_supersedes_verification_and_proposals_do_not_approve (tests.test_card_comparison.ComparisonTests.test_rejection_supersedes_verification_and_proposals_do_not_approve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/tests/test_card_comparison.py", line 75, in test_rejection_supersedes_verification_and_proposals_do_not_approve
+    result=card_comparison.compare(self.db,self.payload)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 133, in compare
+    return _compare(db, _descriptor(payload['left']), _descriptor(payload['right']))
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 95, in _compare
+    links = _edges(db, left, right)
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/card_comparison.py", line 82, in _edges
+    edge['usable_artwork_difference_evidence'] = discovery_graph.reviewed_artwork_difference_usable(db,row)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 119, in reviewed_artwork_difference_usable
+    _validate_artwork_difference_evidence(edge,edge['left_card_id'],edge['right_card_id'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 97, in _validate_artwork_difference_evidence
+    _validate_verified_evidence(row,left,right,artwork_difference=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py", line 35, in _validate_verified_evidence
+    if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
+                      ^^^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.449s
+
+FAILED (errors=4)

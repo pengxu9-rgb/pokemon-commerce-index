@@ -1,0 +1,57 @@
+..............................................................127.0.0.1 - - [02/Oct/2026 15:48:41] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:48:41] "POST /card-comparison HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2026 15:48:41] "POST /card-comparison HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+................../Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py:25: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1075c2110>
+  card = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py:25: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x106d335b0>
+  card = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py:25: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x106d325c0>
+  card = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py:25: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1075c3d30>
+  card = db.execute("""SELECT c.*,e.official_printing_type FROM card c
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.........../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/encoder.py:254: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1075c3b50>
+  _iterencode = c_make_encoder(
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py:346: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x106d325c0>
+  end = _w(s, end).end()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..........................127.0.0.1 - - [02/Oct/2026 15:48:57] "GET /collector-evidence-status HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2026 15:48:57] "GET /catalog-evidence?card_id=ja:FIX:001/100:holo HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2026 15:48:58] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:48:58] "GET /collector-evidence-status HTTP/1.1" 404 -
+127.0.0.1 - - [02/Oct/2026 15:48:58] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:48:58] "GET /catalog-evidence?card_id=ja:FIX:001/100:holo HTTP/1.1" 404 -
+..............127.0.0.1 - - [02/Oct/2026 15:48:59] "POST /collector-inventory HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2026 15:48:59] "POST /collector-inventory HTTP/1.1" 400 -
+127.0.0.1 - - [02/Oct/2026 15:48:59] "POST /collector-inventory HTTP/1.1" 400 -
+127.0.0.1 - - [02/Oct/2026 15:48:59] "POST /collector-inventory HTTP/1.1" 400 -
+.127.0.0.1 - - [02/Oct/2026 15:48:59] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:48:59] "POST /collector-inventory HTTP/1.1" 404 -
+..........127.0.0.1 - - [02/Oct/2026 15:49:00] "POST /collector-journey HTTP/1.1" 200 -
+127.0.0.1 - - [02/Oct/2026 15:49:00] "POST /collector-journey HTTP/1.1" 400 -
+127.0.0.1 - - [02/Oct/2026 15:49:00] "POST /collector-journey HTTP/1.1" 400 -
+.127.0.0.1 - - [02/Oct/2026 15:49:01] code 404, message Not Found
+127.0.0.1 - - [02/Oct/2026 15:49:01] "POST /collector-journey HTTP/1.1" 404 -
+................................................................................................................../opt/homebrew/lib/python3.14/site-packages/PIL/JpegImagePlugin.py:343: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x106d325c0>
+  class JpegImageFile(ImageFile.ImageFile):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/lib/python3.14/site-packages/PIL/JpegImagePlugin.py:343: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x106fe57b0>
+  class JpegImageFile(ImageFile.ImageFile):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.............................................................................................................................................................................................../opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x107543c40>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+........................................./Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/pokemon_index/discovery_graph.py:27: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1078215d0>
+  WHERE c.card_id=?""", (card_id,)).fetchone()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......................................
+----------------------------------------------------------------------
+Ran 527 tests in 33.092s
+
+OK

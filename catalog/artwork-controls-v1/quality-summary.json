@@ -1,0 +1,49 @@
+{
+  "schema": "pokemon.artwork-controls-quality.v1",
+  "pairs": 18,
+  "same_character_cross_coordinate_challenges": 12,
+  "existing_positive_controls": 6,
+  "endpoint_image_memberships": 36,
+  "unique_source_files": 30,
+  "unique_images": 30,
+  "source_and_image_hashes_verified": true,
+  "question_freeze_precedes_review": true,
+  "first_verdicts_recorded_before_vertex": true,
+  "models": [
+    "openai-serving-version-unexposed",
+    "gemini-3.8-flash"
+  ],
+  "initial_outcomes": {
+    "qualified_differences": 8,
+    "positive_controls": 6,
+    "holds": 4
+  },
+  "final_outcomes": {
+    "positive_control_agreement": 6,
+    "qualified_artwork_difference": 11,
+    "held": 1
+  },
+  "one_bounded_number_format_clarification_for_all_4_identity_uncertain_results": true,
+  "missing_printed_denominator_hold": {
+    "candidate_id": "60903dea832631fbc483",
+    "catalog_card_id": "en:SVP:037/225:holo_set_logo",
+    "actual_printed_number": "037",
+    "catalog_denominator_not_visually_verified": "225",
+    "raw_catalog_unchanged": true
+  },
+  "questions": 54,
+  "sibling_variant_questions": 12,
+  "identity_hold_questions": 6,
+  "selection": "Named-character challenge pairs rewire qualified stock-image endpoints from existing artwork candidates; six previously reviewed same-artwork controls. Authored engineering calibration, not random independent ground truth or real listing precision.",
+  "no_accuracy_or_copy_market_approval": true,
+  "file_sha256": {
+    "cohort.jsonl": "35be87bb3d33a4bbe09a783c89edd533f0d9af08df044ccf5c66403be5b96957",
+    "image-evidence-qualified.json": "8b4d3745229463d5c464c2322e88ee74c6d1f03aec2931799b038a57ab7bbd41",
+    "root-review.jsonl": "c80153c76ef0f3b8420ddd8daa7188e0484ebe0ed61187e5c4c400e4ec0b1dbc",
+    "gemini-review-final.jsonl": "c2da890aeda64ab0094dc3b8c3c143b3fe5019250c27228b74b10d06a36256f0",
+    "review-summary-final.json": "11a6d0f73907df26db7f22d7a6fb6250ca29c73fc9dafc41829bb64f02588e08",
+    "qualified-difference-events-final.jsonl": "8796afb9ae8f80362beef475549e11c54e26ba1cf88600771550c00885ac1cb7",
+    "questions-frozen-v1.jsonl": "68003fd72239fa6abec2c355a88eb808b9ad97cfed2247c8f94de92b3561c672",
+    "question-contract-correction-v1.json": "21849386a2865b2ef2dd50bbfb385a2ed61d96323825b6d768603f8da40cbdd0"
+  }
+}

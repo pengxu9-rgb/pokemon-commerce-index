@@ -74,7 +74,8 @@ def fetch_asset(job, cache):
         parsed=urlparse(ref)
         official=parsed.hostname=='www.pokemon-card.com' and re.fullmatch('/card-search/details.php/card/[0-9]+',parsed.path)
         tcgdex=parsed.hostname=='assets.tcgdex.net' and parsed.path.endswith('/high.webp')
-        if parsed.scheme!='https' or parsed.query or parsed.fragment or not(official or tcgdex):raise ValueError('unapproved stock image source')
+        pokemontcg=parsed.hostname=='images.pokemontcg.io' and re.fullmatch(r'/[a-z0-9]+/[0-9]+_hires\.png',parsed.path)
+        if parsed.scheme!='https' or parsed.query or parsed.fragment or not(official or tcgdex or pokemontcg):raise ValueError('unapproved stock image source')
         if official:
             with urllib.request.urlopen(urllib.request.Request(ref,headers={'User-Agent':'pokemon-internal-artwork-audit/1'}),timeout=30) as r:page=r.read(2_000_001)
             if len(page)>2_000_000:raise ValueError('page too large')
@@ -84,10 +85,11 @@ def fetch_asset(job, cache):
             url='https://www.pokemon-card.com'+next(iter(matches))
         with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'pokemon-internal-artwork-audit/1'}),timeout=30) as r:body=r.read(7_000_001)
         if len(body)>7_000_000:raise ValueError('asset too large')
-        if not (body.startswith(b'\xff\xd8\xff') or body[:4]==b'RIFF' and body[8:12]==b'WEBP'):raise ValueError('unknown image type')
+        if not (body.startswith(b'\xff\xd8\xff') or body.startswith(b'\x89PNG\r\n\x1a\n') or body[:4]==b'RIFF' and body[8:12]==b'WEBP'):raise ValueError('unknown image type')
         sha=hashlib.sha256(body).hexdigest()
         if sha!=card['image_sha256']:raise ValueError('previous source image hash drifted')
-        path=cache/(cid+'-'+side+('.webp' if body[:4]==b'RIFF' else '.jpg'));path.write_bytes(body)
+        suffix='.webp' if body[:4]==b'RIFF' else '.png' if body.startswith(b'\x89PNG') else '.jpg'
+        path=cache/(cid+'-'+side+suffix);path.write_bytes(body)
         result.update(status='source_hash_verified',image_url=url,image_sha256=sha,image_bytes=len(body),page_sha256=page_sha,path=str(path.resolve()))
     except Exception as exc:
         result.update(error_type=type(exc).__name__,error=str(exc))

@@ -109,6 +109,10 @@ def check_current(db, row):
     head = db.execute('''SELECT assertion_id,evidence_ref FROM card_relationship_assertion
         WHERE left_card_id=? AND right_card_id=? AND relation_type=? ORDER BY rowid DESC LIMIT 1''',
         (left,right,row['relation_type'])).fetchone()
+    if row.get('pair_scope') == 'new_source_qualified_control':
+        if row['expected_pair_head'] is not None or row['source_evidence_sha256'] is not None or head is not None:
+            raise ValueError('frozen new control pair head drifted')
+        return
     if (head is None or head['assertion_id'] != row['expected_pair_head'] or
         hashlib.sha256(head['evidence_ref'].encode()).hexdigest()!=row['source_evidence_sha256']):
         raise ValueError('frozen relationship pair head drifted')

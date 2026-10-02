@@ -30,7 +30,7 @@ def _card(db: sqlite3.Connection, card_id: str) -> sqlite3.Row:
     return card
 
 
-def _validate_verified_evidence(row: dict[str, Any], left: str, right: str) -> None:
+def _validate_verified_evidence(row: dict[str, Any], left: str, right: str, *, artwork_difference=False) -> None:
     """Check completeness and identity binding, not the truth of a human review."""
     if not isinstance(row.get("assertion_id"), str) or not row["assertion_id"].strip():
         raise ValueError("verified relationship needs an assertion_id")
@@ -66,8 +66,8 @@ def _validate_verified_evidence(row: dict[str, Any], left: str, right: str) -> N
             for value in reviewer_ids)
             or reviewer_ids[0].casefold() == reviewer_ids[1].casefold()
             or reviewer_ids[1] != reviewer_ids[2]
-            or first.get("decision") != row["relation_type"]
-            or second.get("decision") != row["relation_type"]):
+            or first.get("decision") != ('different_artwork' if artwork_difference else row["relation_type"])
+            or second.get("decision") != ('different_artwork' if artwork_difference else row["relation_type"] )):
         raise ValueError("verified relationship needs two agreeing, distinct reviewers")
     review_times = []
     for review in (first, second):
@@ -83,10 +83,43 @@ def _validate_verified_evidence(row: dict[str, Any], left: str, right: str) -> N
             {"same", "different", "not_comparable"}
             or not isinstance(finish.get("note"), str) or not finish["note"].strip()):
         raise ValueError("verified relationship needs artwork and finish findings")
-    if row["relation_type"] in {"localization_counterpart", "same_artwork"} and artwork["outcome"] != "same":
+    if artwork_difference:
+        if row['relation_type']!='same_artwork' or row['review_status']!='rejected' or artwork['outcome']!='different':
+            raise ValueError('reviewed artwork difference must reject only same_artwork')
+    elif row["relation_type"] in {"localization_counterpart", "same_artwork"} and artwork["outcome"] != "same":
         raise ValueError("this relationship type requires matching artwork evidence")
     if not isinstance(evidence.get("rationale"), str) or not evidence["rationale"].strip():
         raise ValueError("verified relationship needs a rationale")
+
+
+def _validate_artwork_difference_evidence(row, left, right):
+    """A withdrawal/absence alone never becomes a reviewed different-artwork fact."""
+    _validate_verified_evidence(row,left,right,artwork_difference=True)
+    evidence=json.loads(row['evidence_ref'])
+    if evidence.get('review_kind')!='source_qualified_artwork_difference':
+        raise ValueError('missing source-qualified difference review kind')
+    if evidence['finish']['outcome']!='not_comparable' or any(evidence.get(k) is not False for k in
+            ('physical_printing_verified','price_comparable','automatic_offer_join_allowed','display_allowed')):
+        raise ValueError('artwork difference cannot approve physical or market use')
+    for review in [evidence['first_review'],evidence['second_review']]:
+        if not isinstance(review.get('model_family'),str) or not review['model_family'].strip() or not re.fullmatch(r'[0-9a-f]{64}',str(review.get('review_record_sha256',''))):
+            raise ValueError('difference review lacks model/record provenance')
+    for card in evidence['cards']:
+        snapshot=card.get('identity_snapshot')
+        required={'card_id','language','set_code','collector_number','variant','name','provenance','match_eligible'}
+        if not isinstance(snapshot,dict) or not required<=set(snapshot) or snapshot['card_id']!=card['card_id']:
+            raise ValueError('difference review lacks complete endpoint snapshot')
+        if card.get('source_provenance')!=snapshot['provenance'] or not re.fullmatch(r'[0-9a-f]{64}',str(card.get('image_sha256',''))):
+            raise ValueError('difference review lacks bound source image')
+
+
+def reviewed_artwork_difference_usable(db, edge):
+    edge=dict(edge)
+    if edge['review_status']!='rejected' or edge['relation_type']!='same_artwork':return False
+    try:
+        _validate_artwork_difference_evidence(edge,edge['left_card_id'],edge['right_card_id'])
+        return not relationship_identity_blockers(db,edge)
+    except (TypeError,ValueError,KeyError):return False
 
 
 def _pilot_event_meta(event_id: str, assertion: dict[str, Any]) -> tuple[str, int, str, str | None]:
@@ -169,8 +202,11 @@ def relationship_identity_blockers(db: sqlite3.Connection, edge: dict[str, Any] 
     """Check current identities and, where recorded, reviewed endpoint snapshots."""
     blockers = {cid: endpoint_identity_blockers(db, cid)
                 for cid in (edge["left_card_id"], edge["right_card_id"])}
-    if edge["review_status"] == "verified":
-        evidence = json.loads(edge["evidence_ref"])
+    try:evidence=json.loads(edge['evidence_ref'])
+    except (TypeError,ValueError):evidence={}
+    if not isinstance(evidence,dict):evidence={}
+    if edge["review_status"] == "verified" or (edge['review_status']=='rejected' and
+            evidence.get('review_kind')=='source_qualified_artwork_difference'):
         for endpoint in evidence.get("cards", []):
             snapshot = endpoint.get("identity_snapshot")
             if snapshot is not None:
@@ -203,6 +239,13 @@ def assert_relationships(db: sqlite3.Connection, rows: Iterable[dict[str, Any]])
             if blockers:
                 raise ValueError("verified relationship endpoint identity requires review: "
                                  + json.dumps(blockers, sort_keys=True))
+        elif row['review_status']=='rejected':
+            try:evidence=json.loads(row['evidence_ref'])
+            except (TypeError,ValueError):evidence={}
+            if isinstance(evidence,dict) and evidence.get('review_kind')=='source_qualified_artwork_difference':
+                _validate_artwork_difference_evidence(row,left,right)
+                if relationship_identity_blockers(db,dict(row,left_card_id=left,right_card_id=right)):
+                    raise ValueError('artwork difference endpoint identity requires review')
         asserted_at = core.parse_time(row.get("asserted_at") or core.utcnow()).isoformat()
         actor = str(row["asserted_by"])
         reviewer = str(row["reviewer"]) if row.get("reviewer") else None
@@ -296,6 +339,10 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
     reviewed = [item for item in latest.values()
                 if item["review_status"] == "verified"
                 or (include_proposed and item["review_status"] == "proposed")]
+    differences=[item for item in latest.values() if reviewed_artwork_difference_usable(db,item)]
+    differences.sort(key=lambda item:item['other_card_id'])
+    for item in differences:
+        item.update(price_comparable=False,current_usability='Exact reviewed stock endpoints have different artwork; not a physical-copy or price fact.')
     reviewed.sort(key=lambda item: (item["relation_type"], item["other_card_id"]))
     ai_artwork = [item for item in latest.values()
                   if item["relation_type"] == "same_artwork"
@@ -368,6 +415,7 @@ def card_neighborhood(db: sqlite3.Connection, card_id: str,
             "official_printing_type": printing["official_printing_type"] if printing else None,
             "variants_at_number": variants,
             "relationships": reviewed, "held_relationships": held_relationships, "ai_artwork_candidates": ai_artwork,
+            "reviewed_artwork_differences": differences,
             "metadata_neighbors": metadata_neighbors,
             "scope": "internal metadata; facet neighbors are discovery candidates, not printing counterparts"}
 

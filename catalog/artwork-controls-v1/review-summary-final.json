@@ -1,0 +1,106 @@
+{
+  "schema": "pokemon.artwork-control-adjudication.v1",
+  "pairs": 18,
+  "statuses": {
+    "positive_control_agreement": 6,
+    "qualified_artwork_difference": 11,
+    "held": 1
+  },
+  "new_difference_events": 11,
+  "new_positive_events": 0,
+  "physical_and_price_permissions_added": false,
+  "results": [
+    {
+      "candidate_id": "019835b237a2dd4c5cb9",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "05ff3153fd9b732453e3",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "1b1061227a71a88579dd",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:1b1061227a71a88579dd:r1:same_artwork"
+    },
+    {
+      "candidate_id": "22bfe1aa54fe206ebe65",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:22bfe1aa54fe206ebe65:r1:same_artwork"
+    },
+    {
+      "candidate_id": "2a12f6120766f8db34e8",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "33a48db37dfe6dae3d5b",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:33a48db37dfe6dae3d5b:r1:same_artwork"
+    },
+    {
+      "candidate_id": "5314cd99c5c8ea9ed8aa",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:5314cd99c5c8ea9ed8aa:r1:same_artwork"
+    },
+    {
+      "candidate_id": "60903dea832631fbc483",
+      "status": "held",
+      "reason": "printed_coordinate_identity_unconfirmed",
+      "first_decision": "uncertain",
+      "second_decision": "uncertain"
+    },
+    {
+      "candidate_id": "63c7cb99d589e23c0bd1",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:63c7cb99d589e23c0bd1:r1:same_artwork"
+    },
+    {
+      "candidate_id": "66ba5237fdd7f25dfe88",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:66ba5237fdd7f25dfe88:r1:same_artwork"
+    },
+    {
+      "candidate_id": "78c2e727b434d02d4c1f",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:78c2e727b434d02d4c1f:r1:same_artwork"
+    },
+    {
+      "candidate_id": "7906ed40e2b1c64b5bfe",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:7906ed40e2b1c64b5bfe:r1:same_artwork"
+    },
+    {
+      "candidate_id": "b1b9f4a5ee4a513fa644",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "bbc0d1db8dd117365abf",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "bcad9dddef9989e41e30",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:bcad9dddef9989e41e30:r1:same_artwork"
+    },
+    {
+      "candidate_id": "c023a334b5b96722e217",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:c023a334b5b96722e217:r1:same_artwork"
+    },
+    {
+      "candidate_id": "eed96ef5cc158cb321e9",
+      "status": "positive_control_agreement",
+      "graph_event_created": false
+    },
+    {
+      "candidate_id": "fa2973a4fce0d0eec90a",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:fa2973a4fce0d0eec90a:r1:same_artwork"
+    }
+  ]
+}

@@ -133,6 +133,29 @@ class ComparisonTests(unittest.TestCase):
                   'Compare Japanese SM1M 18/60 English SM1 50/149 English SM1 51/149']:
             self.assertIsNone(card_comparison.from_question(self.db,q))
 
+    def test_chinese_compare_preserves_complete_two_card_scope(self):
+        result=collector_discovery.execute(self.db,'请比较 English SM1 50/149 与 Japanese SM1M 18/60 的表面纹理。')
+        self.assertEqual(result['task'],'two_card_comparison')
+        self.assertEqual(result['comparison']['status'],'catalog_partial')
+        self.assertFalse(result['comparison']['physical_finish_verified'])
+
+    def test_alphanumeric_exact_catalog_id_keeps_identity_hold(self):
+        from pokemon_index import discovery_graph
+        core.import_cards(self.db,[dict(language='en',set_code='SWSHP',collector_number='SWSH093/0000307',variant='holo_cosmos',name='Synthetic promo',provenance='fixture',rights_reference='fixture',match_eligible=False)])
+        promo='en:SWSHP:SWSH093/0000307:holo_cosmos'
+        a,b=sorted([self.left,promo]);discovery_graph.assert_relationships(self.db,[dict(left_card_id=a,right_card_id=b,relation_type='same_artwork',review_status='proposed',asserted_by='fixture',evidence_ref='{}',rights_reference='fixture')])
+        result=collector_discovery.execute(self.db,'Compare '+promo+' and '+self.left+'. Can a shared picture override identity review?')
+        self.assertEqual(result['task'],'two_card_comparison')
+        comparison=result['comparison'];self.assertEqual(comparison['left']['requested']['card_id'],promo)
+        self.assertEqual(comparison['artwork']['reviewed_links'],[])
+        self.assertIn('match_disabled_identity',comparison['artwork']['other_pair_states'][0]['endpoint_identity_blockers'][promo])
+        self.assertFalse(comparison['purchase_ready'])
+
+    def test_explicit_ids_with_third_fraction_or_unknown_alpha_id_are_not_inferred(self):
+        self.assertIsNone(card_comparison.from_question(self.db,'Compare '+self.left+' and '+self.right+' plus TG10/30.'))
+        result=card_comparison.from_question(self.db,'Compare '+self.left+' and en:SWSHP:SWSH999/0000307:holo_cosmos.')
+        self.assertEqual(result['right']['status'],'not_found');self.assertEqual(result['status'],'scope_confirmation_needed')
+
     def test_decimal_release_code_does_not_match_shorter_prefix_release(self):
         for code in ['SM1.5','SM1-EXTRA']:
             self.db.execute('INSERT INTO catalog_set_localized VALUES (?,?,?,?,?,?,?,?)',

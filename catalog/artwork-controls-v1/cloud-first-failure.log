@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/rehearse_artwork_controls.py", line 127, in <module>
+    a=p.parse_args();print(json.dumps(run(a.db,a.output,cloud=a.cloud)))
+                                      ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/rehearse_artwork_controls.py", line 96, in run
+    checks.append(dict(id=q['id'],route='node-caller',passed=passed,result=call));assert passed
+                                                                                         ^^^^^^
+AssertionError

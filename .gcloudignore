@@ -91,3 +91,7 @@ catalog/relationship-expansion-v2/*
 !catalog/relationship-expansion-v3/
 catalog/relationship-expansion-v3/*
 !catalog/relationship-expansion-v3/verified-artwork-events.jsonl
+
+!catalog/artwork-controls-v1/
+catalog/artwork-controls-v1/*
+!catalog/artwork-controls-v1/qualified-difference-events-final.jsonl

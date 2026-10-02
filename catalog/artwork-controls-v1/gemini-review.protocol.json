@@ -1,0 +1,14 @@
+{
+  "schema": "pokemon.vertex-artwork-expansion-protocol.v1",
+  "cohort_sha256": "35be87bb3d33a4bbe09a783c89edd533f0d9af08df044ccf5c66403be5b96957",
+  "assets_sha256": "8b4d3745229463d5c464c2322e88ee74c6d1f03aec2931799b038a57ab7bbd41",
+  "runtime_sha256": "ef8281fbaa12145277560b5dacb545ed2ab6ac5fc6576f248cb6f6d49bb8b4b4",
+  "model": "gemini-3.8-flash",
+  "model_family": "google",
+  "project": "pivota-staging",
+  "location": "global",
+  "prompt_version": "frozen-coordinate-artwork-two-model-v1",
+  "prompt_sha256": "40d55f3ae61274346248c912b10b38cc03c2123d10c21e5ea714be0c450091ee",
+  "previous_verdicts_supplied": false,
+  "concurrency": 3
+}

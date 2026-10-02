@@ -1,0 +1,72 @@
+{
+  "original_tables_preserved": {
+    "card": {
+      "rows": 70006,
+      "row_fingerprint_sha256": "3018c7cf3100689bcb4ac7981bcd9b55fcfdb41955278530ecf2cc0aa8347288"
+    },
+    "card_reference": {
+      "rows": 24040,
+      "row_fingerprint_sha256": "0ec54509c447389bb26e0d8f7e7b780a65b4231799563ab6935b0f26382f4aa5"
+    },
+    "card_facet": {
+      "rows": 86302,
+      "row_fingerprint_sha256": "88ab27cde7934b0a80510c4ee7b29200b09ad4964fc3cd762e8889ac900ca41b"
+    },
+    "card_metadata_evidence": {
+      "rows": 2497,
+      "row_fingerprint_sha256": "bdb7026f1221380265ebeafb9de5bd1313a8e96838f8c90e4bd82adb0dcfbccd"
+    },
+    "coordinate_family_evidence": {
+      "rows": 280,
+      "row_fingerprint_sha256": "87062cef4a8fa3943798703962df082061b5ab58f4508f1703684412c38f7189"
+    },
+    "printing_source_evidence": {
+      "rows": 23,
+      "row_fingerprint_sha256": "438b14793aec500187da908ee2dd7cc01358bbac21db5d23dbab788a1c3738a9"
+    },
+    "source_correction_evidence": {
+      "rows": 13,
+      "row_fingerprint_sha256": "b9c344dbd77a859e3e75ce31e180881f1294834bac958c39aa0123226ee2336c"
+    },
+    "catalog_collector_evidence": {
+      "rows": 190,
+      "row_fingerprint_sha256": "a9f082e4be17649431ff1ef803b392f1c86e5a3077fdecf29ddc3b8d49070548"
+    },
+    "supported_card": {
+      "rows": 100,
+      "row_fingerprint_sha256": "c4e116c6041f2977e41d1b2ab10c2096279b0ce721dde350003a17e86f520b3a"
+    },
+    "catalog_set_localized": {
+      "rows": 358,
+      "row_fingerprint_sha256": "6b5547c7d9515dcbd2c70d0b1c3aae9081f6c9a1e69a3dc868a477e2596faea9"
+    },
+    "catalog_vocabulary": {
+      "rows": 42,
+      "row_fingerprint_sha256": "f2b781cf4cc2359299ac5a4d9998318b425f81b2f892a5489159f9cbe3c279cf"
+    },
+    "catalog_release_evidence": {
+      "rows": 21,
+      "row_fingerprint_sha256": "42f17eddec6cffa2fdcc9b3fb67dae586f192686155c018a0141fd2372058909"
+    },
+    "character_family": {
+      "rows": 3,
+      "row_fingerprint_sha256": "bc95624233fd5cb5b4d29835a036e02f9d82ac0fac9359097e09a1c6ab793d1c"
+    },
+    "character_family_member": {
+      "rows": 16,
+      "row_fingerprint_sha256": "e553703d0bd76685c058d6378ecec01d1dee83033f03f2ab03bf248d938cff54"
+    }
+  },
+  "prior_graph_events_preserved": 720,
+  "only_ignored_prior_graph_field": "asserted_at on proposed ai-artwork-review-v1 import application times only",
+  "previous_48_manifest_steps_preserved": true,
+  "current_manifest_inputs": 49,
+  "graph": {
+    "pair_heads": 668,
+    "verified_artwork_pairs": 63,
+    "proposals": 594,
+    "reviewed_artwork_differences": 11,
+    "identity_blocked_proposals": 36
+  },
+  "new_physical_or_market_permissions": false
+}
