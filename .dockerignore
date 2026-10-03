@@ -111,3 +111,8 @@ catalog/source-image-facts-v1/*
 !catalog/source-image-facts-expansion-v1/
 catalog/source-image-facts-expansion-v1/*
 !catalog/source-image-facts-expansion-v1/evidence-v1.jsonl
+
+!catalog/cross-release-source-facts-v1/
+catalog/cross-release-source-facts-v1/*
+!catalog/cross-release-source-facts-v1/number-evidence-v2.jsonl
+!catalog/cross-release-source-facts-v1/evidence-v2.jsonl

@@ -18,7 +18,8 @@ def candidate(endpoint, audit):
     if endpoint['language']=='ja':
         family,release=path.parts[1:3]
     else:
-        families={'HeartGold & SoulSilver':'hgss','Mega Evolution':'me','Miscellaneous':'misc','Sun & Moon':'sm'}
+        families={'HeartGold & SoulSilver':'hgss','Mega Evolution':'me','Miscellaneous':'misc','Sun & Moon':'sm',
+                  'Scarlet & Violet':'sv','Sword & Shield':'swsh'}
         family=families[path.parts[1]];release=endpoint['set_code'].lower()
     return f"https://assets.tcgdex.net/{endpoint['language']}/{family}/{release}/{local}/high.webp"
 

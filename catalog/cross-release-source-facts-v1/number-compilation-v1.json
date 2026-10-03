@@ -1,0 +1,1516 @@
+{
+  "schema": "pokemon.cross-release-number-compilation.v1",
+  "targets": 100,
+  "number_evidence_events": 99,
+  "statuses": {
+    "catalog_text_observed": 93,
+    "reading_hold": 6,
+    "held": 1
+  },
+  "outcomes": [
+    {
+      "target_id": "cross-release-001",
+      "card_id": "ja:MC:001/742:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:c2de8c2e3740c51a286252bafdeba9fd70f504ce29d25d040ac41b25ef08bb10",
+      "catalog_number": "001/742",
+      "observed_number_texts": [
+        "001/742",
+        "001/742"
+      ],
+      "observed_names": [
+        "エリカのナゾノクサ",
+        "エリカのナゾノクサ"
+      ]
+    },
+    {
+      "target_id": "cross-release-002",
+      "card_id": "ja:MC:003/742:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:4296f4af0fb300588bf0ad5cdb8720c2a21a3bc5e72556a82c4481c74b45c5d7",
+      "catalog_number": "003/742",
+      "observed_number_texts": [
+        "003/742",
+        "003/742"
+      ],
+      "observed_names": [
+        "エリカのラフレシアex",
+        "エリカのラフレシアex"
+      ]
+    },
+    {
+      "target_id": "cross-release-003",
+      "card_id": "ja:MC:002/742:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:60ac93190c48e3ff26d227d5c616953c4f46b9445e80ea0419f5ea16e244de23",
+      "catalog_number": "002/742",
+      "observed_number_texts": [
+        "002/742",
+        "002/742"
+      ],
+      "observed_names": [
+        "エリカのクサイハナ",
+        "エリカのクサイハナ"
+      ]
+    },
+    {
+      "target_id": "cross-release-004",
+      "card_id": "ja:MC:004/742:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:5e052db4d18089270c853b6ec69412c6a8596a3c42f97bcba69001cfd16d8857",
+      "catalog_number": "004/742",
+      "observed_number_texts": [
+        "004/742",
+        "004/742"
+      ],
+      "observed_names": [
+        "パラス",
+        "パラス"
+      ]
+    },
+    {
+      "target_id": "cross-release-005",
+      "card_id": "ja:MC:005/742:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:7d9ef3f98eead1ce6834f4b8ed26a04baabe3b351223bc3322653897954b941d",
+      "catalog_number": "005/742",
+      "observed_number_texts": [
+        "005/742",
+        "005/742"
+      ],
+      "observed_names": [
+        "パラセクト",
+        "パラセクト"
+      ]
+    },
+    {
+      "target_id": "cross-release-006",
+      "card_id": "ja:SV4A:001/190:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:8d1ef39973596dfdd8c77ee778f92c222d8154cb81b0ee14cbdaa6b1ba571f32",
+      "catalog_number": "001/190",
+      "observed_number_texts": [
+        "001/190",
+        "001/190"
+      ],
+      "observed_names": [
+        "ナゾノクサ",
+        "ナゾノクサ"
+      ]
+    },
+    {
+      "target_id": "cross-release-007",
+      "card_id": "ja:SV4A:009/190:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:70abf2527942421bf9e80d326ffc56b60be0415bbee1ac5ba38f84665b9c61b8",
+      "catalog_number": "009/190",
+      "observed_number_texts": [
+        "009/190",
+        "009/190"
+      ],
+      "observed_names": [
+        "フォレトスex",
+        "フォレトスex"
+      ]
+    },
+    {
+      "target_id": "cross-release-008",
+      "card_id": "ja:SV4A:014/190:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:aaf8691f6bf280fd2582271657cf8b62afa58f29cde4328e0649235791e3566e",
+      "catalog_number": "014/190",
+      "observed_number_texts": [
+        "014/190",
+        "014/190"
+      ],
+      "observed_names": [
+        "マスカーニャex",
+        "マスカーニャex"
+      ]
+    },
+    {
+      "target_id": "cross-release-009",
+      "card_id": "ja:SV4A:002/190:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:585c52e011057410db0b507f037ac84db8b5a79baf25e7d59e016bc6928537ae",
+      "catalog_number": "002/190",
+      "observed_number_texts": [
+        "002/190",
+        "002/190"
+      ],
+      "observed_names": [
+        "クサイハナ",
+        "クサイハナ"
+      ]
+    },
+    {
+      "target_id": "cross-release-010",
+      "card_id": "ja:SV4A:003/190:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1b61c1099e994b179d6bb705d8793e1cab23d1d40933354170bfe7315ca86c1d",
+      "catalog_number": "003/190",
+      "observed_number_texts": [
+        "003/190",
+        "003/190"
+      ],
+      "observed_names": [
+        "ラフレシア",
+        "ラフレシア"
+      ]
+    },
+    {
+      "target_id": "cross-release-011",
+      "card_id": "ja:S8B:001/184:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1f7de227a9066892a9927826ee80cf0bf9873949f391b6aa293f9e0d75d39b1f",
+      "catalog_number": "001/184",
+      "observed_number_texts": [
+        "001/184",
+        "001/184"
+      ],
+      "observed_names": [
+        "ビードル",
+        "ビードル"
+      ]
+    },
+    {
+      "target_id": "cross-release-012",
+      "card_id": "ja:S8B:011/184:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:9ac5a8c59a40b02e513cb7be5814e4cbc64bfa8d06b22d5928e6c7a6c36ecaaf",
+      "catalog_number": "011/184",
+      "observed_number_texts": [
+        "011/184",
+        "011/184"
+      ],
+      "observed_names": [
+        "イオルブVMAX",
+        "イオルブVMAX"
+      ]
+    },
+    {
+      "target_id": "cross-release-013",
+      "card_id": "ja:S8B:002/184:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:a1427d7ba3f9a09f042d5189994e767d6205da4e5f88a5c810f17aa5bf302106",
+      "catalog_number": "002/184",
+      "observed_number_texts": [
+        "002/184",
+        "002/184"
+      ],
+      "observed_names": [
+        "コクーン",
+        "コクーン"
+      ]
+    },
+    {
+      "target_id": "cross-release-014",
+      "card_id": "ja:S8B:004/184:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:5da2b9e5d0265223410d71b812bb6e2870847bfb81cec415a8b136435444e15d",
+      "catalog_number": "004/184",
+      "observed_number_texts": [
+        "004/184",
+        "004/184"
+      ],
+      "observed_names": [
+        "コロトックV",
+        "コロトックV"
+      ]
+    },
+    {
+      "target_id": "cross-release-015",
+      "card_id": "ja:S8B:003/184:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:c675a58861ff3fb9da260388650de681885fd244883e6cd7f61c7f584f609823",
+      "catalog_number": "003/184",
+      "observed_number_texts": [
+        "003/184",
+        "003/184"
+      ],
+      "observed_names": [
+        "スピアー",
+        "スピアー"
+      ]
+    },
+    {
+      "target_id": "cross-release-016",
+      "card_id": "ja:S12A:001/172:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:867a72537b5a220cc00928eaa5b9974182adf09e95abfd813da25c324bc360b6",
+      "catalog_number": "001/172",
+      "observed_number_texts": [
+        "001/172",
+        "001/172"
+      ],
+      "observed_names": [
+        "パラス",
+        "パラス"
+      ]
+    },
+    {
+      "target_id": "cross-release-017",
+      "card_id": "ja:S12A:012/172:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:b20e7e423871e0bda896e5378c939bf6bb89acef2aad8eec103c1b2497f61bcb",
+      "catalog_number": "012/172",
+      "observed_number_texts": [
+        "012/172",
+        "012/172"
+      ],
+      "observed_names": [
+        "リーフィアVSTAR",
+        "リーフィアVSTAR"
+      ]
+    },
+    {
+      "target_id": "cross-release-018",
+      "card_id": "ja:S12A:002/172:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:52a5e7580f53c1c3fa1ddd41e2462be165a2370786532347ac12f24b6551d90b",
+      "catalog_number": "002/172",
+      "observed_number_texts": [
+        "002/172",
+        "002/172"
+      ],
+      "observed_names": [
+        "パラセクト",
+        "パラセクト"
+      ]
+    },
+    {
+      "target_id": "cross-release-019",
+      "card_id": "ja:S12A:003/172:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:88b1487e67bbf52edc015c3d0cbc4a90baf597248a9ea5609d629f1f5d28a0dc",
+      "catalog_number": "003/172",
+      "observed_number_texts": [
+        "003/172",
+        "003/172"
+      ],
+      "observed_names": [
+        "ヒスイビリリダマ",
+        "ヒスイビリリダマ"
+      ]
+    },
+    {
+      "target_id": "cross-release-020",
+      "card_id": "ja:S12A:004/172:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:af9abac18929c0814bf97c120a5aceb099a688e1b1245071bce7227ac5315820",
+      "catalog_number": "004/172",
+      "observed_number_texts": [
+        "004/172",
+        "004/172"
+      ],
+      "observed_names": [
+        "ヒスイマルマイン",
+        "ヒスイ マルマイン"
+      ]
+    },
+    {
+      "target_id": "cross-release-021",
+      "card_id": "ja:M2A:001/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:2e92b8e4dcb9d78d0fcfc014986819bf125e81a8240e550e931e6568f9fc75b6",
+      "catalog_number": "001/193",
+      "observed_number_texts": [
+        "001/193",
+        "001/193"
+      ],
+      "observed_names": [
+        "ヒビキのカイロス",
+        "ヒビキのカイロス"
+      ]
+    },
+    {
+      "target_id": "cross-release-022",
+      "card_id": "ja:M2A:003/193:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:07073648cc819ce4e55daab91045d1e005e47f0d278cbfa28d7ad872135fa74c",
+      "catalog_number": "003/193",
+      "observed_number_texts": [
+        "003/193",
+        "003/193"
+      ],
+      "observed_names": [
+        "メガヤンマex",
+        "メガヤンマex"
+      ]
+    },
+    {
+      "target_id": "cross-release-023",
+      "card_id": "ja:M2A:002/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:b2b9b50a367728695d01b7fd4100e89a2629a713cc246532163550d4c1b0493f",
+      "catalog_number": "002/193",
+      "observed_number_texts": [
+        "002/193",
+        "002/193"
+      ],
+      "observed_names": [
+        "ヤンヤンマ",
+        "ヤンヤンマ"
+      ]
+    },
+    {
+      "target_id": "cross-release-024",
+      "card_id": "ja:M2A:004/193:reverse_energy",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:87aa376c40c921caf07bed15286470f7566b7873fc4a7c2c9d4e7048dfbf0472",
+      "catalog_number": "004/193",
+      "observed_number_texts": [
+        "004/193",
+        "004/193"
+      ],
+      "observed_names": [
+        "ケムッソ",
+        "ケムッソ"
+      ]
+    },
+    {
+      "target_id": "cross-release-025",
+      "card_id": "ja:M2A:005/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:a6ba1737cd2215e9e005cc9378b7299b6d3b83b09b08cb762dc221a9d38f2464",
+      "catalog_number": "005/193",
+      "observed_number_texts": [
+        "005/193",
+        "005/193"
+      ],
+      "observed_names": [
+        "カラサリス",
+        "カラサリス"
+      ]
+    },
+    {
+      "target_id": "cross-release-026",
+      "card_id": "ja:SM8B:001/150:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:ec7f378446d50e7071e4c2bd6af118e2a8939a1d7be2992f2efc2c7e07dcceb5",
+      "catalog_number": "001/150",
+      "observed_number_texts": [
+        "001/150",
+        "001/150"
+      ],
+      "observed_names": [
+        "フシギダネ",
+        "フシギダネ"
+      ]
+    },
+    {
+      "target_id": "cross-release-027",
+      "card_id": "ja:SM8B:008/150:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:2a0fa10aeb6a523e97994adda8b96308b9f2d4bbccde5be9524fdcacd74fa32a",
+      "catalog_number": "008/150",
+      "observed_number_texts": [
+        "008/150",
+        "008/150"
+      ],
+      "observed_names": [
+        "グソクムシャGX",
+        "グソクムシャGX"
+      ]
+    },
+    {
+      "target_id": "cross-release-028",
+      "card_id": "ja:SM8B:002/150:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:b4487793390a7e5e64e6dbe45a080fa89f00e5d9057f04eb2e1fdc6f32e620df",
+      "catalog_number": "002/150",
+      "observed_number_texts": [
+        "002/150",
+        "002/150"
+      ],
+      "observed_names": [
+        "フシギソウ",
+        "フシギソウ"
+      ]
+    },
+    {
+      "target_id": "cross-release-029",
+      "card_id": "ja:SM8B:006/150:holo",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:eb0db10b398c06bafe40a78252a71b0a66e2df4f4a1ab1a9ffa04074efbbc0d3",
+      "catalog_number": "006/150",
+      "observed_number_texts": [
+        "006/150",
+        "006/150 PR"
+      ],
+      "observed_names": [
+        null,
+        null
+      ]
+    },
+    {
+      "target_id": "cross-release-030",
+      "card_id": "ja:SM8B:003/150:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:8a19d4d0355128790c9c09405f376ce7934630a7ca4d18817f38eaccaa0e6ea8",
+      "catalog_number": "003/150",
+      "observed_number_texts": [
+        "003/150",
+        "003/150"
+      ],
+      "observed_names": [
+        "フシギバナ",
+        "フシギバナ"
+      ]
+    },
+    {
+      "target_id": "cross-release-031",
+      "card_id": "ja:SV8A:001/187:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1852f310ee2daac88f1136c34fd0c2ae3fb65851b3b833f2b4f7bae14ee7e6a9",
+      "catalog_number": "001/187",
+      "observed_number_texts": [
+        "001/187",
+        "001/187"
+      ],
+      "observed_names": [
+        "スボミー",
+        "スボミー"
+      ]
+    },
+    {
+      "target_id": "cross-release-032",
+      "card_id": "ja:SV8A:003/187:holo",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:7e520eb58b301be45ad12ed5879d14018426a1b268afba321472df71d85c2fce",
+      "catalog_number": "003/187",
+      "observed_number_texts": [
+        "003/187",
+        "003/187 RR"
+      ],
+      "observed_names": [
+        "リーフィアex",
+        "リーフィアex"
+      ]
+    },
+    {
+      "target_id": "cross-release-033",
+      "card_id": "ja:SV8A:002/187:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:9479ab734fe2b5990a3316565e7c3ce0bf8f93b56c800dfebcfd34742e45fd98",
+      "catalog_number": "002/187",
+      "observed_number_texts": [
+        "002/187",
+        "002/187"
+      ],
+      "observed_names": [
+        "リーフィア",
+        "リーフィア"
+      ]
+    },
+    {
+      "target_id": "cross-release-034",
+      "card_id": "ja:SV8A:004/187:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3a80e26cb244e1770e040c453e6b5ee2cf0281382b228e0a3a7fb2d92c6a56c4",
+      "catalog_number": "004/187",
+      "observed_number_texts": [
+        "004/187",
+        "004/187"
+      ],
+      "observed_names": [
+        "モンメン",
+        "モンメン"
+      ]
+    },
+    {
+      "target_id": "cross-release-035",
+      "card_id": "ja:SV8A:005/187:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:046581c679e368daf467fb346d75a06b61825912d5942be05cfe814fd7ff890b",
+      "catalog_number": "005/187",
+      "observed_number_texts": [
+        "005/187",
+        "005/187"
+      ],
+      "observed_names": [
+        "エルフーン",
+        "エルフーン"
+      ]
+    },
+    {
+      "target_id": "cross-release-036",
+      "card_id": "ja:SM12A:001/173:holo",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:1ef3c4bbfcda552a30dd1db122262ef5341e0112a618973cc5373c911a8be9dc",
+      "catalog_number": "001/173",
+      "observed_number_texts": [
+        "001/173",
+        "001/173 RR"
+      ],
+      "observed_names": [
+        "フェローチェ&マッシブーンGX",
+        "フェローチェ&マッシブーンGX"
+      ]
+    },
+    {
+      "target_id": "cross-release-037",
+      "card_id": "ja:SM12A:010/173:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3b08b99959ad30676ab81105757bc67cdd90232b113b577ce2512245ca138eb6",
+      "catalog_number": "010/173",
+      "observed_number_texts": [
+        "010/173",
+        "010/173"
+      ],
+      "observed_names": [
+        "ジュカインGX",
+        "ジュカインGX"
+      ]
+    },
+    {
+      "target_id": "cross-release-038",
+      "card_id": "ja:SM12A:002/173:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:066ebaf88fc056a834a230a632c9781786bb9cfb02d058690aef8fd1c6915f6a",
+      "catalog_number": "002/173",
+      "observed_number_texts": [
+        "002/173",
+        "002/173"
+      ],
+      "observed_names": [
+        "パラス",
+        "パラス"
+      ]
+    },
+    {
+      "target_id": "cross-release-039",
+      "card_id": "ja:SM12A:012/173:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:72d1632c4fd6283bde4070560be58c38f0c0e4e3fea8fa9a00de9a982811f3fc",
+      "catalog_number": "012/173",
+      "observed_number_texts": [
+        "012/173",
+        "012/173"
+      ],
+      "observed_names": [
+        "アマカジ",
+        "アマカジ"
+      ]
+    },
+    {
+      "target_id": "cross-release-040",
+      "card_id": "ja:SM12A:003/173:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:2045e8927a4c0b52239c3aa15b7ff73b6abedc9c953518b3b8ee83adf1601670",
+      "catalog_number": "003/173",
+      "observed_number_texts": [
+        "003/173",
+        "003/173"
+      ],
+      "observed_names": [
+        "パラセクト",
+        "パラセクト"
+      ]
+    },
+    {
+      "target_id": "cross-release-041",
+      "card_id": "ja:SV2A:001/165:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:cc5294fd8faa38a52bd254bc91ff1de73e6993b1a1b2c9647a7e88010dd4c921",
+      "catalog_number": "001/165",
+      "observed_number_texts": [
+        "001/165",
+        "001/165 C"
+      ],
+      "observed_names": [
+        "フシギダネ",
+        "フシギダネ"
+      ]
+    },
+    {
+      "target_id": "cross-release-042",
+      "card_id": "ja:SV2A:003/165:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1ee8a1bfc9b97b2ebd3590cd4cc54e22646d376db969dbe5f88af21320fa666c",
+      "catalog_number": "003/165",
+      "observed_number_texts": [
+        "003/165",
+        "003/165"
+      ],
+      "observed_names": [
+        "フシギバナex",
+        "フシギバナex"
+      ]
+    },
+    {
+      "target_id": "cross-release-043",
+      "card_id": "ja:SV2A:002/165:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:fc1e36e03b3c79fc6ba1ab75ed065070ff0e8643b40a2369ac95996bd1a193b2",
+      "catalog_number": "002/165",
+      "observed_number_texts": [
+        "002/165",
+        "002/165"
+      ],
+      "observed_names": [
+        "フシギソウ",
+        "フシギソウ"
+      ]
+    },
+    {
+      "target_id": "cross-release-044",
+      "card_id": "ja:SV2A:004/165:reverse_masterball",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:dfd3f6a8c2da78c09a62933105950208a393c9eb7aaf04eaadd1db4652782554",
+      "catalog_number": "004/165",
+      "observed_number_texts": [
+        "004/165",
+        "004/165 C"
+      ],
+      "observed_names": [
+        "ヒトカゲ",
+        "ヒトカゲ"
+      ]
+    },
+    {
+      "target_id": "cross-release-045",
+      "card_id": "ja:SV2A:005/165:normal",
+      "status": "reading_hold",
+      "number_event_id": "number-reading:0d8106fc550df29055fec6d39136df38ca4b669db89645cdab436190a3fc4773",
+      "catalog_number": "005/165",
+      "observed_number_texts": [
+        "005/165",
+        "005/165 U"
+      ],
+      "observed_names": [
+        "リザード",
+        "リザード"
+      ]
+    },
+    {
+      "target_id": "cross-release-046",
+      "card_id": "ja:M6A:001/103:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:b96af86bbe525f216bd60aa76f5aceaf07750367f26b883fd4194f31839c10e1",
+      "catalog_number": "001/103",
+      "observed_number_texts": [
+        "001/103",
+        "001/103"
+      ],
+      "observed_names": [
+        "タマタマ",
+        "タマタマ"
+      ]
+    },
+    {
+      "target_id": "cross-release-047",
+      "card_id": "ja:M6A:009/103:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:af6a4e9d0ad0927176dc1774f7eb76c097bb79cd6b4f193c7025ca37e0b498f3",
+      "catalog_number": "009/103",
+      "observed_number_texts": [
+        "009/103",
+        "009/103"
+      ],
+      "observed_names": [
+        "ホゲータex",
+        "ホゲータex"
+      ]
+    },
+    {
+      "target_id": "cross-release-048",
+      "card_id": "ja:M6A:002/103:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:8564b887aa8ccf0585d8c37ea515597c3476840a4a52f50150a11e7bc634ea32",
+      "catalog_number": "002/103",
+      "observed_number_texts": [
+        "002/103",
+        "002/103"
+      ],
+      "observed_names": [
+        "アローラナッシー",
+        "アローラ ナッシー"
+      ]
+    },
+    {
+      "target_id": "cross-release-049",
+      "card_id": "ja:M6A:00B/103:holo",
+      "status": "held",
+      "reason": "source_asset_unavailable",
+      "number_event_id": null
+    },
+    {
+      "target_id": "cross-release-050",
+      "card_id": "ja:M6A:003/103:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3e8476c4f3254baab2b41e9e237ca72c35b11321c1ca49c9bd9a3ee9e9ec37e4",
+      "catalog_number": "003/103",
+      "observed_number_texts": [
+        "003/103",
+        "003/103"
+      ],
+      "observed_names": [
+        "バルビート",
+        "バルビート"
+      ]
+    },
+    {
+      "target_id": "cross-release-051",
+      "card_id": "en:ME02.5:001/217:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:e2b67134c3f4b81f4e805726ea1d01b98a1e1f80d7542bdb3f6ead1c34037a46",
+      "catalog_number": "001/217",
+      "observed_number_texts": [
+        "001/217",
+        "001/217"
+      ],
+      "observed_names": [
+        "Erika’s Oddish",
+        "Erika's Oddish"
+      ]
+    },
+    {
+      "target_id": "cross-release-052",
+      "card_id": "en:ME02.5:003/217:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:fa4a76343b1987cf433bc4943c72360aa22142e4b719efd9572ad6774947faa8",
+      "catalog_number": "003/217",
+      "observed_number_texts": [
+        "003/217",
+        "003/217"
+      ],
+      "observed_names": [
+        "Erika’s Vileplume ex",
+        "Erika's Vileplume ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-053",
+      "card_id": "en:ME02.5:002/217:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:527b017cf1aca19578d95fd4a31dbb204d9776df55651d3173ecc65bca5e255b",
+      "catalog_number": "002/217",
+      "observed_number_texts": [
+        "002/217",
+        "002/217"
+      ],
+      "observed_names": [
+        "Erika’s Gloom",
+        "Erika's Gloom"
+      ]
+    },
+    {
+      "target_id": "cross-release-054",
+      "card_id": "en:ME02.5:004/217:reverse_energy",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:a57e3f3a4aedfadd778e93b5a8949dd73439f0ed7ca177dc4a80ecf8dd417016",
+      "catalog_number": "004/217",
+      "observed_number_texts": [
+        "004/217",
+        "004/217"
+      ],
+      "observed_names": [
+        "Erika’s Bellsprout",
+        "Erika's Bellsprout"
+      ]
+    },
+    {
+      "target_id": "cross-release-055",
+      "card_id": "en:ME02.5:005/217:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:543ec0b33cfe1ca5eeb3967239d08b51f60196988845a51dd895cd6aa1ca86d5",
+      "catalog_number": "005/217",
+      "observed_number_texts": [
+        "005/217",
+        "005/217"
+      ],
+      "observed_names": [
+        "Erika’s Weepinbell",
+        "Erika's Weepinbell"
+      ]
+    },
+    {
+      "target_id": "cross-release-056",
+      "card_id": "en:SWSH8:001/264:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:cbf2c5476f99ff847610ba563c472efd67140286e040ae91a9ac581493e28dbb",
+      "catalog_number": "001/264",
+      "observed_number_texts": [
+        "001/264",
+        "001/264"
+      ],
+      "observed_names": [
+        "Caterpie",
+        "Caterpie"
+      ]
+    },
+    {
+      "target_id": "cross-release-057",
+      "card_id": "en:SWSH8:006/264:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d067e2aa1a5ff137d1e98db63acd87ce24b5eaf57a6186bd3368b16b6c44189b",
+      "catalog_number": "006/264",
+      "observed_number_texts": [
+        "006/264",
+        "006/264"
+      ],
+      "observed_names": [
+        "Breloom V",
+        "Breloom V"
+      ]
+    },
+    {
+      "target_id": "cross-release-058",
+      "card_id": "en:SWSH8:002/264:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:c38181e03fbb2483b28583d751e55b1909175ccabc3320eda88231d1efd71bb5",
+      "catalog_number": "002/264",
+      "observed_number_texts": [
+        "002/264",
+        "002/264"
+      ],
+      "observed_names": [
+        "Metapod",
+        "Metapod"
+      ]
+    },
+    {
+      "target_id": "cross-release-059",
+      "card_id": "en:SWSH8:003/264:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:7766f7280121616c80e0ce772a85d816784d67984740d1a01caa1e5d8d96c81c",
+      "catalog_number": "003/264",
+      "observed_number_texts": [
+        "003/264",
+        "003/264"
+      ],
+      "observed_names": [
+        "Butterfree",
+        "Butterfree"
+      ]
+    },
+    {
+      "target_id": "cross-release-060",
+      "card_id": "en:SWSH8:004/264:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:655c799ef87687c2655bf30abe06e14539c081b9d82e7cbf2e255ca4461873ee",
+      "catalog_number": "004/264",
+      "observed_number_texts": [
+        "004/264",
+        "004/264"
+      ],
+      "observed_names": [
+        "Shroomish",
+        "Shroomish"
+      ]
+    },
+    {
+      "target_id": "cross-release-061",
+      "card_id": "en:SV02:001/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:22321451ad784c71033dc08759409b2429b893472a4be24beb27ba757e9a9729",
+      "catalog_number": "001/193",
+      "observed_number_texts": [
+        "001/193",
+        "001/193"
+      ],
+      "observed_names": [
+        "Hoppip",
+        "Hoppip"
+      ]
+    },
+    {
+      "target_id": "cross-release-062",
+      "card_id": "en:SV02:005/193:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:2567dee6bf1ee5e54d4999d522fdf6b158c4a91c930cc52ef584ca219c26ba93",
+      "catalog_number": "005/193",
+      "observed_number_texts": [
+        "005/193",
+        "005/193"
+      ],
+      "observed_names": [
+        "Forretress ex",
+        "Forretress ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-063",
+      "card_id": "en:SV02:002/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:bbbb6d7dacfcb727cfa62729e10306abc4cc171b05afe1ab43ffcf3230e5e7a7",
+      "catalog_number": "002/193",
+      "observed_number_texts": [
+        "002/193",
+        "002/193"
+      ],
+      "observed_names": [
+        "Skiploom",
+        "Skiploom"
+      ]
+    },
+    {
+      "target_id": "cross-release-064",
+      "card_id": "en:SV02:003/193:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:78fccf0329a24daa93d5231a08b4c90db8383791b317d631b2a08e811acd0d2e",
+      "catalog_number": "003/193",
+      "observed_number_texts": [
+        "003/193",
+        "003/193"
+      ],
+      "observed_names": [
+        "Jumpluff",
+        "Jumpluff"
+      ]
+    },
+    {
+      "target_id": "cross-release-065",
+      "card_id": "en:SV02:004/193:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:a56aa2ccb185c3d514aca3dc47d1e7aa96a2ebf132a8c73b264729000a4c7baa",
+      "catalog_number": "004/193",
+      "observed_number_texts": [
+        "004/193",
+        "004/193"
+      ],
+      "observed_names": [
+        "Pineco",
+        "Pineco"
+      ]
+    },
+    {
+      "target_id": "cross-release-066",
+      "card_id": "en:SM12:001/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d353676e99a62a6c2f60d7a9092daae31503a3676e433291e18597361987d8ac",
+      "catalog_number": "001/236",
+      "observed_number_texts": [
+        "1/236",
+        "1/236"
+      ],
+      "observed_names": [
+        "Venusaur & Snivy GX",
+        "Venusaur&Snivy GX"
+      ]
+    },
+    {
+      "target_id": "cross-release-067",
+      "card_id": "en:SM12:004/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:926a2b58953b68aaeb0688ec5aebf2d04b45d4eabf6e7dd65d85d58be808341c",
+      "catalog_number": "004/236",
+      "observed_number_texts": [
+        "4/236",
+        "4/236"
+      ],
+      "observed_names": [
+        "Vileplume GX",
+        "Vileplume GX"
+      ]
+    },
+    {
+      "target_id": "cross-release-068",
+      "card_id": "en:SM12:002/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3a036258594a2eb41b00e5e3b9ba50f34bc973b4727643aab2b595b316c1f1e3",
+      "catalog_number": "002/236",
+      "observed_number_texts": [
+        "2/236",
+        "2/236"
+      ],
+      "observed_names": [
+        "Oddish",
+        "Oddish"
+      ]
+    },
+    {
+      "target_id": "cross-release-069",
+      "card_id": "en:SM12:003/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3572bf05130a5686f81f028be3a072fd4e1fe648e3239ff825b17c34f76a7e15",
+      "catalog_number": "003/236",
+      "observed_number_texts": [
+        "3/236",
+        "3/236"
+      ],
+      "observed_names": [
+        "Gloom",
+        "Gloom"
+      ]
+    },
+    {
+      "target_id": "cross-release-070",
+      "card_id": "en:SM12:005/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:11d1ab768402f3b2510b4d3ae4b8a8fdd3fe2a4263da86fe66ed87153f33f373",
+      "catalog_number": "005/236",
+      "observed_number_texts": [
+        "5/236",
+        "5/236"
+      ],
+      "observed_names": [
+        "Tangela",
+        "Tangela"
+      ]
+    },
+    {
+      "target_id": "cross-release-071",
+      "card_id": "en:SV04:001/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:6551810e3424b9de31523579c9a0b1bcb65f08bd6603534974954ba182aee503",
+      "catalog_number": "001/182",
+      "observed_number_texts": [
+        "001/182",
+        "001/182"
+      ],
+      "observed_names": [
+        "Surskit",
+        "Surskit"
+      ]
+    },
+    {
+      "target_id": "cross-release-072",
+      "card_id": "en:SV04:003/182:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:ba0d3906f517f8f431a95e8c365ad81a02e939306d3bcdeb1af22e05761ddfd6",
+      "catalog_number": "003/182",
+      "observed_number_texts": [
+        "003/182",
+        "003/182"
+      ],
+      "observed_names": [
+        "Froslass ex",
+        "Froslass ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-073",
+      "card_id": "en:SV04:002/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:7fb8a5239772a7226740c16a4d3e02354e1fc09b5ba4c8d2d10255c031efe054",
+      "catalog_number": "002/182",
+      "observed_number_texts": [
+        "002/182",
+        "002/182"
+      ],
+      "observed_names": [
+        "Masquerain",
+        "Masquerain"
+      ]
+    },
+    {
+      "target_id": "cross-release-074",
+      "card_id": "en:SV04:004/182:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:9e912828740a6aa8ef1b548b4ec11971602a73a534758600b532ea1d91163e99",
+      "catalog_number": "004/182",
+      "observed_number_texts": [
+        "004/182",
+        "004/182"
+      ],
+      "observed_names": [
+        "Pansage",
+        "Pansage"
+      ]
+    },
+    {
+      "target_id": "cross-release-075",
+      "card_id": "en:SV04:005/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:96e482f7d3d2a61a43891b624161a3fd56c8f2653191d63de2c3077b147fea86",
+      "catalog_number": "005/182",
+      "observed_number_texts": [
+        "005/182",
+        "005/182"
+      ],
+      "observed_names": [
+        "Simisage",
+        "Simisage"
+      ]
+    },
+    {
+      "target_id": "cross-release-076",
+      "card_id": "en:SM11:001/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:fe844d63edff78fa7056625abd4bce9edbd1fd9f60ffa73d5021f14f32ea2dd7",
+      "catalog_number": "001/236",
+      "observed_number_texts": [
+        "1/236",
+        "1/236"
+      ],
+      "observed_names": [
+        "Rowlet & Alolan Exeggutor GX",
+        "Rowlet & Alolan Exeggutor GX"
+      ]
+    },
+    {
+      "target_id": "cross-release-077",
+      "card_id": "en:SM11:025/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:9b3792beac1a2a1a7f54950d7c5328b5466131217c77d558516d5f8f29f589fd",
+      "catalog_number": "025/236",
+      "observed_number_texts": [
+        "25/236",
+        "25/236"
+      ],
+      "observed_names": [
+        "Heatran GX",
+        "Heatran GX"
+      ]
+    },
+    {
+      "target_id": "cross-release-078",
+      "card_id": "en:SM11:002/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:46f5e89a29441854408df3e161974a839513bca281d2f34e84521dff2c9699a7",
+      "catalog_number": "002/236",
+      "observed_number_texts": [
+        "2/236",
+        "2/236"
+      ],
+      "observed_names": [
+        "Yanma",
+        "Yanma"
+      ]
+    },
+    {
+      "target_id": "cross-release-079",
+      "card_id": "en:SM11:003/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:585ae29f62f58b6d2b36809cbacbf22e030b8073541ec84449140742a2e4d36b",
+      "catalog_number": "003/236",
+      "observed_number_texts": [
+        "3/236",
+        "3/236"
+      ],
+      "observed_names": [
+        "Yanmega",
+        "Yanmega"
+      ]
+    },
+    {
+      "target_id": "cross-release-080",
+      "card_id": "en:SM11:004/236:standard",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:fef3801f4a22eafe92aaaacc421860adacf527a3dce5025a77be5232ada896cf",
+      "catalog_number": "004/236",
+      "observed_number_texts": [
+        "4/236",
+        "4/236"
+      ],
+      "observed_names": [
+        "Celebi",
+        "Celebi"
+      ]
+    },
+    {
+      "target_id": "cross-release-081",
+      "card_id": "en:SV01:001/198:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:de9756bf997947e2b3946c756872faf50c739444cfbb1c9c40493eadfed68272",
+      "catalog_number": "001/198",
+      "observed_number_texts": [
+        "001/198",
+        "001/198"
+      ],
+      "observed_names": [
+        "Pineco",
+        "Pineco"
+      ]
+    },
+    {
+      "target_id": "cross-release-082",
+      "card_id": "en:SV01:019/198:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:6fd9b05de44293baa462a58a47314feb966fcbcbb6fb5f6346635bf8197dc43f",
+      "catalog_number": "019/198",
+      "observed_number_texts": [
+        "019/198",
+        "019/198"
+      ],
+      "observed_names": [
+        "Spidops ex",
+        "Spidops ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-083",
+      "card_id": "en:SV01:002/198:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:7892e71469589cff22ec7ce47dce954534c6d998cd7d5195d67e57ae82ec80a2",
+      "catalog_number": "002/198",
+      "observed_number_texts": [
+        "002/198",
+        "002/198"
+      ],
+      "observed_names": [
+        "Heracross",
+        "Heracross"
+      ]
+    },
+    {
+      "target_id": "cross-release-084",
+      "card_id": "en:SV01:003/198:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:3d6286bb0f864461212eab3557979c7fa9131f28be5919bb12ae5edaf09c0de3",
+      "catalog_number": "003/198",
+      "observed_number_texts": [
+        "003/198",
+        "003/198"
+      ],
+      "observed_names": [
+        "Shroomish",
+        "Shroomish"
+      ]
+    },
+    {
+      "target_id": "cross-release-085",
+      "card_id": "en:SV01:004/198:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:cbbf8a7c2e09f0345abea9268a372f82da87d2d8804f9fc4196753a9ac7f9cb5",
+      "catalog_number": "004/198",
+      "observed_number_texts": [
+        "004/198",
+        "004/198"
+      ],
+      "observed_names": [
+        "Breloom",
+        "Breloom"
+      ]
+    },
+    {
+      "target_id": "cross-release-086",
+      "card_id": "en:SV08:001/191:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:7eefb8dc3c595a9d9efffbe755d9c53e33ee386bdf7e9aacede57f83ccbca0b0",
+      "catalog_number": "001/191",
+      "observed_number_texts": [
+        "001/191",
+        "001/191"
+      ],
+      "observed_names": [
+        "Exeggcute",
+        "Exeggcute"
+      ]
+    },
+    {
+      "target_id": "cross-release-087",
+      "card_id": "en:SV08:004/191:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:66fd53f5d4de12ce894d8af8fd8b1d69608c51340453b5ba39495d45111bd834",
+      "catalog_number": "004/191",
+      "observed_number_texts": [
+        "004/191",
+        "004/191"
+      ],
+      "observed_names": [
+        "Durant ex",
+        "Durant ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-088",
+      "card_id": "en:SV08:002/191:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:50ac38c80bdd8d6b6190c5688987810cb44d1381f1faef4e1f95f6f9aa147db0",
+      "catalog_number": "002/191",
+      "observed_number_texts": [
+        "002/191",
+        "002/191"
+      ],
+      "observed_names": [
+        "Exeggcute",
+        "Exeggcute"
+      ]
+    },
+    {
+      "target_id": "cross-release-089",
+      "card_id": "en:SV08:003/191:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:83265fe371a405c13535c4371a4c5d73335859dee08e105f860ce75cdabb4ebe",
+      "catalog_number": "003/191",
+      "observed_number_texts": [
+        "003/191",
+        "003/191"
+      ],
+      "observed_names": [
+        "Exeggutor",
+        "Exeggutor"
+      ]
+    },
+    {
+      "target_id": "cross-release-090",
+      "card_id": "en:SV08:005/191:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:64af998dd704d936a5951690fd855bd87d551e68ce408c8002373d617a73bbd1",
+      "catalog_number": "005/191",
+      "observed_number_texts": [
+        "005/191",
+        "005/191"
+      ],
+      "observed_names": [
+        "Scatterbug",
+        "Scatterbug"
+      ]
+    },
+    {
+      "target_id": "cross-release-091",
+      "card_id": "en:SV04.5:001/091:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:135171a86b984a438086b0961f9a1c145ac23a3822bbfd080797c608dd858477",
+      "catalog_number": "001/091",
+      "observed_number_texts": [
+        "001/091",
+        "001/091"
+      ],
+      "observed_names": [
+        "Pineco",
+        "Pineco"
+      ]
+    },
+    {
+      "target_id": "cross-release-092",
+      "card_id": "en:SV04.5:002/091:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:03300557cafe6361c064530b98c4b51d47bab9e00cc0482892c0651a5ad249ab",
+      "catalog_number": "002/091",
+      "observed_number_texts": [
+        "002/091",
+        "002/091"
+      ],
+      "observed_names": [
+        "Forretress ex",
+        "Forretress ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-093",
+      "card_id": "en:SV04.5:003/091:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1ffb5089f775ffa4da2521696bfac96496f7f0c91139e427cc439700b19c7c09",
+      "catalog_number": "003/091",
+      "observed_number_texts": [
+        "003/091",
+        "003/091"
+      ],
+      "observed_names": [
+        "Maractus",
+        "Maractus"
+      ]
+    },
+    {
+      "target_id": "cross-release-094",
+      "card_id": "en:SV04.5:004/091:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:853937c1767edebc5cefde1dbded15134647fabb9030323605a9c8a0263034d0",
+      "catalog_number": "004/091",
+      "observed_number_texts": [
+        "004/091",
+        "004/091"
+      ],
+      "observed_names": [
+        "Toedscool",
+        "Toedscool"
+      ]
+    },
+    {
+      "target_id": "cross-release-095",
+      "card_id": "en:SV04.5:005/091:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1564626b575a959de18fe6781e8bed678e174343f494f4849a82ac84c2f09832",
+      "catalog_number": "005/091",
+      "observed_number_texts": [
+        "005/091",
+        "005/091"
+      ],
+      "observed_names": [
+        "Toedscruel ex",
+        "Toedscruel ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-096",
+      "card_id": "en:SV10:001/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:08b3b2a435203f5c51b5fa0e987633750dce51a0b3451d4213c7713413471eb0",
+      "catalog_number": "001/182",
+      "observed_number_texts": [
+        "001/182",
+        "001/182"
+      ],
+      "observed_names": [
+        "Ethan’s Pinsir",
+        "Ethan's Pinsir"
+      ]
+    },
+    {
+      "target_id": "cross-release-097",
+      "card_id": "en:SV10:003/182:holo",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:1c5393510e8e99387ee5f68898be20322fd45a5ae0cb999453130e59f78502a3",
+      "catalog_number": "003/182",
+      "observed_number_texts": [
+        "003/182",
+        "003/182"
+      ],
+      "observed_names": [
+        "Yanmega ex",
+        "Yanmega ex"
+      ]
+    },
+    {
+      "target_id": "cross-release-098",
+      "card_id": "en:SV10:002/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:363fd21c4cd9e23e4bdaa652cba2c154b57c7d257ca494e4fcf50e7f63ccc78b",
+      "catalog_number": "002/182",
+      "observed_number_texts": [
+        "002/182",
+        "002/182"
+      ],
+      "observed_names": [
+        "Yanma",
+        "Yanma"
+      ]
+    },
+    {
+      "target_id": "cross-release-099",
+      "card_id": "en:SV10:004/182:reverse",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:faae881a4ccaa2aa9fef32c70ef4c580e51a16de8e0d3505dfc710c067aa3871",
+      "catalog_number": "004/182",
+      "observed_number_texts": [
+        "004/182",
+        "004/182"
+      ],
+      "observed_names": [
+        "Pineco",
+        "Pineco"
+      ]
+    },
+    {
+      "target_id": "cross-release-100",
+      "card_id": "en:SV10:005/182:normal",
+      "status": "catalog_text_observed",
+      "number_event_id": "number-reading:d2ce6a56ae50df0438ef90ef859336be48dc08978734a4b7f89837fa33fe1c3b",
+      "catalog_number": "005/182",
+      "observed_number_texts": [
+        "005/182",
+        "005/182"
+      ],
+      "observed_names": [
+        "Shroomish",
+        "Shroomish"
+      ]
+    }
+  ],
+  "review_input_sha256": {
+    "catalog/cross-release-source-facts-v1/bound-targets-v1.jsonl": "4d2124367844fe20c8bc2994831362b5bd043444c28fe6dcad2343dff79dbc18",
+    "catalog/cross-release-source-facts-v1/assets-v4.json": "82c20cba942a9f99f56d20cb72f9216e02292a44fd202b2ffe8cdd629f8744db",
+    "catalog/cross-release-source-facts-v1/image-cohort-v3.jsonl": "0ce3b51c4c3b20b34ae9116ee418cb98d57b4419e741daecfd32f8b39577770c",
+    "catalog/cross-release-source-facts-v1/root-review-v2.jsonl": "e81897a5d8eb518fa574d6b23b5018d31aa257caf8295976456d1307b67a9e91",
+    "catalog/cross-release-source-facts-v1/gemini-selected-v1.jsonl": "3dcb307961881d8d960458bcfeac25d823321bdb686e7fdffa101db699260b58"
+  },
+  "evidence_sha256": "11beb5ba00c35940ad0a5c5057db080708013b4e03da7726e2ab9b7eb43d5fe1",
+  "source_and_image_bytes_verified": true,
+  "independence_or_marketplace_accuracy_established": false,
+  "physical_or_commerce_approvals_added": false,
+  "scope": "Stock-image title and collector text. Catalog coordinates and graph decisions unchanged; unavailable images retain explicit holds."
+}

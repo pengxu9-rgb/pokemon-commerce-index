@@ -57,7 +57,11 @@ def reading_key(text):
     if text is None:
         return None
     _text(text)
-    parsed = parse_number(text)
+    # Reviewers sometimes include the adjacent printed rarity token. Only
+    # separate a known token from an otherwise complete numeric fraction;
+    # retain the original reading in the event and never infer missing parts.
+    match = re.fullmatch(r'(\d{1,6}\s*/\s*\d{1,6})\s+(?:C|U|R|RR|RRR|PR|AR|SR|SAR|UR|SSR|CHR|CSR|ACE)', text.strip())
+    parsed = parse_number(match[1] if match else text)
     if parsed['number_format'] == 'other':
         return None
     return parsed['full_number_key']

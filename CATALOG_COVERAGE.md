@@ -1,5 +1,7 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
+**Latest evidence update, 3 October 2026:** [Cross-release source facts](CROSS_RELEASE_SOURCE_FACTS_20261003.md) processes a frozen hundred across twenty releases: 99 acquired/reviewed scans, 98 title/number correspondences, one acquired-symbol hold and one unavailable image. Cumulative source facts cover 148 subjects (147 title advisories, one HP conflict); number evidence covers 178 subjects (172 usable, six held). Catalog counts remain 70,006 source records, 45,438 coordinates and 33,543 structural eligible records. No new SKU, graph edge or physical/commerce permission is claimed. The next 1,000 metadata targets remain unreviewed; the older dated coverage sections below retain their historical counts.
+
 The catalog can be built without Buy&Ship. The 23 September pinned baseline contains **55,165 internal card identities across 543 card-bearing language-and-set combinations**: 27,092 Japanese identities in 342 sets and 28,073 English identities in 201 sets, plus 24,039 Japanese and 9,208 English source reference records. The 26 September increment below adds two internal candidates. These are card metadata, not live offers or prices.
 
 | Layer | Records | Use in offer matching |

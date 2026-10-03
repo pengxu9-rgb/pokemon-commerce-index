@@ -88,3 +88,27 @@ class SourceImageFactTests(unittest.TestCase):
         response['modelVersion']='wrong'
         with self.assertRaises(ValueError):parse(response)
         with self.assertRaises(ValueError):facts.validate_reading(reading(price_comparable=True))
+
+    def test_typographic_fragments_preserve_correspondence_without_removing_symbols(self):
+        r=copy.deepcopy(self.row);r['endpoint_snapshot']['name']='Rowlet & Alolan Exeggutor GX'
+        r['reviews'][0]['reading']=reading(title_text_parts=['Rowlet & Alolan Exeggutor GX'],title_symbols=[])
+        r['reviews'][1]['reading']=reading(title_text_parts=['Rowlet &','Alolan Exeggutor','GX'],title_symbols=[])
+        self.assertEqual(facts.outcomes(r)['name_status'],'literal_correspondence_advisory')
+        split=reading(title_text_parts=['基','本','エネルギー'],title_symbols=[dict(kind='grass',after_text_part=1)])
+        self.assertEqual(facts.title_structure(split),facts.title_structure(reading()))
+        wrong=reading(title_text_parts=['基本','エネルギー'],title_symbols=[dict(kind='grass',after_text_part=1)])
+        self.assertNotEqual(facts.title_structure(wrong),facts.title_structure(reading()))
+
+    def test_trailing_prism_symbol_is_retained_without_canonical_name_approval(self):
+        r=reading(title_text_parts=['シェイミ'],title_symbols=[dict(kind='prism_star',after_text_part=0)])
+        facts.validate_reading(r)
+        self.assertIsNone(facts.title_interpretation(r)['canonical_candidate'])
+        self.assertEqual(facts.title_structure(r),[('text','シェイミ'),('symbol','prism_star')])
+
+    def test_typographic_apostrophes_do_not_merge_different_owners_or_mechanics(self):
+        a=reading(title_text_parts=['Erika’s Vileplume ex'],title_symbols=[])
+        b=reading(title_text_parts=["Erika's Vileplume",'ex'],title_symbols=[])
+        self.assertEqual(facts.title_structure(a),facts.title_structure(b))
+        self.assertNotEqual(facts.title_structure(a),facts.title_structure(reading(title_text_parts=["Ethan's Vileplume ex"],title_symbols=[])))
+        self.assertNotEqual(facts.title_structure(a),facts.title_structure(reading(title_text_parts=["Erika's Vileplume GX"],title_symbols=[])))
+        self.assertEqual(a['title_text_parts'],['Erika’s Vileplume ex'])

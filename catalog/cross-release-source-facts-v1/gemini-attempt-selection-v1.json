@@ -1,0 +1,714 @@
+{
+  "attempts": 101,
+  "subjects": 99,
+  "selections": [
+    {
+      "target_id": "cross-release-003",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-002",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-001",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-004",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-005",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-006",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-008",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-009",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-007",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-010",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-011",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-012",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-013",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "review_failed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-014",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-015",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-016",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-018",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-019",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-017",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-021",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-020",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-022",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-023",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-024",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-025",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-026",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-027",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-028",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-029",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-030",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-031",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-032",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-033",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-034",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-035",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-037",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-036",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-038",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-039",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-040",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-041",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-043",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-042",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-044",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-046",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-048",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-045",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-047",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-050",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-051",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-052",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-053",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-054",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-055",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-056",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-058",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-059",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-057",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-060",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-061",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-063",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-064",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-065",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-067",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-066",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-062",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-068",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-070",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-069",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-071",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-073",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-074",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "review_failed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-072",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-075",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-077",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-078",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-079",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-081",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-076",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-083",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-082",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-084",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-086",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-085",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-088",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-089",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-087",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-090",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-091",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-093",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-094",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-092",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-096",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-095",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-097",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-099",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-100",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-098",
+      "input": "catalog/cross-release-source-facts-v1/gemini-review-v1.jsonl",
+      "input_sha256": "416ff852d0ec30633d22c43ba5e8bacfc58386e01595fe2455876abd9c709217",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    },
+    {
+      "target_id": "cross-release-074",
+      "input": "catalog/cross-release-source-facts-v1/gemini-retry-v1.jsonl",
+      "input_sha256": "916d9abaad5c3379261cb40b76cec9f76552140a74fcd8e4de26f2d178c0c105",
+      "status": "reviewed",
+      "replaced_failed_attempt": true
+    },
+    {
+      "target_id": "cross-release-013",
+      "input": "catalog/cross-release-source-facts-v1/gemini-retry-v1.jsonl",
+      "input_sha256": "916d9abaad5c3379261cb40b76cec9f76552140a74fcd8e4de26f2d178c0c105",
+      "status": "reviewed",
+      "replaced_failed_attempt": true
+    },
+    {
+      "target_id": "cross-release-080",
+      "input": "catalog/cross-release-source-facts-v1/gemini-recovered-review-v1.jsonl",
+      "input_sha256": "fa92d8864a1e6696d35ca294cd3270bd0bd59c3aabb4d5516700a8cc0b8a78bc",
+      "status": "reviewed",
+      "replaced_failed_attempt": false
+    }
+  ],
+  "failed_attempts_preserved": true
+}

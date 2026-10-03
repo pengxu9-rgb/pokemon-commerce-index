@@ -1,0 +1,20 @@
+✔ authenticated caller replays unchanged prior actions/revision, without ACP/AP2 state (118.51275ms)
+✔ catalog revision change withdraws handoff and requires restart/reconfirmation without silent replay (0.755ms)
+✔ transient failures retry at most once and refresh the server identity token (1.849458ms)
+✔ action/auth rejections are not retried and service error text cannot leak caller secrets (41.111334ms)
+✔ timeouts cancel fetch and token lookup, with bounded retries (207.275958ms)
+✔ malformed/oversized/mismatched responses and invented commerce approvals fail closed (3.303166ms)
+✔ target handoff requires exact matching catalog coordinates and every commerce gate remains false (1.031375ms)
+✔ caller cannot inject derived approvals, truncate a 20-action journey, or mutate an in-flight snapshot (2.306541ms)
+✔ service URL is trusted setup only, credentials/redirects/cleartext remote calls are rejected (0.78675ms)
+✔ two-card discovery passes partial metadata and rejects nested commerce approvals (2.139ms)
+✔ operation is disabled by default and authorization uses trusted context before any catalog request (1.686417ms)
+✔ checkout fields, caller-provided identities and unregistered operations cannot enter this lane (0.559292ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 502.695208

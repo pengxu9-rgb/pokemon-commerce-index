@@ -1,5 +1,7 @@
 # Pokémon Commerce Index — clean-room vertical slice
 
+**2026-10-03 最新补证：** [20 卡组、100 候选审计](CROSS_RELEASE_SOURCE_FACTS_20261003.md)完成 99 张实际卡图的 OpenAI／Vertex Gemini 读图，98 张名称及编号对应、99 张 HP 与来源一致；1 张 Prism Star 卡保留待确认、1 张图片不可用。累计图像事实覆盖 148 张，编号证据覆盖 178 张，目录仍为 70,006 来源记录，关系图仍为 63 对同画及 11 对差异。私有云端已更新，563 项 Python、12 项 Node 测试及 141 项云端工程检查通过。下一批 1,000 个未复核坐标和 14 组双图候选已固定，尚未计入审核通过量。实时价格及交易仍等待获准 feed。
+
 这是一个可运行的新项目，用于验证日文 Pokémon 卡片的身份归一、报价观测、到手价和卖家库存重合度。它没有复用旧 demo 的代码、数据或图片，也没有内置 SNKRDUNK、Mercari、Yahoo 或 eBay 爬虫。本项目依据用户提供的 build plan 独立实现。旧 demo 的 private GitHub 仓库现已通过授权账号读取；已核对其 Mercari 网关接口和 Yahoo 接口用法，实际接入仍以 Buy&Ship 最新契约与数据授权为准。
 
 **主线开发顺序见 [BUILD_SEQUENCE.md](BUILD_SEQUENCE.md)：卡片身份及探索关系 → 获准的 API 报价 → 商品关联与 ask index → 到手价／品相辅助判断／商家建议。探索状态先支持用户逐步选定目标；购买建议仍等待真实报价证据。人工双审是并行质检工具，不是前三层的开工门槛。**

@@ -25,9 +25,9 @@ def validate_reading(r):
     positions=[]
     for symbol in r['title_symbols']:
         if not isinstance(symbol,dict) or set(symbol)!={'kind','after_text_part'}:raise ValueError('invalid title symbol')
-        if symbol['kind'] not in {'grass','fire','unknown'}:raise ValueError('unsupported title symbol')
+        if symbol['kind'] not in {'grass','fire','prism_star','unknown'}:raise ValueError('unsupported title symbol')
         at=symbol['after_text_part']
-        if type(at)!=int or not 0<=at<len(r['title_text_parts'])-1:raise ValueError('title symbol position outside text')
+        if type(at)!=int or not 0<=at<len(r['title_text_parts']):raise ValueError('title symbol position outside text')
         positions.append(at)
     if len(set(positions))!=len(positions) or positions!=sorted(positions):raise ValueError('duplicate or unordered title symbols')
     for key in ['title_furigana','observed_number_text']:
@@ -58,7 +58,7 @@ def outcomes(row):
     name_agrees=all(n is not None and core._compact_identity_text(n)==core._compact_identity_text(row['endpoint_snapshot']['name']) for n in candidates)
     # The exact symbolic structure must agree too: a literal expanded word is
     # not interchangeable with an icon merely because both yield the same name.
-    structure=[([compact(t) for t in r['title_text_parts']],r['title_symbols']) for r in readings]
+    structure=[title_structure(r) for r in readings]
     name_agrees=name_agrees and structure[0]==structure[1]
     name_status=('symbol_correspondence_advisory' if any(t['normalization_rule'] for t in titles) else 'literal_correspondence_advisory') if name_agrees else 'unconfirmed'
     states=[r['hp_status'] for r in readings];values=[r['hp'] for r in readings];pinned=row['pinned_source_hp']
@@ -73,6 +73,20 @@ def outcomes(row):
     return dict(name_status=name_status,title_interpretations=titles,
         hp_status=hp_status,observed_hp=values[0] if states==['visible','visible'] and values[0]==values[1] else None,
         observed_number_agreement=keys[0] is not None and keys[0]==keys[1],warnings=warnings)
+
+def title_structure(reading):
+    """Ignore text-fragment boundaries, preserving each symbol's text anchor."""
+    validate_reading(reading)
+    symbols={s['after_text_part']:s['kind'] for s in reading['title_symbols']}
+    sequence=[];text=''
+    for i,part in enumerate(reading['title_text_parts']):
+        # Keep literal reviews intact; normalize only typographic apostrophes
+        # in this comparison key, never trainer names or mechanic markers.
+        text+=compact(part).translate(str.maketrans({'’':"'",'‘':"'"}))
+        if i in symbols:
+            sequence.extend([('text',text),('symbol',symbols[i])]);text=''
+    if text:sequence.append(('text',text))
+    return sequence
 
 def event_id(row):return 'source-image-fact:'+supported_catalog.digest({k:v for k,v in row.items() if k!='event_id'})
 

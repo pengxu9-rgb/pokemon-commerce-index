@@ -1,5 +1,9 @@
 # Active build sequence — 2 October 2026
 
+## Latest completed evidence step — 3 October 2026
+
+[The frozen 100-target cross-release batch](CROSS_RELEASE_SOURCE_FACTS_20261003.md) is complete: 99 acquired/reviewed scans, 98 number/title correspondences, one Prism Star interpretation hold and one unavailable source image. Cumulative source facts cover 148 subjects; number evidence covers 178. The next 1,000 unreviewed metadata targets and fourteen source-bound artwork-pair hypotheses are frozen. Proceed with source-image qualification at scale, then separate two-image artwork reviews before graph import. Catalog identities and live offers are unchanged; authorized price feeds still require Buy&Ship. Private staging serves revision `00038-jsw`; 563 Python, twelve Node and 141 cloud engineering checks pass.
+
 ## Product objective
 
 Help a collector explore Pokémon cards, choose an exact printing, compare fresh authorized offers and destination-specific landed costs, and hand the selected URL/quote to Buy&Ship. Merchant recommendations must explain their price and condition evidence; reliability scores require fulfillment outcomes.

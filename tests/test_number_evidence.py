@@ -65,6 +65,19 @@ class NumberEvidenceTests(unittest.TestCase):
         self.assertEqual(number_evidence.classify('046/M-P', ['046/M-P','46/M-P']), 'catalog_text_observed')
         self.assertEqual(number_evidence.classify('TG10/TG30', ['TG10/TG30','TG10/TG30']), 'catalog_text_observed')
 
+    def test_adjacent_rarity_tokens_preserve_raw_readings_without_filling_numbers(self):
+        self.assertEqual(number_evidence.classify('003/187',['003/187','003/187 RR']), 'catalog_text_observed')
+        self.assertEqual(number_evidence.classify('001/165',['001/165 C','1/165']), 'catalog_text_observed')
+        for text in ['003 RR','003/187 UNKNOWN','003/187 RR extra','003/188 RR','TG03/TG30 RR']:
+            self.assertNotEqual(number_evidence.classify('003/187',['003/187',text]), 'catalog_text_observed')
+        r=copy.deepcopy(self.row)
+        r['review_groups'][0]['reviews'][0]['observed_number_text']='037/225 RR'
+        r['review_groups'][0]['reviews'][1]['observed_number_text']='037/225'
+        r['status']='catalog_text_observed';self.sign(r);number_evidence.import_evidence(self.db,[r])
+        context=number_evidence.context(self.db,self.cid)
+        self.assertIn('037/225 RR',context['observed_number_texts'])
+        for key in number_evidence.FALSE_CLAIMS:self.assertFalse(context[key])
+
     def test_disagreement_and_unreadable_text_are_held(self):
         for text in ['038','unclear?']:
             row = copy.deepcopy(self.row)

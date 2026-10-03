@@ -10,15 +10,24 @@ from pokemon_index import core,collector_discovery,collector_journey,source_imag
 from pokemon_index.cli import create_server
 from scripts.rehearse_card_comparison import sha,semantic
 
-def run(db_path,output,cloud=False,cohort_dir=None):
+def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v1.jsonl',outcomes_filename=None):
     if output.exists():raise FileExistsError(output)
     root=Path(__file__).resolve().parents[1]
     p=(cohort_dir or root/'catalog/source-image-facts-v1').resolve()
     if not p.is_relative_to(root/'catalog'):raise ValueError('fact diagnostic directory must be within catalog')
-    evidence_path=p/'evidence-v1.jsonl';events=list(map(json.loads,evidence_path.read_text().splitlines()))
+    evidence_path=p/evidence_filename
+    if not evidence_path.resolve().is_relative_to(p):raise ValueError('evidence must be within diagnostic directory')
+    events=list(map(json.loads,evidence_path.read_text().splitlines()));missing=[];outcomes_path=None
+    if outcomes_filename:
+        outcomes_path=p/outcomes_filename
+        if not outcomes_path.resolve().is_relative_to(p):raise ValueError('outcomes must be within diagnostic directory')
+        outcomes=json.loads(outcomes_path.read_text())['outcomes']
+        missing=[r for r in outcomes if r['number_event_id'] is None]
+        if len({r['card_id'] for r in outcomes})!=len(outcomes) or {r['card_id'] for r in outcomes}!={r['card_id'] for r in events}|{r['card_id'] for r in missing}:
+            raise ValueError('complete source-fact and held-subject outcomes required')
     questions_path=p/'questions-v1.jsonl';questions=list(map(json.loads,questions_path.read_text().splitlines()))
     if len(questions)<6 or len({q['id'] for q in questions})!=len(questions):raise ValueError('six or more unique authored questions required')
-    planned=len(events)+len(questions)+6+(2 if cloud else 0)
+    planned=len(events)+len(missing)+len(questions)+6+(2 if cloud else 0)
     before=sha(db_path);server=None;thread=None;deployment=None;token=None;checks=[];errors=[];completed=False;revision=None
     def gcloud(*args):return json.loads(subprocess.check_output(['gcloud',*args,'--project=pivota-staging','--format=json'],text=True))
     if cloud:
@@ -56,7 +65,8 @@ def run(db_path,output,cloud=False,cohort_dir=None):
                 fact=actual['source_image_facts']
                 valid=code==200 and semantic(actual)==semantic(expected) and fact['current_endpoint']
                 valid=valid and all(fact[k] is False for k in source_image_facts.FALSE_CLAIMS) and not fact['number_reading_qualification_changed']
-                valid=valid and fact['reviews'][0]['prior_verdicts_visible'] and not fact['reviews'][1]['prior_verdicts_visible']
+                valid=valid and [r['prior_verdicts_visible'] for r in fact['reviews']]==[r['prior_verdicts_visible'] for r in row['reviews']]
+                valid=valid and not fact['reviews'][1]['prior_verdicts_visible']
                 number=actual['number_context']['observed_printed_number']
                 if cid in {q['held_card_id'] for q in questions if 'held_card_id' in q}:
                     valid=valid and number['status']=='reading_hold' and not number['visible_text_agreement']
@@ -67,6 +77,9 @@ def run(db_path,output,cloud=False,cohort_dir=None):
                 valid=code==200 and semantic(actual)==semantic(expected) and actual['task']=='two_card_comparison' and not actual['complete_answer_established'] and not comp['price_comparable'] and not comp['purchase_ready']
                 if q['kind']=='hp_conflict':valid=valid and 'source_image_metadata_resolution' in comp['required_evidence'] and any('source_hp_conflict' in w['warnings'] for w in comp['source_metadata_warnings'])
                 record(q['id'],valid,actual)
+            for row in missing:
+                cid=row['card_id'];expected=core.catalog_card_internal(db,cid);code,actual=query('/catalog-card',dict(card_id=cid))
+                record('unavailable-image:'+cid,code==200 and semantic(actual)==semantic(expected) and actual['source_image_facts'] is None and actual['number_context']['observed_printed_number'] is None,actual)
             selected=[questions[i] for i in [0,2,5]]
             inputs=dict(baseUrl=base,token=token,allowLoopback=not cloud,journeys=[dict(id=q['id'],steps=[dict(action=dict(type='ask',question=q['question']))]) for q in selected])
             run=subprocess.run(['node',str(root/'integrations/pivota/replay.cjs')],input=json.dumps(inputs),text=True,capture_output=True,check=True)
@@ -87,9 +100,10 @@ def run(db_path,output,cloud=False,cohort_dir=None):
     finally:
         if server:server.shutdown();thread.join();server.server_close()
         report=dict(schema='pokemon.source-image-fact-rehearsal.v1',completed=completed,planned_checks=planned,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,transport_errors=errors,deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=sha(db_path)==before,catalog_revision=revision,evidence_sha256=sha(evidence_path),questions_sha256=sha(questions_path),runtime_sha256={n:sha(root/'pokemon_index'/n) for n in ['source_image_facts.py','number_evidence.py','card_comparison.py','collector_discovery.py','collector_journey.py','core.py','cli.py','schema.sql']},independent_real_user_or_marketplace_accuracy_established=False,physical_or_market_approvals_added=False)
+        if outcomes_path:report.update(outcomes_sha256=sha(outcomes_path),unavailable_image_subjects=len(missing))
         output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         if not report['catalog_bytes_unchanged']:raise ValueError('facts rehearsal changed snapshot')
     return {k:report[k] for k in ['completed','checks','passed','deployment']}
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir)))
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);p.add_argument('--evidence-filename',default='evidence-v1.jsonl');p.add_argument('--outcomes-filename');a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir,a.evidence_filename,a.outcomes_filename)))
