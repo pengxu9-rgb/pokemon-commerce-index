@@ -98,6 +98,7 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
                 if q['kind']=='number_conflict':valid=valid and 'source_number_identity_resolution' in comp['required_evidence'] and any('source_image_number_coordinate_conflict' in w['warnings'] for w in comp['source_number_warnings'])
                 if q['kind']=='reviewed_artwork':valid=valid and len(comp['artwork']['reviewed_links'])>0
                 if q['kind']=='artwork_difference':valid=valid and len(comp['artwork']['reviewed_difference_links'])>0
+                if q['kind']=='source_mechanic':valid=valid and any((x['evidence'].get('source_mechanic_binding') or {}).get('status')=='official_coordinate_mechanic_supported' for side in ['left','right'] for x in comp.get(side,{}).get('source_image_facts',[]))
                 if q['kind']=='auxiliary_number':valid=valid and comp.get('auxiliary_number_mentions',{}).get('namespace_confirmed') is False and comp['auxiliary_number_mentions']['texts']==q['auxiliary_number_texts']
                 record(q['id'],valid,actual)
             for row in missing:
@@ -122,7 +123,7 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
             completed=True
     finally:
         if server:server.shutdown();thread.join();server.server_close()
-        report=dict(schema='pokemon.source-image-fact-rehearsal.v1',completed=completed,planned_checks=planned,detail_concurrency=detail_concurrency,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,transport_errors=errors,deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=sha(db_path)==before,catalog_revision=revision,evidence_sha256=sha(evidence_path),questions_sha256=sha(questions_path),runtime_sha256={n:sha(root/'pokemon_index'/n) for n in ['source_image_facts.py','number_evidence.py','card_comparison.py','collector_discovery.py','collector_journey.py','core.py','cli.py','schema.sql']},independent_real_user_or_marketplace_accuracy_established=False,physical_or_market_approvals_added=False)
+        report=dict(schema='pokemon.source-image-fact-rehearsal.v1',completed=completed,planned_checks=planned,detail_concurrency=detail_concurrency,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,transport_errors=errors,deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=sha(db_path)==before,catalog_revision=revision,evidence_sha256=sha(evidence_path),questions_sha256=sha(questions_path),runtime_sha256={n:sha(root/'pokemon_index'/n) for n in ['source_mechanic.py','source_image_facts.py','number_evidence.py','card_comparison.py','collector_discovery.py','collector_journey.py','core.py','cli.py','schema.sql']},independent_real_user_or_marketplace_accuracy_established=False,physical_or_market_approvals_added=False)
         if outcomes_path:report.update(outcomes_sha256=sha(outcomes_path),unavailable_image_subjects=len(missing))
         report['catalog_card_excluded_bookkeeping_paths']=['/rarity_correction/applied_at']
         report['rehearsal_script_sha256']=sha(Path(__file__))

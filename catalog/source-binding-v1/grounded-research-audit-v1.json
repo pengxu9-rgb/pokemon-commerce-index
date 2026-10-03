@@ -1,0 +1,25 @@
+{
+  "grounded_attempts": 2,
+  "completed_grounded_responses": 1,
+  "timeout_attempts": 1,
+  "accepted_as_labels": false,
+  "independent_image_review": false,
+  "primary_verifications": [
+    {
+      "claim": "Official product page does not host AR/SAR standalone images",
+      "finding": "rejected_for_seventeen_targets",
+      "basis": "Downloaded publisher page bundle exposes 167 card-list rows and 17 exact acquired PNG scans; all have separate actual pixel readings."
+    },
+    {
+      "claim": "017/103 is first card of30 distinct Pikachu designs",
+      "finding": "release_level_design_count_supported_only",
+      "basis": "Product feature section declares thirty illustration types; exact secondary printed-number namespace assignment remains held."
+    },
+    {
+      "claim": "G/R RGB Mew images/rarity interpretation",
+      "finding": "not_accepted_as_official_identity_evidence",
+      "basis": "No exact G/R rows or individually bound primary scan acquired."
+    }
+  ],
+  "original_reports_retained": true
+}

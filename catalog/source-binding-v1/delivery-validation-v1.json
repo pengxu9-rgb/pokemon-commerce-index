@@ -1,0 +1,78 @@
+{
+  "schema": "pokemon.source-binding-delivery.v1",
+  "verified_at": "2026-10-03T14:24:09.266229+00:00",
+  "deployment": {
+    "revision": "pokemon-commerce-index-00043-2x6",
+    "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+    "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:dd2e381d7ce541d6b9c6b8c77eee7d6a4b57f7721e5a933a855b489bf4a51322",
+    "private_iam_verified": true,
+    "revision_unchanged_after_verification": true
+  },
+  "traffic_percent": 100,
+  "private_iam_verified": true,
+  "local_checks": 111,
+  "cloud_checks": 115,
+  "transport_retries": 0,
+  "unauthenticated_denial_checks": 4,
+  "report_bindings": {
+    "catalog/source-binding-v1/local-replay-v2.json": {
+      "sha256": "3d8585d8b4e0b50e3c9eab9d4bc5da41a4f7e9b981d5e91894472d8c0f188395",
+      "checks": 76,
+      "transport_errors": []
+    },
+    "catalog/source-binding-v1/prior-facts-local-v2.json": {
+      "sha256": "f504fcd208f4de95f1b4e76c656579bb8a3c1eda9e809dd815ac337759ec83d4",
+      "checks": 21,
+      "transport_errors": []
+    },
+    "catalog/source-binding-v1/cloud-replay-v1.json": {
+      "sha256": "d931415ab5b920774760cf12028ba70d9888819197b8ffff48797f268d77dc63",
+      "checks": 78,
+      "transport_errors": []
+    },
+    "catalog/source-binding-v1/prior-facts-cloud-v1.json": {
+      "sha256": "accad7647110e744270d162e167c8d9518b8443283d51dec79d8adb03df92ac4",
+      "checks": 23,
+      "transport_errors": []
+    },
+    "catalog/source-binding-v1/artwork-local-v2.json": {
+      "sha256": "280a9d9d9b03e6be7c789db8d90aa0df4cd921c0ef5218bacae5572b922c8500",
+      "checks": 14,
+      "transport_errors": []
+    },
+    "catalog/source-binding-v1/artwork-cloud-v1.json": {
+      "sha256": "e6df25f4bab3450e102832d7d6ae88c9c5bd03664ff509f2a2cc6216164a6ad6",
+      "checks": 14,
+      "transport_errors": []
+    }
+  },
+  "artifact_sha256": {
+    "catalog/source-binding-v1/number-evidence-v1.jsonl": "15926b1043c4876ffcc008f173311e9004ac74ace0b0ef7a3e24162cf4df5f33",
+    "catalog/source-binding-v1/source-facts-v1.jsonl": "c4941fc6608c014fc094c3527471a73da6161645160a9b49223a50157e9bf80c",
+    "catalog/source-binding-v1/mechanic-bindings-v1.jsonl": "3be6d7bf27206f60950058c6d5cbf94b3dda4ab082636976d0d10d39a2f2602f",
+    "catalog/source-binding-v1/compilation-v1.json": "4b88286065db1bc8335e8d7a2d481d597dbae087d468794e180b4eacc6018cd6",
+    "catalog/source-binding-v1/preservation-v1.json": "98feb0aefe41f291117d58e1a9e6d62ad417fbf65c7ae5f5f6351709d1437a7e",
+    "catalog/source-binding-v1/next-source-targets-v1.jsonl": "ca883bd7c77249e8d420ae0b176e5628b70380d28fea1b5b57d0b3d49126316e",
+    "catalog/source-binding-v1/batch-outcomes-v1.jsonl": "2dbe873346ddd9ad6852348eeb6101bb42c9b084299bf63a2b1c8ba72c263fe5",
+    "catalog/source-binding-v1/grounded-research-audit-v1.json": "35e925b324f57a3fc1fbad6f7df063bfb8c85f7c19d772d903431480b95ef38c",
+    "catalog/source-binding-v1/engineering-diagnostics-v1.json": "3057c9ce7187125047e3dce534adcd89a4ae89bf7923f2e389a6d00bffbc9af1"
+  },
+  "manifest_sha256": "c046f0280ba5e5d442b557407bbed2870500be13c3e46970722e79b1d389fbd5",
+  "snapshot_sha256": "2340c8d4a1d8518d6ed4302a1b3687d92f792909a80ef630bb11201167a2db88",
+  "ordered_previous_inputs_preserved": 62,
+  "new_inputs": 3,
+  "prior_number_events_preserved": 1469,
+  "prior_fact_events_preserved": 1432,
+  "prior_graph_rows_preserved": 743,
+  "base_tables_preserved": 42,
+  "new_source_image_model_subjects": 17,
+  "new_official_mechanic_bindings": 16,
+  "new_graph_events": 0,
+  "new_catalog_identities": 0,
+  "root_catalog_context_visible": true,
+  "gemini_catalog_context_visible": false,
+  "prior_verdicts_visible": false,
+  "final_logical_failures": 0,
+  "population_or_marketplace_accuracy_established": false,
+  "physical_or_commerce_approvals_added": false
+}

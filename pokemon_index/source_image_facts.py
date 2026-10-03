@@ -160,6 +160,7 @@ def import_evidence(db,rows):
     return len(prepared)
 
 def context(db,card_id):
+    from . import source_mechanic
     record=db.execute('SELECT record_json FROM source_image_fact_evidence WHERE card_id=? ORDER BY revision DESC LIMIT 1',(card_id,)).fetchone()
     if record is None:return None
     row=json.loads(record[0]);validate(row)
@@ -167,6 +168,7 @@ def context(db,card_id):
     result=outcomes(row) if current else dict(name_status='stale_endpoint',title_interpretations=[],hp_status='stale_endpoint',observed_hp=None,observed_number_agreement=False,warnings=['stale_source_image_facts'])
     return dict(schema='pokemon.source-image-fact-context.v1',event_id=row['event_id'],current_endpoint=current,
         source_notation=notation_context(row) if current else None,
+        source_mechanic_binding=source_mechanic.context(db,card_id),
         inspection_tier=number_evidence.inspection_tier(row['reviews']),
         evidence_level='advisory_with_review_context_disclosed',source_ref=row['source_ref'],image_sha256=row['image_sha256'],
         pinned_source_hp=row['pinned_source_hp'],reviews=row['reviews'],**result,**{k:False for k in FALSE_CLAIMS},

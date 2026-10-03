@@ -17,7 +17,7 @@ def catalog_revision(db):
     h=hashlib.sha256(POLICY.encode())
     for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
+                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet','base_discovery_card_facet','active_source_correction_evidence','effective_card_reference'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
@@ -25,7 +25,7 @@ def catalog_revision(db):
     tables=['card','card_facet','catalog_set_localized','catalog_vocabulary',
             'character_family','character_family_member','catalog_collector_evidence',
             'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence','coordinate_family_evidence',
-            'card_relationship_assertion','printing_source_evidence','source_correction_evidence','card_number_reading_evidence','source_image_fact_evidence']
+            'card_relationship_assertion','printing_source_evidence','source_correction_evidence','card_number_reading_evidence','source_image_fact_evidence','source_mechanic_binding']
     for table in tables:
         if not db.execute("SELECT 1 FROM sqlite_master WHERE name=?",(table,)).fetchone():continue
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]

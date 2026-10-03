@@ -1,0 +1,24 @@
+{
+  "diagnostics": [
+    {
+      "stage": "targeted_test_fixture",
+      "issue": "reference importer requires source_jp_id; seven new tests failed during setUp",
+      "fix": "Corrected fixture to the existing import contract; 49 targeted tests then passed"
+    },
+    {
+      "stage": "prepare_replay_invocation",
+      "issue": "Direct script invocation lacked project import path",
+      "fix": "Executed with PYTHONPATH=.; no data change"
+    },
+    {
+      "stage": "journey_revision_guard",
+      "issue": "New mechanic overlay initially omitted from portable revision binding",
+      "fix": "Bound both module bytes and table evidence; added revision-change/idempotence test and reran final checks"
+    },
+    {
+      "stage": "first_cloud_deployment",
+      "issue": "Stopped first deployment while creating revision to include final revision guard",
+      "fix": "Second deployment and its exact final image receive delivery verification"
+    }
+  ]
+}

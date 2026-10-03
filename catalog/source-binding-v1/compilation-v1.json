@@ -1,0 +1,50 @@
+{
+  "recovered_image_subjects": 17,
+  "source_mechanic_bindings": 16,
+  "remaining_priority_subjects": 18,
+  "remaining_reasons": {
+    "multipart_source_image": 1,
+    "multiple_number_namespaces": 9,
+    "agreed_different_number_from_catalog": 1,
+    "missing_source_asset": 7
+  },
+  "numbers": {
+    "number_reading_events": 1486,
+    "number_reading_subjects": 1171,
+    "ocr_screening_number_subjects": 668,
+    "two_image_model_number_subjects": 503,
+    "current_agreed_ocr_number_screenings": 668,
+    "current_agreed_two_image_model_readings": 471,
+    "current_agreed_number_readings": 1139,
+    "number_reading_holds": 32,
+    "stale_number_readings": 0,
+    "catalog_denominator_not_observed": 25
+  },
+  "facts": {
+    "source_image_fact_events": 1449,
+    "source_image_fact_subjects": 1141,
+    "current_title_correspondence_advisories": 1124,
+    "ocr_screening_source_fact_subjects": 668,
+    "two_image_model_source_fact_subjects": 473,
+    "source_image_hp_conflicts": 1,
+    "stale_source_image_facts": 0
+  },
+  "mechanics": {
+    "source_mechanic_binding_events": 16,
+    "current_source_mechanic_bindings": 16,
+    "stale_source_mechanic_bindings": 0
+  },
+  "graph_events_added": 0,
+  "catalog_identities_added": 0,
+  "root_catalog_context_visible": true,
+  "gemini_catalog_context_visible": false,
+  "prior_verdicts_supplied": false,
+  "image_and_pinned_source_bytes_verified": true,
+  "input_sha256": {
+    "image-review-cohort-v1.jsonl": "fcb8b4dacbef3ecf61cf12edae394f5d60f5edc44254af1fdd8696984c769afe",
+    "root-image-review-v1.jsonl": "b624781701b4a83dbae8ddf969feae7574458bf0a6c9f63ebb1b4029b8c0f17d",
+    "gemini-image-review-v1.jsonl": "2e4b33f33a4a4d2b935eb25c4e82af9bcade08b1e2f7ed457c271ee735620809",
+    "official-audit-v1.jsonl": "064c21bd80038c9bbd2aad02139409fd511c0f248f5ec30d5f07f5eaac1020b9",
+    "frozen-cohort-v1.jsonl": "a42cbb6276b095aa0a82be51d192796e0221fb8600b8f8346b5c16a4863772e6"
+  }
+}

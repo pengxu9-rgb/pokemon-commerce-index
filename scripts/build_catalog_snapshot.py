@@ -12,6 +12,7 @@ from pathlib import Path
 
 from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata,coordinate_family,printing_evidence,source_corrections,number_evidence,source_image_facts
 from pokemon_index.cli import read_jsonl
+from pokemon_index import source_mechanic
 
 def import_ai_artwork_proposals(db, rows) -> int:
     proposals = list(rows)
@@ -47,6 +48,7 @@ OPERATIONS = {
     "import-source-corrections": source_corrections.import_evidence,
     "import-number-reading-evidence": number_evidence.import_evidence,
     "import-source-image-facts": source_image_facts.import_evidence,
+    "import-source-mechanic-bindings": source_mechanic.import_evidence,
 }
 
 
@@ -121,6 +123,8 @@ def build(manifest_path: Path, output: Path) -> dict:
             for key,value in number_evidence.status(db).items():
                 if key in manifest.get('expected',{}):actual[key]=value
             for key,value in source_image_facts.status(db).items():
+                if key in manifest.get('expected',{}):actual[key]=value
+            for key,value in source_mechanic.status(db).items():
                 if key in manifest.get('expected',{}):actual[key]=value
             for key in ("current_supported_targets", "bilingual_alias_revisions", "concept_review_events",
                         "release_evidence_records", "vocabulary_records", "character_families"):

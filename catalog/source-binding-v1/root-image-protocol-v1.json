@@ -1,0 +1,18 @@
+{
+  "actor": "codex-root:source-binding-image-review-v1",
+  "model_family": "openai",
+  "model_version": null,
+  "expected_catalog_context_visible": true,
+  "prior_verdicts_visible": false,
+  "gemini_verdicts_read_before_root_review": false,
+  "inspection_scope": "Native-resolution header/footer pixel crops of all seventeen scans; full scan context for first four. Known catalog/product-list context was visible. No physical or commerce findings.",
+  "inspection_manifest": "root-detail-inspection-manifest-v1.json",
+  "inspected_paths": [
+    "/tmp/pokemon-source-binding-details-1.jpg",
+    "/tmp/pokemon-source-binding-details-2.jpg",
+    "/tmp/pokemon-source-binding-details-3.jpg",
+    "/tmp/pokemon-source-binding-details-4.jpg",
+    "/tmp/pokemon-source-binding-details-5.jpg"
+  ],
+  "cohort_sha256": "fcb8b4dacbef3ecf61cf12edae394f5d60f5edc44254af1fdd8696984c769afe"
+}

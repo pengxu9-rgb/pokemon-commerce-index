@@ -1,6 +1,10 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
-## Source notation and versioned interpretation — 3 October 2026
+## Official source recovery and mechanic binding — 3 October 2026
+
+[Current delivery and next sequence](SOURCE_BINDING_20261003.md): all 51 frozen priorities have outcomes; seventeen M6A official scans recovered from the publisher's product-card-list bundle have separately recorded OpenAI root and image-only Gemini number/name/HP correspondence. Root catalog context is disclosed. Sixteen exact official Prism Star mechanic bindings preserve the original image/number events. The source-priority queue now has 18 subjects; 32 historical number holds are unchanged. Catalog counts remain 70,006 records / 45,438 coordinates; graph remains 72 agreements / 14 differences / 593 proposals. Private revision `00043-2x6` passes 111 local and 115 cloud checks; 601 Python and twelve Node tests pass. No physical or commerce approvals are added.
+
+## Previous source notation and versioned interpretation — 3 October 2026
 
 [Current delivery and next batch](SOURCE_NOTATION_20261003.md): seven adjacent S/K holds now have complete catalog-number correspondence through a versioned interpretation of unchanged prior dual-model readings; no new AI inspections. Twenty-six Prism Star/multiple-number/combined-scan subjects have structured notation without identity or price approval. Two-card questions preserve a labeled auxiliary number as an unverified question. The fixed source queue now has 51 subjects. Catalog counts remain 70,006 records / 45,438 coordinates; graph states remain 72 agreements / 14 qualified differences / 593 proposals. Private revision `00041-qbl` passes 108 local and 112 cloud checks; 593 Python and twelve Node tests pass. All prior evidence and graph history are preserved.
 

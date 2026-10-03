@@ -756,6 +756,7 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     printing_type_coverage = {row["official_printing_type"]: row["cards"] for row in db.execute(
         """SELECT official_printing_type, COUNT(*) AS cards FROM card_identity_exception
            WHERE official_printing_type IS NOT NULL GROUP BY official_printing_type""")}
+    from . import source_mechanic
     return {"printings": totals["printings"], "sets": totals["sets"],
             "reference_records": references,
             "facet_coverage": facet_coverage,
@@ -764,6 +765,7 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
             "number_reading_evidence": number_evidence.status(db),
             "source_image_facts": source_image_facts.status(db),
+            "source_mechanic_bindings": source_mechanic.status(db),
             "scope": "internal catalog inventory; not a public display authorization"}
 
 

@@ -48,6 +48,7 @@ def _source(value):
         'assets.tcgdex.net': r'/(?:ja|en)/[A-Za-z0-9./_-]+/high\.webp',
         'www.pokemon-card.com': r'/card-search/details\.php/card/[0-9]+',
         'images.pokemontcg.io': r'/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+_hires\.png',
+        'www.30th.pokemon-card.com': r'/images/m6a/cards/m6a_[0-9]{3}_[a-z0-9]+\.png',
     }
     if (url.scheme != 'https' or url.netloc not in paths or url.query or url.fragment
             or '..' in url.path.split('/') or not re.fullmatch(paths[url.netloc], url.path)):
