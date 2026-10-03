@@ -1,0 +1,6 @@
+{
+  "failed_fixture": "escalation-q:004",
+  "reason": "Initial wording contains a third fractional number beyond its two exact record IDs. Conservative parser treats this as ambiguous target scope; comparison rehearsal now asks about the auxiliary numbering without adding a third fraction. Runtime routing is unchanged; original failed report and original questions retained.",
+  "original": "questions-v1.jsonl",
+  "corrected": "questions-v2.jsonl"
+}

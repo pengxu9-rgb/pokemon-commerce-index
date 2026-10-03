@@ -1,0 +1,829 @@
+{
+  "actor": "astra:blind-source:lane-3",
+  "model_family": "openai",
+  "model_version": "gpt-6-astra",
+  "completed_at": "2026-10-03T11:21:58.407701+00:00",
+  "method": "Actual visual inspection of all 17 contact sheets through view_image; each contains full thumbnail and enlarged header/footer crops. No OCR, catalog context, remote sources, or prior verdicts used.",
+  "inspected_ids": [
+    "inspect-0207",
+    "inspect-0208",
+    "inspect-0209",
+    "inspect-0210",
+    "inspect-0211",
+    "inspect-0212",
+    "inspect-0213",
+    "inspect-0214",
+    "inspect-0215",
+    "inspect-0216",
+    "inspect-0217",
+    "inspect-0218",
+    "inspect-0219",
+    "inspect-0220",
+    "inspect-0221",
+    "inspect-0222",
+    "inspect-0223",
+    "inspect-0224",
+    "inspect-0225",
+    "inspect-0226",
+    "inspect-0227",
+    "inspect-0228",
+    "inspect-0229",
+    "inspect-0230",
+    "inspect-0231",
+    "inspect-0232",
+    "inspect-0233",
+    "inspect-0234",
+    "inspect-0235",
+    "inspect-0236",
+    "inspect-0237",
+    "inspect-0238",
+    "inspect-0239",
+    "inspect-0240",
+    "inspect-0241",
+    "inspect-0242",
+    "inspect-0243",
+    "inspect-0244",
+    "inspect-0245",
+    "inspect-0246",
+    "inspect-0247",
+    "inspect-0248",
+    "inspect-0249",
+    "inspect-0250",
+    "inspect-0251",
+    "inspect-0252",
+    "inspect-0253",
+    "inspect-0254",
+    "inspect-0255",
+    "inspect-0256",
+    "inspect-0257",
+    "inspect-0258",
+    "inspect-0259",
+    "inspect-0260",
+    "inspect-0261",
+    "inspect-0262",
+    "inspect-0263",
+    "inspect-0264",
+    "inspect-0265",
+    "inspect-0266",
+    "inspect-0267",
+    "inspect-0268",
+    "inspect-0269",
+    "inspect-0270",
+    "inspect-0271",
+    "inspect-0272",
+    "inspect-0273",
+    "inspect-0274",
+    "inspect-0275",
+    "inspect-0276",
+    "inspect-0277",
+    "inspect-0278",
+    "inspect-0279",
+    "inspect-0280",
+    "inspect-0281",
+    "inspect-0282",
+    "inspect-0283",
+    "inspect-0284",
+    "inspect-0285",
+    "inspect-0286",
+    "inspect-0287",
+    "inspect-0288",
+    "inspect-0289",
+    "inspect-0290",
+    "inspect-0291",
+    "inspect-0292",
+    "inspect-0293",
+    "inspect-0294",
+    "inspect-0295",
+    "inspect-0296",
+    "inspect-0297",
+    "inspect-0298",
+    "inspect-0299",
+    "inspect-0300",
+    "inspect-0301",
+    "inspect-0302",
+    "inspect-0303",
+    "inspect-0304",
+    "inspect-0305",
+    "inspect-0306",
+    "inspect-0307",
+    "inspect-0308"
+  ],
+  "source_images": [
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0207.webp",
+      "image_sha256": "c4b7fcebf949806a20b4618d26a6a2b694e45592be21ab70861ff4de0f2462ca",
+      "target_id": "inspect-0207"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0208.webp",
+      "image_sha256": "2a8d08ba5b44a6d048c82ee4f889c0dba0a66491ec4533cfb5dc9309b26bd585",
+      "target_id": "inspect-0208"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0209.webp",
+      "image_sha256": "c76645dde949ef22fbf2a1fcb066b0be795b48dab78ffee4ccf854649180d1e3",
+      "target_id": "inspect-0209"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0210.webp",
+      "image_sha256": "b4022b04d678825330e7731f3f9323c40cc4e11104851673820048130c8d977c",
+      "target_id": "inspect-0210"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0211.webp",
+      "image_sha256": "dbee9085c39dc8961eeb45df3c3cefa1db188f6cf21c4746faa45f2910fe1d38",
+      "target_id": "inspect-0211"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0212.webp",
+      "image_sha256": "08a1cace1727f6acd12835d8aecadf9d9a15af8d421d6bfad827e234bffadb34",
+      "target_id": "inspect-0212"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0213.webp",
+      "image_sha256": "e64c672709cde823bd6c13a91cc66d8100ebd9e01305ec772502e465589974eb",
+      "target_id": "inspect-0213"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0214.webp",
+      "image_sha256": "af0d28ef651406b500d954ef294eb98dbe517b9ce2feb734b232c5f7a12eb568",
+      "target_id": "inspect-0214"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0215.webp",
+      "image_sha256": "0630f14645af87d67abb3d1c2f9e3650f05bc110b027de09375ba96172aa4704",
+      "target_id": "inspect-0215"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0216.webp",
+      "image_sha256": "ea6d0a89a6cc49f99fb0dd9794b4c4a2a25b57d9c6bd2c04c0e0ab069450103b",
+      "target_id": "inspect-0216"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0217.webp",
+      "image_sha256": "80bf7f9ccf174f2aa1d1bbd9c992e73f587e655ea465b37b05bcc6f1478d0bab",
+      "target_id": "inspect-0217"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0218.webp",
+      "image_sha256": "e306fe48167642b80ca33de90d6573702ca86ac00a094c99679b420097b8f9c3",
+      "target_id": "inspect-0218"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0219.webp",
+      "image_sha256": "4881ab38ae1d28d6f3ef3f942e80bfd4fbe4af6c7a138d95ad0da8de80a68aa5",
+      "target_id": "inspect-0219"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0220.webp",
+      "image_sha256": "f513c45e0d4ff58f6a47fda12820cbe733d917dc5f7b2c98a962feb9e4233238",
+      "target_id": "inspect-0220"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0221.webp",
+      "image_sha256": "1baa08449a94e4e0f294cabd032d05cd908e16c0ba3eb679edb3c604455f7d48",
+      "target_id": "inspect-0221"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0222.webp",
+      "image_sha256": "301a32fd2ce4d01dc69af64976a8a126382cf0315667f28896d8d27e24d0459d",
+      "target_id": "inspect-0222"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0223.webp",
+      "image_sha256": "9bfa9181fbed6726b8496a7d6409fe32f86d9b0ca3e6d93a1bbd367f2f45c1c8",
+      "target_id": "inspect-0223"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0224.webp",
+      "image_sha256": "89fb6758697701f31a3421f4dd879910c87ea1c4846d72659e0e06574c2d3f74",
+      "target_id": "inspect-0224"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0225.webp",
+      "image_sha256": "c421caf7228e95a3250bea2df7c98ab08b07a3012755539f6e0536dc2c940f25",
+      "target_id": "inspect-0225"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0226.webp",
+      "image_sha256": "23446e0104f5172d6a9ec8330e8259ebd38795557baae3adadb8abd88e1398da",
+      "target_id": "inspect-0226"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0227.webp",
+      "image_sha256": "3d206137c1f2cc78cc2c3e576973f4a744ab2561be8543b5263775a0ac43391e",
+      "target_id": "inspect-0227"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0228.webp",
+      "image_sha256": "8259d97f4e14b93db87eca5c012d952e0b92589182b6c00fab2f984efa48c2d8",
+      "target_id": "inspect-0228"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0229.webp",
+      "image_sha256": "d166494fdc0a49c1c3f8bc3828d5b36192c9a25d972579723a1b6fb235c2fd2e",
+      "target_id": "inspect-0229"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0230.webp",
+      "image_sha256": "205545c3406a71cda431ba3ce069b2bbcd0c3a1572ae55ab0a3c2f5d1fe95124",
+      "target_id": "inspect-0230"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0231.webp",
+      "image_sha256": "b077639fbe71995ba3056d1eff4ca7a1a0ff45d516462eb6e49f40a0f7b1605d",
+      "target_id": "inspect-0231"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0232.jpg",
+      "image_sha256": "690eae616aba95c737c4ab57ae0187a83c6d80ce2928bcf05da74516ff6ae392",
+      "target_id": "inspect-0232"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0233.jpg",
+      "image_sha256": "e58af2479ca7e8013e829a00266fcb34b3d812f5ddb5991020b78808a2cedc52",
+      "target_id": "inspect-0233"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0234.jpg",
+      "image_sha256": "d82b25f1235b04b7e26e76b333daf147975ad323645de39edb59c9fcef9a6acd",
+      "target_id": "inspect-0234"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0235.jpg",
+      "image_sha256": "f2edeef8ddad5976f71df1eba820fc65a8d7cac64a0acc2c2e45580871bfd40a",
+      "target_id": "inspect-0235"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0236.jpg",
+      "image_sha256": "c1f86c07ccd702dd9359a6dc591c7b39c4974f910458e6176ede9af162201d17",
+      "target_id": "inspect-0236"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0237.jpg",
+      "image_sha256": "f6f7d5f5d15f6dbb76b32f5f2b8916dd2046a81ec8dfaab204845d81b1434232",
+      "target_id": "inspect-0237"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0238.jpg",
+      "image_sha256": "fe18936ffd8867b113be90de03dce1579f6f2309d3d0678bbef06df5809c59e2",
+      "target_id": "inspect-0238"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0239.jpg",
+      "image_sha256": "f14b98e2419458edfc72d409bb57b746afc98578b3dc1fa84c85d096b6bc1381",
+      "target_id": "inspect-0239"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0240.jpg",
+      "image_sha256": "217b39f33d459b5ba2e2257974ee9837383f75920963072ff64c47c4cbd225ad",
+      "target_id": "inspect-0240"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0241.jpg",
+      "image_sha256": "b5c58cc96006f84bc40a48ee1e994b3414b4fce4c26ff1d722a49060cd9bd49b",
+      "target_id": "inspect-0241"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0242.jpg",
+      "image_sha256": "dea0df81a0ad66a44fd7b9f0fd062efde3d6d4952b23d6d04c5e92708e207570",
+      "target_id": "inspect-0242"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0243.jpg",
+      "image_sha256": "22e5b95735158b6614df1e8834dc9253f24213776e949ede6fd4ec1466ecd14e",
+      "target_id": "inspect-0243"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0244.jpg",
+      "image_sha256": "8ec20cbd1aa1ce62f76f7e65a7734567a1521a470a93d6959046ef2cf75928e5",
+      "target_id": "inspect-0244"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0245.jpg",
+      "image_sha256": "d741b910ca31c624298d802035fe1701e0be77def5125556a18f7815fe8f3593",
+      "target_id": "inspect-0245"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0246.jpg",
+      "image_sha256": "b5a695f2f3254d464280c6ecc18dd01364da4f7e7a9e6769978644b0f1e60a45",
+      "target_id": "inspect-0246"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0247.jpg",
+      "image_sha256": "57aef83059316ac213e580cff62b184d11edbf28d0e1758c4d797ec25504bd6b",
+      "target_id": "inspect-0247"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0248.jpg",
+      "image_sha256": "5216dc0e318264e89e570a7d8b197d5f85a4d6b6930e069b1d045f74f3abb8df",
+      "target_id": "inspect-0248"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0249.jpg",
+      "image_sha256": "0ee5f874224cbec4f6f7626570b94da0a56b32af88ac7ede72d6a6cbac52bfda",
+      "target_id": "inspect-0249"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0250.webp",
+      "image_sha256": "6a661095dab607f1f8d878bff95d6bb42c04112ef6b3192c194c71dc2e2645f8",
+      "target_id": "inspect-0250"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0251.webp",
+      "image_sha256": "bcba6cd5513ce85e2bb5a92b8be45766aca8d485a9405211fed7dddde23d375c",
+      "target_id": "inspect-0251"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0252.webp",
+      "image_sha256": "62eb4e06d62e9cd9275831c1898174c347cd4dac4b60cfa05e900afa179ac745",
+      "target_id": "inspect-0252"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0253.webp",
+      "image_sha256": "dcb5b0c0692eeee54a36a1635be0b81325f483bb780a6cb45675ab08fe8b163a",
+      "target_id": "inspect-0253"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0254.webp",
+      "image_sha256": "5e73308b041d03a7ec3dfc368084978c7724eaf3f53d0118568d049bad89aa77",
+      "target_id": "inspect-0254"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0255.webp",
+      "image_sha256": "d1a39886d2534f1b80ac19eb4dc02c00c7bcbc02e7556d13414ab0c6bc79d809",
+      "target_id": "inspect-0255"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0256.webp",
+      "image_sha256": "45d71aec66d9577e30bd67acab7063630f3a6a7f11c36d76276baa6be8a24c60",
+      "target_id": "inspect-0256"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0257.webp",
+      "image_sha256": "6a2e843284100201b791ff00582c2a5b7124ea1d6f2c4e812b545aee6bd8ff2d",
+      "target_id": "inspect-0257"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0258.webp",
+      "image_sha256": "79ebf65b719dd399fab65598f24dd3b1788524b994c7ae0d8f7fcb0d424028d5",
+      "target_id": "inspect-0258"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0259.webp",
+      "image_sha256": "e0a5c16c86e4a985e899cbcf167314b78519b569d8f1a09feda798b743bdc1a8",
+      "target_id": "inspect-0259"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0260.webp",
+      "image_sha256": "d6106eb7dca66fd2d8bb3a3fbb09da437649e6f579551ef9669c8e93a5565ae6",
+      "target_id": "inspect-0260"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0261.webp",
+      "image_sha256": "3e581ee51627477c7cc3dcd8f5098fcbe41735a8bd5021bf0d6f7028f614994e",
+      "target_id": "inspect-0261"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0262.webp",
+      "image_sha256": "2bbf385504cb60980b999d8da991bd4c08cf8a4f6d8476160cdf1d61b76ce6b0",
+      "target_id": "inspect-0262"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0263.webp",
+      "image_sha256": "d3298665197d7eb5328fab5c6bc6935c701df0eab16dc328302a969ae327337e",
+      "target_id": "inspect-0263"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0264.webp",
+      "image_sha256": "627528d335eac2cea1fcbde79def49515ba05c038dafa80e846c812cf1f9fa7e",
+      "target_id": "inspect-0264"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0265.webp",
+      "image_sha256": "3c06fcdbe760ac886188ccb210c781b583365b1783c0ed9725e836c94eb19a28",
+      "target_id": "inspect-0265"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0266.webp",
+      "image_sha256": "6639cbbf7ef11b79f7c83f355136f6913b0be1754e3a11f443a427d8418ef3c5",
+      "target_id": "inspect-0266"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0267.webp",
+      "image_sha256": "9405b64cf75a90f5c36cfa77cbbef590f3d6295444289bf1c8988ad8dcc084e2",
+      "target_id": "inspect-0267"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0268.webp",
+      "image_sha256": "512a4e4366293ee657385de557893d5bd12fbc48ae1407e5540ee6655c1034c5",
+      "target_id": "inspect-0268"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0269.webp",
+      "image_sha256": "0f20106d1edb586365583f0b037a671378558c78e67d17f1f74bf936e9f3e476",
+      "target_id": "inspect-0269"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0270.webp",
+      "image_sha256": "a336e7617a455ff6c3cdb61e555e4dde5b005c4e312cb34ce70d4410d36f5b08",
+      "target_id": "inspect-0270"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0271.webp",
+      "image_sha256": "bdea5ab20c26a333f992211b18742da2bb6ca83f4abe1f6fbb19be22ea35cb91",
+      "target_id": "inspect-0271"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0272.webp",
+      "image_sha256": "4943b599a888d684f3ad6151a4a8d56d76451796e1b48c611d7d14917677e63c",
+      "target_id": "inspect-0272"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0273.webp",
+      "image_sha256": "8ee3a7fde660626939e97344e3f164ce9f53e3e15659399b5fab35c30abe07e2",
+      "target_id": "inspect-0273"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0274.webp",
+      "image_sha256": "ed67451ed6c6ba9ab74c4dc3b838e3ecbcaac17f354e57ee234ce19663f69556",
+      "target_id": "inspect-0274"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0275.webp",
+      "image_sha256": "89f243bc03f5b056e7d6b3808e7a6a12d29f544131a05b64ae6854e2c2dec614",
+      "target_id": "inspect-0275"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0276.webp",
+      "image_sha256": "58868fff071d0d07d2b2560bd09ad1948e2c1ea7348376139f1055e5f6bc8324",
+      "target_id": "inspect-0276"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0277.webp",
+      "image_sha256": "9dddf90d919c20e18af7417d3f2d0a4732a01da31fce69f94cc22352a4af9baf",
+      "target_id": "inspect-0277"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0278.webp",
+      "image_sha256": "511eed1064ae7232ec8b54769f6d9d8bd7528431af9312585fc85da1045ee2bc",
+      "target_id": "inspect-0278"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0279.webp",
+      "image_sha256": "d3a08edf1e17a442bf28d09a52787a66d534af305b1b12d2ae0af19b2930c840",
+      "target_id": "inspect-0279"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0280.webp",
+      "image_sha256": "36b58fea4b2fef9daa8ddc8d99d1500f4ba05423cef9601fbcad7e0e4c3924b5",
+      "target_id": "inspect-0280"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0281.webp",
+      "image_sha256": "1188f9cc116f05ff68f596fdf72b615b5945f4690fced3e6716606fbd079cd54",
+      "target_id": "inspect-0281"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0282.webp",
+      "image_sha256": "9dd2409c6b9e86f88a21c8c37f6e4e87626cd5a6cafcfd73d73e9793d96b7515",
+      "target_id": "inspect-0282"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0283.webp",
+      "image_sha256": "118d7bc1ecb7ab2441c6a1ab5b1bb7e64a7a29e660e945fea76b861c6234ed13",
+      "target_id": "inspect-0283"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0284.webp",
+      "image_sha256": "d4917bb370d55ef20f428f8edd10f9feab5192acebce245351589a7c14de70ff",
+      "target_id": "inspect-0284"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0285.webp",
+      "image_sha256": "69f315a4d45adefb24967c9b7c3b24b8d6b22f7350d552e094d0111fbeaebb34",
+      "target_id": "inspect-0285"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0286.webp",
+      "image_sha256": "fdf087bf93d22515fb59d646bf9b7320711d5bae54b3b32e68c31c9daf0d3024",
+      "target_id": "inspect-0286"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0287.webp",
+      "image_sha256": "edbbcf9e83c7bab702a10212667a16a70f0495caa3c0a25519bea43d555b2625",
+      "target_id": "inspect-0287"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0288.webp",
+      "image_sha256": "732b326a565f233d4555b2de8c926cfddf4c093e0af401b9db1c62050d6dae74",
+      "target_id": "inspect-0288"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0289.webp",
+      "image_sha256": "22c13b13f828730de9a4fb5f2b121f343ac25ad55f2b2847c5f713746011bd97",
+      "target_id": "inspect-0289"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0290.webp",
+      "image_sha256": "19e87ce5a94680e64c22f170dd9205216cf2cd23c5f2120008a0778cbeda9352",
+      "target_id": "inspect-0290"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0291.webp",
+      "image_sha256": "3cc4ffe0f6af0d7371382b80662322d9efc237e9ece9fe337dcc8108854021a5",
+      "target_id": "inspect-0291"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0292.webp",
+      "image_sha256": "76ae9e8f32f35b34955877e586266e6bad172a4c5dd76f3d5b31c4c9f81f4ec4",
+      "target_id": "inspect-0292"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0293.webp",
+      "image_sha256": "db5c6b2574fd27ff85f9ecca846c7fb04c7472f2330660b0c4067a6bc22b5a68",
+      "target_id": "inspect-0293"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0294.webp",
+      "image_sha256": "b0fc0a7f9baa2d07623dca41320d9f711d1fb8ef8d8e0f93955b1140e27e8d12",
+      "target_id": "inspect-0294"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0295.webp",
+      "image_sha256": "3c9d7ce1c90bfd154b08b2c31f2210013634e09de2756e1938c7f4a270073696",
+      "target_id": "inspect-0295"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0296.webp",
+      "image_sha256": "794b30f06d76347d563d4e8a20dafe97696ccc185fd7ad55e8976d002feb6728",
+      "target_id": "inspect-0296"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0297.webp",
+      "image_sha256": "3d94c56a3ed8fd553cd4d45cef1355da79169cde57d24b424a34d85cd436fb1f",
+      "target_id": "inspect-0297"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0298.webp",
+      "image_sha256": "57b32a7e78aac782933e6c3e0e22da8460e4540eb303658a794b58c4e3b567c5",
+      "target_id": "inspect-0298"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0299.webp",
+      "image_sha256": "4e65f07be923c2988d43c3fb7db594f4750d8c7d14b240e07465647264687a42",
+      "target_id": "inspect-0299"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0300.webp",
+      "image_sha256": "f760c50f1a0967d755f0a3a6c4d629bb3e63b3e71e54cbe23dfd78f6b03efdbd",
+      "target_id": "inspect-0300"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0301.webp",
+      "image_sha256": "6f4497f0ffc55df3ebed2247ff2257f8e62c1710178ecd63ff0012e3155fff16",
+      "target_id": "inspect-0301"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0302.webp",
+      "image_sha256": "66d71b7eab0903728e33ee50b8b12498435dcb8913a71d3c69947a8b84dcb880",
+      "target_id": "inspect-0302"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0303.webp",
+      "image_sha256": "43e10ae7089a42b33f187db9869b46273fe684a2f4a1005d7ad567fe2021ae02",
+      "target_id": "inspect-0303"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0304.webp",
+      "image_sha256": "a9976667cc509ad2407ed226e72da2d4e6cd740b413b28e05deef56bd4adcc69",
+      "target_id": "inspect-0304"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0305.webp",
+      "image_sha256": "2031ec7f5e2ccaf95d458a8bc2eb61de461817753ff841d6fba18cbdd5c07470",
+      "target_id": "inspect-0305"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0306.webp",
+      "image_sha256": "b49f0a99f0cdc6bc1cfa53c22e302856ce486eb3bee30a99715ab954ab7ac085",
+      "target_id": "inspect-0306"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0307.webp",
+      "image_sha256": "8bba05b17c22e32b29af89104c6e2be1e66cf36255c63021db378ef4f79b1d9b",
+      "target_id": "inspect-0307"
+    },
+    {
+      "image_path": "/tmp/pokemon-independent-source-inspection-v1/inspect-0308.webp",
+      "image_sha256": "e9ce71327a1cfe6495647f6acd62e21db83e989a1f49f2c3dd14ade7239bdca1",
+      "target_id": "inspect-0308"
+    }
+  ],
+  "contact_sheets": [
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-01.png",
+      "sha256": "35c8e1a2318f3ab20cfb9925c1e172642b635ebc6086638b589934704c876501",
+      "inspected_ids": [
+        "inspect-0207",
+        "inspect-0208",
+        "inspect-0209",
+        "inspect-0210",
+        "inspect-0211",
+        "inspect-0212"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-02.png",
+      "sha256": "f75955a9ffe13c8bb7770c222752b492b70c53819520dcab6b166c373e7d061c",
+      "inspected_ids": [
+        "inspect-0213",
+        "inspect-0214",
+        "inspect-0215",
+        "inspect-0216",
+        "inspect-0217",
+        "inspect-0218"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-03.png",
+      "sha256": "7048d3f870fe85b7f16668329dc0e847977b29b187e5ced3e97975ed0688b6f8",
+      "inspected_ids": [
+        "inspect-0219",
+        "inspect-0220",
+        "inspect-0221",
+        "inspect-0222",
+        "inspect-0223",
+        "inspect-0224"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-04.png",
+      "sha256": "da3449923948a58555ede51d2e689405b2e38de3ac720d99441c2b1a76d433b9",
+      "inspected_ids": [
+        "inspect-0225",
+        "inspect-0226",
+        "inspect-0227",
+        "inspect-0228",
+        "inspect-0229",
+        "inspect-0230"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-05.png",
+      "sha256": "4aaa5f18aaeacd3ec9f34ae6584f4ebd7896da44acb06df00853bae00d0bcc9b",
+      "inspected_ids": [
+        "inspect-0231",
+        "inspect-0232",
+        "inspect-0233",
+        "inspect-0234",
+        "inspect-0235",
+        "inspect-0236"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-06.png",
+      "sha256": "40d7b3ab2ddc4c623455fe3371c33c5334a17dcc6d56cbd900612d0a611b34e7",
+      "inspected_ids": [
+        "inspect-0237",
+        "inspect-0238",
+        "inspect-0239",
+        "inspect-0240",
+        "inspect-0241",
+        "inspect-0242"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-07.png",
+      "sha256": "7fb4b5bac6be2156d0c7214eea78de606ac4563081c7aadf61a0750ae890aa30",
+      "inspected_ids": [
+        "inspect-0243",
+        "inspect-0244",
+        "inspect-0245",
+        "inspect-0246",
+        "inspect-0247",
+        "inspect-0248"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-08.png",
+      "sha256": "195cb68b00b64c1dd04bdce3fb2188a18ec67e3067903bfec3e1b4f2cfd043e3",
+      "inspected_ids": [
+        "inspect-0249",
+        "inspect-0250",
+        "inspect-0251",
+        "inspect-0252",
+        "inspect-0253",
+        "inspect-0254"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-09.png",
+      "sha256": "be1a316f7d2c3cf5c0846e291f0f89476543fd638ce5c0eae7713edf887adb6f",
+      "inspected_ids": [
+        "inspect-0255",
+        "inspect-0256",
+        "inspect-0257",
+        "inspect-0258",
+        "inspect-0259",
+        "inspect-0260"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-10.png",
+      "sha256": "497dff180ab5dc52f96c39292367381cc635041065af1688ef0f05929eb48f51",
+      "inspected_ids": [
+        "inspect-0261",
+        "inspect-0262",
+        "inspect-0263",
+        "inspect-0264",
+        "inspect-0265",
+        "inspect-0266"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-11.png",
+      "sha256": "6c6ad29c530027ebb09046a46ba79de88f4e8b92a65d3931da1fe12a2e9d8ec6",
+      "inspected_ids": [
+        "inspect-0267",
+        "inspect-0268",
+        "inspect-0269",
+        "inspect-0270",
+        "inspect-0271",
+        "inspect-0272"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-12.png",
+      "sha256": "287bae658a36f0c22e90dfd6ed673da65f72c19a12d69cbe196e4698591eb338",
+      "inspected_ids": [
+        "inspect-0273",
+        "inspect-0274",
+        "inspect-0275",
+        "inspect-0276",
+        "inspect-0277",
+        "inspect-0278"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-13.png",
+      "sha256": "d42f2d151d1f7cb1e9b05ae2655459eb6d7e24692b64ce4a41e8ce204d152992",
+      "inspected_ids": [
+        "inspect-0279",
+        "inspect-0280",
+        "inspect-0281",
+        "inspect-0282",
+        "inspect-0283",
+        "inspect-0284"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-14.png",
+      "sha256": "e699956a51284fab4317c43cfd4688049b9291c6e00979b136c0986c35708860",
+      "inspected_ids": [
+        "inspect-0285",
+        "inspect-0286",
+        "inspect-0287",
+        "inspect-0288",
+        "inspect-0289",
+        "inspect-0290"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-15.png",
+      "sha256": "f683b8c9cb81f6fca8e07a686b5a32fcda757abf66943ba6fde1b5cdb56379af",
+      "inspected_ids": [
+        "inspect-0291",
+        "inspect-0292",
+        "inspect-0293",
+        "inspect-0294",
+        "inspect-0295",
+        "inspect-0296"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-16.png",
+      "sha256": "b207dfa7002c7b3db50b386c362924f203a48dcbefb6467bcb8c624614a7c09d",
+      "inspected_ids": [
+        "inspect-0297",
+        "inspect-0298",
+        "inspect-0299",
+        "inspect-0300",
+        "inspect-0301",
+        "inspect-0302"
+      ]
+    },
+    {
+      "path": "/tmp/pokemon-independent-source-inspection-v1/lane-3/sheet-17.png",
+      "sha256": "19adf97fa43df10553d76a3f73561d3edf09d65e725f18c71f9cac156c4994e0",
+      "inspected_ids": [
+        "inspect-0303",
+        "inspect-0304",
+        "inspect-0305",
+        "inspect-0306",
+        "inspect-0307",
+        "inspect-0308"
+      ]
+    }
+  ]
+}

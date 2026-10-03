@@ -1,5 +1,10 @@
 # Relationship graph implementation plan
 
+## Independent image-model escalation — 3 October 2026
+
+[Latest delivery and next sequence](SOURCE_FACTS_ESCALATION_20261003.md): all 332 priorities have outcomes; 308 images received separately recorded Astra/Gemini readings, yielding 274 catalog-text correspondences, 33 holds and one agreed 143a-versus-143 conflict; 24 images remain unavailable. All fifty SV2A holds now have agreeing numbers. Append-only evidence retains the prior OCR history. Fourteen pair reviews add nine exact-source artwork matches and three qualified differences, with two holds. Latest graph states are 72 verified / 14 qualified differences / 593 proposed. Private revision `00040-lpc` passes 388 cloud and 384 local engineering checks; 584 Python and twelve Node tests pass. Next: resolve the 58 source/number/symbol gaps, then broaden image-model and printing evidence. Live offers remain held for an authorized feed.
+
+
 Prepared after an independent Astra review of the 19-anchor, 40-pair Japanese–English pilot on 24 September 2026. The sample is a challenge set for the workflow; all 40 decisions are still pending, so it measures neither matching precision nor retrieval recall.
 
 ## Decision

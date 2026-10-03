@@ -1,0 +1,29 @@
+{
+  "schema": "pokemon.blind-same-language-artwork-protocol.v1",
+  "model": "gemini-3.8-flash",
+  "model_family": "google",
+  "prompt": "Inspect both attached source images, labeled left and right. No catalog identities or prior verdicts supplied. Compare illustrated scene details and classify artwork_decision same/different/uncertain. Similar character/composition alone insufficient; ignore translated frame text, cropping and foil effects without assuming scenes identical. Read literal title and full collector text separately, preserving absent denominators and symbols as uncertainty. Return exactly artwork_decision, rationale (specific shared/different scene), uncertainties (string), readings (two objects side left/right, name, collector_number). Do not establish finish, physical variant, condition, identity, scarcity, or price.",
+  "prompt_sha256": "438e6fa893d5863463fb761270ed936e7be9d5a208b11ddc6969e8b1715ae516",
+  "expected_catalog_context_visible": false,
+  "prior_verdicts_visible": false,
+  "selection": "3 same-language controls; old cross-language runner cannot bind two same-language images",
+  "pairs": [
+    {
+      "images": [
+        {
+          "image_path": "/tmp/pokemon-blind-cross-artwork-v1/cross-artwork-014-left.webp",
+          "image_sha256": "67478cc16d95b55f12bbde2e8dbfea368314decbaf0582a08bf031ae896b3e9a",
+          "language": "ja",
+          "side": "left"
+        },
+        {
+          "image_path": "/tmp/pokemon-blind-cross-artwork-v1/cross-artwork-014-right.webp",
+          "image_sha256": "b56120d74098e49ed000d2c91821680f418f301b4d2ba97b79867c69e8c602f1",
+          "language": "ja",
+          "side": "right"
+        }
+      ],
+      "target_id": "cross-artwork-014"
+    }
+  ]
+}

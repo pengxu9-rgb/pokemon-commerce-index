@@ -1,5 +1,10 @@
 # Active build sequence — 2 October 2026
 
+## Independent image-model escalation — 3 October 2026
+
+[Latest delivery and next sequence](SOURCE_FACTS_ESCALATION_20261003.md): all 332 priorities have outcomes; 308 images received separately recorded Astra/Gemini readings, yielding 274 catalog-text correspondences, 33 holds and one agreed 143a-versus-143 conflict; 24 images remain unavailable. All fifty SV2A holds now have agreeing numbers. Append-only evidence retains the prior OCR history. Fourteen pair reviews add nine exact-source artwork matches and three qualified differences, with two holds. Latest graph states are 72 verified / 14 qualified differences / 593 proposed. Private revision `00040-lpc` passes 388 cloud and 384 local engineering checks; 584 Python and twelve Node tests pass. Next: resolve the 58 source/number/symbol gaps, then broaden image-model and printing evidence. Live offers remain held for an authorized feed.
+
+
 **千项批次交付验收：** 私有 revision `00039-n9g`；1,043 项云端工程检查、1,039 项本地检查、572 项 Python 测试及 12 项 Node 测试通过；另有 8 项针对云端比对与中断重试的守护测试通过。10 次最终云端传输中断已恢复，历史失败记录完整保留。[交付证据](catalog/source-facts-thousand-v1/delivery-validation-v1.json)。
 
 ## Thousand-target initial screening — 2026-10-03
@@ -24,7 +29,7 @@ The 1 October catalog expansion adds 14,838 source-declared English versions, en
 | Layer | Evidence | Main remaining gap |
 |---|---|---|
 | Catalog | 70,006 internal source-version/family records; 45,438 language/set/number groups; 33,543 structurally eligible; 532 original official rarity corrections plus 2,497 separately versioned coordinate metadata events plus 269 official coordinate families and eleven held groups; 100 original supported metadata targets, 21 release overlays and 42 vocabulary records | Physical finish/copy evidence and real listing precision remain unverified; supported metadata does not approve automatic joins |
-| Graph | Character/artist facets covering 40,666 / 45,510 records, explicit coauthor retrieval and four numbered-part guards, structural version neighbors, three official evolution families; 657 latest artwork-pair states: 63 reviewed artwork agreements and 594 proposals; 13 active official collector declarations and 142 proposed visual findings | Independent depiction and broader artwork coverage, localization counterparts and exact printing coverage; artwork-only approvals, no price/printing equivalence |
+| Graph | Character/artist facets covering 40,666 / 45,510 records, explicit coauthor retrieval and four numbered-part guards, structural version neighbors, three official evolution families; 679 latest artwork-pair states: 72 reviewed artwork agreements, 14 qualified differences and 593 proposals; 13 active official collector declarations and 142 proposed visual findings | Independent depiction and broader artwork coverage, localization counterparts and exact printing coverage; artwork-only approvals, no price/printing equivalence |
 | Bilingual retrieval | 122 reviewed aliases and 460 review events included in the new ordered deployment manifest | Translation evidence is not printing equivalence; real marketplace vocabulary recall remains unmeasured |
 | Agent discovery | Authored 30-task replay; first source cohort has 16 qualified questions; a second fresh 30-question cohort has eight catalog partials and 22 evidence blockers; stateless inventory comparison; 20 bounded collector journeys / 59 prefix requests; Node caller and eight new source-led development journeys | Active Pivota registration/service identity, artwork/region/printing evidence and an independent held-out outcome evaluation; no real-user answer quality score |
 | Pricing | Observation/resolution/index contracts; ask, last-list-at-transition and paid amounts separate | Zero live observations; separate authorized listing feed, real matching audit and sustained freshness |

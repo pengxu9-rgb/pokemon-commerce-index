@@ -26,7 +26,7 @@ def fetch_json(request,errors,route):
             errors.append(dict(route=route,attempt=attempt,error_type=type(error).__name__))
             if attempt==3:raise
 
-def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v1.jsonl',outcomes_filename=None,detail_concurrency=4):
+def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v1.jsonl',outcomes_filename=None,detail_concurrency=4,questions_filename='questions-v1.jsonl'):
     if type(detail_concurrency)!=int or not 1<=detail_concurrency<=4:raise ValueError('detail concurrency must be one to four')
     if output.exists():raise FileExistsError(output)
     root=Path(__file__).resolve().parents[1]
@@ -42,7 +42,9 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
         missing=[r for r in outcomes if r['number_event_id'] is None]
         if len({r['card_id'] for r in outcomes})!=len(outcomes) or {r['card_id'] for r in outcomes}!={r['card_id'] for r in events}|{r['card_id'] for r in missing}:
             raise ValueError('complete source-fact and held-subject outcomes required')
-    questions_path=p/'questions-v1.jsonl';questions=list(map(json.loads,questions_path.read_text().splitlines()))
+    questions_path=p/questions_filename
+    if not questions_path.resolve().is_relative_to(p):raise ValueError('questions must be within diagnostic directory')
+    questions=list(map(json.loads,questions_path.read_text().splitlines()))
     if len(questions)<6 or len({q['id'] for q in questions})!=len(questions):raise ValueError('six or more unique authored questions required')
     planned=len(events)+len(missing)+len(questions)+6+(2 if cloud else 0)
     before=sha(db_path);server=None;thread=None;deployment=None;token=None;checks=[];errors=[];completed=False;revision=None
@@ -93,6 +95,9 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
                 comp=actual.get('comparison',{})
                 valid=code==200 and semantic(actual)==semantic(expected) and actual['task']=='two_card_comparison' and not actual['complete_answer_established'] and not comp['price_comparable'] and not comp['purchase_ready']
                 if q['kind']=='hp_conflict':valid=valid and 'source_image_metadata_resolution' in comp['required_evidence'] and any('source_hp_conflict' in w['warnings'] for w in comp['source_metadata_warnings'])
+                if q['kind']=='number_conflict':valid=valid and 'source_number_identity_resolution' in comp['required_evidence'] and any('source_image_number_coordinate_conflict' in w['warnings'] for w in comp['source_number_warnings'])
+                if q['kind']=='reviewed_artwork':valid=valid and len(comp['artwork']['reviewed_links'])>0
+                if q['kind']=='artwork_difference':valid=valid and len(comp['artwork']['reviewed_difference_links'])>0
                 record(q['id'],valid,actual)
             for row in missing:
                 cid=row['card_id'];expected=expected_cards[cid];code,actual=detail_results[cid]
@@ -125,4 +130,4 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
     return {k:report[k] for k in ['completed','checks','passed','deployment']}
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);p.add_argument('--evidence-filename',default='evidence-v1.jsonl');p.add_argument('--outcomes-filename');a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir,a.evidence_filename,a.outcomes_filename)))
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);p.add_argument('--evidence-filename',default='evidence-v1.jsonl');p.add_argument('--outcomes-filename');p.add_argument('--questions-filename',default='questions-v1.jsonl');a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir,a.evidence_filename,a.outcomes_filename,questions_filename=a.questions_filename)))

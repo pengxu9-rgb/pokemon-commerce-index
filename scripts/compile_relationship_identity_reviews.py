@@ -21,6 +21,22 @@ def keyed(path):
     return {row['candidate_id']:row for row in rows}
 
 
+def bind_source_images(images, endpoints):
+    """Bind by exact record ID when language alone cannot identify a side."""
+    if len(images)!=2 or len(endpoints)!=2:raise ValueError('two endpoint image bindings required')
+    if any('card_id' in image for image in images):
+        if {image.get('card_id') for image in images}!={c['card_id'] for c in endpoints}:
+            raise ValueError('exact endpoint image membership differs')
+        bound=[next(image for image in images if image['card_id']==c['card_id']) for c in endpoints]
+    else:
+        if {image['side'] for image in images}!={'ja','en'} or {c['language'] for c in endpoints}!={'ja','en'}:
+            raise ValueError('same-language images require exact card IDs')
+        bound=[next(image for image in images if image['side']==c['language']) for c in endpoints]
+    if any(image.get('image_sha256')!=c['image_sha256'] or image.get('source_ref')!=c['image_ref'] for image,c in zip(bound,endpoints)):
+        raise ValueError('review image evidence drifted')
+    return bound
+
+
 def checked_review(review, frozen, *, decision='same_artwork'):
     snapshot = review.get('cohort_snapshot_sha256',review.get('source_snapshot_sha256'))
     if snapshot != frozen['cohort_snapshot_sha256']:
@@ -39,13 +55,7 @@ def checked_review(review, frozen, *, decision='same_artwork'):
         raise ValueError('review overclaims physical or price evidence')
     for flag in ('automatic_offer_join_allowed','display_allowed'):
         if review.get(flag,False) is not False:raise ValueError('review widens permission')
-    images=review['image_evidence']
-    if len(images)!=2 or {image['side'] for image in images}!={'ja','en'}:
-        raise ValueError('review needs both image sources')
-    for card in frozen['endpoints']:
-        side=card['language'];image=next(image for image in images if image['side']==side)
-        if image['image_sha256']!=card['image_sha256'] or image['source_ref']!=card['image_ref']:
-            raise ValueError('review image evidence drifted')
+    bind_source_images(review['image_evidence'],frozen['endpoints'])
     if not review.get('reviewer') or review['reviewer']!=review['reviewer'].strip():raise ValueError('invalid reviewer')
     core.parse_time(review['reviewed_at'])
     return artwork,finish
@@ -81,7 +91,8 @@ def compile_reviews(db, cohort, first, second):
                 binding['review_record_sha256']=digest(review)
             return binding
         fingerprint=digest({'cohort':frozen,'reviews':ordered})
-        event_id=f'relpilot-v2:{cid}:r1:same_artwork'
+        left,right=sorted(c['card_id'] for c in frozen['endpoints'])
+        event_id=f'relpilot-v2:{discovery_graph.pilot_candidate_id(left,right)}:r1:same_artwork'
         evidence=dict(schema='pokemon.relationship_review.v1',review_event_id=event_id,
             source_snapshot_sha256=frozen['cohort_snapshot_sha256'],review_fingerprint=fingerprint,
             expected_pair_head=frozen['expected_pair_head'],

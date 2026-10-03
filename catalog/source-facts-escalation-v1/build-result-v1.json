@@ -1,0 +1,7 @@
+{
+  "status": "failed_diagnostic",
+  "catalog_snapshot_created": false,
+  "raw_stdout_path": "catalog/source-facts-escalation-v1/build-result-v1.stdout.txt",
+  "raw_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reason": "Working import rejected opaque review labels as noncanonical event IDs. The subsequent initial build had no manifest to read. Normal guard failure retained; successful canonical recompilation and build are recorded as v2."
+}

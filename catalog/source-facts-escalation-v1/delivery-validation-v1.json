@@ -1,0 +1,80 @@
+{
+  "schema": "pokemon.source-fact-escalation-delivery.v1",
+  "verified_at": "2026-10-03T11:52:41.586163+00:00",
+  "deployment": {
+    "revision": "pokemon-commerce-index-00040-lpc",
+    "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+    "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:6ad6456d919782d7a8c20a65f6af2de5fd4b31e3b90abd0b2236e46a019d2278",
+    "private_iam_verified": true,
+    "revision_unchanged_after_verification": true
+  },
+  "traffic_percent": 100,
+  "private_iam_verified": true,
+  "local_checks": 384,
+  "cloud_checks": 388,
+  "transport_retries": 3,
+  "unauthenticated_denial_checks": 4,
+  "report_bindings": {
+    "catalog/source-facts-escalation-v1/local-replay-v2.json": {
+      "sha256": "7c9af4aadd2788c3ca72a5b5396a4512eaac1ed7e4f7cd30c76f262636eba473",
+      "checks": 349,
+      "transport_errors": []
+    },
+    "catalog/source-facts-escalation-v1/prior-facts-local-v2.json": {
+      "sha256": "16eeedc818573db6fee5a51a17fea818676869dbc1f5080c603133864cae53a0",
+      "checks": 21,
+      "transport_errors": []
+    },
+    "catalog/source-facts-escalation-v1/private-cloud-replay-v1.json": {
+      "sha256": "c57f17caa72f85852507d9967a57b2702ba2c216c9c7603b27e5d40069bf01fa",
+      "checks": 351,
+      "transport_errors": [
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        }
+      ]
+    },
+    "catalog/source-facts-escalation-v1/prior-facts-cloud-v1.json": {
+      "sha256": "dc3197a6ede4a7b187aeefdf338a2e92588c3a74132676ca2d9af1f5e6dbee5a",
+      "checks": 23,
+      "transport_errors": []
+    },
+    "catalog/cross-release-artwork-v1/local-replay-v1.json": {
+      "sha256": "2d9d898a2045bbda762e6c41d374ca1b50211338a8169553251b3b47489da3b7",
+      "checks": 14,
+      "transport_errors": []
+    },
+    "catalog/cross-release-artwork-v1/private-cloud-replay-v1.json": {
+      "sha256": "8065fce7ecf0287abc24a46098b3aaed755d22406ae1dd82f840691333f48b37",
+      "checks": 14,
+      "transport_errors": []
+    }
+  },
+  "manifest_sha256": "6ba1c1b0ef02a9e7a5ef7816b982794e2364c24bd08026217a406fa776f5a223",
+  "snapshot_sha256": "04da7ed556af96e6efe90a569f817347158f643471101dffbed3ccb05af4ad8b",
+  "ordered_previous_inputs_preserved": 57,
+  "new_inputs": 4,
+  "prior_number_events_preserved": 1154,
+  "prior_fact_events_preserved": 1124,
+  "prior_graph_rows_preserved": 731,
+  "base_tables_preserved": 41,
+  "new_separate_image_model_subjects": 308,
+  "new_same_artwork_events": 9,
+  "new_qualified_difference_events": 3,
+  "final_logical_failures": 0,
+  "failed_diagnostics_retained": true,
+  "population_or_marketplace_accuracy_established": false,
+  "physical_or_commerce_approvals_added": false
+}

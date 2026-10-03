@@ -1,5 +1,10 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
+## Independent image-model escalation — 3 October 2026
+
+[Latest delivery and next sequence](SOURCE_FACTS_ESCALATION_20261003.md): all 332 priorities have outcomes; 308 images received separately recorded Astra/Gemini readings, yielding 274 catalog-text correspondences, 33 holds and one agreed 143a-versus-143 conflict; 24 images remain unavailable. All fifty SV2A holds now have agreeing numbers. Append-only evidence retains the prior OCR history. Fourteen pair reviews add nine exact-source artwork matches and three qualified differences, with two holds. Latest graph states are 72 verified / 14 qualified differences / 593 proposed. Private revision `00040-lpc` passes 388 cloud and 384 local engineering checks; 584 Python and twelve Node tests pass. Next: resolve the 58 source/number/symbol gaps, then broaden image-model and printing evidence. Live offers remain held for an authorized feed.
+
+
 **千项批次交付验收：** 私有 revision `00039-n9g`；1,043 项云端工程检查、1,039 项本地检查、572 项 Python 测试及 12 项 Node 测试通过；另有 8 项针对云端比对与中断重试的守护测试通过。10 次最终云端传输中断已恢复，历史失败记录完整保留。[交付证据](catalog/source-facts-thousand-v1/delivery-validation-v1.json)。
 
 ## Thousand-target initial screening — 2026-10-03

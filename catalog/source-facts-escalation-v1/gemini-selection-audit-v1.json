@@ -1,0 +1,7 @@
+{
+  "original_reviewed": 305,
+  "transport_incomplete": 3,
+  "retry_reviewed": 3,
+  "selection": "First complete valid reading per frozen target. Only transport-incomplete targets retried; disagreements not rerolled.",
+  "attempt_history_retained": true
+}

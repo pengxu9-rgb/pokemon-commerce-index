@@ -1,0 +1,13 @@
+{
+  "schema": "pokemon.missing-source-grounded-research.v1",
+  "model": "gemini-3.8-flash",
+  "requested_at": "2026-10-03T11:33:29.444418+00:00",
+  "catalog_context_visible": true,
+  "prior_research_leads_visible": true,
+  "prior_blind_verdicts_visible": false,
+  "google_search_grounding_enabled": true,
+  "scope": "Research leads only; not blind pixel inspection, catalog correction, identity or price approval",
+  "targets_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af",
+  "prompt": "Research publisher evidence for these source-card asset gaps using Google Search. Search primary pokemon-card.com pages. Return JSON with leads grouped by exact release and collector number, explicit URLs, source date, uncertainty, and why a superficially similar same-name card is NOT an exact release match. Do not infer missing scans, completed sales, foil or price. Official Morpeko V-UNION page 40208 combines S8b 056/184,057/184,058/184,059/184: identify multipart scope rather than substitute a complete image for one part. Official Mew page 50574 uses MF and may not match M6A G/R. Verify the M6a release date versus research date 2026-10-03. Missing asset records are research inputs, not established publisher identity. Do not approve catalog identity or label number readings. Do not use secondary marketplace titles as conclusive metadata. Subjects:\n[{\"set_code\": \"S8B\", \"collector_numbers\": [\"057/184\", \"058/184\", \"059/184\"], \"name\": \"モルペコV-UNION\"}, {\"set_code\": \"M6A\", \"collector_numbers\": [\"00G/103\", \"00R/103\", \"104/103–124/103\"], \"scope\": \"21 missing assets; seek release-specific publisher evidence, not all scans individually\"}]",
+  "prompt_sha256": "82d02d42aabe321408069494cb5c33d03ba06d943195fdd703bcb891cb059346"
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "pokemon.missing-source-grounded-research.v1",
+  "model": "gemini-3.8-flash",
+  "prompt": "Search only official pokemon-card.com sources: what are the four S8b Morpeko V-UNION numbers on publisher page40208, and the release date of M6a 30th Celebration? Does page50574 (Mew, MF premium deck) supply evidence for M6a G/R? Give concise primary URLs and explicit remaining gaps. Research date 2026-10-03. No card identity or price approvals.",
+  "prompt_sha256": "d19a1316cda93df680fadaecbc98eeba4dd76048de8f6eebf5534d17c8e38616",
+  "requested_at": "2026-10-03T11:37:01.452202+00:00",
+  "catalog_context_visible": true,
+  "prior_research_leads_visible": true,
+  "google_search_grounding_enabled": true,
+  "scope": "Source discovery only; no pixel readings or catalog import. Previous response hit MAX_TOKENS and was not accepted."
+}

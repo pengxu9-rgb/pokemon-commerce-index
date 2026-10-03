@@ -121,3 +121,13 @@ catalog/cross-release-source-facts-v1/*
 catalog/source-facts-thousand-v1/*
 !catalog/source-facts-thousand-v1/number-evidence-v1.jsonl
 !catalog/source-facts-thousand-v1/evidence-v1.jsonl
+
+!catalog/source-facts-escalation-v1/
+catalog/source-facts-escalation-v1/*
+!catalog/source-facts-escalation-v1/number-evidence-v1.jsonl
+!catalog/source-facts-escalation-v1/evidence-v1.jsonl
+
+!catalog/cross-release-artwork-v1/
+catalog/cross-release-artwork-v1/*
+!catalog/cross-release-artwork-v1/verified-artwork-events-v2.jsonl
+!catalog/cross-release-artwork-v1/qualified-difference-events-v2.jsonl

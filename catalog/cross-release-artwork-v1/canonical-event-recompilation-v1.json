@@ -1,0 +1,7 @@
+{
+  "reason": "Opaque blind labels are review identifiers; canonical event IDs must bind endpoint pair digests. Initial compilation v1 rejected by normal importer, no graph writes or gate changes. Recompiled v2 against identical frozen source heads and actual readings.",
+  "qualified_same_artwork_events": 9,
+  "qualified_differences": 3,
+  "raw_reviews_unchanged": true,
+  "importer_freshness_and_event_identity_guards_preserved": true
+}

@@ -117,6 +117,8 @@ def _compare(db, left_descriptor, right_descriptor):
     candidate_ids = {r['card_id'] for side in (left, right) for r in side['records']}
     source_warnings=[dict(card_id=f['card_id'],warnings=f['evidence']['warnings'])
         for side in (left,right) for f in side['source_image_facts'] if f['evidence']['warnings']]
+    number_warnings=[dict(card_id=n['card_id'],warnings=['source_image_number_coordinate_conflict'])
+        for side in (left,right) for n in side['observed_printed_numbers'] if n['evidence']['source_coordinate_conflict']]
     return dict(schema=SCHEMA, status='scope_confirmation_needed' if unresolved else 'catalog_partial',
         left=left, right=right, unresolved_sides=unresolved, numbering=numbers,
         artwork=dict(status='reviewed_endpoint_sources_only' if reviewed else
@@ -128,7 +130,9 @@ def _compare(db, left_descriptor, right_descriptor):
             difference_scope='A reviewed difference rules out same artwork only for its exact source endpoints; an absent/rejected link alone is not difference evidence.',
             all_coordinate_variants_verified=False),
         source_metadata_warnings=source_warnings,
+        source_number_warnings=number_warnings,
         required_evidence=(['source_image_metadata_resolution'] if source_warnings else [])+
+            (['source_number_identity_resolution'] if number_warnings else [])+
             ['physical_finish_edition_and_copy_condition', 'authorized_fresh_offers'],
         next_question='Confirm the release on '+', '.join(unresolved)+' before choosing an exact catalog version.' if unresolved else
             'Choose exact catalog versions and supply physical-copy evidence before offer comparison.',

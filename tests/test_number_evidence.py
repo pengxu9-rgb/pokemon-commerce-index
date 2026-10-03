@@ -48,6 +48,23 @@ class NumberEvidenceTests(unittest.TestCase):
         self.assertIsNone(number_graph.card_number_context(self.db, self.cid)['observed_printed_number'])
         self.assertEqual(number_evidence.status(self.db)['number_reading_events'], 0)
 
+    def test_agreed_different_number_exposes_conflict_and_blocks_artwork_identity(self):
+        from pokemon_index import discovery_graph
+        r=copy.deepcopy(self.row)
+        for review in r['review_groups'][0]['reviews']:review['observed_number_text']='038/225'
+        r['status']='different_text_observed';self.sign(r);number_evidence.import_evidence(self.db,[r])
+        self.assertTrue(number_evidence.context(self.db,self.cid)['visible_text_agreement'])
+        self.assertTrue(number_evidence.context(self.db,self.cid)['source_coordinate_conflict'])
+        self.assertIn('source_image_number_coordinate_conflict',discovery_graph.endpoint_identity_blockers(self.db,self.cid))
+        result=card_comparison.compare(self.db,dict(left=dict(card_id=self.cid),right=dict(card_id='en:SVP:037/225:normal')))
+        self.assertEqual(result['source_number_warnings'][0]['card_id'],self.cid)
+        self.assertIn('source_number_identity_resolution',result['required_evidence'])
+        self.assertFalse(result['purchase_ready'])
+        # A later current hold supersedes this conflict without deleting it.
+        newer=copy.deepcopy(r);newer['revision']=2;newer['review_groups'][0]['reviews'][0]['observed_number_text']=None;newer['status']='reading_hold';self.sign(newer);number_evidence.import_evidence(self.db,[newer])
+        self.assertFalse(number_evidence.context(self.db,self.cid)['source_coordinate_conflict'])
+        self.assertNotIn('source_image_number_coordinate_conflict',discovery_graph.endpoint_identity_blockers(self.db,self.cid))
+
     def test_same_coordinate_sibling_does_not_inherit_number_reading(self):
         number_evidence.import_evidence(self.db, [self.row])
         self.assertIsNone(number_evidence.context(self.db, 'en:SVP:037/225:normal'))

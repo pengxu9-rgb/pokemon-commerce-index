@@ -1,0 +1,26 @@
+{
+  "subjects": 308,
+  "lanes": [
+    {
+      "lane": 1,
+      "actual_inspected_sources": 104,
+      "source_hashes_verified": true,
+      "all_members_have_pixel_inspection_manifest": true
+    },
+    {
+      "lane": 2,
+      "actual_inspected_sources": 102,
+      "source_hashes_verified": true,
+      "all_members_have_pixel_inspection_manifest": true
+    },
+    {
+      "lane": 3,
+      "actual_inspected_sources": 102,
+      "source_hashes_verified": true,
+      "all_members_have_pixel_inspection_manifest": true
+    }
+  ],
+  "source_reference_binding_added_after_blind_inspection": true,
+  "reviewer_saw_catalog_context": false,
+  "raw_readings_unchanged": true
+}

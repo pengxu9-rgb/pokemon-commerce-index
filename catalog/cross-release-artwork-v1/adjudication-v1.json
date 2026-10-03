@@ -1,0 +1,41 @@
+{
+  "pairs": 14,
+  "raw_astra_decisions": {
+    "same": 9,
+    "different": 5
+  },
+  "qualified_same_artwork_events": 9,
+  "qualified_artwork_difference_events": 3,
+  "final_holds": [
+    {
+      "candidate_id": "cross-artwork-013",
+      "reason": "printed_symbol_identity_unconfirmed"
+    },
+    {
+      "candidate_id": "cross-artwork-014",
+      "reason": "printed_symbol_identity_unconfirmed"
+    }
+  ],
+  "difference_results": [
+    {
+      "candidate_id": "cross-artwork-010",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:cross-artwork-010:r1:same_artwork"
+    },
+    {
+      "candidate_id": "cross-artwork-011",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:cross-artwork-011:r1:same_artwork"
+    },
+    {
+      "candidate_id": "cross-artwork-012",
+      "status": "qualified_artwork_difference",
+      "graph_event_id": "relpilot-v2:cross-artwork-012:r1:same_artwork"
+    }
+  ],
+  "all_28_source_hashes_verified": true,
+  "separate_verdicts": true,
+  "ground_truth_accuracy_established": false,
+  "physical_or_price_permissions_added": false,
+  "method": "Astra blind images. Gemini expected coordinates visible for 11 cross-language pairs, blind images for 3 same-language controls. Original invalid language-side binding run retained; corrected exact-record bindings. One malformed control response retried with history retained."
+}

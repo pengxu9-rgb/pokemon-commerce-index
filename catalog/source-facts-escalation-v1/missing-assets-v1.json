@@ -1,0 +1,801 @@
+[
+  {
+    "target_id": "cross-scale-0123",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-057",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "ValueError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "api_sha256": "d089569663a401b1455d7ab1c2558d3cc7396f75ef52f0f39ec0e2d285c3ab86",
+    "api_details": {
+      "category": "Pokemon",
+      "id": "S8b-057",
+      "illustrator": "Mitsuhiro Arita",
+      "localId": "057",
+      "name": "モルペコV-UNION",
+      "rarity": "Triple Rare",
+      "set": {
+        "cardCount": {
+          "official": 184,
+          "total": 285
+        },
+        "id": "S8b",
+        "name": "VMAXクライマックス"
+      },
+      "variants": {
+        "firstEdition": false,
+        "holo": true,
+        "normal": false,
+        "reverse": false,
+        "wPromo": false
+      },
+      "variants_detailed": [
+        {
+          "type": "holo",
+          "size": "standard",
+          "thirdParty": {
+            "cardmarket": 586573
+          },
+          "variantId": "jr7oetx1mqug9",
+          "pricing": {
+            "cardmarket": {
+              "updated": "2026-10-03T10:34:10.048Z",
+              "unit": "EUR",
+              "idProduct": 586573,
+              "avg": 0.77,
+              "low": 0.2,
+              "trend": 0.7,
+              "avg1": 0.49,
+              "avg7": 0.76,
+              "avg30": 0.74,
+              "avg-holo": null,
+              "low-holo": null,
+              "trend-holo": 0,
+              "avg1-holo": null,
+              "avg7-holo": null,
+              "avg30-holo": null
+            },
+            "tcgplayer": null
+          }
+        }
+      ],
+      "dexId": [
+        877
+      ],
+      "hp": 310,
+      "types": [
+        "Lightning"
+      ],
+      "stage": "Basic",
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "たべほうだい",
+          "effect": "自分の手札が10枚になるように、山札を引く。"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "resistances": [],
+      "retreat": 2,
+      "regulationMark": "E",
+      "legal": {
+        "standard": false,
+        "expanded": false
+      },
+      "updated": "2026-09-16T22:51:20.885Z",
+      "pricing": {
+        "cardmarket": {
+          "updated": "2026-10-03T10:34:10.048Z",
+          "unit": "EUR",
+          "idProduct": 586573,
+          "avg": 0.77,
+          "low": 0.2,
+          "trend": 0.7,
+          "avg1": 0.49,
+          "avg7": 0.76,
+          "avg30": 0.74,
+          "avg-holo": null,
+          "low-holo": null,
+          "trend-holo": 0,
+          "avg1-holo": null,
+          "avg7-holo": null,
+          "avg30-holo": null
+        },
+        "tcgplayer": null
+      }
+    },
+    "source_ref": "https://assets.tcgdex.net/ja/S/S8b/057/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:49.003489+00:00",
+    "target_snapshot_sha256": "a14c9a9fdb22fff791cc398e46343cc3f921c54545bd2ac62b09ac8431917fa2",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0124",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-058",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "ValueError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "api_sha256": "dba67beaa6e2c0a4343a0db6646835fa00641b403cc4430d9778dfc10fb9a983",
+    "api_details": {
+      "category": "Pokemon",
+      "id": "S8b-058",
+      "illustrator": "Mitsuhiro Arita",
+      "localId": "058",
+      "name": "モルペコV-UNION",
+      "rarity": "Triple Rare",
+      "set": {
+        "cardCount": {
+          "official": 184,
+          "total": 285
+        },
+        "id": "S8b",
+        "name": "VMAXクライマックス"
+      },
+      "variants": {
+        "firstEdition": false,
+        "holo": true,
+        "normal": false,
+        "reverse": false,
+        "wPromo": false
+      },
+      "variants_detailed": [
+        {
+          "type": "holo",
+          "size": "standard",
+          "thirdParty": {
+            "cardmarket": 586574
+          },
+          "variantId": "jr7oetx1mqug9",
+          "pricing": {
+            "cardmarket": {
+              "updated": "2026-10-03T10:34:10.048Z",
+              "unit": "EUR",
+              "idProduct": 586574,
+              "avg": 0.8,
+              "low": 0.2,
+              "trend": 0.75,
+              "avg1": 0.8,
+              "avg7": 0.8,
+              "avg30": 0.8,
+              "avg-holo": null,
+              "low-holo": null,
+              "trend-holo": 0,
+              "avg1-holo": null,
+              "avg7-holo": null,
+              "avg30-holo": null
+            },
+            "tcgplayer": null
+          }
+        }
+      ],
+      "dexId": [
+        877
+      ],
+      "hp": 310,
+      "types": [
+        "Lightning"
+      ],
+      "stage": "Basic",
+      "attacks": [
+        {
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "バーストホイール",
+          "effect": "このポケモンについているエネルギーをすべてトラッシュし、その枚数×100ダメージ。",
+          "damage": "100×"
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "resistances": [],
+      "retreat": 2,
+      "regulationMark": "E",
+      "legal": {
+        "standard": false,
+        "expanded": false
+      },
+      "updated": "2026-09-16T22:51:19.924Z",
+      "pricing": {
+        "cardmarket": {
+          "updated": "2026-10-03T10:34:10.048Z",
+          "unit": "EUR",
+          "idProduct": 586574,
+          "avg": 0.8,
+          "low": 0.2,
+          "trend": 0.75,
+          "avg1": 0.8,
+          "avg7": 0.8,
+          "avg30": 0.8,
+          "avg-holo": null,
+          "low-holo": null,
+          "trend-holo": 0,
+          "avg1-holo": null,
+          "avg7-holo": null,
+          "avg30-holo": null
+        },
+        "tcgplayer": null
+      }
+    },
+    "source_ref": "https://assets.tcgdex.net/ja/S/S8b/058/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:49.009028+00:00",
+    "target_snapshot_sha256": "2bd629d9ec4986e361166609803e1fa390f807b6d2e0fa16726a9270a2ec7c23",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0125",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/S8B-059",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "ValueError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "api_sha256": "cc35c7ecee98e92d5e7ec0762d32fe8b46b5daed2e15560f20a8be777032e537",
+    "api_details": {
+      "category": "Pokemon",
+      "id": "S8b-059",
+      "illustrator": "Mitsuhiro Arita",
+      "localId": "059",
+      "name": "モルペコV-UNION",
+      "rarity": "Triple Rare",
+      "set": {
+        "cardCount": {
+          "official": 184,
+          "total": 285
+        },
+        "id": "S8b",
+        "name": "VMAXクライマックス"
+      },
+      "variants": {
+        "firstEdition": false,
+        "holo": true,
+        "normal": false,
+        "reverse": false,
+        "wPromo": false
+      },
+      "variants_detailed": [
+        {
+          "type": "holo",
+          "size": "standard",
+          "thirdParty": {
+            "cardmarket": 586575
+          },
+          "variantId": "jr7oetx1mqug9",
+          "pricing": {
+            "cardmarket": {
+              "updated": "2026-10-03T10:34:10.048Z",
+              "unit": "EUR",
+              "idProduct": 586575,
+              "avg": 0.82,
+              "low": 0.35,
+              "trend": 0.71,
+              "avg1": 0.5,
+              "avg7": 0.77,
+              "avg30": 0.79,
+              "avg-holo": null,
+              "low-holo": null,
+              "trend-holo": 0,
+              "avg1-holo": null,
+              "avg7-holo": null,
+              "avg30-holo": null
+            },
+            "tcgplayer": null
+          }
+        }
+      ],
+      "dexId": [
+        877
+      ],
+      "hp": 310,
+      "types": [
+        "Lightning"
+      ],
+      "stage": "Basic",
+      "attacks": [
+        {
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "ライトニングボール",
+          "damage": 160
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "x2"
+        }
+      ],
+      "resistances": [],
+      "retreat": 2,
+      "regulationMark": "E",
+      "legal": {
+        "standard": false,
+        "expanded": false
+      },
+      "updated": "2026-09-16T22:51:31.386Z",
+      "pricing": {
+        "cardmarket": {
+          "updated": "2026-10-03T10:34:10.048Z",
+          "unit": "EUR",
+          "idProduct": 586575,
+          "avg": 0.82,
+          "low": 0.35,
+          "trend": 0.71,
+          "avg1": 0.5,
+          "avg7": 0.77,
+          "avg30": 0.79,
+          "avg-holo": null,
+          "low-holo": null,
+          "trend-holo": 0,
+          "avg1-holo": null,
+          "avg7-holo": null,
+          "avg30-holo": null
+        },
+        "tcgplayer": null
+      }
+    },
+    "source_ref": "https://assets.tcgdex.net/ja/S/S8b/059/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:48.910391+00:00",
+    "target_snapshot_sha256": "86f6c197f405b7676a078334373ca4e32e86dac6239ef09f00d6124f37f9266b",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0470",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-124",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/124/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:49.453344+00:00",
+    "target_snapshot_sha256": "2b5b3e2dc4cdd2b91e129aad45bf166f7d685a614accabdd2d840186e1fcc1b7",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0471",
+    "status": "asset_hold",
+    "error_type": "ValueError",
+    "attempts": [],
+    "target_snapshot_sha256": "fd110981fd335b66681156b00d77c12f6a6a539f8e76a0a741bcdc86bef95432",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0472",
+    "status": "asset_hold",
+    "error_type": "ValueError",
+    "attempts": [],
+    "target_snapshot_sha256": "fc70b639eff1d0ee0c15f39277d772ee5d849d252636bd24c04867c369faa7a8",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0473",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-104",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/104/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:51.634148+00:00",
+    "target_snapshot_sha256": "fcbd552f01d70498ed97235ea2464764dec922d9d47b3da977355ba899f27a5f",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0474",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-105",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/105/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:52.145941+00:00",
+    "target_snapshot_sha256": "10962b2bff0255951794d8a7e099a340cd18b85b4cfdaa7e8c31a85b4f5d2b47",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0475",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-106",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/106/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:52.290207+00:00",
+    "target_snapshot_sha256": "a332583c05df3c6aa045bba4c1671bb361b2ba0ddf56f4f666128d9c8142205c",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0476",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-107",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/107/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:52.258270+00:00",
+    "target_snapshot_sha256": "e453035ee7d93f52912d0289feca804e5e97af0aeef1b52e52293d304d7da86e",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0477",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-108",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/108/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:54.252956+00:00",
+    "target_snapshot_sha256": "e7aacd7c2b03629bca69332439784b64ec25b3639a0d0f03e36374559f577ee0",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0478",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-109",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/109/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:54.806293+00:00",
+    "target_snapshot_sha256": "770464f7ae5d1166065e3a12b80691a01c2b992753ae0f05e5b1a44d5d1bef2c",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0479",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-110",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/110/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:55.040808+00:00",
+    "target_snapshot_sha256": "e0f95922fe2bd0bfc77c1cfb08df7da87b08dd24aef2fc0644996f1766fbfc5b",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0480",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-111",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/111/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:54.904036+00:00",
+    "target_snapshot_sha256": "b8e6180e632bcde783ac8dec9363f92bdce6d9ff70be874eeab06b113204f0a7",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0481",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-112",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/112/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:56.867731+00:00",
+    "target_snapshot_sha256": "1b8437d59c92886ecfa1dd0d84d9b9e7bac32e14abc1b33e774095f0f6f3d5b6",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0482",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-113",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/113/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:57.400281+00:00",
+    "target_snapshot_sha256": "9766c2b17d91bf50021251eea0e6ed0619ba666d54400bec614937a45d7bf53c",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0483",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-114",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/114/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:57.493143+00:00",
+    "target_snapshot_sha256": "59e1bae2b66bc3da25b75b2cc8bd93747c797d0d4d8b261a9bf46fa8b317d823",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0484",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-115",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/115/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:57.638472+00:00",
+    "target_snapshot_sha256": "baac60b8bca2c111f635fb589e1147196e78c68442a5b5fd79584a9bafdda0bf",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0485",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-116",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/116/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:16:59.919643+00:00",
+    "target_snapshot_sha256": "be960fd1518c12ddda7b5d9804f89bb87711b5c4c1cd411a9bce1e1ee71adf05",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0486",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-117",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/117/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:17:00.042124+00:00",
+    "target_snapshot_sha256": "30cdd3ed6de955c91034db484ad086f970ac8b3e0d4b4d8d875a36688159798d",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0487",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-118",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/118/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:17:00.121391+00:00",
+    "target_snapshot_sha256": "ae41efd2c91de5a9f9478ec51363afc18cfef4b99adac61c543a6941098c3335",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0488",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-119",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/119/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:17:00.203127+00:00",
+    "target_snapshot_sha256": "040254a0cfaba3ead84be1e86051fe4b507ffc2f6fe2c7997dcdbb6d70faf2e6",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0489",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-120",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/120/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:17:02.634478+00:00",
+    "target_snapshot_sha256": "77870e3be2041258a4b478c9ba4b5fed9f480e1096ef5b920c3533c5dce26a8c",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  },
+  {
+    "target_id": "cross-scale-0490",
+    "api_url": "https://api.tcgdex.net/v2/ja/cards/M6A-121",
+    "status": "asset_hold",
+    "attempts": [
+      {
+        "route": "detail_api",
+        "status": "unavailable",
+        "error_type": "HTTPError"
+      },
+      {
+        "route": "pinned_source_path_convention",
+        "status": "candidate_only"
+      }
+    ],
+    "source_ref": "https://assets.tcgdex.net/ja/M/M6a/121/high.webp",
+    "error_type": "HTTPError",
+    "fetched_at": "2026-10-03T11:17:02.693199+00:00",
+    "target_snapshot_sha256": "1bbe5e89146324360b7e3b29f8abfd516fd7c696d361add3d1b6d707c8264564",
+    "queue_sha256": "65a867c09308287dc9fbb71ed78bcbd0e4765b0a65c3ba0dfe4d8c77bdecc0af"
+  }
+]

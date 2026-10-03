@@ -122,12 +122,15 @@ def reviewed_artwork_difference_usable(db, edge):
     except (TypeError,ValueError,KeyError):return False
 
 
+def pilot_candidate_id(left: str, right: str) -> str:
+    return hashlib.sha256(('relationship-pilot-v1\0'+'\0'.join(sorted((left,right)))).encode()).hexdigest()[:20]
+
+
 def _pilot_event_meta(event_id: str, assertion: dict[str, Any]) -> tuple[str, int, str, str | None]:
     match = re.fullmatch(r"relpilot-v2:([0-9a-f]{20}):r([1-9][0-9]*):([a-z_]+)", event_id)
     if not match or match.group(3) != assertion["relation_type"]:
         raise ValueError("pilot assertion_id must bind candidate, revision, and relation type")
-    pair_digest = hashlib.sha256(("relationship-pilot-v1\0" + "\0".join(
-        (assertion["left_card_id"], assertion["right_card_id"]))).encode()).hexdigest()[:20]
+    pair_digest = pilot_candidate_id(assertion['left_card_id'], assertion['right_card_id'])
     if match.group(1) != pair_digest:
         raise ValueError("pilot candidate_id does not match endpoint cards")
     try:
@@ -195,6 +198,10 @@ def endpoint_identity_blockers(db: sqlite3.Connection, card_id: str) -> list[str
     if family and family["status"] in {
             "coordinate_family_evidence_hold", "stale_coordinate_family_evidence"}:
         blockers.append(family["status"])
+    from . import number_evidence
+    reading = number_evidence.context(db, card_id)
+    if reading and reading['source_coordinate_conflict']:
+        blockers.append('source_image_number_coordinate_conflict')
     return blockers
 
 

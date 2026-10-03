@@ -198,6 +198,7 @@ def context(db, card_id):
                 observed_number_texts=readings if usable else [],
                 review_groups=row['review_groups'], source_ref=row['source_ref'], image_sha256=row['image_sha256'],
                 visible_text_agreement=usable, printed_denominator_observed=usable and '/' in readings[0],
+                source_coordinate_conflict=current and row['status']=='different_text_observed',
                 scope='Exact source stock-image text only; no assignment to sibling labels or seller copies.',
                 independent_accuracy_established=False, **{k: False for k in FALSE_CLAIMS})
 

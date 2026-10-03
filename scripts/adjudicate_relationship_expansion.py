@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 import sqlite3
 
-from scripts.compile_relationship_identity_reviews import compile_reviews, keyed
+from scripts.compile_relationship_identity_reviews import compile_reviews, keyed, bind_source_images
 from scripts.freeze_relationship_identity_review import check_current
 
 
@@ -27,12 +27,11 @@ def adjudicate(db,cohort,first,second,assets):
             if review.get('cohort_snapshot_sha256',review.get('source_snapshot_sha256'))!=frozen['cohort_snapshot_sha256']:
                 raise ValueError('review snapshot differs')
         pair_assets=[r for r in assets if r['candidate_id']==cid]
+        try:bind_source_images(pair_assets,frozen['endpoints']);asset_binding_valid=True
+        except ValueError:asset_binding_valid=False
         if len(pair_assets)!=2 or any(r['status']!='source_hash_verified' for r in pair_assets):
             reason='source_asset_unavailable'
-        elif ({r['side'] for r in pair_assets}!={'ja','en'} or any(
-                next(r for r in pair_assets if r['side']==c['language']).get('image_sha256')!=c['image_sha256']
-                or next(r for r in pair_assets if r['side']==c['language']).get('source_ref')!=c['image_ref']
-                for c in frozen['endpoints'])):
+        elif not asset_binding_valid:
             reason='source_asset_hash_or_identity_mismatch'
         elif a['reviewer'].strip().casefold()==b['reviewer'].strip().casefold():
             reason='reviewers_not_distinct'

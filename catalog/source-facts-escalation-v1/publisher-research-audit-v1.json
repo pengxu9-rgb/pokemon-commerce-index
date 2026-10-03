@@ -1,0 +1,68 @@
+{
+  "schema": "pokemon.publisher-gap-research-audit.v1",
+  "missing_subjects": 24,
+  "image_assets_recovered": 0,
+  "individual_pixel_inspection_events_added": 0,
+  "official_multipart_coordinate_leads": 3,
+  "m6a_asset_holds": 21,
+  "primary_pages": [
+    {
+      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/40208",
+      "path": "catalog/source-facts-escalation-v1/publisher-page-40208-v1.html",
+      "sha256": "3c7ae42a0abb5a75120fcf0eaf8d78c63af02e3b9a40e73e96a385a5aba5f805"
+    },
+    {
+      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50574",
+      "path": "catalog/source-facts-escalation-v1/publisher-page-50574-v1.html",
+      "sha256": "1d67f860c006ec4490737d7537e88bc13a8e9e5dd1a457971ee4038c5a8b1c4f"
+    },
+    {
+      "source_url": "https://www.30th.pokemon-card.com/product/m6a",
+      "path": "catalog/source-facts-escalation-v1/publisher-m6a-release-page-v1.html",
+      "sha256": "d48fa680358098f44881a593a4cc65b67f8ea40691baa2ce6810ed327dabdc86"
+    }
+  ],
+  "gemini_google_search_grounded": true,
+  "grounded_search_attempts": [
+    {
+      "protocol": "v1",
+      "outcome": "timeout_no_response"
+    },
+    {
+      "protocol": "v2",
+      "outcome": "MAX_TOKENS_not_accepted"
+    },
+    {
+      "protocol": "v3",
+      "outcome": "STOP_with_grounding_but_primary_check_found_number_error"
+    }
+  ],
+  "findings": [
+    {
+      "scope": "publisher40208",
+      "primary_numbers": [
+        "056/184",
+        "057/184",
+        "058/184",
+        "059/184"
+      ],
+      "gemini_reported_numbers": [
+        "226/184",
+        "227/184",
+        "228/184",
+        "229/184"
+      ],
+      "result": "Grounded response conflated another artwork printing. Reject its number finding; retained as a search failure control. Primary page binds a combined four-part scan, not an individual image."
+    },
+    {
+      "scope": "publisher50574",
+      "result": "MF Mew lead cannot resolve M6A G/R without exact release evidence; no card imported"
+    },
+    {
+      "scope": "M6a product page",
+      "primary_release_date": "2026-09-16",
+      "result": "Verified on publisher release HTML, not a future-release explanation for missing assets"
+    }
+  ],
+  "catalog_identity_or_commerce_approval": false
+}

@@ -298,3 +298,5 @@ Latest expansion: [fifty promo-number targets](PROMO_NUMBER_EXPANSION_20261002.m
 Latest source-image facts update: [title/symbol/furigana and HP advisories](SOURCE_IMAGE_FACTS_20261003.md). Nine selected scans have explicit review context and one HP conflict; this does not upgrade the five existing number holds.
 
 Latest expansion: [forty additional source-scan fact observations](SOURCE_IMAGE_FACTS_EXPANSION_20261003.md). The advisory layer covers 49 selected promo scans; the next unreviewed research queue contains 100 cross-release candidates.
+
+Latest source/graph delivery: [308 independent image-model escalations and fourteen pair reviews](SOURCE_FACTS_ESCALATION_20261003.md). All fifty SV2A number holds were resolved at the source-scan level. Nine artwork matches and three qualified differences were added; fifty-eight source priorities and two pair holds remain explicit. No catalog identity, physical-copy or live-price approval follows.
