@@ -1,0 +1,3099 @@
+{
+  "schema": "pokemon.collector-recommendation-catalog-examples.v1",
+  "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+  "catalog_sha256": "2340c8d4a1d8518d6ed4302a1b3687d92f792909a80ef630bb11201167a2db88",
+  "catalog_bytes_unchanged": true,
+  "scope": "Current read-only catalog examples, not real-user or physical-printing validation.",
+  "examples": [
+    {
+      "case": "next-Mew",
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "English"
+        },
+        {
+          "type": "reply",
+          "text": "Mew"
+        }
+      ],
+      "result": {
+        "schema": "pokemon.collector-journey.v1",
+        "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+        "turn_count": 3,
+        "status": "candidate_clarification_needed",
+        "goal_question": "I completed my Pikachu collection. What should I collect next?",
+        "scope_filters": {
+          "language": "en"
+        },
+        "candidate_cards": [
+          {
+            "card_id": "en:30TH-C:026/030:holo_30th_anniversary",
+            "language": "en",
+            "set_code": "30TH-C",
+            "collector_number": "026/030",
+            "variant": "holo_30th_anniversary",
+            "name": "Mew VMAX",
+            "rarity": "None",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/026.ts:sha256:dcbcd0c49f17b2c852edb6b5406545e6ac7f9b23cdca9d32b52e65c7e4dff69f",
+            "set_name": "30th Classic Collection",
+            "release_date": "2026-09-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "en:30TH:00B/128:holo",
+            "language": "en",
+            "set_code": "30TH",
+            "collector_number": "00B/128",
+            "variant": "holo",
+            "name": "Mew",
+            "rarity": "RGB Rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/B.ts:sha256:c646a02f0237167ede430b243a76a51948cb1dd6f0597264f88e4a7ccf5a4acb",
+            "set_name": "30th Celebration",
+            "release_date": "2026-09-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+            "structural_match_eligible": false,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "en:30TH:00G/128:holo",
+            "language": "en",
+            "set_code": "30TH",
+            "collector_number": "00G/128",
+            "variant": "holo",
+            "name": "Mew",
+            "rarity": "RGB Rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/G.ts:sha256:093baf0ed192817100e74dfbb9ff2f8d5789e9722932bf4f757304c856bb73fd",
+            "set_name": "30th Celebration",
+            "release_date": "2026-09-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+            "structural_match_eligible": false,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "en:30TH:00R/128:holo",
+            "language": "en",
+            "set_code": "30TH",
+            "collector_number": "00R/128",
+            "variant": "holo",
+            "name": "Mew",
+            "rarity": "RGB Rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/R.ts:sha256:d95396015d1139cf8ef76379fa5f8f80a9972ddbc853fe5c84d2642dccfc9cfa",
+            "set_name": "30th Celebration",
+            "release_date": "2026-09-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+            "structural_match_eligible": false,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "en:30TH:065/128:normal_30th_anniversary",
+            "language": "en",
+            "set_code": "30TH",
+            "collector_number": "065/128",
+            "variant": "normal_30th_anniversary",
+            "name": "Mew",
+            "rarity": "Rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/065.ts:sha256:42535d3d9f2b045c182fa82980aa8b5fab89a459c8bab111c58adf06028580a0",
+            "set_name": "30th Celebration",
+            "release_date": "2026-09-16",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          }
+        ],
+        "discovery": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "I completed my Pikachu collection. What should I collect next?",
+          "languages": [
+            "en"
+          ],
+          "task": "collector_recommendations",
+          "status": "catalog_partial",
+          "cards": [
+            {
+              "card_id": "en:30TH-C:026/030:holo_30th_anniversary",
+              "language": "en",
+              "set_code": "30TH-C",
+              "collector_number": "026/030",
+              "variant": "holo_30th_anniversary",
+              "name": "Mew VMAX",
+              "rarity": "None",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/026.ts:sha256:dcbcd0c49f17b2c852edb6b5406545e6ac7f9b23cdca9d32b52e65c7e4dff69f",
+              "set_name": "30th Classic Collection",
+              "release_date": "2026-09-16",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "en:30TH:00B/128:holo",
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00B/128",
+              "variant": "holo",
+              "name": "Mew",
+              "rarity": "RGB Rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/B.ts:sha256:c646a02f0237167ede430b243a76a51948cb1dd6f0597264f88e4a7ccf5a4acb",
+              "set_name": "30th Celebration",
+              "release_date": "2026-09-16",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+              "structural_match_eligible": false,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "en:30TH:00G/128:holo",
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00G/128",
+              "variant": "holo",
+              "name": "Mew",
+              "rarity": "RGB Rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/G.ts:sha256:093baf0ed192817100e74dfbb9ff2f8d5789e9722932bf4f757304c856bb73fd",
+              "set_name": "30th Celebration",
+              "release_date": "2026-09-16",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+              "structural_match_eligible": false,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "en:30TH:00R/128:holo",
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00R/128",
+              "variant": "holo",
+              "name": "Mew",
+              "rarity": "RGB Rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/R.ts:sha256:d95396015d1139cf8ef76379fa5f8f80a9972ddbc853fe5c84d2642dccfc9cfa",
+              "set_name": "30th Celebration",
+              "release_date": "2026-09-16",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+              "structural_match_eligible": false,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "en:30TH:065/128:normal_30th_anniversary",
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "065/128",
+              "variant": "normal_30th_anniversary",
+              "name": "Mew",
+              "rarity": "Rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/065.ts:sha256:42535d3d9f2b045c182fa82980aa8b5fab89a459c8bab111c58adf06028580a0",
+              "set_name": "30th Celebration",
+              "release_date": "2026-09-16",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            }
+          ],
+          "next_question": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.",
+          "market_status": "no_live_market_evidence",
+          "prices": [],
+          "live_offers": [],
+          "public_display_allowed": false,
+          "complete_answer_established": false,
+          "unfulfilled_constraints": [],
+          "requested_scope": {
+            "language": "en"
+          },
+          "coverage": {
+            "matched_catalog_records": 71,
+            "not_in_resolved_inventory": 71,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true
+          },
+          "scope": "Internal preference matches; physical printing, taste, ownership and market claims remain separate.",
+          "ordering": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1"
+        },
+        "inventory": null,
+        "artwork_review_leads": [],
+        "selection_allowed": true,
+        "card_selection_blockers": {
+          "en:30TH-C:026/030:holo_30th_anniversary": [],
+          "en:30TH:00B/128:holo": [
+            "catalog_identity_review_needed",
+            "match_disabled_identity"
+          ],
+          "en:30TH:00G/128:holo": [
+            "catalog_identity_review_needed",
+            "match_disabled_identity"
+          ],
+          "en:30TH:00R/128:holo": [
+            "catalog_identity_review_needed",
+            "match_disabled_identity"
+          ],
+          "en:30TH:065/128:normal_30th_anniversary": []
+        },
+        "recommendation": {
+          "schema": "pokemon.collector-recommendation.v1",
+          "ranking_policy": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1",
+          "preference_evidence": "user_assertion_only",
+          "candidate_pool_complete": true,
+          "coverage_basis": "current_source_declared_catalog_and_facets_only",
+          "global_catalog_completeness_established": false,
+          "unapplied_preferences": [],
+          "budget_fit": "unknown_no_live_price",
+          "grade_availability": "unknown_no_copy_offers",
+          "items": [
+            {
+              "card_id": "en:30TH-C:026/030:holo_30th_anniversary",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 151,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/026.ts:sha256:dcbcd0c49f17b2c852edb6b5406545e6ac7f9b23cdca9d32b52e65c7e4dff69f",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 1
+            },
+            {
+              "card_id": "en:30TH:00B/128:holo",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 151,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/B.ts:sha256:c646a02f0237167ede430b243a76a51948cb1dd6f0597264f88e4a7ccf5a4acb",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 2
+            },
+            {
+              "card_id": "en:30TH:00G/128:holo",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 151,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/G.ts:sha256:093baf0ed192817100e74dfbb9ff2f8d5789e9722932bf4f757304c856bb73fd",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 3
+            },
+            {
+              "card_id": "en:30TH:00R/128:holo",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 151,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/R.ts:sha256:d95396015d1139cf8ef76379fa5f8f80a9972ddbc853fe5c84d2642dccfc9cfa",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 4
+            },
+            {
+              "card_id": "en:30TH:065/128:normal_30th_anniversary",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 151,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/065.ts:sha256:42535d3d9f2b045c182fa82980aa8b5fab89a459c8bab111c58adf06028580a0",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 5
+            }
+          ],
+          "coordinate_groups": [
+            {
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00B/128",
+              "shown_card_ids": [
+                "en:30TH:00B/128:holo"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00G/128",
+              "shown_card_ids": [
+                "en:30TH:00G/128:holo"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "00R/128",
+              "shown_card_ids": [
+                "en:30TH:00R/128:holo"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "en",
+              "set_code": "30TH",
+              "collector_number": "065/128",
+              "shown_card_ids": [
+                "en:30TH:065/128:normal_30th_anniversary"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "en",
+              "set_code": "30TH-C",
+              "collector_number": "026/030",
+              "shown_card_ids": [
+                "en:30TH-C:026/030:holo_30th_anniversary"
+              ],
+              "physical_versions_merged": false
+            }
+          ]
+        },
+        "selection_blockers": [],
+        "selected_catalog_target": null,
+        "target_reset_reason": null,
+        "preferences": {
+          "collecting": {
+            "preferred_dex_ids": [
+              151
+            ]
+          }
+        },
+        "preferences_applied_to_market": false,
+        "next_step": {
+          "field": "recommendation_feedback_or_choice",
+          "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+        },
+        "target_intent": null,
+        "trace": [
+          {
+            "turn": 1,
+            "action": "ask",
+            "task": "collection_preferences_needed",
+            "displayed_card_ids": [],
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 2,
+            "action": "reply",
+            "task": "collection_preferences_needed",
+            "displayed_card_ids": [],
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 3,
+            "action": "reply",
+            "task": "collector_recommendations",
+            "displayed_card_ids": [
+              "en:30TH-C:026/030:holo_30th_anniversary",
+              "en:30TH:00B/128:holo",
+              "en:30TH:00G/128:holo",
+              "en:30TH:00R/128:holo",
+              "en:30TH:065/128:normal_30th_anniversary"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          }
+        ],
+        "resume": {
+          "caller_resubmits_turns": true,
+          "expected_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+          "max_turns": 20
+        },
+        "conversation_persisted": false,
+        "inventory_persisted": false,
+        "ownership_assertions_verified": false,
+        "physical_copy_verified": false,
+        "ready_for_offer_tracking": false,
+        "purchase_ready": false,
+        "complete_collection_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+      }
+    },
+    {
+      "case": "budget-style",
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards under $50. I like cute cards."
+        }
+      ],
+      "result": {
+        "schema": "pokemon.collector-journey.v1",
+        "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+        "turn_count": 1,
+        "status": "candidate_clarification_needed",
+        "goal_question": "Recommend Japanese Pikachu cards under $50. I like cute cards.",
+        "scope_filters": {
+          "language": "ja"
+        },
+        "candidate_cards": [
+          {
+            "card_id": "ja:CP2:008/027:holo",
+            "language": "ja",
+            "set_code": "CP2",
+            "collector_number": "008/027",
+            "variant": "holo",
+            "name": "ピカチュウEX",
+            "rarity": "Double rare",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+            "set_name": "伝説キラコレクション",
+            "release_date": "2015-07-18",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "ja:E1:016/128:normal_1st_edition",
+            "language": "ja",
+            "set_code": "E1",
+            "collector_number": "016/128",
+            "variant": "normal_1st_edition",
+            "name": "ピカチュウ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+            "set_name": "基本拡張パック",
+            "release_date": "2001-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "ja:E4:033/088:normal_1st_edition",
+            "language": "ja",
+            "set_code": "E4",
+            "collector_number": "033/088",
+            "variant": "normal_1st_edition",
+            "name": "ピカチュウ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+            "set_name": "裂けた大地",
+            "release_date": "2002-08-23",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "ja:M-P:020/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "020/M-P",
+            "variant": "normal",
+            "name": "ピカチュウ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/020.ts:sha256:570869a5fd64abbfbde08bf659e40f7447f201c2423b4a7af1e0b2cb749e6fc1",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+              "facet_status": {
+                "illustrator": "source_supported",
+                "dex_id": "source_supported"
+              },
+              "printed_source_corrections": [],
+              "official": {
+                "collector_number": "020/M-P",
+                "dex_id": 25,
+                "fetched_at": "2026-10-01T14:37:45+00:00",
+                "illustrators": [
+                  "Yuu Nishida"
+                ],
+                "name": "ピカチュウ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "020/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "d8059dfd661781866784f54e5fa48f58fa1785e7700df6a49f8ffb251463bcb9",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          },
+          {
+            "card_id": "ja:M-P:131/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "131/M-P",
+            "variant": "normal",
+            "name": "ピカチュウex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:7e09ede263b66c690f49f2136168816d5ffbd594cc9b5e64ff2075110d916ac7",
+              "facet_status": {
+                "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                "dex_id": "not_declared"
+              },
+              "printed_source_corrections": [
+                {
+                  "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "131/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "official": {
+                "collector_number": "131/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "YOSHIROTTEN"
+                ],
+                "name": "ピカチュウex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "131/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_corrections": {
+              "schema": "pokemon.source-correction-context.v1",
+              "findings": [
+                {
+                  "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "131/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "copy_evidence_needed": true,
+              "raw_sources_preserved": true,
+              "blind_accuracy_measured": false,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printing_source_evidence": {
+              "schema": "pokemon.printing-source-context.v1",
+              "findings": [
+                {
+                  "automatic_offer_join_allowed": false,
+                  "copy_condition_verified": false,
+                  "display_allowed": false,
+                  "event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "hold_reason": null,
+                  "identity_sha256": "cc61ce569ae8253537f2a9614db0ab200c81992295e397743357d6b0faae3e74",
+                  "listing_copy_verified": false,
+                  "names_are_exact_aliases": false,
+                  "observations": [
+                    {
+                      "claim": "printed_artist",
+                      "coordinate": {
+                        "collector_number": "131/M-P",
+                        "language": "ja",
+                        "set_code": "M-P"
+                      },
+                      "locator": "bottom-left Illus. credit in exact publisher image",
+                      "scope": "publisher_asset_only",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50555",
+                      "value": "YOSHIROTTEN"
+                    }
+                  ],
+                  "page_to_variant_mapping_verified": false,
+                  "physical_finish_verified": false,
+                  "price_comparable": false,
+                  "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                  "reviewers": [
+                    {
+                      "actor": "codex-printing-pilot-agent",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                      "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                      "source_image_sha256s": [
+                        "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                      ]
+                    },
+                    {
+                      "actor": "codex-root-visual-review",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                      "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                      "source_image_sha256s": [
+                        "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                      ]
+                    }
+                  ],
+                  "revision": 1,
+                  "schema": "pokemon.printing-source-evidence.v1",
+                  "sources": [
+                    {
+                      "fetched_at": "2026-10-01T14:38:07+00:00",
+                      "image_sha256": "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050555_P_PIKACHIXYUUIEKKUSU.jpg",
+                      "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                      "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                    }
+                  ],
+                  "status": "source_observed",
+                  "subject_id": "ja:M-P:131/M-P",
+                  "subject_kind": "coordinate",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "copy_evidence_needed": true,
+              "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printed_artist_credit": {
+              "value": "YOSHIROTTEN",
+              "evidence_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+              "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+              "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+              "reviewer_actors": [
+                "codex-printing-pilot-agent",
+                "codex-root-visual-review"
+              ],
+              "independent_blind_accuracy_measurement": false
+            }
+          }
+        ],
+        "discovery": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Recommend Japanese Pikachu cards under $50. I like cute cards.",
+          "languages": [
+            "ja"
+          ],
+          "task": "collector_recommendations",
+          "status": "catalog_partial",
+          "cards": [
+            {
+              "card_id": "ja:CP2:008/027:holo",
+              "language": "ja",
+              "set_code": "CP2",
+              "collector_number": "008/027",
+              "variant": "holo",
+              "name": "ピカチュウEX",
+              "rarity": "Double rare",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+              "set_name": "伝説キラコレクション",
+              "release_date": "2015-07-18",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:E1:016/128:normal_1st_edition",
+              "language": "ja",
+              "set_code": "E1",
+              "collector_number": "016/128",
+              "variant": "normal_1st_edition",
+              "name": "ピカチュウ",
+              "rarity": "Common",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+              "set_name": "基本拡張パック",
+              "release_date": "2001-12-01",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:E4:033/088:normal_1st_edition",
+              "language": "ja",
+              "set_code": "E4",
+              "collector_number": "033/088",
+              "variant": "normal_1st_edition",
+              "name": "ピカチュウ",
+              "rarity": "Common",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+              "set_name": "裂けた大地",
+              "release_date": "2002-08-23",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:M-P:020/M-P:normal",
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "020/M-P",
+              "variant": "normal",
+              "name": "ピカチュウ",
+              "rarity": "Promo",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/020.ts:sha256:570869a5fd64abbfbde08bf659e40f7447f201c2423b4a7af1e0b2cb749e6fc1",
+              "set_name": "メガ プロモカード",
+              "release_date": "2025-07-28",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "official_metadata": {
+                "status": "official_coordinate_metadata_supported",
+                "evidence_id": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+                "facet_status": {
+                  "illustrator": "source_supported",
+                  "dex_id": "source_supported"
+                },
+                "printed_source_corrections": [],
+                "official": {
+                  "collector_number": "020/M-P",
+                  "dex_id": 25,
+                  "fetched_at": "2026-10-01T14:37:45+00:00",
+                  "illustrators": [
+                    "Yuu Nishida"
+                  ],
+                  "name": "ピカチュウ",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "020/M-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "M-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "d8059dfd661781866784f54e5fa48f58fa1785e7700df6a49f8ffb251463bcb9",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "M-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+                },
+                "claims_scope": "official page coordinates; physical printing/copy unverified",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false
+              }
+            },
+            {
+              "card_id": "ja:M-P:131/M-P:normal",
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "131/M-P",
+              "variant": "normal",
+              "name": "ピカチュウex",
+              "rarity": "Promo",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+              "set_name": "メガ プロモカード",
+              "release_date": "2025-07-28",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "official_metadata": {
+                "status": "official_coordinate_metadata_supported",
+                "evidence_id": "official-metadata:7e09ede263b66c690f49f2136168816d5ffbd594cc9b5e64ff2075110d916ac7",
+                "facet_status": {
+                  "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                  "dex_id": "not_declared"
+                },
+                "printed_source_corrections": [
+                  {
+                    "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "131/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "official": {
+                  "collector_number": "131/M-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T14:38:07+00:00",
+                  "illustrators": [
+                    "YOSHIROTTEN"
+                  ],
+                  "name": "ピカチュウex",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "131/M-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "M-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "M-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                },
+                "claims_scope": "official page coordinates; physical printing/copy unverified",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false
+              },
+              "source_corrections": {
+                "schema": "pokemon.source-correction-context.v1",
+                "findings": [
+                  {
+                    "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "131/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "copy_evidence_needed": true,
+                "raw_sources_preserved": true,
+                "blind_accuracy_measured": false,
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printing_source_evidence": {
+                "schema": "pokemon.printing-source-context.v1",
+                "findings": [
+                  {
+                    "automatic_offer_join_allowed": false,
+                    "copy_condition_verified": false,
+                    "display_allowed": false,
+                    "event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "hold_reason": null,
+                    "identity_sha256": "cc61ce569ae8253537f2a9614db0ab200c81992295e397743357d6b0faae3e74",
+                    "listing_copy_verified": false,
+                    "names_are_exact_aliases": false,
+                    "observations": [
+                      {
+                        "claim": "printed_artist",
+                        "coordinate": {
+                          "collector_number": "131/M-P",
+                          "language": "ja",
+                          "set_code": "M-P"
+                        },
+                        "locator": "bottom-left Illus. credit in exact publisher image",
+                        "scope": "publisher_asset_only",
+                        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50555",
+                        "value": "YOSHIROTTEN"
+                      }
+                    ],
+                    "page_to_variant_mapping_verified": false,
+                    "physical_finish_verified": false,
+                    "price_comparable": false,
+                    "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                    "reviewers": [
+                      {
+                        "actor": "codex-printing-pilot-agent",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                        "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                        "source_image_sha256s": [
+                          "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                        ]
+                      },
+                      {
+                        "actor": "codex-root-visual-review",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                        "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                        "source_image_sha256s": [
+                          "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                        ]
+                      }
+                    ],
+                    "revision": 1,
+                    "schema": "pokemon.printing-source-evidence.v1",
+                    "sources": [
+                      {
+                        "fetched_at": "2026-10-01T14:38:07+00:00",
+                        "image_sha256": "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826",
+                        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050555_P_PIKACHIXYUUIEKKUSU.jpg",
+                        "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                        "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                      }
+                    ],
+                    "status": "source_observed",
+                    "subject_id": "ja:M-P:131/M-P",
+                    "subject_kind": "coordinate",
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "copy_evidence_needed": true,
+                "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printed_artist_credit": {
+                "value": "YOSHIROTTEN",
+                "evidence_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+                "reviewer_actors": [
+                  "codex-printing-pilot-agent",
+                  "codex-root-visual-review"
+                ],
+                "independent_blind_accuracy_measurement": false
+              }
+            }
+          ],
+          "next_question": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.",
+          "market_status": "no_live_market_evidence",
+          "prices": [],
+          "live_offers": [],
+          "public_display_allowed": false,
+          "complete_answer_established": false,
+          "unfulfilled_constraints": [],
+          "requested_scope": {
+            "language": "ja"
+          },
+          "coverage": {
+            "matched_catalog_records": 128,
+            "not_in_resolved_inventory": 128,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true
+          },
+          "scope": "Internal preference matches; physical printing, taste, ownership and market claims remain separate.",
+          "ordering": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1"
+        },
+        "inventory": null,
+        "artwork_review_leads": [],
+        "selection_allowed": true,
+        "card_selection_blockers": {
+          "ja:CP2:008/027:holo": [],
+          "ja:E1:016/128:normal_1st_edition": [],
+          "ja:E4:033/088:normal_1st_edition": [],
+          "ja:M-P:020/M-P:normal": [],
+          "ja:M-P:131/M-P:normal": []
+        },
+        "recommendation": {
+          "schema": "pokemon.collector-recommendation.v1",
+          "ranking_policy": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1",
+          "preference_evidence": "user_assertion_only",
+          "candidate_pool_complete": true,
+          "coverage_basis": "current_source_declared_catalog_and_facets_only",
+          "global_catalog_completeness_established": false,
+          "unapplied_preferences": [
+            {
+              "value": "cute",
+              "reason": "no_source_backed_style_labels"
+            },
+            {
+              "value": "cute cards",
+              "reason": "no_source_backed_style_labels"
+            }
+          ],
+          "budget_fit": "unknown_no_live_price",
+          "grade_availability": "unknown_no_copy_offers",
+          "items": [
+            {
+              "card_id": "ja:CP2:008/027:holo",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 1
+            },
+            {
+              "card_id": "ja:E1:016/128:normal_1st_edition",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 2
+            },
+            {
+              "card_id": "ja:E4:033/088:normal_1st_edition",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 3
+            },
+            {
+              "card_id": "ja:M-P:020/M-P:normal",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+                  "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 4
+            },
+            {
+              "card_id": "ja:M-P:131/M-P:normal",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 5
+            }
+          ],
+          "coordinate_groups": [
+            {
+              "language": "ja",
+              "set_code": "CP2",
+              "collector_number": "008/027",
+              "shown_card_ids": [
+                "ja:CP2:008/027:holo"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "E1",
+              "collector_number": "016/128",
+              "shown_card_ids": [
+                "ja:E1:016/128:normal_1st_edition"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "E4",
+              "collector_number": "033/088",
+              "shown_card_ids": [
+                "ja:E4:033/088:normal_1st_edition"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "020/M-P",
+              "shown_card_ids": [
+                "ja:M-P:020/M-P:normal"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "131/M-P",
+              "shown_card_ids": [
+                "ja:M-P:131/M-P:normal"
+              ],
+              "physical_versions_merged": false
+            }
+          ]
+        },
+        "selection_blockers": [],
+        "selected_catalog_target": null,
+        "target_reset_reason": null,
+        "preferences": {
+          "budget_minor": 5000,
+          "currency": "USD",
+          "collecting": {
+            "preferred_dex_ids": [
+              25
+            ],
+            "subjective_notes": [
+              "cute",
+              "cute cards"
+            ]
+          }
+        },
+        "preferences_applied_to_market": false,
+        "next_step": {
+          "field": "recommendation_feedback_or_choice",
+          "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+        },
+        "target_intent": null,
+        "trace": [
+          {
+            "turn": 1,
+            "action": "ask",
+            "task": "collector_recommendations",
+            "displayed_card_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          }
+        ],
+        "resume": {
+          "caller_resubmits_turns": true,
+          "expected_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+          "max_turns": 20
+        },
+        "conversation_persisted": false,
+        "inventory_persisted": false,
+        "ownership_assertions_verified": false,
+        "physical_copy_verified": false,
+        "ready_for_offer_tracking": false,
+        "purchase_ready": false,
+        "complete_collection_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+      }
+    },
+    {
+      "case": "disabled-identity",
+      "turns": [
+        {
+          "type": "ask",
+          "question": "ja:20TH:001/072:unverified"
+        }
+      ],
+      "result": {
+        "schema": "pokemon.collector-journey.v1",
+        "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+        "turn_count": 1,
+        "status": "evidence_or_scope_needed",
+        "goal_question": "ja:20TH:001/072:unverified",
+        "scope_filters": {},
+        "candidate_cards": [
+          {
+            "card_id": "ja:20TH:001/072:unverified",
+            "language": "ja",
+            "set_code": "20TH",
+            "collector_number": "001/072",
+            "variant": "unverified",
+            "name": "フシギバナEX",
+            "rarity": null,
+            "provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/20th/31651.json:sha256:7ffd27f866c16a601778f1ffd2a25762fe41ed79a7d6808cd74c18018a86521f",
+            "set_name": null,
+            "release_date": null,
+            "release_provenance": null,
+            "structural_match_eligible": false,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          }
+        ],
+        "discovery": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "ja:20TH:001/072:unverified",
+          "languages": [
+            "ja",
+            "en"
+          ],
+          "task": "printing_variants",
+          "status": "results",
+          "cards": [
+            {
+              "card_id": "ja:20TH:001/072:unverified",
+              "language": "ja",
+              "set_code": "20TH",
+              "collector_number": "001/072",
+              "variant": "unverified",
+              "name": "フシギバナEX",
+              "rarity": null,
+              "provenance": "ptcg-database:bc5a2698eb9af858feb0280d579fd5fd0f0273e2:data_jp/20th/31651.json:sha256:7ffd27f866c16a601778f1ffd2a25762fe41ed79a7d6808cd74c18018a86521f",
+              "set_name": null,
+              "release_date": null,
+              "release_provenance": null,
+              "structural_match_eligible": false,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            }
+          ],
+          "next_question": null,
+          "market_status": "no_live_market_evidence",
+          "live_offers": [],
+          "prices": [],
+          "public_display_allowed": false,
+          "unfulfilled_constraints": [],
+          "complete_answer_established": false,
+          "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+          "claim_basis": "same language, set and number; physical finish remains source-declared",
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 5,
+            "has_more": false,
+            "undated_records": 1,
+            "release_metadata_missing": 1,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": false
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "inventory": null,
+        "artwork_review_leads": [],
+        "selection_allowed": false,
+        "card_selection_blockers": {
+          "ja:20TH:001/072:unverified": [
+            "catalog_identity_review_needed",
+            "match_disabled_identity"
+          ]
+        },
+        "recommendation": null,
+        "selection_blockers": [
+          "catalog_identity_review_needed",
+          "match_disabled_identity"
+        ],
+        "selected_catalog_target": null,
+        "target_reset_reason": null,
+        "preferences": {},
+        "preferences_applied_to_market": false,
+        "next_step": {
+          "field": "collection_evidence",
+          "prompt": "Clarify the requested exclusions, referenced checklist or unresolved collection scope before choosing a target.",
+          "required_evidence": [],
+          "blockers": [
+            "catalog_identity_review_needed",
+            "match_disabled_identity"
+          ]
+        },
+        "target_intent": null,
+        "trace": [
+          {
+            "turn": 1,
+            "action": "ask",
+            "task": "printing_variants",
+            "displayed_card_ids": [
+              "ja:20TH:001/072:unverified"
+            ],
+            "selection_blockers": [
+              "catalog_identity_review_needed",
+              "match_disabled_identity"
+            ],
+            "selected_card_id": null,
+            "clarification_needed": false
+          }
+        ],
+        "resume": {
+          "caller_resubmits_turns": true,
+          "expected_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+          "max_turns": 20
+        },
+        "conversation_persisted": false,
+        "inventory_persisted": false,
+        "ownership_assertions_verified": false,
+        "physical_copy_verified": false,
+        "ready_for_offer_tracking": false,
+        "purchase_ready": false,
+        "complete_collection_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+      }
+    },
+    {
+      "case": "exact-dismissal",
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards under $50. I like cute cards."
+        },
+        {
+          "type": "feedback",
+          "card_id": "ja:CP2:008/027:holo",
+          "reaction": "dismiss"
+        }
+      ],
+      "result": {
+        "schema": "pokemon.collector-journey.v1",
+        "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+        "turn_count": 2,
+        "status": "candidate_clarification_needed",
+        "goal_question": "Recommend Japanese Pikachu cards under $50. I like cute cards.",
+        "scope_filters": {
+          "language": "ja"
+        },
+        "candidate_cards": [
+          {
+            "card_id": "ja:E1:016/128:normal_1st_edition",
+            "language": "ja",
+            "set_code": "E1",
+            "collector_number": "016/128",
+            "variant": "normal_1st_edition",
+            "name": "ピカチュウ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+            "set_name": "基本拡張パック",
+            "release_date": "2001-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "ja:E4:033/088:normal_1st_edition",
+            "language": "ja",
+            "set_code": "E4",
+            "collector_number": "033/088",
+            "variant": "normal_1st_edition",
+            "name": "ピカチュウ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+            "set_name": "裂けた大地",
+            "release_date": "2002-08-23",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          },
+          {
+            "card_id": "ja:M-P:020/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "020/M-P",
+            "variant": "normal",
+            "name": "ピカチュウ",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/020.ts:sha256:570869a5fd64abbfbde08bf659e40f7447f201c2423b4a7af1e0b2cb749e6fc1",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+              "facet_status": {
+                "illustrator": "source_supported",
+                "dex_id": "source_supported"
+              },
+              "printed_source_corrections": [],
+              "official": {
+                "collector_number": "020/M-P",
+                "dex_id": 25,
+                "fetched_at": "2026-10-01T14:37:45+00:00",
+                "illustrators": [
+                  "Yuu Nishida"
+                ],
+                "name": "ピカチュウ",
+                "numbered_entries": [
+                  {
+                    "collector_number": "020/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "d8059dfd661781866784f54e5fa48f58fa1785e7700df6a49f8ffb251463bcb9",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            }
+          },
+          {
+            "card_id": "ja:M-P:131/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "131/M-P",
+            "variant": "normal",
+            "name": "ピカチュウex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:7e09ede263b66c690f49f2136168816d5ffbd594cc9b5e64ff2075110d916ac7",
+              "facet_status": {
+                "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                "dex_id": "not_declared"
+              },
+              "printed_source_corrections": [
+                {
+                  "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "131/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "official": {
+                "collector_number": "131/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "YOSHIROTTEN"
+                ],
+                "name": "ピカチュウex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "131/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_corrections": {
+              "schema": "pokemon.source-correction-context.v1",
+              "findings": [
+                {
+                  "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "131/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "copy_evidence_needed": true,
+              "raw_sources_preserved": true,
+              "blind_accuracy_measured": false,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printing_source_evidence": {
+              "schema": "pokemon.printing-source-context.v1",
+              "findings": [
+                {
+                  "automatic_offer_join_allowed": false,
+                  "copy_condition_verified": false,
+                  "display_allowed": false,
+                  "event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                  "hold_reason": null,
+                  "identity_sha256": "cc61ce569ae8253537f2a9614db0ab200c81992295e397743357d6b0faae3e74",
+                  "listing_copy_verified": false,
+                  "names_are_exact_aliases": false,
+                  "observations": [
+                    {
+                      "claim": "printed_artist",
+                      "coordinate": {
+                        "collector_number": "131/M-P",
+                        "language": "ja",
+                        "set_code": "M-P"
+                      },
+                      "locator": "bottom-left Illus. credit in exact publisher image",
+                      "scope": "publisher_asset_only",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50555",
+                      "value": "YOSHIROTTEN"
+                    }
+                  ],
+                  "page_to_variant_mapping_verified": false,
+                  "physical_finish_verified": false,
+                  "price_comparable": false,
+                  "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                  "reviewers": [
+                    {
+                      "actor": "codex-printing-pilot-agent",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                      "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                      "source_image_sha256s": [
+                        "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                      ]
+                    },
+                    {
+                      "actor": "codex-root-visual-review",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                      "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                      "source_image_sha256s": [
+                        "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                      ]
+                    }
+                  ],
+                  "revision": 1,
+                  "schema": "pokemon.printing-source-evidence.v1",
+                  "sources": [
+                    {
+                      "fetched_at": "2026-10-01T14:38:07+00:00",
+                      "image_sha256": "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050555_P_PIKACHIXYUUIEKKUSU.jpg",
+                      "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                      "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                    }
+                  ],
+                  "status": "source_observed",
+                  "subject_id": "ja:M-P:131/M-P",
+                  "subject_kind": "coordinate",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "copy_evidence_needed": true,
+              "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printed_artist_credit": {
+              "value": "YOSHIROTTEN",
+              "evidence_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+              "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+              "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+              "reviewer_actors": [
+                "codex-printing-pilot-agent",
+                "codex-root-visual-review"
+              ],
+              "independent_blind_accuracy_measurement": false
+            }
+          },
+          {
+            "card_id": "ja:M-P:132/M-P:normal",
+            "language": "ja",
+            "set_code": "M-P",
+            "collector_number": "132/M-P",
+            "variant": "normal",
+            "name": "ピカチュウex",
+            "rarity": "Promo",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/132.ts:sha256:7532f17a3e7a99a9273628d8bc48f507656621f118473b6936bcba59ef044a2a",
+            "set_name": "メガ プロモカード",
+            "release_date": "2025-07-28",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "official_metadata": {
+              "status": "official_coordinate_metadata_supported",
+              "evidence_id": "official-metadata:2be4575d68e5091327df1a091206fa27ec9d8c935aa3eb5d7d7e814ecad8b848",
+              "facet_status": {
+                "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                "dex_id": "not_declared"
+              },
+              "printed_source_corrections": [
+                {
+                  "event_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "132/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "official": {
+                "collector_number": "132/M-P",
+                "dex_id": null,
+                "fetched_at": "2026-10-01T14:38:07+00:00",
+                "illustrators": [
+                  "YOSHIROTTEN"
+                ],
+                "name": "ピカチュウex",
+                "numbered_entries": [
+                  {
+                    "collector_number": "132/M-P",
+                    "part_role": null,
+                    "rarity": null,
+                    "rarity_icons": [],
+                    "rarity_status": "no_rarity_icon",
+                    "set_code": "M-P"
+                  }
+                ],
+                "page_kind": "single_number",
+                "page_sha256": "8982d195e656053da66939a801e78e4b223646dded96409f522f5fb028161921",
+                "part_role": null,
+                "rarity": null,
+                "rarity_icons": [],
+                "rarity_status": "no_rarity_icon",
+                "set_code": "M-P",
+                "url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+              },
+              "claims_scope": "official page coordinates; physical printing/copy unverified",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false
+            },
+            "source_corrections": {
+              "schema": "pokemon.source-correction-context.v1",
+              "findings": [
+                {
+                  "event_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+                  "kind": "printed_artist",
+                  "status": "source_corrected",
+                  "value": "YOSHIROTTEN",
+                  "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                  "reviewer_actors": [
+                    "codex-printing-pilot-agent",
+                    "codex-root-visual-review"
+                  ],
+                  "source_coordinate": {
+                    "language": "ja",
+                    "set_code": "M-P",
+                    "collector_number": "132/M-P"
+                  },
+                  "reference_exclusion": null,
+                  "new_family_card_id": null
+                }
+              ],
+              "copy_evidence_needed": true,
+              "raw_sources_preserved": true,
+              "blind_accuracy_measured": false,
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printing_source_evidence": {
+              "schema": "pokemon.printing-source-context.v1",
+              "findings": [
+                {
+                  "automatic_offer_join_allowed": false,
+                  "copy_condition_verified": false,
+                  "display_allowed": false,
+                  "event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                  "hold_reason": null,
+                  "identity_sha256": "3bc88ad3ad17c2ca4e8bb417e23a4636463659c096c0340d8996e5dff271311a",
+                  "listing_copy_verified": false,
+                  "names_are_exact_aliases": false,
+                  "observations": [
+                    {
+                      "claim": "printed_artist",
+                      "coordinate": {
+                        "collector_number": "132/M-P",
+                        "language": "ja",
+                        "set_code": "M-P"
+                      },
+                      "locator": "bottom-left Illus. credit in exact publisher image",
+                      "scope": "publisher_asset_only",
+                      "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50556",
+                      "value": "YOSHIROTTEN"
+                    }
+                  ],
+                  "page_to_variant_mapping_verified": false,
+                  "physical_finish_verified": false,
+                  "price_comparable": false,
+                  "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                  "reviewers": [
+                    {
+                      "actor": "codex-printing-pilot-agent",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "ff33b7dc307230c3a9fe3c3bf558bfa71a3bf3dbf6fa6defd2e19756bdbac7c5",
+                      "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                      "source_image_sha256s": [
+                        "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37"
+                      ]
+                    },
+                    {
+                      "actor": "codex-root-visual-review",
+                      "method": "direct_image_reading",
+                      "observations_sha256": "ff33b7dc307230c3a9fe3c3bf558bfa71a3bf3dbf6fa6defd2e19756bdbac7c5",
+                      "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                      "source_image_sha256s": [
+                        "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37"
+                      ]
+                    }
+                  ],
+                  "revision": 1,
+                  "schema": "pokemon.printing-source-evidence.v1",
+                  "sources": [
+                    {
+                      "fetched_at": "2026-10-01T14:38:07+00:00",
+                      "image_sha256": "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37",
+                      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050556_P_PIKACHIXYUUIEKKUSU.jpg",
+                      "page_sha256": "8982d195e656053da66939a801e78e4b223646dded96409f522f5fb028161921",
+                      "url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+                    }
+                  ],
+                  "status": "source_observed",
+                  "subject_id": "ja:M-P:132/M-P",
+                  "subject_kind": "coordinate",
+                  "current_identity": true
+                }
+              ],
+              "stale_findings": 0,
+              "copy_evidence_needed": true,
+              "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+              "physical_finish_verified": false,
+              "listing_copy_verified": false,
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "display_allowed": false,
+              "page_to_variant_mapping_verified": false,
+              "names_are_exact_aliases": false,
+              "copy_condition_verified": false
+            },
+            "printed_artist_credit": {
+              "value": "YOSHIROTTEN",
+              "evidence_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+              "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+              "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+              "reviewer_actors": [
+                "codex-printing-pilot-agent",
+                "codex-root-visual-review"
+              ],
+              "independent_blind_accuracy_measurement": false
+            }
+          }
+        ],
+        "discovery": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "Recommend Japanese Pikachu cards under $50. I like cute cards.",
+          "languages": [
+            "ja"
+          ],
+          "task": "collector_recommendations",
+          "status": "catalog_partial",
+          "cards": [
+            {
+              "card_id": "ja:E1:016/128:normal_1st_edition",
+              "language": "ja",
+              "set_code": "E1",
+              "collector_number": "016/128",
+              "variant": "normal_1st_edition",
+              "name": "ピカチュウ",
+              "rarity": "Common",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+              "set_name": "基本拡張パック",
+              "release_date": "2001-12-01",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:E4:033/088:normal_1st_edition",
+              "language": "ja",
+              "set_code": "E4",
+              "collector_number": "033/088",
+              "variant": "normal_1st_edition",
+              "name": "ピカチュウ",
+              "rarity": "Common",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+              "set_name": "裂けた大地",
+              "release_date": "2002-08-23",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:M-P:020/M-P:normal",
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "020/M-P",
+              "variant": "normal",
+              "name": "ピカチュウ",
+              "rarity": "Promo",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/020.ts:sha256:570869a5fd64abbfbde08bf659e40f7447f201c2423b4a7af1e0b2cb749e6fc1",
+              "set_name": "メガ プロモカード",
+              "release_date": "2025-07-28",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "official_metadata": {
+                "status": "official_coordinate_metadata_supported",
+                "evidence_id": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+                "facet_status": {
+                  "illustrator": "source_supported",
+                  "dex_id": "source_supported"
+                },
+                "printed_source_corrections": [],
+                "official": {
+                  "collector_number": "020/M-P",
+                  "dex_id": 25,
+                  "fetched_at": "2026-10-01T14:37:45+00:00",
+                  "illustrators": [
+                    "Yuu Nishida"
+                  ],
+                  "name": "ピカチュウ",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "020/M-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "M-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "d8059dfd661781866784f54e5fa48f58fa1785e7700df6a49f8ffb251463bcb9",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "M-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+                },
+                "claims_scope": "official page coordinates; physical printing/copy unverified",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false
+              }
+            },
+            {
+              "card_id": "ja:M-P:131/M-P:normal",
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "131/M-P",
+              "variant": "normal",
+              "name": "ピカチュウex",
+              "rarity": "Promo",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+              "set_name": "メガ プロモカード",
+              "release_date": "2025-07-28",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "official_metadata": {
+                "status": "official_coordinate_metadata_supported",
+                "evidence_id": "official-metadata:7e09ede263b66c690f49f2136168816d5ffbd594cc9b5e64ff2075110d916ac7",
+                "facet_status": {
+                  "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                  "dex_id": "not_declared"
+                },
+                "printed_source_corrections": [
+                  {
+                    "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "131/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "official": {
+                  "collector_number": "131/M-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T14:38:07+00:00",
+                  "illustrators": [
+                    "YOSHIROTTEN"
+                  ],
+                  "name": "ピカチュウex",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "131/M-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "M-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "M-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                },
+                "claims_scope": "official page coordinates; physical printing/copy unverified",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false
+              },
+              "source_corrections": {
+                "schema": "pokemon.source-correction-context.v1",
+                "findings": [
+                  {
+                    "event_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "131/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "copy_evidence_needed": true,
+                "raw_sources_preserved": true,
+                "blind_accuracy_measured": false,
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printing_source_evidence": {
+                "schema": "pokemon.printing-source-context.v1",
+                "findings": [
+                  {
+                    "automatic_offer_join_allowed": false,
+                    "copy_condition_verified": false,
+                    "display_allowed": false,
+                    "event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                    "hold_reason": null,
+                    "identity_sha256": "cc61ce569ae8253537f2a9614db0ab200c81992295e397743357d6b0faae3e74",
+                    "listing_copy_verified": false,
+                    "names_are_exact_aliases": false,
+                    "observations": [
+                      {
+                        "claim": "printed_artist",
+                        "coordinate": {
+                          "collector_number": "131/M-P",
+                          "language": "ja",
+                          "set_code": "M-P"
+                        },
+                        "locator": "bottom-left Illus. credit in exact publisher image",
+                        "scope": "publisher_asset_only",
+                        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50555",
+                        "value": "YOSHIROTTEN"
+                      }
+                    ],
+                    "page_to_variant_mapping_verified": false,
+                    "physical_finish_verified": false,
+                    "price_comparable": false,
+                    "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                    "reviewers": [
+                      {
+                        "actor": "codex-printing-pilot-agent",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                        "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                        "source_image_sha256s": [
+                          "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                        ]
+                      },
+                      {
+                        "actor": "codex-root-visual-review",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "9e5d402321bd191a7a564554b3772e1e98e633aa0885d7890f014af0635e283e",
+                        "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                        "source_image_sha256s": [
+                          "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826"
+                        ]
+                      }
+                    ],
+                    "revision": 1,
+                    "schema": "pokemon.printing-source-evidence.v1",
+                    "sources": [
+                      {
+                        "fetched_at": "2026-10-01T14:38:07+00:00",
+                        "image_sha256": "c55d5110cd46355fb025cafb1080833c1b63f2d85b106ef3bd0cc486e9eec826",
+                        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050555_P_PIKACHIXYUUIEKKUSU.jpg",
+                        "page_sha256": "304028da202e86d541ee38db46957f8b4b8ea1526e68519a219e6057f62fe3b5",
+                        "url": "https://www.pokemon-card.com/card-search/details.php/card/50555"
+                      }
+                    ],
+                    "status": "source_observed",
+                    "subject_id": "ja:M-P:131/M-P",
+                    "subject_kind": "coordinate",
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "copy_evidence_needed": true,
+                "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printed_artist_credit": {
+                "value": "YOSHIROTTEN",
+                "evidence_id": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+                "parent_event_id": "printing-source:e03e4003beac16e4130958b9439d6a71935453fae21b7d5639b765e83252d70f",
+                "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+                "reviewer_actors": [
+                  "codex-printing-pilot-agent",
+                  "codex-root-visual-review"
+                ],
+                "independent_blind_accuracy_measurement": false
+              }
+            },
+            {
+              "card_id": "ja:M-P:132/M-P:normal",
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "132/M-P",
+              "variant": "normal",
+              "name": "ピカチュウex",
+              "rarity": "Promo",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/132.ts:sha256:7532f17a3e7a99a9273628d8bc48f507656621f118473b6936bcba59ef044a2a",
+              "set_name": "メガ プロモカード",
+              "release_date": "2025-07-28",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false,
+              "official_metadata": {
+                "status": "official_coordinate_metadata_supported",
+                "evidence_id": "official-metadata:2be4575d68e5091327df1a091206fa27ec9d8c935aa3eb5d7d7e814ecad8b848",
+                "facet_status": {
+                  "illustrator": "printed_source_corrected_html_or_seed_conflict_preserved",
+                  "dex_id": "not_declared"
+                },
+                "printed_source_corrections": [
+                  {
+                    "event_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "132/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "official": {
+                  "collector_number": "132/M-P",
+                  "dex_id": null,
+                  "fetched_at": "2026-10-01T14:38:07+00:00",
+                  "illustrators": [
+                    "YOSHIROTTEN"
+                  ],
+                  "name": "ピカチュウex",
+                  "numbered_entries": [
+                    {
+                      "collector_number": "132/M-P",
+                      "part_role": null,
+                      "rarity": null,
+                      "rarity_icons": [],
+                      "rarity_status": "no_rarity_icon",
+                      "set_code": "M-P"
+                    }
+                  ],
+                  "page_kind": "single_number",
+                  "page_sha256": "8982d195e656053da66939a801e78e4b223646dded96409f522f5fb028161921",
+                  "part_role": null,
+                  "rarity": null,
+                  "rarity_icons": [],
+                  "rarity_status": "no_rarity_icon",
+                  "set_code": "M-P",
+                  "url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+                },
+                "claims_scope": "official page coordinates; physical printing/copy unverified",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false
+              },
+              "source_corrections": {
+                "schema": "pokemon.source-correction-context.v1",
+                "findings": [
+                  {
+                    "event_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+                    "kind": "printed_artist",
+                    "status": "source_corrected",
+                    "value": "YOSHIROTTEN",
+                    "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                    "reviewer_actors": [
+                      "codex-printing-pilot-agent",
+                      "codex-root-visual-review"
+                    ],
+                    "source_coordinate": {
+                      "language": "ja",
+                      "set_code": "M-P",
+                      "collector_number": "132/M-P"
+                    },
+                    "reference_exclusion": null,
+                    "new_family_card_id": null
+                  }
+                ],
+                "copy_evidence_needed": true,
+                "raw_sources_preserved": true,
+                "blind_accuracy_measured": false,
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printing_source_evidence": {
+                "schema": "pokemon.printing-source-context.v1",
+                "findings": [
+                  {
+                    "automatic_offer_join_allowed": false,
+                    "copy_condition_verified": false,
+                    "display_allowed": false,
+                    "event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                    "hold_reason": null,
+                    "identity_sha256": "3bc88ad3ad17c2ca4e8bb417e23a4636463659c096c0340d8996e5dff271311a",
+                    "listing_copy_verified": false,
+                    "names_are_exact_aliases": false,
+                    "observations": [
+                      {
+                        "claim": "printed_artist",
+                        "coordinate": {
+                          "collector_number": "132/M-P",
+                          "language": "ja",
+                          "set_code": "M-P"
+                        },
+                        "locator": "bottom-left Illus. credit in exact publisher image",
+                        "scope": "publisher_asset_only",
+                        "source_url": "https://www.pokemon-card.com/card-search/details.php/card/50556",
+                        "value": "YOSHIROTTEN"
+                      }
+                    ],
+                    "page_to_variant_mapping_verified": false,
+                    "physical_finish_verified": false,
+                    "price_comparable": false,
+                    "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                    "reviewers": [
+                      {
+                        "actor": "codex-printing-pilot-agent",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "ff33b7dc307230c3a9fe3c3bf558bfa71a3bf3dbf6fa6defd2e19756bdbac7c5",
+                        "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                        "source_image_sha256s": [
+                          "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37"
+                        ]
+                      },
+                      {
+                        "actor": "codex-root-visual-review",
+                        "method": "direct_image_reading",
+                        "observations_sha256": "ff33b7dc307230c3a9fe3c3bf558bfa71a3bf3dbf6fa6defd2e19756bdbac7c5",
+                        "reviewed_at": "2026-10-02T00:39:58.743573+00:00",
+                        "source_image_sha256s": [
+                          "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37"
+                        ]
+                      }
+                    ],
+                    "revision": 1,
+                    "schema": "pokemon.printing-source-evidence.v1",
+                    "sources": [
+                      {
+                        "fetched_at": "2026-10-01T14:38:07+00:00",
+                        "image_sha256": "536718102290374e6ee7fd639cd9b45d24731c6cddbf4efefd3a27b6b7b30e37",
+                        "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/M-P/050556_P_PIKACHIXYUUIEKKUSU.jpg",
+                        "page_sha256": "8982d195e656053da66939a801e78e4b223646dded96409f522f5fb028161921",
+                        "url": "https://www.pokemon-card.com/card-search/details.php/card/50556"
+                      }
+                    ],
+                    "status": "source_observed",
+                    "subject_id": "ja:M-P:132/M-P",
+                    "subject_kind": "coordinate",
+                    "current_identity": true
+                  }
+                ],
+                "stale_findings": 0,
+                "copy_evidence_needed": true,
+                "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+                "physical_finish_verified": false,
+                "listing_copy_verified": false,
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false,
+                "display_allowed": false,
+                "page_to_variant_mapping_verified": false,
+                "names_are_exact_aliases": false,
+                "copy_condition_verified": false
+              },
+              "printed_artist_credit": {
+                "value": "YOSHIROTTEN",
+                "evidence_id": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+                "parent_event_id": "printing-source:0738ef908de3e2c15498348e0d9671d27c454bc98b07aaa7fa9fbca3d898e523",
+                "basis": "publisher printed image; two distinct visual inspections; active source-bound SQL correction",
+                "reviewer_actors": [
+                  "codex-printing-pilot-agent",
+                  "codex-root-visual-review"
+                ],
+                "independent_blind_accuracy_measurement": false
+              }
+            }
+          ],
+          "next_question": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.",
+          "market_status": "no_live_market_evidence",
+          "prices": [],
+          "live_offers": [],
+          "public_display_allowed": false,
+          "complete_answer_established": false,
+          "unfulfilled_constraints": [],
+          "requested_scope": {
+            "language": "ja"
+          },
+          "coverage": {
+            "matched_catalog_records": 127,
+            "not_in_resolved_inventory": 127,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true
+          },
+          "scope": "Internal preference matches; physical printing, taste, ownership and market claims remain separate.",
+          "ordering": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1"
+        },
+        "inventory": null,
+        "artwork_review_leads": [],
+        "selection_allowed": true,
+        "card_selection_blockers": {
+          "ja:E1:016/128:normal_1st_edition": [],
+          "ja:E4:033/088:normal_1st_edition": [],
+          "ja:M-P:020/M-P:normal": [],
+          "ja:M-P:131/M-P:normal": [],
+          "ja:M-P:132/M-P:normal": []
+        },
+        "recommendation": {
+          "schema": "pokemon.collector-recommendation.v1",
+          "ranking_policy": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1",
+          "preference_evidence": "user_assertion_only",
+          "candidate_pool_complete": true,
+          "coverage_basis": "current_source_declared_catalog_and_facets_only",
+          "global_catalog_completeness_established": false,
+          "unapplied_preferences": [
+            {
+              "value": "cute",
+              "reason": "no_source_backed_style_labels"
+            },
+            {
+              "value": "cute cards",
+              "reason": "no_source_backed_style_labels"
+            }
+          ],
+          "budget_fit": "unknown_no_live_price",
+          "grade_availability": "unknown_no_copy_offers",
+          "items": [
+            {
+              "card_id": "ja:E1:016/128:normal_1st_edition",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 1
+            },
+            {
+              "card_id": "ja:E4:033/088:normal_1st_edition",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 2
+            },
+            {
+              "card_id": "ja:M-P:020/M-P:normal",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+                  "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/48258"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 3
+            },
+            {
+              "card_id": "ja:M-P:131/M-P:normal",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 4
+            },
+            {
+              "card_id": "ja:M-P:132/M-P:normal",
+              "explicit_match_axes": [
+                "character"
+              ],
+              "liked_example_match_axes": [],
+              "reasons": [
+                {
+                  "field": "dex_id",
+                  "value": 25,
+                  "basis": "catalog_facet",
+                  "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/132.ts:sha256:7532f17a3e7a99a9273628d8bc48f507656621f118473b6936bcba59ef044a2a",
+                  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+                }
+              ],
+              "tradeoffs": [
+                "Aesthetic fit, affordability, grade availability and physical printing are not established"
+              ],
+              "rank": 5
+            }
+          ],
+          "coordinate_groups": [
+            {
+              "language": "ja",
+              "set_code": "E1",
+              "collector_number": "016/128",
+              "shown_card_ids": [
+                "ja:E1:016/128:normal_1st_edition"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "E4",
+              "collector_number": "033/088",
+              "shown_card_ids": [
+                "ja:E4:033/088:normal_1st_edition"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "020/M-P",
+              "shown_card_ids": [
+                "ja:M-P:020/M-P:normal"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "131/M-P",
+              "shown_card_ids": [
+                "ja:M-P:131/M-P:normal"
+              ],
+              "physical_versions_merged": false
+            },
+            {
+              "language": "ja",
+              "set_code": "M-P",
+              "collector_number": "132/M-P",
+              "shown_card_ids": [
+                "ja:M-P:132/M-P:normal"
+              ],
+              "physical_versions_merged": false
+            }
+          ]
+        },
+        "selection_blockers": [],
+        "selected_catalog_target": null,
+        "target_reset_reason": null,
+        "preferences": {
+          "budget_minor": 5000,
+          "currency": "USD",
+          "collecting": {
+            "preferred_dex_ids": [
+              25
+            ],
+            "subjective_notes": [
+              "cute",
+              "cute cards"
+            ]
+          }
+        },
+        "preferences_applied_to_market": false,
+        "next_step": {
+          "field": "recommendation_feedback_or_choice",
+          "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+        },
+        "target_intent": null,
+        "trace": [
+          {
+            "turn": 1,
+            "action": "ask",
+            "task": "collector_recommendations",
+            "displayed_card_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 2,
+            "action": "feedback",
+            "task": "collector_recommendations",
+            "displayed_card_ids": [
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal",
+              "ja:M-P:132/M-P:normal"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          }
+        ],
+        "resume": {
+          "caller_resubmits_turns": true,
+          "expected_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+          "max_turns": 20
+        },
+        "conversation_persisted": false,
+        "inventory_persisted": false,
+        "ownership_assertions_verified": false,
+        "physical_copy_verified": false,
+        "ready_for_offer_tracking": false,
+        "purchase_ready": false,
+        "complete_collection_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+      }
+    },
+    {
+      "case": "catalog-selection-bridge",
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards under $50. I like cute cards."
+        },
+        {
+          "type": "compare",
+          "left_card_id": "ja:CP2:008/027:holo",
+          "right_card_id": "ja:E1:016/128:normal_1st_edition"
+        },
+        {
+          "type": "choose_comparison",
+          "side": "right",
+          "card_id": "ja:E1:016/128:normal_1st_edition"
+        },
+        {
+          "type": "select",
+          "card_id": "ja:E1:016/128:normal_1st_edition"
+        }
+      ],
+      "result": {
+        "schema": "pokemon.collector-journey.v1",
+        "catalog_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+        "turn_count": 4,
+        "status": "catalog_target_selected",
+        "goal_question": "Recommend Japanese Pikachu cards under $50. I like cute cards.",
+        "scope_filters": {
+          "language": "ja"
+        },
+        "candidate_cards": [
+          {
+            "card_id": "ja:E1:016/128:normal_1st_edition",
+            "language": "ja",
+            "set_code": "E1",
+            "collector_number": "016/128",
+            "variant": "normal_1st_edition",
+            "name": "ピカチュウ",
+            "rarity": "Common",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+            "set_name": "基本拡張パック",
+            "release_date": "2001-12-01",
+            "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+            "structural_match_eligible": true,
+            "support_status": "research_candidate",
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false
+          }
+        ],
+        "discovery": {
+          "schema": "pokemon.collector-discovery.v1",
+          "question": "ja:E1:016/128:normal_1st_edition",
+          "languages": [
+            "ja"
+          ],
+          "task": "exact_coordinates",
+          "status": "target_candidate",
+          "next_question": null,
+          "unfulfilled_constraints": [],
+          "prices": [],
+          "live_offers": [],
+          "public_display_allowed": false,
+          "complete_answer_established": false,
+          "cards": [
+            {
+              "card_id": "ja:E1:016/128:normal_1st_edition",
+              "language": "ja",
+              "set_code": "E1",
+              "collector_number": "016/128",
+              "variant": "normal_1st_edition",
+              "name": "ピカチュウ",
+              "rarity": "Common",
+              "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+              "set_name": "基本拡張パック",
+              "release_date": "2001-12-01",
+              "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            }
+          ],
+          "coverage": {
+            "matched_catalog_records": 1,
+            "returned": 1,
+            "offset": 0,
+            "limit": 1,
+            "has_more": false,
+            "undated_records": 0,
+            "release_metadata_missing": 0,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "artwork_cameos_supported": false
+          },
+          "ordering": "release date ascending; unknown dates last; stable printing coordinates"
+        },
+        "inventory": null,
+        "artwork_review_leads": [],
+        "selection_allowed": true,
+        "card_selection_blockers": {
+          "ja:E1:016/128:normal_1st_edition": []
+        },
+        "recommendation": null,
+        "selection_blockers": [],
+        "selected_catalog_target": {
+          "card_id": "ja:E1:016/128:normal_1st_edition",
+          "language": "ja",
+          "set_code": "E1",
+          "collector_number": "016/128",
+          "variant": "normal_1st_edition",
+          "name": "ピカチュウ",
+          "rarity": "Common",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "set_name": "基本拡張パック",
+          "release_date": "2001-12-01",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false
+        },
+        "target_reset_reason": null,
+        "preferences": {
+          "budget_minor": 5000,
+          "currency": "USD",
+          "collecting": {
+            "preferred_dex_ids": [
+              25
+            ],
+            "subjective_notes": [
+              "cute",
+              "cute cards"
+            ]
+          }
+        },
+        "preferences_applied_to_market": false,
+        "next_step": {
+          "field": "offer_and_copy_evidence",
+          "prompt": "Catalog target saved in this replay. Continue catalog exploration, or later verify copy condition and an authorized fresh offer when a feed is available."
+        },
+        "target_intent": {
+          "contract": "pokemon.collector-target-intent.v1",
+          "card_id": "ja:E1:016/128:normal_1st_edition",
+          "language": "ja",
+          "set_code": "E1",
+          "collector_number": "016/128",
+          "source_declared_variant": "normal_1st_edition",
+          "catalog_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "preferences": {
+            "budget_minor": 5000,
+            "currency": "USD",
+            "collecting": {
+              "preferred_dex_ids": [
+                25
+              ],
+              "subjective_notes": [
+                "cute",
+                "cute cards"
+              ]
+            }
+          },
+          "preferences_evidence": "user_assertion_only",
+          "priceable_unit_id": null,
+          "product_url": null,
+          "quote": null,
+          "transaction_ready": false,
+          "automatic_offer_join_allowed": false,
+          "physical_printing_verified": false,
+          "public_display_allowed": false,
+          "required_evidence": [
+            "physical_printing_and_copy_condition",
+            "grade_evidence_if_requested",
+            "authorized_fresh_offer",
+            "permitted_catalog_display",
+            "destination_landed_quote",
+            "confirmed_checkout_lifecycle"
+          ]
+        },
+        "trace": [
+          {
+            "turn": 1,
+            "action": "ask",
+            "task": "collector_recommendations",
+            "displayed_card_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 2,
+            "action": "compare",
+            "task": "two_card_comparison",
+            "displayed_card_ids": [],
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 3,
+            "action": "choose_comparison",
+            "task": "exact_coordinates",
+            "displayed_card_ids": [
+              "ja:E1:016/128:normal_1st_edition"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": null,
+            "clarification_needed": false
+          },
+          {
+            "turn": 4,
+            "action": "select",
+            "task": "exact_coordinates",
+            "displayed_card_ids": [
+              "ja:E1:016/128:normal_1st_edition"
+            ],
+            "selection_blockers": [],
+            "selected_card_id": "ja:E1:016/128:normal_1st_edition",
+            "clarification_needed": false
+          }
+        ],
+        "resume": {
+          "caller_resubmits_turns": true,
+          "expected_revision": "142b6cf6aa8f1658dd80bf3fa07407b52148deb0a460b003757636f454c14673",
+          "max_turns": 20
+        },
+        "conversation_persisted": false,
+        "inventory_persisted": false,
+        "ownership_assertions_verified": false,
+        "physical_copy_verified": false,
+        "ready_for_offer_tracking": false,
+        "purchase_ready": false,
+        "complete_collection_established": false,
+        "public_display_allowed": false,
+        "prices": [],
+        "live_offers": [],
+        "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+      }
+    }
+  ]
+}

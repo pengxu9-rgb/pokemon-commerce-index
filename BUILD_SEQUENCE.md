@@ -1,5 +1,11 @@
 # Active build sequence — 2 October 2026
 
+## Collector recommendation loop — current product priority
+
+The DOT review is adopted with per-record identity gates, context-bound feedback/comparison and equal-score coordinate diversity. Implement the collector loop before another broad evidence batch: goal → explicit preferences → source-backed shortlist → feedback → evidence-only comparison → exact focus → separate catalog selection. Local implementation and frozen conversation evidence are in [COLLECTOR_RECOMMENDATION_IMPLEMENTATION_20261003.md](COLLECTOR_RECOMMENDATION_IMPLEMENTATION_20261003.md). No live feed, public display, transaction approval or cloud rollout follows from this milestone.
+
+Next: evaluate a supported collector slice with independently selected questions and expected results, then prioritize evidence gaps exposed by that evaluation. Aesthetic labels, physical-printing accuracy and real-user relevance remain unmeasured. Buy&Ship's authorized discovery/listing feed is still the dependency for fresh offers and merchant/landed-cost recommendations.
+
 ## Official source recovery and mechanic binding — 3 October 2026
 
 [Current delivery and next sequence](SOURCE_BINDING_20261003.md): all 51 frozen priorities have outcomes; seventeen M6A official scans recovered from the publisher's product-card-list bundle have separately recorded OpenAI root and image-only Gemini number/name/HP correspondence. Root catalog context is disclosed. Sixteen exact official Prism Star mechanic bindings preserve the original image/number events. The source-priority queue now has 18 subjects; 32 historical number holds are unchanged. Catalog counts remain 70,006 records / 45,438 coordinates; graph remains 72 agreements / 14 differences / 593 proposals. Private revision `00043-2x6` passes 111 local and 115 cloud checks; 601 Python and twelve Node tests pass. No physical or commerce approvals are added.

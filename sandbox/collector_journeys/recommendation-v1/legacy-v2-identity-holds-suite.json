@@ -1,0 +1,583 @@
+{
+  "schema": "pokemon.pivota-collector-diagnostic.v1",
+  "scope": "Eight newly opened source posts, condensed by the implementing reviewer. Follow-up actions and inventory assertions are authored scenarios, not source transcripts. Frozen before first execution, but not independently selected/labelled or a held-out user-success benchmark. Post-exposure fixture repairs: unsupported free-title inventory input replaced with an explicitly unknown catalog ID; unavailable non-holo Sawsbuck must abstain, then two authored holo-recovery steps are added. These revised expectations are development checks only. Compatibility expectations preserve retrieval and tighten three target-selection states using stored structural identity holds. This is an authored engineering diagnostic, not independent user evaluation.",
+  "journeys": [
+    {
+      "id": "cjq2-001",
+      "source_id": "cjq2-001",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'm building a Tomokazu Komiya master set. Have you found discrepancies, reprints or promos missing from the checklist?"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "Japanese cards illustrated by Tomokazu Komiya"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "only_language": "ja"
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "only_language": "en"
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-002",
+      "source_id": "cjq2-002",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Does anyone have an accurate, up-to-date Yuka Morii grandmaster set list? I want every individual card and promo across every language."
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "only_language": "en",
+            "selection_blocked": true,
+            "all_candidates_identity_held": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "only_language": "ja"
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-003",
+      "source_id": "cjq2-003",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I have older and newer Japanese cards but do not know how to identify their sets. English cards have dates and identifiers. How can I identify the Japanese cards?"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "Japanese Pikachu SV2A 025/165 cards"
+          },
+          "expect": {
+            "has_candidates": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Master Ball reverse"
+          },
+          "expect": {
+            "has_candidates": true
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:SV2A:025/165:reverse_masterball"
+          },
+          "expect": {
+            "status_in": [
+              "catalog_target_selected"
+            ],
+            "target_id": "ja:SV2A:025/165:reverse_masterball"
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "target_id": null,
+            "status_in": [
+              "evidence_or_scope_needed",
+              "no_candidates"
+            ]
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-004",
+      "source_id": "cjq2-004",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Does Sawsbuck 074/071 AR have an English version? I find the Japanese card, but English seems to have a gold star and another number."
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "cross_language_relation"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "Japanese Sawsbuck cards SV5M 074/071"
+          },
+          "expect": {
+            "has_candidates": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "normal"
+          },
+          "expect": {
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "selection_blocked": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Yes"
+          },
+          "expect": {
+            "status_in": [
+              "followup_clarification_needed"
+            ],
+            "selection_blocked": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "holo"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Yes"
+          },
+          "expect": {
+            "status_in": [
+              "catalog_target_selected"
+            ],
+            "target_id": "ja:SV5M:074/071:holo"
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-005",
+      "source_id": "cjq2-005",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'm looking for a list of sleeves and playmats with Tomokazu Komiya artwork, anything other than Pokemon cards. Is there an online resource?"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "other_product_evidence_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "other_product_evidence_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "Japanese cards illustrated by Tomokazu Komiya"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "budget_minor": 5000,
+              "currency": "JPY",
+              "destination": "HK"
+            }
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "candidate_clarification_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ]
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-006",
+      "source_id": "cjq2-006",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I need four English Psyduck reverse holos: 44/95, 74/102, 33/149 and 32/149. eBay and TCGplayer searches have not found them. Where can I purchase these cards?"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "market_evidence_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "destination": "US"
+            }
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "refine",
+            "scope": {
+              "language": "en",
+              "collector_number": "44/95"
+            }
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "English Psyduck cards"
+          },
+          "expect": {
+            "has_candidates": true,
+            "only_language": "en"
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "has_candidates": true,
+            "only_language": "ja"
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-007",
+      "source_id": "cjq2-007",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'm starting a Tomokazu Komiya collection in Japanese. Is there a list covering really old cards and Japanese promos?"
+          },
+          "expect": {
+            "has_candidates": true,
+            "only_language": "ja",
+            "task_in": [
+              "artist_cards"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Japanese"
+          },
+          "expect": {
+            "has_candidates": true,
+            "only_language": "ja"
+          }
+        },
+        {
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "unknown-copy",
+                "card_id": "ja:UNKNOWN:001/001:unknown",
+                "quantity": 2
+              }
+            ]
+          },
+          "expect": {
+            "status_in": [
+              "inventory_review_needed"
+            ],
+            "selection_blocked": true
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "destination": "HK"
+            }
+          },
+          "expect": {
+            "status_in": [
+              "inventory_review_needed"
+            ],
+            "selection_blocked": true
+          }
+        }
+      ],
+      "followups_synthetic": true
+    },
+    {
+      "id": "cjq2-008",
+      "source_id": "cjq2-008",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I've completed my collection of Tomokazu Komiya artworks. What should I collect next?"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "selection_blocked": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "English cards illustrated by Yuka Morii"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "selection_blocked": true,
+            "all_candidates_identity_held": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "PSA 10"
+          },
+          "expect": {
+            "status_in": [
+              "followup_clarification_needed"
+            ],
+            "selection_blocked": true
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          },
+          "expect": {
+            "status_in": [
+              "followup_clarification_needed"
+            ],
+            "selection_blocked": true
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "has_candidates": true,
+            "status_in": [
+              "evidence_or_scope_needed"
+            ],
+            "task_in": [
+              "artist_cards"
+            ],
+            "selection_blocked": true,
+            "all_candidates_identity_held": true
+          }
+        }
+      ],
+      "followups_synthetic": true
+    }
+  ]
+}

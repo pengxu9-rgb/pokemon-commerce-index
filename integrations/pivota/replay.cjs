@@ -12,7 +12,7 @@ async function main() {
     let session = null;
     for (let i = 0; i < journey.steps.length; i++) {
       try {
-        const call = await client.advance({session, action: journey.steps[i].action, limit: 20});
+        const call = await client.advance({session, action: journey.steps[i].action, limit: journey.limit || 20});
         rows.push({id: journey.id + ':' + (i + 1), call}); session = call.session;
         if (call.status !== 'accepted') break;
       } catch (err) { rows.push({id: journey.id + ':' + (i + 1), error_code: err.code || 'runner_error'}); break; }

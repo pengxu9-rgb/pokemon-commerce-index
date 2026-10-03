@@ -8,7 +8,7 @@ function result(request, changes = {}) {
   return {schema: 'pokemon.collector-journey.v1', status: 'candidate_clarification_needed',
     catalog_revision: revision, turn_count: request.turns.length,
     trace: request.turns.map(t => ({action: t.type})), candidate_cards: [],
-    artwork_review_leads: [], selection_blockers: [], selection_allowed: false,
+    artwork_review_leads: [], selection_blockers: [], card_selection_blockers: {}, recommendation: null, selection_allowed: false,
     next_step: {field: 'card_id'}, target_intent: null, selected_catalog_target: null,
     prices: [], live_offers: [], conversation_persisted: false, inventory_persisted: false,
     ownership_assertions_verified: false, physical_copy_verified: false,
@@ -93,10 +93,10 @@ test('malformed/oversized/mismatched responses and invented commerce approvals f
     e => e.code === 'invalid_catalog_response');
 });
 test('target handoff requires exact matching catalog coordinates and every commerce gate remains false', async () => {
-  const card = {card_id: 'ja:SV2A:025/165:normal', language: 'ja', set_code: 'SV2A', collector_number: '025/165', variant: 'normal', provenance: 'fixture'};
+  const card = {card_id: 'ja:SV2A:025/165:normal', language: 'ja', set_code: 'SV2A', collector_number: '025/165', variant: 'normal', provenance: 'fixture', structural_match_eligible: true, automatic_offer_join_allowed: false, price_comparable: false};
   const target = {contract: 'pokemon.collector-target-intent.v1', card_id: card.card_id, language: 'ja', set_code: 'SV2A', collector_number: '025/165', source_declared_variant: 'normal', catalog_provenance: 'fixture', preferences_evidence: 'user_assertion_only', transaction_ready: false, automatic_offer_join_allowed: false, physical_printing_verified: false, public_display_allowed: false, priceable_unit_id: null, product_url: null, quote: null};
   for (const patch of [{}, {source_declared_variant: 'holo'}, {transaction_ready: true}, {quote: {amount: 1}}]) {
-    const c = client(async (_, o) => json(result(JSON.parse(o.body), {status: 'catalog_target_selected', selection_allowed: true, selected_catalog_target: card, target_intent: {...target, ...patch}})));
+    const c = client(async (_, o) => json(result(JSON.parse(o.body), {status: 'catalog_target_selected', selection_allowed: true, candidate_cards: [card], card_selection_blockers: {[card.card_id]: []}, selected_catalog_target: card, target_intent: {...target, ...patch}})));
     if (!Object.keys(patch).length) assert.equal((await c.start({question: ask.question})).target_intent.card_id, card.card_id);
     else await assert.rejects(c.start({question: ask.question}), e => e.code === 'invalid_catalog_response');
   }
@@ -140,5 +140,64 @@ test('two-card discovery passes partial metadata and rejects nested commerce app
       assert.equal(call.target_intent, null);
     } else await assert.rejects(c.start({question: 'Compare two cards'}),
       error => error.code === 'invalid_catalog_response');
+  }
+});
+
+test('new actions have exact contracts and bounded nested collecting preferences', async () => {
+  let calls = 0;
+  const c = client(async (_, o) => {calls++; return json(result(JSON.parse(o.body)));});
+  for (const action of [
+    {type: 'feedback', card_id: 'A', reaction: 'like'},
+    {type: 'compare', left_card_id: 'A', right_card_id: 'B'},
+    {type: 'choose_comparison', side: 'right', card_id: 'B'},
+    {type: 'preferences', preferences: {collecting: {preferred_dex_ids: [25], preferred_releases: [{language: 'ja', set_code: 'FIX'}]}}},
+  ]) {
+    const session = (await c.start({question: ask.question})).session;
+    assert.equal((await c.advance({session, action})).session.turns.at(-1).type, action.type);
+  }
+  const before = calls;
+  for (const collecting of [{preferred_dex_ids: [true]}, {preferred_dex_ids: Array(21).fill(25)},
+    {preferred_dex_ids: [25,25]}, {preferred_dex_ids: [25], excluded_dex_ids: [25]},
+    {preferred_releases: [{language: 'ja', set_code: 'FIX', purchase_ready: true}]},
+    {subjective_notes: ['x'.repeat(161)]}, {mode: 'buy'}, {automatic_offer_join_allowed: true}]) {
+    await assert.rejects(c.advance({session: (await c.start({question: ask.question})).session,
+      action: {type: 'preferences', preferences: {collecting}}}), e => e.code === 'invalid_action');
+  }
+  assert.equal(calls - before, 8); // Only the prerequisite asks reached the service.
+  await assert.rejects(c.advance({action: {type: 'feedback', card_id: 'A', reaction: 'love'}}), e => e.code === 'invalid_action');
+  await assert.rejects(c.advance({action: {type: 'compare', left_card_id: 'A', right_card_id: 'A'}}), e => e.code === 'invalid_action');
+});
+
+test('recommendation page is bound to exact IDs, provenance, rank and unknown market fit', async () => {
+  const card = {card_id: 'ja:FIX:001/100:normal', language: 'ja', set_code: 'FIX', collector_number: '001/100', structural_match_eligible: true, automatic_offer_join_allowed: false, price_comparable: false};
+  const recommendation = {schema: 'pokemon.collector-recommendation.v1',
+    ranking_policy: 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1',
+    preference_evidence: 'user_assertion_only', candidate_pool_complete: true,
+    coverage_basis: 'current_source_declared_catalog_and_facets_only', global_catalog_completeness_established: false,
+    unapplied_preferences: [{value: 'cute', reason: 'no_source_backed_style_labels'}],
+    budget_fit: 'unknown_no_live_price', grade_availability: 'unknown_no_copy_offers',
+    items: [{card_id: card.card_id, rank: 1, explicit_match_axes: ['character'], liked_example_match_axes: [],
+      reasons: [{field: 'dex_id', value: 25, basis: 'catalog_facet', source_ref: 'synthetic:facet', rights_reference: 'synthetic'}], tradeoffs: ['No market evidence']}],
+    coordinate_groups: [{language: 'ja', set_code: 'FIX', collector_number: '001/100', shown_card_ids: [card.card_id], physical_versions_merged: false}]};
+  const cases = [() => {}, r => {r.budget_fit = 'within_budget';}, r => {r.items[0].card_id = 'invented';},
+    r => {r.items[0].rank = 2;}, r => {r.items[0].purchase_ready = true;},
+    r => {r.items[0].reasons[0].value = {purchase_ready: true};}, r => {r.items[0].reasons[0].source_ref = '';},
+    r => {r.coordinate_groups[0].physical_versions_merged = true;}];
+  for (let i = 0; i < cases.length; i++) {
+    const rec = structuredClone(recommendation); cases[i](rec);
+    const c = client(async (_, o) => json(result(JSON.parse(o.body), {candidate_cards: [card],
+      card_selection_blockers: {[card.card_id]: []}, recommendation: rec,
+      discovery: {task: 'collector_recommendations', coverage: {offset: 0}}})));
+    if (!i) assert.equal((await c.start({question: 'Recommend Pikachu cards'})).result.recommendation.items.length, 1);
+    else await assert.rejects(c.start({question: 'Recommend Pikachu cards'}), e => e.code === 'invalid_catalog_response');
+  }
+});
+
+test('nested candidate evidence cannot mint physical or commerce approvals', async () => {
+  for (const field of ['public_display_allowed', 'price_comparable', 'physical_copy_verified', 'transaction_ready']) {
+    const card = {card_id: 'A', automatic_offer_join_allowed: false, price_comparable: false, evidence: {[field]: true}};
+    await assert.rejects(client(async (_, o) => json(result(JSON.parse(o.body), {
+      candidate_cards: [card], card_selection_blockers: {A: []}}))).start({question: ask.question}),
+      e => e.code === 'invalid_catalog_response');
   }
 });

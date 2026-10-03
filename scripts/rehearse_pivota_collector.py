@@ -57,6 +57,8 @@ def run(db_path,suite_path,output,*,cloud=False):
                     if 'task_in' in expected and task not in expected['task_in']:errors.append('intent task differs')
                     if expected.get('has_candidates') and not cards:errors.append('catalog partial absent')
                     if expected.get('selection_blocked') and actual['selection_allowed']:errors.append('selection should be blocked')
+                    if expected.get('all_candidates_identity_held') and (not cards or any(c['structural_match_eligible'] is not False or 'catalog_identity_review_needed' not in actual.get('card_selection_blockers',{}).get(c['card_id'],[]) for c in cards)):
+                        errors.append('expected stored identity hold on every candidate')
                     if 'only_language' in expected and (not cards or {c['language'] for c in cards}!={expected['only_language']}):errors.append('language scope differs')
                     selected=actual['selected_catalog_target']['card_id'] if actual['selected_catalog_target'] else None
                     if 'target_id' in expected and selected!=expected['target_id']:errors.append('target differs')

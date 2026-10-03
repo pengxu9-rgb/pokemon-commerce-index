@@ -48,6 +48,32 @@ def _entry(db, value):
                 card_id=cid,candidate_card_ids=candidates if cid not in candidates else [])
 
 
+
+def partition_owned(db, owned, card_ids):
+    """Shared exact/possible ownership semantics for discovery, recommendations and focus."""
+    if not isinstance(owned,list) or len(owned)>MAX_ITEMS:
+        raise ValueError('inventory must contain at most 1000 items')
+    entries=[_entry(db,row) for row in owned]
+    if len({r['item_id'] for r in entries})!=len(entries):raise ValueError('duplicate item_id')
+    unresolved=[r for r in entries if r['status']!='asserted_exact_record']
+    groups=defaultdict(list)
+    for row in entries:
+        if row['status']=='asserted_exact_record':groups[row['card_id']].append(row)
+    ids=set(card_ids);resolved=set(groups);exact=ids&resolved
+    possible={cid for row in unresolved for cid in row['candidate_card_ids']} & ids - exact
+    return dict(schema='pokemon.collector-inventory.v1',
+        status='inventory_review_needed' if unresolved else 'comparison_ready',
+        inventory_entries=entries,unresolved_items=unresolved,excluded_card_ids=exact|possible,
+        owned_in_scope=[dict(card_id=cid,quantity=sum(r['quantity'] for r in groups[cid]),item_ids=[r['item_id'] for r in groups[cid]]) for cid in sorted(exact)],
+        possible_owned=[dict(card_id=cid,item_ids=[r['item_id'] for r in unresolved if cid in r['candidate_card_ids']]) for cid in sorted(possible)],
+        outside_scope=[dict(card_id=cid,item_ids=[r['item_id'] for r in groups[cid]]) for cid in sorted(resolved-ids)],
+        duplicates=[dict(card_id=cid,entry_count=len(rows),quantity=sum(r['quantity'] for r in rows)) for cid,rows in sorted(groups.items()) if len(rows)>1],
+        ownership_assertions_verified=False,physical_copy_verification=False,
+        inventory_persisted=False,complete_missing_list_established=False,public_display_allowed=False,
+        comparison_complete_for_submitted_catalog_scope=not unresolved,prices=[],live_offers=[],
+        next_question='Resolve unknown or version-uncertain inventory before selecting a target.' if unresolved else 'Inspect the remaining catalog candidates.')
+
+
 def compare(db, request: dict) -> dict:
     if not isinstance(request,dict) or set(request)-{'question','owned_items','limit','offset','scope'}:
         raise ValueError('inventory request has unsupported fields')
@@ -84,18 +110,12 @@ def compare(db, request: dict) -> dict:
         cards.extend(page['cards'])
     ids={c['card_id'] for c in cards}
     if len(cards)!=count or len(ids)!=count:raise ValueError('catalog scope changed during pagination')
-    groups=defaultdict(list)
-    for row in entries:
-        if row['status']=='asserted_exact_record':groups[row['card_id']].append(row)
-    resolved=set(groups); exact=ids&resolved
-    possible={cid for row in result['unresolved_items'] for cid in row['candidate_card_ids']} & ids - exact
-    missing=[c for c in cards if c['card_id'] not in exact|possible]
-    result['owned_in_scope']=[dict(card_id=cid,quantity=sum(r['quantity'] for r in groups[cid]),
-                                   item_ids=[r['item_id'] for r in groups[cid]]) for cid in sorted(exact)]
-    result['possible_owned']=[dict(card_id=cid,item_ids=[r['item_id'] for r in result['unresolved_items'] if cid in r['candidate_card_ids']]) for cid in sorted(possible)]
-    result['outside_scope']=[dict(card_id=cid,item_ids=[r['item_id'] for r in groups[cid]]) for cid in sorted(resolved-ids)]
-    result['duplicates']=[dict(card_id=cid,entry_count=len(rows),quantity=sum(r['quantity'] for r in rows))
-                          for cid,rows in sorted(groups.items()) if len(rows)>1]
+    partition=partition_owned(db,owned,list(ids))
+    excluded=partition.pop('excluded_card_ids')
+    result.update(partition)
+    exact={r['card_id'] for r in result['owned_in_scope']}
+    possible={r['card_id'] for r in result['possible_owned']}
+    missing=[c for c in cards if c['card_id'] not in excluded]
     result['missing_catalog_records']=missing[offset:offset+limit]
     result['coverage']=dict(scoped_catalog_records=count,asserted_owned_records=len(exact),
                             possible_owned_records=len(possible),not_in_resolved_inventory=len(missing),

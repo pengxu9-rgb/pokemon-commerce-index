@@ -1,0 +1,715 @@
+{
+  "schema": "pokemon.collector-recommendation-diagnostic.v1",
+  "scope": "Frozen synthetic engineering conversations. No real-user usefulness, physical printing, live market or public display approval.",
+  "limit": 20,
+  "cards": [
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "001/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "001/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "002/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "002/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "003/100",
+      "variant": "normal",
+      "name": "Mew",
+      "dex_id": 151,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "003/100",
+      "variant": "normal",
+      "name": "Mew",
+      "dex_id": 151,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "004/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "004/100",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "005/100",
+      "variant": "normal",
+      "name": "Mew",
+      "dex_id": 151,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "005/100",
+      "variant": "normal",
+      "name": "Mew",
+      "dex_id": 151,
+      "illustrator": "Beta",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "006/100",
+      "variant": "normal",
+      "name": "Gengar",
+      "dex_id": 94,
+      "illustrator": "Alpha",
+      "match_eligible": false,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "006/100",
+      "variant": "normal",
+      "name": "Gengar",
+      "dex_id": 94,
+      "illustrator": "Alpha",
+      "match_eligible": false,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "143A/236",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "en",
+      "set_code": "FIX",
+      "collector_number": "143A/236",
+      "variant": "normal",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    },
+    {
+      "language": "ja",
+      "set_code": "FIX",
+      "collector_number": "001/100",
+      "variant": "holo",
+      "name": "Pikachu",
+      "dex_id": 25,
+      "illustrator": "Alpha",
+      "match_eligible": true,
+      "provenance": "synthetic:collector-recommendation-v1",
+      "rights_reference": "synthetic:no-display"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "A-continuable-next",
+      "family": "A",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I completed my Pikachu collection. What should I collect next?"
+          },
+          "expect": {
+            "task": "collection_preferences_needed",
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "English"
+          },
+          "expect": {
+            "task": "collection_preferences_needed",
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Mew"
+          },
+          "expect": {
+            "task": "collector_recommendations",
+            "only_dex": 151,
+            "only_language": "en"
+          }
+        }
+      ]
+    },
+    {
+      "id": "B-budget-style",
+      "family": "B",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards under $50; I like cute art"
+          },
+          "expect": {
+            "task": "collector_recommendations",
+            "only_dex": 25,
+            "only_language": "ja",
+            "budget_minor": 5000,
+            "unapplied_contains": "cute"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C-feedback",
+      "family": "C",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards"
+          },
+          "expect": {
+            "task": "collector_recommendations"
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ],
+                "preferred_illustrators": [
+                  "Alpha"
+                ]
+              }
+            }
+          },
+          "expect": {
+            "first": "ja:FIX:001/100:holo"
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:FIX:001/100:normal",
+            "reaction": "dismiss"
+          },
+          "expect": {
+            "absent": [
+              "ja:FIX:001/100:normal"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:FIX:002/100:normal",
+            "reaction": "like"
+          },
+          "expect": {
+            "before": [
+              "ja:FIX:004/100:normal",
+              "ja:FIX:003/100:normal"
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:FIX:002/100:normal",
+            "reaction": "clear"
+          },
+          "expect": {}
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:FIX:001/100:normal",
+            "reaction": "clear"
+          },
+          "expect": {
+            "first": "ja:FIX:001/100:holo"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D-comparison-bridge",
+      "family": "D",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards"
+          },
+          "expect": {
+            "task": "collector_recommendations"
+          }
+        },
+        {
+          "action": {
+            "type": "compare",
+            "left_card_id": "ja:FIX:001/100:normal",
+            "right_card_id": "ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "task": "two_card_comparison",
+            "count": 0,
+            "selection_allowed": false
+          }
+        },
+        {
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "task": "exact_coordinates",
+            "ids": [
+              "ja:FIX:002/100:normal"
+            ],
+            "target": null
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "target": "ja:FIX:002/100:normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D-raw-comparison-blocked",
+      "family": "D",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Compare ja:FIX:001/100:normal and ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "task": "two_card_comparison",
+            "selection_allowed": false
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:FIX:001/100:normal"
+          },
+          "expect": {
+            "error": "catalog_rejected_action"
+          }
+        }
+      ]
+    },
+    {
+      "id": "E-identity-hold",
+      "family": "E",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards by Alpha"
+          },
+          "expect": {
+            "task": "collector_recommendations"
+          }
+        },
+        {
+          "action": {
+            "type": "compare",
+            "left_card_id": "ja:FIX:001/100:normal",
+            "right_card_id": "ja:FIX:006/100:normal"
+          },
+          "expect": {
+            "task": "two_card_comparison"
+          }
+        },
+        {
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:FIX:006/100:normal"
+          },
+          "expect": {
+            "ids": [
+              "ja:FIX:006/100:normal"
+            ],
+            "selection_allowed": false,
+            "blocker": "catalog_identity_review_needed"
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:FIX:006/100:normal"
+          },
+          "expect": {
+            "error": "catalog_rejected_action"
+          }
+        }
+      ]
+    },
+    {
+      "id": "E-owned-uncertainty",
+      "family": "E",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards"
+          },
+          "expect": {
+            "task": "collector_recommendations"
+          }
+        },
+        {
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "uncertain",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100"
+              }
+            ]
+          },
+          "expect": {
+            "absent": [
+              "ja:FIX:001/100:normal",
+              "ja:FIX:001/100:holo"
+            ],
+            "selection_allowed": false,
+            "blocker": "owned_inventory_resolution"
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "error": "catalog_rejected_action"
+          }
+        }
+      ]
+    },
+    {
+      "id": "E-unseen-feedback",
+      "family": "E",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards"
+          },
+          "expect": {}
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:FIX:003/100:normal",
+            "reaction": "like"
+          },
+          "expect": {
+            "error": "catalog_rejected_action"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F-preference-reset",
+      "family": "F",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards"
+          },
+          "expect": {}
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:FIX:002/100:normal"
+          },
+          "expect": {
+            "target": "ja:FIX:002/100:normal"
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  151
+                ]
+              }
+            }
+          },
+          "expect": {
+            "target": null,
+            "only_dex": 151
+          }
+        },
+        {
+          "action": {
+            "type": "ask",
+            "question": "Cheapest Pikachu card"
+          },
+          "expect": {
+            "task": "market_evidence_needed",
+            "target": null,
+            "selection_allowed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "F-unknown-taste",
+      "family": "F",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "What should I collect next?"
+          },
+          "expect": {
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "a mysterious new character I do not know"
+          },
+          "expect": {
+            "status": "followup_clarification_needed",
+            "count": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D-alphanumeric-focus",
+      "family": "D",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards by Alpha"
+          },
+          "expect": {}
+        },
+        {
+          "action": {
+            "type": "page",
+            "offset": 0
+          },
+          "expect": {}
+        },
+        {
+          "action": {
+            "type": "compare",
+            "left_card_id": "ja:FIX:001/100:normal",
+            "right_card_id": "ja:FIX:143A/236:normal"
+          },
+          "expect": {
+            "task": "two_card_comparison"
+          }
+        },
+        {
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:FIX:143A/236:normal"
+          },
+          "expect": {
+            "ids": [
+              "ja:FIX:143A/236:normal"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "A-japanese-next",
+      "family": "A",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "ピカチュウは揃った。次に何を集める？"
+          },
+          "expect": {
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "日本語"
+          },
+          "expect": {
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Mew"
+          },
+          "expect": {
+            "only_language": "ja",
+            "only_dex": 151
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  151
+                ]
+              }
+            }
+          },
+          "expect": {
+            "only_language": "ja",
+            "only_dex": 151
+          }
+        }
+      ]
+    },
+    {
+      "id": "A-chinese-next",
+      "family": "A",
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "下一步应该收藏什么？"
+          },
+          "expect": {
+            "task": "collection_preferences_needed",
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "英文"
+          },
+          "expect": {
+            "task": "collection_preferences_needed",
+            "count": 0
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "梦幻"
+          },
+          "expect": {
+            "task": "collector_recommendations",
+            "only_language": "en",
+            "only_dex": 151
+          }
+        }
+      ]
+    }
+  ]
+}

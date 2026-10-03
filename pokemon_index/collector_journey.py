@@ -6,7 +6,7 @@ physical-copy evidence or market data. Derived cards/approvals are never accepte
 from __future__ import annotations
 import hashlib,json,re
 from pathlib import Path
-from . import core,collector_discovery,collector_inventory
+from . import core,collector_discovery,collector_inventory,collector_recommendation,card_comparison,discovery_graph
 
 MAX_TURNS=20
 POLICY='pokemon.collector-journey.v1'
@@ -15,7 +15,7 @@ POLICY='pokemon.collector-journey.v1'
 def catalog_revision(db):
     """Portable evidence and runtime binding; excludes conversations/market state."""
     h=hashlib.sha256(POLICY.encode())
-    for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py',
+    for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
                  'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
@@ -74,13 +74,15 @@ def _reply_scope(db,text,languages):
     return None
 
 
-def _preferences(value):
-    fields={'grade_company','grade_value','budget_minor','currency','destination'}
+def _preferences(value,db=None):
+    fields={'grade_company','grade_value','budget_minor','currency','destination','collecting'}
     if not isinstance(value,dict) or set(value)-fields:raise ValueError('unsupported preference fields')
     result={}
     for k,v in value.items():
         if v is None:result[k]=None;continue
-        if k=='budget_minor':
+        if k=='collecting':
+            v=collector_recommendation.validate_collecting_preferences(db,v)
+        elif k=='budget_minor':
             if type(v) is not int or not 1<=v<=10**12:raise ValueError('invalid budget in minor units')
         else:
             v=_text(v,k,32)
@@ -97,7 +99,7 @@ def _preferences(value):
 
 def replay(db,request,*,revision=None):
     if not isinstance(request,dict) or set(request)-{'turns','limit','expected_revision'}:raise ValueError('unsupported journey request')
-    turns=request.get('turns');limit=request.get('limit',20)
+    turns=request.get('turns');limit=request.get('limit',5)
     if not isinstance(turns,list) or not 1<=len(turns)<=MAX_TURNS:raise ValueError('journey needs 1–20 turns')
     if type(limit) is not int or not 1<=limit<=50:raise ValueError('invalid journey limit')
     revision=revision or catalog_revision(db)
@@ -105,17 +107,75 @@ def replay(db,request,*,revision=None):
         raise ValueError('catalog or journey policy changed; replay without the old revision and reconfirm the target')
     question=None;filters={};owned=None;preferences={};target=None;offset=0;trace=[];cache={};unparsed=None
     reset_reason=None
+    recommendation_mode=False;feedback={};shown_ids=set();recommendation_shown=set()
+    active_comparison=None;focus_id=None
+    def reset_context():
+        nonlocal active_comparison,focus_id
+        active_comparison=None;focus_id=None;shown_ids.clear();recommendation_shown.clear()
+    def patch_preferences(patch):
+        nonlocal preferences,offset
+        newer=dict(preferences)
+        for k,v in patch.items():
+            if v is None:newer.pop(k,None)
+            elif k=='collecting':newer[k]=collector_recommendation.merge_profile(db,newer.get(k,{}),v)
+            else:newer[k]=v
+        if newer!=preferences and ('collecting' in patch or recommendation_mode):
+            clear('collection_preferences_changed');offset=0;reset_context()
+        preferences=newer
+    def identity_blockers(card):
+        cid=card['card_id']
+        blocks=discovery_graph.endpoint_identity_blockers(db,cid)
+        if blocks:blocks.append('catalog_identity_review_needed')
+        if card.get('official_coordinate_family',{}).get('copy_evidence_needed'):
+            blocks.append('coordinate_family_copy_evidence')
+        if card.get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts':
+            blocks.append('numbered_part_copy_evidence')
+        from . import source_corrections,source_image_facts,number_evidence
+        if source_corrections.family_scope_only(db,cid):blocks.append('source_family_copy_evidence')
+        reading=number_evidence.context(db,cid)
+        if reading and (not reading['current_endpoint'] or reading['status']=='reading_hold'):
+            blocks.append('catalog_identity_review_needed')
+        facts=source_image_facts.context(db,cid)
+        if facts and facts['warnings']:blocks.append('source_image_metadata_resolution')
+        return sorted(set(blocks))
     def view():
-        key=json.dumps([question,filters,owned,offset,limit],ensure_ascii=False,sort_keys=True)
+        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,offset,limit],ensure_ascii=False,sort_keys=True)
         if key in cache:return cache[key]
-        if owned is None:
+        recommendation=None
+        if active_comparison is not None:
+            scope=dict(schema='pokemon.collector-discovery.v1',question=question,
+                task='two_card_comparison',status=active_comparison['status'],
+                languages=collector_discovery._languages(collector_discovery._norm(question)),cards=[],
+                comparison=active_comparison,next_question=active_comparison['next_question'],
+                unfulfilled_constraints=[],required_evidence=active_comparison['required_evidence'])
+            inventory=None;cards=[]
+        elif focus_id is not None:
+            rows=collector_discovery._rows(db,'c.card_id=?',(focus_id,))
+            if not rows:raise ValueError('focused catalog record no longer exists')
+            scope=collector_discovery._finish_result(db,dict(schema='pokemon.collector-discovery.v1',
+                question=focus_id,languages=[rows[0]['language']],task='exact_coordinates',status='target_candidate',
+                next_question=None,unfulfilled_constraints=[],prices=[],live_offers=[],public_display_allowed=False,
+                complete_answer_established=False),rows,1,0)
+            cards=scope['cards'];inventory=None
+            if owned is not None:
+                inventory=collector_inventory.partition_owned(db,owned,[focus_id])
+                excluded=inventory.pop('excluded_card_ids')
+                cards=[c for c in cards if c['card_id'] not in excluded]
+                inventory.update(scope=scope,missing_catalog_records=cards)
+        elif recommendation_mode:
+            out=collector_recommendation.recommend(db,question,preferences.get('collecting',{}),feedback,
+                scope=filters,owned=owned,limit=limit,offset=offset,preferences=preferences)
+            scope=out['scope'];inventory=out['inventory'];cards=out['cards'];recommendation=out['recommendation']
+            baseline=collector_discovery.execute(db,question,scope=filters,limit=1)
+            scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+baseline['unfulfilled_constraints']))
+        elif owned is None:
             scope=collector_discovery.execute(db,question,scope=filters,limit=limit,offset=offset)
             inventory=None;cards=scope['cards']
         else:
             inventory=collector_inventory.compare(db,dict(question=question,scope=filters,owned_items=owned,limit=limit,offset=offset))
             scope=inventory['scope'];cards=inventory['missing_catalog_records']
         blockers=[]
-        if scope['task'] not in collector_inventory.SCOPED_TASKS or not scope.get('coverage',{}).get('matched_catalog_records'):
+        if scope['task'] not in collector_inventory.SCOPED_TASKS|{'collector_recommendations'} or not scope.get('coverage',{}).get('matched_catalog_records'):
             blockers.append('supported_catalog_scope_needed')
         partial_only={'artwork_coverage_completeness','physical_variant_completeness','printing_variant_completeness','owned_inventory'}
         blockers.extend(sorted(set(scope['unfulfilled_constraints'])-partial_only))
@@ -126,7 +186,11 @@ def replay(db,request,*,revision=None):
         if owned is None and 'owned_inventory' in scope['unfulfilled_constraints']:blockers.append('owned_inventory_not_supplied')
         if inventory and inventory['unresolved_items']:blockers.append('owned_inventory_resolution')
         if inventory and inventory['status']=='scope_clarification_needed':blockers.append('inventory_scope_needed')
-        out=dict(scope=scope,inventory=inventory,cards=cards,selection_blockers=sorted(set(blockers)))
+        card_blockers={c['card_id']:identity_blockers(c) for c in cards}
+        if cards and all(card_blockers.values()):
+            blockers.extend(sorted({b for bs in card_blockers.values() for b in bs}))
+        out=dict(scope=scope,inventory=inventory,cards=cards,recommendation=recommendation,
+                 card_selection_blockers=card_blockers,selection_blockers=sorted(set(blockers)))
         cache[key]=out;return out
     def clear(reason):
         nonlocal target,reset_reason
@@ -141,21 +205,25 @@ def replay(db,request,*,revision=None):
         for k,v in patch.items():
             if v is None:newer.pop(k,None)
         newer.update(checked)
-        if newer!=filters:clear('collection_scope_changed');offset=0
+        if newer!=filters:clear('collection_scope_changed');offset=0;reset_context()
         filters=newer
     def select(cid,previous):
         nonlocal target
         cid=_text(cid,'card_id',160)
-        if previous['selection_blockers']:raise ValueError('resolve scope or inventory blockers before selecting a target')
         shown={c['card_id']:c for c in previous['cards']}
+        if cid in shown:
+            card=shown[cid]
+            if card.get('official_coordinate_family',{}).get('copy_evidence_needed'):
+                raise ValueError('coordinate family needs qualified-title and physical-copy evidence before selecting a target')
+            if card.get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts':
+                raise ValueError('numbered part needs physical-copy evidence before selecting a target')
+            from . import source_corrections
+            if source_corrections.family_scope_only(db,cid):
+                raise ValueError('source-only family needs qualified physical-copy evidence before selecting a target')
+            if previous['card_selection_blockers'].get(cid):
+                raise ValueError('catalog identity or copy evidence review needed before selecting this record')
+        if previous['selection_blockers']:raise ValueError('resolve scope or inventory blockers before selecting a target')
         if cid not in shown:raise ValueError('selected card was not shown in the preceding candidate page')
-        if shown[cid].get('official_coordinate_family',{}).get('copy_evidence_needed'):
-            raise ValueError('coordinate family needs qualified-title and physical-copy evidence before selecting a target')
-        if shown[cid].get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts':
-            raise ValueError('numbered part needs physical-copy evidence before selecting a target')
-        from . import source_corrections
-        if source_corrections.family_scope_only(db,cid):
-            raise ValueError('source-only family needs qualified physical-copy evidence before selecting a target')
         target=shown[cid]
     for pos,turn in enumerate(turns):
         if not isinstance(turn,dict):raise ValueError('journey turn must be an object')
@@ -163,28 +231,54 @@ def replay(db,request,*,revision=None):
             'ask':{'type','question'},'refine':{'type','scope'},'reply':{'type','text'},
             'inventory':{'type','owned_items'},'resolve_owned':{'type','item_id','card_id'},
             'preferences':{'type','preferences'},'select':{'type','card_id'},
-            'clear_target':{'type'},'page':{'type','offset'}}
+            'clear_target':{'type'},'page':{'type','offset'},
+            'feedback':{'type','card_id','reaction'},'compare':{'type','left_card_id','right_card_id'},
+            'choose_comparison':{'type','side','card_id'}}
         if not isinstance(kind,str) or kind not in fields or set(turn)!=fields[kind]:raise ValueError('invalid journey action fields')
         if pos==0 and kind!='ask':raise ValueError('first journey turn must set a question')
         previous=view() if question else None
         if kind=='ask':
             question=_text(turn['question'],'question');filters={};offset=0;clear('collection_goal_changed');unparsed=None
+            reset_context();feedback={}
+            baseline=collector_discovery.execute(db,question,limit=1)
+            recommendation_mode=(collector_recommendation.is_goal(question) and baseline['task'] in {
+                'collection_preferences_needed','character_cards','artist_cards','set_cards',
+                'need_character_or_coordinates','exact_coordinates'})
+            if recommendation_mode:
+                scope_patch,money=collector_recommendation.question_constraints(question)
+                filters.update(scope_patch)
+                taste=collector_recommendation.parse_taste(db,question)
+                if taste:money['collecting']=taste
+                if money:patch_preferences(money)
         elif kind=='refine':refine(turn['scope']);unparsed=None
         elif kind=='reply':
             text=_text(turn['text'],'reply',200)
             patch=_reply_scope(db,text,previous['scope']['languages'])
-            if patch is not None:refine(patch);unparsed=None
+            if patch is not None:
+                refine(patch);unparsed=None
+                if recommendation_mode and previous['scope']['task']=='collection_preferences_needed' and 'set_code' in patch:
+                    languages=[filters['language']] if 'language' in filters else previous['scope']['languages']
+                    releases=[dict(language=r[0],set_code=r[1]) for r in db.execute('SELECT DISTINCT language,set_code FROM card WHERE set_code=? ORDER BY language',(patch['set_code'],)) if r[0] in languages]
+                    patch_preferences({'collecting':{'preferred_releases':releases}})
             elif collector_discovery._norm(text).strip(' .。!！') in {'yes','confirm','yes, that one','はい','确认','是'}:
                 if len(previous['cards'])==1 and not previous['selection_blockers']:
                     select(previous['cards'][0]['card_id'],previous);unparsed=None
                 else:unparsed='Which exact shown card do you mean? A yes reply cannot select multiple or evidence-blocked candidates.'
+            elif recommendation_mode:
+                taste=collector_recommendation.parse_taste(db,text)
+                if any(taste.get(k) for k in ['preferred_dex_ids','preferred_illustrators','preferred_releases']):
+                    patch_preferences({'collecting':taste});unparsed=None
+                else:
+                    notes=preferences.get('collecting',{}).get('subjective_notes',[])
+                    patch_preferences({'collecting':{'subjective_notes':list(dict.fromkeys(notes+[text]))[-10:]}})
+                    unparsed=collector_recommendation.PROMPT
             else:unparsed='Clarify the language, printed release code, number or source-declared finish, or start a new collection question.'
         elif kind=='inventory':
             owned=turn['owned_items']
             if not isinstance(owned,list) or len(owned)>collector_inventory.MAX_ITEMS:raise ValueError('inventory must contain at most 1000 items')
             entries=[collector_inventory._entry(db,r) for r in owned]
             if len({r['item_id'] for r in entries})!=len(entries):raise ValueError('duplicate item_id')
-            clear('owned_inventory_changed');offset=0
+            clear('owned_inventory_changed');offset=0;reset_context()
         elif kind=='resolve_owned':
             item_id=_text(turn['item_id'],'item_id',64);cid=_text(turn['card_id'],'card_id',160)
             old=[r for r in (owned or []) if r['item_id']==item_id]
@@ -194,18 +288,50 @@ def replay(db,request,*,revision=None):
             if not db.execute('SELECT 1 FROM card WHERE card_id=?',(cid,)).fetchone():raise ValueError('unknown resolution card')
             if entry['candidate_card_ids'] and cid not in entry['candidate_card_ids']:raise ValueError('owned resolution conflicts with declared coordinates')
             owned=[dict(item_id=item_id,card_id=cid,quantity=entry['quantity']) if r['item_id']==item_id else r for r in owned]
-            clear('owned_inventory_resolved');offset=0
+            clear('owned_inventory_resolved');offset=0;reset_context()
         elif kind=='preferences':
-            patch=_preferences(turn['preferences'])
-            for k,v in patch.items():
-                if v is None:preferences.pop(k,None)
-                else:preferences[k]=v
+            patch=_preferences(turn['preferences'],db)
+            patch_preferences(patch)
+            if 'collecting' in patch and collector_recommendation.supported_goal(question) and previous['scope']['task'] in collector_inventory.SCOPED_TASKS|{'collection_preferences_needed','collector_recommendations'}:
+                recommendation_mode=True
+                unparsed=None
+        elif kind=='feedback':
+            if previous['recommendation'] is None or active_comparison is not None or focus_id is not None:
+                raise ValueError('feedback requires the current recommendation context')
+            cid,reaction=collector_recommendation.validate_feedback(turn['card_id'],turn['reaction'],recommendation_shown)
+            old=feedback.get(cid)
+            if reaction=='clear':feedback.pop(cid,None)
+            else:feedback[cid]=reaction
+            if old!=feedback.get(cid):clear('recommendation_feedback_changed');offset=0
+            active_comparison=None;focus_id=None;unparsed=None
+        elif kind=='compare':
+            left=_text(turn['left_card_id'],'left_card_id',160);right=_text(turn['right_card_id'],'right_card_id',160)
+            if active_comparison is not None or focus_id is not None or left==right or not {left,right}<=shown_ids:
+                raise ValueError('comparison needs two distinct shown IDs from the current candidate context')
+            active_comparison=card_comparison.compare(db,{'left':{'card_id':left},'right':{'card_id':right}})
+            clear('comparison_started');offset=0;unparsed=None
+        elif kind=='choose_comparison':
+            comparison=active_comparison or previous['scope'].get('comparison')
+            side=turn['side'];cid=_text(turn['card_id'],'card_id',160)
+            if not isinstance(side,str) or side not in {'left','right'} or not comparison:
+                raise ValueError('choose requires an active comparison side')
+            endpoint=comparison[side]
+            if endpoint['records_truncated'] or endpoint['status'] not in {'exact_record','coordinate_variants'}:
+                raise ValueError('comparison side must be resolved and non-truncated')
+            if cid not in {r['card_id'] for r in endpoint['records']}:
+                raise ValueError('focus ID does not belong to the chosen comparison side')
+            clear('comparison_side_chosen');active_comparison=None;focus_id=cid;offset=0;unparsed=None
         elif kind=='select':select(turn['card_id'],previous);unparsed=None
         elif kind=='clear_target':clear('user_cleared_target')
         elif kind=='page':
+            if turn['offset']!=offset:clear('candidate_page_changed')
             offset=turn['offset']
             if type(offset) is not int or not 0<=offset<collector_inventory.MAX_SCOPE:raise ValueError('invalid journey offset')
         current=view()
+        if current['scope']['task']!='two_card_comparison':
+            shown_ids.update(c['card_id'] for c in current['cards'])
+        if current['recommendation'] is not None:
+            recommendation_shown.update(c['card_id'] for c in current['cards'])
         trace.append(dict(turn=pos+1,action=kind,task=current['scope']['task'],
                           displayed_card_ids=[c['card_id'] for c in current['cards']],
                           selection_blockers=current['selection_blockers'],
@@ -222,7 +348,9 @@ def replay(db,request,*,revision=None):
                 required_evidence=current['scope'].get('required_evidence',[]),blockers=current['selection_blockers'])
     elif target:
         status='catalog_target_selected';next_step=dict(field='offer_and_copy_evidence',
-            prompt='This selects a catalog record. Verify the physical printing/copy and obtain an authorized fresh offer before comparison or purchase.')
+            prompt='Catalog target saved in this replay. Continue catalog exploration, or later verify copy condition and an authorized fresh offer when a feed is available.')
+    elif current['cards'] and current['recommendation'] is not None:
+        next_step=dict(field='recommendation_feedback_or_choice',prompt=current['scope']['next_question'])
     elif current['cards']:
         field='card_id'
         if len(current['cards'])>1:
@@ -247,7 +375,8 @@ def replay(db,request,*,revision=None):
         goal_question=question,scope_filters=filters,candidate_cards=current['cards'],
         discovery=current['scope'],inventory=current['inventory'],
         artwork_review_leads=current['scope'].get('artwork_review_leads',[]),
-        selection_allowed=bool(current['cards'] and not current['selection_blockers'] and not unparsed),
+        selection_allowed=bool(any(not current['card_selection_blockers'][c['card_id']] for c in current['cards']) and not current['selection_blockers'] and not unparsed),
+        card_selection_blockers=current['card_selection_blockers'],recommendation=current['recommendation'],
         selection_blockers=current['selection_blockers'],selected_catalog_target=target,
         target_reset_reason=reset_reason,preferences=preferences,preferences_applied_to_market=False,
         next_step=next_step,target_intent=intent,trace=trace,
