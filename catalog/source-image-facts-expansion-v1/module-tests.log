@@ -1,0 +1,15 @@
+test_append_only_idempotent_heads_and_atomic_revision_gate (tests.test_source_image_facts.SourceImageFactTests.test_append_only_idempotent_heads_and_atomic_revision_gate) ... ok
+test_expanded_kanji_is_not_agreement_with_literal_symbol_title (tests.test_source_image_facts.SourceImageFactTests.test_expanded_kanji_is_not_agreement_with_literal_symbol_title) ... ok
+test_hp_conflict_is_reported_without_rewriting_source_or_creating_price_approval (tests.test_source_image_facts.SourceImageFactTests.test_hp_conflict_is_reported_without_rewriting_source_or_creating_price_approval) ... ok
+test_missing_hp_disagreement_and_source_unknown_are_distinct (tests.test_source_image_facts.SourceImageFactTests.test_missing_hp_disagreement_and_source_unknown_are_distinct) ... ok
+test_model_response_extra_claims_and_wrong_version_are_rejected (tests.test_source_image_facts.SourceImageFactTests.test_model_response_extra_claims_and_wrong_version_are_rejected) ... ok
+test_null_boolean_hp_and_title_symbol_positions_are_checked (tests.test_source_image_facts.SourceImageFactTests.test_null_boolean_hp_and_title_symbol_positions_are_checked) ... ok
+test_source_drift_hides_normalization_and_hp_interpretations (tests.test_source_image_facts.SourceImageFactTests.test_source_drift_hides_normalization_and_hp_interpretations) ... ok
+test_substitution_overclaims_and_future_review_are_rejected (tests.test_source_image_facts.SourceImageFactTests.test_substitution_overclaims_and_future_review_are_rejected) ... ok
+test_symbol_name_preserves_literal_text_and_context_flags_without_upgrading_numbers (tests.test_source_image_facts.SourceImageFactTests.test_symbol_name_preserves_literal_text_and_context_flags_without_upgrading_numbers) ... ok
+test_wrong_missing_or_unknown_symbol_pronunciation_does_not_expand_catalog_name (tests.test_source_image_facts.SourceImageFactTests.test_wrong_missing_or_unknown_symbol_pronunciation_does_not_expand_catalog_name) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.083s
+
+OK

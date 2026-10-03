@@ -160,3 +160,7 @@ Next: distinguish literal title text from type symbols/furigana and separately v
 ## Source-image facts — 2026-10-03
 
 Implemented a separate literal-title / symbol / furigana / HP layer for nine selected source scans. Exact-source advisories and HP conflicts are now visible in card detail and comparisons, with root prior context disclosed. Preserve the earlier number holds and graph/commerce qualification; expand the structured audit across remaining source scans before promoting independent identity evidence. See [implementation](SOURCE_IMAGE_FACTS_20261003.md).
+
+## Source-fact expansion — 2026-10-03
+
+Completed the frozen forty-image queue, preserving all prior fact/number/graph decisions. The next hundred source-byte-checked candidates span twenty releases and require actual image acquisition plus fresh number/title/HP inspection before import. [Scope and sequence](SOURCE_IMAGE_FACTS_EXPANSION_20261003.md).

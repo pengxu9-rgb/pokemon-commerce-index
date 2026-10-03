@@ -10,11 +10,15 @@ from pokemon_index import core,collector_discovery,collector_journey,source_imag
 from pokemon_index.cli import create_server
 from scripts.rehearse_card_comparison import sha,semantic
 
-def run(db_path,output,cloud=False):
+def run(db_path,output,cloud=False,cohort_dir=None):
     if output.exists():raise FileExistsError(output)
-    root=Path(__file__).resolve().parents[1];p=root/'catalog/source-image-facts-v1'
+    root=Path(__file__).resolve().parents[1]
+    p=(cohort_dir or root/'catalog/source-image-facts-v1').resolve()
+    if not p.is_relative_to(root/'catalog'):raise ValueError('fact diagnostic directory must be within catalog')
     evidence_path=p/'evidence-v1.jsonl';events=list(map(json.loads,evidence_path.read_text().splitlines()))
     questions_path=p/'questions-v1.jsonl';questions=list(map(json.loads,questions_path.read_text().splitlines()))
+    if len(questions)<6 or len({q['id'] for q in questions})!=len(questions):raise ValueError('six or more unique authored questions required')
+    planned=len(events)+len(questions)+6+(2 if cloud else 0)
     before=sha(db_path);server=None;thread=None;deployment=None;token=None;checks=[];errors=[];completed=False;revision=None
     def gcloud(*args):return json.loads(subprocess.check_output(['gcloud',*args,'--project=pivota-staging','--format=json'],text=True))
     if cloud:
@@ -82,10 +86,10 @@ def run(db_path,output,cloud=False):
             completed=True
     finally:
         if server:server.shutdown();thread.join();server.server_close()
-        report=dict(schema='pokemon.source-image-fact-rehearsal.v1',completed=completed,planned_checks=23 if cloud else 21,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,transport_errors=errors,deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=sha(db_path)==before,catalog_revision=revision,evidence_sha256=sha(evidence_path),questions_sha256=sha(questions_path),runtime_sha256={n:sha(root/'pokemon_index'/n) for n in ['source_image_facts.py','number_evidence.py','card_comparison.py','collector_discovery.py','collector_journey.py','core.py','cli.py','schema.sql']},independent_real_user_or_marketplace_accuracy_established=False,physical_or_market_approvals_added=False)
+        report=dict(schema='pokemon.source-image-fact-rehearsal.v1',completed=completed,planned_checks=planned,checks=len(checks),passed=sum(c['passed'] for c in checks),results=checks,transport_errors=errors,deployment=deployment,catalog_sha256=before,catalog_bytes_unchanged=sha(db_path)==before,catalog_revision=revision,evidence_sha256=sha(evidence_path),questions_sha256=sha(questions_path),runtime_sha256={n:sha(root/'pokemon_index'/n) for n in ['source_image_facts.py','number_evidence.py','card_comparison.py','collector_discovery.py','collector_journey.py','core.py','cli.py','schema.sql']},independent_real_user_or_marketplace_accuracy_established=False,physical_or_market_approvals_added=False)
         output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         if not report['catalog_bytes_unchanged']:raise ValueError('facts rehearsal changed snapshot')
     return {k:report[k] for k in ['completed','checks','passed','deployment']}
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud)))
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir)))

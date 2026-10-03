@@ -290,3 +290,5 @@ Latest number evidence: [catalog coordinates versus observed printed text](NUMBE
 Latest expansion: [fifty promo-number targets](PROMO_NUMBER_EXPANSION_20261002.md), yielding 44 qualified scoped observations, five name holds and one image hold. The catalog now has 74 usable number observations and five held; graph/commerce permissions remain unchanged.
 
 Latest source-image facts update: [title/symbol/furigana and HP advisories](SOURCE_IMAGE_FACTS_20261003.md). Nine selected scans have explicit review context and one HP conflict; this does not upgrade the five existing number holds.
+
+Latest expansion: [forty additional source-scan fact observations](SOURCE_IMAGE_FACTS_EXPANSION_20261003.md). The advisory layer covers 49 selected promo scans; the next unreviewed research queue contains 100 cross-release candidates.

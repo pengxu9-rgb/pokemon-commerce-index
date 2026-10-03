@@ -1,0 +1,254 @@
+{
+  "targets": 100,
+  "releases": 20,
+  "languages": {
+    "ja": 50,
+    "en": 50
+  },
+  "release_selection": [
+    {
+      "language": "ja",
+      "set_code": "MC",
+      "available_structural_coordinates": 774,
+      "targets": [
+        "cross-release-001",
+        "cross-release-002",
+        "cross-release-003",
+        "cross-release-004",
+        "cross-release-005"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "SV4A",
+      "available_structural_coordinates": 320,
+      "targets": [
+        "cross-release-006",
+        "cross-release-007",
+        "cross-release-008",
+        "cross-release-009",
+        "cross-release-010"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "S8B",
+      "available_structural_coordinates": 285,
+      "targets": [
+        "cross-release-011",
+        "cross-release-012",
+        "cross-release-013",
+        "cross-release-014",
+        "cross-release-015"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "S12A",
+      "available_structural_coordinates": 258,
+      "targets": [
+        "cross-release-016",
+        "cross-release-017",
+        "cross-release-018",
+        "cross-release-019",
+        "cross-release-020"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "M2A",
+      "available_structural_coordinates": 250,
+      "targets": [
+        "cross-release-021",
+        "cross-release-022",
+        "cross-release-023",
+        "cross-release-024",
+        "cross-release-025"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "SM8B",
+      "available_structural_coordinates": 250,
+      "targets": [
+        "cross-release-026",
+        "cross-release-027",
+        "cross-release-028",
+        "cross-release-029",
+        "cross-release-030"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "SV8A",
+      "available_structural_coordinates": 237,
+      "targets": [
+        "cross-release-031",
+        "cross-release-032",
+        "cross-release-033",
+        "cross-release-034",
+        "cross-release-035"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "SM12A",
+      "available_structural_coordinates": 226,
+      "targets": [
+        "cross-release-036",
+        "cross-release-037",
+        "cross-release-038",
+        "cross-release-039",
+        "cross-release-040"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "SV2A",
+      "available_structural_coordinates": 210,
+      "targets": [
+        "cross-release-041",
+        "cross-release-042",
+        "cross-release-043",
+        "cross-release-044",
+        "cross-release-045"
+      ]
+    },
+    {
+      "language": "ja",
+      "set_code": "M6A",
+      "available_structural_coordinates": 176,
+      "targets": [
+        "cross-release-046",
+        "cross-release-047",
+        "cross-release-048",
+        "cross-release-049",
+        "cross-release-050"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "ME02.5",
+      "available_structural_coordinates": 295,
+      "targets": [
+        "cross-release-051",
+        "cross-release-052",
+        "cross-release-053",
+        "cross-release-054",
+        "cross-release-055"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SWSH8",
+      "available_structural_coordinates": 284,
+      "targets": [
+        "cross-release-056",
+        "cross-release-057",
+        "cross-release-058",
+        "cross-release-059",
+        "cross-release-060"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV02",
+      "available_structural_coordinates": 277,
+      "targets": [
+        "cross-release-061",
+        "cross-release-062",
+        "cross-release-063",
+        "cross-release-064",
+        "cross-release-065"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SM12",
+      "available_structural_coordinates": 271,
+      "targets": [
+        "cross-release-066",
+        "cross-release-067",
+        "cross-release-068",
+        "cross-release-069",
+        "cross-release-070"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV04",
+      "available_structural_coordinates": 264,
+      "targets": [
+        "cross-release-071",
+        "cross-release-072",
+        "cross-release-073",
+        "cross-release-074",
+        "cross-release-075"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SM11",
+      "available_structural_coordinates": 258,
+      "targets": [
+        "cross-release-076",
+        "cross-release-077",
+        "cross-release-078",
+        "cross-release-079",
+        "cross-release-080"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV01",
+      "available_structural_coordinates": 258,
+      "targets": [
+        "cross-release-081",
+        "cross-release-082",
+        "cross-release-083",
+        "cross-release-084",
+        "cross-release-085"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV08",
+      "available_structural_coordinates": 249,
+      "targets": [
+        "cross-release-086",
+        "cross-release-087",
+        "cross-release-088",
+        "cross-release-089",
+        "cross-release-090"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV04.5",
+      "available_structural_coordinates": 245,
+      "targets": [
+        "cross-release-091",
+        "cross-release-092",
+        "cross-release-093",
+        "cross-release-094",
+        "cross-release-095"
+      ]
+    },
+    {
+      "language": "en",
+      "set_code": "SV10",
+      "available_structural_coordinates": 243,
+      "targets": [
+        "cross-release-096",
+        "cross-release-097",
+        "cross-release-098",
+        "cross-release-099",
+        "cross-release-100"
+      ]
+    }
+  ],
+  "source_files_byte_verified": 100,
+  "images_acquired": 0,
+  "reviewed_or_imported": false,
+  "compiler_prior_number_binding_prerequisite_still_required": true
+}

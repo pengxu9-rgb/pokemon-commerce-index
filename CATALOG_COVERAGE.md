@@ -389,3 +389,7 @@ The [50-input build](catalog-build-manifest-number-readings-v1.json) preserves 7
 ## Source-image fact layer — 2026-10-03
 
 The 52-input source-image-facts manifest preserves all 51 previous inputs. It adds nine exact-source advisory subjects (four symbol/furigana correspondences, five literal correspondences, one HP conflict), while all 79 number events and 43 earlier tables remain preserved. Number qualification and graph counts remain unchanged. These selected scans do not establish whole-catalog metadata accuracy. [Details](SOURCE_IMAGE_FACTS_20261003.md).
+
+## Forty-image fact expansion — 2026-10-03
+
+The 53-input manifest appends forty exact-source advisories, giving 49 selected promo scan subjects, one HP conflict and zero stale. This is not whole-catalog accuracy or physical-variant coverage; number evidence stays 74 usable / five held. The next hundred cross-release candidates are metadata-only research targets, not imported observations. [Coverage](SOURCE_IMAGE_FACTS_EXPANSION_20261003.md).

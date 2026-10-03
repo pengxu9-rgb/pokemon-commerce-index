@@ -1,0 +1,815 @@
+{
+  "schema": "pokemon.source-image-fact-compilation.v1",
+  "subjects": 40,
+  "outcomes": [
+    {
+      "card_id": "en:HGSSP:HGSS02/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Lugia",
+          "canonical_candidate": "Lugia",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Lugia",
+          "canonical_candidate": "Lugia",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 90,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS04/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Wobbuffet",
+          "canonical_candidate": "Wobbuffet",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Wobbuffet",
+          "canonical_candidate": "Wobbuffet",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 90,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS05/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Hoothoot",
+          "canonical_candidate": "Hoothoot",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Hoothoot",
+          "canonical_candidate": "Hoothoot",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 50,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS06/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Noctowl",
+          "canonical_candidate": "Noctowl",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Noctowl",
+          "canonical_candidate": "Noctowl",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 90,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS07/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Feraligatr",
+          "canonical_candidate": "Feraligatr",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Feraligatr",
+          "canonical_candidate": "Feraligatr",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 140,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS08/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Meganium",
+          "canonical_candidate": "Meganium",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Meganium",
+          "canonical_candidate": "Meganium",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 150,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS09/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Typhlosion",
+          "canonical_candidate": "Typhlosion",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Typhlosion",
+          "canonical_candidate": "Typhlosion",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 140,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:HGSSP:HGSS10/000025:holo_cosmos",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Latias",
+          "canonical_candidate": "Latias",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Latias",
+          "canonical_candidate": "Latias",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 80,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:002/mep:holo_set_logo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Inteleon",
+          "canonical_candidate": "Inteleon",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Inteleon",
+          "canonical_candidate": "Inteleon",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 150,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:003/mep:holo_set_logo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Alakazam",
+          "canonical_candidate": "Alakazam",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Alakazam",
+          "canonical_candidate": "Alakazam",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 140,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:004/mep:holo_set_logo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Lunatone",
+          "canonical_candidate": "Lunatone",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Lunatone",
+          "canonical_candidate": "Lunatone",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 110,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:005/mep:holo_cosmos",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Drifloon",
+          "canonical_candidate": "Drifloon",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Drifloon",
+          "canonical_candidate": "Drifloon",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:006/mep:holo_cosmos",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Drifblim",
+          "canonical_candidate": "Drifblim",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Drifblim",
+          "canonical_candidate": "Drifblim",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 110,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:007/mep:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Psyduck",
+          "canonical_candidate": "Psyduck",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Psyduck",
+          "canonical_candidate": "Psyduck",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:008/mep:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Golduck",
+          "canonical_candidate": "Golduck",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Golduck",
+          "canonical_candidate": "Golduck",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 120,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:009/mep:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Alakazam",
+          "canonical_candidate": "Alakazam",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Alakazam",
+          "canonical_candidate": "Alakazam",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 140,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:010/mep:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Riolu",
+          "canonical_candidate": "Riolu",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Riolu",
+          "canonical_candidate": "Riolu",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 80,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:SMP:SM01/0248:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Rowlet",
+          "canonical_candidate": "Rowlet",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Rowlet",
+          "canonical_candidate": "Rowlet",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 50,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:SMP:SM02/0248:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Litten",
+          "canonical_candidate": "Litten",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Litten",
+          "canonical_candidate": "Litten",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:SMP:SM03/0248:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Popplio",
+          "canonical_candidate": "Popplio",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Popplio",
+          "canonical_candidate": "Popplio",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:SMP:SM04/0248:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Pikachu",
+          "canonical_candidate": "Pikachu",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Pikachu",
+          "canonical_candidate": "Pikachu",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:002/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ラプラスex",
+          "canonical_candidate": "ラプラスex",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ラプラスex",
+          "canonical_candidate": "ラプラスex",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 210,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:003/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "マシマシラ",
+          "canonical_candidate": "マシマシラ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "マシマシラ",
+          "canonical_candidate": "マシマシラ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 110,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:004/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "マクノシタ",
+          "canonical_candidate": "マクノシタ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "マクノシタ",
+          "canonical_candidate": "マクノシタ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 80,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:006/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "カウンターゲイン",
+          "canonical_candidate": "カウンターゲイン",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "カウンターゲイン",
+          "canonical_candidate": "カウンターゲイン",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:007/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "リーリエの決心",
+          "canonical_candidate": "リーリエの決心",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "リーリエの決心",
+          "canonical_candidate": "リーリエの決心",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:008/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "メガシグナル",
+          "canonical_candidate": "メガシグナル",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "メガシグナル",
+          "canonical_candidate": "メガシグナル",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:001/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ピカチュウ",
+          "canonical_candidate": "ピカチュウ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ピカチュウ",
+          "canonical_candidate": "ピカチュウ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:002/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "シブヤのピカチュウ",
+          "canonical_candidate": "シブヤのピカチュウ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "シブヤのピカチュウ",
+          "canonical_candidate": "シブヤのピカチュウ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:003/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "レックウザ",
+          "canonical_candidate": "レックウザ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "レックウザ",
+          "canonical_candidate": "レックウザ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 130,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:004/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ウールー",
+          "canonical_candidate": "ウールー",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ウールー",
+          "canonical_candidate": "ウールー",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:005/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ホップ",
+          "canonical_candidate": "ホップ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ホップ",
+          "canonical_candidate": "ホップ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:006/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ヒバニー",
+          "canonical_candidate": "ヒバニー",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ヒバニー",
+          "canonical_candidate": "ヒバニー",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:007/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "サルノリ",
+          "canonical_candidate": "サルノリ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "サルノリ",
+          "canonical_candidate": "サルノリ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:008/S-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "メッソン",
+          "canonical_candidate": "メッソン",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "メッソン",
+          "canonical_candidate": "メッソン",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:SV-P:001/SV-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ピカチュウ",
+          "canonical_candidate": "ピカチュウ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ピカチュウ",
+          "canonical_candidate": "ピカチュウ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 60,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:SV-P:002/SV-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ワナイダー",
+          "canonical_candidate": "ワナイダー",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ワナイダー",
+          "canonical_candidate": "ワナイダー",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 120,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:SV-P:003/SV-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ウインディ",
+          "canonical_candidate": "ウインディ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ウインディ",
+          "canonical_candidate": "ウインディ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 130,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:SV-P:004/SV-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ヘイラッシャ",
+          "canonical_candidate": "ヘイラッシャ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ヘイラッシャ",
+          "canonical_candidate": "ヘイラッシャ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 150,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:SV-P:005/SV-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "ミライドン",
+          "canonical_candidate": "ミライドン",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "ミライドン",
+          "canonical_candidate": "ミライドン",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 120,
+      "observed_number_agreement": true,
+      "warnings": []
+    }
+  ],
+  "image_and_source_bytes_verified": true,
+  "review_input_sha256": {
+    "catalog/source-image-facts-expansion-v1/cohort-v1.jsonl": "4c0e569dabd038596ec24db925c47f6f907ce64328f760b6a9ec4d24f4f23bc1",
+    "catalog/source-image-facts-expansion-v1/root-review-v1.jsonl": "9cfa03e6c43e992c7f03f7f5772c3b81105890087745035156b01ef484eaa1a9",
+    "catalog/source-image-facts-expansion-v1/gemini-review-v1.jsonl": "754865d4f1978f771072c64e13584df7738fb5146178ddd2a1a20974ce39c6ec"
+  },
+  "evidence_sha256": "b3f6e0de79c8d4d1681da8de4c9b41ee5dbc1231deee24f30ba2719e7f4042bc",
+  "independent_review_agreement_established": false,
+  "number_reading_qualification_changed": false
+}
