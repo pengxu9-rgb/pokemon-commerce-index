@@ -47,7 +47,10 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 self.connection.settimeout(10)
                 raw=self.rfile.read(int(length))
                 if len(raw)!=int(length):raise ValueError('incomplete JSON request body')
-                payload=json.loads(raw.decode('utf-8'))
+                try:
+                    payload=json.loads(raw.decode('utf-8'))
+                except RecursionError as exc:
+                    raise ValueError('JSON nesting exceeds supported depth') from exc
                 with closing(core.connect(db_path,readonly=True)) as db:
                     result=(card_comparison.compare(db,payload) if route=='/card-comparison' else
                             collector_inventory.compare(db,payload) if route=='/collector-inventory' else

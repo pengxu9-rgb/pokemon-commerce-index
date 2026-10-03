@@ -12,9 +12,35 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Install test dependencies
         run: python -m pip install -e '.[test]'
       - name: Run tests and rebuild pinned catalog
         run: python -m unittest discover -s tests -q
+      - name: Validate the Node caller contracts
+        run: node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs
+      - name: Rehearse recommendations through Python HTTP and Node
+        run: python -m scripts.rehearse_collector_recommendations --output /tmp/recommendation-review-report.json
+      - name: Rehearse identity holds against the pinned real catalog
+        run: |
+          python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3
+          python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
+      - name: Audit the supported collector cohort and broad research tasks
+        run: python -m scripts.audit_supported_collector_pilot --db /tmp/review-catalog.sqlite3 --output /tmp/pilot-review-report.json
+      - name: Measure bounded real-catalog runtime
+        run: python -m scripts.benchmark_collector_runtime --db /tmp/review-catalog.sqlite3 --output /tmp/runtime-review-report.json
       - name: Build staging image from the same manifest
         run: docker build -t pokemon-commerce-index:verify .
+      - name: Preserve independent diagnostic receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-review-receipts
+          path: |
+            /tmp/recommendation-review-report.json
+            /tmp/legacy-review-report.json
+            /tmp/pilot-review-report.json
+            /tmp/runtime-review-report.json
+          if-no-files-found: ignore

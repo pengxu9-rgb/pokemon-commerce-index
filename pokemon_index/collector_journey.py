@@ -106,8 +106,9 @@ def replay(db,request,*,revision=None):
     if 'expected_revision' in request and request['expected_revision']!=revision:
         raise ValueError('catalog or journey policy changed; replay without the old revision and reconfirm the target')
     question=None;filters={};owned=None;preferences={};target=None;offset=0;trace=[];cache={};unparsed=None
-    reset_reason=None
+    reset_reason=None;pending_clarifications=[]
     recommendation_mode=False;feedback={};shown_ids=set();recommendation_shown=set()
+    recommendation_pool_cache={'revision':revision};recommendation_baseline_cache={}
     active_comparison=None;focus_id=None
     def reset_context():
         nonlocal active_comparison,focus_id
@@ -119,9 +120,32 @@ def replay(db,request,*,revision=None):
             if v is None:newer.pop(k,None)
             elif k=='collecting':newer[k]=collector_recommendation.merge_profile(db,newer.get(k,{}),v)
             else:newer[k]=v
-        if newer!=preferences and ('collecting' in patch or recommendation_mode):
+        if newer!=preferences and ('collecting' in patch or recommendation_mode or active_comparison is not None or focus_id is not None):
             clear('collection_preferences_changed');offset=0;reset_context()
         preferences=newer
+    def hold_clarification(text):
+        nonlocal offset
+        for constraint in collector_recommendation.clarification_requirements(db,text):
+            if (constraint.get('required_scope_value') is not None
+                    and filters.get(constraint.get('scope_field'))==constraint['required_scope_value']):
+                continue
+            if constraint not in pending_clarifications:pending_clarifications.append(constraint)
+        clear('unresolved_collection_preference');offset=0;reset_context()
+    def resolve_preference_clarifications(patch):
+        nonlocal pending_clarifications
+        collecting=patch.get('collecting')
+        if not isinstance(collecting,dict):return
+        # Only an explicit replacement on the named axis resolves its held
+        # assertion. Mode, money, unrelated taste and empty objects cannot.
+        fields={k for k,v in collecting.items() if isinstance(v,list)}
+        remaining=[]
+        for constraint in pending_clarifications:
+            groups=constraint.get('preference_groups')
+            if not groups:
+                remaining.append(constraint);continue
+            unresolved=[g for g in groups if not fields.intersection(g)]
+            if unresolved:remaining.append(dict(constraint,preference_groups=unresolved))
+        pending_clarifications=remaining
     def identity_blockers(card):
         cid=card['card_id']
         blocks=discovery_graph.endpoint_identity_blockers(db,cid)
@@ -139,7 +163,7 @@ def replay(db,request,*,revision=None):
         if facts and facts['warnings']:blocks.append('source_image_metadata_resolution')
         return sorted(set(blocks))
     def view():
-        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,offset,limit],ensure_ascii=False,sort_keys=True)
+        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,offset,limit],ensure_ascii=False,sort_keys=True)
         if key in cache:return cache[key]
         recommendation=None
         if active_comparison is not None:
@@ -164,9 +188,15 @@ def replay(db,request,*,revision=None):
                 inventory.update(scope=scope,missing_catalog_records=cards)
         elif recommendation_mode:
             out=collector_recommendation.recommend(db,question,preferences.get('collecting',{}),feedback,
-                scope=filters,owned=owned,limit=limit,offset=offset,preferences=preferences)
+                scope=filters,owned=owned,limit=limit,offset=offset,preferences=preferences,
+                pool_cache=recommendation_pool_cache)
             scope=out['scope'];inventory=out['inventory'];cards=out['cards'];recommendation=out['recommendation']
-            baseline=collector_discovery.execute(db,question,scope=filters,limit=1)
+            baseline_key=json.dumps([question,filters],sort_keys=True)
+            if recommendation_baseline_cache.get('key')!=baseline_key:
+                recommendation_baseline_cache.clear()
+                recommendation_baseline_cache.update(key=baseline_key,
+                    result=collector_discovery.execute(db,question,scope=filters,limit=1))
+            baseline=recommendation_baseline_cache['result']
             scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+baseline['unfulfilled_constraints']))
         elif owned is None:
             scope=collector_discovery.execute(db,question,scope=filters,limit=limit,offset=offset)
@@ -174,7 +204,15 @@ def replay(db,request,*,revision=None):
         else:
             inventory=collector_inventory.compare(db,dict(question=question,scope=filters,owned_items=owned,limit=limit,offset=offset))
             scope=inventory['scope'];cards=inventory['missing_catalog_records']
+        if scope['task']=='two_card_comparison' and active_comparison is None:
+            scope['next_question']='The comparison context changed. Start the comparison again before choosing a side.'
         blockers=[]
+        if pending_clarifications:
+            blockers.append('unresolved_collection_preference')
+            scope['next_question']=pending_clarifications[0]['prompt']
+        if (recommendation_mode and re.search(collector_recommendation.HARD_RELEASE,collector_discovery._norm(question))
+                and 'set_code' not in filters):
+            blockers.append('recommendation_release_scope_confirmation')
         if scope['task'] not in collector_inventory.SCOPED_TASKS|{'collector_recommendations'} or not scope.get('coverage',{}).get('matched_catalog_records'):
             blockers.append('supported_catalog_scope_needed')
         partial_only={'artwork_coverage_completeness','physical_variant_completeness','printing_variant_completeness','owned_inventory'}
@@ -197,7 +235,7 @@ def replay(db,request,*,revision=None):
         if target is not None:reset_reason=reason
         target=None
     def refine(patch):
-        nonlocal filters,offset
+        nonlocal filters,offset,pending_clarifications
         if not isinstance(patch,dict):raise ValueError('scope patch must be an object')
         checked=collector_discovery.validate_scope({k:v for k,v in patch.items() if v is not None})
         if set(patch)-{'language','set_code','collector_number','variant'}:raise ValueError('unsupported scope patch')
@@ -205,10 +243,13 @@ def replay(db,request,*,revision=None):
         for k,v in patch.items():
             if v is None:newer.pop(k,None)
         newer.update(checked)
+        pending_clarifications=[c for c in pending_clarifications if c.get('scope_field') not in checked]
         if newer!=filters:clear('collection_scope_changed');offset=0;reset_context()
         filters=newer
     def select(cid,previous):
         nonlocal target
+        if pending_clarifications or unparsed:
+            raise ValueError('resolve the pending collection clarification before selecting a target')
         cid=_text(cid,'card_id',160)
         shown={c['card_id']:c for c in previous['cards']}
         if cid in shown:
@@ -239,17 +280,21 @@ def replay(db,request,*,revision=None):
         previous=view() if question else None
         if kind=='ask':
             question=_text(turn['question'],'question');filters={};offset=0;clear('collection_goal_changed');unparsed=None
-            reset_context();feedback={}
+            reset_context();feedback={};pending_clarifications=[]
             baseline=collector_discovery.execute(db,question,limit=1)
+            if baseline['task']=='two_card_comparison':
+                active_comparison=baseline['comparison']
             recommendation_mode=(collector_recommendation.is_goal(question) and baseline['task'] in {
                 'collection_preferences_needed','character_cards','artist_cards','set_cards',
                 'need_character_or_coordinates','exact_coordinates'})
             if recommendation_mode:
-                scope_patch,money=collector_recommendation.question_constraints(question)
+                scope_patch,money=collector_recommendation.question_constraints(question,db)
                 filters.update(scope_patch)
                 taste=collector_recommendation.parse_taste(db,question)
                 if taste:money['collecting']=taste
                 if money:patch_preferences(money)
+                unparsed=collector_recommendation.taste_clarification(db,question)
+                if unparsed:hold_clarification(question)
         elif kind=='refine':refine(turn['scope']);unparsed=None
         elif kind=='reply':
             text=_text(turn['text'],'reply',200)
@@ -266,8 +311,17 @@ def replay(db,request,*,revision=None):
                 else:unparsed='Which exact shown card do you mean? A yes reply cannot select multiple or evidence-blocked candidates.'
             elif recommendation_mode:
                 taste=collector_recommendation.parse_taste(db,text)
-                if any(taste.get(k) for k in ['preferred_dex_ids','preferred_illustrators','preferred_releases']):
-                    patch_preferences({'collecting':taste});unparsed=None
+                clarification=collector_recommendation.taste_clarification(db,text)
+                if clarification:
+                    notes=preferences.get('collecting',{}).get('subjective_notes',[])
+                    patch_preferences({'collecting':{'subjective_notes':list(dict.fromkeys(notes+[text[:160]]))[-10:]}})
+                    hold_clarification(text)
+                    unparsed=clarification
+                elif any(taste.get(k) for k in ['preferred_dex_ids','preferred_illustrators','preferred_releases']):
+                    scope_patch,_=collector_recommendation.question_constraints(text,db)
+                    if scope_patch:refine(scope_patch)
+                    patch_preferences({'collecting':taste})
+                    resolve_preference_clarifications({'collecting':taste});unparsed=None
                 else:
                     notes=preferences.get('collecting',{}).get('subjective_notes',[])
                     patch_preferences({'collecting':{'subjective_notes':list(dict.fromkeys(notes+[text]))[-10:]}})
@@ -292,13 +346,18 @@ def replay(db,request,*,revision=None):
         elif kind=='preferences':
             patch=_preferences(turn['preferences'],db)
             patch_preferences(patch)
+            resolve_preference_clarifications(patch)
             if 'collecting' in patch and collector_recommendation.supported_goal(question) and previous['scope']['task'] in collector_inventory.SCOPED_TASKS|{'collection_preferences_needed','collector_recommendations'}:
                 recommendation_mode=True
                 unparsed=None
         elif kind=='feedback':
             if previous['recommendation'] is None or active_comparison is not None or focus_id is not None:
                 raise ValueError('feedback requires the current recommendation context')
-            cid,reaction=collector_recommendation.validate_feedback(turn['card_id'],turn['reaction'],recommendation_shown)
+            # Clearing an existing reaction must remain possible after a hard
+            # scope, preference or inventory change hides that card. This does
+            # not authorize a new reaction to an unseen or previous-goal ID.
+            allowed=recommendation_shown | (set(feedback) if turn['reaction']=='clear' else set())
+            cid,reaction=collector_recommendation.validate_feedback(turn['card_id'],turn['reaction'],allowed)
             old=feedback.get(cid)
             if reaction=='clear':feedback.pop(cid,None)
             else:feedback[cid]=reaction
@@ -311,7 +370,10 @@ def replay(db,request,*,revision=None):
             active_comparison=card_comparison.compare(db,{'left':{'card_id':left},'right':{'card_id':right}})
             clear('comparison_started');offset=0;unparsed=None
         elif kind=='choose_comparison':
-            comparison=active_comparison or previous['scope'].get('comparison')
+            # Raw comparison questions enter active_comparison on ask, just
+            # like compare actions. Re-parsing an old question after a context
+            # reset must not resurrect its former choice authority.
+            comparison=active_comparison
             side=turn['side'];cid=_text(turn['card_id'],'card_id',160)
             if not isinstance(side,str) or side not in {'left','right'} or not comparison:
                 raise ValueError('choose requires an active comparison side')

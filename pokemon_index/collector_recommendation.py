@@ -2,7 +2,7 @@
 from __future__ import annotations
 from collections import defaultdict, deque
 from decimal import Decimal
-import re
+import copy,json,re
 from . import collector_discovery as discovery, collector_inventory as inventory
 
 SCHEMA = 'pokemon.collector-recommendation.v1'
@@ -15,6 +15,46 @@ MARKET = r'cheapest|\bcheaper\b|\bprofit\b|\binvestment\b|where.*(?:buy|purchase
 STYLE_TERMS = ('cute', 'nostalgic', 'calm', 'quiet scenes', 'quiet scene', 'cute art',
                'かわいい', '可愛い', '可爱', '懐かしい', '怀旧', '安静')
 PROMPT = 'Which character, illustrator or release would you like to explore, or which shown card do you like?'
+NEGATED_TASTE = (r"\b(?:not|without|avoid|exclude|excluding|except|dislike|hate|never)\b|"
+                 r"\bother\s+than\b|\b(?:anything|everything|anyone)\s+but\b|"
+                 r"\b(?:don['’]t|do not|no)\b|嫌い|苦手|以外|除外|含めない|いらない|"
+                 r"好きではない|好きじゃない|不喜欢|不喜歡|不要|排除|不想|不包含")
+HARD_RELEASE = (r'\b(?:only|exclusively|strictly)\s+from\b|'
+                r'\b(?:only|exclusively|strictly)\s+in\s+(?!(?:japanese|english|jp|en)\b)|'
+                r'\bfrom\b[^.;。！？]{0,120}\bonly\b')
+
+
+def taste_clarification(db, text):
+    """Hold unsupported intent instead of converting exclusions to positive taste."""
+    t=discovery._norm(text)
+    if re.search(NEGATED_TASTE,t):
+        return 'That negative preference was not applied. Explicitly choose which character, illustrator or release to include or exclude before selecting a target.'
+    if re.search(HARD_RELEASE,t) and len(discovery._release_codes(db,t,discovery._languages(t)))!=1:
+        return 'Which single release must the cards come from? The only-from release constraint was not applied; supply an exact release code.'
+    return None
+
+
+def clarification_requirements(db, text):
+    """Describe which explicit action can resolve a held assertion, not its meaning."""
+    t=discovery._norm(text)
+    prompt=taste_clarification(db,text)
+    if not prompt:return []
+    constraints=[]
+    codes=discovery._release_codes(db,t,discovery._languages(t))
+    if re.search(NEGATED_TASTE,t):
+        groups=[]
+        if discovery._character_ids(db,t) or any(alias in t for alias in ['皮卡丘','梦幻','夢幻']):
+            groups.append(['preferred_dex_ids','excluded_dex_ids'])
+        if discovery._artists(db,t):groups.append(['preferred_illustrators'])
+        if codes:groups.append(['preferred_releases'])
+        constraints.append(dict(text=text,prompt=prompt,preference_groups=groups))
+    # A compound negative preference can also contain a hard release demand.
+    # A soft preference patch must never resolve that independent scope hold.
+    if re.search(HARD_RELEASE,t):
+        constraint=dict(text=text,prompt='Confirm the required release with an exact release-scope choice before selecting a target.',scope_field='set_code')
+        if len(codes)==1:constraint['required_scope_value']=next(iter(codes))
+        constraints.append(constraint)
+    return constraints
 
 
 def validate_collecting_preferences(db, value):
@@ -82,6 +122,7 @@ def is_goal(text):
 def parse_taste(db, text, *, next_goal=False):
     """Only current unambiguous catalog names; completed collections are not preferences."""
     t=discovery._norm(text)
+    if taste_clarification(db,text):return {'subjective_notes':[text[:160]]}
     if next_goal or re.search(NEXT,t):return {}
     ids=discovery._character_ids(db,t)
     # Explicit bilingual species aliases, accepted only if current facets contain them.
@@ -109,11 +150,14 @@ def parse_taste(db, text, *, next_goal=False):
     return patch
 
 
-def question_constraints(text):
+def question_constraints(text, db=None):
     """Supported explicit language/finish filters and budget assertions; no affordability."""
     t=discovery._norm(text);scope={};preferences={}
     langs=discovery._languages(t)
     if len(langs)==1:scope['language']=langs[0]
+    if db is not None and re.search(HARD_RELEASE,t):
+        codes=discovery._release_codes(db,t,langs)
+        if len(codes)==1:scope['set_code']=next(iter(codes))
     for pattern,variant in [(r'non[ -]?holo|ノンホロ','normal'),
                             (r'master\s*ball|マスターボール|大师球','reverse_masterball'),
                             (r'poke\s*ball|poké\s*ball|モンスターボール','reverse_pokeball'),
@@ -132,6 +176,33 @@ def _facets(db, cid):
     return [dict(r) for r in db.execute('SELECT * FROM discovery_card_facet WHERE card_id=? ORDER BY facet_type,value,provenance',(cid,))]
 
 
+def _facet_batches(db, card_ids, size=400):
+    """Bound SQLite variables and transient facet memory, without per-card queries."""
+    for start in range(0,len(card_ids),size):
+        ids=card_ids[start:start+size];found={cid:[] for cid in ids}
+        for row in db.execute('SELECT * FROM discovery_card_facet WHERE card_id IN ('+
+                ','.join('?' for _ in ids)+') ORDER BY card_id,facet_type,value,provenance',ids):
+            found[row['card_id']].append(dict(row))
+        yield found
+
+
+def _score(row, facets, desired, liked, releases):
+    explicit=[];examples=[];reasons=[]
+    for kind,axis in [('dex_id','character'),('illustrator','illustrator')]:
+        for bucket,matched in [(desired,explicit),(liked,examples)]:
+            matches=[f for f in facets if f['facet_type']==kind and f['value'] in bucket[kind]]
+            if matches:
+                matched.append(axis)
+                reasons.extend(dict(field=kind,value=int(f['value']) if kind=='dex_id' else f['value'],
+                    basis='catalog_facet' if bucket is desired else 'liked_example_catalog_facet',
+                    source_ref=f['provenance'],rights_reference=f['rights_reference']) for f in matches)
+    if any(row['language']==r['language'] and row['set_code']==r['set_code'] for r in releases):
+        explicit.append('release');reasons.append(dict(field='language_set_coordinate',
+            value=dict(language=row['language'],set_code=row['set_code']),basis='catalog_coordinate',source_ref=row['provenance']))
+    return dict(card_id=row['card_id'],explicit_match_axes=explicit,liked_example_match_axes=examples,reasons=reasons,
+        tradeoffs=['Aesthetic fit, affordability, grade availability and physical printing are not established'])
+
+
 def validate_feedback(card_id, reaction, shown_ids):
     cid=inventory._text(card_id,'card_id',160)
     if not isinstance(reaction,str) or reaction not in {'like','dismiss','clear'}:
@@ -140,7 +211,7 @@ def validate_feedback(card_id, reaction, shown_ids):
     return cid,reaction
 
 
-def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None):
+def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None, pool_cache=None):
     profile=validate_collecting_preferences(db,profile)
     scope=discovery.validate_scope(scope);preferences=preferences or {}
     if type(limit) is not int or not 1<=limit<=50 or type(offset) is not int or not 0<=offset<inventory.MAX_SCOPE:
@@ -178,7 +249,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     for kind in desired:
         values=sorted(desired[kind]|liked[kind])
         if values:
-            positive.append("EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
+            positive.append("c.card_id IN (SELECT f.card_id FROM discovery_card_facet f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
             params.extend([kind,*values])
     for release in releases:
         positive.append('(c.language=? AND c.set_code=?)');params.extend([release['language'],release['set_code']])
@@ -195,48 +266,51 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if dismissed:
         where.append('c.card_id NOT IN ('+','.join('?' for _ in dismissed)+')');params.extend(dismissed)
     where=' AND '.join(where)
-    count=db.execute('SELECT count(*) FROM card c WHERE '+where,params).fetchone()[0]
+    # This cache belongs to one replay only and retains one pool, never one pool
+    # per turn. Pagination does not alter ranking; every evidence/choice input does.
+    key=json.dumps([id(db),SCHEMA,RANKING,pool_cache.get('revision') if pool_cache is not None else None,
+        question,profile,feedback,scope,owned,preferences],sort_keys=True,ensure_ascii=True)
+    cached=pool_cache.get('pool') if pool_cache is not None and pool_cache.get('key')==key else None
+    if cached is None and pool_cache is not None:
+        pool_cache.pop('pool',None);pool_cache.pop('key',None)
+    count=cached['count'] if cached is not None else db.execute('SELECT count(*) FROM card c WHERE '+where,params).fetchone()[0]
     result['coverage']['matched_catalog_records']=count
     if count>inventory.MAX_SCOPE:
         result.update(status='scope_too_broad',next_question='Narrow the language, release or character scope; the pool exceeds 10,000 records.',unfulfilled_constraints=['recommendation_scope_too_broad'])
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
-    rows=discovery._rows(db,where,tuple(params));by_id={r['card_id']:r for r in rows}
-    inv=None
-    if owned is not None:
-        inv=inventory.partition_owned(db,owned,list(by_id))
-        excluded_ids=inv.pop('excluded_card_ids')
-        by_id={cid:r for cid,r in by_id.items() if cid not in excluded_ids}
-    scores={};tiers=defaultdict(lambda:defaultdict(deque))
-    for cid,row in by_id.items():
-        facets=_facets(db,cid);explicit=[];examples=[];reasons=[]
-        for kind,axis in [('dex_id','character'),('illustrator','illustrator')]:
-            for bucket,matched in [(desired,explicit),(liked,examples)]:
-                matches=[f for f in facets if f['facet_type']==kind and f['value'] in bucket[kind]]
-                if matches:
-                    matched.append(axis)
-                    reasons.extend(dict(field=kind,value=int(f['value']) if kind=='dex_id' else f['value'],
-                        basis='catalog_facet' if bucket is desired else 'liked_example_catalog_facet',
-                        source_ref=f['provenance'],rights_reference=f['rights_reference']) for f in matches)
-        if any(row['language']==r['language'] and row['set_code']==r['set_code'] for r in releases):
-            explicit.append('release');reasons.append(dict(field='language_set_coordinate',
-                value=dict(language=row['language'],set_code=row['set_code']),basis='catalog_coordinate',source_ref=row['provenance']))
-        scores[cid]=dict(card_id=cid,explicit_match_axes=explicit,liked_example_match_axes=examples,reasons=reasons,
-            tradeoffs=['Aesthetic fit, affordability, grade availability and physical printing are not established'])
-        group=(row['language'],row['set_code'],row['collector_number'])
-        tiers[(-len(explicit),-len(examples))][group].append(cid)
-    # Diversify equal-score coordinates only. Every source version retains its exact ID.
-    ordered=[]
-    for tier in sorted(tiers):
-        groups=tiers[tier]
-        for group in groups:groups[group]=deque(sorted(groups[group]))
-        active=sorted(groups,key=lambda g:groups[g][0])
-        while active:
-            next_round=[]
-            for group in active:
-                ordered.append(groups[group].popleft())
-                if groups[group]:next_round.append(group)
-            active=next_round
+    if cached is None:
+        by_id={r['card_id']:r for r in discovery._rows(db,where,tuple(params))}
+        inv=None
+        if owned is not None:
+            inv=inventory.partition_owned(db,owned,list(by_id))
+            excluded_ids=inv.pop('excluded_card_ids')
+            by_id={cid:r for cid,r in by_id.items() if cid not in excluded_ids}
+        tiers=defaultdict(lambda:defaultdict(deque))
+        for batch in _facet_batches(db,list(by_id)):
+            for cid,facets in batch.items():
+                row=by_id[cid];score=_score(row,facets,desired,liked,releases)
+                group=(row['language'],row['set_code'],row['collector_number'])
+                tiers[(-len(score['explicit_match_axes']),-len(score['liked_example_match_axes']))][group].append(cid)
+        # Diversify equal-score coordinates only. Every source version retains its exact ID.
+        ordered=[]
+        for tier in sorted(tiers):
+            groups=tiers[tier]
+            for group in groups:groups[group]=deque(sorted(groups[group]))
+            active=sorted(groups,key=lambda g:groups[g][0])
+            while active:
+                next_round=[]
+                for group in active:
+                    ordered.append(groups[group].popleft())
+                    if groups[group]:next_round.append(group)
+                active=next_round
+        cached=dict(count=count,by_id=by_id,ordered=ordered,inventory=inv)
+        if pool_cache is not None:pool_cache.update(key=key,pool=cached)
+    by_id=cached['by_id'];ordered=cached['ordered']
+    # The response gains scope/page fields below; keep cached ownership unmodified.
+    inv=copy.deepcopy(cached['inventory'])
     page=ordered[offset:offset+limit]
+    scores={cid:_score(by_id[cid],facets,desired,liked,releases)
+            for batch in _facet_batches(db,page) for cid,facets in batch.items()}
     cards=[discovery._card_result(db,by_id[cid]) for cid in page]
     meta.update(candidate_pool_complete=True,items=[dict(scores[cid],rank=offset+i+1) for i,cid in enumerate(page)])
     groups=defaultdict(list)

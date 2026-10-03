@@ -542,7 +542,13 @@ def get_exploration(db: sqlite3.Connection, session_id: str, owner_key: str) -> 
     return {"session_id": session_id, "status": row["status"], "version": row["version"],
             "constraints": constraints, "shortlist_card_ids": json.loads(row["shortlist_json"]),
             "target_card_id": target, "next_clarifications": missing,
-            "ready_for_offer_tracking": bool(row["status"] == "targeted" and card and card["match_eligible"]),
+            "catalog_target_selected": bool(row["status"] == "targeted" and card),
+            "structural_match_eligible": bool(card and card["match_eligible"]),
+            # A persisted catalog intention cannot grant printing/copy evidence,
+            # source authorization, fresh offers or permission to track them.
+            "ready_for_offer_tracking": False,
+            "automatic_offer_join_allowed": False, "physical_printing_verified": False,
+            "transaction_ready": False, "public_display_allowed": False,
             "created_at": row["created_at"], "updated_at": row["updated_at"],
             "scope": "internal structured intent; no live offers or user-facing display approval implied"}
 
@@ -764,9 +770,13 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
     decision: dict[str, Any] = {
         "session_id": session_id, "session_version": state["version"],
         "target_card_id": state["target_card_id"],
+        "catalog_target_selected": state["catalog_target_selected"],
+        "structural_match_eligible": state["structural_match_eligible"],
         "candidate_count": candidates["total"],
         "candidate_cards": candidates["cards"],
         "ready_for_offer_tracking": state["ready_for_offer_tracking"],
+        "automatic_offer_join_allowed": False, "physical_printing_verified": False,
+        "transaction_ready": False, "public_display_allowed": False,
         "pending_market_filters": pending_market_filters,
         "market_filter_note": "budget, grade and destination are saved but cannot filter cards or offers until authorized offer data exists",
         "scope": "internal catalog discovery; no live offers, market price or purchase recommendation",
@@ -780,11 +790,13 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
     if state["status"] == "paused":
         decision.update(code="paused", next_question={"field": "status", "prompt": "Resume this exploration?"})
     elif state["target_card_id"]:
-        if not state["ready_for_offer_tracking"]:
+        if not state["structural_match_eligible"]:
             decision.update(code="target_unverified", next_question={
                 "field": "printing_evidence", "prompt": "Confirm the exact printing before tracking offers."})
         else:
-            decision.update(code="target_selected", next_question=None)
+            decision.update(code="target_selected", next_question={
+                "field": "offer_and_copy_evidence",
+                "prompt": "Catalog target saved. Continue catalog exploration, or separately verify the physical printing, copy condition and authorized fresh offer before tracking offers."})
     elif not candidates["total"]:
         has_clue = any(state["constraints"].get(field) for field in
                        ("query", "set_code", "collector_number", "printing_type",
@@ -796,7 +808,7 @@ def exploration_decision(db: sqlite3.Connection, session_id: str,
         card = candidates["cards"][0]
         if card["match_eligible"]:
             decision.update(code="confirm_target", next_question={
-                "field": "target_card_id", "prompt": "Is this the exact printing you want to track?",
+                "field": "target_card_id", "prompt": "Is this the catalog record you want to select? Physical-copy and offer evidence remain separate.",
                 "options": [card["card_id"]]})
         else:
             decision.update(code="unverified_printing", next_question={

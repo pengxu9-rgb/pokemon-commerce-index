@@ -99,14 +99,15 @@ def _rows(db, where: str, params: tuple) -> list:
         s.release_date,c.language,c.set_code,c.collector_number,c.variant""", params).fetchall()
 
 
-def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dict:
+def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _row_capture=None) -> dict:
     text = _norm(result['question'])
     explicit=result.get('requested_scope',{})
     rows=[r for r in rows if all(r[k]==v for k,v in explicit.items())]
     requested_artists=_artists(db,text)
     artist_inquiry=bool(re.search(r'who (?:is|was) (?:credited as )?(?:the )?(?:illustrator|artist)|who (?:illustrated|drew)|which (?:artist|illustrator) (?:is|was)|イラストレーターは誰|誰.*(?:描|イラスト)',text))
     if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
-        rows=[r for r in rows if len(requested_artists)==1 and db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='illustrator' AND value=?",(r['card_id'],requested_artists[0])).fetchone()]
+        artist_ids={r[0] for r in db.execute("SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?",(requested_artists[0],))} if len(requested_artists)==1 else set()
+        rows=[r for r in rows if r['card_id'] in artist_ids]
         if not rows:result.update(status='no_match',next_question='That exact coordinate does not have the requested current source-backed illustrator credit.')
     qualifiers=_qualifier_findings(db,text,result['languages'])
     unsupported_professors=_unsupported_professors(db,text)
@@ -155,6 +156,10 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
             result.update(status='no_match', next_question='No catalog record satisfies that source-declared finish; inspect the printed version evidence.')
         elif result['task']=='exact_coordinates':
             result['status'] = 'target_candidate' if len(rows)==1 else 'printing_clarification_needed'
+    # Private inventory projection: retain only a bounded, fully filtered pool.
+    # The public response remains paginated and contains no internal row objects.
+    if _row_capture is not None and len(rows)<=_row_capture[0]:
+        _row_capture[1].extend(rows)
     result.update(cards=[_card_result(db, r) for r in rows[offset:offset+limit]],
                   coverage={"matched_catalog_records":len(rows),
                             "returned":len(rows[offset:offset+limit]), "offset":offset,
@@ -249,9 +254,9 @@ def _unsupported_professors(db,text):
 
 def _character_ids(db, text: str) -> list[int]:
     # One character facet only: a team card name cannot name a single species.
-    aliases = db.execute("""SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
+    aliases = db.execute("""SELECT DISTINCT name,dex_id FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
         FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
-        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1""").fetchall()
+        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""").fetchall()
     ids = set()
     for row in aliases:
         if len(row["name"]) >= 3 and _mentioned(text, row["name"]):
@@ -263,7 +268,7 @@ def _character_ids(db, text: str) -> list[int]:
 
 
 def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
-            offset: int = 0, scope: dict | None = None) -> dict:
+            offset: int = 0, scope: dict | None = None, _row_capture=None) -> dict:
     if not isinstance(question, str) or not 1 <= len(question.strip()) <= 2000:
         raise ValueError("question must contain 1–2000 characters")
     if type(limit) is not int or not 1 <= limit <= 100 or type(offset) is not int or offset < 0:
@@ -415,7 +420,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                 partial=_finish_result(db,dict(result,task='artwork_evidence_needed',status='scoped_artwork_partial',
                     required_evidence=['expanded_source_bound_artwork_coverage'],
                     next_question='These official descriptions support a partial cameo list. Which release should we inspect next?',
-                    artwork_review_leads=leads,requested_depicted_dex_ids=target_ids),rows,limit,offset)
+                    artwork_review_leads=leads,requested_depicted_dex_ids=target_ids),rows,limit,offset,_row_capture=_row_capture)
                 partial['coverage']['artwork_cameos_supported']=True
                 partial['unfulfilled_constraints'].append('artwork_coverage_completeness')
                 return partial
@@ -443,7 +448,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             ids = [card_id] + [r["card_id"] for r in neighborhood["variants_at_number"]]
             rows = _rows(db, "c.card_id IN (" + ",".join("?" for _ in ids) + ") AND c.language IN (" + ",".join("?" for _ in languages) + ")", (*ids,*languages))
             return _finish_result(db, dict(result, task="printing_variants", status="results" if rows else "no_match",
-                   claim_basis="same language, set and number; physical finish remains source-declared"), rows, limit, offset)
+                   claim_basis="same language, set and number; physical finish remains source-declared"), rows, limit, offset,_row_capture=_row_capture)
         verified = [r for r in neighborhood["relationships"] if r["relation_type"] in kinds
                     and r["other_language"] in languages and r["other_language"] != card["language"]]
         proposed = [r for r in neighborhood["ai_artwork_candidates"]
@@ -478,7 +483,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         status = "target_candidate" if len(rows) == 1 else "printing_clarification_needed" if rows else "no_match"
         return _finish_result(db, dict(result, task="exact_coordinates", status=status,
                   next_question="Confirm this catalog printing before evaluating a marketplace copy." if len(rows)==1 else
-                  "Which language and physical finish do you mean?"), rows, limit, offset)
+                  "Which language and physical finish do you mean?"), rows, limit, offset,_row_capture=_row_capture)
 
     if artists or re.search(r"\bartist\b|illustrat|イラストレーター|画師|绘师|插画师", text):
         if len(artists) != 1:
@@ -487,7 +492,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         rows = _rows(db, f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)",
                      (*languages, artists[0]))
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
-                        claim_basis="pinned source illustrator credits"), rows, limit, offset)
+                        claim_basis="pinned source illustrator credits"), rows, limit, offset,_row_capture=_row_capture)
 
     qualifiers=_qualifier_findings(db,text,languages)
     if _unsupported_professors(db,text):
@@ -496,7 +501,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if len(qualifiers)!=1 or not qualifiers[0]['active']:
             return dict(result,task='printed_qualifier_evidence_needed',status='blocked',required_evidence=['current_source_bound_qualified_title'],next_question='Choose one printed professor subtitle and confirm its language/set/number; stale or multiple source readings cannot select a target.')
         ids=qualifiers[0]['card_ids'];rows=_rows(db,'c.card_id IN ('+','.join('?' for _ in ids)+')',tuple(ids))
-        return _finish_result(db,dict(result,task='qualified_title_cards',status='results',claim_basis='exact publisher printed subtitle; source seed/main HTML title retained',qualified_title_evidence=qualifiers[0]),rows,limit,offset)
+        return _finish_result(db,dict(result,task='qualified_title_cards',status='results',claim_basis='exact publisher printed subtitle; source seed/main HTML title retained',qualified_title_evidence=qualifiers[0]),rows,limit,offset,_row_capture=_row_capture)
 
     if _mentioned(text,'博士の研究'):
         return dict(result,task='printed_qualifier_scope_needed',status='clarification_needed',required_evidence=['printed_professor_subtitle_and_language_set_number'],next_question='Which printed professor subtitle and release number do you mean? The generic main title does not identify one professor or printing.')
@@ -513,7 +518,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         code=next(iter(sets));marks=','.join('?' for _ in languages)
         rows=_rows(db,f'c.set_code=? AND c.language IN ({marks})',(code,*languages))
         return _finish_result(db,dict(result,task='set_cards',status='results' if rows else 'no_match',
-                              claim_basis='pinned language-specific release records and source-declared variants'),rows,limit,offset)
+                              claim_basis='pinned language-specific release records and source-declared variants'),rows,limit,offset,_row_capture=_row_capture)
     family_task = explicit_family
     if family_task:
         families = {r[0] for i in ids for r in db.execute("SELECT family_id FROM character_family_member WHERE dex_id=?", (i,))}
@@ -537,4 +542,4 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
     rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
                  (*languages, *ids))
-    return _finish_result(db, result, rows, limit, offset)
+    return _finish_result(db, result, rows, limit, offset,_row_capture=_row_capture)

@@ -1,5 +1,26 @@
 # Active build sequence — 2 October 2026
 
+## Independent review follow-through — 4 October 2026
+
+The immediate milestone is a useful **private catalog decision loop**, with no live-market or transaction claim. Keep the broad research catalog inspectable; do not silently promote structurally eligible records into physically verified printings. The 100 source-bound Japanese SV4A records form a diagnostic cohort, not a procurement allowlist.
+
+### Work executable without Buy&Ship
+
+1. Close the independent preference/feedback/comparison and bounded-runtime defects, then rerun Python, Node and real HTTP replay checks on the exact reviewed commit. Keep original failed receipts and versioned compatibility fixtures separate.
+2. Run the supported-cohort diagnostic and independently scored collector tasks. Report relevant candidates, explanation evidence, useful clarifications and held identities separately. Freeze a fresh 30-question collector evaluation before further tuning; retain failures and abstentions in the denominator. Synthetic boundary tests and the diagnostic cohort do not establish real-user quality.
+3. Build a private caller experience around the validated action schema: task/shortlist persistence owned by an authenticated application, explicit refinement and feedback controls, comparison followed by separate catalog selection, and restart/reconfirmation when runtime or catalog revisions change. The bundled Node caller is not yet a deployed Pivota registration.
+4. Prioritize catalog and graph work from observed task failures: exact source coordinates, current illustrator/character facets, typed relation evidence, missing release labels and ambiguous parts/families. Keep source metadata, catalog selection eligibility, physical-copy verification and offer readiness as distinct states. Do not replace missing evidence with an AI consensus count.
+5. Stage the reviewed Python service privately, verify its exact catalog/runtime and caller compatibility, then perform collector UX and concurrency checks in the actual deployment environment before broader internal access. Preserve existing IAM and service identity. See PRIVATE_STAGING_ROLLOUT.md.
+
+### Work dependent on authorized Buy&Ship commerce inputs
+
+6. Obtain the listing/search/offer feed contract and rights (query, cache, retention, display, media), freshness/status semantics, supported destinations and error behavior. A known-URL quotation endpoint is not a discovery feed.
+7. On a separately reviewed small acquisition cohort, bind an exact physical printing and offered copy: release/number/finish, seller identity, raw condition or exact grader/grade, evidence freshness and unresolved conflicts. Artwork agreement cannot establish regional printing equivalence or authorize an offer join.
+8. Add destination-specific quotes, all mandatory fees/taxes/shipping/FX, quote expiry and price semantics. Separate asks, observed listing transitions and evidenced paid transactions; do not compare incompatible condition/currency/destination units. Introduce merchant reliability from measured evidence, not assumed brand reputation.
+9. Rehearse an explicit Buy&Ship transaction handoff, with Buy&Ship as MoR, user approval of the final terms/amount, idempotency and reconciliation. Enable live ingestion, public display, purchasing or payment only through a separately authorized, evidence-backed release. They remain disabled in this review.
+
+Acceptance is reported separately for engineering correctness, collector usefulness, catalog coverage, physical-printing accuracy and live-market readiness. None can be inferred solely from the others.
+
 ## Collector recommendation loop — current product priority
 
 The DOT review is adopted with per-record identity gates, context-bound feedback/comparison and equal-score coordinate diversity. Implement the collector loop before another broad evidence batch: goal → explicit preferences → source-backed shortlist → feedback → evidence-only comparison → exact focus → separate catalog selection. Local implementation and frozen conversation evidence are in [COLLECTOR_RECOMMENDATION_IMPLEMENTATION_20261003.md](COLLECTOR_RECOMMENDATION_IMPLEMENTATION_20261003.md). No live feed, public display, transaction approval or cloud rollout follows from this milestone.
