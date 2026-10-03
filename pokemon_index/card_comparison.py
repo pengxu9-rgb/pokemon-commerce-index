@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
-from . import core, discovery_graph, number_graph, number_evidence
+from . import core, discovery_graph, number_graph, number_evidence,source_image_facts
 
 SCHEMA = 'pokemon.card-comparison.v1'
 MAX_CANDIDATES = 32
@@ -55,9 +55,12 @@ def _side(db, descriptor):
                        number_scope_id=language+':'+release, language=language, set_code=release)
     observed = [dict(card_id=r['card_id'], evidence=evidence) for r in rows
                 if (evidence := number_evidence.context(db, r['card_id'])) is not None]
+    facts = [dict(card_id=r['card_id'], evidence=evidence) for r in rows
+             if (evidence := source_image_facts.context(db,r['card_id'])) is not None]
     return dict(requested=descriptor, status=status, matched_records=count, records=rows,
                 records_truncated=count > MAX_CANDIDATES, number_context=context,
                 observed_printed_numbers=observed,
+                source_image_facts=facts,
                 physical_variant_verified=False)
 
 
@@ -112,6 +115,8 @@ def _compare(db, left_descriptor, right_descriptor):
             explanation_of_release_number_assignment_established=False)
     covered = {cid for e in reviewed+different for cid in (e['left_card_id'], e['right_card_id'])}
     candidate_ids = {r['card_id'] for side in (left, right) for r in side['records']}
+    source_warnings=[dict(card_id=f['card_id'],warnings=f['evidence']['warnings'])
+        for side in (left,right) for f in side['source_image_facts'] if f['evidence']['warnings']]
     return dict(schema=SCHEMA, status='scope_confirmation_needed' if unresolved else 'catalog_partial',
         left=left, right=right, unresolved_sides=unresolved, numbering=numbers,
         artwork=dict(status='reviewed_endpoint_sources_only' if reviewed else
@@ -122,7 +127,9 @@ def _compare(db, left_descriptor, right_descriptor):
             scope='Only the exact reviewed stock-image endpoints; no approval transfers to sibling source labels or physical copies.',
             difference_scope='A reviewed difference rules out same artwork only for its exact source endpoints; an absent/rejected link alone is not difference evidence.',
             all_coordinate_variants_verified=False),
-        required_evidence=['physical_finish_edition_and_copy_condition', 'authorized_fresh_offers'],
+        source_metadata_warnings=source_warnings,
+        required_evidence=(['source_image_metadata_resolution'] if source_warnings else [])+
+            ['physical_finish_edition_and_copy_condition', 'authorized_fresh_offers'],
         next_question='Confirm the release on '+', '.join(unresolved)+' before choosing an exact catalog version.' if unresolved else
             'Choose exact catalog versions and supply physical-copy evidence before offer comparison.',
         same_physical_printing_established=False, physical_finish_verified=False,

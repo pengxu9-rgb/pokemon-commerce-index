@@ -1,0 +1,19 @@
+{
+  "schema": "pokemon.source-image-fact-chronology.v1",
+  "targets": 9,
+  "images_byte_verified": 9,
+  "fresh_gemini_model_calls": 9,
+  "root_records_saved_before_new_gemini_results": true,
+  "root_had_prior_batch_and_advisory_context": true,
+  "new_gemini_prior_verdicts_supplied": false,
+  "new_gemini_catalog_text_supplied": false,
+  "independent_review_agreement_established": false,
+  "python_tests": 559,
+  "node_tests": 12,
+  "new_tests": 10,
+  "test_log_sha256": {
+    "python-tests.log": "f4f97323e2b7966b3bf41a70a111c99e20d658cca10c2eb2a7f9503c90698d38",
+    "node-tests.log": "b3f9866a726eccffec1d3a913e2a2369d3640fd516c1e5015f3e93775135706d"
+  },
+  "source_and_image_qualification_scope": "Selected source-scan correspondence advisories; number holds and graph/commerce decisions remain intact."
+}

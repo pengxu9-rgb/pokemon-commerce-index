@@ -156,3 +156,7 @@ Private staging `00034-gvg` passes 57 number checks and 107 artwork regressions,
 [All fifty frozen targets processed](PROMO_NUMBER_EXPANSION_20261002.md): 49 actual images, 44 qualified number observations, five name holds and one image hold. The 51-input build preserves earlier 50 inputs, all prior source/graph data and thirty number events. Total usable number observations become 74, with five held; graph decisions and structural eligibility remain unchanged.
 
 Next: distinguish literal title text from type symbols/furigana and separately verified canonical-name normalization. The root's corrected あなあけ transcript remains advisory after comparison, not a new independent approval. Track the HGSS01 HP source-to-scan discrepancy separately from numbered identity.
+
+## Source-image facts — 2026-10-03
+
+Implemented a separate literal-title / symbol / furigana / HP layer for nine selected source scans. Exact-source advisories and HP conflicts are now visible in card detail and comparisons, with root prior context disclosed. Preserve the earlier number holds and graph/commerce qualification; expand the structured audit across remaining source scans before promoting independent identity evidence. See [implementation](SOURCE_IMAGE_FACTS_20261003.md).

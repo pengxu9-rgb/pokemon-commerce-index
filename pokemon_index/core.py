@@ -730,7 +730,7 @@ def import_concept_review_bundle(db: sqlite3.Connection, bundle: dict[str, Any])
 
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
-    from . import number_evidence
+    from . import number_evidence,source_image_facts
     totals = db.execute(
         """SELECT COUNT(*) AS printings, COUNT(DISTINCT language || ':' || set_code) AS sets,
         SUM(CASE WHEN display_allowed=1 THEN 1 ELSE 0 END) AS display_approved,
@@ -763,6 +763,7 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
             "display_approved": totals["display_approved"] or 0,
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
             "number_reading_evidence": number_evidence.status(db),
+            "source_image_facts": source_image_facts.status(db),
             "scope": "internal catalog inventory; not a public display authorization"}
 
 
@@ -843,6 +844,7 @@ def _with_metadata(db, card):
 
 
 def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
+    from . import source_image_facts
     row = db.execute("""SELECT c.*,e.official_printing_type FROM card c
                       LEFT JOIN card_identity_exception e ON e.card_id=c.card_id
                       WHERE c.card_id=?""", (cid,)).fetchone()
@@ -875,6 +877,7 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
         "SELECT * FROM card_rarity_correction WHERE card_id=?", (cid,)).fetchone()
     return {"card": _with_metadata(db, _catalog_card_dict(row)),
             "number_context": number_graph.card_number_context(db, cid),
+            "source_image_facts": source_image_facts.context(db, cid),
             "identity_exception": dict(exception) if exception else None,
             "rarity_correction": dict(rarity_correction) if rarity_correction else None,
             "variants_at_number": siblings,

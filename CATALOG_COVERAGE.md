@@ -385,3 +385,7 @@ The [50-input build](catalog-build-manifest-number-readings-v1.json) preserves 7
 ## Fifty-target promo-number expansion — 2 October 2026
 
 [The 51-input manifest](catalog-build-manifest-promo-numbers-v1.json) adds 49 exact number-evidence events, preserving 42 prior base tables and thirty earlier number events. There are 79 evidence subjects, 74 usable scoped readings, five name holds and zero stale findings; 25 usable readings do not establish the catalog denominator as printed text. One further research target lacks an image. These are source-image observations, not new physical SKUs or global coverage of all 70,006 records. [Batch outcomes and limitations](PROMO_NUMBER_EXPANSION_20261002.md).
+
+## Source-image fact layer — 2026-10-03
+
+The 52-input source-image-facts manifest preserves all 51 previous inputs. It adds nine exact-source advisory subjects (four symbol/furigana correspondences, five literal correspondences, one HP conflict), while all 79 number events and 43 earlier tables remain preserved. Number qualification and graph counts remain unchanged. These selected scans do not establish whole-catalog metadata accuracy. [Details](SOURCE_IMAGE_FACTS_20261003.md).

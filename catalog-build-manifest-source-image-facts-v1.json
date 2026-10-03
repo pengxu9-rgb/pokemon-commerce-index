@@ -1,0 +1,320 @@
+{
+  "schema": "pokemon.catalog-build.v1",
+  "purpose": "Private collector discovery: explicit structural eligibility, 100 source-bound review targets, reviewed bilingual aliases and sourced family facts; no live offers or automatic launch approval",
+  "steps": [
+    {
+      "operation": "import-sets",
+      "path": "catalog/ja-all-sets.jsonl",
+      "sha256": "fca83b7d3946935bcab4be3d563f351660fc4af9f039446294e89bd66016d26f"
+    },
+    {
+      "operation": "import-sets",
+      "path": "catalog/en-physical-sets.jsonl",
+      "sha256": "00b67b6e36043ccc70cddf596fc898c05c26ee61053c51c3e5b0fafedb441d21"
+    },
+    {
+      "operation": "import-sets",
+      "path": "catalog/en-api-sets.jsonl",
+      "sha256": "d1ccfb487e20e40d742e7f2fd9bd42555610b9331b0d0adde0b0836f52042341"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ja-available-explicit-eligibility-v1.jsonl.gz",
+      "sha256": "8b07347d9ad0ead51887b353d3613bd92fb294b87fcff1349e3db065e49bf297"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-physical-cards.jsonl",
+      "sha256": "e1b1e0247b6e387281d7af4dda3305aa2e00fe234a4f7c49bd80177c5ec55cbc"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-physical-ambiguous.jsonl",
+      "sha256": "11c6d4e4accc411eec9964101947bcd2623dc3abc448888335f8eef37cb068c0"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/en-api-candidates.jsonl",
+      "sha256": "ccf2a973f3d8cd5775376361d44a5612243bc0fa2de76cacc6591f302c64504f"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ptcg-jp-candidates.jsonl",
+      "sha256": "fa8c21fad603ec782b2e638860f79926e7866fa6e58b8363ceb8897fb15ee42c"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/ptcg-jp-multi-record-candidates.jsonl",
+      "sha256": "42df1561f5989c83c64c541afb604d437bf7fcceb367af4778f1dbaa656d5d1e"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/s6a-secret-art-gap-candidates.jsonl",
+      "sha256": "edc41f9d218418fac245801ea1884aff3237d65bef3e5e3e89c84cdcfef98dfb"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/tcgdex-ambiguous-candidates.jsonl",
+      "sha256": "eac0994b2d9bf944896b4270e0da0569d33c0889d3c486320d3435b3b326b251"
+    },
+    {
+      "operation": "import-card-identity-exceptions",
+      "path": "catalog/jp-card-identity-exceptions.jsonl",
+      "sha256": "e28bf8fd55bd64e90308b34ea29c025070cdf5bb4cde478d4ef3091f0b80f81d"
+    },
+    {
+      "operation": "import-card-number-conflicts",
+      "path": "catalog/ja-number-denominator-conflict-rules.jsonl",
+      "sha256": "c463d5a1eb8caa9b97f6e4459ae648a77f888266f5cd29b2a9124c0fa2e53af4"
+    },
+    {
+      "operation": "import-card-references",
+      "path": "catalog/ptcg-jp-reference.jsonl",
+      "sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d"
+    },
+    {
+      "operation": "import-card-facets",
+      "path": "catalog/card-facets.jsonl.gz",
+      "sha256": "a1a05c4da6e68171c77864c4c719bce3f60d197c25806846e48d5eb5283fc5dc"
+    },
+    {
+      "operation": "import-card-classifications",
+      "path": "catalog/card-classifications.jsonl.gz",
+      "sha256": "6c496a83997122ec458b957711c53bc4eda846887e29130c453f678ca5f20ad5"
+    },
+    {
+      "operation": "import-ai-artwork-proposals",
+      "path": "catalog/relationship-scale-v1-proposed-edges-v4.jsonl",
+      "sha256": "3fd17ee08c0c84f3e06412dfc6e6f31add57089207240d257f9c6516ee1aabb0"
+    },
+    {
+      "operation": "import-card-rarity-corrections",
+      "path": "catalog/m6-secret-rarity-corrections.jsonl",
+      "sha256": "40a7ac21cfc3a1889fb6ca29c74192344c6b5bdf054da45c5de9db47fde76b2d"
+    },
+    {
+      "operation": "import-card-rarity-corrections",
+      "path": "catalog/missing-rarity-v1/corrections.jsonl",
+      "sha256": "753fcc92f326b71b66eb2a5bfb24f99d6bf773204943524f218d557c67f47ba7"
+    },
+    {
+      "operation": "import-release-evidence",
+      "path": "catalog/supported-discovery-v1/releases.jsonl",
+      "sha256": "d2739cd1e304a3482f1ba74e8f771bdb456a65f7f6b5bd99e293b22f269e18ec"
+    },
+    {
+      "operation": "import-catalog-vocabulary",
+      "path": "catalog/supported-discovery-v1/vocabulary.jsonl",
+      "sha256": "4bd7320f04c85849b15d49d94f035a1cbc50f57f4501b7e1f908da745bfaca57"
+    },
+    {
+      "operation": "import-supported-cards",
+      "path": "catalog/supported-discovery-v1/supported-cards.jsonl",
+      "sha256": "53af127d52f67c004963f6289e0fd92024acc58dac7b104b21fe0e3428df9727"
+    },
+    {
+      "operation": "import-character-families",
+      "path": "catalog/supported-discovery-v1/families.jsonl",
+      "sha256": "0413779420445872943793e694bcfaa38fb03d1abe99e72ef86131cca81f44d9"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v2-ai-consensus.bundle.json",
+      "sha256": "cb1c75ecebcabb47ebcc658aeff4a567194034d80b0b2ce484f9df26247f480c"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v3-ai-consensus.bundle.json",
+      "sha256": "91f3d86ca1cce7265356823eb12a0727bc89a9cd3676d1e93a0179c325aa2996"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v4-ai-consensus.bundle.json",
+      "sha256": "dac940f236d3cd1dfcaf3c893dc4c902c3d8c8c01e70c8de759795f89aa3f4bf"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v5-ai-consensus.bundle.json",
+      "sha256": "da67c60c6856470991ef0e0fbcaee5ee4fb573e8348b7fcfc9ab9d9fced3085c"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-gap-rescue-triple-consensus.bundle.json",
+      "sha256": "e40db8d099daf8cdce54f64d895824325fcdf13721d28bdcbba4995898cf185f"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-stage1-triple-consensus.bundle.json",
+      "sha256": "17a6440c24300240ae2b240ea427e0b859c3d05f224a6777c9533b1c0a883306"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-stage2-triple-consensus.bundle.json",
+      "sha256": "452ac358e5867443414ac8bb9941f35295a9b70ef95bdb404e5b1b21040fb5cf"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-stage3-triple-consensus.bundle.json",
+      "sha256": "573d44c90f8ac82f9c084b820bd101bead05366f8b73123d5d469260ec06c114"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-stage4-triple-consensus.bundle.json",
+      "sha256": "60cf63d542ccc1e12169051c9d56813a4f24fc7468fffbbd11acec7e7edca38f"
+    },
+    {
+      "operation": "import-concept-review-bundle",
+      "path": "catalog/concept-review-v6-stage5-triple-consensus.bundle.json",
+      "sha256": "40c25837957305a818d4db566ac6fb98e5b54d5d458c0201f51f9a547785ee33"
+    },
+    {
+      "operation": "import-collector-evidence",
+      "path": "catalog/collector-evidence-v1/evidence-events.jsonl",
+      "sha256": "2aec4e1500da8f13363f9308547a45f8aa837398a5ab4d3b4b06c2e6fdf4c6a1"
+    },
+    {
+      "operation": "import-collector-evidence",
+      "path": "catalog/collector-evidence-v2/evidence-events.jsonl",
+      "sha256": "80239a7d3002ac75b6a659f4a6e1460b8645cea6dc2bb564bfb234aab1aad2c5"
+    },
+    {
+      "operation": "import-cards",
+      "path": "catalog/english-history-v1/cards.jsonl.gz",
+      "sha256": "819367205284fd0228466fc9a7f9d938807e2c05ac43f266c80023e9ac2dc3c7"
+    },
+    {
+      "operation": "import-card-facets",
+      "path": "catalog/english-history-v1/facets.jsonl.gz",
+      "sha256": "9a566bc9105eb3f111717a8567e980f6d08a9392a047b149ab49aa92e2d4fcc7"
+    },
+    {
+      "operation": "import-card-classifications",
+      "path": "catalog/english-history-v1/classifications.jsonl.gz",
+      "sha256": "5587f2ab18179e45e0a67d2b10c2629f38f307fec86e7fade88e1348edcac3ef"
+    },
+    {
+      "operation": "import-official-card-metadata",
+      "path": "catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl",
+      "sha256": "68e4ade9a575f526a7d67c54bf8b23595c7866bab3966282a0e6a75c73e08850"
+    },
+    {
+      "operation": "import-official-card-metadata",
+      "path": "catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.jsonl",
+      "sha256": "3c7450fff02ff605786c64feb2bef3ed2d43ee143b19185d64d3f49ec640ff05"
+    },
+    {
+      "operation": "import-coordinate-families",
+      "path": "catalog/coordinate-family-evidence-v1/evidence-v1.jsonl",
+      "sha256": "2a54db2c03b575f76e732d90d14bbe434e05f4da5d292b598de6a163a849e384"
+    },
+    {
+      "operation": "import-release-metadata",
+      "path": "catalog/release-metadata-next-v1/metadata-v1.jsonl",
+      "sha256": "ecb4dbda4d6886f8c3750ce94d9366cd31bfff47f216d902c051ddc9edecb70b"
+    },
+    {
+      "operation": "import-catalog-vocabulary",
+      "path": "catalog/release-metadata-next-v1/vocabulary-v1.jsonl",
+      "sha256": "4f91d204a731dff8ac2b4d6c8534937e1bdb05d081478b033d90987e290963b7"
+    },
+    {
+      "operation": "import-printing-source-evidence",
+      "path": "catalog/printing-source-pilot-v1/evidence-v1.jsonl",
+      "sha256": "7fd553c986d0140c1c744f809b389285ec7a315d0edff2b60179c1e0e192f5b6"
+    },
+    {
+      "operation": "import-reviewed-relationships",
+      "path": "catalog/relationship-independent-priority-v1/verified-artwork-events.jsonl",
+      "sha256": "a7f61bae7fce0cce703d2e3946145ea5813bd2696a6111e8a869fe8516818f3b"
+    },
+    {
+      "operation": "import-source-corrections",
+      "path": "catalog/source-corrections-v1/corrections-v2.jsonl",
+      "sha256": "a69de8c1db87f2a31bfa13634d4de60ef619df4978d5d3c11e93b6543df9ed93"
+    },
+    {
+      "operation": "import-reviewed-relationships",
+      "path": "catalog/relationship-expansion-v2/verified-artwork-events.jsonl",
+      "sha256": "bdcc60129475491977c4a0f38fafae669ab8dec674c8c692104b6b895fb8e2bb"
+    },
+    {
+      "operation": "import-reviewed-relationships",
+      "path": "catalog/relationship-expansion-v3/verified-artwork-events.jsonl",
+      "sha256": "c0ed5ed23383e571754dc87fda2251d3bf889658b3ce99bf57dda96209bc41d4"
+    },
+    {
+      "operation": "import-reviewed-relationships",
+      "path": "catalog/artwork-controls-v1/qualified-difference-events-final.jsonl",
+      "sha256": "8796afb9ae8f80362beef475549e11c54e26ba1cf88600771550c00885ac1cb7"
+    },
+    {
+      "operation": "import-number-reading-evidence",
+      "path": "catalog/number-readings-v1/evidence-v1.jsonl",
+      "sha256": "f18e63523e724dcbb678a511aa2a2ed6d4f9a36e1ca9a47eb25c78c7e0099825"
+    },
+    {
+      "operation": "import-number-reading-evidence",
+      "path": "catalog/promo-number-expansion-v1/evidence-v1.jsonl",
+      "sha256": "f08d4f60df419cb39bd48f5207756b82df9184e5d4a933956d692e9459410a0b"
+    },
+    {
+      "operation": "import-source-image-facts",
+      "path": "catalog/source-image-facts-v1/evidence-v1.jsonl",
+      "sha256": "8dbad73f1bbb50c325275c174f13eb4c7374b735ce0d1b3f23bdaacb6027e787"
+    }
+  ],
+  "expected": {
+    "printings": 70006,
+    "sets": 543,
+    "match_eligible": 33543,
+    "display_approved": 0,
+    "reference_records": 24040,
+    "identity_exceptions": 19,
+    "number_conflict_rules": 2,
+    "relationship_assertions": 731,
+    "verified_relationships": 63,
+    "ai_artwork_proposals": 657,
+    "rarity_corrections": 532,
+    "current_supported_targets": 100,
+    "bilingual_alias_revisions": 122,
+    "concept_review_events": 460,
+    "release_evidence_records": 21,
+    "vocabulary_records": 42,
+    "character_families": 3,
+    "collector_evidence_events": 190,
+    "collector_active_source_supported": 13,
+    "collector_active_proposed": 142,
+    "collector_stale_findings": 0,
+    "official_metadata_events": 2497,
+    "current_official_metadata_cards": 2497,
+    "official_metadata_stale_cards": 0,
+    "official_known_rarity_cards": 1900,
+    "official_numbered_parts_cards": 4,
+    "coordinate_family_events": 280,
+    "current_coordinate_families": 269,
+    "held_coordinate_families": 11,
+    "stale_coordinate_families": 0,
+    "printing_source_events": 23,
+    "current_printing_source_observations": 14,
+    "held_printing_sources": 9,
+    "stale_printing_sources": 0,
+    "two_review_printed_artist_coordinates": 10,
+    "physical_printing_approvals": 0,
+    "automatic_offer_approvals": 0,
+    "source_correction_events": 13,
+    "active_source_corrections": 13,
+    "stale_source_corrections": 0,
+    "number_reading_events": 79,
+    "number_reading_subjects": 79,
+    "current_agreed_number_readings": 74,
+    "number_reading_holds": 5,
+    "stale_number_readings": 0,
+    "catalog_denominator_not_observed": 25,
+    "source_image_fact_events": 9,
+    "source_image_fact_subjects": 9,
+    "current_title_correspondence_advisories": 9,
+    "source_image_hp_conflicts": 1,
+    "stale_source_image_facts": 0
+  },
+  "description": "Preserve all 51 earlier inputs and number/graph decisions; append selected source-image title/symbol/furigana/HP advisories with root prior-context disclosed. No independent number/copy/commerce approval."
+}

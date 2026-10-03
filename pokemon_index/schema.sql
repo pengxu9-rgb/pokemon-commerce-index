@@ -61,6 +61,15 @@ CREATE TABLE IF NOT EXISTS card_number_reading_evidence (
   UNIQUE(card_id, revision)
 );
 
+-- Structured title/symbol/HP advisories do not upgrade number or copy evidence.
+CREATE TABLE IF NOT EXISTS source_image_fact_evidence (
+  event_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  revision INTEGER NOT NULL CHECK (revision > 0),
+  record_json TEXT NOT NULL,
+  UNIQUE(card_id, revision)
+);
+
 -- Positive, source-bound internal support is separate from structural eligibility.
 CREATE TABLE IF NOT EXISTS supported_card (
   card_id TEXT PRIMARY KEY REFERENCES card(card_id),

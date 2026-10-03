@@ -1,0 +1,197 @@
+{
+  "schema": "pokemon.source-image-fact-compilation.v1",
+  "subjects": 9,
+  "outcomes": [
+    {
+      "card_id": "en:HGSSP:HGSS01/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Ho-Oh",
+          "canonical_candidate": "Ho-Oh",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Ho-Oh",
+          "canonical_candidate": "Ho-Oh",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_conflict",
+      "observed_hp": 100,
+      "observed_number_agreement": true,
+      "warnings": [
+        "source_hp_conflict"
+      ]
+    },
+    {
+      "card_id": "en:HGSSP:HGSS03/000025:holo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Pikachu",
+          "canonical_candidate": "Pikachu",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Pikachu",
+          "canonical_candidate": "Pikachu",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "en:MEP:001/mep:holo_set_logo",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "Meganium",
+          "canonical_candidate": "Meganium",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "Meganium",
+          "canonical_candidate": "Meganium",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 160,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:001/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "チコリータ",
+          "canonical_candidate": "チコリータ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "チコリータ",
+          "canonical_candidate": "チコリータ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "source_hp_agrees",
+      "observed_hp": 70,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:005/M-P:normal",
+      "name_status": "literal_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "あなあけスコップ",
+          "canonical_candidate": "あなあけスコップ",
+          "normalization_rule": null
+        },
+        {
+          "literal_text": "あなあけスコップ",
+          "canonical_candidate": "あなあけスコップ",
+          "normalization_rule": null
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:009/M-P:normal",
+      "name_status": "symbol_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本草エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        },
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本草エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:M-P:010/M-P:normal",
+      "name_status": "symbol_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本炎エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        },
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本炎エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:009/S-P:normal",
+      "name_status": "symbol_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本草エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        },
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本草エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    },
+    {
+      "card_id": "ja:S-P:010/S-P:normal",
+      "name_status": "symbol_correspondence_advisory",
+      "title_interpretations": [
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本炎エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        },
+        {
+          "literal_text": "基本エネルギー",
+          "canonical_candidate": "基本炎エネルギー",
+          "normalization_rule": "ja-basic-energy-title-symbol-and-furigana-v1"
+        }
+      ],
+      "hp_status": "no_hp_observed",
+      "observed_hp": null,
+      "observed_number_agreement": true,
+      "warnings": []
+    }
+  ],
+  "image_and_source_bytes_verified": true,
+  "review_input_sha256": {
+    "catalog/source-image-facts-v1/cohort-v1.jsonl": "e1e8ed70faccd6e8e22c79efe60dc337a73b4308e20bc055923cc366393b5812",
+    "catalog/source-image-facts-v1/root-review-v1.jsonl": "b623649253a3c711fc9dd7e01651966aba9680f09125a434d1be93c2896ca513",
+    "catalog/source-image-facts-v1/gemini-review-v1.jsonl": "e1fefb48071dd960b75f4adb695eec0736e659700061e1be296bee797333ce96"
+  },
+  "evidence_sha256": "8dbad73f1bbb50c325275c174f13eb4c7374b735ce0d1b3f23bdaacb6027e787",
+  "independent_review_agreement_established": false,
+  "number_reading_qualification_changed": false
+}
