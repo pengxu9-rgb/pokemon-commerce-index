@@ -158,10 +158,16 @@ def from_question(db, question):
     text = _norm(question)
     if not re.search(r'compar|same|different|artwork|picture|both|cheaper|イラスト|番号|比較|比较|対比|对比|比对|同じ|同一|相同', text):
         return None
-    ids = re.findall(r'\b(?:ja|en):[a-z0-9.\-]+:[a-z0-9]{1,16}/[a-z0-9\-]{1,32}:[a-z0-9_\-]+', text)
+    id_pattern=r'\b(?:ja|en):[a-z0-9.\-]+:[a-z0-9]{1,16}/[a-z0-9\-]{1,32}:[a-z0-9_\-]+'
+    ids = re.findall(id_pattern, text)
+    auxiliary=[]
     if ids:
-        if len(ids) != 2 or len(re.findall(r'(?<![a-z0-9/])[a-z0-9]{1,16}/[a-z0-9\-]{1,32}(?![a-z0-9/])', text)) != 2:
-            return None
+        if len(ids)!=2:return None
+        remaining=re.sub(id_pattern,' ',text)
+        auxiliary_pattern=r'(?:第二(?:套|个)?(?:纪念)?(?:编号|卡号)?|纪念编号|secondary\s+(?:collector\s+)?number)\s*[:：]?\s*(\d{1,6}/\d{1,6})(?![a-z0-9/])'
+        auxiliary=[m.group(1) for m in re.finditer(auxiliary_pattern,remaining)]
+        remaining=re.sub(auxiliary_pattern,' ',remaining)
+        if len(auxiliary)>2 or re.search(r'(?<![a-z0-9/])[a-z0-9]{1,16}/[a-z0-9\-]{1,32}(?![a-z0-9/])',remaining):return None
         lookup = {r['card_id'].casefold(): r['card_id'] for r in db.execute(
             'SELECT card_id FROM card WHERE lower(card_id) IN (?,?)', ids)}
         result = compare(db, dict(left=dict(card_id=lookup.get(ids[0], ids[0])),
@@ -206,4 +212,7 @@ def from_question(db, question):
     result['interpretation'] = 'Explicit IDs or nearest preceding language/release/number tokens only; named character, illustrator, grade and finish assertions are not independently resolved.'
     result['question'] = question
     result['unfulfilled_constraints'] = ['named_identity_and_physical_version_claims', 'physical_copy_evidence', 'live_market_evidence']
+    if auxiliary:
+        result['auxiliary_number_mentions']=dict(texts=auxiliary,basis='unverified_user_question',assigned_to_card_id=None,namespace_confirmed=False,print_run_quantity_established=False)
+        result['unfulfilled_constraints'].append('auxiliary_number_namespace_confirmation')
     return result

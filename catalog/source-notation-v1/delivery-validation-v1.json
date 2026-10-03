@@ -1,0 +1,73 @@
+{
+  "schema": "pokemon.source-notation-delivery.v1",
+  "verified_at": "2026-10-03T13:20:38.971703+00:00",
+  "deployment": {
+    "revision": "pokemon-commerce-index-00041-qbl",
+    "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+    "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:8d9b7cef35866118391a89d738c08641b82fe87106f64fd5a5a748995f7fb661",
+    "private_iam_verified": true,
+    "revision_unchanged_after_verification": true
+  },
+  "traffic_percent": 100,
+  "private_iam_verified": true,
+  "local_checks": 108,
+  "cloud_checks": 112,
+  "transport_retries": 0,
+  "unauthenticated_denial_checks": 4,
+  "report_bindings": {
+    "catalog/source-notation-v1/local-replay-v1.json": {
+      "sha256": "41297ea92b0e095320343e0f2700257e121956abc1c0357cad0d4a568bf068fd",
+      "checks": 73,
+      "transport_errors": []
+    },
+    "catalog/source-notation-v1/prior-facts-local-v1.json": {
+      "sha256": "39bb38b1e54bc82dfa777d76375dc7fe874094cfd0a3405107c2d1f223123558",
+      "checks": 21,
+      "transport_errors": []
+    },
+    "catalog/source-notation-v1/cloud-replay-v1.json": {
+      "sha256": "1ec0b671679d16d5aaf1b03ded5f7460514f1943d0a864aa8ce909041c2fcee4",
+      "checks": 75,
+      "transport_errors": []
+    },
+    "catalog/source-notation-v1/prior-facts-cloud-v1.json": {
+      "sha256": "d61fd373abefbbf87ddfb692b1244c812fe3e2dedbeb60fd8ae18b22db6cf85e",
+      "checks": 23,
+      "transport_errors": []
+    },
+    "catalog/source-notation-v1/artwork-local-v1.json": {
+      "sha256": "72a3792a41c9c1726f2ad4a16c7f075f29a03115002413995b7eb3551802192f",
+      "checks": 14,
+      "transport_errors": []
+    },
+    "catalog/source-notation-v1/artwork-cloud-v1.json": {
+      "sha256": "cb3157bbfb86294d0bce58eb7db7176069a1e5581efa814698cb43126bbecad2",
+      "checks": 14,
+      "transport_errors": []
+    }
+  },
+  "artifact_sha256": {
+    "catalog/source-notation-v1/number-evidence-v1.jsonl": "9f7d445b924229f660761ba5e70c1a3f4de2d84521317a1b1a2a83360d9eda43",
+    "catalog/source-notation-v1/reinterpretation-audit-v1.json": "c56173b1557e4bd86506a04e1e4f6a696ab9145267a81ad11e8667409ddfa728",
+    "catalog/source-notation-v1/notation-audit-v1.json": "185d046afb0c6e1ab24e1272d6309b61fa372edd56d8648ca4f3b983754c37ff",
+    "catalog/source-notation-v1/preservation-v1.json": "c27f14601b10fe61baf8d25802936f3b0e19cf4a8b09bde6d9435bca804959f1",
+    "catalog/source-notation-v1/next-source-targets-v1.jsonl": "d4ec20c704d4361d1c98612f8ac8c2ede1d8fe03afb80324e86b3b5ce1ae43b0",
+    "catalog/source-notation-v1/coverage-v1.json": "1d1c82cf6685c25c65285e482db8ea7a0f59a0f80f849b8dd0beb57853536f9f",
+    "catalog/source-notation-v1/publisher-rule-references-v1.json": "44af3542051f1bc07bee1578011a23d375b87c70cbb157224ee56a83dd6d5973"
+  },
+  "manifest_sha256": "c9605746aa734da9ae7c52f8feff9ca45e5ffb9e02fbfe261851ad9271b84db3",
+  "snapshot_sha256": "2f1019dcd2dd7addee41b66dc20e1c55dc65bb749689d9c03520d01a399d402e",
+  "ordered_previous_inputs_preserved": 61,
+  "new_inputs": 1,
+  "prior_number_events_preserved": 1462,
+  "prior_fact_events_preserved": 1432,
+  "prior_graph_rows_preserved": 743,
+  "base_tables_preserved": 43,
+  "new_number_interpretations": 7,
+  "structured_notation_subjects": 26,
+  "fresh_image_model_inspections": 0,
+  "new_graph_events": 0,
+  "final_logical_failures": 0,
+  "population_or_marketplace_accuracy_established": false,
+  "physical_or_commerce_approvals_added": false
+}

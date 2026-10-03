@@ -1,0 +1,1 @@
+{"stage":"delivery_report_aggregation","exception":"KeyError: id","cause":"Artwork replay results use a different subject key from source-fact replay results; aggregation assumed every result had id.","runtime_replays_completed":true,"fix":"Count authentication-denial checks only on records containing an id. Runtime and evidence inputs unchanged."}

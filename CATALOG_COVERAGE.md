@@ -1,6 +1,10 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
-## Independent image-model escalation — 3 October 2026
+## Source notation and versioned interpretation — 3 October 2026
+
+[Current delivery and next batch](SOURCE_NOTATION_20261003.md): seven adjacent S/K holds now have complete catalog-number correspondence through a versioned interpretation of unchanged prior dual-model readings; no new AI inspections. Twenty-six Prism Star/multiple-number/combined-scan subjects have structured notation without identity or price approval. Two-card questions preserve a labeled auxiliary number as an unverified question. The fixed source queue now has 51 subjects. Catalog counts remain 70,006 records / 45,438 coordinates; graph states remain 72 agreements / 14 qualified differences / 593 proposals. Private revision `00041-qbl` passes 108 local and 112 cloud checks; 593 Python and twelve Node tests pass. All prior evidence and graph history are preserved.
+
+## Previous independent image-model escalation — 3 October 2026
 
 [Latest delivery and next sequence](SOURCE_FACTS_ESCALATION_20261003.md): all 332 priorities have outcomes; 308 images received separately recorded Astra/Gemini readings, yielding 274 catalog-text correspondences, 33 holds and one agreed 143a-versus-143 conflict; 24 images remain unavailable. All fifty SV2A holds now have agreeing numbers. Append-only evidence retains the prior OCR history. Fourteen pair reviews add nine exact-source artwork matches and three qualified differences, with two holds. Latest graph states are 72 verified / 14 qualified differences / 593 proposed. Private revision `00040-lpc` passes 388 cloud and 384 local engineering checks; 584 Python and twelve Node tests pass. Next: resolve the 58 source/number/symbol gaps, then broaden image-model and printing evidence. Live offers remain held for an authorized feed.
 

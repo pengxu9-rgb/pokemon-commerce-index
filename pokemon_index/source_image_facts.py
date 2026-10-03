@@ -90,6 +90,29 @@ def title_structure(reading):
     if text:sequence.append(('text',re.sub(r'eX$','ex',text)))
     return sequence
 
+
+def notation_context(row):
+    """Describe literal mechanics and multiple numbers without choosing a SKU."""
+    readings=[r['reading'] for r in row['reviews']]
+    structures=[title_structure(r) for r in readings]
+    prism=all(len(r['title_symbols'])==1 and r['title_symbols'][0]['kind']=='prism_star' for r in readings) and structures[0]==structures[1]
+    base=all(core._compact_identity_text(''.join(r['title_text_parts']))==core._compact_identity_text(row['endpoint_snapshot']['name']) for r in readings)
+    scopes=[]
+    for r in readings:
+        text=r['observed_number_text']
+        parts=[]
+        if text is not None and re.fullmatch(r'\s*\d{1,6}\s*/\s*\d{1,6}(?:\s*[,;]\s*|\s+)(?:\d{1,6}\s*/\s*\d{1,6})(?:(?:\s*[,;]\s*|\s+)\d{1,6}\s*/\s*\d{1,6})*\s*',text):
+            parts=re.findall(r'\d{1,6}\s*/\s*\d{1,6}',text)
+        scopes.append(dict(raw_text=text,complete_fraction_candidates=parts))
+    return dict(schema='pokemon.source-image-notation-context.v1',
+        title_mechanic='prism_star_observed_by_both' if prism else 'unconfirmed_or_other',
+        base_title_catalog_correspondence=base if prism else None,
+        title_symbol_anchors_agree=structures[0]==structures[1],
+        number_layout='multiple_complete_fractions_observed' if any(x['complete_fraction_candidates'] for x in scopes) else 'single_or_unparsed',
+        number_scope_candidates=scopes,
+        number_namespace_assignment_established=False,catalog_mechanic_binding_established=False,
+        print_run_quantity_established=False,identity_qualification_changed=False,physical_printing_verified=False,price_comparable=False)
+
 def event_id(row):return 'source-image-fact:'+supported_catalog.digest({k:v for k,v in row.items() if k!='event_id'})
 
 def validate(row):
@@ -143,6 +166,7 @@ def context(db,card_id):
     current=number_evidence.snapshot(db,card_id)==row['endpoint_snapshot']
     result=outcomes(row) if current else dict(name_status='stale_endpoint',title_interpretations=[],hp_status='stale_endpoint',observed_hp=None,observed_number_agreement=False,warnings=['stale_source_image_facts'])
     return dict(schema='pokemon.source-image-fact-context.v1',event_id=row['event_id'],current_endpoint=current,
+        source_notation=notation_context(row) if current else None,
         inspection_tier=number_evidence.inspection_tier(row['reviews']),
         evidence_level='advisory_with_review_context_disclosed',source_ref=row['source_ref'],image_sha256=row['image_sha256'],
         pinned_source_hp=row['pinned_source_hp'],reviews=row['reviews'],**result,**{k:False for k in FALSE_CLAIMS},

@@ -151,6 +151,17 @@ class ComparisonTests(unittest.TestCase):
         self.assertIn('match_disabled_identity',comparison['artwork']['other_pair_states'][0]['endpoint_identity_blockers'][promo])
         self.assertFalse(comparison['purchase_ready'])
 
+    def test_labeled_auxiliary_number_remains_a_question_without_becoming_third_target(self):
+        for suffix in ['第二套01/30代表稀缺数量吗？','secondary number: 01/30 means scarcity?']:
+            result=card_comparison.from_question(self.db,'Compare '+self.left+' and '+self.right+' '+suffix)
+            self.assertEqual(result['left']['requested']['card_id'],self.left)
+            self.assertEqual(result['right']['requested']['card_id'],self.right)
+            self.assertEqual(result['auxiliary_number_mentions']['texts'],['01/30'])
+            self.assertFalse(result['auxiliary_number_mentions']['namespace_confirmed'])
+            self.assertIsNone(result['auxiliary_number_mentions']['assigned_to_card_id'])
+            self.assertFalse(result['price_comparable'])
+        self.assertIsNone(card_comparison.from_question(self.db,'Compare '+self.left+' and '+self.right+' secondary number 01/30 plus 02/30'))
+
     def test_explicit_ids_with_third_fraction_or_unknown_alpha_id_are_not_inferred(self):
         self.assertIsNone(card_comparison.from_question(self.db,'Compare '+self.left+' and '+self.right+' plus TG10/30.'))
         result=card_comparison.from_question(self.db,'Compare '+self.left+' and en:SWSHP:SWSH999/0000307:holo_cosmos.')

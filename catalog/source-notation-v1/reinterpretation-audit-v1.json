@@ -1,0 +1,80 @@
+{
+  "interpretations": [
+    {
+      "card_id": "ja:SV4A:191/190:holo",
+      "prior_event_id": "number-reading:20a553717f2f2da4dac8a348da8fc3a10c5e5cadff4e6e543a9aebb7919c62c6",
+      "new_event_id": "number-reading:1f11fefc509f9fcd379a8c1252f8fa9141bb0fcd378a708ccf0c2546939f17f4",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:SV4A:192/190:holo",
+      "prior_event_id": "number-reading:c1256b10510ede16adb8c94b25057b4496a7c261a47e99ddef8ceab05c89fa3c",
+      "new_event_id": "number-reading:7d96739bef04f259f53349eb3ff06bd99d03b3644c7ce25e4bcb4fcf765ec999",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:SV4A:193/190:holo",
+      "prior_event_id": "number-reading:82c56bb04e69844ca0b435670a17bbe09b59a2bdf6019b008b1e65d8ae733080",
+      "new_event_id": "number-reading:5cce076bf5ebf6bd8bbecf9e452e8d30b65c73ab70c5923d19bf5e2dc10acd06",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:S12A:015/172:holo",
+      "prior_event_id": "number-reading:843a9d3b8c169eb59a22a896624c0c26379ba977d254cfc19d7f9b6651980eea",
+      "new_event_id": "number-reading:5281d492d42f1da71cde666bdd9bddb459ff7854766d387a3aea37060086a78a",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:S12A:033/172:holo",
+      "prior_event_id": "number-reading:92c17f5e6fac501e6d1a8ff03d5ec4c3d7c5b54df3b29e36bfe09e0c43819a12",
+      "new_event_id": "number-reading:4a4431aab398e61de2edcb44478601724d0f536f2c6d919ecb828348cf166c24",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:S12A:039/172:holo",
+      "prior_event_id": "number-reading:5d589a8e51d370dd7a567c6a23b3049c76a17d0ecde75b84afbe67e4a68f337a",
+      "new_event_id": "number-reading:2382b3a0992b016208380755349637b15267dc7283fe91fef7ad1ce4b028eec0",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    },
+    {
+      "card_id": "ja:S12A:055/172:holo",
+      "prior_event_id": "number-reading:b9cfdb8a57187b36f3cda638b7e814f2c4c3700ed7672d78f8a1fc918e7072e6",
+      "new_event_id": "number-reading:616385516dd008ac47458052ae7cb005be7a4128ae33917a7a01a50250310e3c",
+      "source_bytes_verified": true,
+      "image_bytes_verified": true,
+      "reviews_unchanged": true,
+      "fresh_model_inspections": 0
+    }
+  ],
+  "new_inspections": 0,
+  "rule": "ja-complete-numeric-fraction-adjacent-sk-v1",
+  "legacy_rule_unchanged": true,
+  "physical_or_price_approvals_added": false,
+  "root_publisher_pixel_check": {
+    "known_catalog_context": true,
+    "independent_review": false,
+    "examples": [
+      "44977 footer191/190 S",
+      "42276 footer015/172 K"
+    ],
+    "scope": "Formatting rule check only; actual seven two-model observations reused without changes."
+  }
+}

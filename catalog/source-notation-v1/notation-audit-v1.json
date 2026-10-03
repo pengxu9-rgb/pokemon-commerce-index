@@ -1,0 +1,797 @@
+{
+  "subjects": 26,
+  "annotations": [
+    {
+      "card_id": "ja:S8B:056/184:holo",
+      "reason": "multipart_source_image",
+      "event_id": "source-image-fact:4a0000bb54a03d40f46a4f95142d65f3490cc4a7810825033654fa917e47117d",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "056/184; 057/184; 058/184; 059/184",
+            "complete_fraction_candidates": [
+              "056/184",
+              "057/184",
+              "058/184",
+              "059/184"
+            ]
+          },
+          {
+            "raw_text": "056/184, 057/184, 058/184, 059/184",
+            "complete_fraction_candidates": [
+              "056/184",
+              "057/184",
+              "058/184",
+              "059/184"
+            ]
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:SM8B:047/150:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:628969979bb08836d4ff27ff5fd8b57851021f90649a358f39c8183be2e00ae5",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "047/150",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "047/150 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM8B:058/150:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:1e2025e8fbf3435d329d51d017b27e07e12e0697ade55279bde0c4e1baae3dc5",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "058/150",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "058/150 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM8B:082/150:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:74dfa4e8a0cade511e813f01270dba316c05d6f3073a836cc04644596e20c315",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "082/150",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "082/150 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM8B:145/150:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:e404c470c09ed920f221741f302851b584e64e11967b559de3244e2e5cf912d5",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "145/150",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "145/150 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM8B:147/150:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:d343acac3a93e8107ee2e3bf0fd9e84b8239f10ea2e5761163798ef7559a9690",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "147/150",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "147/150 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:011/173:normal",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:d36603f7f40a0b6b97f54151351642b192f87fe107c9f5388ad78188da1be1ff",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "011/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "011/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:021/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:6305fd099dec37018d6ee4b52d0abce80e533acda21ea4840c9447e2de5bc7b1",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "021/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "021/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:037/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:697b1a404790bcb12b2e1a7011ac0340fa3b597a5386d151c9c39ad2529ed9da",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "037/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "037/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:049/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:7351c68eef4a3d83e4ad80ffc7e18399d9460940be210c481afa67621256e2e7",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "049/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "049/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:058/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:ce9dc960eefa9c7694f9f069f3dd7ed245615e03699f3df9d7a8e846af03ac04",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "058/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "058/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:070/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:b4d39008c75d10c25293928f0dbac5c4bc63e6f09126c82fd670e60bcfde6cb9",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "070/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "070/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:077/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:4ed6c3e1ebbaa5fe9f60b52d1d81e9ecb7c699355962cfd357eb8b05ca240859",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "077/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "077/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:091/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:37e98182e083799ea0f721dc9b1a45a7b7b47948b4958e36c61ae42b4a8566ab",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "091/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "091/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:108/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:83040d1c22789ea7f752b41ea5ab116e972145846815877cf2f2737b33e9af3c",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "108/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "108/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:144/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:31543cecbe31532bce11d4661e0b66711dd3ff6a5b44dd66f61ff064c9ccffa3",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "144/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "144/173 PR",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:SM12A:163/173:holo",
+      "reason": "title_symbol_unconfirmed",
+      "event_id": "source-image-fact:2e183621534f10a452c324022b78b5f2356bb37f7588817e75d4ec32e3ae04f9",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "prism_star_observed_by_both",
+        "base_title_catalog_correspondence": true,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "single_or_unparsed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "163/173",
+            "complete_fraction_candidates": []
+          },
+          {
+            "raw_text": "163/173",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "unconfirmed"
+    },
+    {
+      "card_id": "ja:M6A:017/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:a2dc3be979c97900da49500bff5b60dc0cf6bc03313513ffb715ea794f10fc89",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "017/103 01/30",
+            "complete_fraction_candidates": [
+              "017/103",
+              "01/30"
+            ]
+          },
+          {
+            "raw_text": "017/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:018/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:7d8f1fb8ca8d97398b9809870f4d4b7574b000f8869885f04042784d1489b018",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "018/103 02/30",
+            "complete_fraction_candidates": [
+              "018/103",
+              "02/30"
+            ]
+          },
+          {
+            "raw_text": "018/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:019/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:87aa0df305b304daa633c2651820763dca4144cc8d21f8f4edb222cca912dada",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "019/103 03/30",
+            "complete_fraction_candidates": [
+              "019/103",
+              "03/30"
+            ]
+          },
+          {
+            "raw_text": "019/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:020/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:261de16b33b01be8424a14618d7d8d0f2c6175e636b8d3e23221f10a4429f9c9",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "020/103 04/30",
+            "complete_fraction_candidates": [
+              "020/103",
+              "04/30"
+            ]
+          },
+          {
+            "raw_text": "020/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:021/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:15f5ee642f2f541186dba0db4ab05f9ec48c00a61c451704bd35c218e6b40beb",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "021/103 05/30",
+            "complete_fraction_candidates": [
+              "021/103",
+              "05/30"
+            ]
+          },
+          {
+            "raw_text": "021/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:022/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:a49cc4374c05c65a5f5d004320297db8628b9c4e9acf4eee893b136cc1c81b01",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "022/103 06/30",
+            "complete_fraction_candidates": [
+              "022/103",
+              "06/30"
+            ]
+          },
+          {
+            "raw_text": "022/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:023/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:3be991fb7f0464172a09ad83ea4a39ef03bb60a8f4f3ce604e3d07a3f0d09bea",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "023/103 07/30",
+            "complete_fraction_candidates": [
+              "023/103",
+              "07/30"
+            ]
+          },
+          {
+            "raw_text": "023/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:024/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:bec67da45e0526560a43c16a78ec5803ca00bc56f49b1f452cd5c9db094a84fc",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "024/103 08/30",
+            "complete_fraction_candidates": [
+              "024/103",
+              "08/30"
+            ]
+          },
+          {
+            "raw_text": "024/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    },
+    {
+      "card_id": "ja:M6A:025/103:normal",
+      "reason": "multiple_number_namespaces",
+      "event_id": "source-image-fact:71e453081ff8dfed6dd2654846f6e64f70e34b81fb76ff8ff0f9d6e49d868564",
+      "source_notation": {
+        "schema": "pokemon.source-image-notation-context.v1",
+        "title_mechanic": "unconfirmed_or_other",
+        "base_title_catalog_correspondence": null,
+        "title_symbol_anchors_agree": true,
+        "number_layout": "multiple_complete_fractions_observed",
+        "number_scope_candidates": [
+          {
+            "raw_text": "025/103 09/30",
+            "complete_fraction_candidates": [
+              "025/103",
+              "09/30"
+            ]
+          },
+          {
+            "raw_text": "025/103",
+            "complete_fraction_candidates": []
+          }
+        ],
+        "number_namespace_assignment_established": false,
+        "catalog_mechanic_binding_established": false,
+        "print_run_quantity_established": false,
+        "identity_qualification_changed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_fact_name_status": "literal_correspondence_advisory"
+    }
+  ],
+  "identity_qualification_changed": false
+}

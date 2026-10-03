@@ -11,6 +11,9 @@ from urllib.parse import urlparse
 from . import core, supported_catalog
 
 SCHEMA = 'pokemon.number-reading-evidence.v1'
+SCHEMA_V2 = 'pokemon.number-reading-evidence.v2'
+LEGACY_RULE = 'legacy-v1'
+SK_RULE = 'ja-complete-numeric-fraction-adjacent-sk-v1'
 FIELDS = ('card_id', 'language', 'set_code', 'collector_number', 'variant', 'name',
           'rarity', 'provenance', 'match_eligible', 'display_allowed', 'rights_reference')
 FALSE_CLAIMS = ('catalog_identity_confirmed', 'physical_printing_verified',
@@ -51,9 +54,10 @@ def _source(value):
         raise ValueError('unsupported number reading source')
 
 
-def reading_key(text):
+def reading_key(text, *, rule=LEGACY_RULE):
     # Formatting comparison only. Never synthesize a denominator or prefix.
     from .number_graph import parse_number
+    if rule not in {LEGACY_RULE,SK_RULE}:raise ValueError('unknown number reading rule')
     if text is None:
         return None
     _text(text)
@@ -61,19 +65,23 @@ def reading_key(text):
     # separate a known token from an otherwise complete numeric fraction;
     # retain the original reading in the event and never infer missing parts.
     match = re.fullmatch(r'(\d{1,6}\s*/\s*\d{1,6})\s+(?:C|U|R|RR|RRR|PR|AR|SR|SAR|UR|SSR|CHR|CSR|ACE)', text.strip())
+    if match is None and rule==SK_RULE:
+        match = re.fullmatch(r'(\d{1,6}\s*/\s*\d{1,6})\s+(?:S|K)',text.strip())
+    if rule==SK_RULE and not re.fullmatch(r'\d{1,6}\s*/\s*\d{1,6}',(match[1] if match else text).strip()):
+        return None
     parsed = parse_number(match[1] if match else text)
     if parsed['number_format'] == 'other':
         return None
     return parsed['full_number_key']
 
 
-def classify(catalog_number, readings, *, expected_name=None, observed_names=None):
+def classify(catalog_number, readings, *, expected_name=None, observed_names=None, reading_rule=LEGACY_RULE):
     from .number_graph import parse_number
     if expected_name is not None and (not observed_names or any(
             name is None or core._compact_identity_text(name) != core._compact_identity_text(expected_name)
             for name in observed_names)):
         return 'reading_hold'
-    keys = {reading_key(text) for text in readings}
+    keys = {reading_key(text,rule=reading_rule) for text in readings}
     if len(keys) != 1 or None in keys:
         return 'reading_hold'
     key = next(iter(keys))
@@ -86,10 +94,12 @@ def classify(catalog_number, readings, *, expected_name=None, observed_names=Non
 
 
 def validate(row):
+    versioned=isinstance(row,dict) and row.get('schema')==SCHEMA_V2
     allowed = {'schema', 'event_id', 'revision', 'card_id', 'endpoint_snapshot',
                'identity_sha256', 'source_ref', 'image_sha256', 'review_groups',
                'status', 'recorded_at'} | set(FALSE_CLAIMS)
-    if not isinstance(row, dict) or set(row) != allowed or row['schema'] != SCHEMA:
+    if versioned:allowed|={'reading_rule','prior_event_id','prior_event_sha256'}
+    if not isinstance(row, dict) or set(row) != allowed or row['schema'] not in {SCHEMA,SCHEMA_V2}:
         raise ValueError('invalid number evidence schema')
     if type(row['revision']) is not int or row['revision'] < 1 or row['event_id'] != event_id(row):
         raise ValueError('invalid number evidence event or revision')
@@ -98,6 +108,9 @@ def validate(row):
     endpoint = row['endpoint_snapshot']
     if not isinstance(endpoint, dict) or set(endpoint) != set(FIELDS) or endpoint['card_id'] != row['card_id']:
         raise ValueError('number evidence endpoint mismatch')
+    if versioned:
+        if row['reading_rule']!=SK_RULE or endpoint['language']!='ja':raise ValueError('versioned SK rule requires Japanese scope')
+        _text(row['prior_event_id']);_sha(row['prior_event_sha256'])
     _sha(row['identity_sha256']); _sha(row['image_sha256']); _source(row['source_ref'])
     if supported_catalog.digest(endpoint) != row['identity_sha256']:
         raise ValueError('number evidence snapshot hash differs')
@@ -139,7 +152,7 @@ def validate(row):
             raise ValueError('distinct number reviewers and model families required')
     names = [r['observed_name'] for g in groups for r in g['reviews']]
     if row['status'] != classify(endpoint['collector_number'], readings,
-                               expected_name=endpoint['name'], observed_names=names):
+                               expected_name=endpoint['name'], observed_names=names,reading_rule=row.get('reading_rule',LEGACY_RULE)):
         raise ValueError('number outcome differs from actual readings')
 
 
@@ -163,6 +176,15 @@ def import_evidence(db, rows):
                                 (row['card_id'],)).fetchone()[0] or 0
             if row['revision'] != latest + 1:
                 raise ValueError('number revisions must be consecutive')
+            if row['schema']==SCHEMA_V2:
+                prior_record=db.execute('SELECT record_json FROM card_number_reading_evidence WHERE event_id=?',(row['prior_event_id'],)).fetchone()
+                if prior_record is None:raise ValueError('versioned interpretation prior evidence missing')
+                prior=json.loads(prior_record[0]);validate(prior)
+                if (supported_catalog.digest(prior)!=row['prior_event_sha256'] or prior['card_id']!=row['card_id'] or prior['revision']!=latest):
+                    raise ValueError('versioned interpretation prior head drift')
+                if any(row[k]!=prior[k] for k in ['endpoint_snapshot','identity_sha256','source_ref','image_sha256','review_groups']):
+                    raise ValueError('versioned interpretation must preserve actual inspections')
+                if core.parse_time(row['recorded_at'])<core.parse_time(prior['recorded_at']):raise ValueError('interpretation predates prior evidence')
             db.execute('INSERT INTO card_number_reading_evidence VALUES (?,?,?,?)',
                        (row['event_id'], row['card_id'], row['revision'], body))
     return len(prepared)
@@ -199,6 +221,8 @@ def context(db, card_id):
                 review_groups=row['review_groups'], source_ref=row['source_ref'], image_sha256=row['image_sha256'],
                 visible_text_agreement=usable, printed_denominator_observed=usable and '/' in readings[0],
                 source_coordinate_conflict=current and row['status']=='different_text_observed',
+                reading_rule=row.get('reading_rule',LEGACY_RULE),
+                recorded_at=row['recorded_at'],review_reuse_disclosed=row['schema']==SCHEMA_V2,
                 scope='Exact source stock-image text only; no assignment to sibling labels or seller copies.',
                 independent_accuracy_established=False, **{k: False for k in FALSE_CLAIMS})
 

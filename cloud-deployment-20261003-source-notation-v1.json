@@ -1,0 +1,63 @@
+{
+  "verified_at": "2026-10-03T13:20:38.971703+00:00",
+  "revision": "pokemon-commerce-index-00041-qbl",
+  "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+  "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:8d9b7cef35866118391a89d738c08641b82fe87106f64fd5a5a748995f7fb661",
+  "private_iam_verified": true,
+  "revision_unchanged_after_verification": true,
+  "traffic_percent": 100,
+  "service_spec": {
+    "template": {
+      "metadata": {
+        "annotations": {
+          "autoscaling.knative.dev/maxScale": "1",
+          "run.googleapis.com/client-name": "gcloud",
+          "run.googleapis.com/client-version": "581.0.0",
+          "run.googleapis.com/startup-cpu-boost": "true"
+        },
+        "labels": {
+          "client.knative.dev/nonce": "qyctwiwwsu",
+          "run.googleapis.com/startupProbeType": "Default"
+        }
+      },
+      "spec": {
+        "containerConcurrency": 16,
+        "containers": [
+          {
+            "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:8d9b7cef35866118391a89d738c08641b82fe87106f64fd5a5a748995f7fb661",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "name": "http1"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "512Mi"
+              }
+            },
+            "startupProbe": {
+              "failureThreshold": 1,
+              "periodSeconds": 240,
+              "tcpSocket": {
+                "port": 8080
+              },
+              "timeoutSeconds": 240
+            }
+          }
+        ],
+        "serviceAccountName": "sa-pokemon-commerce-index@pivota-staging.iam.gserviceaccount.com",
+        "timeoutSeconds": 30
+      }
+    },
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 100
+      }
+    ]
+  },
+  "manifest_sha256": "c9605746aa734da9ae7c52f8feff9ca45e5ffb9e02fbfe261851ad9271b84db3",
+  "delivery_report_sha256": "196c5d24c4bf25bd8826477425eb6b38763a0ad37d6f5bc636afc58495a354d1"
+}

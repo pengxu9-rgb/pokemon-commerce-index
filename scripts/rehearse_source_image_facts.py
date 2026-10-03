@@ -98,6 +98,7 @@ def run(db_path,output,cloud=False,cohort_dir=None,evidence_filename='evidence-v
                 if q['kind']=='number_conflict':valid=valid and 'source_number_identity_resolution' in comp['required_evidence'] and any('source_image_number_coordinate_conflict' in w['warnings'] for w in comp['source_number_warnings'])
                 if q['kind']=='reviewed_artwork':valid=valid and len(comp['artwork']['reviewed_links'])>0
                 if q['kind']=='artwork_difference':valid=valid and len(comp['artwork']['reviewed_difference_links'])>0
+                if q['kind']=='auxiliary_number':valid=valid and comp.get('auxiliary_number_mentions',{}).get('namespace_confirmed') is False and comp['auxiliary_number_mentions']['texts']==q['auxiliary_number_texts']
                 record(q['id'],valid,actual)
             for row in missing:
                 cid=row['card_id'];expected=expected_cards[cid];code,actual=detail_results[cid]
