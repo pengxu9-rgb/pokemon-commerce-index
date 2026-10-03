@@ -1,0 +1,29 @@
+{
+  "schema": "pokemon.source-image-fact-chronology.v2",
+  "targets": 9,
+  "images_byte_verified": 9,
+  "fresh_gemini_model_calls": 9,
+  "root_records_saved_before_new_gemini_results": true,
+  "root_had_prior_batch_and_advisory_context": true,
+  "new_gemini_prior_verdicts_supplied": false,
+  "new_gemini_catalog_text_supplied": false,
+  "independent_review_agreement_established": false,
+  "python_tests": 559,
+  "node_tests": 12,
+  "new_tests": 10,
+  "test_log_sha256": {
+    "python-tests.log": "f4f97323e2b7966b3bf41a70a111c99e20d658cca10c2eb2a7f9503c90698d38",
+    "node-tests-all-v2.log": "dd7762eff162884ce57d2211de4d4c4bf177b821c259eda8250586d176dc969b"
+  },
+  "source_and_image_qualification_scope": "Selected source-scan correspondence advisories; number holds and graph/commerce decisions remain intact.",
+  "supersedes": "chronology-and-tests-v1.json",
+  "original_node_subset_log": "node-tests.log",
+  "original_node_subset_tests": 10,
+  "original_node_count_claim": 12,
+  "original_count_claim_mismatch_retained": true,
+  "correction": "The initial command covered only collectorClient tests (10), while its metadata prematurely claimed the full suite count (12). The complete client + operation test suite was then run: 12 passed. Original log and metadata remain intact.",
+  "node_test_source_sha256": {
+    "integrations/pivota/collectorClient.test.cjs": "295a0d2e65146cb172822e36c95bc1ec173c7029d692c7a41e76591b3d27b79b",
+    "integrations/pivota/collectorOperation.test.cjs": "d091f830e81055a28ac764961a70f1a5beed5dba71f076d879c2eaf21fad136d"
+  }
+}

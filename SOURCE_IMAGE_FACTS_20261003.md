@@ -20,7 +20,7 @@ The frozen cohort covers the five earlier name holds, Ho-Oh's HP discrepancy and
 
 The four basic energies separate literal 基本エネルギー from the symbol-derived canonical names 基本草エネルギー / 基本炎エネルギー. The shovel scan reads あなあけスコップ; the earlier erroneous root transcript remains intact. Ho-Oh's scan visibly reads **HP 100**, while its pinned source declares **80**. Neither raw names nor HP fields are rewritten. Three other selected Pokemon scans agree with pinned HP; this is not a whole-catalog HP audit.
 
-[Compiled observations](catalog/source-image-facts-v1/compilation-v1.json), [review context and tests](catalog/source-image-facts-v1/chronology-and-tests-v1.json).
+[Compiled observations](catalog/source-image-facts-v1/compilation-v1.json), [review context and tests](catalog/source-image-facts-v1/chronology-and-tests-v2.json).
 
 ## Preservation and qualification
 
@@ -32,7 +32,9 @@ The directory remains **70,006 source records / 45,438 coordinates / 33,543 stru
 
 **559 Python and twelve Node tests pass**, including ten new tests for symbol/furigana requirements, literal-versus-interpreted distinction, HP conflicts/nulls, context disclosure, exact-source scope, revision binding, atomic import and invalid claims. Local suites pass **21 new checks**, **57 prior promo checks**, and **105 artwork regressions**. Six new questions were authored after review as engineering diagnostics; they are not held-out collector questions. Actual Node caller journeys use the existing ten-second timeout and two-attempt policy.
 
-The private Cloud Run service now serves **`pokemon-commerce-index-00036-6gh`** at 100% traffic. [New cloud checks](catalog/source-image-facts-v1/private-cloud-replay-v1.json) pass **23/23**, and the [promo regression](catalog/source-image-facts-v1/promo-regression-cloud-v1.json) passes **59/59**. These **82 engineering checks include four repeated unauthenticated 403 denials**. No transport errors or final logical failures are recorded. [Delivery bindings](catalog/source-image-facts-v1/delivery-validation-v1.json) verify runtime/snapshot/review/input hashes, private IAM and unchanged revision/image. This does not establish real-user accuracy or production availability.
+The private Cloud Run service now serves **`pokemon-commerce-index-00036-6gh`** at 100% traffic. [New cloud checks](catalog/source-image-facts-v1/private-cloud-replay-v1.json) pass **23/23**, and the [promo regression](catalog/source-image-facts-v1/promo-regression-cloud-v1.json) passes **59/59**. These **82 engineering checks include four repeated unauthenticated 403 denials**. No transport errors or final logical failures are recorded. [Delivery bindings](catalog/source-image-facts-v1/delivery-validation-v2.json) verify runtime/snapshot/review/input hashes, private IAM and unchanged revision/image. This does not establish real-user accuracy or production availability.
+
+The initial Node log covered only ten client tests while the first test metadata prematurely claimed twelve. The complete client/operation suite was subsequently run and all twelve passed. Both original records and the explicit correction remain in [the final test record](catalog/source-image-facts-v1/chronology-and-tests-v2.json). Runtime and cloud reports did not change for this record correction.
 
 ## Next sequence
 
