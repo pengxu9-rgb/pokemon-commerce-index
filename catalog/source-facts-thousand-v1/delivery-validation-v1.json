@@ -1,0 +1,114 @@
+{
+  "schema": "pokemon.source-facts-thousand-delivery.v1",
+  "verified_at": "2026-10-03T10:31:19.729645+00:00",
+  "deployment": {
+    "revision": "pokemon-commerce-index-00039-n9g",
+    "url": "https://pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+    "image": "us-west1-docker.pkg.dev/pivota-staging/cloud-run-source-deploy/pokemon-commerce-index@sha256:66af8287ce751e0c4aeec1d601d340083255bf07722bb5564aaf9c287ba432fe",
+    "private_iam_verified": true,
+    "revision_unchanged_after_verification": true
+  },
+  "traffic_percent": 100,
+  "private_iam_verified": true,
+  "report_bindings": {
+    "local-replay-v2.json": {
+      "sha256": "16920d86db4b3a30aae1264b7d5e589ed1c9d2618df6937b0127a67140e3a114",
+      "checks": 1018,
+      "transport_errors": []
+    },
+    "prior-facts-local-v1.json": {
+      "sha256": "660982c79ea53b6f551d2c652cc4dafad460411aaa77193d626e02041d80e644",
+      "checks": 21,
+      "transport_errors": []
+    },
+    "private-cloud-replay-v3.json": {
+      "sha256": "6cc85fd0311be2ae74652c1a4ba57f06404125b0ec0c137630b46a6860462d70",
+      "checks": 1020,
+      "transport_errors": [
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "IncompleteRead"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        },
+        {
+          "route": "/catalog-card",
+          "attempt": 1,
+          "error_type": "URLError"
+        }
+      ]
+    },
+    "prior-facts-cloud-v1.json": {
+      "sha256": "88ed5fed6af404e39665d2ce3e2b2a863b0cb951b570e0ed369e320ef99fb893",
+      "checks": 23,
+      "transport_errors": []
+    }
+  },
+  "local_checks": 1039,
+  "cloud_checks": 1043,
+  "final_transport_retries": 10,
+  "unauthenticated_denial_checks": 4,
+  "manifest_sha256": "ef0681f6a672289a9046f1bfb818a8b52948afe34098a203485ecbd76ab20032",
+  "snapshot_sha256": "d48b47e67bb1ee9ef32f6d0a83ad9edcdc0af104cc05c91621ec7bc48eccff2b",
+  "catalog_revision": "0134433efbf470f826c21ea49b0ff88df9470c6c78992ff946f0a9c4891972d6",
+  "runtime_sha256": {
+    "source_image_facts.py": "38881fc73e8779d6bbbc9ec9b9c3e4cf7ac90ef93bed8e0b5024e01f374dc13f",
+    "number_evidence.py": "f190f62d5b5cad061125973558085843d855e1eb116d8beab4971d41b9af49e7",
+    "card_comparison.py": "dc7cd1951d8d00ae2203ff9d7c7e8f3f0428fe80d55e0b13b2507a8d6a005c0f",
+    "collector_discovery.py": "a7932c769e4fa6016d5cb38b461f16a2c49c43148a109ab596cab7f5d2fa3439",
+    "collector_journey.py": "434b138441aee916b6979915cddfd6562ce0e8765a7f7ddbd3867c676835fd94",
+    "core.py": "76fe28456fc7e4c1118c4d04b93e7b52221454c78d74e3928b29ff97ec5f8ee4",
+    "cli.py": "f55f9742b85a087ec9dc578c257a595f980c0db9bba98a1bb38c42e066e1b5d7",
+    "schema.sql": "9e569a8ce2dbbe86ac46c2892fb5d943f7f088534b661c16240cdcd234484bb3"
+  },
+  "ordered_previous_inputs_preserved": 55,
+  "new_compiled_inputs": 2,
+  "prior_number_events_preserved": 178,
+  "prior_fact_events_preserved": 148,
+  "base_tables_preserved": 42,
+  "ocr_initial_screening_subjects": 976,
+  "two_image_model_subjects_added": 0,
+  "previous_failed_cloud_replay_retained": true,
+  "final_logical_failures": 0,
+  "independent_ground_truth_or_marketplace_accuracy_established": false,
+  "physical_or_commerce_approvals_added": false
+}

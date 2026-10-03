@@ -1,6 +1,6 @@
 """Fresh image-only structured title/symbol/HP observations via Vertex."""
 from __future__ import annotations
-import argparse,base64,hashlib,json,subprocess
+import argparse,base64,hashlib,json,subprocess,threading
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime,timezone
 from pathlib import Path
@@ -35,17 +35,22 @@ def parse(response):
     validate_reading(reading)
     return reading,hashlib.sha256(text.encode()).hexdigest()
 
-def run(cohort,output,project,location):
+def run(cohort,output,project,location,concurrency=3):
+    if type(concurrency)!=int or not 1<=concurrency<=8:raise ValueError('concurrency must be between one and eight')
     lock=output.with_suffix('.protocol.json')
+    attempts=output.with_suffix('.attempts.jsonl')
     protocol=dict(schema='pokemon.source-image-fact-protocol.v1',cohort_sha256=sha(cohort),
         script_sha256=sha(Path(__file__)),prompt_sha256=hashlib.sha256(PROMPT.encode()).hexdigest(),
         model=MODEL,project=project,location=location,expected_catalog_text_supplied=False,
-        previous_verdicts_supplied=False,search_enabled=False,concurrency=3)
-    if output.exists() or lock.exists():raise FileExistsError('use new immutable fact review outputs')
+        previous_verdicts_supplied=False,search_enabled=False,concurrency=concurrency,
+        attempt_ledger=attempts.name,attempt_ledger_schema='pokemon.source-image-fact-attempt.v1')
+    if output.exists() or lock.exists() or attempts.exists():raise FileExistsError('use new immutable fact review outputs')
     lock.write_text(json.dumps(protocol,indent=2)+'\n')
     rows=list(map(json.loads,cohort.read_text().splitlines()))
     if len({r['target_id'] for r in rows})!=len(rows):raise ValueError('duplicate fact target')
     token=subprocess.check_output(['gcloud','auth','print-access-token'],text=True,stderr=subprocess.DEVNULL).strip()
+    ledger_lock=threading.Lock()
+    ledger=attempts.open('x')
     def one(c):
         r=dict(schema='pokemon.source-image-fact-inspection.v1',target_id=c['target_id'],
             actor='vertex:'+MODEL+':source-image-facts-v1',model_family='google',model_version=MODEL,
@@ -55,15 +60,24 @@ def run(cohort,output,project,location):
             body=Path(c['image_path']).read_bytes()
             if hashlib.sha256(body).hexdigest()!=c['image_sha256']:raise ValueError('image changed')
             request=dict(contents=[dict(role='user',parts=[dict(text=PROMPT),dict(inlineData=dict(mimeType=_mime(body),data=base64.b64encode(body).decode()))])],generationConfig=dict(responseMimeType='application/json',maxOutputTokens=4096))
+            attempt=dict(schema='pokemon.source-image-fact-attempt.v1',target_id=c['target_id'],
+                source_ref=c['source_ref'],image_sha256=c['image_sha256'],protocol_sha256=sha(lock),
+                started_at=datetime.now(timezone.utc).isoformat(),
+                request_sha256=hashlib.sha256(json.dumps(request,sort_keys=True).encode()).hexdigest())
+            r['attempt_id']=hashlib.sha256(json.dumps(attempt,sort_keys=True).encode()).hexdigest()
+            with ledger_lock:
+                ledger.write(json.dumps(attempt|dict(attempt_id=r['attempt_id']),sort_keys=True)+'\n');ledger.flush()
             response=_call_model(project,location,token,request);r['model_response']=response
             reading,response_sha=parse(response);r.update(reading=reading,response_sha256=response_sha,status='reviewed')
         except Exception as e:r.update(error_type=type(e).__name__,validation_error=str(e)[:200])
         r['reviewed_at']=datetime.now(timezone.utc).isoformat();return r
-    with ThreadPoolExecutor(max_workers=3) as pool,output.open('x') as handle:
-        for f in as_completed([pool.submit(one,c) for c in rows]):
-            r=f.result();handle.write(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n');handle.flush()
-            print(json.dumps(dict(target_id=r['target_id'],status=r['status'])),flush=True)
+    try:
+        with ThreadPoolExecutor(max_workers=concurrency) as pool,output.open('x') as handle:
+            for f in as_completed([pool.submit(one,c) for c in rows]):
+                r=f.result();handle.write(json.dumps(r,ensure_ascii=False,sort_keys=True)+'\n');handle.flush()
+                print(json.dumps(dict(target_id=r['target_id'],status=r['status'])),flush=True)
+    finally:ledger.close()
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--cohort',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--project',default='pivota-staging');p.add_argument('--location',default='global');a=p.parse_args();run(a.cohort,a.output,a.project,a.location)
+    p.add_argument('--project',default='pivota-staging');p.add_argument('--location',default='global');p.add_argument('--concurrency',type=int,default=3);a=p.parse_args();run(a.cohort,a.output,a.project,a.location,a.concurrency)

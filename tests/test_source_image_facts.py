@@ -112,3 +112,11 @@ class SourceImageFactTests(unittest.TestCase):
         self.assertNotEqual(facts.title_structure(a),facts.title_structure(reading(title_text_parts=["Ethan's Vileplume ex"],title_symbols=[])))
         self.assertNotEqual(facts.title_structure(a),facts.title_structure(reading(title_text_parts=["Erika's Vileplume GX"],title_symbols=[])))
         self.assertEqual(a['title_text_parts'],['Erika’s Vileplume ex'])
+
+    def test_mixed_case_ex_ocr_suffix_preserves_legacy_ex_and_other_mechanics(self):
+        a=reading(title_text_parts=['Mega Meganium eX'],title_symbols=[])
+        b=reading(title_text_parts=['Mega Meganium','ex'],title_symbols=[])
+        self.assertEqual(facts.title_structure(a),facts.title_structure(b))
+        for title in ['Mega Meganium EX','Mega Meganium GX','Mega Meganium V','Mega Meganium','Other Meganium ex']:
+            self.assertNotEqual(facts.title_structure(a),facts.title_structure(reading(title_text_parts=[title],title_symbols=[])))
+        self.assertEqual(a['title_text_parts'],['Mega Meganium eX'])

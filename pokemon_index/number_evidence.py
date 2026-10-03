@@ -168,6 +168,16 @@ def import_evidence(db, rows):
     return len(prepared)
 
 
+def inspection_tier(reviews):
+    """Disclose OCR screening separately from two image-model observations."""
+    families = {r['model_family'].casefold() for r in reviews}
+    if 'apple-vision-ocr' in families:
+        return 'ocr_and_image_model_screening'
+    if families == {'openai', 'google'}:
+        return 'two_image_model_families'
+    return 'separate_review_families'
+
+
 def context(db, card_id):
     latest = db.execute('SELECT record_json FROM card_number_reading_evidence WHERE card_id=? '
                         'ORDER BY revision DESC LIMIT 1', (card_id,)).fetchone()
@@ -182,6 +192,7 @@ def context(db, card_id):
                        if r['observed_number_text'] is not None})
     usable = current and row['status'] != 'reading_hold'
     return dict(schema='pokemon.number-reading-context.v1', event_id=row['event_id'],
+                inspection_tier=inspection_tier([r for g in row['review_groups'] for r in g['reviews']]),
                 current_endpoint=current, status=row['status'] if current else 'stale_endpoint',
                 catalog_number=row['endpoint_snapshot']['collector_number'],
                 observed_number_texts=readings if usable else [],
@@ -196,6 +207,10 @@ def status(db):
     contexts = [context(db, row[0]) for row in heads]
     return dict(number_reading_events=db.execute('SELECT count(*) FROM card_number_reading_evidence').fetchone()[0],
                 number_reading_subjects=len(heads),
+                ocr_screening_number_subjects=sum(c['inspection_tier']=='ocr_and_image_model_screening' for c in contexts),
+                two_image_model_number_subjects=sum(c['inspection_tier']=='two_image_model_families' for c in contexts),
+                current_agreed_ocr_number_screenings=sum(c['inspection_tier']=='ocr_and_image_model_screening' and c['visible_text_agreement'] for c in contexts),
+                current_agreed_two_image_model_readings=sum(c['inspection_tier']=='two_image_model_families' and c['visible_text_agreement'] for c in contexts),
                 current_agreed_number_readings=sum(c['visible_text_agreement'] for c in contexts),
                 number_reading_holds=sum(c['status'] == 'reading_hold' for c in contexts),
                 stale_number_readings=sum(not c['current_endpoint'] for c in contexts),

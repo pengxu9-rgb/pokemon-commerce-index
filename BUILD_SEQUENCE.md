@@ -1,5 +1,11 @@
 # Active build sequence — 2 October 2026
 
+**千项批次交付验收：** 私有 revision `00039-n9g`；1,043 项云端工程检查、1,039 项本地检查、572 项 Python 测试及 12 项 Node 测试通过；另有 8 项针对云端比对与中断重试的守护测试通过。10 次最终云端传输中断已恢复，历史失败记录完整保留。[交付证据](catalog/source-facts-thousand-v1/delivery-validation-v1.json)。
+
+## Thousand-target initial screening — 2026-10-03
+
+[Implementation and next priorities](SOURCE_FACTS_THOUSAND_20261003.md): all 1,000 frozen subjects have outcomes; 976 decodable source scans were read by Apple Vision OCR and Gemini, with 670 scoped title/number correspondences and 743 title advisories. This is a separately disclosed OCR initial-screening tier, not new OpenAI/Gemini reviews or new catalog identities. Twenty-four missing images and 306 number holds remain explicit. The frozen next escalation has 332 distinct subjects, including two additional title holds; prioritize the fifty SV2A number holds and complex mechanic/symbol titles before paired-artwork reviews. Catalog records, coordinates, prior evidence and graph decisions remain preserved. Private revision `00039-n9g` serves the new snapshot; live merchant offers still require an authorized feed.
+
 ## Latest completed evidence step — 3 October 2026
 
 [The frozen 100-target cross-release batch](CROSS_RELEASE_SOURCE_FACTS_20261003.md) is complete: 99 acquired/reviewed scans, 98 number/title correspondences, one Prism Star interpretation hold and one unavailable source image. Cumulative source facts cover 148 subjects; number evidence covers 178. The next 1,000 unreviewed metadata targets and fourteen source-bound artwork-pair hypotheses are frozen. Proceed with source-image qualification at scale, then separate two-image artwork reviews before graph import. Catalog identities and live offers are unchanged; authorized price feeds still require Buy&Ship. Private staging serves revision `00038-jsw`; 563 Python, twelve Node and 141 cloud engineering checks pass.

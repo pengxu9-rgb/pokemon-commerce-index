@@ -84,8 +84,10 @@ def title_structure(reading):
         # in this comparison key, never trainer names or mechanic markers.
         text+=compact(part).translate(str.maketrans({'’':"'",'‘':"'"}))
         if i in symbols:
-            sequence.extend([('text',text),('symbol',symbols[i])]);text=''
-    if text:sequence.append(('text',text))
+            sequence.extend([('text',re.sub(r'eX$','ex',text)),('symbol',symbols[i])]);text=''
+    # Mixed-case eX is the OCR rendering of a stylized ex suffix. Preserve
+    # legacy all-capital EX and every other mechanic marker and literal name.
+    if text:sequence.append(('text',re.sub(r'eX$','ex',text)))
     return sequence
 
 def event_id(row):return 'source-image-fact:'+supported_catalog.digest({k:v for k,v in row.items() if k!='event_id'})
@@ -141,6 +143,7 @@ def context(db,card_id):
     current=number_evidence.snapshot(db,card_id)==row['endpoint_snapshot']
     result=outcomes(row) if current else dict(name_status='stale_endpoint',title_interpretations=[],hp_status='stale_endpoint',observed_hp=None,observed_number_agreement=False,warnings=['stale_source_image_facts'])
     return dict(schema='pokemon.source-image-fact-context.v1',event_id=row['event_id'],current_endpoint=current,
+        inspection_tier=number_evidence.inspection_tier(row['reviews']),
         evidence_level='advisory_with_review_context_disclosed',source_ref=row['source_ref'],image_sha256=row['image_sha256'],
         pinned_source_hp=row['pinned_source_hp'],reviews=row['reviews'],**result,**{k:False for k in FALSE_CLAIMS},
         number_reading_qualification_changed=False,scope='Selected exact source scan only; no sibling, physical-copy, graph or commerce approval.')
@@ -150,4 +153,6 @@ def status(db):
     contexts=[context(db,r[0]) for r in heads]
     return dict(source_image_fact_events=db.execute('SELECT count(*) FROM source_image_fact_evidence').fetchone()[0],
         source_image_fact_subjects=len(heads),current_title_correspondence_advisories=sum(c['name_status'] in {'literal_correspondence_advisory','symbol_correspondence_advisory'} for c in contexts),
+        ocr_screening_source_fact_subjects=sum(c['inspection_tier']=='ocr_and_image_model_screening' for c in contexts),
+        two_image_model_source_fact_subjects=sum(c['inspection_tier']=='two_image_model_families' for c in contexts),
         source_image_hp_conflicts=sum(c['hp_status']=='source_hp_conflict' for c in contexts),stale_source_image_facts=sum(not c['current_endpoint'] for c in contexts))

@@ -1,0 +1,101 @@
+{
+  "targets": 1000,
+  "decoded_images": 976,
+  "language_acquired": {
+    "ja": 476,
+    "en": 500
+  },
+  "release_outcomes": {
+    "en:ME02.5": {
+      "catalog_text_observed": 48,
+      "reading_hold": 2
+    },
+    "en:SM11": {
+      "catalog_text_observed": 37,
+      "reading_hold": 13
+    },
+    "en:SM12": {
+      "catalog_text_observed": 40,
+      "reading_hold": 10
+    },
+    "en:SV01": {
+      "catalog_text_observed": 46,
+      "reading_hold": 4
+    },
+    "en:SV02": {
+      "catalog_text_observed": 47,
+      "reading_hold": 3
+    },
+    "en:SV04": {
+      "catalog_text_observed": 45,
+      "reading_hold": 5
+    },
+    "en:SV04.5": {
+      "reading_hold": 5,
+      "catalog_text_observed": 45
+    },
+    "en:SV08": {
+      "catalog_text_observed": 43,
+      "reading_hold": 7
+    },
+    "en:SV10": {
+      "catalog_text_observed": 47,
+      "reading_hold": 3
+    },
+    "en:SWSH8": {
+      "catalog_text_observed": 45,
+      "reading_hold": 5
+    },
+    "ja:M2A": {
+      "catalog_text_observed": 25,
+      "reading_hold": 25
+    },
+    "ja:M6A": {
+      "catalog_text_observed": 11,
+      "reading_hold": 18,
+      "held": 21
+    },
+    "ja:MC": {
+      "catalog_text_observed": 38,
+      "reading_hold": 12
+    },
+    "ja:S12A": {
+      "reading_hold": 20,
+      "catalog_text_observed": 30
+    },
+    "ja:S8B": {
+      "catalog_text_observed": 37,
+      "reading_hold": 10,
+      "held": 3
+    },
+    "ja:SM12A": {
+      "catalog_text_observed": 19,
+      "reading_hold": 31
+    },
+    "ja:SM8B": {
+      "catalog_text_observed": 20,
+      "reading_hold": 30
+    },
+    "ja:SV2A": {
+      "reading_hold": 50
+    },
+    "ja:SV4A": {
+      "catalog_text_observed": 24,
+      "reading_hold": 26
+    },
+    "ja:SV8A": {
+      "catalog_text_observed": 23,
+      "reading_hold": 27
+    }
+  },
+  "escalation_subjects": 332,
+  "escalation_reasons": {
+    "number_or_title_initial_screening_hold": 306,
+    "source_image_title_unconfirmed": 233,
+    "source_image_unavailable": 24
+  },
+  "secondary_hp_holds": 534,
+  "new_graph_edges": 0,
+  "new_catalog_identities": 0,
+  "scope": "Selected source-coordinate scans; 332 prioritized holds are not bad catalog labels or independent precision failures."
+}

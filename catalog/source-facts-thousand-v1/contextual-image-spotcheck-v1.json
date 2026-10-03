@@ -1,0 +1,20 @@
+{
+  "schema": "pokemon.context-disclosed-source-image-spotcheck.v1",
+  "target_id": "cross-scale-0402",
+  "card_id": "ja:SV2A:007/165:normal",
+  "source_ref": "https://assets.tcgdex.net/ja/SV/SV2a/007/high.webp",
+  "image_sha256": "c992abdd762e49e439039c3a9a285ce4d54f17a8aab8ecc19b872c1012c76657",
+  "image_bytes_verified": true,
+  "actor": "root:context-disclosed-actual-image-inspection",
+  "reviewed_at": "2026-10-03T10:15:16.219006+00:00",
+  "expected_catalog_context_visible": true,
+  "previous_ocr_and_gemini_readings_visible": true,
+  "observed_title": "ゼニガメ",
+  "observed_number_text": "007/165 C",
+  "observed_hp": 60,
+  "observed_visual_overlay": "Repeating Poké Ball motifs on this source scan only.",
+  "scope": "One actual full-image diagnostic after seeing both readers. Visible text matches the Gemini reading while native OCR gave low confidence. Not an independent review, physical foil assignment, seller-copy verification or evidence upgrade.",
+  "source_of_all_fifty_sv2a_holds_proven": false,
+  "evidence_events_added": 0,
+  "physical_or_market_approval": false
+}

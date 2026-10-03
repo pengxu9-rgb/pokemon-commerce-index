@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/rehearse_source_image_facts.py", line 118, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--db',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--cloud',action='store_true');p.add_argument('--cohort-dir',type=Path);p.add_argument('--evidence-filename',default='evidence-v1.jsonl');p.add_argument('--outcomes-filename');a=p.parse_args();print(json.dumps(run(a.db,a.output,a.cloud,a.cohort_dir,a.evidence_filename,a.outcomes_filename)))
+                                                                                                                                                                                                                                                                                                                                                                                      ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/rehearse_source_image_facts.py", line 82, in run
+    record('card:'+cid,valid,dict(card_id=cid,source_image_facts=fact,number_reading=number))
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pengchydan/Documents/Codex/2026-09-23/https-claude-ai-artifact-uhntvwss2w4etocrnugdtv-https/outputs/pokemon-commerce-index/scripts/rehearse_source_image_facts.py", line 61, in record
+    if not passed:raise AssertionError(key)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: card:ja:SV4A:191/190:holo

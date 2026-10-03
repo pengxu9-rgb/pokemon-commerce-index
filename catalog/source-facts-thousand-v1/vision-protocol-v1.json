@@ -1,0 +1,21 @@
+{
+  "schema": "pokemon.apple-vision-image-only-protocol.v1",
+  "cohort_sha256": "dfcdf0b1247f4020168ba1bd6c5d96633b9796e60552b40d6b9cd2a75b2f6b3b",
+  "input_sha256": "328a0482aec31c0f69209aeb3ac4daee0c8351c7f20eea89b2d6c78cc756a662",
+  "swift_source_sha256": "9009bea205827d2b9a57ed1ad21f3cba1200ca1e928f4a9dd6576ecfaa1b0b7b",
+  "binary_sha256": "a407cf7a34b97cb33ccdac6f760e95da1061d280e7779eb285e644a94139603a",
+  "derivation_script_sha256": "d78dee78fa6bcd864e5bf242be534830f8a2418234821407aad89f00eb876fdf",
+  "subjects": 976,
+  "minimum_engine_confidence": 0.5,
+  "expected_catalog_text_supplied": false,
+  "previous_verdicts_supplied": false,
+  "recognition_language_from_catalog": true,
+  "custom_words": [],
+  "language_correction": false,
+  "methods": [
+    "apple_vision_ocr",
+    "deterministic_literal_extraction"
+  ],
+  "independent_image_model_review": false,
+  "independent_ground_truth_established": false
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "pokemon.source-facts-thousand-chronology.v1",
+  "file_bindings": {
+    "image-cohort-v1.jsonl": {
+      "sha256": "dfcdf0b1247f4020168ba1bd6c5d96633b9796e60552b40d6b9cd2a75b2f6b3b",
+      "mtime_utc": "2026-10-03T09:52:37.029763+00:00"
+    },
+    "vision-protocol-v1.json": {
+      "sha256": "da5bd07ba6c5b4f89db1b5dedd4ce82ecc6c445549e77f5b6e27e68d6c57f92f",
+      "mtime_utc": "2026-10-03T09:52:37.350224+00:00"
+    },
+    "vision-input-v1.jsonl": {
+      "sha256": "328a0482aec31c0f69209aeb3ac4daee0c8351c7f20eea89b2d6c78cc756a662",
+      "mtime_utc": "2026-10-03T09:52:37.348872+00:00"
+    },
+    "vision-native-v1.jsonl": {
+      "sha256": "68d5a0d1035c64026eb7d08a54dcf91009481cf5e61e992bb0d87e4e7db3d5b2",
+      "mtime_utc": "2026-10-03T09:54:31.063401+00:00"
+    },
+    "vision-review-v1.jsonl": {
+      "sha256": "d632292b54dd9abeb130a3ebbb344d0d34d29f24083434dc92df5de181111a24",
+      "mtime_utc": "2026-10-03T09:54:53.033626+00:00"
+    },
+    "gemini-review-v1.protocol.json": {
+      "sha256": "1fac311b1ba3be2f82b164cbd8068b4505c3ba8699f2611a50c888d8598c1423",
+      "mtime_utc": "2026-10-03T09:55:16.840448+00:00"
+    },
+    "gemini-review-v2.protocol.json": {
+      "sha256": "0aebffc22d5917f6ad6ec9861a5234463effa66cc0cdeb896d6a22c6e688b488",
+      "mtime_utc": "2026-10-03T09:59:42.915937+00:00"
+    },
+    "gemini-selected-v1.jsonl": {
+      "sha256": "e00b746543d83645ca7d67d2472600bd1d9a01ac814522356c3e810148e77685",
+      "mtime_utc": "2026-10-03T10:09:23.750968+00:00"
+    },
+    "gemini-attempt-selection-v2.json": {
+      "sha256": "71c3bb9a523ac82844edde63a6015d534d91bc7b36f52b9742e3f4aa60c60afe",
+      "mtime_utc": "2026-10-03T10:11:33.743191+00:00"
+    },
+    "number-evidence-v1.jsonl": {
+      "sha256": "57f703b84fa3068733f84121c5b12bf40a3772cf01947a354125a86807494651",
+      "mtime_utc": "2026-10-03T10:09:26.167041+00:00"
+    },
+    "evidence-v1.jsonl": {
+      "sha256": "b6b5b31059f5030ab8536920258c6d1d6358342227aa280dfb55ba7f07b435f3",
+      "mtime_utc": "2026-10-03T10:09:28.842692+00:00"
+    },
+    "number-compilation-v1.json": {
+      "sha256": "faa733b503515fc470cee528a51a8f96ecd995e550136b0335932f2b031af069",
+      "mtime_utc": "2026-10-03T10:09:26.176502+00:00"
+    },
+    "compilation-v1.json": {
+      "sha256": "2740757aa0851f40f63ef8410f38462c7c23c70796119c0dab17e96c5b022de6",
+      "mtime_utc": "2026-10-03T10:09:28.871588+00:00"
+    },
+    "contextual-image-spotcheck-v1.json": {
+      "sha256": "75d827560c5903e1a78e075480aea08e3f305e5a150883435884431c1649cd25",
+      "mtime_utc": "2026-10-03T10:15:16.219213+00:00"
+    },
+    "python-tests-final.log": {
+      "sha256": "a5e3d725dd0541ae4cbbcd5c0c576efbc4bf7333d17d15a58c25f60e35b5e972",
+      "mtime_utc": "2026-10-03T10:06:46.951338+00:00"
+    },
+    "node-tests-v1.log": {
+      "sha256": "2eb3123b3967f2a2cc0b2226e4f139da92de00cb7b010f025711d6c1a2accdb8",
+      "mtime_utc": "2026-10-03T09:55:19.325067+00:00"
+    }
+  },
+  "first_lane_records": 976,
+  "first_lane_is_ocr": true,
+  "first_lane_last_native_timestamp": "2026-10-03T09:54:31Z",
+  "first_lane_output_frozen_before_second_lane_protocol": true,
+  "first_lane_expected_name_number_and_hp_context_supplied": false,
+  "first_lane_language_from_catalog": true,
+  "gemini_catalog_values_previous_readings_and_search_supplied": false,
+  "contextual_actual_image_spotchecks": 1,
+  "contextual_spotchecks_not_imported_as_independent_reviews": true,
+  "resumed_and_retry_attempt_ledger_records": 850,
+  "completed_attempt_records": 987,
+  "structured_model_responses": 976,
+  "transport_failure_records": 11,
+  "unrecorded_inflight_outcomes_maximum": 3,
+  "billable_api_call_total_unknown": true,
+  "python_tests_final": 572,
+  "node_tests": 12,
+  "independent_accuracy_established": false
+}

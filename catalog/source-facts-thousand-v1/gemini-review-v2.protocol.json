@@ -1,0 +1,15 @@
+{
+  "schema": "pokemon.source-image-fact-protocol.v1",
+  "cohort_sha256": "66f72a6ab452bb488e89aeda41e55c65c873924f5f74ad56d1f63004eef07d78",
+  "script_sha256": "3bae2f22235e1d6065ccfe8848ba1404617b2bcc1dce9e5620cdf6ad44d5a535",
+  "prompt_sha256": "e66a6822b9e96f4f9c820cfcd71a8190b968738c7f179f5c32f7e2f5a118bace",
+  "model": "gemini-3.8-flash",
+  "project": "pivota-staging",
+  "location": "global",
+  "expected_catalog_text_supplied": false,
+  "previous_verdicts_supplied": false,
+  "search_enabled": false,
+  "concurrency": 8,
+  "attempt_ledger": "gemini-review-v2.attempts.jsonl",
+  "attempt_ledger_schema": "pokemon.source-image-fact-attempt.v1"
+}

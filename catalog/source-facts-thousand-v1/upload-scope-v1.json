@@ -1,0 +1,12 @@
+{
+  "schema": "pokemon.source-facts-thousand-upload-scope.v1",
+  "uploaded_new_batch_inputs": [
+    "catalog/source-facts-thousand-v1/number-evidence-v1.jsonl",
+    "catalog/source-facts-thousand-v1/evidence-v1.jsonl"
+  ],
+  "manifest_steps": 57,
+  "all_manifest_inputs_present": true,
+  "new_raw_reviews_images_and_diagnostics_excluded": true,
+  "gcloudignore_sha256": "25383fc9bc08a7372386979f84f7f48948fb31fc1cbbaa2cd1ac936e7657a06a",
+  "dockerignore_sha256": "0d3bb671651a461f560d085b67e55a24700fa4c05bc5788a52bcef4ed69384b1"
+}

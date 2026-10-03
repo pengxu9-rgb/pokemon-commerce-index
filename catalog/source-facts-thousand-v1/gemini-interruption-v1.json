@@ -1,0 +1,11 @@
+{
+  "schema": "pokemon.image-review-interruption.v1",
+  "interrupted_at": "2026-10-03T09:59:03.480611+00:00",
+  "preserved_response_records": 137,
+  "remaining_subjects": 839,
+  "maximum_inflight_requests_without_response": 3,
+  "unrecorded_inflight_outcomes_unknown": true,
+  "all_prior_responses_preserved": true,
+  "runner_source_sha256": "fea78abb56e5d9659340dee8dfce2f42eeccb5cc743e60927a7a241b6ab4e06c",
+  "scope": "Worker paused to resume remaining subjects at bounded concurrency. Completed response count is not total billable API calls; up to three submitted requests lack saved responses."
+}

@@ -1,5 +1,11 @@
 # Japanese and English card catalog coverage — 23 September 2026
 
+**千项批次交付验收：** 私有 revision `00039-n9g`；1,043 项云端工程检查、1,039 项本地检查、572 项 Python 测试及 12 项 Node 测试通过；另有 8 项针对云端比对与中断重试的守护测试通过。10 次最终云端传输中断已恢复，历史失败记录完整保留。[交付证据](catalog/source-facts-thousand-v1/delivery-validation-v1.json)。
+
+## Thousand-target initial screening — 2026-10-03
+
+[Implementation and next priorities](SOURCE_FACTS_THOUSAND_20261003.md): all 1,000 frozen subjects have outcomes; 976 decodable source scans were read by Apple Vision OCR and Gemini, with 670 scoped title/number correspondences and 743 title advisories. This is a separately disclosed OCR initial-screening tier, not new OpenAI/Gemini reviews or new catalog identities. Twenty-four missing images and 306 number holds remain explicit. The frozen next escalation has 332 distinct subjects, including two additional title holds; prioritize the fifty SV2A number holds and complex mechanic/symbol titles before paired-artwork reviews. Catalog records, coordinates, prior evidence and graph decisions remain preserved. Private revision `00039-n9g` serves the new snapshot; live merchant offers still require an authorized feed.
+
 **Latest evidence update, 3 October 2026:** [Cross-release source facts](CROSS_RELEASE_SOURCE_FACTS_20261003.md) processes a frozen hundred across twenty releases: 99 acquired/reviewed scans, 98 title/number correspondences, one acquired-symbol hold and one unavailable image. Cumulative source facts cover 148 subjects (147 title advisories, one HP conflict); number evidence covers 178 subjects (172 usable, six held). Catalog counts remain 70,006 source records, 45,438 coordinates and 33,543 structural eligible records. No new SKU, graph edge or physical/commerce permission is claimed. The next 1,000 metadata targets remain unreviewed; the older dated coverage sections below retain their historical counts.
 
 The catalog can be built without Buy&Ship. The 23 September pinned baseline contains **55,165 internal card identities across 543 card-bearing language-and-set combinations**: 27,092 Japanese identities in 342 sets and 28,073 English identities in 201 sets, plus 24,039 Japanese and 9,208 English source reference records. The 26 September increment below adds two internal candidates. These are card metadata, not live offers or prices.
