@@ -1,0 +1,65 @@
+{
+  "schema": "pokemon.displayed-source-title-review-items.v1",
+  "snapshot_sha256": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "trigger": "ICU-03 now resolves requested リザードン to dex 6; some candidate source titles read カリザード",
+  "status": "Needs source evidence review. No spelling correction, card identity conclusion, source mutation, or physical-printing approval is established.",
+  "records": [
+    {
+      "card_id": "ja:E1:071/128:normal_1st_edition",
+      "language": "ja",
+      "set_code": "E1",
+      "collector_number": "071/128",
+      "variant": "normal_1st_edition",
+      "name": "カリザード",
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/071.ts:sha256:69d793a31ae53bc7ab09dd63001add25d85a84bde09a486f94941168858fee2c",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "effective_species_evidence": [
+        {
+          "card_id": "ja:E1:071/128:normal_1st_edition",
+          "facet_type": "dex_id",
+          "value": "6",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/071.ts:sha256:69d793a31ae53bc7ab09dd63001add25d85a84bde09a486f94941168858fee2c",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+        }
+      ]
+    },
+    {
+      "card_id": "ja:E1:103/128:normal_1st_edition",
+      "language": "ja",
+      "set_code": "E1",
+      "collector_number": "103/128",
+      "variant": "normal_1st_edition",
+      "name": "カリザード",
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/103.ts:sha256:e66579c2da80f1250dcf9aa5ddae6fe16d409bd54bef0f3aed750638217b42b4",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "effective_species_evidence": [
+        {
+          "card_id": "ja:E1:103/128:normal_1st_edition",
+          "facet_type": "dex_id",
+          "value": "6",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/103.ts:sha256:e66579c2da80f1250dcf9aa5ddae6fe16d409bd54bef0f3aed750638217b42b4",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+        }
+      ]
+    },
+    {
+      "card_id": "ja:E5:089/088:normal_1st_edition",
+      "language": "ja",
+      "set_code": "E5",
+      "collector_number": "089/088",
+      "variant": "normal_1st_edition",
+      "name": "カリザード",
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E5/089.ts:sha256:e6312a0d11fa59f96d1c85a4f7f36c77a01ec7bc3291217d2587d3b517c35052",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "effective_species_evidence": [
+        {
+          "card_id": "ja:E5:089/088:normal_1st_edition",
+          "facet_type": "dex_id",
+          "value": "6",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E5/089.ts:sha256:e6312a0d11fa59f96d1c85a4f7f36c77a01ec7bc3291217d2587d3b517c35052",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+        }
+      ]
+    }
+  ]
+}

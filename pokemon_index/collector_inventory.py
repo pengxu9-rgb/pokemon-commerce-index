@@ -114,6 +114,10 @@ def compare(db, request: dict) -> dict:
     exact={r['card_id'] for r in result['owned_in_scope']}
     possible={r['card_id'] for r in result['possible_owned']}
     missing=[r for r in rows if r['card_id'] not in excluded]
+    if scope['task'] == 'set_cards':
+        # Removing owned versions changes which coordinate has an available
+        # first version. Diversify the remaining full pool before pagination.
+        missing=collector_discovery._set_browse_order(missing)
     result['missing_catalog_records']=[collector_discovery._card_result(db,r) for r in missing[offset:offset+limit]]
     result['coverage']=dict(scoped_catalog_records=count,asserted_owned_records=len(exact),
                             possible_owned_records=len(possible),not_in_resolved_inventory=len(missing),

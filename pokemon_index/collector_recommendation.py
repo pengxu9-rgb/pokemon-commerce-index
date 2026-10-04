@@ -24,9 +24,37 @@ HARD_RELEASE = (r'\b(?:only|exclusively|strictly)\s+from\b|'
                 r'\bfrom\b[^.;。！？]{0,120}\bonly\b')
 
 
+def bounded_negative_intent(db,text):
+    """Two exact collection operations, not a general negation interpreter."""
+    t=discovery._norm(text)
+    ownership=re.fullmatch(r"(.*\bcards)\s+i (?:don['’]t|do not) already own[.!?\s]*",t)
+    if ownership and not re.search(NEGATED_TASTE,ownership[1]):
+        return dict(positive_text=ownership[1],owned_inventory=True,excluded_dex_ids=[])
+    excluded=re.fullmatch(r'(.*?)(?:\bbut\s+)?\bexclude\s+([^.;!?]+)[.!?\s]*',t)
+    if not excluded:return None
+    positive=excluded[1].rstrip(' ,');name=excluded[2].strip()
+    if re.search(NEGATED_TASTE,positive):return None
+    if re.search(r'\bfrom\b',positive) and len(discovery._release_codes(db,positive,discovery._languages(positive)))!=1:
+        return None
+    mentions=discovery._character_mentions(db,name,maximal=False,current_only=True)
+    ids={dex for dex,start,end,_ in mentions if start==0 and end==len(name)}
+    if len(ids)!=1:return None
+    dex=next(iter(ids))
+    # A longer card title containing the same character (e.g. Mew ex) is a
+    # title-qualified exclusion, not an unambiguous whole-species instruction.
+    if any(value==dex and end-start<len(name) for value,start,end,_ in mentions):return None
+    if dex in discovery._character_ids(db,positive):return None
+    return dict(positive_text=positive,owned_inventory=False,excluded_dex_ids=[dex])
+
+
+def positive_query(db,text):
+    intent=bounded_negative_intent(db,text)
+    return intent['positive_text'] if intent else text
+
+
 def taste_clarification(db, text):
     """Hold unsupported intent instead of converting exclusions to positive taste."""
-    t=discovery._norm(text)
+    t=discovery._norm(positive_query(db,text))
     if re.search(NEGATED_TASTE,t):
         return 'That negative preference was not applied. Explicitly choose which character, illustrator or release to include or exclude before selecting a target.'
     if re.search(HARD_RELEASE,t) and len(discovery._release_codes(db,t,discovery._languages(t)))!=1:
@@ -36,7 +64,7 @@ def taste_clarification(db, text):
 
 def clarification_requirements(db, text):
     """Describe which explicit action can resolve a held assertion, not its meaning."""
-    t=discovery._norm(text)
+    t=discovery._norm(positive_query(db,text))
     prompt=taste_clarification(db,text)
     if not prompt:return []
     constraints=[]
@@ -123,9 +151,13 @@ def parse_taste(db, text, *, next_goal=False):
     """Only current unambiguous catalog names; completed collections are not preferences."""
     t=discovery._norm(text)
     if taste_clarification(db,text):return {'subjective_notes':[text[:160]]}
+    negative=bounded_negative_intent(db,text)
+    if negative:t=negative['positive_text']
     if next_goal or re.search(NEXT,t):
         notes=[term for term in STYLE_TERMS if discovery._mentioned(t,term)]
-        return {'subjective_notes':notes} if notes else {}
+        patch={'subjective_notes':notes} if notes else {}
+        if negative and negative['excluded_dex_ids']:patch['excluded_dex_ids']=negative['excluded_dex_ids']
+        return patch
     ids=discovery._character_ids(db,t)
     # Explicit bilingual species aliases, accepted only if current facets contain them.
     for aliases,dex in [(('皮卡丘',),25),(('梦幻','夢幻'),151)]:
@@ -136,7 +168,7 @@ def parse_taste(db, text, *, next_goal=False):
     artists=discovery._artists(db,t)
     if not artists:
         artists=[r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'") if discovery._norm(r[0])==t.strip(' .。!！')]
-    patch={}
+    patch={'excluded_dex_ids':negative['excluded_dex_ids']} if negative and negative['excluded_dex_ids'] else {}
     if len(ids)==1:patch['preferred_dex_ids']=ids
     if len(artists)==1:patch['preferred_illustrators']=artists
     codes=discovery._release_codes(db,t,['ja','en'])
@@ -154,10 +186,11 @@ def parse_taste(db, text, *, next_goal=False):
 
 def question_constraints(text, db=None):
     """Supported explicit language/finish filters and budget assertions; no affordability."""
-    t=discovery._norm(text);scope={};preferences={}
+    negative=bounded_negative_intent(db,text) if db is not None else None
+    t=discovery._norm(negative['positive_text'] if negative else text);scope={};preferences={}
     langs=discovery._languages(t)
     if len(langs)==1:scope['language']=langs[0]
-    if db is not None and re.search(HARD_RELEASE,t):
+    if db is not None and (re.search(HARD_RELEASE,t) or (negative and re.search(r'\bfrom\b',t))):
         codes=discovery._release_codes(db,t,langs)
         if len(codes)==1:scope['set_code']=next(iter(codes))
     for pattern,variant in [(r'non[ -]?holo|ノンホロ','normal'),
@@ -244,6 +277,7 @@ def validate_feedback(card_id, reaction, shown_ids):
 
 @collector_runtime.catalog_request
 def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None, pool_cache=None, resolved_illustrator=None):
+    raw_question=question;question=positive_query(db,question)
     profile=validate_collecting_preferences(db,profile)
     if resolved_illustrator is not None:
         validate_collecting_preferences(db,{'preferred_illustrators':[resolved_illustrator]})
@@ -282,7 +316,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if 'collector_number' in scope and 'set_code' not in scope:
         codes=discovery._release_codes(db,discovery._norm(question),languages)
         if len(codes)==1:scope['set_code']=next(iter(codes))
-    result=dict(schema='pokemon.collector-discovery.v1',question=question,languages=languages,
+    result=dict(schema='pokemon.collector-discovery.v1',question=raw_question,languages=languages,
         task='collector_recommendations',status='clarification_needed',cards=[],next_question=PROMPT,
         market_status='no_live_market_evidence',prices=[],live_offers=[],public_display_allowed=False,
         complete_answer_established=False,unfulfilled_constraints=[],requested_scope=scope,

@@ -1,0 +1,1397 @@
+{
+  "schema": "pokemon.independent-collector-agent-review.v1",
+  "reviewed_at_utc": "2026-10-04T03:29:00Z",
+  "ci_run": "https://github.com/pengxu9-rgb/pokemon-commerce-index/actions/runs/37173068035",
+  "commit": "ec7104e0dc849aef519de647a53217c01958e3aa",
+  "cohort_status": "exposed_frozen_cohort_post_fix_regression",
+  "reviewer": {
+    "type": "ai_agent",
+    "role": "Evaluation worker who authored the frozen scenarios and prior review",
+    "limits": "Independent of implementation edits; not a blinded second scorer or human collector study. These cases were exposed before the fixes and are now regression evidence."
+  },
+  "suite_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "rubric_sha256": "0fea803b3dc9bcba61a14e6a3de320407d1e2a5d5a9844c982ca63874e76bf5f",
+  "current_input": {
+    "path": "/workspace/shared/pokemon-ci-ec7104e/independent-collector-eval-report.json",
+    "sha256": "ec00ae829b2b57342760bb82a7f9d0442a1abe99e128845a966aa1f617aa2ee6"
+  },
+  "baseline_reference": {
+    "prior_review": "/workspace/shared/pokemon-review-20261004/sandbox/collector_journeys/independent-collector-eval-v1/reviews/ci-37168912488/agent-review-v1.json",
+    "prior_review_sha256": "35d69506507583d9ebde6ba5446b1fe1975b08035f96af4f1a3ebf1325d3f2d2",
+    "prior_raw_report_sha256": "790b36ea6e6a5b6d3f8c2d7cea50df14e0a9ee6a5a2c6ca88522a0110db05978",
+    "same_job_baseline_report_sha256": "3842616c345fb8d71ab2a81a320af5289f5c5264370aca8cdedcd644a8dc6991",
+    "raw_response_content_reproduced": true,
+    "old_scores_preserved": true,
+    "prior_scored_cases": 28,
+    "prior_incomplete_cases_with_null_scores": 2,
+    "comparison_rule": "No old score is changed. Deltas are null where the prior run was unscored; old execution failures are not retrospectively assigned zero."
+  },
+  "database_checks": {
+    "catalog_sha256": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+    "read_only": true,
+    "bytes_unchanged": true,
+    "coverage_receipt": "readonly-coverage-checks-v1.json",
+    "intersection_receipt": "readonly-intersection-check-v1.json",
+    "scope": "Catalog/current source-facet evidence only; no independent physical or image audit, no price/offer evidence."
+  },
+  "summary": {
+    "case_denominator": 30,
+    "cases_executed": 30,
+    "cases_agent_scored": 30,
+    "execution_error_cases": 0,
+    "observed_safety_violation_cases": 0,
+    "mechanical_pass_cases": 26,
+    "mechanical_fail_cases": 4,
+    "strict_completed_cases": 14,
+    "useful_progress_cases": 21,
+    "meaning": "Strict completion and useful progress use the pre-frozen rubric; these are agent judgments on an exposed cohort, not real-user success or population accuracy.",
+    "overall_quality_percentage": null
+  },
+  "axes_histograms": {
+    "relevance": {
+      "3": 13,
+      "2": 11,
+      "0": 3,
+      "1": 3
+    },
+    "evidence_honesty": {
+      "2": 26,
+      "1": 4
+    },
+    "clarification_usefulness": {
+      "2": 5,
+      "not_applicable": 15,
+      "0": 5,
+      "1": 5
+    },
+    "completion": {
+      "2": 14,
+      "1": 10,
+      "0": 6
+    },
+    "abstention_quality": {
+      "none": 15,
+      "unjustified": 2,
+      "justified_helpful": 8,
+      "justified_unhelpful": 5
+    }
+  },
+  "execution_timing": {
+    "prefix_count": 49,
+    "maximum_seconds": 2.049812,
+    "median_seconds": 0.957365,
+    "timeout_seconds": 10,
+    "scope": "Direct Python replay timing in this same CI job; not a deployed end-to-end SLA."
+  },
+  "mechanical_failure_classification": {
+    "ICU-03": {
+      "classification": "product_intent_recognition_failure",
+      "catalog_limitation": false,
+      "expected_outcome_attainable_from_present_catalog": true,
+      "coverage": "56 Japanese species-6 records / 48 coordinates, including exact リザードン names",
+      "materiality": "High: an explicitly named Japanese character yields an empty generic taste question."
+    },
+    "ICU-11": {
+      "classification": "exploration_granularity_expectation_and_presentation_gap",
+      "catalog_limitation": false,
+      "expected_outcome_attainable_from_present_catalog": true,
+      "coverage": "516 Japanese SV2A source-version records / 210 coordinates",
+      "materiality": "Lower: five valid variant records are returned, but they cover only two coordinates. The user wording says five cards; the frozen scenario deliberately expects five coordinate-level exploration options. This is not a wrong-identity finding."
+    },
+    "ICU-16": {
+      "classification": "safe_but_unimplemented_negative_intent_application",
+      "catalog_limitation": false,
+      "expected_outcome_attainable_from_present_catalog": true,
+      "coverage": "319 SV4A records / 245 coordinates with known non-Mew primary-species facets",
+      "materiality": "High usefulness cost, not unsafe inversion: the explicit release and exclusion are held rather than applied, and no candidate progress remains."
+    },
+    "ICU-26": {
+      "classification": "product_inventory_continuation_failure",
+      "catalog_limitation": false,
+      "expected_outcome_attainable_from_present_catalog": true,
+      "coverage": "127 other Pikachu records / 117 coordinates after excluding owned ja:SV4A:236/190:holo",
+      "materiality": "High: supplying the requested exact inventory does not rescue the stated collecting goal or end the generic negative-preference hold."
+    }
+  },
+  "additional_usefulness_caveats": [
+    {
+      "case_id": "ICU-09",
+      "finding": "The AND constraint is now safe/correct, and the current source-facet intersection is genuinely empty. No useful relaxation is offered and the prompt refers to an exact coordinate that was never supplied. Mechanical pass is not completion."
+    },
+    {
+      "case_ids": [
+        "ICU-12",
+        "ICU-15",
+        "ICU-30"
+      ],
+      "finding": "Generic era/not-found/identity-hold questions still do not clearly ask for the actual missing or conflicting fact."
+    },
+    {
+      "case_ids": [
+        "ICU-23",
+        "ICU-24",
+        "ICU-25",
+        "ICU-27"
+      ],
+      "finding": "Budget, grade, destination or complete-checklist goals remain partial by the frozen rubric. Natural budget/destination wording remains weakly retained. No catalog result establishes buyability, shipping or affordability."
+    }
+  ],
+  "priorities": [
+    {
+      "rank": 1,
+      "scope": [
+        "ICU-03",
+        "ICU-26",
+        "ICU-16"
+      ],
+      "recommendation": "If continuing within the private discovery milestone, prioritize preserving explicit character intent and making exact inventory/clear exclusions advance the same journey. Avoid broad catalog expansion to solve these present-data problems."
+    },
+    {
+      "rank": 2,
+      "scope": [
+        "ICU-09",
+        "ICU-12",
+        "ICU-15",
+        "ICU-30"
+      ],
+      "recommendation": "Make the existing safe holds actionable: ask about the specific absent/conflicting field and offer an explicit optional relaxation where appropriate."
+    },
+    {
+      "rank": 3,
+      "scope": [
+        "ICU-11"
+      ],
+      "recommendation": "Treat coordinate-level diversification as a product presentation decision. Preserve access to individual finish/source variants and do not relabel the existing five valid records as wrong identities."
+    },
+    {
+      "rank": 4,
+      "scope": [
+        "future_evaluation"
+      ],
+      "recommendation": "After any further fixes, keep this cohort as regression coverage and create a fresh independently selected holdout before claiming independent collector quality."
+    }
+  ],
+  "results": [
+    {
+      "case_id": "ICU-01",
+      "question": "I'm new to Japanese Pokémon cards. What should I collect next?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/0/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/0/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/0/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "The initial taste question is answerable; Pikachu reply yields five distinct Japanese coordinates and species-backed reasons. No price or physical-copy claim is added."
+    },
+    {
+      "case_id": "ICU-02",
+      "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/1/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/1/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five Japanese Eevee coordinates are relevant. The novice-facing explanation does not explain the collector-number/release fields; largely Japanese labels plus a generic narrowing prompt leave interpretation work."
+    },
+    {
+      "case_id": "ICU-03",
+      "question": "Can you recommend Japanese リザードン cards for my collection?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": false,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/2/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The exact Japanese Charizard name リザードン is already supplied, yet the recommendation path returns zero cards and asks the generic character/artist/release question again. The actual snapshot contains 56 Japanese records across 48 coordinates with species-6 facets, including exact リザードン names; this is a recognition failure, not a catalog absence."
+    },
+    {
+      "case_id": "ICU-04",
+      "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "missed"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": null,
+        "completion": 1
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/3/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/3/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "All five returned catalog names now carry Mew ex/Ex and have species-151 provenance. Five coordinates provide a relevant starting set. Different illustrations is explicitly retained as unapplied, so visual difference remains unestablished and that part of the collector objective remains partial."
+    },
+    {
+      "case_id": "ICU-05",
+      "question": "I want the Japanese Mew card. Which one is it?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 3,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/4/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/4/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Relevant alternatives are shown without a selected target, including five records across three coordinates. The next step is a generic narrowing prompt rather than explicitly explaining the ambiguity and asking for a particular missing field."
+    },
+    {
+      "case_id": "ICU-06",
+      "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/5/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/5/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five different Japanese coordinates have current Yuka Morii illustrator facets with source references. No unsupported clay/cuteness or physical verification claim is made."
+    },
+    {
+      "case_id": "ICU-07",
+      "question": "What Japanese cards can I collect by Tomokazu Komiya?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 4,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/6/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/6/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "All five returned records carry Tomokazu Komiya credit; four distinct coordinates satisfy the minimum, but two source-declared versions of the same PMCG1 coordinate consume page space."
+    },
+    {
+      "case_id": "ICU-08",
+      "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/7/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/7/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five different coordinates have Shinji Kanda source credit and evidence-backed illustrator reasons. Availability and affordability remain unknown."
+    },
+    {
+      "case_id": "ICU-09",
+      "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 1,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "missed"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 1,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/8/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The hard species/illustrator intersection is now honored. Read-only DB inspection confirms zero Japanese records with both Pikachu and Yuka Morii current facets. The empty answer is therefore catalog-qualified, but its prompt incorrectly refers to “that exact coordinate” although none was supplied, and offers no explicit relaxation. This mechanical pass is not a useful completed clarification."
+    },
+    {
+      "case_id": "ICU-10",
+      "question": "Recommend cards only from the Japanese Shiny Treasure ex set.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 3,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 2
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 4,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/9/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/9/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Shiny Treasure ex now resolves to Japanese SV4A via a labeled reviewed English rendering of the pinned official Japanese title. Five different SV4A coordinates are shown with the correct title and source-backed release reasons. Four per-record copy/coordinate-family holds remain visible; catalog exploration is completed, not physical selection/offer readiness."
+    },
+    {
+      "case_id": "ICU-11",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 2,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": false,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/10/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/10/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Japanese 151 resolves to SV2A, but five slots contain only two coordinates (001 and 002), dominated by finish variants. Relevant catalog data is returned but not the frozen five-coordinate exploration outcome. Read-only catalog inspection finds 210 SV2A coordinates. The five distinct record IDs are valid variants, so the failed five-coordinate expectation is a product/exploration-granularity gap, not false identities or missing source coverage."
+    },
+    {
+      "case_id": "ICU-12",
+      "question": "Recommend Japanese cards only from Scarlet and Violet.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 1,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 1,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/11/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The exclusive constraint is held honestly. The clarification assumes a single release and demands its exact code; it does not explain era versus release or offer an example the novice can answer."
+    },
+    {
+      "case_id": "ICU-13",
+      "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": null,
+        "evidence_honesty": null,
+        "clarification_usefulness": null,
+        "completion": null,
+        "abstention_quality": null
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": null,
+        "evidence_honesty": null,
+        "clarification_usefulness": null,
+        "completion": null
+      },
+      "baseline_execution_status": "execution_error",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "relevant_displayed_count": 1,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/12/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/12/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/12/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/12/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "The first response exposes exactly ja:SV4A:236/190:holo. Only the separate second select action creates that catalog target, and target intent keeps physical, offer and transaction permissions false. The prior routing failure is resolved."
+    },
+    {
+      "case_id": "ICU-14",
+      "question": "Can you find card 025/165 for me?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "justified_helpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/13/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The number-only question correctly asks which printed set code or release accompanies it, without picking an arbitrary target. This is an answerable first disambiguation."
+    },
+    {
+      "case_id": "ICU-15",
+      "question": "Show me Japanese SV4A 999/190.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/14/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "For nonexistent-in-catalog SV4A 999/190, the reply asks which language and physical finish despite Japanese being explicit. It does not explain the zero match or request correction of the number/release."
+    },
+    {
+      "case_id": "ICU-16",
+      "question": "Recommend Japanese cards from SV4A, but exclude Mew.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 1,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 1,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": false,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/15/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The explicit SV4A-plus-exclude-Mew request returns no candidates, retaining the whole question as unapplied subjective text. The generic inclusion/exclusion clarification is safe but does not advance the already stated goal. The snapshot has 319 SV4A records across 245 coordinates with current known non-Mew primary-species facets. Fail-closed behavior is safe, but the natural-language intent is not applied."
+    },
+    {
+      "case_id": "ICU-17",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/16/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/16/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/16/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/16/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "Pikachu remains the positive goal and five relevant cards remain shown. The Mew dislike is held and labeled unapplied instead of inverted. The follow-up question is generic rather than specifically confirming the supplied Mew exclusion, so this is useful partial progress."
+    },
+    {
+      "case_id": "ICU-18",
+      "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 3,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 2,
+        "completion": 2
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/17/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/17/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/17/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "The aesthetic question now acknowledges unverified visual style and asks an answerable artist/character question. Yuka Morii advances the same journey to five source-attributed Japanese coordinates; peaceful and cozy remain explicit unapplied preferences. This meets the frozen supported starting-point objective without claiming aesthetic fit."
+    },
+    {
+      "case_id": "ICU-19",
+      "question": "Recommend Japanese Eevee cards.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/18/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/18/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/18/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/18/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "Page two contains five different Eevee coordinates with no first-page IDs repeated and source-backed species reasons. Different IDs are not asserted to prove different artwork."
+    },
+    {
+      "case_id": "ICU-20",
+      "question": "Recommend Japanese cards from SV4A.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 4,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 3,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/19/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/19/prefixes/1/response",
+        "independent-collector-eval-report.json#/results/19/prefixes/2/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/19/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/19/prefixes/1/candidate_evidence",
+        "independent-collector-eval-report.json#/results/19/prefixes/2/candidate_evidence"
+      ],
+      "reviewer_explanation": "One like produces source-backed species/artist affinities, and the second identical like preserves recommendations. Three held rows remain labeled; the like creates no physical or ownership authority."
+    },
+    {
+      "case_id": "ICU-21",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/20/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/20/prefixes/1/response",
+        "independent-collector-eval-report.json#/results/20/prefixes/2/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/20/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/20/prefixes/1/candidate_evidence",
+        "independent-collector-eval-report.json#/results/20/prefixes/2/candidate_evidence"
+      ],
+      "reviewer_explanation": "Dismiss removes precisely the bound displayed record; clear restores the original ordered page. The user goal and other Pikachu records are preserved."
+    },
+    {
+      "case_id": "ICU-22",
+      "question": "Recommend Japanese cards by Yuka Morii.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/21/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/21/prefixes/1/response",
+        "independent-collector-eval-report.json#/results/21/prefixes/2/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/21/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/21/prefixes/1/candidate_evidence",
+        "independent-collector-eval-report.json#/results/21/prefixes/2/candidate_evidence"
+      ],
+      "reviewer_explanation": "After a Yuka Morii like, the explicit Tomokazu Komiya reply replaces the artist preference and all five final candidates carry Komiya credit. No old target is retained."
+    },
+    {
+      "case_id": "ICU-23",
+      "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "none"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/22/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/22/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five Pikachu coordinates remain useful and budget_fit is explicitly unknown. However, the natural $50 budget is absent from structured preferences and the next-step prompt does not acknowledge the ignored amount. No actual affordability result exists."
+    },
+    {
+      "case_id": "ICU-24",
+      "question": "Recommend Japanese Eevee cards for me.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": null,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/23/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/23/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/23/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/23/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "The typed EUR 100 / Germany / PSA 10 preferences are retained exactly while relevant Eevee candidates remain. Budget and grade are explicitly unknown without offers; preferences_applied_to_market is false. This is partial catalog exploration, never a verified graded acquisition."
+    },
+    {
+      "case_id": "ICU-25",
+      "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 1,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 3,
+      "relevant_displayed_count": 5,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/24/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/24/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "A Mew shortlist provides some catalog progress and market_status says no live evidence. The £40/UK delivery goal is neither retained in structured preferences nor addressed in the next-step prompt; no landed-cost or acquisition completion is established."
+    },
+    {
+      "case_id": "ICU-26",
+      "question": "Recommend Japanese Pikachu cards I don't already own.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": false,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/25/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/25/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "The phrase “do not already own” is treated as a generic negative preference, losing the Pikachu direction. Supplying exact inventory does not unblock it: zero candidates and the same inclusion/exclusion question remain. The snapshot has 127 other Japanese Pikachu records across 117 coordinates after excluding the submitted owned ID, so the empty continuation is not explained by missing candidates."
+    },
+    {
+      "case_id": "ICU-27",
+      "question": "Which Japanese 151 Pikachu cards am I missing?",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 1,
+        "abstention_quality": "justified_helpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "relevant_displayed_count": 1,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/26/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/26/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/26/prefixes/0/candidate_evidence",
+        "independent-collector-eval-report.json#/results/26/prefixes/1/candidate_evidence"
+      ],
+      "reviewer_explanation": "The uncertain 025/165 inventory exposes all three possible finish variants and blocks selection; only 173/165 remains outside possible ownership. Specific version resolution is requested and completeness/ownership claims remain false. Complete checklist goal remains partial by rubric."
+    },
+    {
+      "case_id": "ICU-28",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 2,
+        "clarification_usefulness": "not_applicable",
+        "completion": 2,
+        "abstention_quality": "none"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": null,
+        "evidence_honesty": null,
+        "clarification_usefulness": null,
+        "completion": null,
+        "abstention_quality": null
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": null,
+        "evidence_honesty": null,
+        "clarification_usefulness": null,
+        "completion": null
+      },
+      "baseline_execution_status": "execution_error",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "relevant_displayed_count": 1,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/27/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/27/prefixes/1/response",
+        "independent-collector-eval-report.json#/results/27/prefixes/2/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/27/prefixes/1/candidate_evidence",
+        "independent-collector-eval-report.json#/results/27/prefixes/2/candidate_evidence"
+      ],
+      "reviewer_explanation": "The requested comparison now contains two exact source-bound Mew ex coordinates, keeps artwork/physical/market conclusions unestablished, then focuses the right ID with no target and selects it only in the third action. The supported comparison/focus/selection goal completes. Relevance is 2 rather than 3 because the comparison explains mostly identity/numbering boundaries and supplies little collector decision detail."
+    },
+    {
+      "case_id": "ICU-29",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 3,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 2,
+        "completion": 2,
+        "abstention_quality": "justified_helpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 0,
+        "evidence_honesty": 2,
+        "clarification_usefulness": 0,
+        "completion": 0,
+        "abstention_quality": "unjustified"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 3,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 2,
+        "completion": 2
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": false,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "relevant_displayed_count": null,
+      "identity_held_count": 0,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/28/prefixes/0/response",
+        "independent-collector-eval-report.json#/results/28/prefixes/1/response"
+      ],
+      "source_facet_evidence_paths": [],
+      "reviewer_explanation": "An actual two-card comparison is active on the first prefix. Changing the explicit preference produces the clear restart instruction, and the stale choice is rejected. The intended invalidation path is now genuinely reached rather than mechanically passing on a comparison that never existed.",
+      "comparison_precondition": {
+        "comparison_started": true,
+        "restart_prompt_present": true,
+        "stale_choice_rejected": true
+      }
+    },
+    {
+      "case_id": "ICU-30",
+      "question": "Show me the catalog record ja:M6:098/076:holo.",
+      "execution_status": "executed",
+      "scoring_status": "agent_scored_exposed_cohort",
+      "scores": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 0,
+        "completion": 1,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "baseline_scores_unchanged": {
+        "relevance": 2,
+        "evidence_honesty": 1,
+        "clarification_usefulness": 0,
+        "completion": 1,
+        "abstention_quality": "justified_unhelpful"
+      },
+      "numeric_delta_when_both_scored": {
+        "relevance": 0,
+        "evidence_honesty": 0,
+        "clarification_usefulness": 0,
+        "completion": 0
+      },
+      "baseline_execution_status": "executed",
+      "response_content_unchanged_from_baseline_except_revision": true,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "relevant_displayed_count": 1,
+      "identity_held_count": 1,
+      "mechanical_constraints_met": true,
+      "evidence_paths": [
+        "independent-collector-eval-report.json#/results/29/prefixes/0/response"
+      ],
+      "source_facet_evidence_paths": [
+        "independent-collector-eval-report.json#/results/29/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "The exact held record and current official metadata are inspectable, and select is refused. However, the original conflicting source name/finish and concrete resolution need are not surfaced; the generic next question refers to exclusions/checklist/scope instead of this identity conflict. Useful inspection is partial; the refusal explanation is unhelpful."
+    }
+  ],
+  "no_code_or_fixture_changes": true,
+  "real_user_testing": false,
+  "public_or_commerce_readiness_established": false
+}

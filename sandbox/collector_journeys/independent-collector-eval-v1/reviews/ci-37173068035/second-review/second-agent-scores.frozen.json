@@ -1,0 +1,1430 @@
+{
+  "schema": "pokemon.independent-second-agent-usefulness-review.v1",
+  "reviewer": "challenge_collector_usefulness_scores",
+  "reviewer_type": "ai_agent",
+  "reviewed_commit": "ec7104e0dc849aef519de647a53217c01958e3aa",
+  "ci_run": "37173068035",
+  "freeze_recorded_at_utc": "2026-10-04T03:35:50Z",
+  "input_report": "/workspace/shared/pokemon-ci-ec7104e/independent-collector-eval-report.json",
+  "input_report_sha256": "ec00ae829b2b57342760bb82a7f9d0442a1abe99e128845a966aa1f617aa2ee6",
+  "rubric_sha256": "0fea803b3dc9bcba61a14e6a3de320407d1e2a5d5a9844c982ca63874e76bf5f",
+  "questions_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "catalog_sha256": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "label": "agent-reviewed exposed-cohort development diagnostic; not blinded, not human user research, not population accuracy",
+  "real_user_testing": false,
+  "independence_disclosure": "All individual judgments were determined from the frozen raw report and read-only DB before opening any peer score artifact. Before serialization, an unsolicited peer message arrived at 03:32:01Z disclosing aggregate counts (14 strict/21 useful) and qualitative notes on ICU09/11/28. These did not change the previously determined individual judgments; no peer per-case scores were consulted before this freeze. Therefore do not claim perfectly blinded scorer independence.",
+  "method": [
+    "Read expected outcomes and all prefix outcomes from the immutable EC report, with repeated nested source/card structures de-duplicated for inspection. Reviewed actual displayed pages, continuations, inventory and comparison payloads; did not infer usefulness from machine assertions.",
+    "Read-only SQL independently checked 145 displayed candidate occurrences and 250 cited facet claims against their raw/official/correction evidence tables; zero unresolved source-fidelity mismatches. Narrow Mew ex affiliation independently checked against 11 unanimous exact Japanese base-name anchors.",
+    "No implementation/fixture edits or live mutable-runtime replay. Source fidelity was checked against the pinned catalog evidence, not a new independent visual reinspection or live marketplace audit.",
+    "Full completion can be achieved by a specifically precommitted clarification or guardrail operation. It is never awarded merely for safety on an unresolved acquisition/checklist goal. Relevance and completion remain separate axes, including duplicate-heavy pages with completed bounded feedback operations."
+  ],
+  "summary": {
+    "denominator": 30,
+    "scored_cases": 30,
+    "not_executed": 0,
+    "executed_cases": 30,
+    "strict_completed_count": 13,
+    "useful_progress_count": 17,
+    "axis_distributions": {
+      "relevance": {
+        "3": 11,
+        "2": 7,
+        "0": 3,
+        "1": 9
+      },
+      "evidence_honesty": {
+        "2": 26,
+        "1": 4
+      },
+      "clarification_usefulness": {
+        "2": 4,
+        "not_applicable": 13,
+        "0": 9,
+        "1": 4
+      },
+      "completion": {
+        "2": 13,
+        "1": 11,
+        "0": 6
+      },
+      "abstention_quality": {
+        "none": 13,
+        "unjustified": 4,
+        "justified_helpful": 9,
+        "justified_unhelpful": 4
+      }
+    },
+    "latest_response_identity_held_occurrences": 8,
+    "any_prefix_identity_held_cases": [
+      "ICU-10",
+      "ICU-20",
+      "ICU-30"
+    ]
+  },
+  "scores": [
+    {
+      "case_id": "ICU-01",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 2,
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/0/prefixes/0/response/next_step",
+        "report.json#/results/0/prefixes/1/response/recommendation/items"
+      ],
+      "reviewer_explanation": "The first prompt offers character/illustrator/release choices. The Pikachu reply yields five Japanese Pikachu coordinates with source-backed character reasons; the two-turn supported novice goal is achieved.",
+      "remaining_work": "Optional product polish: English-friendly release labels and number explanations.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-02",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 1,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/1/prefixes/0/response/candidate_cards",
+        "report.json#/results/1/prefixes/0/response/next_step"
+      ],
+      "reviewer_explanation": "Five distinct Japanese Eevee coordinates are relevant and source-backed, but raw field names and mostly Japanese release titles do not explain collector numbers/releases to the novice as precommitted.",
+      "remaining_work": "Explain the collector-number field and release names in accessible English without inventing official translations.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:PMCG2:037/048:normal",
+            "ja:PMCG4:049/065:normal",
+            "ja:PMCG5:062/096:normal",
+            "ja:NEO2:049/056:normal",
+            "ja:E2:058/092:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-03",
+      "execution_status": "executed",
+      "relevance": 0,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 0,
+      "abstention_quality": "unjustified",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/2/prefixes/0/response/discovery",
+        "report.json#/results/2/prefixes/0/response/next_step",
+        "db-evidence.json#/charizard_facets"
+      ],
+      "reviewer_explanation": "No cards are returned and the generic taste question asks the user to supply a character already supplied as リザードン. The read-only catalog contains 56 Japanese dex-6 records at 48 coordinates. This is a name-routing failure, not missing catalog data.",
+      "remaining_work": "Resolve supported Japanese character aliases and apply the supplied character.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-04",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/3/prefixes/0/response/recommendation/unapplied_preferences",
+        "report.json#/results/3/prefixes/0/response/recommendation/items",
+        "report.json#/results/3/prefixes/0/response/next_step"
+      ],
+      "reviewer_explanation": "Five Mew ex source-title matches are useful, and different illustrations is explicitly unapplied. The answer neither establishes illustration differences nor asks a focused visual-comparison question; a generic Like/Compare instruction leaves the requested illustration exploration partial.",
+      "remaining_work": "Offer visual/source evidence comparison or a focused artist/example question, retaining the unverified-art boundary.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:M6A:057/103:holo",
+            "ja:M6A:129/103:holo",
+            "ja:M6A:135/103:holo",
+            "ja:PCG5:041/086:normal_1st_edition",
+            "ja:SV2A:151/165:holo"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-05",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 1,
+      "completion": 1,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 3,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/4/prefixes/0/response/candidate_cards",
+        "report.json#/results/4/prefixes/0/response/next_step"
+      ],
+      "reviewer_explanation": "The answer safely avoids selecting one Mew and shows relevant alternatives, but five rows cover only three coordinates. The next-step prompt says choose/narrow rather than explaining that Mew names many cards and asking release/number/example.",
+      "remaining_work": "Ask a concrete release/number/example question and group sibling source versions on an exploration page.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 3,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:PMCG3:033/048:holo",
+            "ja:E1:087/128:normal_1st_edition",
+            "ja:E1:087/128:normal_unlimited",
+            "ja:E1:119/128:holo_1st_edition",
+            "ja:E1:119/128:holo_unlimited"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-06",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/5/prefixes/0/response/discovery/illustrator",
+        "report.json#/results/5/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five distinct Japanese Yuka Morii coordinates are supplied; matching is explicitly attributed to pinned illustrator credits and no clay/cute claim is invented.",
+      "remaining_work": "No blocking work for the scoped catalog goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SM1S:002/060:normal",
+            "ja:SM2K:025/050:normal",
+            "ja:SM2L:018/050:normal",
+            "ja:SM2P:024/049:normal",
+            "ja:SM4A:024/050:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-07",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 4,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/6/prefixes/0/response/candidate_cards",
+        "report.json#/results/6/prefixes/0/response/discovery/coverage"
+      ],
+      "reviewer_explanation": "The precommitted minimum of three artist coordinates is achieved with four, and all five records have sourced Komiya credits. One coordinate occupies two top-five slots despite alternatives, so relevance is reduced under the rubric duplicate criterion even though the bounded goal completes.",
+      "remaining_work": "Prefer coordinate diversity for discovery, while preserving separately inspectable source versions.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 4,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:PMCG1:063/102:normal",
+            "ja:PMCG1:063/102:normal_no_rarity",
+            "ja:CP2:025/027:normal",
+            "ja:SM1M:040/060:normal",
+            "ja:SM2K:015/050:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-08",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/7/prefixes/0/response/recommendation/items",
+        "report.json#/results/7/prefixes/0/candidate_evidence"
+      ],
+      "reviewer_explanation": "Five distinct Shinji Kanda starting points retain names/releases and per-card sourced illustrator reasons. No price/availability claim is made.",
+      "remaining_work": "No blocking work for the scoped catalog goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:M1L:020/063:normal",
+            "ja:M2:062/080:normal",
+            "ja:M2:111/080:holo",
+            "ja:M3:014/080:normal",
+            "ja:M6:046/076:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-09",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 1,
+      "clarification_usefulness": 0,
+      "completion": 0,
+      "abstention_quality": "justified_unhelpful",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/8/prefixes/0/response/discovery/next_question",
+        "report.json#/results/8/prefixes/0/response/next_step",
+        "db-evidence.json#/pikachu_yuka_intersection"
+      ],
+      "reviewer_explanation": "The empty current source-backed Pikachu/Yuka intersection is justified. However, saying “That exact coordinate” invents a coordinate-specific framing for a species/artist request and gives no optional relaxation. The boundary is inadequately explained, not a fabricated candidate.",
+      "remaining_work": "Say the catalog cannot establish the intersection; offer Pikachu by other artists or Yuka Morii other characters as explicit options.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-10",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 4,
+      "claim_evidence_references": [
+        "report.json#/results/9/prefixes/0/response/discovery/release_name_interpretations",
+        "report.json#/results/9/prefixes/0/response/card_selection_blockers",
+        "report.json#/results/9/prefixes/0/response/candidate_cards"
+      ],
+      "reviewer_explanation": "Five distinct Japanese SV4A coordinates and the corrected official Japanese release name satisfy the supported release discovery request. Four copy/coordinate-family holds remain visible and do not prohibit coordinate exploration.",
+      "remaining_work": "No blocking work for the scoped recommendation goal; retain four individual selection holds.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 4,
+          "displayed_card_ids": [
+            "ja:SV4A:001/190:normal",
+            "ja:SV4A:002/190:normal",
+            "ja:SV4A:003/190:normal",
+            "ja:SV4A:004/190:normal",
+            "ja:SV4A:005/190:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-11",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 1,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 2,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/10/prefixes/0/response/candidate_cards",
+        "report.json#/results/10/prefixes/0/response/discovery/variant_summary",
+        "db-evidence.json#/sv2a_coordinates"
+      ],
+      "reviewer_explanation": "All five rows are valid Japanese SV2A source variants, but only two coordinates are shown despite 210 available in the catalog. The frozen five-coordinate expectation is not met. This is presentation granularity, not identity/source corruption.",
+      "remaining_work": "Group variants or diversify the first five coordinates for set exploration; keep variant browsing explicitly available.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 2,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV2A:001/165:normal",
+            "ja:SV2A:001/165:reverse_masterball",
+            "ja:SV2A:001/165:reverse_pokeball",
+            "ja:SV2A:002/165:normal",
+            "ja:SV2A:002/165:reverse_masterball"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-12",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 1,
+      "completion": 0,
+      "abstention_quality": "justified_unhelpful",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/11/prefixes/0/response/next_step",
+        "report.json#/results/11/prefixes/0/response/recommendation/unapplied_preferences"
+      ],
+      "reviewer_explanation": "The exclusivity is held safely, but the prompt demands “Which single release” and an exact code. It never offers era versus named release or a concrete example, and stores the whole request as an unsupported style note. The precommitted disambiguation goal is unmet.",
+      "remaining_work": "Ask whether Scarlet & Violet means the era or one release; provide named examples and preserve exclusivity.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-13",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 1,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/12/prefixes/0/response/candidate_cards/0",
+        "report.json#/results/12/prefixes/1/response/selected_catalog_target",
+        "report.json#/results/12/prefixes/1/response/target_intent"
+      ],
+      "reviewer_explanation": "The exact Pikachu 236/190 catalog ID is displayed and only the separate select action creates that target. Source-declared holo and the physical-copy/offer/transaction limits remain explicit.",
+      "remaining_work": "No blocking work for the catalog target operation.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV4A:236/190:holo"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV4A:236/190:holo"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-14",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 2,
+      "completion": 2,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/13/prefixes/0/response/discovery/task",
+        "report.json#/results/13/prefixes/0/response/next_step"
+      ],
+      "reviewer_explanation": "The shared number is not treated as unique. One focused set-code/release-name question identifies the missing scope and is readily answerable; the precommitted clarification task completes.",
+      "remaining_work": "Await the release/language clarification; no exact target yet.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-15",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 0,
+      "abstention_quality": "justified_unhelpful",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/14/prefixes/0/response/discovery/status",
+        "report.json#/results/14/prefixes/0/response/next_step"
+      ],
+      "reviewer_explanation": "The exact nonexistent-in-catalog coordinate returns no match without asserting physical nonexistence. But the prompt asks language and finish although Japanese is already supplied, instead of asking the user to correct 999/190 or SV4A. Safe not-found alone does not achieve the correction goal.",
+      "remaining_work": "Echo SV4A 999/190 as not established in this catalog and ask the user to check number/release.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-16",
+      "execution_status": "executed",
+      "relevance": 0,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 0,
+      "abstention_quality": "unjustified",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/15/prefixes/0/response/next_step",
+        "report.json#/results/15/prefixes/0/response/preferences",
+        "db-evidence.json#/sv4a_not_mew_known"
+      ],
+      "reviewer_explanation": "A clear SV4A excluding Mew instruction is converted into an unapplied negative note. No candidates are returned despite at least 315 records/241 coordinates with known non-Mew primary character facets.",
+      "remaining_work": "Apply supported exclusions at their primary-character scope, withholding unknown membership and preserving the release.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-17",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 1,
+      "completion": 1,
+      "abstention_quality": "unjustified",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/16/prefixes/1/response/next_step",
+        "report.json#/results/16/prefixes/1/response/recommendation/unapplied_preferences",
+        "report.json#/results/16/prefixes/1/response/preferences"
+      ],
+      "reviewer_explanation": "The earlier Pikachu list is retained and the negative preference is honestly marked unapplied. However, the generic inclusion/exclusion instruction neither applies “do not like Mew” nor explicitly asks whether to exclude Mew. This is partial progress, not the frozen precise one-step clarification.",
+      "remaining_work": "Ask “Keep Pikachu and exclude Mew?” or apply the supported unambiguous exclusion; do not demand re-entry of the whole goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-18",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 2,
+      "completion": 2,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/17/prefixes/0/response/next_step",
+        "report.json#/results/17/prefixes/1/response/recommendation/unapplied_preferences",
+        "report.json#/results/17/prefixes/1/response/recommendation/items"
+      ],
+      "reviewer_explanation": "The aesthetic limit is explicit; a usable artist reply becomes five source-backed Yuka Morii coordinates while peaceful/cozy remain unverified notes. This meets the frozen supported continuation goal, not verified aesthetic matching.",
+      "remaining_work": "Visual taste still needs the collector or permitted image review; no blocking work for this supported two-turn goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:M1S:034/063:normal",
+            "ja:M2:009/080:normal",
+            "ja:M5:040/081:normal",
+            "ja:M6A:101/103:normal",
+            "ja:M6A:102/103:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-19",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/18/prefixes/0/response/candidate_cards",
+        "report.json#/results/18/prefixes/1/response/recommendation/items"
+      ],
+      "reviewer_explanation": "Pagination produces five additional Eevee coordinates with absolute ranks 6–10 and no repeated first-page IDs or coordinates. Source reasons remain inspectable without equating coordinates with distinct art.",
+      "remaining_work": "No blocking work for the scoped pagination operation.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:E2:058/092:normal",
+            "ja:E4:065/088:normal_1st_edition",
+            "ja:M-P:134/M-P:normal",
+            "ja:M6A:094/103:normal",
+            "ja:MC:564/742:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:MC:565/742:normal",
+            "ja:MC:566/742:normal",
+            "ja:MC:755/742:normal",
+            "ja:MF:025/040:normal",
+            "ja:MF:026/040:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-20",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 4,
+      "identity_held_count": 3,
+      "claim_evidence_references": [
+        "report.json#/results/19/prefixes/1/response/recommendation/items",
+        "report.json#/results/19/prefixes/2/response/recommendation/items",
+        "report.json#/results/19/prefixes/2/response/candidate_cards"
+      ],
+      "reviewer_explanation": "The like produces source-backed character/artist reasons and repeating it leaves the recommendation items/order identical. The bounded idempotent loop completes. Relevance is reduced because the liked coordinate consumes two top-five slots when distinct alternatives exist.",
+      "remaining_work": "Keep idempotency; diversify coordinate groups before showing sibling source variants in an exploration shortlist.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 4,
+          "displayed_card_ids": [
+            "ja:SV4A:001/190:normal",
+            "ja:SV4A:002/190:normal",
+            "ja:SV4A:003/190:normal",
+            "ja:SV4A:004/190:normal",
+            "ja:SV4A:005/190:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 4,
+          "identity_held_count": 3,
+          "displayed_card_ids": [
+            "ja:SV4A:001/190:normal",
+            "ja:SV4A:001/190:reverse",
+            "ja:SV4A:002/190:normal",
+            "ja:SV4A:003/190:normal",
+            "ja:SV4A:191/190:holo"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 2,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 4,
+          "identity_held_count": 3,
+          "displayed_card_ids": [
+            "ja:SV4A:001/190:normal",
+            "ja:SV4A:001/190:reverse",
+            "ja:SV4A:002/190:normal",
+            "ja:SV4A:003/190:normal",
+            "ja:SV4A:191/190:holo"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-21",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/20/prefixes/0/response/candidate_cards",
+        "report.json#/results/20/prefixes/1/response/candidate_cards",
+        "report.json#/results/20/prefixes/2/response/candidate_cards"
+      ],
+      "reviewer_explanation": "Dismiss removes exactly CP2:008/027:holo; clear restores the original ordered five relevant Pikachu coordinates and recommendation reasons. No species-wide exclusion or target is introduced.",
+      "remaining_work": "No blocking work for the dismiss/clear operation.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal",
+            "ja:M-P:132/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 2,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-22",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 2,
+      "abstention_quality": "none",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/21/prefixes/2/response/preferences",
+        "report.json#/results/21/prefixes/2/response/recommendation/items",
+        "report.json#/results/21/prefixes/2/candidate_evidence"
+      ],
+      "reviewer_explanation": "The explicit Komiya continuation replaces the positive artist preference; the five displayed rows all match sourced Komiya credits despite the earlier Morii like. No old target survives.",
+      "remaining_work": "No blocking work for the displayed-page override goal; the hidden broader pool is not scored as extra useful content.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:M1S:034/063:normal",
+            "ja:M2:009/080:normal",
+            "ja:M5:040/081:normal",
+            "ja:M6A:101/103:normal",
+            "ja:M6A:102/103:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:M1S:034/063:normal",
+            "ja:M2:009/080:normal",
+            "ja:M5:040/081:normal",
+            "ja:M6A:101/103:normal",
+            "ja:M6A:102/103:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 2,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:025/027:normal",
+            "ja:M1S:019/063:normal",
+            "ja:M2:019/080:normal",
+            "ja:M6:088/076:holo",
+            "ja:M6A:026/103:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-23",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": "not_applicable",
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/22/prefixes/0/response/preferences",
+        "report.json#/results/22/prefixes/0/response/recommendation/budget_fit",
+        "report.json#/results/22/prefixes/0/response/recommendation/items"
+      ],
+      "reviewer_explanation": "Five relevant Pikachu coordinates give useful catalog progress; budget_fit is unknown_no_live_price and affordability is expressly unestablished. The natural-language $50 is not parsed into preferences, but the frozen expectation made parsing conditional. No claim of budget fit is made.",
+      "remaining_work": "Retain the $50 budget structurally and request authorized fresh price/copy evidence before affordable recommendations.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:CP2:008/027:holo",
+            "ja:E1:016/128:normal_1st_edition",
+            "ja:E4:033/088:normal_1st_edition",
+            "ja:M-P:020/M-P:normal",
+            "ja:M-P:131/M-P:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-24",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 1,
+      "clarification_usefulness": "not_applicable",
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 5,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/23/prefixes/1/response/preferences",
+        "report.json#/results/23/prefixes/1/response/recommendation",
+        "report.json#/results/23/prefixes/1/response/next_step"
+      ],
+      "reviewer_explanation": "The exact structured EUR100/DE/PSA10 preferences are retained and five Eevee coordinates remain useful. Grade and price unknowns are explicit, but the response does not explain Germany delivery/fees as unverified or provide destination-specific checks; evidence boundary communication is incomplete.",
+      "remaining_work": "Surface requested grade, price and Germany landed-cost checks explicitly; acquire fresh permitted offers before satisfying the purchase goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:E2:058/092:normal",
+            "ja:E4:065/088:normal_1st_edition",
+            "ja:M-P:134/M-P:normal",
+            "ja:M6A:094/103:normal",
+            "ja:MC:564/742:normal"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 5,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:E2:058/092:normal",
+            "ja:E4:065/088:normal_1st_edition",
+            "ja:M-P:134/M-P:normal",
+            "ja:M6A:094/103:normal",
+            "ja:MC:564/742:normal"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-25",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 1,
+      "clarification_usefulness": 0,
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 5,
+      "displayed_count": 5,
+      "distinct_coordinate_count": 3,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/24/prefixes/0/response/preferences",
+        "report.json#/results/24/prefixes/0/response/discovery/market_status",
+        "report.json#/results/24/prefixes/0/response/next_step",
+        "report.json#/results/24/prefixes/0/response/candidate_cards"
+      ],
+      "reviewer_explanation": "Relevant Mew catalog alternatives provide some progress, but five rows are only three coordinates. £40/UK are retained only in the original question, and the response gives generic market/copy caveats without clearly identifying absent UK landed-cost evidence. No merchant or fabricated price is asserted.",
+      "remaining_work": "Acknowledge the £40 delivered-to-UK constraint and unverified landed cost; offer an accessible Mew exploration choice and preserve the budget/destination.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 5,
+          "relevant_count": 5,
+          "distinct_coordinate_count": 3,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:PMCG3:033/048:holo",
+            "ja:E1:087/128:normal_1st_edition",
+            "ja:E1:087/128:normal_unlimited",
+            "ja:E1:119/128:holo_1st_edition",
+            "ja:E1:119/128:holo_unlimited"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-26",
+      "execution_status": "executed",
+      "relevance": 0,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 0,
+      "abstention_quality": "unjustified",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/25/prefixes/1/action",
+        "report.json#/results/25/prefixes/1/response/inventory",
+        "report.json#/results/25/prefixes/1/response/preferences",
+        "report.json#/results/25/prefixes/1/response/next_step",
+        "db-evidence.json#/pikachu_not_owned"
+      ],
+      "reviewer_explanation": "The “do not own” phrase is misrouted to a generic negative preference, discarding Pikachu. Even after an exact owned card is submitted, inventory remains null and no candidates appear. There are 127 source-faceted Japanese Pikachu rows besides the submitted ID.",
+      "remaining_work": "Recognize owned-inventory exclusion intent, retain Pikachu and subtract the resolved submitted record.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-27",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 1,
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 1,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/26/prefixes/1/response/inventory/possible_owned",
+        "report.json#/results/26/prefixes/1/response/inventory/interpretation",
+        "report.json#/results/26/prefixes/1/response/next_step"
+      ],
+      "reviewer_explanation": "The submitted 025/165 produces three separately retained possible-owned variants; 173/165 is the sole not-in-resolved-inventory candidate, never a complete missing checklist. Selection is held. The next-step text is jargon-heavy and does not plainly ask which of normal/Poké Ball/Master Ball finishes the user has.",
+      "remaining_work": "Ask a focused finish question using the supplied coordinate and understandable alternatives; keep incomplete checklist status.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 4,
+          "relevant_count": 4,
+          "distinct_coordinate_count": 2,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV2A:025/165:normal",
+            "ja:SV2A:025/165:reverse_masterball",
+            "ja:SV2A:025/165:reverse_pokeball",
+            "ja:SV2A:173/165:holo"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV2A:173/165:holo"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-28",
+      "execution_status": "executed",
+      "relevance": 2,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 0,
+      "completion": 1,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 1,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/27/prefixes/0/response/discovery/comparison",
+        "report.json#/results/27/prefixes/1/response/selected_catalog_target",
+        "report.json#/results/27/prefixes/2/response/selected_catalog_target",
+        "db-evidence.json#/mew_comparison_metadata"
+      ],
+      "reviewer_explanation": "Comparison, focus and separate selection authority are correctly separated and the exact right target is selected. The comparison itself only explains differing numbers: sourced SSR vs SAR and aky CG Works vs USGMEN exist in the DB but are omitted, while the prompt asks for copy/offers unnecessarily for catalog comparison. Thus the usable-comparison goal is partial.",
+      "remaining_work": "Expose existing sourced rarity/artist contrasts and keep artwork/physical/market unknowns separate from catalog comparison.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": [
+            "ja:SV4A:327/190:holo",
+            "ja:SV4A:347/190:holo"
+          ]
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV4A:347/190:holo"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 2,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 0,
+          "displayed_card_ids": [
+            "ja:SV4A:347/190:holo"
+          ],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-29",
+      "execution_status": "executed",
+      "relevance": 3,
+      "evidence_honesty": 2,
+      "clarification_usefulness": 2,
+      "completion": 2,
+      "abstention_quality": "justified_helpful",
+      "relevant_count": 0,
+      "displayed_count": 0,
+      "distinct_coordinate_count": 0,
+      "identity_held_count": 0,
+      "claim_evidence_references": [
+        "report.json#/results/28/prefixes/1/response/next_step",
+        "report.json#/results/28/prefixes/2/error"
+      ],
+      "reviewer_explanation": "The preference change yields a clear “Start the comparison again” instruction before the stale choice is rejected. The final ValueError is terse, but the preceding actual response provides the concrete restart path and no stale target is restored.",
+      "remaining_work": "UI callers should render the earlier restart instruction with the rejection; no blocking work for the frozen stale-authority goal.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": [
+            "ja:SV4A:327/190:holo",
+            "ja:SV4A:347/190:holo"
+          ]
+        },
+        {
+          "step_index": 1,
+          "execution_status": "executed",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": [
+            "ja:SV4A:327/190:holo",
+            "ja:SV4A:347/190:holo"
+          ]
+        },
+        {
+          "step_index": 2,
+          "execution_status": "expected_rejection",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    },
+    {
+      "case_id": "ICU-30",
+      "execution_status": "executed",
+      "relevance": 1,
+      "evidence_honesty": 1,
+      "clarification_usefulness": 0,
+      "completion": 1,
+      "abstention_quality": "justified_unhelpful",
+      "relevant_count": 1,
+      "displayed_count": 1,
+      "distinct_coordinate_count": 1,
+      "identity_held_count": 1,
+      "claim_evidence_references": [
+        "report.json#/results/29/prefixes/0/response/candidate_cards/0",
+        "report.json#/results/29/prefixes/0/response/next_step",
+        "report.json#/results/29/prefixes/1/error",
+        "db-evidence.json#/held_exception"
+      ],
+      "reviewer_explanation": "The exact record and official metadata are inspectable, and selection is held/rejected. However, the original conflicting source name and hold reason are absent from the response although available in card_identity_exception. The next prompt incorrectly asks exclusions/checklist scope rather than identity/finish resolution.",
+      "remaining_work": "Expose original とくちゅうチョッキ vs official ポケモンキャッチャー and the finish-review hold; ask for the actual evidence needed.",
+      "prefix_display_assessment": [
+        {
+          "step_index": 0,
+          "execution_status": "executed",
+          "displayed_count": 1,
+          "relevant_count": 1,
+          "distinct_coordinate_count": 1,
+          "identity_held_count": 1,
+          "displayed_card_ids": [
+            "ja:M6:098/076:holo"
+          ],
+          "comparison_record_ids": []
+        },
+        {
+          "step_index": 1,
+          "execution_status": "expected_rejection",
+          "displayed_count": 0,
+          "relevant_count": 0,
+          "distinct_coordinate_count": 0,
+          "identity_held_count": 0,
+          "displayed_card_ids": [],
+          "comparison_record_ids": []
+        }
+      ],
+      "count_scope": "Latest successful response top-five candidate_cards; comparison endpoints separately recorded, rejected actions do not erase prior inspectable cards. Relevant_count means catalog identity/axis relevance, not affordability, aesthetic fit, ownership or completion."
+    }
+  ],
+  "judgments_completed_before_utc": "2026-10-04T03:32:01Z"
+}

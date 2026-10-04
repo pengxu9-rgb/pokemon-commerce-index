@@ -114,7 +114,7 @@ def replay(db,request,*,revision=None):
     reset_reason=None;pending_clarifications=[]
     recommendation_mode=False;feedback={};shown_ids=set();recommendation_shown=set()
     recommendation_pool_cache={'revision':revision};recommendation_baseline_cache={}
-    active_comparison=None;focus_id=None;resolved_illustrator=None
+    active_comparison=None;focus_id=None;resolved_illustrator=None;ownership_required=False
     def reset_context():
         nonlocal active_comparison,focus_id
         active_comparison=None;focus_id=None;shown_ids.clear();recommendation_shown.clear()
@@ -128,6 +128,18 @@ def replay(db,request,*,revision=None):
         if newer!=preferences and ('collecting' in patch or recommendation_mode or active_comparison is not None or focus_id is not None):
             clear('collection_preferences_changed');offset=0;reset_context()
         preferences=newer
+    def natural_taste(text,taste):
+        nonlocal ownership_required,offset
+        intent=collector_recommendation.bounded_negative_intent(db,text)
+        if not intent:return taste
+        if intent['owned_inventory']:ownership_required=True
+        excluded=intent['excluded_dex_ids']
+        if excluded:
+            profile=preferences.get('collecting',{})
+            taste=dict(taste,excluded_dex_ids=sorted(set(profile.get('excluded_dex_ids',[]))|set(excluded)),
+                preferred_dex_ids=[value for value in taste.get('preferred_dex_ids',profile.get('preferred_dex_ids',[])) if value not in excluded])
+        clear('explicit_collection_constraint_changed');offset=0;reset_context()
+        return taste
     def hold_clarification(text):
         nonlocal offset
         for constraint in collector_recommendation.clarification_requirements(db,text):
@@ -185,7 +197,7 @@ def replay(db,request,*,revision=None):
         if facts and facts['warnings']:blocks.append('source_image_metadata_resolution')
         return sorted(set(blocks))
     def view():
-        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,resolved_illustrator,offset,limit],ensure_ascii=False,sort_keys=True)
+        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,resolved_illustrator,ownership_required,offset,limit],ensure_ascii=False,sort_keys=True)
         if key in cache:return cache[key]
         recommendation=None
         if active_comparison is not None:
@@ -213,11 +225,12 @@ def replay(db,request,*,revision=None):
                 scope=filters,owned=owned,limit=limit,offset=offset,preferences=preferences,
                 pool_cache=recommendation_pool_cache,resolved_illustrator=resolved_illustrator)
             scope=out['scope'];inventory=out['inventory'];cards=out['cards'];recommendation=out['recommendation']
-            baseline_key=json.dumps([question,filters],sort_keys=True)
+            baseline_query=collector_recommendation.positive_query(db,question)
+            baseline_key=json.dumps([baseline_query,filters],sort_keys=True)
             if recommendation_baseline_cache.get('key')!=baseline_key:
                 recommendation_baseline_cache.clear()
                 recommendation_baseline_cache.update(key=baseline_key,
-                    result=collector_discovery.execute(db,question,scope=filters,limit=1))
+                    result=collector_discovery.execute(db,baseline_query,scope=filters,limit=1))
             baseline=recommendation_baseline_cache['result']
             scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+baseline['unfulfilled_constraints']))
         elif owned is None:
@@ -228,6 +241,12 @@ def replay(db,request,*,revision=None):
             scope=inventory['scope'];cards=inventory['missing_catalog_records']
         if scope['task']=='two_card_comparison' and active_comparison is None:
             scope['next_question']='The comparison context changed. Start the comparison again before choosing a side.'
+        if ownership_required:
+            scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+['owned_inventory']))
+            if owned is None:
+                scope['next_question']='Share your owned-card list first. Results can exclude only those supplied records; they cannot establish what you own globally.'
+            elif cards and active_comparison is None and focus_id is None:
+                scope['next_question']='These candidates are not in your supplied inventory records. Choose a shown record or refine the scope; possession and a complete collection are not verified.'
         blockers=[]
         if pending_clarifications:
             blockers.append('unresolved_collection_preference')
@@ -239,7 +258,7 @@ def replay(db,request,*,revision=None):
             blockers.append('supported_catalog_scope_needed')
         partial_only={'artwork_coverage_completeness','physical_variant_completeness','printing_variant_completeness','owned_inventory'}
         blockers.extend(sorted(set(scope['unfulfilled_constraints'])-partial_only))
-        text=collector_discovery._norm(question)
+        text=collector_discovery._norm(collector_recommendation.positive_query(db,question) if recommendation_mode else question)
         if (re.search(r'except|exclud|(?:does not|not|doesn.t) (?:yet )?include|omit|除外|未収録',text)
                 and collector_discovery._release_codes(db,text,scope['languages'])):
             blockers.append('release_exclusions_need_explicit_scope')
@@ -302,8 +321,9 @@ def replay(db,request,*,revision=None):
         previous=view() if question else None
         if kind=='ask':
             question=_text(turn['question'],'question');filters={};offset=0;clear('collection_goal_changed');unparsed=None
-            reset_context();feedback={};pending_clarifications=[];resolved_illustrator=None
-            baseline=collector_discovery.execute(db,question,limit=1)
+            reset_context();feedback={};pending_clarifications=[];resolved_illustrator=None;ownership_required=False
+            baseline_query=collector_recommendation.positive_query(db,question) if collector_recommendation.is_goal(question) else question
+            baseline=collector_discovery.execute(db,baseline_query,limit=1)
             if baseline['task']=='two_card_comparison':
                 active_comparison=baseline['comparison']
             recommendation_mode=(collector_recommendation.is_goal(question) and baseline['task'] in {
@@ -312,7 +332,7 @@ def replay(db,request,*,revision=None):
             if recommendation_mode:
                 scope_patch,money=collector_recommendation.question_constraints(question,db)
                 filters.update(scope_patch)
-                taste=collector_recommendation.parse_taste(db,question)
+                taste=natural_taste(question,collector_recommendation.parse_taste(db,question))
                 if taste:money['collecting']=taste
                 if money:patch_preferences(money)
                 unparsed=collector_recommendation.taste_clarification(db,question)
@@ -339,9 +359,11 @@ def replay(db,request,*,revision=None):
                     patch_preferences({'collecting':{'subjective_notes':list(dict.fromkeys(notes+[text[:160]]))[-10:]}})
                     hold_clarification(text)
                     unparsed=clarification
-                elif any(taste.get(k) for k in ['preferred_dex_ids','preferred_illustrators','preferred_releases']):
+                elif (any(taste.get(k) for k in ['preferred_dex_ids','preferred_illustrators','preferred_releases','excluded_dex_ids'])
+                        or collector_recommendation.bounded_negative_intent(db,text)):
                     scope_patch,_=collector_recommendation.question_constraints(text,db)
                     if scope_patch:refine(scope_patch)
+                    taste=natural_taste(text,taste)
                     patch_preferences({'collecting':taste})
                     resolve_artist_requirement({'collecting':taste},reply=text)
                     resolve_preference_clarifications({'collecting':taste});unparsed=None

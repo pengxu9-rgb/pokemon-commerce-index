@@ -9,6 +9,7 @@ import json
 import re
 import sqlite3
 import unicodedata
+from collections import deque
 from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime, collector_release_alias
 
 
@@ -103,6 +104,29 @@ def _rows(db, where: str, params: tuple) -> list:
         s.release_date,c.language,c.set_code,c.collector_number,c.variant""", params).fetchall()
 
 
+def _set_browse_order(rows: list) -> list:
+    """Show one source version per coordinate before revisiting coordinates.
+
+    Input order determines both coordinate order and variant order. This only
+    interleaves exact source records; it never merges versions or establishes
+    physical equivalence. Apply to the complete filtered pool before paging.
+    """
+    groups = {}
+    for row in rows:
+        coordinate = (row['language'], row['set_code'], row['collector_number'])
+        groups.setdefault(coordinate, deque()).append(row)
+    active = list(groups.values())
+    ordered = []
+    while active:
+        next_round = []
+        for variants in active:
+            ordered.append(variants.popleft())
+            if variants:
+                next_round.append(variants)
+        active = next_round
+    return ordered
+
+
 def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _row_capture=None) -> dict:
     text = _norm(result['question'])
     explicit=result.get('requested_scope',{})
@@ -120,7 +144,11 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
     if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
         artist_ids={r[0] for r in db.execute("SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?",(requested_artists[0],))} if len(requested_artists)==1 else set()
         rows=[r for r in rows if r['card_id'] in artist_ids]
-        if not rows:result.update(status='no_match',next_question='That exact coordinate does not have the requested current source-backed illustrator credit.')
+        if not rows:
+            result.update(status='no_match',next_question=(
+                'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint or start a new collection question.'
+                if result['task']=='artist_cards' else
+                'That exact coordinate does not have the requested current source-backed illustrator credit.'))
     qualifiers=_qualifier_findings(db,text,result['languages'])
     unsupported_professors=_unsupported_professors(db,text)
     if qualifiers or unsupported_professors:
@@ -168,6 +196,8 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
             result.update(status='no_match', next_question='No catalog record satisfies that source-declared finish; inspect the printed version evidence.')
         elif result['task']=='exact_coordinates':
             result['status'] = 'target_candidate' if len(rows)==1 else 'printing_clarification_needed'
+    if result['task'] == 'set_cards':
+        rows = _set_browse_order(rows)
     # Private inventory projection: retain only a bounded, fully filtered pool.
     # The public response remains paginated and contains no internal row objects.
     if _row_capture is not None and len(rows)<=_row_capture[0]:
@@ -181,7 +211,9 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
                             "global_printing_completeness_established":False,
                             "missing_character_facets_excluded":True,
                             "artwork_cameos_supported":False},
-                  ordering="release date ascending; unknown dates last; stable printing coordinates")
+                  ordering=("stable coordinate round-robin; every exact source version retained; no physical versions merged"
+                            if result['task'] == 'set_cards' else
+                            "release date ascending; unknown dates last; stable printing coordinates"))
     parts = [c for c in result['cards'] if c.get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts']
     if parts and result['task']=='exact_coordinates':
         result['unfulfilled_constraints'].append('numbered_part_copy_evidence')
@@ -287,19 +319,40 @@ def _unsupported_professors(db,text):
     return [name for name in names if not any(name.endswith(_norm(value)) for value in known)]+['professor '+name for name in english]
 
 
-def _character_ids(db, text: str) -> list[int]:
+def _character_mentions(db, text: str, *, maximal=True, current_only=False) -> list[tuple]:
     # One character facet only: a team card name cannot name a single species.
-    aliases = collector_runtime.vocabulary(db, 'character_aliases', """SELECT DISTINCT name,dex_id FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
+    aliases = collector_runtime.vocabulary(db, 'character_aliases', """SELECT DISTINCT name,dex_id,current_evidence FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id,
+        MAX(CASE WHEN (f.provenance=c.provenance AND f.rights_reference=c.rights_reference)
+            OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata
+                      WHERE metadata.card_id=c.card_id AND metadata.evidence_id=f.provenance)
+            THEN 1 ELSE 0 END) AS current_evidence
         FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
         GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""")
-    ids = set()
+    names={}
     for row in aliases:
-        if len(row["name"]) >= 3 and _mentioned(text, row["name"]):
-            ids.add(row["dex_id"])
-    for row in db.execute("SELECT * FROM character_family_member"):
-        if _mentioned(text, row["name_en"]) or _mentioned(text, row["name_ja"]):
-            ids.add(row["dex_id"])
-    return sorted(ids)
+        if len(row['name'])>=3 and (not current_only or row['current_evidence']):
+            key=(_norm(row['name']),row['dex_id'])
+            names[key]=names.get(key,False) or bool(row['current_evidence'])
+    if not current_only:
+        for row in db.execute("SELECT * FROM character_family_member"):
+            for key in ['name_en','name_ja']:names.setdefault((_norm(row[key]),row['dex_id']),False)
+    matches=set();current_matches=set()
+    for (name,dex),current in names.items():
+        if not name or name not in text:continue
+        pattern=(r'(?<![a-z0-9])'+re.escape(name)+r'(?![a-z0-9])'
+                 if re.fullmatch(r"[a-z0-9 '\-\.]+",name) else re.escape(name))
+        found={(dex,m.start(),m.end(),name) for m in re.finditer(pattern,text)}
+        matches.update(found)
+        if current:current_matches.update(found)
+    # Containment is occurrence-local: ミュウ alone still counts when another
+    # occurrence is inside ミュウツー. A stale longer match cannot suppress a
+    # shorter one to create new certainty. Equal-span conflicts stay ambiguous.
+    return sorted(m for m in matches if not maximal or not any(
+        other[1]<=m[1] and other[2]>=m[2] and other[2]-other[1]>m[2]-m[1] for other in current_matches))
+
+
+def _character_ids(db, text: str) -> list[int]:
+    return sorted({match[0] for match in _character_mentions(db,text)})
 
 
 @collector_runtime.catalog_request
@@ -395,7 +448,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="gameplay_evidence_needed", status="blocked",
                     next_question="Which game format and deck goal should be checked against a rules/card-text source?")
     artists=_artists(db,text)
-    inventory=bool(re.search(r'check off|ones i (?:have|still)|what i (?:have|own)|my inventory|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って',text))
+    inventory=bool(re.search(r"check off|ones i (?:have|still)|what i (?:have|own)|my inventory|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って|\bi (?:don['’]t|do not) already own\b",text))
     if inventory:
         result['unfulfilled_constraints'].append('owned_inventory')
         result['next_question']='Share your owned-card list and language/version scope so we can compare it with these catalog records.'

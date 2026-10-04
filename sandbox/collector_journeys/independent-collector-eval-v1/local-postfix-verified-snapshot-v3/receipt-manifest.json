@@ -1,0 +1,28 @@
+{
+  "schema": "pokemon.local-collector-receipts.v1",
+  "scope": "Read-only local replay of the verified ec7104e CI catalog snapshot. Not a fresh manifest build, fresh CI, held-out acceptance, human study or deployed UI validation. Frozen30 questions were already exposed for fixes.",
+  "files": {
+    "local-direct-report.json": {
+      "raw_sha256": "89dd3e60fce445c08e29fcb805ba8c18d9882ad0c00a9226a86d0d9b8eb72dbb",
+      "raw_bytes": 2241602,
+      "gzip_file": "local-direct-report.json.gz",
+      "gzip_sha256": "9d2e0c9e4298cf2c484cc9bfec0ec481126e2520aabac5e57bb9420b2620438a",
+      "gzip_bytes": 181993
+    },
+    "local-http-node-report.json": {
+      "raw_sha256": "6580c0979963e61f914ca7d93098a137324ce5509933e1eb23bdcc22fbdf740c",
+      "raw_bytes": 1848521,
+      "gzip_file": "local-http-node-report.json.gz",
+      "gzip_sha256": "3388bf38d76b31d5f9ecc443667c866209744734a1ebd86d19984f62f81246c5",
+      "gzip_bytes": 143984
+    },
+    "local-direct-report.summary.json": {
+      "sha256": "650b2a612a56170f24ced5f792ff3f7b4e0b2dae4cc9396f2eb82d1ac963c169",
+      "bytes": 111229
+    },
+    "local-versus-original-ci.json": {
+      "sha256": "fdc70c342e9545c8aca0dd908406cbb3d571ad025a11f6e785222c58e210f058",
+      "bytes": 6907
+    }
+  }
+}

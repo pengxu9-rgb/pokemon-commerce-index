@@ -1,5 +1,9 @@
 # Active build sequence — 2 October 2026
 
+## Collector-task follow-through — 4 October 2026
+
+[Usefulness follow-through and concrete next tasks](COLLECTOR_USEFULNESS_FOLLOWUP_20261004.md) records why green engineering CI was insufficient: exact Japanese-name interpretation, explicit exclusions, supplied-inventory continuation and set-browse diversity needed another bounded pass. Preserve the frozen scenarios and separately report engineering, source coverage, agent-reviewed usefulness, human validation and deployment capacity. The next discovery priorities are substantive source-backed comparisons, specific identity-hold explanations, contextual clarifications, buyer-constraint acknowledgement and an authenticated caller UI with actual collector observation. Commerce remains feed/copy/quote dependent.
+
 ## Discovery continuation — 4 October 2026
 
 [Continuation implementation and evidence](DISCOVERY_CONTINUATION_20261004.md) addresses the 21 source-qualified character gaps and adds bounded HTTP admission/deadlines after the observed burst failure. The original six affiliations and frozen 34-task suite are preserved. A separate 30-question collector evaluation is frozen before execution; score its actual CI responses before selecting the next discovery work. Load shedding is not successful task completion, and actual Cloud Run load/private rollout gates remain open. All marketplace, public display, physical and transaction gates remain closed.

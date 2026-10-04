@@ -1,0 +1,105 @@
+{
+  "catalog_sha256_before": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "catalog_sha256_after": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "read_only": true,
+  "scope": "Stored catalog coordinates/current source facets only; not new physical verification, live offers or approvals",
+  "queries": {
+    "japanese_charizard_names": {
+      "sql": "SELECT c.card_id,c.name,c.set_code,c.collector_number,f.value FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id' AND f.value='6' WHERE c.language='ja' AND c.name='リザードン' ORDER BY c.card_id LIMIT 8",
+      "rows": [
+        {
+          "card_id": "ja:M6A:137/103:holo",
+          "name": "リザードン",
+          "set_code": "M6A",
+          "collector_number": "137/103",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:PMCG1:021/102:holo",
+          "name": "リザードン",
+          "set_code": "PMCG1",
+          "collector_number": "021/102",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:PMCG1:021/102:holo_no_rarity",
+          "name": "リザードン",
+          "set_code": "PMCG1",
+          "collector_number": "021/102",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:S-P:143/S-P:normal",
+          "name": "リザードン",
+          "set_code": "S-P",
+          "collector_number": "143/S-P",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:S8B:017/184:normal",
+          "name": "リザードン",
+          "set_code": "S8B",
+          "collector_number": "017/184",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:S8B:187/184:holo",
+          "name": "リザードン",
+          "set_code": "S8B",
+          "collector_number": "187/184",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:SM6A:003/053:holo",
+          "name": "リザードン",
+          "set_code": "SM6A",
+          "collector_number": "003/053",
+          "value": "6"
+        },
+        {
+          "card_id": "ja:SM9:013/095:holo",
+          "name": "リザードン",
+          "set_code": "SM9",
+          "collector_number": "013/095",
+          "value": "6"
+        }
+      ]
+    },
+    "japanese_charizard_count": {
+      "sql": "SELECT COUNT(DISTINCT c.card_id) records,COUNT(DISTINCT c.set_code||':'||c.collector_number) coordinates FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id' AND f.value='6' WHERE c.language='ja'",
+      "rows": [
+        {
+          "records": 56,
+          "coordinates": 48
+        }
+      ]
+    },
+    "sv2a_count": {
+      "sql": "SELECT COUNT(*) records,COUNT(DISTINCT collector_number) coordinates FROM card WHERE language='ja' AND set_code='SV2A'",
+      "rows": [
+        {
+          "records": 516,
+          "coordinates": 210
+        }
+      ]
+    },
+    "sv4a_known_nonmew_count": {
+      "sql": "SELECT COUNT(DISTINCT c.card_id) records,COUNT(DISTINCT c.collector_number) coordinates FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id' AND f.value<>'151' WHERE c.language='ja' AND c.set_code='SV4A' AND NOT EXISTS(SELECT 1 FROM discovery_card_facet m WHERE m.card_id=c.card_id AND m.facet_type='dex_id' AND m.value='151')",
+      "rows": [
+        {
+          "records": 319,
+          "coordinates": 245
+        }
+      ]
+    },
+    "pikachu_others": {
+      "sql": "SELECT COUNT(DISTINCT c.card_id) records,COUNT(DISTINCT c.set_code||':'||c.collector_number) coordinates FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id' AND f.value='25' WHERE c.language='ja' AND c.card_id<>'ja:SV4A:236/190:holo'",
+      "rows": [
+        {
+          "records": 127,
+          "coordinates": 117
+        }
+      ]
+    }
+  }
+}
