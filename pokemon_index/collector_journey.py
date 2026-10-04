@@ -308,6 +308,7 @@ def replay(db,request,*,revision=None):
         if cid not in shown:raise ValueError('selected card was not shown in the preceding candidate page')
         target=shown[cid]
     for pos,turn in enumerate(turns):
+        collector_runtime.checkpoint()
         if not isinstance(turn,dict):raise ValueError('journey turn must be an object')
         kind=turn.get('type');fields={
             'ask':{'type','question'},'refine':{'type','scope'},'reply':{'type','text'},

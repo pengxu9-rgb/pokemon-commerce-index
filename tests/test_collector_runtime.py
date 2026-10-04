@@ -2,12 +2,14 @@
 import concurrent.futures
 import http.client
 import json
+import io
+import socket
 import sqlite3
 import tempfile
 import threading
 import time
 import unittest
-from contextlib import closing, contextmanager
+from contextlib import closing, contextmanager, redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
 
@@ -129,6 +131,60 @@ class AdmissionTests(unittest.TestCase):
         self.assertFalse(gate._waiting)
         with gate.acquire():pass
 
+    def test_absolute_budget_expires_in_queue_without_restarting_work(self):
+        gate=runtime.CatalogAdmission(queue_wait=1)
+        with gate.acquire():
+            def worker():
+                with self.assertRaises(runtime.CatalogDeadline):
+                    with gate.acquire(expires=time.monotonic()+.025):
+                        self.fail('expired request entered computation')
+            with concurrent.futures.ThreadPoolExecutor(1) as executor:executor.submit(worker).result()
+        self.assertFalse(gate._waiting)
+        with self.assertRaises(runtime.CatalogDeadline):
+            with gate.acquire(expires=time.monotonic()-1):self.fail('stale request entered')
+        with gate.acquire():pass
+
+    def test_python_checkpoints_expire_and_restore_request_local_budget(self):
+        with closing(sqlite3.connect(':memory:')) as db:
+            with self.assertRaises(runtime.CatalogDeadline):
+                with runtime.sqlite_deadline(db,time.monotonic()+.025):
+                    while True:runtime.checkpoint()
+            self.assertIsNone(runtime._work_deadline.get())
+            runtime.checkpoint()
+            with runtime.sqlite_deadline(db,time.monotonic()+1):
+                @runtime.catalog_request
+                def work(connection):
+                    self.assertIsNotNone(runtime._work_deadline.get())
+                    return connection.execute('SELECT 1').fetchone()[0]
+                self.assertEqual(work(db),1)
+
+    def test_nested_and_failed_sql_guards_restore_context_and_outer_callback(self):
+        with closing(sqlite3.connect(':memory:')) as db:
+            with self.assertRaises(runtime.CatalogDeadline):
+                with runtime.sqlite_deadline(db,time.monotonic()+.025):
+                    with runtime.sqlite_deadline(db,time.monotonic()+1):
+                        self.assertEqual(db.execute('SELECT 1').fetchone()[0],1)
+                    db.execute('WITH RECURSIVE n(x) AS (VALUES(0) UNION ALL SELECT x+1 FROM n WHERE x<100000000) SELECT sum(x) FROM n').fetchone()
+        with self.assertRaises(sqlite3.ProgrammingError):
+            with runtime.sqlite_deadline(db,time.monotonic()+1):pass
+        self.assertIsNone(runtime._work_deadline.get());self.assertEqual(runtime._sql_scopes.get(),())
+
+    def test_expiring_one_thread_does_not_cancel_another_requests_budget(self):
+        barrier=threading.Barrier(2)
+        def work(budget):
+            with closing(sqlite3.connect(':memory:')) as db:
+                try:
+                    with runtime.sqlite_deadline(db,time.monotonic()+budget):
+                        barrier.wait(1);time.sleep(.05);runtime.checkpoint()
+                        return db.execute('SELECT 42').fetchone()[0]
+                except runtime.CatalogDeadline:return 'deadline'
+                finally:
+                    self.assertIsNone(runtime._work_deadline.get())
+                    self.assertEqual(runtime._sql_scopes.get(),())
+        with concurrent.futures.ThreadPoolExecutor(2) as executor:
+            short=executor.submit(work,.025);long=executor.submit(work,1)
+            self.assertEqual(short.result(),'deadline');self.assertEqual(long.result(),42)
+
 
 class RuntimeHTTPTests(unittest.TestCase):
     def setUp(self):
@@ -209,6 +265,71 @@ class RuntimeHTTPTests(unittest.TestCase):
             with closing(core.connect(self.path)) as writer:
                 writer.execute('CREATE TABLE changed(x)');writer.commit()
             self.assertEqual(self.call(server,'/discover?q=unknown')[0],200)
+
+    def test_slow_body_uses_original_budget_and_cannot_start_late_work(self):
+        with self.server(catalog_deadline=.05) as server:
+            with patch.object(collector_journey,'replay',wraps=collector_journey.replay) as replay:
+                peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
+                try:
+                    peer.sendall(b'POST /collector-journey HTTP/1.1\r\nHost: local\r\nContent-Type: application/json\r\nContent-Length: 100\r\n\r\n{')
+                    time.sleep(.08)
+                    response=http.client.HTTPResponse(peer);response.begin()
+                    self.assertEqual(response.status,504)
+                    self.assertEqual(json.loads(response.read()),{'error':'catalog_work_budget_exceeded'})
+                    self.assertEqual(replay.call_count,0)
+                finally:peer.close()
+            self.assertEqual(self.call(server)[0],200)
+
+    def test_idle_connection_does_not_spend_a_future_requests_compute_budget(self):
+        with self.server(catalog_deadline=.05) as server:
+            peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
+            try:
+                time.sleep(.08)
+                raw=json.dumps(self.payload).encode()
+                peer.sendall(b'POST /collector-journey HTTP/1.1\r\nHost: local\r\nContent-Type: application/json\r\nContent-Length: '+str(len(raw)).encode()+b'\r\n\r\n'+raw)
+                response=http.client.HTTPResponse(peer);response.begin()
+                self.assertEqual(response.status,200)
+                self.assertEqual(json.loads(response.read())['turn_count'],1)
+            finally:peer.close()
+
+    def test_disconnected_python_work_stops_at_checkpoint_and_recovery_is_recommendation(self):
+        entered=threading.Event();finished=threading.Event()
+        def expensive(*args,**kwargs):
+            entered.set()
+            try:
+                while True:runtime.checkpoint()
+            finally:finished.set()
+        with self.server(catalog_deadline=.05,catalog_queue_size=0) as server:
+            with patch.object(collector_journey,'replay',side_effect=expensive):
+                peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
+                raw=json.dumps(self.payload).encode()
+                peer.sendall(b'POST /collector-journey HTTP/1.1\r\nHost: local\r\nContent-Type: application/json\r\nContent-Length: '+str(len(raw)).encode()+b'\r\n\r\n'+raw)
+                self.assertTrue(entered.wait(1));peer.close()
+                self.assertTrue(finished.wait(1))
+            # Wait for the exiting context to release its slot, then prove an
+            # actual recommendation works. Health alone would miss a leaked slot.
+            until=time.monotonic()+1
+            while True:
+                status,_,body=self.call(server)
+                if status!=503 or time.monotonic()>=until:break
+                time.sleep(.005)
+            self.assertEqual(status,200);self.assertEqual(body['turn_count'],1)
+
+    def test_response_timings_and_logs_contain_only_generated_metadata(self):
+        output=io.StringIO()
+        with redirect_stderr(output),self.server() as server:
+            status,headers,body=self.call(server)
+        self.assertEqual(status,200)
+        self.assertRegex(headers['X-Collector-Request-ID'],r'^[a-f0-9]{32}$')
+        self.assertIn('queue;dur=',headers['Server-Timing'])
+        records=[json.loads(row) for row in output.getvalue().splitlines()]
+        self.assertEqual(len(records),1)
+        row=records[0]
+        self.assertEqual(row['request_id'],headers['X-Collector-Request-ID'])
+        self.assertEqual(row['delivery'],'complete')
+        self.assertEqual(row['route'],'/collector-journey')
+        self.assertEqual(set(row),{'event','request_id','route','status','error','delivery','response_bytes','elapsed_ms','delivery_ms','timings_ms'})
+        self.assertNotIn(self.payload['turns'][0]['question'],output.getvalue())
 
 
 if __name__=='__main__':unittest.main()

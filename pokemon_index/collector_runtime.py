@@ -13,19 +13,37 @@ import time
 
 
 _catalog_scope = ContextVar('collector_catalog_scope', default=None)
+_work_deadline = ContextVar('collector_work_deadline', default=None)
+_sql_scopes = ContextVar('collector_sql_scopes', default=())
 _VOCABULARY_KEYS = frozenset({'character_aliases', 'artists', 'release_codes'})
+
+
+def checkpoint():
+    """Cooperative Python checkpoint, scoped to the current HTTP computation.
+
+    Direct in-process callers keep their existing behavior. This does not
+    preempt an arbitrary blocking extension or a thread between checkpoints.
+    """
+    expires = _work_deadline.get()
+    if expires is not None and time.monotonic() >= expires:
+        raise CatalogDeadline()
 
 
 def catalog_request(function):
     """Reuse fixed vocabularies only within one call and its nested operations."""
     @wraps(function)
     def wrapped(db, *args, **kwargs):
+        checkpoint()
         active = _catalog_scope.get()
         if active is not None and active['db'] is db:
-            return function(db, *args, **kwargs)
+            result = function(db, *args, **kwargs)
+            checkpoint()
+            return result
         token = _catalog_scope.set({'db': db, 'version': None, 'rows': {}})
         try:
-            return function(db, *args, **kwargs)
+            result = function(db, *args, **kwargs)
+            checkpoint()
+            return result
         finally:
             _catalog_scope.reset(token)
     return wrapped
@@ -37,6 +55,7 @@ def vocabulary(db, key, sql):
     Only three fixed, non-user-specific parser vocabularies can be retained.
     A direct helper call outside a request never installs a persistent cache.
     """
+    checkpoint()
     if key not in _VOCABULARY_KEYS:
         raise ValueError('unsupported catalog vocabulary')
     active = _catalog_scope.get()
@@ -117,20 +136,28 @@ class CatalogAdmission:
         self._active = 0
 
     @contextmanager
-    def acquire(self):
+    def acquire(self, *, expires=None):
         started = time.monotonic()
+        expires = min(started + self.deadline, expires) if expires is not None else started + self.deadline
         ticket = object()
         with self._condition:
+            if time.monotonic() >= expires:
+                raise CatalogDeadline()
             if self._active >= self.workers or self._waiting:
                 if len(self._waiting) >= self.queue_size:
                     raise CatalogBusy()
                 self._waiting.append(ticket)
                 try:
                     while self._active >= self.workers or self._waiting[0] is not ticket:
-                        remaining = self.queue_wait - (time.monotonic() - started)
+                        now = time.monotonic()
+                        if now >= expires:
+                            raise CatalogDeadline()
+                        remaining = min(started + self.queue_wait, expires) - now
                         if remaining <= 0:
                             raise CatalogBusy()
                         self._condition.wait(remaining)
+                    if time.monotonic() >= expires:
+                        raise CatalogDeadline()
                     if time.monotonic() - started >= self.queue_wait:
                         raise CatalogBusy()
                     self._waiting.popleft()
@@ -140,7 +167,7 @@ class CatalogAdmission:
                     raise
             self._active += 1
         try:
-            yield started + self.deadline
+            yield expires
         finally:
             with self._condition:
                 self._active -= 1
@@ -149,11 +176,19 @@ class CatalogAdmission:
 
 @contextmanager
 def sqlite_deadline(db, expires):
-    """Cooperative SQL deadline; bounded Python work is checked on completion."""
+    """One cooperative budget shared by SQLite and Python checkpoints."""
+    active = _work_deadline.get()
+    expires = min(expires, active) if active is not None else expires
+    token = _work_deadline.set(expires)
+    scopes = _sql_scopes.get()
+    prior = next((callback for connection, callback in reversed(scopes) if connection is db), None)
     def expired():
         return time.monotonic() >= expires
-    db.set_progress_handler(expired, 1000)
+    scope_token = _sql_scopes.set((*scopes, (db, expired)))
+    installed = False
     try:
+        db.set_progress_handler(expired, 1000)
+        installed = True
         if expired():
             raise CatalogDeadline()
         yield
@@ -164,4 +199,8 @@ def sqlite_deadline(db, expires):
             raise CatalogDeadline() from exc
         raise
     finally:
-        db.set_progress_handler(None, 0)
+        try:
+            if installed:db.set_progress_handler(prior, 1000 if prior is not None else 0)
+        finally:
+            _sql_scopes.reset(scope_token)
+            _work_deadline.reset(token)

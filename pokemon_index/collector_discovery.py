@@ -237,6 +237,7 @@ def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
     names.update((r['set_code'],r['alias']) for r in collector_release_alias.aliases(db,languages))
     candidates=[]
     for code,name in names:
+        collector_runtime.checkpoint()
         term=_norm(name)
         if len(term)<3 or not _mentioned(text,term):continue
         if term.isdigit() and not re.search(r'\bset\b|\bcards?\b|拡張|カード',text):continue
@@ -329,7 +330,8 @@ def _character_mentions(db, text: str, *, maximal=True, current_only=False) -> l
         FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
         GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""")
     names={}
-    for row in aliases:
+    for index,row in enumerate(aliases):
+        if index%128==0:collector_runtime.checkpoint()
         if len(row['name'])>=3 and (not current_only or row['current_evidence']):
             key=(_norm(row['name']),row['dex_id'])
             names[key]=names.get(key,False) or bool(row['current_evidence'])
@@ -337,7 +339,8 @@ def _character_mentions(db, text: str, *, maximal=True, current_only=False) -> l
         for row in db.execute("SELECT * FROM character_family_member"):
             for key in ['name_en','name_ja']:names.setdefault((_norm(row[key]),row['dex_id']),False)
     matches=set();current_matches=set()
-    for (name,dex),current in names.items():
+    for index,((name,dex),current) in enumerate(names.items()):
+        if index%128==0:collector_runtime.checkpoint()
         if not name or name not in text:continue
         pattern=(r'(?<![a-z0-9])'+re.escape(name)+r'(?![a-z0-9])'
                  if re.fullmatch(r"[a-z0-9 '\-\.]+",name) else re.escape(name))

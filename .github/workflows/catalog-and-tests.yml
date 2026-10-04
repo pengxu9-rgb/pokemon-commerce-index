@@ -57,6 +57,9 @@ jobs:
       - name: Measure real-catalog HTTP admission and concurrency
         if: ${{ !cancelled() }}
         run: timeout 180s python -m scripts.benchmark_collector_concurrency --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --output /tmp/http-concurrency-review-report.json
+      - name: Measure actual Node caller overload and recommendation recovery
+        if: ${{ !cancelled() }}
+        run: timeout 300s python -m scripts.benchmark_collector_caller --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --require-current-client --output /tmp/caller-concurrency-review-report.json
       - name: Build staging image from the same manifest
         id: container_build
         if: ${{ !cancelled() }}
@@ -109,6 +112,8 @@ jobs:
             /tmp/pilot-review-report.json
             /tmp/runtime-review-report.json
             /tmp/http-concurrency-review-report.json
+            /tmp/caller-concurrency-review-report.json
+            /tmp/caller-concurrency-review-report.journal.jsonl
             /tmp/character-gap-review-report.json
             /tmp/independent-collector-eval-report.json
             /tmp/independent-collector-eval-report.summary.json

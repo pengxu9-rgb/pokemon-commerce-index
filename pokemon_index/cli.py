@@ -5,6 +5,9 @@ import gzip
 import json
 import os
 import sqlite3
+import sys
+import time
+import uuid
 from dataclasses import asdict
 from contextlib import closing, contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -38,34 +41,84 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
     admission=collector_runtime.CatalogAdmission(workers=catalog_workers,queue_size=catalog_queue_size,
         queue_wait=catalog_queue_wait,deadline=catalog_deadline)
     @contextmanager
-    def catalog_db():
-        with admission.acquire() as expires:
-            check_snapshot()
-            # A progress callback cannot interrupt SQLite busy waits or the
-            # connection setup queries; keep their lock wait short as well.
-            with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
-                with collector_runtime.sqlite_deadline(db,expires):
-                    yield db
-                    check_snapshot()
+    def catalog_db(handler):
+        queued=time.monotonic();entered=None
+        try:
+            # Upload, parsing and admission do not buy a fresh eight seconds.
+            with admission.acquire(expires=handler.received+catalog_deadline) as expires:
+                entered=time.monotonic();handler.timings['queue']=entered-queued
+                check_snapshot()
+                # A progress callback cannot interrupt SQLite busy waits or the
+                # connection setup queries; keep their lock wait short as well.
+                with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
+                    with collector_runtime.sqlite_deadline(db,expires):
+                        yield db
+                        check_snapshot()
+        finally:
+            handler.timings['compute' if entered is not None else 'queue']=time.monotonic()-(entered or queued)
     journey_revision=None
     if internal_catalog_api:
         with closing(core.connect(db_path,readonly=True)) as db:
             journey_revision=collector_journey.catalog_revision(db)
         check_snapshot()
     class Handler(BaseHTTPRequestHandler):
+        def setup(self):
+            self.received=time.monotonic();self.timings={}
+            self.request_id=uuid.uuid4().hex
+            super().setup()
+            # Also bound inactive request headers, before do_POST/do_GET run.
+            self.connection.settimeout(10)
+
+        def log_request(self,code='-',size='-'):
+            # Request paths/queries and arbitrary HTTP errors are not telemetry.
+            # send_json emits only the bounded, generated fields below.
+            pass
+
+        def log_message(self,format,*args):
+            pass
+
+        def read_body(self,length):
+            expires=self.received+catalog_deadline
+            chunks=[];remaining=length
+            while remaining:
+                budget=expires-time.monotonic()
+                if budget<=0:raise collector_runtime.CatalogDeadline()
+                self.connection.settimeout(budget)
+                try:chunk=self.rfile.read1(min(remaining,65536))
+                except TimeoutError as exc:raise collector_runtime.CatalogDeadline() from exc
+                if not chunk:raise ValueError('incomplete JSON request body')
+                chunks.append(chunk);remaining-=len(chunk)
+            if time.monotonic()>=expires:raise collector_runtime.CatalogDeadline()
+            return b''.join(chunks)
+
         def send_json(self,status,body,*,runtime_error=None):
             # Admission is already released: slow/disconnected readers cannot
             # retain the catalog compute slot.
+            started=time.monotonic();delivery='complete'
             try:
+                self.connection.settimeout(10)
                 self.send_response(status)
                 self.send_header('Content-Type','application/json; charset=utf-8')
                 self.send_header('Content-Length',str(len(body)))
+                self.send_header('X-Collector-Request-ID',self.request_id)
+                self.send_header('Server-Timing',', '.join(f'{key};dur={value*1000:.3f}'
+                    for key,value in self.timings.items()))
                 if runtime_error:
                     self.send_header('X-Collector-Error',runtime_error)
                     if status==503:self.send_header('Retry-After','1')
                 self.end_headers();self.wfile.write(body)
             except (BrokenPipeError,ConnectionResetError,TimeoutError):
-                pass
+                delivery='disconnected_or_write_timeout'
+            finally:
+                # Cloud logs can correlate an individual response with the
+                # caller without recording tokens, bodies, sessions or queries.
+                route=urlparse(self.path).path
+                safe_route=route if route in {'/collector-journey','/collector-inventory','/card-comparison','/health'} else 'other'
+                print(json.dumps(dict(event='collector_http',request_id=self.request_id,route=safe_route,
+                    status=status,error=runtime_error,delivery=delivery,response_bytes=len(body),
+                    elapsed_ms=round((time.monotonic()-self.received)*1000,3),
+                    delivery_ms=round((time.monotonic()-started)*1000,3),
+                    timings_ms={key:round(value*1000,3) for key,value in self.timings.items()})),file=sys.stderr,flush=True)
 
         def runtime_failure(self,exc):
             if isinstance(exc,collector_runtime.CatalogBusy):
@@ -79,6 +132,10 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
             self.send_json(status,json.dumps({'error':code}).encode(),runtime_error=code)
 
         def do_POST(self):
+            # Start when headers are parsed, not when an idle pooled socket is
+            # accepted. The separate header inactivity timeout is not a compute
+            # budget and must not age a future request before it exists.
+            self.received=time.monotonic()
             route=urlparse(self.path).path
             if not internal_catalog_api or route not in {'/collector-inventory','/collector-journey','/card-comparison'}:
                 self.send_error(404);return
@@ -89,14 +146,13 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 if self.headers.get('Content-Type','').split(';')[0].strip().lower()!='application/json':
                     raise ValueError('Content-Type must be application/json')
                 if self.headers.get('Transfer-Encoding'):raise ValueError('Transfer-Encoding is unsupported')
-                self.connection.settimeout(10)
-                raw=self.rfile.read(int(length))
-                if len(raw)!=int(length):raise ValueError('incomplete JSON request body')
+                raw=self.read_body(int(length))
                 try:
                     payload=json.loads(raw.decode('utf-8'))
                 except RecursionError as exc:
                     raise ValueError('JSON nesting exceeds supported depth') from exc
-                with catalog_db() as db:
+                self.timings['receive']=time.monotonic()-self.received
+                with catalog_db(self) as db:
                     result=(card_comparison.compare(db,payload) if route=='/card-comparison' else
                             collector_inventory.compare(db,payload) if route=='/collector-inventory' else
                             collector_journey.replay(db,payload,revision=journey_revision))
@@ -109,6 +165,7 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
             self.send_json(status,body)
 
         def do_GET(self):
+            self.received=time.monotonic()
             parsed = urlparse(self.path)
             args = parse_qs(parsed.query)
             value = lambda name, default="": args.get(name, [default])[0]
@@ -124,7 +181,8 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 self.send_error(404);return
             self.connection.settimeout(10)
             try:
-                with catalog_db() as db:
+                self.timings['receive']=time.monotonic()-self.received
+                with catalog_db(self) as db:
                     if parsed.path == "/discover":
                         result = {"cards": core.discover(db, value("q"))}
                     elif parsed.path == "/discovery":

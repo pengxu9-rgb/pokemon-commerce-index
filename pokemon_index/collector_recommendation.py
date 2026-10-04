@@ -214,6 +214,7 @@ def _facets(db, cid):
 def _facet_batches(db, card_ids, size=400):
     """Bound SQLite variables and transient facet memory, without per-card queries."""
     for start in range(0,len(card_ids),size):
+        collector_runtime.checkpoint()
         ids=card_ids[start:start+size];found={cid:[] for cid in ids}
         for row in db.execute('SELECT * FROM discovery_card_facet WHERE card_id IN ('+
                 ','.join('?' for _ in ids)+') ORDER BY card_id,facet_type,value,provenance',ids):
@@ -451,6 +452,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
             for group in groups:groups[group]=deque(sorted(groups[group]))
             active=sorted(groups,key=lambda g:groups[g][0])
             while active:
+                collector_runtime.checkpoint()
                 next_round=[]
                 for group in active:
                     ordered.append(groups[group].popleft())

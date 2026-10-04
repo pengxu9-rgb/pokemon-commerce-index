@@ -91,6 +91,14 @@ of the task-completion capacity hold. The eight-second computation deadline is
 cooperative, not hard preemption. Record successful completion and overload rates
 separately, including the Node caller's bounded retry behavior and recovery UX.
 
+The [concurrency/recovery repair](CONCURRENCY_RECOVERY_20261004.md) adds a complete
+Node attempt watchdog, non-blocking cancellation, shared body/admission/compute
+budgets and sanitized per-attempt/server timings. Locally reproduced cancellation
+hangs are not proof of the reported private Cloud Run failure's root cause.
+Compare actual Node caller serial, 2/4/16-client, sustained and full recommendation
+recovery results; retain explicit rejections and timeouts in every denominator.
+Do not substitute health/anonymous-access checks or fast 503s for that evidence.
+
 Stage at zero traffic and measure cold-start and sustained expected-load behavior
 on the actual Cloud Run revision. Promotion requires evidence that requests finish
 within the caller's **10-second per-attempt budget** at the expected concurrency,
