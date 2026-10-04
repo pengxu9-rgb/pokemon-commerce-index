@@ -1,0 +1,21 @@
+{
+  "before_7382318": {
+    "status": "ok",
+    "seconds": 5.33585461700568,
+    "sql_statements": 129,
+    "sqlite_progress_callbacks": 147858,
+    "affiliations": 27
+  },
+  "after_batch": {
+    "status": "ok",
+    "seconds": 0.22435098499408923,
+    "sql_statements": 56,
+    "sqlite_progress_callbacks": 6447,
+    "affiliations": 27
+  },
+  "output_equivalent": true,
+  "fixture_scope": "synthetic70028rows/2497activeofficialoverlays/1activecorrection/10000artistpool/27synthetic-qualifiedtargets",
+  "catalog_sha256": "9cb0206ac823c32a0f24ac5fb1690a963bc30a4488a76358c21c0319a01a66ec",
+  "baseline_sha256": "738be34a1cfc8b2d222a040953ade70f0b6e98c54dcb1044112a9cb6749f5980",
+  "current_helper_sha256": "8ab9a63eb57f8253acadb21608bb450897d35fbdecb5c81c4a3be1958ae83192"
+}

@@ -29,15 +29,30 @@ def _bindings():
     return rows
 
 
-def _anchors(db, base_name):
+def _anchor_groups(db, base_names):
+    """Read all requested exact names in one effective-facet query.
+
+    The effective view contains materialized correction evidence. Repeating it
+    per name scans that evidence repeatedly even when only a few anchors match.
+    Grouping after one ordered query changes no currentness or unanimity rule.
+    """
+    base_names = sorted(set(base_names))
+    if not base_names:
+        return {}
+    placeholders = ",".join("?" for _ in base_names)
     rows = db.execute("""SELECT c.card_id,c.name,c.provenance card_provenance,
             c.rights_reference card_rights_reference,
             f.value,f.provenance,f.rights_reference,k.provenance classification_provenance,
-            k.rights_reference classification_rights_reference
+            k.rights_reference classification_rights_reference,
+            CASE WHEN f.provenance=c.provenance THEN 1 ELSE EXISTS (
+                SELECT 1 FROM active_card_metadata_evidence e
+                WHERE e.card_id=c.card_id AND e.evidence_id=f.provenance)
+            END metadata_current
         FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
         JOIN card_classification k ON k.card_id=c.card_id AND k.category='Pokemon'
-        WHERE c.language='ja' AND c.name=? ORDER BY c.card_id,f.value,f.provenance""", (base_name,)).fetchall()
-    current = []
+        WHERE c.language='ja' AND c.name IN (""" + placeholders + """)
+        ORDER BY c.card_id,f.value,f.provenance""", base_names).fetchall()
+    groups = {name: [] for name in base_names}
     for row in rows:
         if (row["classification_provenance"] != row["card_provenance"] or
                 row["classification_rights_reference"] != row["card_rights_reference"] or
@@ -47,21 +62,24 @@ def _anchors(db, base_name):
         # must be present in the existing active, snapshot-bound evidence view.
         if row["provenance"] == row["card_provenance"] and row["rights_reference"] != row["card_rights_reference"]:
             continue
-        if row["provenance"] != row["card_provenance"] and not db.execute(
-                "SELECT 1 FROM active_card_metadata_evidence WHERE card_id=? AND evidence_id=?",
-                (row["card_id"], row["provenance"])).fetchone():
+        if not row["metadata_current"]:
             continue
-        current.append({"card_id": row["card_id"], "name": row["name"],
+        groups[row["name"]].append({"card_id": row["card_id"], "name": row["name"],
                         "dex_id": int(row["value"]), "provenance": row["provenance"],
                         "rights_reference": row["rights_reference"]})
     # A multi-character or contradictory source cannot be converted into an
     # arbitrary single-species label. Check all current anchors before sampling.
-    if not current or len({row["dex_id"] for row in current}) != 1:
-        return None
-    dex_id = current[0]["dex_id"]
-    if not 1 <= dex_id <= 1025:
-        return None
-    return dex_id, current
+    result = {}
+    for name, current in groups.items():
+        dex_id = current[0]["dex_id"] if current else None
+        result[name] = ((dex_id, current) if current
+                        and len({row["dex_id"] for row in current}) == 1
+                        and 1 <= dex_id <= 1025 else None)
+    return result
+
+
+def _anchors(db, base_name):
+    return _anchor_groups(db, [base_name])[base_name]
 
 
 def affiliations(db):
@@ -72,7 +90,7 @@ def affiliations(db):
     from broad catalog research, only unavailable derived character evidence.
     """
     result = {}
-    anchors = {}
+    qualified = []
     for binding in _bindings():
         identity = binding.get("identity", {})
         cid = binding.get("card_id")
@@ -102,12 +120,22 @@ def affiliations(db):
                                     (cid,)).fetchone()
         if not classification or tuple(classification) != ("Pokemon", source_ref, binding["target_rights_reference"]):
             continue
-        # Never override a direct/current species assertion or its conflicts.
-        if db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id'",
-                      (cid,)).fetchone():
-            continue
-        if base_name not in anchors:
-            anchors[base_name] = _anchors(db, base_name)
+        qualified.append(binding)
+    if not qualified:
+        return result
+    # Batch direct/current assertions through the same effective view. No raw
+    # facet shortcut: metadata conflicts or numbered-part suppression still win.
+    placeholders = ",".join("?" for _ in qualified)
+    direct = {row[0] for row in db.execute(
+        "SELECT DISTINCT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND card_id IN ("
+        + placeholders + ")", [binding["card_id"] for binding in qualified])}
+    qualified = [binding for binding in qualified if binding["card_id"] not in direct]
+    anchors = _anchor_groups(db, [binding["base_name_ja"] for binding in qualified])
+    for binding in qualified:
+        cid = binding["card_id"]
+        identity = binding["identity"]
+        base_name = binding["base_name_ja"]
+        source_ref = binding["source_ref"]
         matched = anchors[base_name]
         if matched is None:
             continue

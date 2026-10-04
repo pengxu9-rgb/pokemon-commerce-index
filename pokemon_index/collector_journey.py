@@ -17,6 +17,7 @@ def catalog_revision(db):
     h=hashlib.sha256(POLICY.encode())
     for name in ['collector_journey.py','collector_runtime.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
                  'collector_character_affiliation.py','collector-character-affiliations-v1.json',
+                 'collector_release_alias.py','collector-release-name-aliases-v1.json',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
                  'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
@@ -71,6 +72,8 @@ def _reply_scope(db,text,languages):
            if r['language'] in languages and collector_discovery._norm(r['name'])==t}
     exact.update(r['set_code'] for r in db.execute('SELECT language,set_code,alias FROM catalog_vocabulary')
                  if r['language'] in languages and collector_discovery._norm(r['alias'])==t)
+    exact.update(r['set_code'] for r in collector_discovery.collector_release_alias.aliases(db,languages)
+                 if collector_discovery._norm(r['alias'])==t)
     if len(exact)==1:return {'set_code':next(iter(exact))}
     return None
 
@@ -111,7 +114,7 @@ def replay(db,request,*,revision=None):
     reset_reason=None;pending_clarifications=[]
     recommendation_mode=False;feedback={};shown_ids=set();recommendation_shown=set()
     recommendation_pool_cache={'revision':revision};recommendation_baseline_cache={}
-    active_comparison=None;focus_id=None
+    active_comparison=None;focus_id=None;resolved_illustrator=None
     def reset_context():
         nonlocal active_comparison,focus_id
         active_comparison=None;focus_id=None;shown_ids.clear();recommendation_shown.clear()
@@ -148,6 +151,23 @@ def replay(db,request,*,revision=None):
             unresolved=[g for g in groups if not fields.intersection(g)]
             if unresolved:remaining.append(dict(constraint,preference_groups=unresolved))
         pending_clarifications=remaining
+    def resolve_artist_requirement(patch,reply=None):
+        nonlocal resolved_illustrator,offset
+        # A carried profile or the original ambiguous question cannot answer a
+        # new clarification. Only a later explicit single credit can; remember
+        # that answer separately from optional preference axes.
+        if not (recommendation_mode and collector_discovery.explicit_artist_clause(question)
+                and len(collector_discovery._artists(db,collector_discovery._norm(question)))!=1):return
+        collecting=patch.get('collecting',{})
+        if collecting is not None and (not isinstance(collecting,dict) or 'preferred_illustrators' not in collecting):return
+        artists=collecting.get('preferred_illustrators') if isinstance(collecting,dict) else None
+        artist=artists[0] if isinstance(artists,list) and len(artists)==1 else None
+        if reply is not None and (artist is None or collector_discovery._norm(reply).strip(' .。!！')!=collector_discovery._norm(artist)):
+            return
+        # This is a fresh answer even when it repeats a stored preference.
+        # Reset comparison/focus/selection authority before showing new cards.
+        resolved_illustrator=artist
+        clear('illustrator_requirement_confirmed');offset=0;reset_context()
     def identity_blockers(card):
         cid=card['card_id']
         blocks=discovery_graph.endpoint_identity_blockers(db,cid)
@@ -165,7 +185,7 @@ def replay(db,request,*,revision=None):
         if facts and facts['warnings']:blocks.append('source_image_metadata_resolution')
         return sorted(set(blocks))
     def view():
-        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,offset,limit],ensure_ascii=False,sort_keys=True)
+        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,resolved_illustrator,offset,limit],ensure_ascii=False,sort_keys=True)
         if key in cache:return cache[key]
         recommendation=None
         if active_comparison is not None:
@@ -191,7 +211,7 @@ def replay(db,request,*,revision=None):
         elif recommendation_mode:
             out=collector_recommendation.recommend(db,question,preferences.get('collecting',{}),feedback,
                 scope=filters,owned=owned,limit=limit,offset=offset,preferences=preferences,
-                pool_cache=recommendation_pool_cache)
+                pool_cache=recommendation_pool_cache,resolved_illustrator=resolved_illustrator)
             scope=out['scope'];inventory=out['inventory'];cards=out['cards'];recommendation=out['recommendation']
             baseline_key=json.dumps([question,filters],sort_keys=True)
             if recommendation_baseline_cache.get('key')!=baseline_key:
@@ -282,7 +302,7 @@ def replay(db,request,*,revision=None):
         previous=view() if question else None
         if kind=='ask':
             question=_text(turn['question'],'question');filters={};offset=0;clear('collection_goal_changed');unparsed=None
-            reset_context();feedback={};pending_clarifications=[]
+            reset_context();feedback={};pending_clarifications=[];resolved_illustrator=None
             baseline=collector_discovery.execute(db,question,limit=1)
             if baseline['task']=='two_card_comparison':
                 active_comparison=baseline['comparison']
@@ -323,6 +343,7 @@ def replay(db,request,*,revision=None):
                     scope_patch,_=collector_recommendation.question_constraints(text,db)
                     if scope_patch:refine(scope_patch)
                     patch_preferences({'collecting':taste})
+                    resolve_artist_requirement({'collecting':taste},reply=text)
                     resolve_preference_clarifications({'collecting':taste});unparsed=None
                 else:
                     notes=preferences.get('collecting',{}).get('subjective_notes',[])
@@ -348,6 +369,7 @@ def replay(db,request,*,revision=None):
         elif kind=='preferences':
             patch=_preferences(turn['preferences'],db)
             patch_preferences(patch)
+            resolve_artist_requirement(patch)
             resolve_preference_clarifications(patch)
             if 'collecting' in patch and collector_recommendation.supported_goal(question) and previous['scope']['task'] in collector_inventory.SCOPED_TASKS|{'collection_preferences_needed','collector_recommendations'}:
                 recommendation_mode=True

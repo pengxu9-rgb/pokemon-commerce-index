@@ -1,0 +1,562 @@
+{
+  "schema": "pokemon.collector-http-concurrency.v1",
+  "fixture_label": "synthetic",
+  "catalog_records": 70028,
+  "catalog_sha256": "9cb0206ac823c32a0f24ac5fb1690a963bc30a4488a76358c21c0319a01a66ec",
+  "catalog_unchanged": true,
+  "axis": {
+    "facet_type": "illustrator",
+    "value": "Fixture Artist",
+    "catalog_axis_records": 10000,
+    "profile": {
+      "preferred_illustrators": [
+        "Fixture Artist"
+      ]
+    },
+    "inventory_question": "Cards by Fixture Artist"
+  },
+  "startup_seconds": 0.9679,
+  "configured_workers": "server_default",
+  "client_timeout_seconds": 10,
+  "cpu_affinity_count": 9,
+  "process_peak_rss_mib": 112.02,
+  "cases": [
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.0336
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.1053
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.0026
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.0023
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 143384,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 0.4064
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 143384,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 0.3994
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.2477
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0014
+      },
+      "wall_seconds": 4.2499,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.2353
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 2,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.0558
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2525
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0016
+      },
+      "wall_seconds": 4.0566,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 1,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.2465
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 4,
+      "results": [
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2529
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2535
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.1511
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2532
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0033
+      },
+      "wall_seconds": 4.1524,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 3,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.2408
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 16,
+      "results": [
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2565
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0078
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0086
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0097
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2561
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2565
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0056
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.1166
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0086
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0058
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0092
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0078
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.256
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0059
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0079
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.009
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0044
+      },
+      "wall_seconds": 4.1203,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 15,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.2427
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "after_bursts_recovery",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 29440,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "6e996f673f2c2d2d271384546fdaf615222b8ea444c1e4632e04653869019be7",
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 4.2879
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    }
+  ],
+  "health_counts": {
+    "accepted": 4,
+    "failed": 0,
+    "max_elapsed_seconds": 0.0044
+  },
+  "limits": {
+    "process_peak_rss_mib": 450,
+    "health_seconds": 1
+  },
+  "deployment_scope": "Local actual HTTP, no Node token acquisition or deployed Cloud Run measurement. Overload is unsuccessful work and remains in every denominator.",
+  "passed": false
+}

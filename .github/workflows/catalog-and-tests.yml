@@ -28,6 +28,24 @@ jobs:
           python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 > /tmp/review-catalog-build-report.json
           cat /tmp/review-catalog-build-report.json
           python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
+      - name: Prepare private short-lived catalog diagnostic
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f /tmp/review-catalog.sqlite3 ]; then
+            gzip -c /tmp/review-catalog.sqlite3 > /tmp/collector-debug-catalog.sqlite3.gz
+            sha256sum /tmp/review-catalog.sqlite3 /tmp/collector-debug-catalog.sqlite3.gz > /tmp/collector-debug-catalog.sha256
+          fi
+      - name: Preserve private short-lived catalog diagnostic
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-catalog-diagnostic
+          retention-days: 1
+          path: |
+            /tmp/collector-debug-catalog.sqlite3.gz
+            /tmp/collector-debug-catalog.sha256
+            /tmp/review-catalog-build-report.json
+          if-no-files-found: ignore
       - name: Measure bounded real-catalog runtime
         if: ${{ !cancelled() }}
         run: python -m scripts.benchmark_collector_runtime --db /tmp/review-catalog.sqlite3 --output /tmp/runtime-review-report.json

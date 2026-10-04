@@ -1,0 +1,257 @@
+{
+  "schema": "pokemon.continuation-initial-ci-failure.v1",
+  "commit": "7382318c46de9bcea0eb3d109848f447b57b0068",
+  "ci_url": "https://github.com/pengxu9-rgb/pokemon-commerce-index/actions/runs/37168912488",
+  "artifact_id": 11291006337,
+  "artifact_zip_sha256": "e40010d68fdeaded281045de19f59a770845d6e13ef2c0317b4f75915f732b37",
+  "receipts_sha256": {
+    "review-catalog-build-report.json": "c40e7a205ad825d132b48c24db58d2e433621210efcebd9329244a90c89b34d8",
+    "character-gap-review-report.json": "8d0e7b7a85022f3843be4d44e7d8e722f569b08587474af87bfb2949701f6343",
+    "recommendation-review-report.json": "659d58c9f78d4b46435dada6b5deb68727b8d94a32af6b77be7da1a0f2724ad9",
+    "independent-collector-eval-report.json": "77ce96b51b43906b794025eea7af1f1a2097267634dbccc4c504b0218f183205",
+    "runtime-review-report.json": "8008d7ef45383e1521555cf18effd4460be5d5314afc3f8f1c5705f5c40586bf",
+    "pilot-review-report.json": "a00c71af3049158c6d5478ce7df4e484539b60b60719202be991447e0a21d885",
+    "independent-collector-eval-report.summary.json": "1b2e2faf1027ba9f32875191e90392c0217b3d4dc3d030bb1d6504621de93ac1",
+    "legacy-review-report.json": "df3675d72439279828e666b6620e0cf21208158401561c13e708d32fd11d2e03",
+    "independent-collector-baseline-report.json": "790b36ea6e6a5b6d3f8c2d7cea50df14e0a9ee6a5a2c6ca88522a0110db05978",
+    "independent-collector-baseline-report.summary.json": "d9ae391d8d2c635b01a963c5f340869356a0c14cda44a5e30d4e9acaa20fcea1",
+    "http-concurrency-review-report.json": "37965ffb3c37cceee43da672c38bf9981d9a5db7fafbf7d16960464aa7a36240"
+  },
+  "legacy": {
+    "passed": 33,
+    "failed": 6,
+    "failed_steps": [
+      {
+        "id": "cjq2-008:1",
+        "errors": [
+          "catalog_work_budget_exceeded"
+        ]
+      },
+      {
+        "id": "cjq2-008:2",
+        "errors": [
+          "not_executed_after_prior_error"
+        ]
+      },
+      {
+        "id": "cjq2-008:3",
+        "errors": [
+          "not_executed_after_prior_error"
+        ]
+      },
+      {
+        "id": "cjq2-008:4",
+        "errors": [
+          "not_executed_after_prior_error"
+        ]
+      },
+      {
+        "id": "cjq2-008:5",
+        "errors": [
+          "not_executed_after_prior_error"
+        ]
+      },
+      {
+        "id": "cjq2-008:6",
+        "errors": [
+          "not_executed_after_prior_error"
+        ]
+      }
+    ]
+  },
+  "serial_runtime_cases": [
+    {
+      "case": "recommendation_page_1",
+      "elapsed_seconds": 12.4635,
+      "sql_statements": 490
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "elapsed_seconds": 12.5472,
+      "sql_statements": 3514
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "elapsed_seconds": 17.4028,
+      "sql_statements": 3694
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "elapsed_seconds": 0.7019,
+      "sql_statements": 2735
+    }
+  ],
+  "http_case_outcomes": [
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "first_use",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "warm",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "first_use",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "warm",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "first_use",
+      "clients": 1,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "warm",
+      "clients": 1,
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 2,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 1,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 4,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 3,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 16,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 15,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "after_bursts_recovery",
+      "clients": 1,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      }
+    }
+  ],
+  "baseline_evaluation": {
+    "cases_total": 30,
+    "cases_with_results": 30,
+    "execution_error_cases": 2,
+    "safety_violation_cases": 0,
+    "product_path_blocked_cases": 0,
+    "mechanical_constraint_pass_cases": 21,
+    "mechanical_constraint_fail_cases": 9,
+    "reviewer_scored_cases": 0,
+    "strict_completed_count": null,
+    "useful_progress_count": null
+  },
+  "current_evaluation": {
+    "cases_total": 30,
+    "cases_with_results": 30,
+    "execution_error_cases": 17,
+    "safety_violation_cases": 0,
+    "product_path_blocked_cases": 0,
+    "mechanical_constraint_pass_cases": 12,
+    "mechanical_constraint_fail_cases": 18,
+    "reviewer_scored_cases": 0,
+    "strict_completed_count": null,
+    "useful_progress_count": null
+  },
+  "catalog_bytes_unchanged": true,
+  "new_21_source_diagnostic": "21/21 passed",
+  "existing_pilot_diagnostic": "34/34 passed",
+  "interpretation": "Full-catalog evidence exposed a recommendation-cost regression despite passing small/local fixtures. Current evaluation has 15 timeouts and 2 pre-existing routing errors; baseline has the same 2 routing errors. Neither is a completed usefulness evaluation. Frozen questions and expectations must remain unchanged."
+}

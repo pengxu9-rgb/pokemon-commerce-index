@@ -1,0 +1,1793 @@
+{
+  "schema": "pokemon.independent-collector-agent-review.v1",
+  "ci_run": "https://github.com/pengxu9-rgb/pokemon-commerce-index/actions/runs/37168912488",
+  "reviewed_at_utc": "2026-10-04T02:19:00Z",
+  "reviewer": {
+    "type": "ai_agent",
+    "role": "Separate evaluation worker; also authored the frozen fixture",
+    "independence_limit": "Independent of implementation tuning; not a blinded second evaluator and not a human collector. Scores are reasoned agent judgments against raw API responses and recorded source facets."
+  },
+  "suite_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "rubric_file": "../../rubric.json",
+  "method": {
+    "all_30_retained_per_run": true,
+    "score_incomplete_execution": false,
+    "unexecuted_and_errored_steps_scored": false,
+    "mechanical_pass_used_as_usefulness_score": false,
+    "real_user_testing": false,
+    "independent_source_reaudit": false,
+    "evidence_scope": "Raw prefix responses, candidate facet/classification receipts and static baseline routing code; no new visual/physical-card audit. No scores transferred to absent current responses."
+  },
+  "baseline": {
+    "label": "baseline-024a72d79f30198301ca538cc818d07577343195",
+    "report_sha256": "790b36ea6e6a5b6d3f8c2d7cea50df14e0a9ee6a5a2c6ca88522a0110db05978",
+    "case_denominator": 30,
+    "agent_scored_completed_cases": 28,
+    "incomplete_execution_cases_with_null_axes": 2,
+    "latency_failure_cases": 0,
+    "product_routing_precondition_failures": 2,
+    "observed_safety_violations": 0,
+    "overall_quality_percentage": null,
+    "results": [
+      {
+        "case_id": "ICU-01",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 2,
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/0/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/0/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/0/prefixes/1/candidate_evidence"
+        ],
+        "observations": "The initial taste question is answerable; Pikachu reply yields five distinct Japanese coordinates and species-backed reasons. No price or physical-copy claim is added.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-02",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/1/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/1/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five Japanese Eevee coordinates are relevant. The novice-facing explanation does not explain the collector-number/release fields; largely Japanese labels plus a generic narrowing prompt leave interpretation work.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-03",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/2/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The exact Japanese Charizard name リザードン is already supplied, yet the recommendation path returns zero cards and asks the generic character/artist/release question again.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-04",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "missed"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 0,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/3/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/3/prefixes/0/candidate_evidence"
+        ],
+        "observations": "All five displayed names are ordinary Mew (ミュー or ミュウ), not the requested Mew ex. Reasons establish species 151 only; unfulfilled_constraints is empty, so the dropped suffix/illustration requirement is not disclosed. Mechanical checks pass but the collector goal is unmet.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-05",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 1,
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 3,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/4/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/4/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Relevant alternatives are shown without a selected target, including five records across three coordinates. The next step is a generic narrowing prompt rather than explicitly explaining the ambiguity and asking for a particular missing field.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-06",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/5/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/5/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five different Japanese coordinates have current Yuka Morii illustrator facets with source references. No unsupported clay/cuteness or physical verification claim is made.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-07",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 4,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/6/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/6/prefixes/0/candidate_evidence"
+        ],
+        "observations": "All five returned records carry Tomokazu Komiya credit; four distinct coordinates satisfy the minimum, but two source-declared versions of the same PMCG1 coordinate consume page space.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-08",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/7/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/7/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five different coordinates have Shinji Kanda source credit and evidence-backed illustrator reasons. Availability and affordability remain unknown.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-09",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "missed"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 0,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/8/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/8/prefixes/0/candidate_evidence"
+        ],
+        "observations": "All five cards match Yuka Morii but none has Pikachu species 25; facets are 11, 574, 568, 568 and 57. The hard AND request is silently treated as artist-only, with no unfulfilled constraint.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-10",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/9/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The already supplied English release name Shiny Treasure ex is not recognized. Zero candidates; the engine demands an exact release code rather than connecting or usefully disambiguating the named Japanese release.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-11",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 2,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/10/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/10/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Japanese 151 resolves to SV2A, but five slots contain only two coordinates (001 and 002), dominated by finish variants. Relevant catalog data is returned but not the frozen five-coordinate exploration outcome.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-12",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 1,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 1,
+          "completion": 0,
+          "abstention_quality": "justified_unhelpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/11/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The exclusive constraint is held honestly. The clarification assumes a single release and demands its exact code; it does not explain era versus release or offer an example the novice can answer.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-13",
+        "execution_status": "execution_error",
+        "failure_classification": "product_routing_precondition_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/12/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "Initial response asks for the release despite Shiny Treasure ex already being supplied and returns no cards. The subsequent valid select action is correctly refused because its expected discovery precondition never occurred. Product routing failure; no timeout or malformed harness action.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-14",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 2,
+          "completion": 2,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/13/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The number-only question correctly asks which printed set code or release accompanies it, without picking an arbitrary target. This is an answerable first disambiguation.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-15",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/14/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "For nonexistent-in-catalog SV4A 999/190, the reply asks which language and physical finish despite Japanese being explicit. It does not explain the zero match or request correction of the number/release.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-16",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 1,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 1,
+          "completion": 0,
+          "abstention_quality": "justified_unhelpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/15/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The explicit SV4A-plus-exclude-Mew request returns no candidates, retaining the whole question as unapplied subjective text. The generic inclusion/exclusion clarification is safe but does not advance the already stated goal.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-17",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 1,
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/16/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/16/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/16/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/16/prefixes/1/candidate_evidence"
+        ],
+        "observations": "Pikachu remains the positive goal and five relevant cards remain shown. The Mew dislike is held and labeled unapplied instead of inverted. The follow-up question is generic rather than specifically confirming the supplied Mew exclusion, so this is useful partial progress.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-18",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/17/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/17/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The first response asks which illustrator, but the exact follow-up Yuka Morii is not accepted: still zero cards and a request for language/release/number/finish or a new question. This is a broken clarification continuation, not a legitimate aesthetic evidence limitation.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-19",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/18/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/18/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/18/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/18/prefixes/1/candidate_evidence"
+        ],
+        "observations": "Page two contains five different Eevee coordinates with no first-page IDs repeated and source-backed species reasons. Different IDs are not asserted to prove different artwork.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-20",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 3,
+        "observed_response_count": 3,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 4,
+        "identity_held_count": 3,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/19/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/19/prefixes/1/response",
+          "independent-collector-baseline-report.json#/results/19/prefixes/2/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/19/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/19/prefixes/1/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/19/prefixes/2/candidate_evidence"
+        ],
+        "observations": "One like produces source-backed species/artist affinities, and the second identical like preserves recommendations. Three held rows remain labeled; the like creates no physical or ownership authority.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-21",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 3,
+        "observed_response_count": 3,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/20/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/20/prefixes/1/response",
+          "independent-collector-baseline-report.json#/results/20/prefixes/2/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/20/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/20/prefixes/1/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/20/prefixes/2/candidate_evidence"
+        ],
+        "observations": "Dismiss removes precisely the bound displayed record; clear restores the original ordered page. The user goal and other Pikachu records are preserved.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-22",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 3,
+        "observed_response_count": 3,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/21/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/21/prefixes/1/response",
+          "independent-collector-baseline-report.json#/results/21/prefixes/2/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/21/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/21/prefixes/1/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/21/prefixes/2/candidate_evidence"
+        ],
+        "observations": "After a Yuka Morii like, the explicit Tomokazu Komiya reply replaces the artist preference and all five final candidates carry Komiya credit. No old target is retained.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-23",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 1,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/22/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/22/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five Pikachu coordinates remain useful and budget_fit is explicitly unknown. However, the natural $50 budget is absent from structured preferences and the next-step prompt does not acknowledge the ignored amount. No actual affordability result exists.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-24",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/23/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/23/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/23/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/23/prefixes/1/candidate_evidence"
+        ],
+        "observations": "The typed EUR 100 / Germany / PSA 10 preferences are retained exactly while relevant Eevee candidates remain. Budget and grade are explicitly unknown without offers; preferences_applied_to_market is false. This is partial catalog exploration, never a verified graded acquisition.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-25",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 1,
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 3,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/24/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/24/prefixes/0/candidate_evidence"
+        ],
+        "observations": "A Mew shortlist provides some catalog progress and market_status says no live evidence. The £40/UK delivery goal is neither retained in structured preferences nor addressed in the next-step prompt; no landed-cost or acquisition completion is established.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-26",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "justified_unhelpful"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/25/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/25/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The phrase “do not already own” is treated as a generic negative preference, losing the Pikachu direction. Supplying exact inventory does not unblock it: zero candidates and the same inclusion/exclusion question remain.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-27",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 2,
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 1,
+        "displayed_count": 1,
+        "distinct_coordinate_count": 1,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/26/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/26/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/26/prefixes/0/candidate_evidence",
+          "independent-collector-baseline-report.json#/results/26/prefixes/1/candidate_evidence"
+        ],
+        "observations": "The uncertain 025/165 inventory exposes all three possible finish variants and blocks selection; only 173/165 remains outside possible ownership. Specific version resolution is requested and completeness/ownership claims remain false. Complete checklist goal remains partial by rubric.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-28",
+        "execution_status": "execution_error",
+        "failure_classification": "product_routing_precondition_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/27/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The initial Compare request is routed to a one-number inspection clarification, so there is no comparison to choose. The subsequent focus action correctly refuses; the final selection is not executed. Product natural-language routing limitation, not latency or malformed harness input.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-29",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/28/prefixes/0/response",
+          "independent-collector-baseline-report.json#/results/28/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The initial comparison never starts. Later preference update and choose rejection therefore do not demonstrate invalidation of a previously active comparison. Mechanical pass is vacuous for the intended stale-context scenario; no useful collector comparison is delivered.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "unreached_test_precondition": {
+          "active_comparison_before_preference_change": false,
+          "stale_context_invalidation_observed": false
+        }
+      },
+      {
+        "case_id": "ICU-30",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 0,
+          "completion": 1,
+          "abstention_quality": "justified_unhelpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 1,
+        "displayed_count": 1,
+        "distinct_coordinate_count": 1,
+        "identity_held_count": 1,
+        "evidence_paths": [
+          "independent-collector-baseline-report.json#/results/29/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-baseline-report.json#/results/29/prefixes/0/candidate_evidence"
+        ],
+        "observations": "The exact held record and current official metadata are inspectable, and select is refused. However, the original conflicting source name/finish and concrete resolution need are not surfaced; the generic next question refers to exclusions/checklist/scope instead of this identity conflict. Useful inspection is partial; the refusal explanation is unhelpful.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      }
+    ]
+  },
+  "current": {
+    "label": "7382318c46de9bcea0eb3d109848f447b57b0068",
+    "report_sha256": "77ce96b51b43906b794025eea7af1f1a2097267634dbccc4c504b0218f183205",
+    "case_denominator": 30,
+    "agent_scored_completed_cases": 13,
+    "incomplete_execution_cases_with_null_axes": 17,
+    "latency_failure_cases": 15,
+    "product_routing_precondition_failures": 2,
+    "observed_safety_violations": 0,
+    "overall_quality_percentage": null,
+    "results": [
+      {
+        "case_id": "ICU-01",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-02",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/1/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/1/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five Japanese Eevee coordinates are relevant. The novice-facing explanation does not explain the collector-number/release fields; largely Japanese labels plus a generic narrowing prompt leave interpretation work.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-03",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-04",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-05",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 1,
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 3,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/4/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/4/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Relevant alternatives are shown without a selected target, including five records across three coordinates. The next step is a generic narrowing prompt rather than explicitly explaining the ambiguity and asking for a particular missing field.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-06",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/5/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/5/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Five different Japanese coordinates have current Yuka Morii illustrator facets with source references. No unsupported clay/cuteness or physical verification claim is made.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-07",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 2,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 4,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/6/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/6/prefixes/0/candidate_evidence"
+        ],
+        "observations": "All five returned records carry Tomokazu Komiya credit; four distinct coordinates satisfy the minimum, but two source-declared versions of the same PMCG1 coordinate consume page space.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-08",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-09",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "missed"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 0,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 5,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/8/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/8/prefixes/0/candidate_evidence"
+        ],
+        "observations": "All five cards match Yuka Morii but none has Pikachu species 25; facets are 11, 574, 568, 568 and 57. The hard AND request is silently treated as artist-only, with no unfulfilled constraint.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-10",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-11",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 2,
+          "clarification_usefulness": "not_applicable",
+          "completion": 1,
+          "abstention_quality": "none"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 2,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/10/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/10/prefixes/0/candidate_evidence"
+        ],
+        "observations": "Japanese 151 resolves to SV2A, but five slots contain only two coordinates (001 and 002), dominated by finish variants. Relevant catalog data is returned but not the frozen five-coordinate exploration outcome.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-12",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-13",
+        "execution_status": "execution_error",
+        "failure_classification": "product_routing_precondition_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/12/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "Initial response asks for the release despite Shiny Treasure ex already being supplied and returns no cards. The subsequent valid select action is correctly refused because its expected discovery precondition never occurred. Product routing failure; no timeout or malformed harness action.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-14",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 2,
+          "completion": 2,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/13/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The number-only question correctly asks which printed set code or release accompanies it, without picking an arbitrary target. This is an answerable first disambiguation.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-15",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/14/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "For nonexistent-in-catalog SV4A 999/190, the reply asks which language and physical finish despite Japanese being explicit. It does not explain the zero match or request correction of the number/release.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-16",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-17",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-18",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/17/prefixes/0/response",
+          "independent-collector-eval-report.json#/results/17/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The first response asks which illustrator, but the exact follow-up Yuka Morii is not accepted: still zero cards and a request for language/release/number/finish or a new question. This is a broken clarification continuation, not a legitimate aesthetic evidence limitation.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-19",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-20",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-21",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-22",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-23",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-24",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-25",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 1,
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 5,
+        "displayed_count": 5,
+        "distinct_coordinate_count": 3,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/24/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/24/prefixes/0/candidate_evidence"
+        ],
+        "observations": "A Mew shortlist provides some catalog progress and market_status says no live evidence. The £40/UK delivery goal is neither retained in structured preferences nor addressed in the next-step prompt; no landed-cost or acquisition completion is established.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-26",
+        "execution_status": "execution_error",
+        "failure_classification": "latency_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 0,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [],
+        "source_facet_evidence_paths": [],
+        "observations": "No response was produced before the configured 10-second prefix deadline; downstream steps were not executed. All score axes stay null. Baseline observations are not substituted for missing current results.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-27",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 3,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 2,
+          "completion": 1,
+          "abstention_quality": "justified_helpful"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": 1,
+        "displayed_count": 1,
+        "distinct_coordinate_count": 1,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/26/prefixes/0/response",
+          "independent-collector-eval-report.json#/results/26/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/26/prefixes/0/candidate_evidence",
+          "independent-collector-eval-report.json#/results/26/prefixes/1/candidate_evidence"
+        ],
+        "observations": "The uncertain 025/165 inventory exposes all three possible finish variants and blocks selection; only 173/165 remains outside possible ownership. Specific version resolution is requested and completeness/ownership claims remain false. Complete checklist goal remains partial by rubric.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-28",
+        "execution_status": "execution_error",
+        "failure_classification": "product_routing_precondition_failure",
+        "scoring_status": "unscored_incomplete_execution",
+        "scores": {
+          "relevance": null,
+          "evidence_honesty": null,
+          "clarification_usefulness": null,
+          "completion": null,
+          "abstention_quality": null
+        },
+        "scored_response_count": 0,
+        "observed_response_count": 1,
+        "relevant_displayed_count": null,
+        "displayed_count": null,
+        "distinct_coordinate_count": null,
+        "identity_held_count": null,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/27/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The initial Compare request is routed to a one-number inspection clarification, so there is no comparison to choose. The subsequent focus action correctly refuses; the final selection is not executed. Product natural-language routing limitation, not latency or malformed harness input.",
+        "mechanical_constraints_met": false,
+        "observed_safety_violation_count": 0
+      },
+      {
+        "case_id": "ICU-29",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 0,
+          "evidence_honesty": 2,
+          "clarification_usefulness": 0,
+          "completion": 0,
+          "abstention_quality": "unjustified"
+        },
+        "scored_response_count": 2,
+        "observed_response_count": 2,
+        "relevant_displayed_count": null,
+        "displayed_count": 0,
+        "distinct_coordinate_count": 0,
+        "identity_held_count": 0,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/28/prefixes/0/response",
+          "independent-collector-eval-report.json#/results/28/prefixes/1/response"
+        ],
+        "source_facet_evidence_paths": [],
+        "observations": "The initial comparison never starts. Later preference update and choose rejection therefore do not demonstrate invalidation of a previously active comparison. Mechanical pass is vacuous for the intended stale-context scenario; no useful collector comparison is delivered.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "unreached_test_precondition": {
+          "active_comparison_before_preference_change": false,
+          "stale_context_invalidation_observed": false
+        },
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      },
+      {
+        "case_id": "ICU-30",
+        "execution_status": "executed",
+        "failure_classification": "completed_response",
+        "scoring_status": "agent_scored_completed_responses",
+        "scores": {
+          "relevance": 2,
+          "evidence_honesty": 1,
+          "clarification_usefulness": 0,
+          "completion": 1,
+          "abstention_quality": "justified_unhelpful"
+        },
+        "scored_response_count": 1,
+        "observed_response_count": 1,
+        "relevant_displayed_count": 1,
+        "displayed_count": 1,
+        "distinct_coordinate_count": 1,
+        "identity_held_count": 1,
+        "evidence_paths": [
+          "independent-collector-eval-report.json#/results/29/prefixes/0/response"
+        ],
+        "source_facet_evidence_paths": [
+          "independent-collector-eval-report.json#/results/29/prefixes/0/candidate_evidence"
+        ],
+        "observations": "The exact held record and current official metadata are inspectable, and select is refused. However, the original conflicting source name/finish and concrete resolution need are not surfaced; the generic next question refers to exclusions/checklist/scope instead of this identity conflict. Useful inspection is partial; the refusal explanation is unhelpful.",
+        "mechanical_constraints_met": true,
+        "observed_safety_violation_count": 0,
+        "baseline_response_equivalence": "All raw responses identical except catalog/runtime revision fields; manually reviewed behavior has same rubric judgment."
+      }
+    ]
+  },
+  "completed_current_identical_to_baseline_except_revision": [
+    "ICU-02",
+    "ICU-05",
+    "ICU-06",
+    "ICU-07",
+    "ICU-09",
+    "ICU-11",
+    "ICU-14",
+    "ICU-15",
+    "ICU-18",
+    "ICU-25",
+    "ICU-27",
+    "ICU-29",
+    "ICU-30"
+  ],
+  "priorities": [
+    {
+      "priority": "P1",
+      "title": "Restore recommendation latency before interpreting current quality",
+      "cases": [
+        "ICU-01",
+        "ICU-03",
+        "ICU-04",
+        "ICU-08",
+        "ICU-10",
+        "ICU-12",
+        "ICU-16",
+        "ICU-17",
+        "ICU-19",
+        "ICU-20",
+        "ICU-21",
+        "ICU-22",
+        "ICU-23",
+        "ICU-24",
+        "ICU-26"
+      ],
+      "evidence": "15 current initial-prefix TimeoutErrors around the configured 10-second deadline; these same baseline questions returned responses. ICU-13 and ICU-28 are the other two errors and are not timeouts.",
+      "next_step": "Fix the measured regression and rerun the unchanged full 30-case suite; retain this failed run. Do not increase the deadline to convert it to a pass."
+    },
+    {
+      "priority": "P1",
+      "title": "Honor conjunctions and exact name qualifiers",
+      "cases": [
+        "ICU-04",
+        "ICU-09"
+      ],
+      "evidence": "Mew ex returns five ordinary-Mew names and no unmet constraint; Pikachu AND Yuka Morii returns species 11,574,568,568,57. These are semantic fit failures, not missing live-market data.",
+      "next_step": "Recognize/retain exact-name qualifiers and every hard matching axis, or explicitly clarify unsupported constraints; never silently widen the request."
+    },
+    {
+      "priority": "P1",
+      "title": "Make comparison and exact-release wording reach the intended operation",
+      "cases": [
+        "ICU-10",
+        "ICU-13",
+        "ICU-28",
+        "ICU-29"
+      ],
+      "evidence": "Shiny Treasure ex is not connected to SV4A; a two-number Compare question with one shared Japanese/SV4A context is rejected as a one-number question. Follow-up guards correctly reject impossible selections. Baseline card_comparison.from_question requires a preceding language token in each fraction segment.",
+      "next_step": "Support ordinary shared-scope wording with explicit safe ambiguity rules; retain a request to confirm if a side truly lacks scope. Add diagnostic provenance for reachable comparison preconditions, without altering frozen outcomes."
+    },
+    {
+      "priority": "P1",
+      "title": "Carry useful clarification answers and inventory assertions forward",
+      "cases": [
+        "ICU-03",
+        "ICU-16",
+        "ICU-18",
+        "ICU-26"
+      ],
+      "evidence": "Japanese Charizard is ignored; after asking for an illustrator, Yuka Morii is rejected; exact submitted inventory does not release a generic negative-preference hold.",
+      "next_step": "Preserve explicit species/release intent while holding only the uncertain part; let a relevant artist or inventory answer advance the task."
+    },
+    {
+      "priority": "P2",
+      "title": "Use specific, answerable explanations for uncertainty",
+      "cases": [
+        "ICU-12",
+        "ICU-15",
+        "ICU-17",
+        "ICU-30"
+      ],
+      "evidence": "The era ambiguity demands a code without explaining era/release; the nonexistent coordinate asks again for language; held identity explanation mentions exclusions/checklists instead of its conflict.",
+      "next_step": "Expose the actual missing or conflicting field, retain already supplied facts and offer a concrete next question."
+    },
+    {
+      "priority": "P2",
+      "title": "Improve first-page variety and visibly preserve acquisition preferences",
+      "cases": [
+        "ICU-02",
+        "ICU-05",
+        "ICU-07",
+        "ICU-11",
+        "ICU-23",
+        "ICU-24",
+        "ICU-25"
+      ],
+      "evidence": "Five Japanese-151 rows represent only two coordinates; $50 and £40/UK constraints are not structured or acknowledged in next-step prompts; typed EUR/DE/PSA10 is retained but remains partial.",
+      "next_step": "Diversify exploration pages across coordinates while preserving variant access; make amount/currency/destination/grade constraints visibly retained and explicitly unverified until offers/copy/quote evidence exists."
+    }
+  ],
+  "harness_classification": {
+    "runner_malfunction_found": false,
+    "baseline_error_cases": [
+      "ICU-13",
+      "ICU-28"
+    ],
+    "action_schema_valid": true,
+    "followup_gates_behaved_safely": true,
+    "interpretation": "The runner correctly records unexpected API rejections, but execution_error is broader than infrastructure malfunction. These two are product-routing precondition failures. Retain the original receipts/taxonomy; do not turn them into successes or change frozen actions."
+  }
+}

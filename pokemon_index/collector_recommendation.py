@@ -9,10 +9,10 @@ SCHEMA = 'pokemon.collector-recommendation.v1'
 RANKING = 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
 FIELDS = {'mode', 'preferred_dex_ids', 'excluded_dex_ids', 'preferred_illustrators',
           'preferred_releases', 'subjective_notes'}
-NEXT = r'what (?:should|can|do) i collect next|what to collect next|次に何を集め|次.*集める.*おすすめ|接下来.*(?:收藏|收集)|下一步.*(?:收藏|收集)'
+NEXT = r'what (?:should|can|do) i collect(?: next)?\b|what to collect next|次に何を集め|次.*集める.*おすすめ|接下来.*(?:收藏|收集)|下一步.*(?:收藏|收集)'
 RECOMMEND = r'\brecommend\b|\bsuggest\b|おすすめ|推荐|推薦'
 MARKET = r'cheapest|\bcheaper\b|\bprofit\b|\binvestment\b|where.*(?:buy|purchase)|どこ.*買|最便宜|哪里.*买|哪里.*买|利润|投資|買取'
-STYLE_TERMS = ('cute', 'nostalgic', 'calm', 'quiet scenes', 'quiet scene', 'cute art',
+STYLE_TERMS = ('cute', 'nostalgic', 'calm', 'quiet scenes', 'quiet scene', 'cute art', 'peaceful', 'cozy', 'cosy', 'different illustrations',
                'かわいい', '可愛い', '可爱', '懐かしい', '怀旧', '安静')
 PROMPT = 'Which character, illustrator or release would you like to explore, or which shown card do you like?'
 NEGATED_TASTE = (r"\b(?:not|without|avoid|exclude|excluding|except|dislike|hate|never)\b|"
@@ -123,7 +123,9 @@ def parse_taste(db, text, *, next_goal=False):
     """Only current unambiguous catalog names; completed collections are not preferences."""
     t=discovery._norm(text)
     if taste_clarification(db,text):return {'subjective_notes':[text[:160]]}
-    if next_goal or re.search(NEXT,t):return {}
+    if next_goal or re.search(NEXT,t):
+        notes=[term for term in STYLE_TERMS if discovery._mentioned(t,term)]
+        return {'subjective_notes':notes} if notes else {}
     ids=discovery._character_ids(db,t)
     # Explicit bilingual species aliases, accepted only if current facets contain them.
     for aliases,dex in [(('皮卡丘',),25),(('梦幻','夢幻'),151)]:
@@ -241,15 +243,23 @@ def validate_feedback(card_id, reaction, shown_ids):
 
 
 @collector_runtime.catalog_request
-def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None, pool_cache=None):
+def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None, pool_cache=None, resolved_illustrator=None):
     profile=validate_collecting_preferences(db,profile)
+    if resolved_illustrator is not None:
+        validate_collecting_preferences(db,{'preferred_illustrators':[resolved_illustrator]})
     scope=discovery.validate_scope(scope);preferences=preferences or {}
     if type(limit) is not int or not 1<=limit<=50 or type(offset) is not int or not 0<=offset<inventory.MAX_SCOPE:
         raise ValueError('invalid recommendation pagination')
     languages=[scope['language']] if 'language' in scope else discovery._languages(discovery._norm(question))
     # A separate typed, exact-source derivation layer; never insert or masquerade as
     # a target-source dex facet. Current support/anchor evidence is revalidated.
-    affiliations=_current_affiliations(db,pool_cache)
+    # An empty positive profile cannot produce a candidate, even with species
+    # exclusions. Defer the source-bound derivation until a real preference or
+    # liked example needs it; clarification-only turns need no catalog-wide work.
+    has_positive_input=(any(profile.get(field) for field in
+        ('preferred_dex_ids','preferred_illustrators','preferred_releases')) or
+        any(reaction=='like' for reaction in feedback.values()))
+    affiliations=_current_affiliations(db,pool_cache) if has_positive_input else {}
     liked_affiliations={cid:affiliations[cid] for cid,reaction in feedback.items()
                         if reaction=='like' and cid in affiliations}
     liked={'dex_id':set(),'illustrator':set()}
@@ -278,6 +288,16 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         complete_answer_established=False,unfulfilled_constraints=[],requested_scope=scope,
         coverage=dict(matched_catalog_records=0,returned=0,offset=offset,limit=limit,has_more=False),
         scope='Internal preference matches; physical printing, taste, ownership and market claims remain separate.')
+    interpretations=discovery.reviewed_release_interpretations(db,question,languages)
+    if interpretations:result['release_name_interpretations']=interpretations
+    if (discovery.explicit_artist_clause(question)
+            and len(discovery._artists(db,discovery._norm(question)))!=1 and resolved_illustrator is None):
+        result.update(status='clarification_needed',
+            unfulfilled_constraints=['explicit_illustrator_scope_confirmation'],
+            next_question='Which one exact current illustrator credit do you mean? The unknown or multiple-artist requirement was not relaxed.')
+        return dict(scope=result,inventory=None,cards=[],recommendation=meta)
+    if resolved_illustrator is not None:
+        result.update(illustrator=resolved_illustrator,illustrator_scope_basis='later_explicit_user_choice')
     if numbers and 'collector_number' not in scope:
         result.update(status='clarification_needed',next_question='Clarify one printed number or supply an exact catalog ID; unsupported or multiple number assertions are not applied.',unfulfilled_constraints=['recommendation_number_scope_confirmation'])
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
@@ -295,10 +315,35 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         positive.append('(c.language=? AND c.set_code=?)');params.extend([release['language'],release['set_code']])
     if not positive:
         result['task']='collection_preferences_needed'
+        if profile.get('subjective_notes'):
+            result['next_question']=PROMPT+' The requested visual style remains unverified; an artist or character can provide a source-backed starting point.'
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
     where=['('+' OR '.join(positive)+')','c.language IN ('+','.join('?' for _ in languages)+')'];params.extend(languages)
     for key,val in scope.items():
         where.append('c.'+key+'=?');params.append(val)
+    suffix=discovery.requested_name_suffix(db,question,languages)
+    if suffix:
+        where.append('lower(substr(c.name,-?))=?');params.extend([len(suffix),suffix])
+        where.append("(c.language='ja' OR substr(c.name,-?,1) IN (' ','-'))");params.append(len(suffix)+1)
+        result.update(requested_source_name_suffix=suffix,
+            name_suffix_scope='source_catalog_title_only_not_mechanic_or_copy_verification')
+    # A textual "only" conjunction is a hard request, distinct from optional
+    # profile axes, which retain their documented soft-union semantics.
+    hard_text=discovery._norm(question)
+    hard_ids=discovery._character_ids(db,discovery._without_release_names(db,hard_text,languages))
+    hard_artists=[resolved_illustrator] if resolved_illustrator is not None else discovery._artists(db,hard_text)
+    explicit_artist_binding=(len(hard_artists)==1 and bool(re.search(
+        r'\bby\s+'+re.escape(discovery._norm(hard_artists[0]))+r'(?![a-z0-9])',hard_text)))
+    if resolved_illustrator is not None or re.search(r'\bonly\b',hard_text) or explicit_artist_binding:
+        if len(hard_ids)==1 and len(hard_artists)==1:
+            species="c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND value=?)";params.append(str(hard_ids[0]))
+            derived_hard_ids=sorted(cid for cid,a in affiliations.items() if a['dex_id']==hard_ids[0])
+            if derived_hard_ids:
+                species+=' OR c.card_id IN ('+','.join('?' for _ in derived_hard_ids)+')';params.extend(derived_hard_ids)
+            where.append('('+species+')')
+            where.append("c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?)");params.append(hard_artists[0])
+        elif resolved_illustrator is not None:
+            where.append("c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?)");params.append(resolved_illustrator)
     excluded=profile.get('excluded_dex_ids',[])
     if excluded:
         where.append("NOT EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ("+','.join('?' for _ in excluded)+'))');params.extend(excluded)
@@ -330,10 +375,17 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         where+=' AND '+known
         params.extend(known_params)
     # This cache belongs to one replay only and retains one pool, never one pool
-    # per turn. Pagination does not alter ranking; every evidence/choice input does.
+    # per turn. Unsupported subjective notes do not affect candidate membership
+    # or ranking. Their disclosure is rebuilt above on every response; journey
+    # authority/target invalidation still uses the complete preferences.
+    ranking_profile={key:value for key,value in profile.items() if key!='subjective_notes'}
+    ranking_preferences=dict(preferences)
+    if isinstance(ranking_preferences.get('collecting'),dict):
+        ranking_preferences['collecting']={key:value for key,value in
+            ranking_preferences['collecting'].items() if key!='subjective_notes'}
     key=json.dumps([id(db),SCHEMA,RANKING,pool_cache.get('revision') if pool_cache is not None else None,
         pool_cache.get('affiliation_key') if pool_cache is not None else None,
-        question,profile,feedback,scope,owned,preferences,affiliations],sort_keys=True,ensure_ascii=True)
+        question,ranking_profile,feedback,scope,owned,ranking_preferences,affiliations,resolved_illustrator],sort_keys=True,ensure_ascii=True)
     cached=pool_cache.get('pool') if pool_cache is not None and pool_cache.get('key')==key else None
     if cached is None and pool_cache is not None:
         pool_cache.pop('pool',None);pool_cache.pop('key',None)

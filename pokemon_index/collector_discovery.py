@@ -9,7 +9,7 @@ import json
 import re
 import sqlite3
 import unicodedata
-from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime
+from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime, collector_release_alias
 
 
 def _norm(text: str) -> str:
@@ -46,6 +46,10 @@ def validate_scope(value: dict | None) -> dict:
 
 def _mentioned(text: str, term: str) -> bool:
     term = _norm(term)
+    # The boundary-aware pattern below contains only this escaped literal.
+    # Reject impossible matches before compiling one regex per catalog name.
+    if term not in text:
+        return False
     if re.fullmatch(r"[a-z0-9 '\-\.]+", term):
         return bool(re.search(r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])", text))
     return term in text
@@ -103,6 +107,14 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
     text = _norm(result['question'])
     explicit=result.get('requested_scope',{})
     rows=[r for r in rows if all(r[k]==v for k,v in explicit.items())]
+    suffix=requested_name_suffix(db,result['question'],result['languages'])
+    if suffix:
+        rows=[r for r in rows if name_has_suffix(r['name'],r['language'],suffix)]
+        result.update(requested_source_name_suffix=suffix,
+            name_suffix_scope='source_catalog_title_only_not_mechanic_or_copy_verification')
+        if not rows:
+            result.update(status='no_match',
+                next_question='No current catalog title in this scope has the requested '+suffix+' suffix. Explicitly relax the title or coordinate constraint to broaden the search.')
     requested_artists=_artists(db,text)
     artist_inquiry=bool(re.search(r'who (?:is|was) (?:credited as )?(?:the )?(?:illustrator|artist)|who (?:illustrated|drew)|which (?:artist|illustrator) (?:is|was)|イラストレーターは誰|誰.*(?:描|イラスト)',text))
     if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
@@ -190,6 +202,7 @@ def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
     """Prefer full release titles over nested titles or code-shaped words."""
     names={(r['set_code'],r['alias']) for r in db.execute("SELECT * FROM catalog_vocabulary WHERE alias_kind='set_name'") if r['language'] in languages}
     names.update((r['set_code'],r['name']) for r in db.execute('SELECT language,set_code,name FROM catalog_set_localized') if r['language'] in languages and r['name'])
+    names.update((r['set_code'],r['alias']) for r in collector_release_alias.aliases(db,languages))
     candidates=[]
     for code,name in names:
         term=_norm(name)
@@ -198,6 +211,24 @@ def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
         pattern=(r'(?<![a-z0-9/])'+re.escape(term)+r'(?![a-z0-9/])') if term.isdigit() else ((r'(?<![a-z0-9])'+re.escape(term)+r'(?![a-z0-9])') if re.fullmatch(r"[a-z0-9 '\-\.]+",term) else re.escape(term))
         for match in re.finditer(pattern,text):candidates.append((code,match.start(),match.end(),term))
     return sorted({m for m in candidates if not any(n[1]<=m[1] and n[2]>=m[2] and n[2]-n[1]>m[2]-m[1] for n in candidates)})
+
+
+def reviewed_release_interpretations(db, text, languages):
+    return [row for row in collector_release_alias.aliases(db,languages) if _mentioned(_norm(text),row['alias'])]
+
+
+def requested_name_suffix(db, question, languages):
+    """Recognize a species-title ex qualifier without reclassifying card mechanics."""
+    text=_without_release_names(db,_norm(question),languages)
+    if re.search(r'(?<![a-z0-9])ex(?![a-z0-9])',text) and len(_character_ids(db,text))==1:
+        return 'ex'
+    return None
+
+
+def name_has_suffix(name,language,suffix):
+    text=_norm(name)
+    if language=='en':return text.endswith(' '+suffix) or text.endswith('-'+suffix)
+    return text.endswith(suffix)
 
 
 def _without_release_names(db, text: str, languages: list[str]) -> str:
@@ -228,6 +259,10 @@ def _artists(db, text: str) -> list[str]:
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
     return [r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
+
+
+def explicit_artist_clause(text):
+    return bool(re.search(r'\bby\s+(?!\d|set\b|number\b|date\b)',_norm(text)))
 
 
 def _qualifier_findings(db,text,languages):
@@ -288,6 +323,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "prices":[], "public_display_allowed":False,
               "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
+    interpretations=reviewed_release_interpretations(db,question,languages)
+    if interpretations:result['release_name_interpretations']=interpretations
     if explicit:result['requested_scope']=explicit
     non_card_text=re.sub(r'(?:anything|everything)?\s*(?:other than|except|excluding)\s+(?:pokemon\s+)?cards?', '', text)
     accessory_request=(re.search(r'\b(?:sleeves?|playmats?|deck boxes?)\b|スリーブ|プレイマット|デッキケース',non_card_text)
@@ -490,10 +527,28 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if len(artists) != 1:
             return dict(result, task="artist_cards", next_question="Which illustrator's credited name do you mean?")
         marks = ",".join("?" for _ in languages)
-        rows = _rows(db, f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)",
-                     (*languages, artists[0]))
+        where=f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)"
+        params=[*languages,artists[0]]
+        named_ids=_character_ids(db,identity_text)
+        if named_ids and re.search(r"\b(?:not|except|without|excluding)\b|以外|除外|不要|不是",text):
+            return dict(result,task='collection_scope_needed',status='clarification_needed',
+                unfulfilled_constraints=['negative_collection_scope_confirmation'],
+                next_question='Clarify which character and illustrator to include or exclude; the negative conjunction was not applied.')
+        if named_ids:
+            from . import collector_character_affiliation
+            affiliations=collector_character_affiliation.affiliations(db)
+            derived_ids=sorted(cid for cid,a in affiliations.items() if a['dex_id'] in named_ids)
+            species="c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND value IN ("+','.join('?' for _ in named_ids)+'))'
+            params.extend(map(str,named_ids))
+            if derived_ids:
+                species+=' OR c.card_id IN ('+','.join('?' for _ in derived_ids)+')';params.extend(derived_ids)
+            where+=' AND ('+species+')'
+        rows = _rows(db,where,tuple(params))
+        if named_ids:
+            result['character_name_affiliations']=[affiliations[r['card_id']] for r in rows if r['card_id'] in affiliations]
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
-                        claim_basis="pinned source illustrator credits"), rows, limit, offset,_row_capture=_row_capture)
+                        claim_basis="pinned source illustrator credits" if not named_ids else 'source character and illustrator intersection',
+                        next_question=None if rows else 'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint to broaden the search.'), rows, limit, offset,_row_capture=_row_capture)
 
     qualifiers=_qualifier_findings(db,text,languages)
     if _unsupported_professors(db,text):

@@ -17,3 +17,7 @@ python -m scripts.benchmark_collector_concurrency \
 ```
 
 A passed resource-guard diagnostic does not mean every client completed its task. Keep overloads, timeouts, transport failures and successful completions in separate counts and retain all outcomes in the denominator. The deadline is cooperative, not hard preemption. Actual staging load acceptance remains open.
+
+## Full-catalog follow-up
+
+`initial-7382318-ci-failure.json` records the actual full-catalog regression and hashes of all CI reports. See `DENSE_FIXTURE_REPRO.md` for the denser effective-view fixture, profiling and unchanged-match checks. The `affiliation-*` receipts retain initial invalid/failed profiling and corrected runs; the reproduction guide explains adapter differences, so they must not be presented as an unqualified before/after comparison. None is a Cloud Run capacity result.
