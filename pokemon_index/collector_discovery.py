@@ -548,7 +548,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             result['character_name_affiliations']=[affiliations[r['card_id']] for r in rows if r['card_id'] in affiliations]
         return _finish_result(db, dict(result, task="artist_cards", status="results", illustrator=artists[0],
                         claim_basis="pinned source illustrator credits" if not named_ids else 'source character and illustrator intersection',
-                        next_question=None if rows else 'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint to broaden the search.'), rows, limit, offset,_row_capture=_row_capture)
+                        next_question=result.get('next_question') if rows else 'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint to broaden the search.'), rows, limit, offset,_row_capture=_row_capture)
 
     qualifiers=_qualifier_findings(db,text,languages)
     if _unsupported_professors(db,text):

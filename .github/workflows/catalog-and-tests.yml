@@ -17,16 +17,21 @@ jobs:
           node-version: '22'
       - name: Install test dependencies
         run: python -m pip install -e '.[test]'
-      - name: Run tests and rebuild pinned catalog
-        run: python -m unittest discover -s tests -q
-      - name: Validate the Node caller contracts
-        run: node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs
-      - name: Rehearse recommendations through Python HTTP and Node
-        run: python -m scripts.rehearse_collector_recommendations --output /tmp/recommendation-review-report.json
-      - name: Rehearse identity holds against the pinned real catalog
+      - name: Build pinned diagnostic catalog
         run: |
           python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 > /tmp/review-catalog-build-report.json
           cat /tmp/review-catalog-build-report.json
+      - name: Run tests and rebuild pinned catalog
+        run: python -m unittest discover -s tests -q
+      - name: Validate the Node caller contracts
+        if: ${{ !cancelled() }}
+        run: node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs
+      - name: Rehearse recommendations through Python HTTP and Node
+        if: ${{ !cancelled() }}
+        run: python -m scripts.rehearse_collector_recommendations --output /tmp/recommendation-review-report.json
+      - name: Rehearse identity holds against the pinned real catalog
+        if: ${{ !cancelled() }}
+        run: |
           python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
       - name: Prepare private short-lived catalog diagnostic
         if: ${{ !cancelled() }}

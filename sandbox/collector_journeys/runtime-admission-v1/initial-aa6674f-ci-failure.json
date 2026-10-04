@@ -1,0 +1,22 @@
+{
+  "schema": "pokemon.continuation-ci-failure.v1",
+  "commit": "aa6674f3be2553f99ccf9688904fa1ec93e93d21",
+  "ci_url": "https://github.com/pengxu9-rgb/pokemon-commerce-index/actions/runs/37172450068",
+  "artifact_id": 11291274957,
+  "artifact_zip_sha256": "2415326e11d471aec71b18e28b77710fe54bbfd19f222ff49fc6187d873d7e67",
+  "python": {
+    "run": 793,
+    "skipped": 2,
+    "errors": 1,
+    "passed": 790
+  },
+  "regression": {
+    "test": "test_supported_collector_discovery.SupportedCollectorTests.test_artist_credits_support_names_without_inventing_owned_inventory",
+    "question": "Yuka Morii cards: check off my collection",
+    "expected": "owned-card list clarification remains visible",
+    "actual": "artist_cards and owned_inventory retained, but next_question overwritten with null"
+  },
+  "container_build_and_smoke": "passed",
+  "full_catalog_followup": "not executed: snapshot build was coupled to an earlier skipped legacy step after the unit failure",
+  "interpretation": "The downstream missing-DB failures are not new runtime measurements. Preserve the original owned-inventory expectation and collect independent diagnostics even if another suite fails."
+}

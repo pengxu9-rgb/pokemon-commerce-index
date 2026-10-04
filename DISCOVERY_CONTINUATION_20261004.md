@@ -56,6 +56,8 @@ The bounded routing corrections now include:
 - Explicit species-by-illustrator wording intersects current evidence, including qualified derived affiliations; typed optional preferences retain their existing soft behavior. Unknown or multiple artists prompt a selection-blocking clarification. Only a later explicit current artist answer resolves that hold; stale preferences cannot self-authorize it. Changes still invalidate selection/comparison authority.
 - A general collecting goal can continue through a current exact illustrator reply. Aesthetic notes remain explicitly unverified and unapplied to ranking.
 
+The next full-suite run at `aa6674f` exposed one additional regression: an artist result with matches overwrote the existing request for an owned-card list with a null next question. The inventory flag remained present, but the continuation prompt was lost. The original expectation is preserved and covered by small-data tests with and without a species intersection. The workflow now builds its diagnostic snapshot before unit tests and runs independent diagnostic steps even if another test fails; downstream missing-database errors in that earlier run are not runtime measurements.
+
 A one-day-retention private CI artifact now preserves a compressed, read-only diagnostic snapshot and hashes to reproduce full-catalog problems. The database is not committed to Git and no public catalog access is enabled.
 
 ## Release and next steps

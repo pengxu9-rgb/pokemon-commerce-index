@@ -112,6 +112,22 @@ class CollectorRoutingReview(unittest.TestCase):
         out=self.replay(turns+[dict(type='preferences',preferences={'collecting':{'preferred_dex_ids':[151]}})])
         self.assertTrue(all(c['card_id']==self.artist_pikachu for c in out['candidate_cards']))
 
+    def test_artist_collection_check_retains_owned_inventory_prompt(self):
+        result=collector_discovery.execute(self.db,'Yuka Morii cards: check off my collection')
+        self.assertEqual(result['task'],'artist_cards')
+        self.assertTrue(result['cards'])
+        self.assertIn('owned_inventory',result['unfulfilled_constraints'])
+        self.assertIn('owned-card list',result['next_question'])
+        self.assertFalse(result['complete_answer_established'])
+
+    def test_artist_species_collection_check_retains_owned_inventory_prompt(self):
+        result=collector_discovery.execute(self.db,'Japanese Pikachu cards by Yuka Morii: check off my collection')
+        self.assertEqual(result['task'],'artist_cards')
+        self.assertEqual([card['card_id'] for card in result['cards']],[self.artist_pikachu])
+        self.assertIn('owned_inventory',result['unfulfilled_constraints'])
+        self.assertIn('owned-card list',result['next_question'])
+        self.assertFalse(result['complete_answer_established'])
+
     def test_hard_artist_species_intersection_uses_current_derived_affiliation(self):
         for question in ['Recommend Japanese Mew ex cards illustrated by USGMEN',
                          'Only show Japanese Mew ex cards illustrated by USGMEN']:
