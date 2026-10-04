@@ -264,10 +264,25 @@ def scenario_plan(scenarios=None, client_mode='current_required'):
 
 
 def run_node(base_url, workload, *, repo_root, token=None, local=False, scenarios=None,
-             client_mode='current_required', journal_path=None, watchdog_seconds=240):
+             client_mode='current_required', journal_path=None, watchdog_seconds=240,
+             runner_path=None, execution_plan=None, on_process_started=None):
     if client_mode not in ('current_required', 'legacy_baseline') or not 0 < watchdog_seconds <= 240:
         raise ValueError('invalid benchmark mode or watchdog')
     config, plan = scenario_plan(scenarios, client_mode)
+    if execution_plan is not None:
+        if (not isinstance(execution_plan, (list, tuple)) or not 1 <= len(execution_plan) <= 64
+                or any(not isinstance(item, (list, tuple)) or len(item) != 2
+                    or not isinstance(item[0], str) or item[0] not in PHASES
+                    or type(item[1]) is not int or not 1 <= item[1] <= 128
+                    for item in execution_plan)
+                or sum(item[1] for item in execution_plan) > 128):
+            raise ValueError('invalid benchmark execution plan')
+        plan = [(phase, count) for phase, count in execution_plan]
+    runner = Path(runner_path).resolve() if runner_path is not None else RUNNER
+    if runner_path is not None and (not runner.is_file() or runner.suffix != '.cjs'):
+        raise ValueError('invalid benchmark runner')
+    if on_process_started is not None and not callable(on_process_started):
+        raise ValueError('invalid process observer')
     planned = sum(count for _, count in plan)
     options = {'baseUrl': base_url, 'allowLoopback': local, 'clientMode': client_mode,
         'clientPath': str(Path(repo_root).resolve() / 'integrations/pivota/collectorClient.cjs'),
@@ -350,8 +365,18 @@ def run_node(base_url, workload, *, repo_root, token=None, local=False, scenario
                 node_version = event.get('node_version')
             persist(event)
         try:
-            process = subprocess.Popen(['node', str(RUNNER)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            process = subprocess.Popen(['node', str(runner)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                 stderr=subprocess.DEVNULL, env=environment)
+            if on_process_started is not None:
+                def notify_process_started(pid):
+                    try:
+                        on_process_started(pid)
+                    except BaseException:
+                        pass  # Diagnostics must not affect completion or leak exception text.
+                try:
+                    threading.Thread(target=notify_process_started, args=(process.pid,), daemon=True).start()
+                except Exception:
+                    pass
             encoded_input = json.dumps(options).encode()
             if len(encoded_input) > 1024 * 1024: raise ValueError('runner input too large')
             os.set_blocking(process.stdin.fileno(), False)

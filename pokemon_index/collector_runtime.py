@@ -1,6 +1,7 @@
 """Request-local catalog vocabulary and bounded HTTP computation admission.
 
-No sessions, rankings, inventories or authority are shared between requests.
+Only bounded, immutable catalog facts are shared between HTTP requests.
+Sessions, queries, rankings, inventories and authority remain request-local.
 """
 from __future__ import annotations
 
@@ -8,6 +9,9 @@ from collections import deque
 from contextlib import contextmanager
 from contextvars import ContextVar
 from functools import wraps
+import json
+import sqlite3
+from types import MappingProxyType
 import threading
 import time
 
@@ -15,7 +19,14 @@ import time
 _catalog_scope = ContextVar('collector_catalog_scope', default=None)
 _work_deadline = ContextVar('collector_work_deadline', default=None)
 _sql_scopes = ContextVar('collector_sql_scopes', default=())
-_VOCABULARY_KEYS = frozenset({'character_aliases', 'artists', 'release_codes'})
+_snapshot_scope = ContextVar('collector_snapshot_scope', default=None)
+VOCABULARY_SQL = {
+    'artists': "SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'",
+    'release_codes': 'SELECT DISTINCT set_code FROM card',
+    'character_aliases': "SELECT DISTINCT name,dex_id,current_evidence FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id,\n        MAX(CASE WHEN (f.provenance=c.provenance AND f.rights_reference=c.rights_reference)\n            OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata\n                      WHERE metadata.card_id=c.card_id AND metadata.evidence_id=f.provenance)\n            THEN 1 ELSE 0 END) AS current_evidence\n        FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'\n        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)",
+}
+_VOCABULARY_KEYS = frozenset(VOCABULARY_SQL)
+
 
 
 def checkpoint():
@@ -39,7 +50,7 @@ def catalog_request(function):
             result = function(db, *args, **kwargs)
             checkpoint()
             return result
-        token = _catalog_scope.set({'db': db, 'version': None, 'rows': {}})
+        token = _catalog_scope.set({'db': db, 'version': None, 'rows': {}, 'mentions': {}})
         try:
             result = function(db, *args, **kwargs)
             checkpoint()
@@ -49,38 +60,145 @@ def catalog_request(function):
     return wrapped
 
 
-def vocabulary(db, key, sql):
-    """Return immutable SQLite rows, invalidating on local or external writes.
+def _request_cache(db):
+    active = _catalog_scope.get()
+    if active is None or active['db'] is not db:
+        return None
+    # Transactions can roll back without reducing total_changes. Never retain
+    # transaction-local results, including rollback-to-savepoint results.
+    if db.in_transaction:
+        active['rows'].clear();active['mentions'].clear();active['version']=None
+        return None
+    version=(db.total_changes,db.execute('PRAGMA data_version').fetchone()[0],
+             db.execute('PRAGMA schema_version').fetchone()[0],
+             db.execute('PRAGMA temp.schema_version').fetchone()[0])
+    if active['version']!=version:
+        active['rows'].clear();active['mentions'].clear();active['version']=version
+    return active
 
-    Only three fixed, non-user-specific parser vocabularies can be retained.
-    A direct helper call outside a request never installs a persistent cache.
-    """
+
+def vocabulary(db, key, sql):
+    """Fixed immutable vocabularies, snapshot-bound on the read-only HTTP path."""
     checkpoint()
     if key not in _VOCABULARY_KEYS:
         raise ValueError('unsupported catalog vocabulary')
-    active = _catalog_scope.get()
-    if active is None or active['db'] is not db:
-        return tuple(db.execute(sql))
-    # SQLite total_changes cannot reveal a rollback or rollback-to-savepoint.
-    # Direct write-capable callers therefore never retain transaction-local
-    # rows. HTTP opens fresh read-only connections without explicit transactions.
-    if db.in_transaction:
-        active['rows'].clear()
-        active['version'] = None
-        return tuple(db.execute(sql))
-    version = (db.total_changes, db.execute('PRAGMA data_version').fetchone()[0],
-               db.execute('PRAGMA schema_version').fetchone()[0],
-               db.execute('PRAGMA temp.schema_version').fetchone()[0])
-    if active['version'] != version:
-        active['rows'].clear()
-        active['version'] = version
-    if key not in active['rows']:
-        rows = tuple(db.execute(sql))
-        # Retention is bounded even for an unexpectedly malformed catalog.
-        if len(rows) <= 100000:
-            active['rows'][key] = rows
+    snapshot=_snapshot_scope.get()
+    if snapshot is not None and snapshot['db'] is db and sql==VOCABULARY_SQL[key]:
+        return snapshot['model']._vocabularies[key]
+    active=_request_cache(db)
+    if active is None:return tuple(db.execute(sql))
+    cache_key=(key,sql)
+    if cache_key not in active['rows']:
+        rows=tuple(db.execute(sql))
+        if len(rows)<=100000 and len(active['rows'])<len(_VOCABULARY_KEYS):
+            active['rows'][cache_key]=rows
         return rows
-    return active['rows'][key]
+    return active['rows'][cache_key]
+
+
+def request_mentions(db, key, build):
+    """Bounded immutable parser matches; never retain user text across requests."""
+    checkpoint();active=_request_cache(db)
+    if active is None:return build()
+    if key not in active['mentions']:
+        result=build();checkpoint()
+        if len(active['mentions'])<64:active['mentions'][key]=result
+        return result
+    return active['mentions'][key]
+
+
+def snapshot_affiliations(db):
+    snapshot=_snapshot_scope.get()
+    if snapshot is None or snapshot['db'] is not db:return None
+    checkpoint()
+    # A fresh object prevents recommendation/response mutation from poisoning
+    # the shared source proofs or a later session.
+    return json.loads(snapshot['model']._affiliations_json)
+
+
+class CatalogReadModelUnsupported(Exception):
+    pass
+
+
+class CatalogReadModel:
+    """Immutable, bounded effective-facet image; a fresh clone per admitted call.
+
+    Built only by the immutable HTTP server after calculating its catalog
+    revision. Main remains mode=ro. No shared SQLite connection, user text,
+    session, ranking, result, or new catalog assertion is retained.
+    """
+    MAX_IMAGE_BYTES=64*1024*1024
+    COLUMNS=('card_id','facet_type','value','provenance','rights_reference')
+    SCHEMA='collector_snapshot'
+
+    def __init__(self,db):
+        from pathlib import Path
+        main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
+        if not main:raise ValueError('catalog read model requires a file snapshot')
+        self._path=Path(main).resolve(strict=True)
+        self._identity=snapshot_identity(self._path)
+        # Keep affinities as well as storage values. The effective view has no
+        # declared affinity except TEXT provenance; do not coerce numeric artist
+        # names, card IDs, or dex strings during materialization.
+        expected=[(name,'TEXT' if name=='provenance' else 'BLOB') for name in self.COLUMNS]
+        actual=[(r[1],r[2] or 'BLOB') for r in db.execute('PRAGMA main.table_info(discovery_card_facet)')]
+        if actual!=expected or not callable(getattr(db,'serialize',None)) or not callable(getattr(db,'deserialize',None)):
+            raise CatalogReadModelUnsupported()
+        if db.in_transaction:raise ValueError('read model needs a committed snapshot')
+        db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
+        db.execute('PRAGMA collector_snapshot.page_size=4096')
+        db.execute('PRAGMA collector_snapshot.max_page_count='+str(self.MAX_IMAGE_BYTES//4096))
+        db.execute('CREATE TABLE collector_snapshot.facets (card_id BLOB,facet_type BLOB,value BLOB,provenance TEXT,rights_reference BLOB)')
+        db.execute('INSERT INTO collector_snapshot.facets SELECT * FROM main.discovery_card_facet')
+        db.execute('CREATE INDEX collector_snapshot.facet_lookup ON facets(facet_type,value,card_id)')
+        db.execute('CREATE INDEX collector_snapshot.card_lookup ON facets(card_id,facet_type,value)')
+        db.commit()
+        self._alias(db)
+        db.execute('PRAGMA query_only=ON')
+        self._vocabularies=MappingProxyType({key:tuple(db.execute(sql).fetchmany(100001))
+            for key,sql in VOCABULARY_SQL.items()})
+        if any(len(rows)>100000 for rows in self._vocabularies.values()):
+            raise ValueError('catalog vocabulary exceeds read model bound')
+        from . import collector_character_affiliation
+        affiliations=collector_character_affiliation.affiliations(db)
+        if len(affiliations)>collector_character_affiliation.MAX_BINDINGS:
+            raise ValueError('catalog affiliations exceed read model bound')
+        self._affiliations_json=json.dumps(affiliations,ensure_ascii=False,separators=(',',':'))
+        if len(self._affiliations_json.encode())>1024*1024:
+            raise ValueError('catalog affiliation proofs exceed read model bound')
+        self._image=db.serialize(name=self.SCHEMA)
+        if len(self._image)>self.MAX_IMAGE_BYTES:
+            raise ValueError('catalog read model exceeds memory bound')
+        checkpoint()
+        self._check_snapshot(db)
+
+    def _check_snapshot(self,db):
+        from pathlib import Path
+        try:
+            main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
+            if not main or Path(main).resolve(strict=True)!=self._path or snapshot_identity(self._path)!=self._identity:
+                raise CatalogSnapshotChanged()
+        except OSError as exc:
+            raise CatalogSnapshotChanged() from exc
+
+    def _alias(self,db):
+        db.execute('CREATE TEMP VIEW discovery_card_facet AS SELECT '+','.join(self.COLUMNS)+
+            ' FROM collector_snapshot.facets')
+
+    @contextmanager
+    def request(self,db):
+        checkpoint();self._check_snapshot(db)
+        db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
+        db.deserialize(self._image,name=self.SCHEMA)
+        self._alias(db)
+        db.execute('PRAGMA query_only=ON')
+        checkpoint()
+        token=_snapshot_scope.set({'db':db,'model':self})
+        try:
+            yield
+            checkpoint();self._check_snapshot(db)
+        finally:
+            _snapshot_scope.reset(token)
 
 
 class CatalogBusy(Exception):

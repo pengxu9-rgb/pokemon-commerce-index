@@ -60,6 +60,11 @@ jobs:
       - name: Measure actual Node caller overload and recommendation recovery
         if: ${{ !cancelled() }}
         run: timeout 300s python -m scripts.benchmark_collector_caller --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --require-current-client --output /tmp/caller-concurrency-review-report.json
+      - name: Measure distinct-session caller capacity and isolation
+        if: ${{ !cancelled() }}
+        run: |
+          CPU="$(python -c 'import os; print(min(os.sched_getaffinity(0)))')"
+          timeout 300s python -m scripts.benchmark_collector_mixed --db /tmp/review-catalog.sqlite3 --workload tests/fixtures/collector-mixed-workload-v1.json --cpu "$CPU" --output /tmp/mixed-caller-capacity-review-report.json
       - name: Build staging image from the same manifest
         id: container_build
         if: ${{ !cancelled() }}
@@ -79,7 +84,22 @@ jobs:
               assert {'ja:SV4A:327/190:holo', 'ja:SV4A:347/190:holo'} <= ids
               assert result['purchase_ready'] is False and result['public_display_allowed'] is False
               assert result['prices'] == [] and result['live_offers'] == []
-              print(json.dumps({'container_catalog_smoke': 'passed', 'candidate_ids': sorted(ids)}))
+              # Exercise the actual image's SQLite serializer/affinities as well as
+          # direct replay. Unsupported acceleration is not silently accepted here.
+          from pokemon_index import collector_runtime
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
+              model = collector_runtime.CatalogReadModel(db)
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db, model.request(db):
+              accelerated = collector_journey.replay(db, {'turns': [
+                  {'type': 'ask', 'question': 'Recommend Japanese Mew cards'},
+                  {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50})
+              assert accelerated == result
+              assert db.execute('PRAGMA query_only').fetchone()[0] == 1
+          print(json.dumps({'container_catalog_smoke': 'passed',
+              'snapshot_read_model_smoke': 'passed',
+              'python_version': __import__('sys').version.split()[0],
+              'sqlite_version': __import__('sqlite3').sqlite_version,
+              'candidate_ids': sorted(ids)}))
           PY
       - name: Audit the supported collector cohort and broad research tasks
         if: ${{ !cancelled() }}
@@ -114,6 +134,8 @@ jobs:
             /tmp/http-concurrency-review-report.json
             /tmp/caller-concurrency-review-report.json
             /tmp/caller-concurrency-review-report.journal.jsonl
+            /tmp/mixed-caller-capacity-review-report.json
+            /tmp/mixed-caller-capacity-review-report.journal.jsonl
             /tmp/character-gap-review-report.json
             /tmp/independent-collector-eval-report.json
             /tmp/independent-collector-eval-report.summary.json

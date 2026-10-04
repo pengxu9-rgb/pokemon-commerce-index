@@ -276,7 +276,7 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
     for _,start,end,_ in names:residual[start:end]=' '*(end-start)
     residual=''.join(residual)
     codes={code for code,_,_,_ in names}
-    codes.update(r[0] for r in collector_runtime.vocabulary(db,'release_codes','SELECT DISTINCT set_code FROM card') if _mentioned(residual,r[0]))
+    codes.update(r[0] for r in collector_runtime.vocabulary(db,'release_codes',collector_runtime.VOCABULARY_SQL['release_codes']) if _mentioned(residual,r[0]))
     for row in db.execute('SELECT * FROM catalog_vocabulary'):
         if row['language'] in languages and row['alias_kind']=='printed_code' and _mentioned(residual,row['alias']):codes.add(row['set_code'])
         # Numeric product titles are shorthand only in explicit release context.
@@ -290,7 +290,7 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
 
 def _artists(db, text: str) -> list[str]:
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
-    return [r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
+    return [r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists'])
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
 
 
@@ -321,14 +321,14 @@ def _unsupported_professors(db,text):
 
 
 def _character_mentions(db, text: str, *, maximal=True, current_only=False) -> list[tuple]:
+    # User text and matches stay in this replay, never in the shared catalog image.
+    return list(collector_runtime.request_mentions(db,(text,maximal,current_only),
+        lambda:tuple(_compute_character_mentions(db,text,maximal=maximal,current_only=current_only))))
+
+
+def _compute_character_mentions(db, text: str, *, maximal=True, current_only=False) -> list[tuple]:
     # One character facet only: a team card name cannot name a single species.
-    aliases = collector_runtime.vocabulary(db, 'character_aliases', """SELECT DISTINCT name,dex_id,current_evidence FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id,
-        MAX(CASE WHEN (f.provenance=c.provenance AND f.rights_reference=c.rights_reference)
-            OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata
-                      WHERE metadata.card_id=c.card_id AND metadata.evidence_id=f.provenance)
-            THEN 1 ELSE 0 END) AS current_evidence
-        FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
-        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""")
+    aliases = collector_runtime.vocabulary(db, 'character_aliases', collector_runtime.VOCABULARY_SQL['character_aliases'])
     names={}
     for index,row in enumerate(aliases):
         if index%128==0:collector_runtime.checkpoint()

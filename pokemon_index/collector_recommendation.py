@@ -167,7 +167,7 @@ def parse_taste(db, text, *, next_goal=False):
     ids=sorted(set(ids))
     artists=discovery._artists(db,t)
     if not artists:
-        artists=[r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'") if discovery._norm(r[0])==t.strip(' .。!！')]
+        artists=[r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists']) if discovery._norm(r[0])==t.strip(' .。!！')]
     patch={'excluded_dex_ids':negative['excluded_dex_ids']} if negative and negative['excluded_dex_ids'] else {}
     if len(ids)==1:patch['preferred_dex_ids']=ids
     if len(artists)==1:patch['preferred_illustrators']=artists

@@ -9,7 +9,7 @@ import sys
 import time
 import uuid
 from dataclasses import asdict
-from contextlib import closing, contextmanager
+from contextlib import closing, contextmanager, nullcontext
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -52,14 +52,19 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 # connection setup queries; keep their lock wait short as well.
                 with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
                     with collector_runtime.sqlite_deadline(db,expires):
-                        yield db
-                        check_snapshot()
+                        with read_model.request(db) if read_model is not None else nullcontext():
+                            yield db
+                            check_snapshot()
         finally:
             handler.timings['compute' if entered is not None else 'queue']=time.monotonic()-(entered or queued)
-    journey_revision=None
+    journey_revision=None;read_model=None
     if internal_catalog_api:
         with closing(core.connect(db_path,readonly=True)) as db:
             journey_revision=collector_journey.catalog_revision(db)
+            check_snapshot()
+            with collector_runtime.sqlite_deadline(db,time.monotonic()+catalog_deadline):
+                try:read_model=collector_runtime.CatalogReadModel(db)
+                except collector_runtime.CatalogReadModelUnsupported:pass
         check_snapshot()
     class Handler(BaseHTTPRequestHandler):
         def setup(self):

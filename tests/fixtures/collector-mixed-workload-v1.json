@@ -1,0 +1,2111 @@
+{
+  "schema": "pokemon.collector-mixed-workload.v1",
+  "catalog_sha256": "2ee7448b7e42ab9fe7e423a6769b01c18f260b503f3cb6d633802c5b2300549b",
+  "catalog_revision": "7f1d894b1bf3f18994f1cd698248f16c703ca3b0fe0ef715b71a8917d838e162",
+  "source": {
+    "sha256": "71b576387461f2bcbf9d8f1881dc8e1e6b3442067f88a9ca69f903d5d04d9210",
+    "files": {
+      "pokemon_index/__init__.py": "351ad29c6a2f3279c5f6d2dbb87dc3cef3652f862b076f2aa68f5f244605bf70",
+      "pokemon_index/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+      "pokemon_index/buyer_questions.py": "eb1197b7e811ab4dda25a6196f2c511eb74a4882a39a39d9adc2a312acc7fa54",
+      "pokemon_index/buyship_mercari.py": "26cce57779dc6ea3303fee64d4408e5046a3aa4eb8ff2d3947eff999d0e9fec8",
+      "pokemon_index/buyship_partner.py": "d50a22098844f66550c693e29f2c6974edfd565efca3aac22273f9bd83524974",
+      "pokemon_index/calibration.py": "25ba5559c2d4420ec5901115ce1f35364e309b8432857b6fc48b6ed9a3b4773a",
+      "pokemon_index/card_comparison.py": "88c6e3856b09688a491bd54cc65e44af9e644e07dbe49efcb13406012d076bbe",
+      "pokemon_index/card_metadata.py": "85e850c30096ec19cce635c94d7413c7d08c0b370d077aeede58921859c07878",
+      "pokemon_index/card_rarity.py": "dd207a5afbd44c7c2b8c8ea2288cbbf403ed6958db7ae401650af86f13f94feb",
+      "pokemon_index/catalog_question_resolver.py": "02f7e895c7ed07521cfea3a67946250dca76940e2c84f2f473c6b4f0afdb90e5",
+      "pokemon_index/catalog_question_resolver_v2.py": "4cc13ff0774abdb3e3f450d394ec1bf738353c29b2207fd1824ad76ba9291c59",
+      "pokemon_index/cli.py": "4d115656adc5d94b2fd9899e4efc4fe6f325053caf3bae9aee6ac90d6041c7e1",
+      "pokemon_index/collector-character-affiliations-v1.json": "4e0b441ac1a1965275f44a26e848005bd2e2ea3eb6b935a2ec81bff9371228a1",
+      "pokemon_index/collector-release-name-aliases-v1.json": "9d4c3bdfb2965bb1a774288324f92ba099d28ce9df300c18adc065c8f6dbc651",
+      "pokemon_index/collector_character_affiliation.py": "8ab9a63eb57f8253acadb21608bb450897d35fbdecb5c81c4a3be1958ae83192",
+      "pokemon_index/collector_discovery.py": "4996445ecabe094e641995660fcfce50a41103a52a0a4820bb488593b7d68281",
+      "pokemon_index/collector_evidence.py": "8141e3fc187a31a8b28afe5ab0245f182a8ca6aff9a030be549021b75d62e8af",
+      "pokemon_index/collector_inventory.py": "4638c920be211f037a59e05bf83734224d3903e2181912a9e71096124a4aefed",
+      "pokemon_index/collector_journey.py": "32d2002bf7f7d1de75259348b458ea48e87d206d0b6cc1ccd386d87892e9553a",
+      "pokemon_index/collector_recommendation.py": "ed4cbe48639cbdf8d83c732cb85816abea7b017e5ba0f8143914e86eb888e1d1",
+      "pokemon_index/collector_release_alias.py": "6f1b2e2a6e6b07f359bf2ccebd78edc31020527cc24a5e6a397004814ad901a2",
+      "pokemon_index/collector_runtime.py": "08aaba9f675ae38279e26bbf35d11623c077440ca8d04341473cbedc872fd3c1",
+      "pokemon_index/coordinate_family.py": "b158c7750c0a8573b49ae9901867caecc89fecd22e5fb0c81323b2ca3d970057",
+      "pokemon_index/core.py": "c3252481d67adc87376f82dcdf9a46de7416ae329017ab796d8893c0dc592c28",
+      "pokemon_index/discovery_graph.py": "d841e7268915ac710cbe19e8e2f4af9b21ad482b4ef8f64cde4882fcbcf0b4ca",
+      "pokemon_index/ebay_browse.py": "5d976c951536b78bb698fdb06e6b7772bf1833efc766b2f56685d031c621c520",
+      "pokemon_index/ingestion_worker.py": "019ede91ec90c68f4d631d8491ddb2de5e46fdff4f1f56561b281064faf20c1b",
+      "pokemon_index/listing_candidates.py": "c9c9362d8d7eb54c15afffe32156a20c6540a88a819c0d1cddff9b398a907b85",
+      "pokemon_index/metadata_views.sql": "d8490465d58f11a5758f1fa8fd2fe2e70bc2f5aa433942f6c2344f95761457eb",
+      "pokemon_index/multi_record_scans.py": "ab6506f0e60f4be3b0f9aee7a859aba97d260748c08f4a665fd9f12498e6b8f1",
+      "pokemon_index/number_aliases.py": "de58a031c1fb33d8c91d02fb9804ac24b8d503f0a1868df16e6baa6449aeea19",
+      "pokemon_index/number_conflicts.py": "050f5096edaef71c6a21550f1127cd38682218f3cc0fed267c32209ae82d8a8d",
+      "pokemon_index/number_evidence.py": "c9b90f0995a41fb96c87e329fa0e50c42ee7e5125b41a79a72cdc00c376f8646",
+      "pokemon_index/number_graph.py": "4b1d2e9c9452fc2f5aded181ea949b962eae9f73d6e7c3cf7a62bae7221edaa3",
+      "pokemon_index/offer_comparison.py": "40c391088ea4ca7fcbf48a9ce1943febd0f9241b3d41a3d04be640eeaea648e5",
+      "pokemon_index/pivota.py": "eb0e979ec7a0d4802f020d00def384c9bdaf2de8e1a70b6f770d1f0575b090f6",
+      "pokemon_index/printing_evidence.py": "68515141fcae33bb21046ed6e2a838669870d1f8f6792fa7ff6b5f897873a4f1",
+      "pokemon_index/question_routing.py": "67e1b05dcb744fedfe75261766920e16a03b48a2c78e3adce45e9114c5737095",
+      "pokemon_index/question_routing_v2.py": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+      "pokemon_index/question_routing_v3.py": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd",
+      "pokemon_index/question_routing_v4.py": "17f67ef36a0c4905eac57038dc4f6228ce20e224deab8949332eec769d0d342c",
+      "pokemon_index/question_routing_v5.py": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79",
+      "pokemon_index/question_routing_v6.py": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e",
+      "pokemon_index/question_routing_v7.py": "ac5f161f8a9a2f3de015a6c38facfb74d32e8919b572c6768a059057182e3986",
+      "pokemon_index/schema.sql": "7a75cfdfa98ed1b7b3e27be51ddd77dee7b7f237d2ad8e5a95ff6f360c8323d5",
+      "pokemon_index/source_corrections.py": "a6fc6b597a2f10f08aad463f103e67fe8bc923b8b5682df960a4364e548847bb",
+      "pokemon_index/source_image_facts.py": "f39de8e4e8b54be21b18c1dfc9d098f2e0ae6324c5890917346098a0c745bc72",
+      "pokemon_index/source_mechanic.py": "47026853fcbc3293800e67b3456a2e9e337e40784d55e4f118f118c31e2fe596",
+      "pokemon_index/supported_catalog.py": "0e39bb491541a7b1e65306703b80b062a3ebbe89ce1ba913996bc03d0579ca51",
+      "pokemon_index/tcgdex.py": "738ba5a31cee8e67a6b9d9545689889ecd672687d528059fb6b77a248ca6535d",
+      "pokemon_index/tcgdex_source.py": "1cb37e6990aed915c806448d79efab67b03c14cdfca012a9b67a6cc475cd5684",
+      "integrations/pivota/collectorClient.cjs": "aad25bdaaa32a6bba84a9786dd688a5fbefa7f915adf6be6a706eec748bfb3d6"
+    }
+  },
+  "sessions": [
+    {
+      "index": 0,
+      "name": "mixed_00",
+      "pattern": "artist_preference_change_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Ken Sugimori"
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Ken Sugimori"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Ken Sugimori"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Mitsuhiro Arita"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Ken Sugimori"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "01dff6547000feaf343c09d55cd47b7af9311be1c71bdbe71b4fec06bce006f5",
+      "expected_result_semantic_sha256": "dddcbec996476fb48e88bf73099dc28dc0060a07951cecb5c99e3870d6191992",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "preference_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "evidence_or_scope_needed",
+        "task": "collector_recommendations",
+        "pool_records": 2226,
+        "elapsed_seconds": 6.318
+      }
+    },
+    {
+      "index": 1,
+      "name": "mixed_01",
+      "pattern": "artist_preference_change_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Mitsuhiro Arita"
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Mitsuhiro Arita"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Mitsuhiro Arita"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kouki Saitou"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Mitsuhiro Arita"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "a653cf864b1ec3c52f6f1f2ac7bf421557d21aca8ad97159c6e787183e5a3a8d",
+      "expected_result_semantic_sha256": "c3bed229a46a5887df649e5b002fc3742cb5d3f96c41af46b98ff3c98b76bdba",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "preference_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 271,
+        "elapsed_seconds": 5.379
+      }
+    },
+    {
+      "index": 2,
+      "name": "mixed_02",
+      "pattern": "artist_preference_change_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Kouki Saitou"
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Kouki Saitou"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kouki Saitou"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kagemaru Himeno"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kouki Saitou"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "e0a8b55be41e6dd40eed4a0f7378087aa3a5d4ec7ad5f4bccba2fe98063ab212",
+      "expected_result_semantic_sha256": "57b5f268e4e5fcde15e55fecb5bc4dafabfba96e61a59499071aa1f2b7d8354d",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "preference_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "evidence_or_scope_needed",
+        "task": "collector_recommendations",
+        "pool_records": 1144,
+        "elapsed_seconds": 5.502
+      }
+    },
+    {
+      "index": 3,
+      "name": "mixed_03",
+      "pattern": "artist_preference_change_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Kagemaru Himeno"
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Kagemaru Himeno"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kagemaru Himeno"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Atsuko Nishida"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Kagemaru Himeno"
+                ]
+              }
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "8196feae9bdcf531c8389880d8c67ced606f0de6bc7f53882fef08abde88823f",
+      "expected_result_semantic_sha256": "ea3b2a8af1ce9387d082d16eeefaa60211d0ca124398cf2a12a8dda66377a2ac",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "preference_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 179,
+        "elapsed_seconds": 5.793
+      }
+    },
+    {
+      "index": 4,
+      "name": "mixed_04",
+      "pattern": "character_feedback_hidden_clear_restore",
+      "axis": {
+        "kind": "character",
+        "value": "Pikachu",
+        "dex_id": 25
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Pikachu cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "en:2014XY:005/012:holo_mcdonalds",
+            "reaction": "dismiss"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "en:2014XY:005/012:holo_mcdonalds",
+            "reaction": "clear"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "a1629c92ca493de806ebb01b0eb2015273b0a83c1a3e0090c43d04183ed8c5c5",
+      "expected_result_semantic_sha256": "a58197b8b1a7c7de6ae8ac11b0529dab744dc83e33457608a2febcc1c7c8eb67",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "feedback_hidden_clear_restoration": true,
+          "dismiss_hides_card": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "evidence_or_scope_needed",
+        "task": "collector_recommendations",
+        "pool_records": 313,
+        "elapsed_seconds": 5.069
+      }
+    },
+    {
+      "index": 5,
+      "name": "mixed_05",
+      "pattern": "character_feedback_hidden_clear_restore",
+      "axis": {
+        "kind": "character",
+        "value": "Eevee",
+        "dex_id": 133
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Eevee cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "ja:E2:058/092:normal",
+            "reaction": "dismiss"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "ja:E2:058/092:normal",
+            "reaction": "clear"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "b1760c8b6584e22a5c076b6b9c81f055f3599a93ecd67dd600a6f0b04e02da73",
+      "expected_result_semantic_sha256": "a5d968ec4ac3a10ff95503d170bf13e8aa6b495600e41592980a27ebee3b671f",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "feedback_hidden_clear_restoration": true,
+          "dismiss_hides_card": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 68,
+        "elapsed_seconds": 4.769
+      }
+    },
+    {
+      "index": 6,
+      "name": "mixed_06",
+      "pattern": "character_feedback_hidden_clear_restore",
+      "axis": {
+        "kind": "character",
+        "value": "Charizard",
+        "dex_id": 6
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Charizard cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  6
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "en:2024SV:001/015:normal",
+            "reaction": "dismiss"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "en:2024SV:001/015:normal",
+            "reaction": "clear"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "d71e55dffb618215ac9ddd3e6ab70bbaf6fbd796a4a65c657f475b2c13add72c",
+      "expected_result_semantic_sha256": "2567600d4a1d7c3514fee777fed8c58e7f209722fe23e845f32ab2d6080bab73",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "feedback_hidden_clear_restoration": true,
+          "dismiss_hides_card": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 133,
+        "elapsed_seconds": 4.545
+      }
+    },
+    {
+      "index": 7,
+      "name": "mixed_07",
+      "pattern": "character_feedback_hidden_clear_restore",
+      "axis": {
+        "kind": "character",
+        "value": "Mewtwo",
+        "dex_id": 150
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Mewtwo cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  150
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "ja:E1:086/128:normal_1st_edition",
+            "reaction": "dismiss"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "feedback",
+            "card_id": "ja:E1:086/128:normal_1st_edition",
+            "reaction": "clear"
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "9ad36958d4d4e5ef360ade88a81d6dcbc1d1bceb4e479a001d1f69fb90e61be8",
+      "expected_result_semantic_sha256": "6572c2adf28e9d7a19ff0bb43bdce1fdf87ceb258ade247e7b5ee6c1a06fac0f",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "feedback_hidden_clear_restoration": true,
+          "dismiss_hides_card": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 48,
+        "elapsed_seconds": 4.719
+      }
+    },
+    {
+      "index": 8,
+      "name": "mixed_08",
+      "pattern": "artist_ownership_resolve_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Atsuko Nishida"
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Atsuko Nishida"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Atsuko Nishida"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "mixed-owned-8",
+                "language": "en",
+                "set_code": "2012BW",
+                "collector_number": "009/012",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "mixed-owned-8",
+            "card_id": "en:2012BW:009/012:holo_mcdonalds"
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "13255c98ef74cabc8eae2b2edd18f96b9830ae61b6362422872f2d913aa62861",
+      "expected_result_semantic_sha256": "4a6a2fd09b771b9bd2ebd5784481bd0553578be804569b9945863dc6c4cae4d5",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "owned_card_excluded": true,
+          "owned_assertion_retained": true,
+          "ownership_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 733,
+        "elapsed_seconds": 7.793
+      }
+    },
+    {
+      "index": 9,
+      "name": "mixed_09",
+      "pattern": "artist_ownership_resolve_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Tomokazu Komiya"
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Tomokazu Komiya"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Tomokazu Komiya"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "mixed-owned-9",
+                "language": "ja",
+                "set_code": "CP2",
+                "collector_number": "025/027",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "mixed-owned-9",
+            "card_id": "ja:CP2:025/027:normal"
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "6f4acd8627dbb2bd783d17fe62d07ec5b5a0c99b66d3318e061aebe86304362d",
+      "expected_result_semantic_sha256": "2452348f44d563c1297d3f9aca13bf7d4f4b123d6d511f626e4fcbd3e152d88d",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "owned_card_excluded": true,
+          "owned_assertion_retained": true,
+          "ownership_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 86,
+        "elapsed_seconds": 7.283
+      }
+    },
+    {
+      "index": 10,
+      "name": "mixed_10",
+      "pattern": "artist_ownership_resolve_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Yuka Morii"
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Yuka Morii"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Yuka Morii"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "mixed-owned-10",
+                "language": "en",
+                "set_code": "2015XY",
+                "collector_number": "012/012",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "mixed-owned-10",
+            "card_id": "en:2015XY:012/012:holo"
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "8f7216624e1818c251b2557d7b70055c391c32714bb4bd413fe056a5ce8e4a87",
+      "expected_result_semantic_sha256": "0145c8e412cf58327c5345ca561df21a156a61be05776c73bfccebb5635240a8",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "owned_card_excluded": true,
+          "owned_assertion_retained": true,
+          "ownership_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 384,
+        "elapsed_seconds": 7.332
+      }
+    },
+    {
+      "index": 11,
+      "name": "mixed_11",
+      "pattern": "artist_ownership_resolve_restore",
+      "axis": {
+        "kind": "illustrator",
+        "value": "Naoki Saito"
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend cards by Naoki Saito"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Naoki Saito"
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "mixed-owned-11",
+                "language": "ja",
+                "set_code": "CP1",
+                "collector_number": "004/034",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "type": "resolve_owned",
+            "item_id": "mixed-owned-11",
+            "card_id": "ja:CP1:004/034:normal"
+          },
+          {
+            "type": "inventory",
+            "owned_items": []
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 20
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 15
+          },
+          {
+            "type": "page",
+            "offset": 0
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "a6c19445caf5f7129a33da4d1e70a348f0bf2cd810f7843c2e07000a4310ccfe",
+      "expected_result_semantic_sha256": "2a4cac944975b4f1732998d9f4de0b73eccb570e90828c981aeb6077a004befa",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "owned_card_excluded": true,
+          "owned_assertion_retained": true,
+          "ownership_restoration": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true
+        },
+        "status": "candidate_clarification_needed",
+        "task": "collector_recommendations",
+        "pool_records": 132,
+        "elapsed_seconds": 7.303
+      }
+    },
+    {
+      "index": 12,
+      "name": "mixed_12",
+      "pattern": "character_compare_focus_select",
+      "axis": {
+        "kind": "character",
+        "value": "Pikachu",
+        "dex_id": 25
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Pikachu cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 10
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "compare",
+            "left_card_id": "en:30TH-C:008/030:holo_30th_anniversary",
+            "right_card_id": "en:30TH-C:014/030:holo_30th_anniversary"
+          },
+          {
+            "type": "choose_comparison",
+            "side": "left",
+            "card_id": "en:30TH-C:008/030:holo_30th_anniversary"
+          },
+          {
+            "type": "select",
+            "card_id": "en:30TH-C:008/030:holo_30th_anniversary"
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "ea010e40ccdd16ecf9ce1ded1a009b1fcb5a7d32f9ed7c06e1eb37208795a41c",
+      "expected_result_semantic_sha256": "9774aff87206c8d006008d45c4406068a718aea111b3030d52714e0a0142a8b6",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true,
+          "comparison_unselected": true,
+          "focus_unselected": true,
+          "selection_separate": true,
+          "focus_exact": true
+        },
+        "status": "catalog_target_selected",
+        "task": "exact_coordinates",
+        "pool_records": 1,
+        "elapsed_seconds": 5.237
+      }
+    },
+    {
+      "index": 13,
+      "name": "mixed_13",
+      "pattern": "character_compare_focus_select",
+      "axis": {
+        "kind": "character",
+        "value": "Eevee",
+        "dex_id": 133
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Eevee cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "compare",
+            "left_card_id": "ja:E2:058/092:normal",
+            "right_card_id": "ja:E4:065/088:normal_1st_edition"
+          },
+          {
+            "type": "choose_comparison",
+            "side": "left",
+            "card_id": "ja:E2:058/092:normal"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:E2:058/092:normal"
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "cf85b61e74bf70f0ea2dce4b3141b0a05b093603e3ebb6337311c9e728509af1",
+      "expected_result_semantic_sha256": "c7027db4eaf7d87a23dcd435d72172e309c5e360440e10338e873f030790158c",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true,
+          "comparison_unselected": true,
+          "focus_unselected": true,
+          "selection_separate": true,
+          "focus_exact": true
+        },
+        "status": "catalog_target_selected",
+        "task": "exact_coordinates",
+        "pool_records": 1,
+        "elapsed_seconds": 2.583
+      }
+    },
+    {
+      "index": 14,
+      "name": "mixed_14",
+      "pattern": "character_compare_focus_select",
+      "axis": {
+        "kind": "character",
+        "value": "Charizard",
+        "dex_id": 6
+      },
+      "language": "en",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Charizard cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  6
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "en"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "compare",
+            "left_card_id": "en:30TH-C:001/030:holo_30th_anniversary",
+            "right_card_id": "en:BASE1:004/102:holo_1999_2000_copyright"
+          },
+          {
+            "type": "choose_comparison",
+            "side": "left",
+            "card_id": "en:30TH-C:001/030:holo_30th_anniversary"
+          },
+          {
+            "type": "select",
+            "card_id": "en:30TH-C:001/030:holo_30th_anniversary"
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "234c98688e640bad44379cf5dba77c390d3033b18357c13dccd8c42a6b79bccf",
+      "expected_result_semantic_sha256": "2880be6610a159b176f412653b48b7a90a2e4dce7c8342006429c4f129620e15",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true,
+          "comparison_unselected": true,
+          "focus_unselected": true,
+          "selection_separate": true,
+          "focus_exact": true
+        },
+        "status": "catalog_target_selected",
+        "task": "exact_coordinates",
+        "pool_records": 1,
+        "elapsed_seconds": 2.603
+      }
+    },
+    {
+      "index": 15,
+      "name": "mixed_15",
+      "pattern": "character_compare_focus_select",
+      "axis": {
+        "kind": "character",
+        "value": "Mewtwo",
+        "dex_id": 150
+      },
+      "language": "ja",
+      "payload": {
+        "turns": [
+          {
+            "type": "ask",
+            "question": "Recommend Mewtwo cards"
+          },
+          {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  150
+                ]
+              }
+            }
+          },
+          {
+            "type": "refine",
+            "scope": {
+              "language": "ja"
+            }
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "page",
+            "offset": 5
+          },
+          {
+            "type": "page",
+            "offset": 0
+          },
+          {
+            "type": "compare",
+            "left_card_id": "ja:E1:086/128:normal_1st_edition",
+            "right_card_id": "ja:E1:118/128:holo_1st_edition"
+          },
+          {
+            "type": "choose_comparison",
+            "side": "left",
+            "card_id": "ja:E1:086/128:normal_1st_edition"
+          },
+          {
+            "type": "select",
+            "card_id": "ja:E1:086/128:normal_1st_edition"
+          }
+        ],
+        "limit": 5
+      },
+      "payload_sha256": "a4b77ad11f45800ad786ef1a798ee0294fa66b205f085ed87e2a2082ae4d3eee",
+      "expected_result_semantic_sha256": "cda0f27dd8b82638eeeb824a02f19d2670b0de30a7ff8e1617192178cfb17ce5",
+      "preflight": {
+        "checks": {
+          "initial_nonempty_recommendation": true,
+          "language_scope": true,
+          "twenty_turns": true,
+          "all_commercial_gates_closed": true,
+          "comparison_unselected": true,
+          "focus_unselected": true,
+          "selection_separate": true,
+          "focus_exact": true
+        },
+        "status": "catalog_target_selected",
+        "task": "exact_coordinates",
+        "pool_records": 1,
+        "elapsed_seconds": 2.572
+      }
+    }
+  ],
+  "payloads_sha256": "03c2e3fa6952a32c2fd3d33d8501631fe876f3e1471bc0d0cf2a7a634dd49f24",
+  "cpu_affinity": [
+    6
+  ],
+  "catalog_unchanged": true,
+  "source_unchanged": true,
+  "scope": "Synthetic source-backed valid transcripts, not observed user traffic. No market, public or copy authority.",
+  "catalog_evidence": {
+    "schema": "pokemon.collector-catalog-evidence.v2",
+    "sha256": "ac3f09b4330d1cd099077c046b44be0efb9ac34876d7318737d8c1666fc9baa6"
+  }
+}

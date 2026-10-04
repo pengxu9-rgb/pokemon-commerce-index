@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import re
 
-from . import supported_catalog
+from . import supported_catalog, collector_runtime
 
 BINDINGS_PATH = Path(__file__).with_name("collector-character-affiliations-v1.json")
 DERIVATION = "exact_pinned_ex_name_to_unanimous_current_name_facets.v1"
@@ -89,6 +89,9 @@ def affiliations(db):
     explicit/liked matches and exclusions. An absent entry is not an exclusion
     from broad catalog research, only unavailable derived character evidence.
     """
+    cached = collector_runtime.snapshot_affiliations(db)
+    if cached is not None:
+        return cached
     result = {}
     qualified = []
     for binding in _bindings():
