@@ -17,3 +17,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 include = ["pokemon_index*"]
+
+[tool.setuptools.package-data]
+pokemon_index = ["*.sql", "collector-character-affiliations-v1.json"]

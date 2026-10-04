@@ -27,12 +27,33 @@ jobs:
         run: |
           python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3
           python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
-      - name: Audit the supported collector cohort and broad research tasks
-        run: python -m scripts.audit_supported_collector_pilot --db /tmp/review-catalog.sqlite3 --output /tmp/pilot-review-report.json
       - name: Measure bounded real-catalog runtime
+        if: ${{ !cancelled() }}
         run: python -m scripts.benchmark_collector_runtime --db /tmp/review-catalog.sqlite3 --output /tmp/runtime-review-report.json
       - name: Build staging image from the same manifest
+        id: container_build
+        if: ${{ !cancelled() }}
         run: docker build -t pokemon-commerce-index:verify .
+      - name: Verify read-only collector behavior inside the image
+        if: ${{ !cancelled() && steps.container_build.outcome == 'success' }}
+        run: |
+          docker run --pull=never --rm -i pokemon-commerce-index:verify python - <<'PY'
+          import json
+          from contextlib import closing
+          from pokemon_index import core, collector_journey
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
+              result = collector_journey.replay(db, {'turns': [
+                  {'type': 'ask', 'question': 'Recommend Japanese Mew cards'},
+                  {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50})
+              ids = {card['card_id'] for card in result['candidate_cards']}
+              assert {'ja:SV4A:327/190:holo', 'ja:SV4A:347/190:holo'} <= ids
+              assert result['purchase_ready'] is False and result['public_display_allowed'] is False
+              assert result['prices'] == [] and result['live_offers'] == []
+              print(json.dumps({'container_catalog_smoke': 'passed', 'candidate_ids': sorted(ids)}))
+          PY
+      - name: Audit the supported collector cohort and broad research tasks
+        if: ${{ !cancelled() }}
+        run: python -m scripts.audit_supported_collector_pilot --db /tmp/review-catalog.sqlite3 --output /tmp/pilot-review-report.json
       - name: Preserve independent diagnostic receipts
         if: always()
         uses: actions/upload-artifact@v4

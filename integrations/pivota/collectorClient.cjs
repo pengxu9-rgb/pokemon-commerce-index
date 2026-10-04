@@ -84,6 +84,14 @@ function requestFor(session, action, limit) {
 }
 function validateResult(result, request) {
   const invalid = () => { throw new CollectorCallError('invalid_catalog_response'); };
+  const likedIds = new Set();
+  for (const action of request.turns) {
+    if (action.type === 'ask') likedIds.clear();
+    if (action.type === 'feedback') {
+      if (action.reaction === 'like') likedIds.add(action.card_id);
+      else likedIds.delete(action.card_id);
+    }
+  }
   if (!result || result.schema !== 'pokemon.collector-journey.v1'
       || !STATUSES.has(result.status) || !/^[a-f0-9]{64}$/.test(result.catalog_revision)
       || result.turn_count !== request.turns.length || !Array.isArray(result.trace)
@@ -109,7 +117,7 @@ function validateResult(result, request) {
         || recommendation.preference_evidence !== 'user_assertion_only'
         || typeof recommendation.candidate_pool_complete !== 'boolean'
         || recommendation.global_catalog_completeness_established !== false
-        || recommendation.coverage_basis !== 'current_source_declared_catalog_and_facets_only'
+        || recommendation.coverage_basis !== 'current_catalog_facets_and_reviewed_name_affiliations_only'
         || recommendation.budget_fit !== 'unknown_no_live_price'
         || recommendation.grade_availability !== 'unknown_no_copy_offers'
         || !['collector_recommendations', 'collection_preferences_needed'].includes(result.discovery?.task)
@@ -127,6 +135,47 @@ function validateResult(result, request) {
           || !Array.isArray(item.reasons) || !item.reasons.length
           || !Array.isArray(item.tradeoffs) || item.tradeoffs.some(t => typeof t !== 'string')) invalid();
       for (const reason of item.reasons) {
+        if (reason.field === 'character_name_affiliation') {
+          const card = result.candidate_cards[i];
+          const fields = ['field', 'value', 'basis', 'source_ref', 'target_name', 'base_name_ja',
+            'mechanic', 'source_asserted_dex_id', 'anchor_evidence', 'anchor_count',
+            'anchor_evidence_sha256', 'derivation', 'affiliated_card_id', 'affiliation_role', 'preference_origin'];
+          if (!exactKeys(reason, fields) || reason.basis !== 'source_name_character_affiliation'
+              || reason.derivation !== 'exact_pinned_ex_name_to_unanimous_current_name_facets.v1'
+              || !Number.isInteger(reason.value) || reason.value < 1 || reason.value > 1025
+              || reason.source_asserted_dex_id !== false || reason.mechanic !== 'EX'
+              || typeof reason.source_ref !== 'string' || !reason.source_ref
+              || typeof reason.target_name !== 'string' || !reason.target_name || reason.target_name.length > 160
+              || typeof reason.base_name_ja !== 'string' || !reason.base_name_ja
+              || reason.target_name !== reason.base_name_ja + 'ex'
+              || typeof reason.affiliated_card_id !== 'string' || !reason.affiliated_card_id.startsWith('ja:')
+              || !['candidate', 'liked_example'].includes(reason.affiliation_role)
+              || !['explicit_preference', 'liked_example'].includes(reason.preference_origin)
+              || (reason.affiliation_role === 'candidate' && (reason.affiliated_card_id !== card.card_id
+                || reason.target_name !== card.name || reason.source_ref !== card.provenance))
+              || (reason.affiliation_role === 'liked_example' && (reason.preference_origin !== 'liked_example'
+                || !likedIds.has(reason.affiliated_card_id)))
+              || (reason.affiliated_card_id === card.card_id && (reason.target_name !== card.name
+                || reason.source_ref !== card.provenance))
+              || (reason.affiliation_role === 'liked_example' && !item.reasons.some(candidate =>
+                (candidate.field === 'dex_id' && candidate.value === reason.value
+                  && candidate.basis === 'liked_example_catalog_facet')
+                || (candidate.field === 'character_name_affiliation' && candidate.value === reason.value
+                  && candidate.affiliation_role === 'candidate' && candidate.affiliated_card_id === card.card_id
+                  && candidate.preference_origin === 'liked_example')))
+              || !(reason.preference_origin === 'explicit_preference' ? item.explicit_match_axes : item.liked_example_match_axes).includes('character')
+              || !Number.isInteger(reason.anchor_count) || reason.anchor_count < 1
+              || !/^[a-f0-9]{64}$/.test(reason.anchor_evidence_sha256)
+              || !Array.isArray(reason.anchor_evidence) || reason.anchor_evidence.length !== 1) invalid();
+          for (const anchor of reason.anchor_evidence) {
+            if (!exactKeys(anchor, ['card_id', 'name', 'dex_id', 'provenance', 'rights_reference'])
+                || typeof anchor.card_id !== 'string' || !anchor.card_id.startsWith('ja:')
+                || anchor.card_id === reason.affiliated_card_id || anchor.name !== reason.base_name_ja
+                || anchor.dex_id !== reason.value || typeof anchor.provenance !== 'string' || !anchor.provenance
+                || typeof anchor.rights_reference !== 'string' || !anchor.rights_reference) invalid();
+          }
+          continue;
+        }
         const fields = reason.field === 'language_set_coordinate' ? ['field', 'value', 'basis', 'source_ref'] : ['field', 'value', 'basis', 'source_ref', 'rights_reference'];
         if (!exactKeys(reason, fields) || !['dex_id', 'illustrator', 'language_set_coordinate'].includes(reason.field)
             || !['catalog_facet', 'liked_example_catalog_facet', 'catalog_coordinate'].includes(reason.basis)

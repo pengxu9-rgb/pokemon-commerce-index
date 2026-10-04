@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import defaultdict, deque
 from decimal import Decimal
 import copy,json,re
-from . import collector_discovery as discovery, collector_inventory as inventory
+from . import collector_discovery as discovery, collector_inventory as inventory, collector_character_affiliation
 
 SCHEMA = 'pokemon.collector-recommendation.v1'
 RANKING = 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
@@ -186,7 +186,24 @@ def _facet_batches(db, card_ids, size=400):
         yield found
 
 
-def _score(row, facets, desired, liked, releases):
+def _affiliation_reason(affiliation, role, origin):
+    return dict(copy.deepcopy(affiliation['reason']),affiliated_card_id=affiliation['card_id'],
+                affiliation_role=role,preference_origin=origin)
+
+
+def _current_affiliations(db, pool_cache):
+    if pool_cache is None:return collector_character_affiliation.affiliations(db)
+    # Request-local only. data_version catches writes through other connections;
+    # total_changes catches local mutations in diagnostic/direct callers.
+    key=(id(db),pool_cache.get('revision'),db.total_changes,db.execute('PRAGMA data_version').fetchone()[0])
+    if pool_cache.get('affiliation_key')!=key:
+        pool_cache['affiliations']=collector_character_affiliation.affiliations(db)
+        pool_cache['affiliation_key']=key
+    return pool_cache['affiliations']
+
+
+def _score(row, facets, desired, liked, releases, affiliations=None, liked_affiliations=None):
+    affiliations=affiliations or {};liked_affiliations=liked_affiliations or {}
     explicit=[];examples=[];reasons=[]
     for kind,axis in [('dex_id','character'),('illustrator','illustrator')]:
         for bucket,matched in [(desired,explicit),(liked,examples)]:
@@ -196,6 +213,18 @@ def _score(row, facets, desired, liked, releases):
                 reasons.extend(dict(field=kind,value=int(f['value']) if kind=='dex_id' else f['value'],
                     basis='catalog_facet' if bucket is desired else 'liked_example_catalog_facet',
                     source_ref=f['provenance'],rights_reference=f['rights_reference']) for f in matches)
+            affiliation=affiliations.get(row['card_id']) if kind=='dex_id' else None
+            derived=affiliation is not None and str(affiliation['dex_id']) in bucket[kind]
+            if derived and not matches:
+                matched.append(axis)
+                reasons.append(_affiliation_reason(affiliation,'candidate',
+                    'explicit_preference' if bucket is desired else 'liked_example'))
+            if kind=='dex_id' and bucket is liked and (matches or derived):
+                matched_dex={int(f['value']) for f in matches}
+                if derived:matched_dex.add(affiliation['dex_id'])
+                for source in liked_affiliations.values():
+                    if source['dex_id'] in matched_dex:
+                        reasons.append(_affiliation_reason(source,'liked_example','liked_example'))
     if any(row['language']==r['language'] and row['set_code']==r['set_code'] for r in releases):
         explicit.append('release');reasons.append(dict(field='language_set_coordinate',
             value=dict(language=row['language'],set_code=row['set_code']),basis='catalog_coordinate',source_ref=row['provenance']))
@@ -217,16 +246,22 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if type(limit) is not int or not 1<=limit<=50 or type(offset) is not int or not 0<=offset<inventory.MAX_SCOPE:
         raise ValueError('invalid recommendation pagination')
     languages=[scope['language']] if 'language' in scope else discovery._languages(discovery._norm(question))
+    # A separate typed, six-pin derivation layer; never insert or masquerade as
+    # a target-source dex facet. Current support/anchor evidence is revalidated.
+    affiliations=_current_affiliations(db,pool_cache)
+    liked_affiliations={cid:affiliations[cid] for cid,reaction in feedback.items()
+                        if reaction=='like' and cid in affiliations}
     liked={'dex_id':set(),'illustrator':set()}
     for cid,reaction in feedback.items():
         if reaction=='like':
             for f in _facets(db,cid):
                 if f['facet_type'] in liked:liked[f['facet_type']].add(f['value'])
+    liked['dex_id'].update(str(a['dex_id']) for a in liked_affiliations.values())
     desired={'dex_id':set(map(str,profile.get('preferred_dex_ids',[]))),
              'illustrator':set(profile.get('preferred_illustrators',[]))}
     releases=profile.get('preferred_releases',[])
     meta=dict(schema=SCHEMA,ranking_policy=RANKING,preference_evidence='user_assertion_only',
-        candidate_pool_complete=False,coverage_basis='current_source_declared_catalog_and_facets_only',
+        candidate_pool_complete=False,coverage_basis='current_catalog_facets_and_reviewed_name_affiliations_only',
         global_catalog_completeness_established=False,
         unapplied_preferences=[dict(value=v,reason='no_source_backed_style_labels') for v in profile.get('subjective_notes',[])],
         budget_fit='unknown_no_live_price',grade_availability='unknown_no_copy_offers',items=[],coordinate_groups=[])
@@ -251,6 +286,10 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         if values:
             positive.append("c.card_id IN (SELECT f.card_id FROM discovery_card_facet f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
             params.extend([kind,*values])
+    derived_ids=sorted(cid for cid,a in affiliations.items()
+                       if str(a['dex_id']) in desired['dex_id']|liked['dex_id'])
+    if derived_ids:
+        positive.append('c.card_id IN ('+','.join('?' for _ in derived_ids)+')');params.extend(derived_ids)
     for release in releases:
         positive.append('(c.language=? AND c.set_code=?)');params.extend([release['language'],release['set_code']])
     if not positive:
@@ -262,17 +301,44 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     excluded=profile.get('excluded_dex_ids',[])
     if excluded:
         where.append("NOT EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ("+','.join('?' for _ in excluded)+'))');params.extend(excluded)
+        excluded_affiliations=sorted(cid for cid,a in affiliations.items() if a['dex_id'] in excluded)
+        if excluded_affiliations:
+            where.append('c.card_id NOT IN ('+','.join('?' for _ in excluded_affiliations)+')');params.extend(excluded_affiliations)
     dismissed=sorted(cid for cid,r in feedback.items() if r=='dismiss')
     if dismissed:
         where.append('c.card_id NOT IN ('+','.join('?' for _ in dismissed)+')');params.extend(dismissed)
     where=' AND '.join(where)
+    unknown_membership_where=None;known_params=[]
+    if excluded:
+        # An absent species facet is unknown membership, not proof that a
+        # Pokemon avoids the user's exclusions. Only current source-bound
+        # Trainer/Energy classification can exempt a no-species record.
+        known_parts=["""EXISTS(SELECT 1 FROM discovery_card_facet known
+            WHERE known.card_id=c.card_id AND known.facet_type='dex_id'
+            AND ((known.provenance=c.provenance AND known.rights_reference=c.rights_reference)
+                 OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata
+                           WHERE metadata.card_id=c.card_id AND metadata.evidence_id=known.provenance)))""",
+            """EXISTS(SELECT 1 FROM card_classification category WHERE category.card_id=c.card_id
+                AND category.category IN ('Trainer','Energy')
+                AND category.provenance=c.provenance AND category.rights_reference=c.rights_reference)"""]
+        if affiliations:
+            known_parts.append('c.card_id IN ('+','.join('?' for _ in affiliations)+')')
+            known_params.extend(sorted(affiliations))
+        known='('+' OR '.join(known_parts)+')'
+        unknown_membership_where=where+' AND NOT '+known
+        where+=' AND '+known
+        params.extend(known_params)
     # This cache belongs to one replay only and retains one pool, never one pool
     # per turn. Pagination does not alter ranking; every evidence/choice input does.
     key=json.dumps([id(db),SCHEMA,RANKING,pool_cache.get('revision') if pool_cache is not None else None,
-        question,profile,feedback,scope,owned,preferences],sort_keys=True,ensure_ascii=True)
+        pool_cache.get('affiliation_key') if pool_cache is not None else None,
+        question,profile,feedback,scope,owned,preferences,affiliations],sort_keys=True,ensure_ascii=True)
     cached=pool_cache.get('pool') if pool_cache is not None and pool_cache.get('key')==key else None
     if cached is None and pool_cache is not None:
         pool_cache.pop('pool',None);pool_cache.pop('key',None)
+    withheld=(cached.get('unknown_membership_withheld',0) if cached is not None else
+              db.execute('SELECT count(*) FROM card c WHERE '+unknown_membership_where,params).fetchone()[0]
+              if unknown_membership_where is not None else 0)
     count=cached['count'] if cached is not None else db.execute('SELECT count(*) FROM card c WHERE '+where,params).fetchone()[0]
     result['coverage']['matched_catalog_records']=count
     if count>inventory.MAX_SCOPE:
@@ -288,7 +354,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         tiers=defaultdict(lambda:defaultdict(deque))
         for batch in _facet_batches(db,list(by_id)):
             for cid,facets in batch.items():
-                row=by_id[cid];score=_score(row,facets,desired,liked,releases)
+                row=by_id[cid];score=_score(row,facets,desired,liked,releases,affiliations,liked_affiliations)
                 group=(row['language'],row['set_code'],row['collector_number'])
                 tiers[(-len(score['explicit_match_axes']),-len(score['liked_example_match_axes']))][group].append(cid)
         # Diversify equal-score coordinates only. Every source version retains its exact ID.
@@ -303,13 +369,13 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
                     ordered.append(groups[group].popleft())
                     if groups[group]:next_round.append(group)
                 active=next_round
-        cached=dict(count=count,by_id=by_id,ordered=ordered,inventory=inv)
+        cached=dict(count=count,by_id=by_id,ordered=ordered,inventory=inv,unknown_membership_withheld=withheld)
         if pool_cache is not None:pool_cache.update(key=key,pool=cached)
     by_id=cached['by_id'];ordered=cached['ordered']
     # The response gains scope/page fields below; keep cached ownership unmodified.
     inv=copy.deepcopy(cached['inventory'])
     page=ordered[offset:offset+limit]
-    scores={cid:_score(by_id[cid],facets,desired,liked,releases)
+    scores={cid:_score(by_id[cid],facets,desired,liked,releases,affiliations,liked_affiliations)
             for batch in _facet_batches(db,page) for cid,facets in batch.items()}
     cards=[discovery._card_result(db,by_id[cid]) for cid in page]
     meta.update(candidate_pool_complete=True,items=[dict(scores[cid],rank=offset+i+1) for i,cid in enumerate(page)])
@@ -318,7 +384,14 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     meta['coordinate_groups']=[dict(language=g[0],set_code=g[1],collector_number=g[2],shown_card_ids=ids,physical_versions_merged=False) for g,ids in sorted(groups.items())]
     result.update(status='catalog_partial' if cards else 'no_match',cards=cards,ordering=RANKING,
         next_question='Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.' if cards else 'No current catalog matches. Explicitly change a preference or relax a hard scope filter.',
-        coverage=dict(matched_catalog_records=count,not_in_resolved_inventory=len(ordered),returned=len(cards),offset=offset,limit=limit,has_more=offset+limit<len(ordered),global_printing_completeness_established=False,missing_character_facets_excluded=True))
+        coverage=dict(matched_catalog_records=count,not_in_resolved_inventory=len(ordered),returned=len(cards),offset=offset,limit=limit,has_more=offset+limit<len(ordered),global_printing_completeness_established=False,
+            missing_character_facets_excluded=not any(cid in affiliations for cid in by_id),
+            reviewed_name_affiliation_candidates=sum(cid in affiliations for cid in by_id),
+            exclusion_unknown_membership_withheld=withheld,
+            exclusion_scope='current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions'))
+    if withheld:
+        result['next_question']=(result['next_question']+' '+str(withheld)+
+            ' additional catalog records were withheld because current character membership could not be established for the exclusions.')
     if inv is not None:
         inv.update(missing_catalog_records=cards,scope=result,coverage=dict(scoped_catalog_records=count,not_in_resolved_inventory=len(ordered),returned=len(cards),offset=offset,limit=limit,has_more=offset+limit<len(ordered)))
     return dict(scope=result,inventory=inv,cards=cards,recommendation=meta)

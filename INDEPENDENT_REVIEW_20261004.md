@@ -14,7 +14,7 @@ Three boundaries must remain explicit:
 
 1. **Research catalog → supported catalog target.** Broad discoverability and structural matcher eligibility do not prove a record is an accurate physical printing. The existing source-supported cohort consists of 100 Japanese SV4A records, 90 names, all carrying an unverified source-declared holo label. Broad English Mew examples can be name-relevant while containing identity-held records; relevance, inspectability and selectability are different denominators.
 2. **Catalog target → verified offered copy.** Typed artwork relationships, numbered-part/source-family facts and regional coordinates do not establish the same physical printing, condition, grader/grade or price comparability. Source fact warnings and identity holds stay attached through selection.
-3. **Verified offered copy → commerce.** Fresh authorized offers, destination quotes, merchant evidence and a confirmed Buy&Ship handoff require the missing listing/search feed. The partner URL-quote API does not supply that feed. The Python container does not deploy/register the Node caller or provide authenticated durable customer sessions.
+3. **Verified offered copy → commerce.** Fresh authorized offers, destination quotes, merchant evidence and a confirmed Buy&Ship handoff require the missing listing/search feed. The partner URL-quote API does not supply that feed. Its recorded first-phase scope is one item/quantity one for supported US or HK destinations; European coverage, baskets and consolidation are not established here. The Python container does not deploy/register the Node caller or provide authenticated durable customer sessions.
 
 The price architecture usefully distinguishes current asks, last observed list prices at a status transition and evidenced paid prices. Landed comparisons require scoped current quote/copy evidence and compatible conditions/currency; the cheapest quote remains a price-only decision, not merchant reliability. No live merchant recommendation or purchase has been demonstrated.
 
@@ -46,6 +46,10 @@ A 20,001-byte nested JSON request was under the body-size cap but raised an unca
 
 Scope/preferences cleared shown-card membership while retaining feedback, so a dismissed and now-hidden card could never be cleared. Clearing an already stored reaction is now permitted across relevant context resets; it cannot introduce arbitrary unseen feedback. New-goal behavior and separate ownership assertions remain explicit.
 
+### P1 — hard species exclusions treated unknown membership as safe
+
+A release-positive recommendation could include a source-classified Pokemon without a dex facet despite an explicit species exclusion. Such unknown-membership records (including unclassified records) are now withheld while the hard exclusion is active unless qualified character evidence exists. Current, provenance-bound Trainer/Energy records remain outside the primary-Pokemon species constraint. Coverage states withheld counts and does not claim exclusion of artwork cameos. The six qualified name affiliations participate consistently in positive matching, liked examples and exclusions.
+
 ### P2 — hard release language was softened
 
 A supported `only from <one known release>` constraint now becomes hard release scope. Ambiguous or unknown exclusive-release language remains a durable clarification gate rather than silently broadening to other releases. Soft release preferences retain union/ranking behavior and are not converted into hard filters.
@@ -57,6 +61,10 @@ The older helper could create a service account after a failed describe and imme
 ### P1 — legacy exploration overstated offer readiness
 
 The older graph exploration response derived `ready_for_offer_tracking` from structural `match_eligible`, unlike the new catalog-only journey. It now keeps offer/physical/transaction/public flags false and exposes catalog selection and structural eligibility as separate facts. Exact catalog selection remains possible; no source or copy authorization is added.
+
+### P1 — real-catalog character discovery missed supported ex records
+
+The first expanded CI run at `873740df` found **27/34** frozen tasks passing: all 100 supported records were exact-ID selectable, but seven character-continuation/inventory tasks returned no required anchors. Six affected SV4A ex source files omit `dexId`; current facet-only candidate generation correctly excluded them, exposing a discovery-coverage gap rather than an identity failure. The initial receipt is preserved at `sandbox/collector_journeys/supported-pilot-review-v1/initial-873740df-summary.json`. Frozen question expectations and physical/selection gates remain unchanged. The follow-up adds only six exact-source-bound name affiliations, with inspected pinned Pokemon/EX source text, current support/identity and rights bindings, and unanimous current Japanese base-name anchors. They carry a distinct derived-evidence reason; they are not dex IDs asserted by the target source, stored dex facets, physical equivalence or approvals. The original stored catalog and import manifest remain unchanged. Runtime revision now binds this helper, its frozen bindings and source classification. Further cohort character gaps remain separately visible.
 
 ## Remaining activation and product gates
 
@@ -72,7 +80,7 @@ The original eight-journey, 39-action suite remains intact. The compatibility ve
 
 ## Validation and delivery evidence
 
-Final local focused aggregate: **171 Python tests passed**, **15 Node tests passed**, and **13 journeys / 42 actual Python HTTP-to-Node prefix requests passed**, with the synthetic database bytes unchanged. A separate final adversarial review reran overlapping 110 Python tests plus the caller/rehearsal and found no remaining reproduced defect in the touched scope. These counts overlap and must not be added.
+Follow-up local focused aggregate: **196 Python tests passed**, **16 Node tests passed**, and **13 journeys / 42 original Python HTTP-to-Node prefix requests passed**, with synthetic database bytes unchanged. Additional actual HTTP-to-Node tests exercise the six pinned targets with synthetic current anchors, malformed proof rejection and feedback/exclusion behavior. Independent reviews reran overlapping subsets; counts must not be added. The first pushed CI executed 688 Python tests with 2 skips, Node 15, HTTP 42 and real-catalog legacy 39 successfully, then correctly failed the initial 27/34 pilot diagnostic. The follow-up exact-commit CI must prove the unchanged real-catalog questions, bounded runtime and final container.
 
 Final exact-commit CI and diagnostic receipts are the authoritative aggregate result. Local source materialization was Git-blob-SHA verified but incomplete for ten manifest inputs over the connector's size limit, so local full-suite errors caused by missing historical/catalog inputs are not reported as passes. The expanded CI rebuilds the real pinned catalog and runs the full Python suite, Node tests, 13-journey/42-prefix HTTP rehearsal, 8-journey/39-prefix identity-holds compatibility suite, supported-cohort diagnostic, bounded runtime measurement and Docker build. Catalog input files and manifests are unchanged by these patches.
 

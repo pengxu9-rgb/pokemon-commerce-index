@@ -41,7 +41,8 @@ class RuntimeSafetyAdversarialTests(unittest.TestCase):
             actual=rec.recommend(self.db,**args,offset=offset,pool_cache=cache)
             self.assertEqual(actual,rec.recommend(self.db,**args,offset=offset))
         self.assertEqual(first,saved)
-        self.assertEqual(set(cache),{'revision','key','pool'})
+        self.assertEqual(set(cache),{'revision','key','pool','affiliation_key','affiliations'})
+        self.assertLessEqual(len(cache['affiliations']),6)
         self.assertNotIn('scope',cache['pool']['inventory'])
     def test_single_pool_invalidates_every_semantic_input(self):
         base=dict(question='Recommend Pikachu cards',profile={'preferred_dex_ids':[25]},feedback={},owned=None,preferences={})
@@ -53,7 +54,8 @@ class RuntimeSafetyAdversarialTests(unittest.TestCase):
             cache={'revision':'a'*64};rec.recommend(self.db,**base,pool_cache=cache);old=cache['pool']
             args=dict(base,**change);actual=rec.recommend(self.db,**args,pool_cache=cache)
             self.assertIsNot(cache['pool'],old);self.assertEqual(actual,rec.recommend(self.db,**args))
-            self.assertEqual(set(cache),{'revision','key','pool'})
+            self.assertEqual(set(cache),{'revision','key','pool','affiliation_key','affiliations'})
+            self.assertLessEqual(len(cache['affiliations']),6)
         cache={'revision':'a'*64};rec.recommend(self.db,**base,pool_cache=cache);old=cache['pool'];cache['revision']='b'*64
         rec.recommend(self.db,**base,pool_cache=cache);self.assertIsNot(cache['pool'],old)
     def test_distinct_replays_do_not_share_ownership_or_feedback(self):

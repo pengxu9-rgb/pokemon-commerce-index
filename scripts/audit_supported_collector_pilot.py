@@ -14,7 +14,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from pokemon_index import collector_journey, core, supported_catalog
+from pokemon_index import collector_character_affiliation, collector_journey, core, supported_catalog
 
 DEFAULT_SUITE = Path(__file__).resolve().parents[1] / "sandbox/collector_journeys/supported-pilot-review-v1/questions.json"
 APPROVAL_FIELDS = {
@@ -71,7 +71,7 @@ def inspect_record(db, card_id, revision):
     }
 
 
-def run_question(db, question, revision, supported_ids):
+def run_question(db, question, revision, supported_ids, affiliation_rows=None):
     expected = question.get("expect", {})
     result = collector_journey.replay(db, {"turns": question["turns"],
                                           "limit": question.get("limit", 50)}, revision=revision)
@@ -102,6 +102,7 @@ def run_question(db, question, revision, supported_ids):
         errors.append("unexpected_authority")
     blockers = result["card_selection_blockers"]
     evidence = []
+    affiliation_rows = affiliation_rows if affiliation_rows is not None else collector_character_affiliation.affiliations(db)
     items = {item["card_id"]: item for item in (result.get("recommendation") or {}).get("items", [])}
     if expected.get("returned_facet") and not ids:
         errors.append("no_relevant_candidates")
@@ -124,17 +125,28 @@ def run_question(db, question, revision, supported_ids):
             elif field == "language_set_coordinate":
                 matched = reason["value"] == {"language": card["language"], "set_code": card["set_code"]}
                 matched = matched and reason["source_ref"] == card["provenance"]
+            elif field == "character_name_affiliation":
+                affiliate_id = reason.get("affiliated_card_id")
+                current = affiliation_rows.get(affiliate_id, {}).get("reason")
+                matched = bool(current and all(reason.get(key) == value for key, value in current.items())
+                    and set(reason) == set(current) | {"affiliated_card_id", "affiliation_role", "preference_origin"}
+                    and reason.get("affiliation_role") in {"candidate", "liked_example"}
+                    and reason.get("preference_origin") in {"explicit_preference", "liked_example"}
+                    and (reason["affiliation_role"] != "candidate" or affiliate_id == cid)
+                    and (reason["affiliation_role"] != "liked_example" or reason["preference_origin"] == "liked_example"))
             else:
                 matched = False
             checks.append({"field": field, "basis": reason.get("basis"), "source_matches": matched})
         axis_for_field = {"dex_id": "character", "illustrator": "illustrator",
-                          "language_set_coordinate": "release"}
+                          "language_set_coordinate": "release", "character_name_affiliation": "character"}
         axis_matches = True
         for axis_field, basis in [("explicit_match_axes", "catalog_facet"),
                                   ("liked_example_match_axes", "liked_example_catalog_facet")]:
             evidenced = {axis_for_field[reason["field"]] for reason in reasons
                           if reason["field"] in axis_for_field and (reason.get("basis") == basis
-                              or axis_field == "explicit_match_axes" and reason.get("basis") == "catalog_coordinate")}
+                              or axis_field == "explicit_match_axes" and reason.get("basis") == "catalog_coordinate"
+                              or reason.get("basis") == "source_name_character_affiliation" and
+                              reason.get("preference_origin") == ("explicit_preference" if axis_field == "explicit_match_axes" else "liked_example"))}
             if set(items.get(cid, {}).get(axis_field, [])) != evidenced:
                 axis_matches = False
         evidence.append({"card_id": cid, "source_facets": facets,
@@ -181,10 +193,27 @@ def audit(db, suite, *, language="ja", set_code="SV4A"):
                                          (language, set_code))]
     records = [inspect_record(db, cid, revision) for cid in ids]
     current = {row["card_id"] for row in records if row["support_status"] == "supported_for_internal_review"}
+    derived = collector_character_affiliation.affiliations(db)
+    for record in records:
+        cid = record["card_id"]
+        record["current_character_facets"] = [dict(row) for row in db.execute(
+            "SELECT value,provenance,rights_reference FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id' ORDER BY value,provenance", (cid,))]
+        classified = db.execute("""SELECT k.category FROM card_classification k JOIN card c ON c.card_id=k.card_id
+            WHERE k.card_id=? AND k.provenance=c.provenance AND k.rights_reference=c.rights_reference""", (cid,)).fetchone()
+        record["current_source_category"] = classified[0] if classified else None
+        record["derived_name_affiliation"] = derived.get(cid)
+    character_coverage = {
+        "current_explicit_dex_facet": sum(bool(r["current_character_facets"]) for r in records),
+        "valid_derived_name_affiliation": sum(r["derived_name_affiliation"] is not None for r in records),
+        "source_classified_pokemon_still_unresolved": sum(r["current_source_category"] == "Pokemon" and
+            not r["current_character_facets"] and r["derived_name_affiliation"] is None for r in records),
+        "source_classified_non_pokemon": sum(r["current_source_category"] in {"Trainer", "Energy"} for r in records),
+        "unknown_or_stale_classification": sum(r["current_source_category"] is None for r in records),
+    }
     questions = []
     for question in suite["questions"]:
         try:
-            questions.append(run_question(db, question, revision, current))
+            questions.append(run_question(db, question, revision, current, derived))
         except (ValueError, KeyError, TypeError) as error:
             questions.append({"id": question["id"], "family": question["family"],
                               "passed": False, "errors": ["runtime_error"], "error": str(error)})
@@ -219,6 +248,10 @@ def audit(db, suite, *, language="ja", set_code="SV4A"):
                            "coordinates": db.execute("SELECT count(*) FROM (SELECT DISTINCT language,set_code,collector_number FROM card)").fetchone()[0],
                            "structurally_match_eligible": db.execute("SELECT count(*) FROM card WHERE match_eligible=1").fetchone()[0]},
         "stage_counts": stage_counts,
+        "character_coverage_counts": character_coverage,
+        "remaining_character_evidence_gap_ids": [r["card_id"] for r in records if
+            r["current_source_category"] == "Pokemon" and not r["current_character_facets"]
+            and r["derived_name_affiliation"] is None],
         "support_status_counts": dict(Counter(record["support_status"] for record in records)),
         "blocker_counts": dict(Counter(blocker for record in records for blocker in record["blockers"])),
         "variant_counts": dict(Counter(record["variant"] for record in records)),
@@ -256,7 +289,7 @@ def run(db_path, suite_path, output):
                   suite_sha256=digest_file(suite_path), script_sha256=digest_file(__file__))
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({key: report[key] for key in
-                      ["catalog_counts", "stage_counts", "question_summary", "question_family_summary",
+                      ["catalog_counts", "stage_counts", "character_coverage_counts", "question_summary", "question_family_summary",
                        "explicit_catalog_target_outcomes", "contract_errors", "catalog_bytes_unchanged"]}))
     for question in report["questions"]:
         print(json.dumps({key: question[key] for key in

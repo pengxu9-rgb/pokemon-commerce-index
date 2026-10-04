@@ -173,7 +173,7 @@ test('recommendation page is bound to exact IDs, provenance, rank and unknown ma
   const recommendation = {schema: 'pokemon.collector-recommendation.v1',
     ranking_policy: 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1',
     preference_evidence: 'user_assertion_only', candidate_pool_complete: true,
-    coverage_basis: 'current_source_declared_catalog_and_facets_only', global_catalog_completeness_established: false,
+    coverage_basis: 'current_catalog_facets_and_reviewed_name_affiliations_only', global_catalog_completeness_established: false,
     unapplied_preferences: [{value: 'cute', reason: 'no_source_backed_style_labels'}],
     budget_fit: 'unknown_no_live_price', grade_availability: 'unknown_no_copy_offers',
     items: [{card_id: card.card_id, rank: 1, explicit_match_axes: ['character'], liked_example_match_axes: [],
@@ -200,4 +200,53 @@ test('nested candidate evidence cannot mint physical or commerce approvals', asy
       candidate_cards: [card], card_selection_blockers: {A: []}}))).start({question: ask.question}),
       e => e.code === 'invalid_catalog_response');
   }
+});
+
+test('typed name affiliations require exact current candidate and anchor proof shapes', async () => {
+  const pin = require('../../pokemon_index/collector-character-affiliations-v1.json').records[0];
+  const card = {...pin.identity, automatic_offer_join_allowed: false, price_comparable: false};
+  const proof = {field: 'character_name_affiliation', value: 151, basis: 'source_name_character_affiliation',
+    source_ref: card.provenance, target_name: card.name, base_name_ja: 'ミュウ', mechanic: 'EX',
+    source_asserted_dex_id: false, anchor_evidence: [{card_id: 'ja:ANCHOR:001/100:normal', name: 'ミュウ',
+      dex_id: 151, provenance: 'synthetic:anchor', rights_reference: 'synthetic:rights'}],
+    anchor_count: 4, anchor_evidence_sha256: 'b'.repeat(64),
+    derivation: 'exact_pinned_ex_name_to_unanimous_current_name_facets.v1',
+    affiliated_card_id: card.card_id, affiliation_role: 'candidate', preference_origin: 'explicit_preference'};
+  const recommendation = {schema: 'pokemon.collector-recommendation.v1',
+    ranking_policy: 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1',
+    preference_evidence: 'user_assertion_only', candidate_pool_complete: true,
+    coverage_basis: 'current_catalog_facets_and_reviewed_name_affiliations_only', global_catalog_completeness_established: false,
+    unapplied_preferences: [], budget_fit: 'unknown_no_live_price', grade_availability: 'unknown_no_copy_offers',
+    items: [{card_id: card.card_id, rank: 1, explicit_match_axes: ['character'], liked_example_match_axes: [],
+      reasons: [proof], tradeoffs: ['Derived name affiliation, not a source-provided dexId']}],
+    coordinate_groups: [{language: 'ja', set_code: 'SV4A', collector_number: card.collector_number,
+      shown_card_ids: [card.card_id], physical_versions_merged: false}]};
+  const cases = [() => {}, p => {p.source_asserted_dex_id = true;}, p => {p.basis = 'catalog_facet';},
+    p => {p.target_name = 'ミュウツーex';}, p => {p.source_ref = 'other';}, p => {p.affiliated_card_id = 'other';},
+    p => {p.anchor_count = 0;}, p => {p.anchor_evidence_sha256 = 'forged';}, p => {p.anchor_evidence = [];},
+    p => {p.anchor_evidence[0].dex_id = 150;}, p => {p.anchor_evidence[0].name = 'ミュウツー';},
+    p => {p.anchor_evidence[0].rights_reference = '';}, p => {p.anchor_evidence[0].purchase_ready = true;},
+    p => {p.affiliation_role = 'liked_example'; p.preference_origin = 'liked_example';}];
+  for (let i = 0; i < cases.length; i++) {
+    const rec = structuredClone(recommendation); cases[i](rec.items[0].reasons[0]);
+    const c = client(async (_, o) => json(result(JSON.parse(o.body), {candidate_cards: [card],
+      card_selection_blockers: {[card.card_id]: []}, recommendation: rec,
+      discovery: {task: 'collector_recommendations', coverage: {offset: 0}}})));
+    if (!i) assert.equal((await c.start({question: 'Recommend Mew'})).result.recommendation.items[0].reasons[0].source_asserted_dex_id, false);
+    else await assert.rejects(c.start({question: 'Recommend Mew'}), e => e.code === 'invalid_catalog_response');
+  }
+  const rec = structuredClone(recommendation);
+  rec.items[0].explicit_match_axes = []; rec.items[0].liked_example_match_axes = ['character'];
+  rec.items[0].reasons[0].affiliation_role = 'liked_example'; rec.items[0].reasons[0].preference_origin = 'liked_example';
+  const c = client(async (_, o) => json(result(JSON.parse(o.body), {candidate_cards: [card],
+    card_selection_blockers: {[card.card_id]: []}, recommendation: rec,
+    discovery: {task: 'collector_recommendations', coverage: {offset: 0}}})));
+  const session = {schema: 'pokemon.pivota-collector-session.v1', turns: [ask,
+    {type: 'feedback', card_id: card.card_id, reaction: 'like'}], limit: 5, expected_revision: revision};
+  await assert.rejects(c.advance({session, action: {type: 'page', offset: 0}}),
+    e => e.code === 'invalid_catalog_response');
+  rec.items[0].reasons.push({...structuredClone(proof), preference_origin: 'liked_example'});
+  assert.equal((await c.advance({session, action: {type: 'page', offset: 0}})).status, 'accepted');
+  await assert.rejects(c.advance({session, action: {type: 'feedback', card_id: card.card_id, reaction: 'clear'}}),
+    e => e.code === 'invalid_catalog_response');
 });
