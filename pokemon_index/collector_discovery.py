@@ -142,7 +142,7 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
     requested_artists=_artists(db,text)
     artist_inquiry=bool(re.search(r'who (?:is|was) (?:credited as )?(?:the )?(?:illustrator|artist)|who (?:illustrated|drew)|which (?:artist|illustrator) (?:is|was)|イラストレーターは誰|誰.*(?:描|イラスト)',text))
     if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
-        artist_ids={r[0] for r in db.execute("SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?",(requested_artists[0],))} if len(requested_artists)==1 else set()
+        artist_ids={r[0] for r in db.execute(f"SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='illustrator' AND value=?",(requested_artists[0],))} if len(requested_artists)==1 else set()
         rows=[r for r in rows if r['card_id'] in artist_ids]
         if not rows:
             result.update(status='no_match',next_question=(
@@ -572,7 +572,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         # An explicit card name is an additional identity constraint, never ignored.
         named_ids = _character_ids(db, identity_text)
         if named_ids:
-            rows = [r for r in rows if _mentioned(text,r["name"]) or db.execute("SELECT 1 FROM discovery_card_facet WHERE card_id=? AND facet_type='dex_id' AND CAST(value AS INTEGER) IN (" +
+            rows = [r for r in rows if _mentioned(text,r["name"]) or db.execute(f"SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} WHERE card_id=? AND facet_type='dex_id' AND CAST(value AS INTEGER) IN (" +
                         ",".join("?" for _ in named_ids) + ")", (r["card_id"], *named_ids)).fetchone()]
         status = "target_candidate" if len(rows) == 1 else "printing_clarification_needed" if rows else "no_match"
         return _finish_result(db, dict(result, task="exact_coordinates", status=status,
@@ -583,7 +583,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if len(artists) != 1:
             return dict(result, task="artist_cards", next_question="Which illustrator's credited name do you mean?")
         marks = ",".join("?" for _ in languages)
-        where=f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)"
+        where=f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)"
         params=[*languages,artists[0]]
         named_ids=_character_ids(db,identity_text)
         if named_ids and re.search(r"\b(?:not|except|without|excluding)\b|以外|除外|不要|不是",text):
@@ -594,7 +594,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             from . import collector_character_affiliation
             affiliations=collector_character_affiliation.affiliations(db)
             derived_ids=sorted(cid for cid,a in affiliations.items() if a['dex_id'] in named_ids)
-            species="c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND value IN ("+','.join('?' for _ in named_ids)+'))'
+            species=f"c.card_id IN (SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='dex_id' AND value IN ("+','.join('?' for _ in named_ids)+'))'
             params.extend(map(str,named_ids))
             if derived_ids:
                 species+=' OR c.card_id IN ('+','.join('?' for _ in derived_ids)+')';params.extend(derived_ids)
@@ -652,6 +652,6 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="need_character_or_coordinates",required_evidence=['explicit_character_artist_or_release_scope'],
                     next_question="Which character, illustrator or printed set/number should I search? Multiple characters or an unnamed checklist need a clear collection scope.")
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
-    rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
+    rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
                  (*languages, *ids))
     return _finish_result(db, result, rows, limit, offset,_row_capture=_row_capture)

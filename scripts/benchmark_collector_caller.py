@@ -88,12 +88,17 @@ def percentile(values, fraction):
 
 def summarize(case):
     rows = case['results']
+    # Legacy callers without a plan retain the observed-row denominator.
+    planned = case.get('planned_requests', len(rows))
+    if type(planned) is not int or planned < len(rows):
+        raise ValueError('invalid planned request count')
     counts = {category: sum(row['category'] == category for row in rows) for category in CATEGORIES}
     if sum(counts.values()) != len(rows):
         raise ValueError('unknown result category')
     wall = case['wall_ms'] / 1000
-    return {**counts, 'all_requests': len(rows),
-        'completion_fraction': round(counts['completed'] / len(rows), 6) if rows else None,
+    return {**counts, 'all_requests': planned, 'planned_requests': planned,
+        'started_requests': len(rows), 'not_started_requests': planned - len(rows),
+        'completion_fraction': round(counts['completed'] / planned, 6) if planned else None,
         'completed_per_second': round(counts['completed'] / wall, 6) if wall else None,
         'all_request_latency_ms': {key: percentile([row['elapsed_ms'] for row in rows if row['elapsed_ms'] is not None], q)
             for key, q in [('p50', .5), ('p95', .95), ('maximum', 1)]},
@@ -325,10 +330,13 @@ def run_node(base_url, workload, *, repo_root, token=None, local=False, scenario
                 case = event['case']; number = case['case_id']
                 if type(number) is not int or number != len(cases) + 1 or number > len(plan) or case['phase'] != plan[number - 1][0]:
                     raise ValueError('case plan mismatch')
-                cases[number] = {**case, 'results': [], 'wall_ms': 0, 'partial': True}
+                # The Python execution plan, not runner metadata, owns the denominator.
+                cases[number] = {**case, 'planned_requests': plan[number - 1][1],
+                    'results': [], 'wall_ms': 0, 'partial': True}
             elif kind == 'request_started':
                 number, case_id = event['request_id'], event['case_id']
-                if type(number) is not int or number != len(started) + 1 or number > planned or case_id not in cases:
+                if (type(number) is not int or number != len(started) + 1 or number > planned or case_id not in cases
+                        or len(cases[case_id]['results']) >= cases[case_id]['planned_requests']):
                     raise ValueError('request plan mismatch')
                 row = {**event, 'category': 'unsettled', 'elapsed_ms': None, 'input_unchanged': False,
                     'attempts': [], 'fetch_attempts': [], 'auth_observations': [], 'error_code': None}

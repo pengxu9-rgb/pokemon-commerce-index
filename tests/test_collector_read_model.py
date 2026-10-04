@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 from contextlib import closing
 import copy
 import hashlib
+import http.client
 import json
 from pathlib import Path
 import sqlite3
@@ -40,16 +41,16 @@ class CatalogReadModelTests(unittest.TestCase):
 
     def test_image_has_only_facets_indexes_and_preserves_typed_multiset_and_affinities(self):
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
-            self.assertEqual(self.rows(db,'main.discovery_card_facet'),self.rows(db,'temp.discovery_card_facet'))
+            self.assertEqual(self.rows(db,'main.discovery_card_facet'),self.rows(db,'collector_snapshot.facets'))
             self.assertEqual([tuple(r) for r in db.execute('PRAGMA main.table_info(discovery_card_facet)')],
-                             [tuple(r) for r in db.execute('PRAGMA temp.table_info(discovery_card_facet)')])
+                             [tuple(r) for r in db.execute('PRAGMA collector_snapshot.table_info(facets)')])
             self.assertEqual({tuple(r) for r in db.execute("SELECT type,name FROM collector_snapshot.sqlite_master")},
                 {('table','facets'),('index','facet_lookup'),('index','card_lookup')})
             for value in ('0313','313',313,'25',25,None):
                 for operator in ('=','IS'):
                     q='SELECT card_id FROM {} WHERE value '+operator+' ? ORDER BY card_id'
                     self.assertEqual(list(db.execute(q.format('main.discovery_card_facet'),(value,))),
-                                     list(db.execute(q.format('temp.discovery_card_facet'),(value,))))
+                                     list(db.execute(q.format('collector_snapshot.facets'),(value,))))
 
     def test_snapshot_and_fresh_clone_are_readonly(self):
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
@@ -62,10 +63,11 @@ class CatalogReadModelTests(unittest.TestCase):
         original=hashlib.sha256(self.model._image).hexdigest()
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
             db.execute('PRAGMA query_only=OFF');db.execute('DELETE FROM collector_snapshot.facets');db.commit()
-            self.assertEqual(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
+            self.assertEqual(db.execute('SELECT count(*) FROM collector_snapshot.facets').fetchone()[0],0)
+            self.assertGreater(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
             self.assertGreater(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
-            self.assertEqual(self.rows(db,'main.discovery_card_facet'),self.rows(db,'temp.discovery_card_facet'))
+            self.assertEqual(self.rows(db,'main.discovery_card_facet'),self.rows(db,'collector_snapshot.facets'))
         self.assertEqual(hashlib.sha256(self.model._image).hexdigest(),original)
 
     def test_all_frozen_recommendation_prefixes_equal_unaccelerated_results(self):
@@ -136,9 +138,9 @@ class CatalogReadModelTests(unittest.TestCase):
             self.assertGreater(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
 
     def test_clone_step_cannot_buy_a_new_work_budget(self):
-        original=self.model._alias
+        original=self.model._attach
         def slow(db):time.sleep(.02);original(db)
-        with closing(core.connect(self.path,readonly=True)) as db,patch.object(self.model,'_alias',side_effect=slow):
+        with closing(core.connect(self.path,readonly=True)) as db,patch.object(self.model,'_attach',side_effect=slow):
             with self.assertRaises(runtime.CatalogDeadline):
                 with runtime.sqlite_deadline(db,time.monotonic()+.005),self.model.request(db):
                     self.fail('expired cloning entered computation')
@@ -159,6 +161,68 @@ class CatalogReadModelTests(unittest.TestCase):
         with closing(core.connect(self.path,readonly=True)) as db,patch.object(runtime.CatalogReadModel,'MAX_IMAGE_BYTES',4096):
             with self.assertRaises(sqlite3.OperationalError):runtime.CatalogReadModel(db)
         self.assertIsNone(runtime._snapshot_scope.get())
+
+    def test_canonical_generic_sql_is_never_shadowed_by_lookup_image(self):
+        queries=["SELECT count(*) FROM discovery_card_facet WHERE value > ?",
+                 "SELECT count(*) FROM discovery_card_facet WHERE value < ?",
+                 "SELECT count(*) FROM discovery_card_facet WHERE value >= ?",
+                 "SELECT count(*) FROM discovery_card_facet WHERE value = ?"]
+        with closing(core.connect(self.path,readonly=True)) as db:
+            before=[db.execute(sql,(value,)).fetchone()[0] for sql in queries for value in [25,313,'25','313']]
+        with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
+            after=[db.execute(sql,(value,)).fetchone()[0] for sql in queries for value in [25,313,'25','313']]
+            self.assertEqual(before,after)
+            self.assertIsNone(db.execute("SELECT 1 FROM sqlite_temp_master WHERE name='discovery_card_facet'").fetchone())
+            self.assertEqual(runtime.facet_lookup_relation(db),'collector_snapshot.facets')
+        self.assertEqual(runtime.facet_lookup_relation(db),'discovery_card_facet')
+
+    def test_noncanonical_same_shape_collation_falls_back_to_exact_native_replay(self):
+        path=Path(self.tmp.name)/'nocase.sqlite3';create_fixture(path,self.suite)
+        with closing(core.connect(path)) as db:
+            old=db.execute("SELECT sql FROM sqlite_master WHERE name='discovery_card_facet'").fetchone()[0]
+            db.execute('DROP VIEW discovery_card_facet')
+            db.execute(old.replace('CREATE VIEW discovery_card_facet','CREATE VIEW saved_discovery_card_facet'))
+            db.execute('CREATE VIEW discovery_card_facet AS SELECT card_id,facet_type,value COLLATE NOCASE AS value,provenance,rights_reference FROM saved_discovery_card_facet')
+            db.commit()
+        payload={'turns':[{'type':'ask','question':'Recommend Japanese cards'},
+            {'type':'preferences','preferences':{'collecting':{'preferred_illustrators':['alpha']}}}]}
+        with closing(core.connect(path,readonly=True)) as db:
+            self.assertGreater(db.execute("SELECT count(*) FROM discovery_card_facet WHERE value='alpha'").fetchone()[0],0)
+            with self.assertRaises(runtime.CatalogReadModelUnsupported):runtime.CatalogReadModel(db)
+            expected=collector_journey.replay(db,payload)
+        with create_server(str(path),'127.0.0.1',0,True) as server:
+            thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            try:
+                connection=http.client.HTTPConnection('127.0.0.1',server.server_port,timeout=3)
+                try:
+                    connection.request('POST','/collector-journey',json.dumps(payload),{'Content-Type':'application/json'})
+                    response=connection.getresponse();self.assertEqual(response.status,200)
+                    self.assertEqual(json.loads(response.read()),expected)
+                finally:connection.close()
+            finally:server.shutdown();thread.join(3)
+
+    def test_extra_index_or_intermediate_view_disables_optimization_without_writing(self):
+        for statement in ["CREATE INDEX custom_case ON card(name COLLATE NOCASE)",
+                          'CREATE VIEW custom_bridge AS SELECT * FROM card']:
+            path=Path(self.tmp.name)/('extra_'+str(len(statement))+'.sqlite3');create_fixture(path,self.suite)
+            with closing(core.connect(path)) as db:db.execute(statement);db.commit()
+            before=hashlib.sha256(path.read_bytes()).hexdigest()
+            with closing(core.connect(path,readonly=True)) as db,self.assertRaises(runtime.CatalogReadModelUnsupported):
+                runtime.CatalogReadModel(db)
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),before)
+
+    def test_noncanonical_encoding_disables_optimization_without_writing(self):
+        path=Path(self.tmp.name)/'utf16.sqlite3'
+        with closing(core.connect(self.path,readonly=True)) as source:
+            dump='\n'.join(source.iterdump())
+        with closing(core.connect(path)) as db:
+            db.execute("PRAGMA encoding='UTF-16'")
+            db.executescript(dump)
+        before=hashlib.sha256(path.read_bytes()).hexdigest()
+        with closing(core.connect(path,readonly=True)) as db:
+            self.assertNotEqual(db.execute('PRAGMA encoding').fetchone()[0],'UTF-8')
+            with self.assertRaises(runtime.CatalogReadModelUnsupported):runtime.CatalogReadModel(db)
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),before)
 
     def test_unsupported_acceleration_keeps_original_server_compatibility(self):
         with patch.object(runtime,'CatalogReadModel',side_effect=runtime.CatalogReadModelUnsupported()):

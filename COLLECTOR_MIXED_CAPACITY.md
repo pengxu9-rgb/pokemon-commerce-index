@@ -79,7 +79,10 @@ Busy rejection is unsuccessful work. Inspect completed / all requests for every
 load phase and successful-response latency/throughput. The overall 97-call
 completion fraction includes serial and recovery checks and is not the load
 capacity fraction. Explicit rejection, timeout, cancellation, other errors,
-unsettled and not-started calls remain in the planned denominator.
+unsettled and not-started calls remain in the planned denominator. Each started
+case also uses the Python-owned planned count, even when the stream terminates
+early; `started_requests` and `not_started_requests` make that distinction
+explicit. Older ad-hoc summaries without a plan keep their observed denominator.
 
 The journal reuses the reviewed bounded parser/sanitizer: 64 KiB events,
 8 MiB total, 5,000 events, exclusive durable writes and a maximum 240-second
@@ -99,6 +102,7 @@ guarantees or a measured production-traffic distribution.
 ```sh
 python -m unittest discover -s tests -p test_collector_mixed_benchmark.py
 python -m unittest discover -s tests -p test_collector_caller_benchmark.py
+python -m unittest discover -s tests -p test_collector_caller_partial_accounting.py
 ```
 
 The mixed tests cover malformed plans, exact plan bounds, callback failure and

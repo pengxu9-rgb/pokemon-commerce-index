@@ -18,6 +18,11 @@ reproduction did not produce the historical Cloud recovery timeout. The publishe
 are required for the remaining private, zero-normal-traffic Cloud comparison.
 See `PRIVATE_STAGING_ROLLOUT.md` and `CONCURRENCY_RECOVERY_20261004.md`.
 
+The capacity implementation was published as `2244f91ed5df44f380ac07dc09d5f7237b7f1fa6`.
+Its exact-SHA CI passed, but a fresh post-publication review requested a schema
+compatibility correction. The follow-up below is a separate, locally tested
+candidate; 2244 CI and prior review do not approve these changed bytes.
+
 ## Evidence-based local bottleneck
 
 The 70,006-record CI catalog repeatedly evaluates the effective facet view and
@@ -39,8 +44,11 @@ copy exceeded the existing eight-second budget on representative requests.
   unchanged catalog file identity, and prepares a bounded read model before
   accepting requests. Initialization time and memory are measured separately.
 - The image contains only effective facets and two indexes. Its values, SQLite
-  storage types, duplicate counts and column affinities match the canonical
-  effective relation. The canonical database remains opened with `mode=ro`.
+  storage types, duplicate counts and declared column affinities match the canonical
+  effective relation. That does not establish arbitrary SQL comparison equivalence
+  for SQLite compound views. Only explicit, audited string equality/IN and
+  explicit CAST lookup sites use the image; the generic view is never shadowed.
+  The canonical database remains opened with `mode=ro`.
 - SQLite's image page quota is 64MiB. The measured image is 35,655,680 bytes.
   Three fixed vocabularies are immutable tuples; affiliation proofs are retained
   as bounded JSON and decoded into a new object for each request. No user query,
@@ -57,8 +65,10 @@ copy exceeded the existing eight-second budget on representative requests.
   replay. Main/temp schema changes, local/external writes and transactions retain
   the direct caller's invalidation behavior. Parser matches never cross requests.
   Ad-hoc direct vocabulary lookups retain at most three entries.
-- Older supported catalog shapes or a Python SQLite build without image methods
-  retain the original unaccelerated server path. Other preparation errors,
+- The entire stored main schema and database encoding must exactly match a fresh
+  schema created by this package. Altered collations, intermediate views, indexes,
+  types or encoding disable acceleration. Older supported catalog shapes or a
+  Python SQLite build without image methods retain the original native server path. Other preparation errors,
   memory-quota failures and deadlines are not silently swallowed. The Docker CI
   smoke explicitly requires successful read-model construction and exact replay
   equivalence inside the built production image.
@@ -68,7 +78,7 @@ for all 86,512 effective facet rows. Python 3.12 / SQLite 3.53.1 and Python 3.13
 SQLite 3.46.1 diagnostic checks agree. Production-image compatibility still needs
 its exact-SHA Docker CI check; local versions alone are insufficient.
 
-## Measured outcomes at unchanged limits
+## Original pre-publication measurements at unchanged limits
 
 All measurements below are local, single-CPU-pinned, actual production Node
 caller → Python HTTP unless marked direct. OS caches were not flushed. A busy
@@ -198,3 +208,76 @@ cancelled work; a 16-way burst cannot be declared solved by hiding rejections or
 extending deadlines. Measure completion denominators, successful p95/p99,
 per-attempt error classes, memory and post-burst recovery before proposing a
 setting change. No such tuning or resource change is applied here.
+
+
+## Post-publication compatibility correction
+
+The fresh review of published 2244 demonstrated a real two-turn replay mismatch
+on a same-shaped effective view using `COLLATE NOCASE`: native preferred-artist
+validation accepted lowercase `alpha`, while the image rejected it. The pinned
+70,006-record catalog did not reproduce that user-path defect. The reviewer also
+found that numeric inequalities against the canonical compound view can differ
+from a materialized table despite identical stored values and declared affinities;
+no production numeric-inequality caller was identified. Both findings limit the
+original generic-view replacement, rather than justify broader SQL equivalence.
+
+This follow-up removes the temporary `discovery_card_facet` alias entirely.
+Generic SQL retains the original view. Fifteen audited production lookup sites
+explicitly select the image only on the bound request connection, with typed
+string equality/IN or explicit CAST operations. Construction checks all stored
+main-schema definitions and encoding against a newly initialized package schema;
+noncanonical catalogs fall back to native execution before an image is built.
+Fixed vocabulary and affiliation preparation now read the native relation too.
+
+The partial-journal reporting correction is independent: every started case now
+carries its planned request count from the Python-owned execution plan. A case
+interrupted after one completion and one unsettled call out of sixteen reports
+1/16, with fourteen not started, rather than 1/2. Global strict pass/fail was
+already correct; complete earlier receipts are unchanged. Eleven new tests cover
+partial/zero-start cases, invalid counts, a real interrupted Node stream and
+per-case producer overflow. The parser rejects an overfull case before mutating
+its observations, retaining the earlier rows, global planned denominator, durable
+partial marker and serializable structured receipt. This last guard closes a
+separate nonblocking malformed-producer finding from the follow-up review.
+
+### Fresh follow-up evidence
+
+Same final harness, catalog, workload and single CPU; limits remain unchanged:
+
+| Profile | 65a8 baseline | Narrowed follow-up |
+|---|---:|---:|
+| Mixed completed / planned | 52/97 | 73/97 |
+| Explicit busy / intentional cancel / timeout | 44 / 1 / 0 | 23 / 1 / 0 |
+| Load-only completed / planned | 11/54 | 31/54 |
+| 2 / 4 / 16-way burst completions | 1 / 1 / 1 | 2 / 2 / 3 |
+| Sustained 4-way completions | 8/32 | 24/32 |
+| Fresh server preparation, seconds | 1.218 | 3.058 |
+| Python peak RSS, MiB | 57.43 | 159.21 |
+| Sampled simultaneous Python + Node peak, MiB | 125.57 | 236.02 |
+
+These results retain scheduling variation. Published 2244's earlier matched local
+pair was 71/97, and its complete CI mixed run was 69/97 (27/54 load, 2/16 burst).
+Do not relabel those receipts. The follow-up's cold preparation is slower than
+2244's roughly two-second local preparation because fixed facts use native SQL.
+That startup trade-off still needs production-image and private Cloud cold-start
+measurement. Thirteen of sixteen burst calls remain rejected; this is not a
+16-user successful-capacity guarantee or approval to promote normal traffic.
+
+The fresh strict caller profile completed 35/58, with 22 explicit busy responses,
+one intentional cancellation, zero timeouts and all diagnostics/recovery checks.
+All sixteen frozen semantic/session checks, 36 generic real-catalog SQL comparisons,
+42 recommendation prefixes, 39 legacy prefixes and all 60 original historical
+Cloud-check assertions pass locally. Historical response rows are equal after
+removing only revision fields; stale restart still clears result/session/target,
+starts unselected and requires separate explicit reconfirmation. The read-model
+suite now has 22 tests, including the actual HTTP collation witness, generic SQL,
+extra schema objects and UTF-16 fallback. The complete local checkout is still
+missing original large inputs; the aggregate is not claimed to pass locally.
+
+Published 2244 CI run `37199454729` reported **901 tests run: 899 passed, two
+skipped**, plus 41 Node tests, 42 recommendation and 39 legacy prefixes. The
+current frozen evaluation passed 30 mechanical cases with zero execution errors;
+this is not usefulness scoring. The historical non-gating baseline retained two
+execution errors and nine mechanical failures. The production-image smoke ran
+Python 3.12.15 / SQLite 3.46.1 successfully. Those results bind published 2244,
+not this follow-up; new independent review and exact-SHA full CI remain required.

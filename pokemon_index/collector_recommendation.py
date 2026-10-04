@@ -118,7 +118,7 @@ def validate_collecting_preferences(db, value):
             else:
                 val=[inventory._text(v,key,160) for v in val]
                 if key == 'preferred_illustrators' and any(not db.execute(
-                    "SELECT 1 FROM discovery_card_facet WHERE facet_type='illustrator' AND value=? LIMIT 1",(v,)).fetchone() for v in val):
+                    f"SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='illustrator' AND value=? LIMIT 1",(v,)).fetchone() for v in val):
                     raise ValueError('unknown preferred illustrator')
             keys=[tuple(sorted(v.items())) if isinstance(v,dict) else v for v in val]
             if len(set(keys))!=len(keys):raise ValueError('duplicate collecting preference')
@@ -162,7 +162,7 @@ def parse_taste(db, text, *, next_goal=False):
     # Explicit bilingual species aliases, accepted only if current facets contain them.
     for aliases,dex in [(('皮卡丘',),25),(('梦幻','夢幻'),151)]:
         if any(alias in t for alias in aliases) and db.execute(
-                "SELECT 1 FROM discovery_card_facet WHERE facet_type='dex_id' AND value=? LIMIT 1",(str(dex),)).fetchone():
+                f"SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='dex_id' AND value=? LIMIT 1",(str(dex),)).fetchone():
             ids.append(dex)
     ids=sorted(set(ids))
     artists=discovery._artists(db,t)
@@ -208,7 +208,7 @@ def question_constraints(text, db=None):
 
 
 def _facets(db, cid):
-    return [dict(r) for r in db.execute('SELECT * FROM discovery_card_facet WHERE card_id=? ORDER BY facet_type,value,provenance',(cid,))]
+    return [dict(r) for r in db.execute(f'SELECT * FROM {collector_runtime.facet_lookup_relation(db)} WHERE card_id=? ORDER BY facet_type,value,provenance',(cid,))]
 
 
 def _facet_batches(db, card_ids, size=400):
@@ -216,7 +216,7 @@ def _facet_batches(db, card_ids, size=400):
     for start in range(0,len(card_ids),size):
         collector_runtime.checkpoint()
         ids=card_ids[start:start+size];found={cid:[] for cid in ids}
-        for row in db.execute('SELECT * FROM discovery_card_facet WHERE card_id IN ('+
+        for row in db.execute(f'SELECT * FROM {collector_runtime.facet_lookup_relation(db)} WHERE card_id IN ('+
                 ','.join('?' for _ in ids)+') ORDER BY card_id,facet_type,value,provenance',ids):
             found[row['card_id']].append(dict(row))
         yield found
@@ -340,7 +340,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     for kind in desired:
         values=sorted(desired[kind]|liked[kind])
         if values:
-            positive.append("c.card_id IN (SELECT f.card_id FROM discovery_card_facet f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
+            positive.append(f"c.card_id IN (SELECT f.card_id FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
             params.extend([kind,*values])
     derived_ids=sorted(cid for cid,a in affiliations.items()
                        if str(a['dex_id']) in desired['dex_id']|liked['dex_id'])
@@ -371,17 +371,17 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         r'\bby\s+'+re.escape(discovery._norm(hard_artists[0]))+r'(?![a-z0-9])',hard_text)))
     if resolved_illustrator is not None or re.search(r'\bonly\b',hard_text) or explicit_artist_binding:
         if len(hard_ids)==1 and len(hard_artists)==1:
-            species="c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND value=?)";params.append(str(hard_ids[0]))
+            species=f"c.card_id IN (SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='dex_id' AND value=?)";params.append(str(hard_ids[0]))
             derived_hard_ids=sorted(cid for cid,a in affiliations.items() if a['dex_id']==hard_ids[0])
             if derived_hard_ids:
                 species+=' OR c.card_id IN ('+','.join('?' for _ in derived_hard_ids)+')';params.extend(derived_hard_ids)
             where.append('('+species+')')
-            where.append("c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?)");params.append(hard_artists[0])
+            where.append(f"c.card_id IN (SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='illustrator' AND value=?)");params.append(hard_artists[0])
         elif resolved_illustrator is not None:
-            where.append("c.card_id IN (SELECT card_id FROM discovery_card_facet WHERE facet_type='illustrator' AND value=?)");params.append(resolved_illustrator)
+            where.append(f"c.card_id IN (SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='illustrator' AND value=?)");params.append(resolved_illustrator)
     excluded=profile.get('excluded_dex_ids',[])
     if excluded:
-        where.append("NOT EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ("+','.join('?' for _ in excluded)+'))');params.extend(excluded)
+        where.append(f"NOT EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ("+','.join('?' for _ in excluded)+'))');params.extend(excluded)
         excluded_affiliations=sorted(cid for cid,a in affiliations.items() if a['dex_id'] in excluded)
         if excluded_affiliations:
             where.append('c.card_id NOT IN ('+','.join('?' for _ in excluded_affiliations)+')');params.extend(excluded_affiliations)
@@ -394,7 +394,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         # An absent species facet is unknown membership, not proof that a
         # Pokemon avoids the user's exclusions. Only current source-bound
         # Trainer/Energy classification can exempt a no-species record.
-        known_parts=["""EXISTS(SELECT 1 FROM discovery_card_facet known
+        known_parts=[f"""EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} known
             WHERE known.card_id=c.card_id AND known.facet_type='dex_id'
             AND ((known.provenance=c.provenance AND known.rights_reference=c.rights_reference)
                  OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata

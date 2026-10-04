@@ -6,7 +6,7 @@ Sessions, queries, rankings, inventories and authority remain request-local.
 from __future__ import annotations
 
 from collections import deque
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 from contextvars import ContextVar
 from functools import wraps
 import json
@@ -116,6 +116,17 @@ def snapshot_affiliations(db):
     return json.loads(snapshot['model']._affiliations_json)
 
 
+def facet_lookup_relation(db):
+    """Audited string equality/IN or explicit CAST lookups only.
+
+    This materialized relation is NOT an arbitrary-SQL replacement for SQLite's
+    compound effective view. Generic consumers retain the original view and its
+    branch-specific comparison affinities/collations.
+    """
+    snapshot=_snapshot_scope.get()
+    return 'collector_snapshot.facets' if snapshot is not None and snapshot['db'] is db else 'discovery_card_facet'
+
+
 class CatalogReadModelUnsupported(Exception):
     pass
 
@@ -145,6 +156,19 @@ class CatalogReadModel:
         if actual!=expected or not callable(getattr(db,'serialize',None)) or not callable(getattr(db,'deserialize',None)):
             raise CatalogReadModelUnsupported()
         if db.in_transaction:raise ValueError('read model needs a committed snapshot')
+        # Affinity labels alone do not capture collations, intermediate views or
+        # compound-view comparison rules. Only the package's exact schema can
+        # use the audited lookup optimization; other catalogs retain native SQL.
+        from . import core
+        query='SELECT type,name,tbl_name,sql FROM main.sqlite_master ORDER BY type,name,tbl_name'
+        with closing(core.connect(':memory:')) as reference:
+            core.init_db(reference)
+            expected_schema=tuple(tuple(row) for row in reference.execute(query))
+            expected_encoding=reference.execute('PRAGMA main.encoding').fetchone()[0]
+        if (tuple(tuple(row) for row in db.execute(query))!=expected_schema or
+                db.execute('PRAGMA main.encoding').fetchone()[0]!=expected_encoding):
+            raise CatalogReadModelUnsupported()
+        checkpoint()
         db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
         db.execute('PRAGMA collector_snapshot.page_size=4096')
         db.execute('PRAGMA collector_snapshot.max_page_count='+str(self.MAX_IMAGE_BYTES//4096))
@@ -153,7 +177,6 @@ class CatalogReadModel:
         db.execute('CREATE INDEX collector_snapshot.facet_lookup ON facets(facet_type,value,card_id)')
         db.execute('CREATE INDEX collector_snapshot.card_lookup ON facets(card_id,facet_type,value)')
         db.commit()
-        self._alias(db)
         db.execute('PRAGMA query_only=ON')
         self._vocabularies=MappingProxyType({key:tuple(db.execute(sql).fetchmany(100001))
             for key,sql in VOCABULARY_SQL.items()})
@@ -181,17 +204,15 @@ class CatalogReadModel:
         except OSError as exc:
             raise CatalogSnapshotChanged() from exc
 
-    def _alias(self,db):
-        db.execute('CREATE TEMP VIEW discovery_card_facet AS SELECT '+','.join(self.COLUMNS)+
-            ' FROM collector_snapshot.facets')
+    def _attach(self,db):
+        db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
+        db.deserialize(self._image,name=self.SCHEMA)
+        db.execute('PRAGMA query_only=ON')
 
     @contextmanager
     def request(self,db):
         checkpoint();self._check_snapshot(db)
-        db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
-        db.deserialize(self._image,name=self.SCHEMA)
-        self._alias(db)
-        db.execute('PRAGMA query_only=ON')
+        self._attach(db)
         checkpoint()
         token=_snapshot_scope.set({'db':db,'model':self})
         try:
