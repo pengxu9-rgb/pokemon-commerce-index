@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import defaultdict, deque
 from decimal import Decimal
 import copy,json,re
-from . import collector_discovery as discovery, collector_inventory as inventory, collector_character_affiliation
+from . import collector_discovery as discovery, collector_inventory as inventory, collector_character_affiliation, collector_runtime
 
 SCHEMA = 'pokemon.collector-recommendation.v1'
 RANKING = 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
@@ -133,7 +133,7 @@ def parse_taste(db, text, *, next_goal=False):
     ids=sorted(set(ids))
     artists=discovery._artists(db,t)
     if not artists:
-        artists=[r[0] for r in db.execute("SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'") if discovery._norm(r[0])==t.strip(' .。!！')]
+        artists=[r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'") if discovery._norm(r[0])==t.strip(' .。!！')]
     patch={}
     if len(ids)==1:patch['preferred_dex_ids']=ids
     if len(artists)==1:patch['preferred_illustrators']=artists
@@ -240,13 +240,14 @@ def validate_feedback(card_id, reaction, shown_ids):
     return cid,reaction
 
 
+@collector_runtime.catalog_request
 def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=5, offset=0, preferences=None, pool_cache=None):
     profile=validate_collecting_preferences(db,profile)
     scope=discovery.validate_scope(scope);preferences=preferences or {}
     if type(limit) is not int or not 1<=limit<=50 or type(offset) is not int or not 0<=offset<inventory.MAX_SCOPE:
         raise ValueError('invalid recommendation pagination')
     languages=[scope['language']] if 'language' in scope else discovery._languages(discovery._norm(question))
-    # A separate typed, six-pin derivation layer; never insert or masquerade as
+    # A separate typed, exact-source derivation layer; never insert or masquerade as
     # a target-source dex facet. Current support/anchor evidence is revalidated.
     affiliations=_current_affiliations(db,pool_cache)
     liked_affiliations={cid:affiliations[cid] for cid,reaction in feedback.items()

@@ -1,0 +1,46 @@
+{
+  "schema": "pokemon.independent-eval-runner-validation.v1",
+  "validated_at_utc": "2026-10-04T01:31:15Z",
+  "question_fixture_unchanged": true,
+  "questions_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "runner_sha256": "bf56243147b4467f91ccbc7be1c23815e8c4cc0e12e53171b8c3bd003e026011",
+  "readme_sha256": "006dc760e186cda56cad4a30ac32ee3e90aa657b1ea0875e9dd9ad0443c04de4",
+  "mechanics_tests": {
+    "count": 24,
+    "passed": 24,
+    "log": "metadata/runner-tests-v2.log",
+    "sha256": "7a2b2be9c6f25f3b9c4426537e6b64dfa0c3081066c421bb513ddeff9bcc4434"
+  },
+  "independent_review": {
+    "worker": "adversarial_review_pokemon_fixes",
+    "reported_at_utc": "2026-10-04T01:30:38Z",
+    "summary": "Runner inspection clean; independently reran all 24 mechanics tests; did not open or change frozen questions/rubric."
+  },
+  "synthetic_api_smoke": {
+    "report": "metadata/baseline-api-harness-smoke-v2.json",
+    "sha256": "8b16a2ef18c45ad46ca1881617c7e6de1e6a40b5e2a05968cf3034b4f7cb0e9c",
+    "passed": true,
+    "prefixes": 2,
+    "frozen_evaluation_cases_executed": 0
+  },
+  "baseline_preflight": {
+    "report": "results/baseline-024a72d-preflight-v2.json",
+    "sha256": "842a9b25e6415aaffa10629acc2ce363fa7b6ed3f1551f3d8389aaf91383f6ad",
+    "baseline_runtime_hashes_verified": true,
+    "manifest_inputs": {
+      "verified": 55,
+      "missing": 10
+    },
+    "case_denominator": 30,
+    "cases_executed": 0,
+    "cases_not_executed": 30,
+    "collector_usefulness_score": null
+  },
+  "boundaries": {
+    "implementation_modified": false,
+    "existing_tests_or_fixtures_modified": false,
+    "pushed": false,
+    "real_user_testing": false,
+    "agent_authored_diagnostic": true
+  }
+}

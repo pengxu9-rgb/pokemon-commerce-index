@@ -50,11 +50,11 @@ def parse_time(value: str) -> datetime:
     return parsed.astimezone(timezone.utc)
 
 
-def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
+def connect(path: str | Path, *, readonly: bool = False, timeout: float = 5.0) -> sqlite3.Connection:
     if readonly:
-        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True)
+        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True, timeout=timeout)
     else:
-        db = sqlite3.connect(path)
+        db = sqlite3.connect(path, timeout=timeout)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
     if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='discovery_card_facet'").fetchone():

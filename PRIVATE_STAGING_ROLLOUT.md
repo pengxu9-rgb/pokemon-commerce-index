@@ -72,7 +72,7 @@ replay up to 20 turns. Preserve the observed resource settings. Include a bounde
 parallel-request/cold-start check and inspect memory, latency and errors before
 promotion; a green health endpoint does not establish that 512 MiB/concurrency
 16 is sufficient under load. The Node caller has a 10-second per-attempt timeout
-and at most two transport retries. Record timeout behavior; do not silently raise
+and at most two attempts (one retry). Record timeout behavior; do not silently raise
 limits, concurrency, retries or memory to make a test pass.
 
 **Current promotion hold from the independent local review:** even after the
@@ -82,6 +82,14 @@ catalog, exercising a 10,000-candidate query and a 20-page replay, all reached t
 observed peak process memory was about 261 MiB. This is a local stress result, not
 a Cloud Run measurement, but it explicitly means the existing concurrency of 16
 is **not validated**. Serial CI or serial smokes do not clear this hold.
+
+The subsequent [discovery continuation](DISCOVERY_CONTINUATION_20261004.md)
+adds one active computation, a bounded short queue and explicit overload responses.
+Local synthetic HTTP results show recovery and lower resource use, but most requests
+in a 16-client burst are rejected as busy. This is load shedding, not resolution
+of the task-completion capacity hold. The eight-second computation deadline is
+cooperative, not hard preemption. Record successful completion and overload rates
+separately, including the Node caller's bounded retry behavior and recovery UX.
 
 Stage at zero traffic and measure cold-start and sustained expected-load behavior
 on the actual Cloud Run revision. Promotion requires evidence that requests finish

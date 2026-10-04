@@ -250,3 +250,64 @@ test('typed name affiliations require exact current candidate and anchor proof s
   await assert.rejects(c.advance({session, action: {type: 'feedback', card_id: card.card_id, reaction: 'clear'}}),
     e => e.code === 'invalid_catalog_response');
 });
+
+test('explicit work-budget and changed-snapshot rejections do not repeat expensive transcripts', async () => {
+  for (const [status, code] of [[504, 'catalog_work_budget_exceeded'], [503, 'catalog_snapshot_changed']]) {
+    let calls = 0;
+    const session = {schema: 'pokemon.pivota-collector-session.v1', turns: [ask], limit: 5, expected_revision: revision};
+    const saved = JSON.stringify(session);
+    const c = client(async () => {
+      calls++;
+      return new Response(JSON.stringify({error: code}), {status,
+        headers: {'Content-Type': 'application/json', 'X-Collector-Error': code, 'Retry-After': '1'}});
+    });
+    await assert.rejects(c.advance({session, action: {type: 'clear_target'}}), e => e.code === code && !e.retryable);
+    assert.equal(calls, 1);
+    assert.equal(JSON.stringify(session), saved);
+  }
+});
+
+test('numeric Retry-After is honored but capped at one second without extra attempts', {timeout: 5000}, async () => {
+  for (const hint of ['1', '999999999999999999999999999999999999999']) {
+    let calls = 0;
+    let firstAt;
+    let retryAt;
+    const c = client(async (_, options) => {
+      calls++;
+      if (calls === 1) {
+        firstAt = performance.now();
+        return new Response('{}', {status: 503, headers: {'Retry-After': hint, 'X-Collector-Error': 'catalog_busy'}});
+      }
+      retryAt = performance.now();
+      return json(result(JSON.parse(options.body)));
+    });
+    assert.equal((await c.start({question: ask.question})).status, 'accepted');
+    assert.equal(calls, 2);
+    assert.ok(retryAt - firstAt >= 900, 'retry ignored the server backoff hint');
+    assert.ok(retryAt - firstAt < 2000, 'retry hint escaped the bounded one-second wait');
+  }
+});
+
+test('absent, malformed, negative and date hints do not add waits; only exact catalog busy is eligible', async () => {
+  const cases = [
+    [503, 'catalog_busy', null], [503, 'catalog_busy', 'invalid'],
+    [503, 'catalog_busy', '-1'], [503, 'catalog_busy', 'Wed, 01 Jan 2098 00:00:00 GMT'],
+    [503, 'unknown', '1'], [502, 'catalog_busy', '1']];
+  for (const [status, code, hint] of cases) {
+    let calls = 0; let firstAt; let retryAt;
+    const c = client(async (_, options) => {
+      calls++;
+      if (calls === 1) {
+        firstAt = performance.now();
+        const headers = {'X-Collector-Error': code};
+        if (hint !== null) headers['Retry-After'] = hint;
+        return new Response('{}', {status, headers});
+      }
+      retryAt = performance.now();
+      return json(result(JSON.parse(options.body)));
+    });
+    assert.equal((await c.start({question: ask.question})).status, 'accepted');
+    assert.equal(calls, 2);
+    assert.ok(retryAt - firstAt < 900, 'unsupported hint replaced the configured zero retry delay');
+  }
+});

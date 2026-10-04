@@ -1,4 +1,4 @@
-"""Six source-pinned EX-name retrieval affiliations, not new catalog dex facts.
+"""Explicit source-pinned EX-name retrieval affiliations, not new catalog dex facts.
 
 The target sources omit dexId. Their exact names/category/EX suffix are pinned
 separately; a species signal is derived only from unanimous, current Japanese
@@ -14,7 +14,7 @@ from . import supported_catalog
 
 BINDINGS_PATH = Path(__file__).with_name("collector-character-affiliations-v1.json")
 DERIVATION = "exact_pinned_ex_name_to_unanimous_current_name_facets.v1"
-MAX_BINDINGS = 6
+MAX_BINDINGS = 27
 
 
 def _bindings():
@@ -23,7 +23,7 @@ def _bindings():
         raise ValueError("unsupported source-name affiliation bindings")
     rows = payload.get("records")
     if not isinstance(rows, list) or len(rows) != MAX_BINDINGS:
-        raise ValueError("source-name affiliation requires six explicit source bindings")
+        raise ValueError("source-name affiliation requires 27 explicit source bindings")
     if len({row.get("card_id") for row in rows}) != len(rows):
         raise ValueError("duplicate source-name affiliation target")
     return rows

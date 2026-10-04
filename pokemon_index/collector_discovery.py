@@ -9,7 +9,7 @@ import json
 import re
 import sqlite3
 import unicodedata
-from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata
+from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime
 
 
 def _norm(text: str) -> str:
@@ -212,7 +212,7 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
     for _,start,end,_ in names:residual[start:end]=' '*(end-start)
     residual=''.join(residual)
     codes={code for code,_,_,_ in names}
-    codes.update(r[0] for r in db.execute('SELECT DISTINCT set_code FROM card') if _mentioned(residual,r[0]))
+    codes.update(r[0] for r in collector_runtime.vocabulary(db,'release_codes','SELECT DISTINCT set_code FROM card') if _mentioned(residual,r[0]))
     for row in db.execute('SELECT * FROM catalog_vocabulary'):
         if row['language'] in languages and row['alias_kind']=='printed_code' and _mentioned(residual,row['alias']):codes.add(row['set_code'])
         # Numeric product titles are shorthand only in explicit release context.
@@ -226,7 +226,7 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
 
 def _artists(db, text: str) -> list[str]:
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
-    return [r[0] for r in db.execute("SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
+    return [r[0] for r in collector_runtime.vocabulary(db,'artists',"SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'")
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
 
 
@@ -254,9 +254,9 @@ def _unsupported_professors(db,text):
 
 def _character_ids(db, text: str) -> list[int]:
     # One character facet only: a team card name cannot name a single species.
-    aliases = db.execute("""SELECT DISTINCT name,dex_id FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
+    aliases = collector_runtime.vocabulary(db, 'character_aliases', """SELECT DISTINCT name,dex_id FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id
         FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'
-        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""").fetchall()
+        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)""")
     ids = set()
     for row in aliases:
         if len(row["name"]) >= 3 and _mentioned(text, row["name"]):
@@ -267,6 +267,7 @@ def _character_ids(db, text: str) -> list[int]:
     return sorted(ids)
 
 
+@collector_runtime.catalog_request
 def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             offset: int = 0, scope: dict | None = None, _row_capture=None) -> dict:
     if not isinstance(question, str) or not 1 <= len(question.strip()) <= 2000:

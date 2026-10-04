@@ -1,0 +1,29 @@
+{
+  "failures_retained": [
+    {
+      "attempt": 1,
+      "error_type": "FileNotFoundError",
+      "missing_path": "/workspace/shared/pokemon-continuation-20261004/baseline/sandbox/collector_journeys/recommendation-v1/reviewed-suite.json",
+      "resolution": "Pass the unchanged baseline-manifest-verified existing synthetic suite explicitly."
+    },
+    {
+      "attempt": 2,
+      "error_type": "FileNotFoundError",
+      "missing_path": "/workspace/shared/pokemon-continuation-20261004/baseline/pokemon_index/schema.sql",
+      "resolution": "Restore two omitted SQL files only after verifying byte equality to parent pre-edit baseline manifest."
+    }
+  ],
+  "baseline_materialization_repairs": [
+    {
+      "path": "pokemon_index/schema.sql",
+      "sha256": "7a75cfdfa98ed1b7b3e27be51ddd77dee7b7f237d2ad8e5a95ff6f360c8323d5",
+      "copied_to_original_baseline": true
+    },
+    {
+      "path": "pokemon_index/metadata_views.sql",
+      "sha256": "d8490465d58f11a5758f1fa8fd2fe2e70bc2f5aa433942f6c2344f95761457eb",
+      "copied_to_original_baseline": true
+    }
+  ],
+  "independent_evaluation_cases_executed": 0
+}

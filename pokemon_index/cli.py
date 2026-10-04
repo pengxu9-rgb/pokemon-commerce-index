@@ -6,13 +6,13 @@ import json
 import os
 import sqlite3
 from dataclasses import asdict
-from contextlib import closing
+from contextlib import closing, contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
-from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence,collector_journey,card_comparison
+from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence,collector_journey,card_comparison,collector_runtime
 
 
 def read_jsonl(path: str):
@@ -27,12 +27,57 @@ def read_jsonl(path: str):
                     raise ValueError(f"{path}:{line_number}: {exc}") from exc
 
 
-def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False):
+def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False, *,
+                  catalog_workers=1, catalog_queue_size=4, catalog_queue_wait=0.25, catalog_deadline=8.0):
+    snapshot=collector_runtime.snapshot_identity(db_path) if internal_catalog_api else None
+    def check_snapshot():
+        if snapshot is None:return
+        try:current=collector_runtime.snapshot_identity(db_path)
+        except OSError as exc:raise collector_runtime.CatalogSnapshotChanged() from exc
+        if current!=snapshot:raise collector_runtime.CatalogSnapshotChanged()
+    admission=collector_runtime.CatalogAdmission(workers=catalog_workers,queue_size=catalog_queue_size,
+        queue_wait=catalog_queue_wait,deadline=catalog_deadline)
+    @contextmanager
+    def catalog_db():
+        with admission.acquire() as expires:
+            check_snapshot()
+            # A progress callback cannot interrupt SQLite busy waits or the
+            # connection setup queries; keep their lock wait short as well.
+            with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
+                with collector_runtime.sqlite_deadline(db,expires):
+                    yield db
+                    check_snapshot()
     journey_revision=None
     if internal_catalog_api:
         with closing(core.connect(db_path,readonly=True)) as db:
             journey_revision=collector_journey.catalog_revision(db)
+        check_snapshot()
     class Handler(BaseHTTPRequestHandler):
+        def send_json(self,status,body,*,runtime_error=None):
+            # Admission is already released: slow/disconnected readers cannot
+            # retain the catalog compute slot.
+            try:
+                self.send_response(status)
+                self.send_header('Content-Type','application/json; charset=utf-8')
+                self.send_header('Content-Length',str(len(body)))
+                if runtime_error:
+                    self.send_header('X-Collector-Error',runtime_error)
+                    if status==503:self.send_header('Retry-After','1')
+                self.end_headers();self.wfile.write(body)
+            except (BrokenPipeError,ConnectionResetError,TimeoutError):
+                pass
+
+        def runtime_failure(self,exc):
+            if isinstance(exc,collector_runtime.CatalogBusy):
+                code,status='catalog_busy',503
+            elif isinstance(exc,collector_runtime.CatalogSnapshotChanged):
+                code,status='catalog_snapshot_changed',503
+            elif isinstance(exc,collector_runtime.CatalogDeadline):
+                code,status='catalog_work_budget_exceeded',504
+            else:
+                code,status='catalog_temporarily_unavailable',503
+            self.send_json(status,json.dumps({'error':code}).encode(),runtime_error=code)
+
         def do_POST(self):
             route=urlparse(self.path).path
             if not internal_catalog_api or route not in {'/collector-inventory','/collector-journey','/card-comparison'}:
@@ -51,25 +96,36 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                     payload=json.loads(raw.decode('utf-8'))
                 except RecursionError as exc:
                     raise ValueError('JSON nesting exceeds supported depth') from exc
-                with closing(core.connect(db_path,readonly=True)) as db:
+                with catalog_db() as db:
                     result=(card_comparison.compare(db,payload) if route=='/card-comparison' else
                             collector_inventory.compare(db,payload) if route=='/collector-inventory' else
                             collector_journey.replay(db,payload,revision=journey_revision))
-                body=json.dumps(result,ensure_ascii=False).encode();self.send_response(200)
+                    body=json.dumps(result,ensure_ascii=False).encode()
+                status=200
             except (ValueError,KeyError,TimeoutError) as exc:
-                body=json.dumps({'error':str(exc)}).encode();self.send_response(400)
-            self.send_header('Content-Type','application/json; charset=utf-8')
-            self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
+                body=json.dumps({'error':str(exc)}).encode();status=400
+            except (collector_runtime.CatalogBusy,collector_runtime.CatalogDeadline,collector_runtime.CatalogSnapshotChanged,sqlite3.OperationalError) as exc:
+                self.runtime_failure(exc);return
+            self.send_json(status,body)
 
         def do_GET(self):
             parsed = urlparse(self.path)
             args = parse_qs(parsed.query)
             value = lambda name, default="": args.get(name, [default])[0]
+            if parsed.path=="/health":
+                self.send_json(200,b'{"ok": true}');return
+            routes={'/discover','/discovery','/offers','/units','/recommend','/seller-overlap','/index'}
+            if internal_catalog_api:
+                routes.update({'/catalog-status','/supported-status','/collector-evidence-status',
+                    '/catalog-evidence','/collector-discovery','/catalog-search','/catalog-card',
+                    '/listing-candidates','/catalog-neighborhood','/buyer-question-plan',
+                    '/number-explanation','/cross-region-compare'})
+            if parsed.path not in routes:
+                self.send_error(404);return
+            self.connection.settimeout(10)
             try:
-                with closing(core.connect(db_path, readonly=True)) as db, db:
-                    if parsed.path == "/health":
-                        result = {"ok": True}
-                    elif parsed.path == "/discover":
+                with catalog_db() as db:
+                    if parsed.path == "/discover":
                         result = {"cards": core.discover(db, value("q"))}
                     elif parsed.path == "/discovery":
                         result = core.discover_intent(db, value("q"))
@@ -125,17 +181,20 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                     else:
                         self.send_error(404)
                         return
-                body = json.dumps(result, ensure_ascii=False, default=str).encode()
-                self.send_response(200)
+                    body = json.dumps(result, ensure_ascii=False, default=str).encode()
+                status=200
             except (ValueError, KeyError) as exc:
                 body = json.dumps({"error": str(exc)}).encode()
-                self.send_response(400)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
+                status=400
+            except (collector_runtime.CatalogBusy,collector_runtime.CatalogDeadline,collector_runtime.CatalogSnapshotChanged,sqlite3.OperationalError) as exc:
+                self.runtime_failure(exc);return
+            self.send_json(status,body)
 
-    return ThreadingHTTPServer((host,port),Handler)
+    class Server(ThreadingHTTPServer):
+        # The default backlog of five obscures a 16-client application burst as
+        # TCP connection timeouts before admission can return an explicit 503.
+        request_queue_size=64
+    return Server((host,port),Handler)
 
 
 def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False) -> None:

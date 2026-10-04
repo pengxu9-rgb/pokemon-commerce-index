@@ -79,7 +79,10 @@ class FinalSourceAffiliationTests(unittest.TestCase):
     def setUp(self):
         self.db = core.connect(':memory:')
         core.init_db(self.db)
-        self.bindings = affiliation._bindings()
+        # Preserve this original six-target adversarial fixture; the new source
+        # batch has its own full 21-target evidence tests, not synthetic anchors.
+        original_ids = {f'ja:SV4A:{n}/190:holo' for n in [327, 328, 331, 347, 348, 349]}
+        self.bindings = [pin for pin in affiliation._bindings() if pin['card_id'] in original_ids]
         supported = {r['card_id']: r for r in map(json.loads,
             Path('catalog/supported-discovery-v1/supported-cards.jsonl').read_text().splitlines())}
         for pin in self.bindings:

@@ -1,0 +1,71 @@
+{
+  "schema": "pokemon.independent-collector-rubric.v1",
+  "denominator": 30,
+  "axes": {
+    "relevance": {
+      "0": "No relevant help, incorrect hard constraint, or irrelevant candidates",
+      "1": "Some relevant content but weak fit, avoidable duplicates or important constraint missing",
+      "2": "Useful but partial shortlist/answer; material evidence or coverage gaps are explicit",
+      "3": "All requested supported constraints met; concise diverse source-backed shortlist or exact requested catalog operation"
+    },
+    "evidence_honesty": {
+      "0": "Unsupported identity, market, grade, artwork, shipping, completeness or authority claim",
+      "1": "No clear fabrication, but source/unknown boundary insufficiently explained",
+      "2": "Relevant claims trace to current source evidence; limits and identity holds visible throughout"
+    },
+    "clarification_usefulness": {
+      "0": "Needed question absent, generic, opaque or irrelevant; or avoidable questions prevent progress",
+      "1": "Relevant question but underspecified, burdensome or not carried into the continuation",
+      "2": "One focused answerable question materially advances the goal; supplied answer applied correctly",
+      "not_applicable": "No clarification needed; does not add points"
+    },
+    "completion": {
+      "0": "Goal unmet; transport/data blocker; wrong/unauthorized target; or only safe refusal",
+      "1": "Meaningful partial progress with explicit remaining work",
+      "2": "Precommitted supported collector goal achieved; for budget/grade/acquisition/completeness-unknown goals, a disclaimer alone cannot yield 2"
+    },
+    "abstention_quality": {
+      "none": "No abstention required",
+      "justified_helpful": "Specific supported limitation plus actionable next step and retained useful work",
+      "justified_unhelpful": "Truthful blocker with no meaningful next step or useful catalog work",
+      "unjustified": "Supported task refused or unsupported limitation invented",
+      "missed": "Should have held/clarified but asserted or selected"
+    }
+  },
+  "procedure": [
+    "Record all 30 outcomes, including failures, runtime errors, empty answers, held identities and missing-data cases. Never drop a case from the denominator.",
+    "Machine assertions measure interface/safety/selected constraint signals, not end-to-end usefulness. Do not convert their pass count to a relevance or real-user success score.",
+    "A reviewer reads each full prefix response and expected outcome, grades every axis independently, and cites response paths/source evidence. Validate claimed candidate facets/affiliations against the read-only database and, for substantive interpretation, the pinned source.",
+    "Assess top five actually displayed candidates, not a hidden 50-result pool. Record relevant_count and distinct_coordinate_count, exact-ID anchor recall where specified, and selection-held counts separately.",
+    "Evidence honesty cannot compensate for relevance/completion. Safe abstention with no useful progress has relevance <=1 and completion=0, even if evidence_honesty=2.",
+    "For ICU-23/24/25/27, the acquisition/budget/grade/complete-checklist objective remains partial absent missing evidence; maximum completion=1. Source-only starting points do not establish affordability or shipping.",
+    "Report strict_completed_count where completion=2 and evidence_honesty=2; useful_progress_count where relevance>=2 and completion>=1 and evidence_honesty=2; and abstention categories separately. Denominator is always 30, not answered-only.",
+    "Report scored_cases/30 and not_executed/30 explicitly. Do not publish an overall quality percentage from smoke tests or an incomplete catalog.",
+    "A single reviewer score is a reviewer judgment, not accuracy measurement. Prefer two independent scorers, preserve disagreements and adjudication separately; never claim real-user validation.",
+    "Future tuning on disclosed cases makes them regression tests. Collect a new independent held-out cohort for another independent acceptance claim."
+  ],
+  "global_forbidden_claims": [
+    "Live prices, availability, actual merchants or landed quotes from absent feeds",
+    "Physical printing/copy verification or exact grade from a catalog row",
+    "Public display, offer join, transaction or purchase authorization",
+    "All cards, complete collection, complete release, comprehensive artwork/artist coverage without qualified evidence",
+    "Same artwork, same physical printing, English/Japanese counterpart or market comparability inferred from source-version neighbors",
+    "European Buy&Ship coverage inferred from US/HK partner scope"
+  ],
+  "scoring_record_fields": [
+    "case_id",
+    "execution_status",
+    "relevance",
+    "evidence_honesty",
+    "clarification_usefulness",
+    "completion",
+    "abstention_quality",
+    "relevant_count",
+    "displayed_count",
+    "distinct_coordinate_count",
+    "identity_held_count",
+    "claim_evidence_references",
+    "reviewer_explanation",
+    "remaining_work"
+  ]
+}

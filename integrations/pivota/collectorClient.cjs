@@ -271,6 +271,7 @@ function createCollectorClient({baseUrl, getIdToken, fetchImpl = globalThis.fetc
   async function advance({session = null, action, limit = 5} = {}) {
     const request = requestFor(session, action, limit); const body = JSON.stringify(request);
     for (let attempt = 0; attempt < 2; attempt++) {
+      let retryWaitMs = retryDelayMs;
       const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
         const headers = {'Content-Type': 'application/json'};
@@ -289,7 +290,20 @@ function createCollectorClient({baseUrl, getIdToken, fetchImpl = globalThis.fetc
         }
         const response = await fetchImpl(new URL('/collector-journey', base),
           {method: 'POST', headers, body, redirect: 'error', signal: controller.signal});
+        // These explicit service rejections cannot improve by replaying the
+        // same expensive transcript immediately. Preserve the caller session.
+        const runtimeError = response.headers.get('x-collector-error');
+        if ((response.status === 504 && runtimeError === 'catalog_work_budget_exceeded')
+            || (response.status === 503 && runtimeError === 'catalog_snapshot_changed')) {
+          await response.body?.cancel(); throw new CollectorCallError(runtimeError);
+        }
         if ([429, 502, 503, 504].includes(response.status)) {
+          // Respect a numeric backpressure hint without adding attempts or an
+          // unbounded wait. HTTP-date/malformed hints retain configured delay.
+          const retryAfter = response.headers.get('retry-after');
+          if (response.status === 503 && runtimeError === 'catalog_busy'
+              && retryAfter !== null && /^\d+$/.test(retryAfter))
+            retryWaitMs = Math.max(retryDelayMs, Math.min(1000, Number(retryAfter) * 1000));
           await response.body?.cancel(); throw new CollectorCallError('catalog_temporarily_unavailable', true);
         }
         if ([401, 403].includes(response.status)) {
@@ -320,7 +334,7 @@ function createCollectorClient({baseUrl, getIdToken, fetchImpl = globalThis.fetc
           new CollectorCallError(controller.signal.aborted ? 'catalog_timeout' : 'catalog_transport_error', true);
         if (!safe.retryable || attempt === 1) throw safe;
       } finally { clearTimeout(timer); }
-      if (retryDelayMs) await new Promise(resolve => setTimeout(resolve, retryDelayMs));
+      if (retryWaitMs) await new Promise(resolve => setTimeout(resolve, retryWaitMs));
     }
   }
   return Object.freeze({advance, start: ({question, limit = 5} = {}) =>

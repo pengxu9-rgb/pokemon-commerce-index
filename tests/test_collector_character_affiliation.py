@@ -114,10 +114,10 @@ class CharacterAffiliationTests(unittest.TestCase):
         self.assertEqual(self.affiliations(), {})
         self.assertEqual(self.db.execute("SELECT value FROM card_facet WHERE card_id=?", (self.cid,)).fetchone()[0], "150")
 
-    def test_binding_file_has_only_the_six_inspected_targets(self):
+    def test_binding_file_has_only_the_27_inspected_targets(self):
         bindings = affiliation._bindings()
         self.assertEqual({r["card_id"] for r in bindings}, {
-            f"ja:SV4A:{number}/190:holo" for number in [327, 328, 331, 347, 348, 349]})
+            f"ja:SV4A:{number}/190:holo" for number in [*range(320, 338), 347, 348, 349, *range(355, 361)]})
         self.assertTrue(all(r["source_asserted_dex_id"] is False for r in bindings))
 
 

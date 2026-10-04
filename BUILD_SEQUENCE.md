@@ -1,5 +1,9 @@
 # Active build sequence — 2 October 2026
 
+## Discovery continuation — 4 October 2026
+
+[Continuation implementation and evidence](DISCOVERY_CONTINUATION_20261004.md) addresses the 21 source-qualified character gaps and adds bounded HTTP admission/deadlines after the observed burst failure. The original six affiliations and frozen 34-task suite are preserved. A separate 30-question collector evaluation is frozen before execution; score its actual CI responses before selecting the next discovery work. Load shedding is not successful task completion, and actual Cloud Run load/private rollout gates remain open. All marketplace, public display, physical and transaction gates remain closed.
+
 ## Independent review follow-through — 4 October 2026
 
 The immediate milestone is a useful **private catalog decision loop**, with no live-market or transaction claim. Keep the broad research catalog inspectable; do not silently promote structurally eligible records into physically verified printings. The 100 source-bound Japanese SV4A records form a diagnostic cohort, not a procurement allowlist.

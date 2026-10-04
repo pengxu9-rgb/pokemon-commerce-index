@@ -1,0 +1,1184 @@
+{
+  "schema": "pokemon.independent-collector-eval-report.v1",
+  "started_at_utc": "2026-10-04T01:30:38.104100+00:00",
+  "run_label": "baseline-024a72d",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "suite_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "rubric_sha256": "0fea803b3dc9bcba61a14e6a3de320407d1e2a5d5a9844c982ca63874e76bf5f",
+  "runner_sha256": "bf56243147b4467f91ccbc7be1c23815e8c4cc0e12e53171b8c3bd003e026011",
+  "denominator": 30,
+  "real_user_testing": false,
+  "usefulness_scored": false,
+  "transport": "direct read-only Python collector_journey.replay; not HTTP/Node or deployed UX",
+  "interpretation": "Mechanical constraints, safety and execution are separate from reviewer usefulness. No quality rate is inferred from this report.",
+  "results": [
+    {
+      "case_id": "ICU-01",
+      "question": "I'm new to Japanese Pokémon cards. What should I collect next?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-02",
+      "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-03",
+      "question": "Can you recommend Japanese リザードン cards for my collection?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-04",
+      "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-05",
+      "question": "I want the Japanese Mew card. Which one is it?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-06",
+      "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-07",
+      "question": "What Japanese cards can I collect by Tomokazu Komiya?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-08",
+      "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-09",
+      "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-10",
+      "question": "Recommend cards only from the Japanese Shiny Treasure ex set.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-11",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-12",
+      "question": "Recommend Japanese cards only from Scarlet and Violet.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-13",
+      "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-14",
+      "question": "Can you find card 025/165 for me?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-15",
+      "question": "Show me Japanese SV4A 999/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-16",
+      "question": "Recommend Japanese cards from SV4A, but exclude Mew.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-17",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-18",
+      "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-19",
+      "question": "Recommend Japanese Eevee cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-20",
+      "question": "Recommend Japanese cards from SV4A.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-21",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-22",
+      "question": "Recommend Japanese cards by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-23",
+      "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-24",
+      "question": "Recommend Japanese Eevee cards for me.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-25",
+      "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-26",
+      "question": "Recommend Japanese Pikachu cards I don't already own.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-27",
+      "question": "Which Japanese 151 Pikachu cards am I missing?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-28",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-29",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    },
+    {
+      "case_id": "ICU-30",
+      "question": "Show me the catalog record ja:M6:098/076:holo.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "prefixes": [],
+      "reviewer_scores": null
+    }
+  ],
+  "runtime_sha256": {
+    "pokemon_index/__init__.py": "351ad29c6a2f3279c5f6d2dbb87dc3cef3652f862b076f2aa68f5f244605bf70",
+    "pokemon_index/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+    "pokemon_index/buyer_questions.py": "eb1197b7e811ab4dda25a6196f2c511eb74a4882a39a39d9adc2a312acc7fa54",
+    "pokemon_index/buyship_mercari.py": "26cce57779dc6ea3303fee64d4408e5046a3aa4eb8ff2d3947eff999d0e9fec8",
+    "pokemon_index/buyship_partner.py": "d50a22098844f66550c693e29f2c6974edfd565efca3aac22273f9bd83524974",
+    "pokemon_index/calibration.py": "25ba5559c2d4420ec5901115ce1f35364e309b8432857b6fc48b6ed9a3b4773a",
+    "pokemon_index/card_comparison.py": "7c90af865235ba8c4386b11ecc499280929b0aafaf75e2ee8a21f15716acb191",
+    "pokemon_index/card_metadata.py": "85e850c30096ec19cce635c94d7413c7d08c0b370d077aeede58921859c07878",
+    "pokemon_index/card_rarity.py": "dd207a5afbd44c7c2b8c8ea2288cbbf403ed6958db7ae401650af86f13f94feb",
+    "pokemon_index/catalog_question_resolver.py": "02f7e895c7ed07521cfea3a67946250dca76940e2c84f2f473c6b4f0afdb90e5",
+    "pokemon_index/catalog_question_resolver_v2.py": "4cc13ff0774abdb3e3f450d394ec1bf738353c29b2207fd1824ad76ba9291c59",
+    "pokemon_index/cli.py": "747e4864380e8c938cb24185defe2a75492a8fb359e1da91710e9524dd30e000",
+    "pokemon_index/collector-character-affiliations-v1.json": "c6ba53ab7da34e4d0e32e58b61c8808d666d4f7bb36f4aa26d3fe3f10663c0c1",
+    "pokemon_index/collector_character_affiliation.py": "2c5ed3e4d371e02637d25fe7a336697d2b519c22a92ec01897fe68fd320bd679",
+    "pokemon_index/collector_discovery.py": "5eefc36c807f724d52b8ece5bffcc84366c35991e1f9b15243a16d1e978ad2de",
+    "pokemon_index/collector_evidence.py": "8141e3fc187a31a8b28afe5ab0245f182a8ca6aff9a030be549021b75d62e8af",
+    "pokemon_index/collector_inventory.py": "76a383f93f2d0b57bc027a5f3dc34f88279034bbd254fc83cf39b1c643ebc7b4",
+    "pokemon_index/collector_journey.py": "91fb9f211342f39ca8a8a033a3253a1e1d613e7b7d28f89bfe94f41a88cf37bb",
+    "pokemon_index/collector_recommendation.py": "503299f5db94f91e4fee9d2e68d9e46759a36c23b59c7e7c46d384f01f767d26",
+    "pokemon_index/coordinate_family.py": "b158c7750c0a8573b49ae9901867caecc89fecd22e5fb0c81323b2ca3d970057",
+    "pokemon_index/core.py": "2c4881aa42fbd843c4dde157caef79f390b1de9b13cd6e483cf7a427889e392f",
+    "pokemon_index/discovery_graph.py": "d841e7268915ac710cbe19e8e2f4af9b21ad482b4ef8f64cde4882fcbcf0b4ca",
+    "pokemon_index/ebay_browse.py": "5d976c951536b78bb698fdb06e6b7772bf1833efc766b2f56685d031c621c520",
+    "pokemon_index/ingestion_worker.py": "019ede91ec90c68f4d631d8491ddb2de5e46fdff4f1f56561b281064faf20c1b",
+    "pokemon_index/listing_candidates.py": "c9c9362d8d7eb54c15afffe32156a20c6540a88a819c0d1cddff9b398a907b85",
+    "pokemon_index/metadata_views.sql": "d8490465d58f11a5758f1fa8fd2fe2e70bc2f5aa433942f6c2344f95761457eb",
+    "pokemon_index/multi_record_scans.py": "ab6506f0e60f4be3b0f9aee7a859aba97d260748c08f4a665fd9f12498e6b8f1",
+    "pokemon_index/number_aliases.py": "de58a031c1fb33d8c91d02fb9804ac24b8d503f0a1868df16e6baa6449aeea19",
+    "pokemon_index/number_conflicts.py": "050f5096edaef71c6a21550f1127cd38682218f3cc0fed267c32209ae82d8a8d",
+    "pokemon_index/number_evidence.py": "c9b90f0995a41fb96c87e329fa0e50c42ee7e5125b41a79a72cdc00c376f8646",
+    "pokemon_index/number_graph.py": "4b1d2e9c9452fc2f5aded181ea949b962eae9f73d6e7c3cf7a62bae7221edaa3",
+    "pokemon_index/offer_comparison.py": "40c391088ea4ca7fcbf48a9ce1943febd0f9241b3d41a3d04be640eeaea648e5",
+    "pokemon_index/pivota.py": "eb0e979ec7a0d4802f020d00def384c9bdaf2de8e1a70b6f770d1f0575b090f6",
+    "pokemon_index/printing_evidence.py": "68515141fcae33bb21046ed6e2a838669870d1f8f6792fa7ff6b5f897873a4f1",
+    "pokemon_index/question_routing.py": "67e1b05dcb744fedfe75261766920e16a03b48a2c78e3adce45e9114c5737095",
+    "pokemon_index/question_routing_v2.py": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+    "pokemon_index/question_routing_v3.py": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd",
+    "pokemon_index/question_routing_v4.py": "17f67ef36a0c4905eac57038dc4f6228ce20e224deab8949332eec769d0d342c",
+    "pokemon_index/question_routing_v5.py": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79",
+    "pokemon_index/question_routing_v6.py": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e",
+    "pokemon_index/question_routing_v7.py": "ac5f161f8a9a2f3de015a6c38facfb74d32e8919b572c6768a059057182e3986",
+    "pokemon_index/schema.sql": "7a75cfdfa98ed1b7b3e27be51ddd77dee7b7f237d2ad8e5a95ff6f360c8323d5",
+    "pokemon_index/source_corrections.py": "a6fc6b597a2f10f08aad463f103e67fe8bc923b8b5682df960a4364e548847bb",
+    "pokemon_index/source_image_facts.py": "f39de8e4e8b54be21b18c1dfc9d098f2e0ae6324c5890917346098a0c745bc72",
+    "pokemon_index/source_mechanic.py": "47026853fcbc3293800e67b3456a2e9e337e40784d55e4f118f118c31e2fe596",
+    "pokemon_index/supported_catalog.py": "0e39bb491541a7b1e65306703b80b062a3ebbe89ce1ba913996bc03d0579ca51",
+    "pokemon_index/tcgdex.py": "738ba5a31cee8e67a6b9d9545689889ecd672687d528059fb6b77a248ca6535d",
+    "pokemon_index/tcgdex_source.py": "1cb37e6990aed915c806448d79efab67b03c14cdfca012a9b67a6cc475cd5684",
+    "scripts/build_catalog_snapshot.py": "4de87642880a5f7e33070635a7b1324b9bba8044edb2969ee414ecf716bd3b45"
+  },
+  "baseline_runtime_hashes_verified": true,
+  "catalog_preflight": {
+    "manifest_path": "/workspace/shared/pokemon-review-20261004/catalog-build-manifest-source-binding-v1.json",
+    "manifest_sha256": "c046f0280ba5e5d442b557407bbed2870500be13c3e46970722e79b1d389fbd5",
+    "complete": false,
+    "counts": {
+      "verified": 55,
+      "missing": 10
+    },
+    "inputs": [
+      {
+        "path": "catalog/ja-all-sets.jsonl",
+        "expected_sha256": "fca83b7d3946935bcab4be3d563f351660fc4af9f039446294e89bd66016d26f",
+        "actual_sha256": "fca83b7d3946935bcab4be3d563f351660fc4af9f039446294e89bd66016d26f",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/en-physical-sets.jsonl",
+        "expected_sha256": "00b67b6e36043ccc70cddf596fc898c05c26ee61053c51c3e5b0fafedb441d21",
+        "actual_sha256": "00b67b6e36043ccc70cddf596fc898c05c26ee61053c51c3e5b0fafedb441d21",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/en-api-sets.jsonl",
+        "expected_sha256": "d1ccfb487e20e40d742e7f2fd9bd42555610b9331b0d0adde0b0836f52042341",
+        "actual_sha256": "d1ccfb487e20e40d742e7f2fd9bd42555610b9331b0d0adde0b0836f52042341",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/ja-available-explicit-eligibility-v1.jsonl.gz",
+        "expected_sha256": "8b07347d9ad0ead51887b353d3613bd92fb294b87fcff1349e3db065e49bf297",
+        "actual_sha256": "8b07347d9ad0ead51887b353d3613bd92fb294b87fcff1349e3db065e49bf297",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/en-physical-cards.jsonl",
+        "expected_sha256": "e1b1e0247b6e387281d7af4dda3305aa2e00fe234a4f7c49bd80177c5ec55cbc",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/en-physical-ambiguous.jsonl",
+        "expected_sha256": "11c6d4e4accc411eec9964101947bcd2623dc3abc448888335f8eef37cb068c0",
+        "actual_sha256": "11c6d4e4accc411eec9964101947bcd2623dc3abc448888335f8eef37cb068c0",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/en-api-candidates.jsonl",
+        "expected_sha256": "ccf2a973f3d8cd5775376361d44a5612243bc0fa2de76cacc6591f302c64504f",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/ptcg-jp-candidates.jsonl",
+        "expected_sha256": "fa8c21fad603ec782b2e638860f79926e7866fa6e58b8363ceb8897fb15ee42c",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/ptcg-jp-multi-record-candidates.jsonl",
+        "expected_sha256": "42df1561f5989c83c64c541afb604d437bf7fcceb367af4778f1dbaa656d5d1e",
+        "actual_sha256": "42df1561f5989c83c64c541afb604d437bf7fcceb367af4778f1dbaa656d5d1e",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/s6a-secret-art-gap-candidates.jsonl",
+        "expected_sha256": "edc41f9d218418fac245801ea1884aff3237d65bef3e5e3e89c84cdcfef98dfb",
+        "actual_sha256": "edc41f9d218418fac245801ea1884aff3237d65bef3e5e3e89c84cdcfef98dfb",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/tcgdex-ambiguous-candidates.jsonl",
+        "expected_sha256": "eac0994b2d9bf944896b4270e0da0569d33c0889d3c486320d3435b3b326b251",
+        "actual_sha256": "eac0994b2d9bf944896b4270e0da0569d33c0889d3c486320d3435b3b326b251",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/jp-card-identity-exceptions.jsonl",
+        "expected_sha256": "e28bf8fd55bd64e90308b34ea29c025070cdf5bb4cde478d4ef3091f0b80f81d",
+        "actual_sha256": "e28bf8fd55bd64e90308b34ea29c025070cdf5bb4cde478d4ef3091f0b80f81d",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/ja-number-denominator-conflict-rules.jsonl",
+        "expected_sha256": "c463d5a1eb8caa9b97f6e4459ae648a77f888266f5cd29b2a9124c0fa2e53af4",
+        "actual_sha256": "c463d5a1eb8caa9b97f6e4459ae648a77f888266f5cd29b2a9124c0fa2e53af4",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/ptcg-jp-reference.jsonl",
+        "expected_sha256": "f4553b75e6352c20a871256362556667f93e1c68cf19d42ab7440f86bfece30d",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/card-facets.jsonl.gz",
+        "expected_sha256": "a1a05c4da6e68171c77864c4c719bce3f60d197c25806846e48d5eb5283fc5dc",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/card-classifications.jsonl.gz",
+        "expected_sha256": "6c496a83997122ec458b957711c53bc4eda846887e29130c453f678ca5f20ad5",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/relationship-scale-v1-proposed-edges-v4.jsonl",
+        "expected_sha256": "3fd17ee08c0c84f3e06412dfc6e6f31add57089207240d257f9c6516ee1aabb0",
+        "actual_sha256": "3fd17ee08c0c84f3e06412dfc6e6f31add57089207240d257f9c6516ee1aabb0",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/m6-secret-rarity-corrections.jsonl",
+        "expected_sha256": "40a7ac21cfc3a1889fb6ca29c74192344c6b5bdf054da45c5de9db47fde76b2d",
+        "actual_sha256": "40a7ac21cfc3a1889fb6ca29c74192344c6b5bdf054da45c5de9db47fde76b2d",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/missing-rarity-v1/corrections.jsonl",
+        "expected_sha256": "753fcc92f326b71b66eb2a5bfb24f99d6bf773204943524f218d557c67f47ba7",
+        "actual_sha256": "753fcc92f326b71b66eb2a5bfb24f99d6bf773204943524f218d557c67f47ba7",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/supported-discovery-v1/releases.jsonl",
+        "expected_sha256": "d2739cd1e304a3482f1ba74e8f771bdb456a65f7f6b5bd99e293b22f269e18ec",
+        "actual_sha256": "d2739cd1e304a3482f1ba74e8f771bdb456a65f7f6b5bd99e293b22f269e18ec",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/supported-discovery-v1/vocabulary.jsonl",
+        "expected_sha256": "4bd7320f04c85849b15d49d94f035a1cbc50f57f4501b7e1f908da745bfaca57",
+        "actual_sha256": "4bd7320f04c85849b15d49d94f035a1cbc50f57f4501b7e1f908da745bfaca57",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/supported-discovery-v1/supported-cards.jsonl",
+        "expected_sha256": "53af127d52f67c004963f6289e0fd92024acc58dac7b104b21fe0e3428df9727",
+        "actual_sha256": "53af127d52f67c004963f6289e0fd92024acc58dac7b104b21fe0e3428df9727",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/supported-discovery-v1/families.jsonl",
+        "expected_sha256": "0413779420445872943793e694bcfaa38fb03d1abe99e72ef86131cca81f44d9",
+        "actual_sha256": "0413779420445872943793e694bcfaa38fb03d1abe99e72ef86131cca81f44d9",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v2-ai-consensus.bundle.json",
+        "expected_sha256": "cb1c75ecebcabb47ebcc658aeff4a567194034d80b0b2ce484f9df26247f480c",
+        "actual_sha256": "cb1c75ecebcabb47ebcc658aeff4a567194034d80b0b2ce484f9df26247f480c",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v3-ai-consensus.bundle.json",
+        "expected_sha256": "91f3d86ca1cce7265356823eb12a0727bc89a9cd3676d1e93a0179c325aa2996",
+        "actual_sha256": "91f3d86ca1cce7265356823eb12a0727bc89a9cd3676d1e93a0179c325aa2996",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v4-ai-consensus.bundle.json",
+        "expected_sha256": "dac940f236d3cd1dfcaf3c893dc4c902c3d8c8c01e70c8de759795f89aa3f4bf",
+        "actual_sha256": "dac940f236d3cd1dfcaf3c893dc4c902c3d8c8c01e70c8de759795f89aa3f4bf",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v5-ai-consensus.bundle.json",
+        "expected_sha256": "da67c60c6856470991ef0e0fbcaee5ee4fb573e8348b7fcfc9ab9d9fced3085c",
+        "actual_sha256": "da67c60c6856470991ef0e0fbcaee5ee4fb573e8348b7fcfc9ab9d9fced3085c",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-gap-rescue-triple-consensus.bundle.json",
+        "expected_sha256": "e40db8d099daf8cdce54f64d895824325fcdf13721d28bdcbba4995898cf185f",
+        "actual_sha256": "e40db8d099daf8cdce54f64d895824325fcdf13721d28bdcbba4995898cf185f",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-stage1-triple-consensus.bundle.json",
+        "expected_sha256": "17a6440c24300240ae2b240ea427e0b859c3d05f224a6777c9533b1c0a883306",
+        "actual_sha256": "17a6440c24300240ae2b240ea427e0b859c3d05f224a6777c9533b1c0a883306",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-stage2-triple-consensus.bundle.json",
+        "expected_sha256": "452ac358e5867443414ac8bb9941f35295a9b70ef95bdb404e5b1b21040fb5cf",
+        "actual_sha256": "452ac358e5867443414ac8bb9941f35295a9b70ef95bdb404e5b1b21040fb5cf",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-stage3-triple-consensus.bundle.json",
+        "expected_sha256": "573d44c90f8ac82f9c084b820bd101bead05366f8b73123d5d469260ec06c114",
+        "actual_sha256": "573d44c90f8ac82f9c084b820bd101bead05366f8b73123d5d469260ec06c114",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-stage4-triple-consensus.bundle.json",
+        "expected_sha256": "60cf63d542ccc1e12169051c9d56813a4f24fc7468fffbbd11acec7e7edca38f",
+        "actual_sha256": "60cf63d542ccc1e12169051c9d56813a4f24fc7468fffbbd11acec7e7edca38f",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/concept-review-v6-stage5-triple-consensus.bundle.json",
+        "expected_sha256": "40c25837957305a818d4db566ac6fb98e5b54d5d458c0201f51f9a547785ee33",
+        "actual_sha256": "40c25837957305a818d4db566ac6fb98e5b54d5d458c0201f51f9a547785ee33",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/collector-evidence-v1/evidence-events.jsonl",
+        "expected_sha256": "2aec4e1500da8f13363f9308547a45f8aa837398a5ab4d3b4b06c2e6fdf4c6a1",
+        "actual_sha256": "2aec4e1500da8f13363f9308547a45f8aa837398a5ab4d3b4b06c2e6fdf4c6a1",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/collector-evidence-v2/evidence-events.jsonl",
+        "expected_sha256": "80239a7d3002ac75b6a659f4a6e1460b8645cea6dc2bb564bfb234aab1aad2c5",
+        "actual_sha256": "80239a7d3002ac75b6a659f4a6e1460b8645cea6dc2bb564bfb234aab1aad2c5",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/english-history-v1/cards.jsonl.gz",
+        "expected_sha256": "819367205284fd0228466fc9a7f9d938807e2c05ac43f266c80023e9ac2dc3c7",
+        "actual_sha256": "819367205284fd0228466fc9a7f9d938807e2c05ac43f266c80023e9ac2dc3c7",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/english-history-v1/facets.jsonl.gz",
+        "expected_sha256": "9a566bc9105eb3f111717a8567e980f6d08a9392a047b149ab49aa92e2d4fcc7",
+        "actual_sha256": "9a566bc9105eb3f111717a8567e980f6d08a9392a047b149ab49aa92e2d4fcc7",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/english-history-v1/classifications.jsonl.gz",
+        "expected_sha256": "5587f2ab18179e45e0a67d2b10c2629f38f307fec86e7fade88e1348edcac3ef",
+        "actual_sha256": "5587f2ab18179e45e0a67d2b10c2629f38f307fec86e7fade88e1348edcac3ef",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/japanese-evidence-next-v1/metadata-evidence-v1.jsonl",
+        "expected_sha256": "68e4ade9a575f526a7d67c54bf8b23595c7866bab3966282a0e6a75c73e08850",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/japanese-evidence-expansion-v2/metadata-evidence-v1.jsonl",
+        "expected_sha256": "3c7450fff02ff605786c64feb2bef3ed2d43ee143b19185d64d3f49ec640ff05",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/coordinate-family-evidence-v1/evidence-v1.jsonl",
+        "expected_sha256": "2a54db2c03b575f76e732d90d14bbe434e05f4da5d292b598de6a163a849e384",
+        "actual_sha256": "2a54db2c03b575f76e732d90d14bbe434e05f4da5d292b598de6a163a849e384",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/release-metadata-next-v1/metadata-v1.jsonl",
+        "expected_sha256": "ecb4dbda4d6886f8c3750ce94d9366cd31bfff47f216d902c051ddc9edecb70b",
+        "actual_sha256": "ecb4dbda4d6886f8c3750ce94d9366cd31bfff47f216d902c051ddc9edecb70b",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/release-metadata-next-v1/vocabulary-v1.jsonl",
+        "expected_sha256": "4f91d204a731dff8ac2b4d6c8534937e1bdb05d081478b033d90987e290963b7",
+        "actual_sha256": "4f91d204a731dff8ac2b4d6c8534937e1bdb05d081478b033d90987e290963b7",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/printing-source-pilot-v1/evidence-v1.jsonl",
+        "expected_sha256": "7fd553c986d0140c1c744f809b389285ec7a315d0edff2b60179c1e0e192f5b6",
+        "actual_sha256": "7fd553c986d0140c1c744f809b389285ec7a315d0edff2b60179c1e0e192f5b6",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/relationship-independent-priority-v1/verified-artwork-events.jsonl",
+        "expected_sha256": "a7f61bae7fce0cce703d2e3946145ea5813bd2696a6111e8a869fe8516818f3b",
+        "actual_sha256": "a7f61bae7fce0cce703d2e3946145ea5813bd2696a6111e8a869fe8516818f3b",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-corrections-v1/corrections-v2.jsonl",
+        "expected_sha256": "a69de8c1db87f2a31bfa13634d4de60ef619df4978d5d3c11e93b6543df9ed93",
+        "actual_sha256": "a69de8c1db87f2a31bfa13634d4de60ef619df4978d5d3c11e93b6543df9ed93",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/relationship-expansion-v2/verified-artwork-events.jsonl",
+        "expected_sha256": "bdcc60129475491977c4a0f38fafae669ab8dec674c8c692104b6b895fb8e2bb",
+        "actual_sha256": "bdcc60129475491977c4a0f38fafae669ab8dec674c8c692104b6b895fb8e2bb",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/relationship-expansion-v3/verified-artwork-events.jsonl",
+        "expected_sha256": "c0ed5ed23383e571754dc87fda2251d3bf889658b3ce99bf57dda96209bc41d4",
+        "actual_sha256": "c0ed5ed23383e571754dc87fda2251d3bf889658b3ce99bf57dda96209bc41d4",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/artwork-controls-v1/qualified-difference-events-final.jsonl",
+        "expected_sha256": "8796afb9ae8f80362beef475549e11c54e26ba1cf88600771550c00885ac1cb7",
+        "actual_sha256": "8796afb9ae8f80362beef475549e11c54e26ba1cf88600771550c00885ac1cb7",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/number-readings-v1/evidence-v1.jsonl",
+        "expected_sha256": "f18e63523e724dcbb678a511aa2a2ed6d4f9a36e1ca9a47eb25c78c7e0099825",
+        "actual_sha256": "f18e63523e724dcbb678a511aa2a2ed6d4f9a36e1ca9a47eb25c78c7e0099825",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/promo-number-expansion-v1/evidence-v1.jsonl",
+        "expected_sha256": "f08d4f60df419cb39bd48f5207756b82df9184e5d4a933956d692e9459410a0b",
+        "actual_sha256": "f08d4f60df419cb39bd48f5207756b82df9184e5d4a933956d692e9459410a0b",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-image-facts-v1/evidence-v1.jsonl",
+        "expected_sha256": "8dbad73f1bbb50c325275c174f13eb4c7374b735ce0d1b3f23bdaacb6027e787",
+        "actual_sha256": "8dbad73f1bbb50c325275c174f13eb4c7374b735ce0d1b3f23bdaacb6027e787",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-image-facts-expansion-v1/evidence-v1.jsonl",
+        "expected_sha256": "b3f6e0de79c8d4d1681da8de4c9b41ee5dbc1231deee24f30ba2719e7f4042bc",
+        "actual_sha256": "b3f6e0de79c8d4d1681da8de4c9b41ee5dbc1231deee24f30ba2719e7f4042bc",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/cross-release-source-facts-v1/number-evidence-v2.jsonl",
+        "expected_sha256": "331da332a1e1a5cb53a904276d5bff0451975c745a7eb92f4182993f2955de72",
+        "actual_sha256": "331da332a1e1a5cb53a904276d5bff0451975c745a7eb92f4182993f2955de72",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/cross-release-source-facts-v1/evidence-v2.jsonl",
+        "expected_sha256": "e3e69cb928c9e0daa00623638a83b3dfc4683db924f17cc8c8e8d778ee3b5ee6",
+        "actual_sha256": "e3e69cb928c9e0daa00623638a83b3dfc4683db924f17cc8c8e8d778ee3b5ee6",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-facts-thousand-v1/number-evidence-v1.jsonl",
+        "expected_sha256": "57f703b84fa3068733f84121c5b12bf40a3772cf01947a354125a86807494651",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/source-facts-thousand-v1/evidence-v1.jsonl",
+        "expected_sha256": "b6b5b31059f5030ab8536920258c6d1d6358342227aa280dfb55ba7f07b435f3",
+        "status": "missing"
+      },
+      {
+        "path": "catalog/source-facts-escalation-v1/number-evidence-v1.jsonl",
+        "expected_sha256": "f880b97cae4dbe87fb74ce8abc7582949ce22cb0da77f04a13b919d5ac204649",
+        "actual_sha256": "f880b97cae4dbe87fb74ce8abc7582949ce22cb0da77f04a13b919d5ac204649",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-facts-escalation-v1/evidence-v1.jsonl",
+        "expected_sha256": "6c685e13948f2fb6d64570464324ff223cb736e46fd0c719c01886b3d5d73df1",
+        "actual_sha256": "6c685e13948f2fb6d64570464324ff223cb736e46fd0c719c01886b3d5d73df1",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/cross-release-artwork-v1/verified-artwork-events-v2.jsonl",
+        "expected_sha256": "52b495cb1cc985f3b9c5d32edcaa2c6545300f75ba5234cfa0cd0d6ffda019ed",
+        "actual_sha256": "52b495cb1cc985f3b9c5d32edcaa2c6545300f75ba5234cfa0cd0d6ffda019ed",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/cross-release-artwork-v1/qualified-difference-events-v2.jsonl",
+        "expected_sha256": "4d550075cbd7f0de12ba23c2f74c43183273a591031318f30cd59304c8c2f8f3",
+        "actual_sha256": "4d550075cbd7f0de12ba23c2f74c43183273a591031318f30cd59304c8c2f8f3",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-notation-v1/number-evidence-v1.jsonl",
+        "expected_sha256": "9f7d445b924229f660761ba5e70c1a3f4de2d84521317a1b1a2a83360d9eda43",
+        "actual_sha256": "9f7d445b924229f660761ba5e70c1a3f4de2d84521317a1b1a2a83360d9eda43",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-binding-v1/number-evidence-v1.jsonl",
+        "expected_sha256": "15926b1043c4876ffcc008f173311e9004ac74ace0b0ef7a3e24162cf4df5f33",
+        "actual_sha256": "15926b1043c4876ffcc008f173311e9004ac74ace0b0ef7a3e24162cf4df5f33",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-binding-v1/source-facts-v1.jsonl",
+        "expected_sha256": "c4941fc6608c014fc094c3527471a73da6161645160a9b49223a50157e9bf80c",
+        "actual_sha256": "c4941fc6608c014fc094c3527471a73da6161645160a9b49223a50157e9bf80c",
+        "status": "verified"
+      },
+      {
+        "path": "catalog/source-binding-v1/mechanic-bindings-v1.jsonl",
+        "expected_sha256": "3be6d7bf27206f60950058c6d5cbf94b3dda4ab082636976d0d10d39a2f2602f",
+        "actual_sha256": "3be6d7bf27206f60950058c6d5cbf94b3dda4ab082636976d0d10d39a2f2602f",
+        "status": "verified"
+      }
+    ]
+  },
+  "status": "blocked_incomplete_catalog_inputs",
+  "reviewer_scoring_sheet": [
+    {
+      "case_id": "ICU-01",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-02",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-03",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-04",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-05",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-06",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-07",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-08",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-09",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-10",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-11",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-12",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-13",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-14",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-15",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-16",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-17",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-18",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-19",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-20",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-21",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-22",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-23",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-24",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-25",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-26",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-27",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-28",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-29",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    },
+    {
+      "case_id": "ICU-30",
+      "execution_status": "not_executed",
+      "relevance": null,
+      "evidence_honesty": null,
+      "clarification_usefulness": null,
+      "completion": null,
+      "abstention_quality": null,
+      "relevant_count": null,
+      "displayed_count": null,
+      "distinct_coordinate_count": null,
+      "identity_held_count": null,
+      "claim_evidence_references": [],
+      "reviewer_explanation": null,
+      "remaining_work": null
+    }
+  ],
+  "finished_at_utc": "2026-10-04T01:30:38.119931+00:00",
+  "exit_code": 3
+}

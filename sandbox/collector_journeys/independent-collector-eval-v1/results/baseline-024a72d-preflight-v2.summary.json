@@ -1,0 +1,257 @@
+{
+  "schema": "pokemon.independent-collector-eval-report.v1",
+  "started_at_utc": "2026-10-04T01:30:38.104100+00:00",
+  "finished_at_utc": "2026-10-04T01:30:38.119931+00:00",
+  "run_label": "baseline-024a72d",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "suite_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "runner_sha256": "bf56243147b4467f91ccbc7be1c23815e8c4cc0e12e53171b8c3bd003e026011",
+  "denominator": 30,
+  "real_user_testing": false,
+  "usefulness_scored": false,
+  "status": "blocked_incomplete_catalog_inputs",
+  "exit_code": 3,
+  "interpretation": "Mechanical constraints, safety and execution are separate from reviewer usefulness. No quality rate is inferred from this report.",
+  "results": [
+    {
+      "case_id": "ICU-01",
+      "question": "I'm new to Japanese Pokémon cards. What should I collect next?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-02",
+      "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-03",
+      "question": "Can you recommend Japanese リザードン cards for my collection?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-04",
+      "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-05",
+      "question": "I want the Japanese Mew card. Which one is it?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-06",
+      "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-07",
+      "question": "What Japanese cards can I collect by Tomokazu Komiya?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-08",
+      "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-09",
+      "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-10",
+      "question": "Recommend cards only from the Japanese Shiny Treasure ex set.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-11",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-12",
+      "question": "Recommend Japanese cards only from Scarlet and Violet.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-13",
+      "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-14",
+      "question": "Can you find card 025/165 for me?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-15",
+      "question": "Show me Japanese SV4A 999/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-16",
+      "question": "Recommend Japanese cards from SV4A, but exclude Mew.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-17",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-18",
+      "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-19",
+      "question": "Recommend Japanese Eevee cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-20",
+      "question": "Recommend Japanese cards from SV4A.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-21",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-22",
+      "question": "Recommend Japanese cards by Yuka Morii.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-23",
+      "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-24",
+      "question": "Recommend Japanese Eevee cards for me.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-25",
+      "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-26",
+      "question": "Recommend Japanese Pikachu cards I don't already own.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-27",
+      "question": "Which Japanese 151 Pikachu cards am I missing?",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-28",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-29",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    },
+    {
+      "case_id": "ICU-30",
+      "question": "Show me the catalog record ja:M6:098/076:holo.",
+      "execution_status": "not_executed",
+      "reason": "blocked_incomplete_catalog_inputs",
+      "reviewer_scores": null,
+      "prefixes": []
+    }
+  ]
+}

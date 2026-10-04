@@ -5,7 +5,7 @@ physical printing completeness is verified by this comparison.
 """
 from __future__ import annotations
 from collections import defaultdict
-from . import core,collector_discovery
+from . import core,collector_discovery,collector_runtime
 
 MAX_ITEMS=1000
 MAX_SCOPE=10000
@@ -74,6 +74,7 @@ def partition_owned(db, owned, card_ids):
         next_question='Resolve unknown or version-uncertain inventory before selecting a target.' if unresolved else 'Inspect the remaining catalog candidates.')
 
 
+@collector_runtime.catalog_request
 def compare(db, request: dict) -> dict:
     if not isinstance(request,dict) or set(request)-{'question','owned_items','limit','offset','scope'}:
         raise ValueError('inventory request has unsupported fields')

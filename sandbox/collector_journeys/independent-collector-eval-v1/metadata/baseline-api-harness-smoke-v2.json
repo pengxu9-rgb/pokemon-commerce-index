@@ -1,0 +1,1247 @@
+{
+  "schema": "pokemon.independent-eval-harness-smoke.v1",
+  "passed": true,
+  "synthetic_catalog_only": true,
+  "independent_30_cases_executed": 0,
+  "collector_usefulness_measured": false,
+  "real_user_testing": false,
+  "runner_sha256": "bf56243147b4467f91ccbc7be1c23815e8c4cc0e12e53171b8c3bd003e026011",
+  "synthetic_fixture_sha256": "536550ad72177c208388a4bf015ef96453dc1e086ee186796b579fe2dddd192c",
+  "snapshot_validator_smoke": {
+    "every_manifest_expected_count_verified": true,
+    "counts": {
+      "printings": 15
+    },
+    "receipt_type": "same-job builder JSON; not a cryptographic attestation"
+  },
+  "catalog_bytes_unchanged": true,
+  "prefixes_executed": 2,
+  "result": {
+    "case_id": "SMOKE-ONLY",
+    "category": "synthetic_harness",
+    "question": "Recommend Japanese Pikachu cards",
+    "execution_status": "executed",
+    "expected": {
+      "automatable_checks": [
+        {
+          "check": "minimum_candidates",
+          "value": 1
+        },
+        {
+          "check": "candidate_provenance_present"
+        }
+      ]
+    },
+    "prefixes": [
+      {
+        "step_index": 0,
+        "frozen_action": {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards"
+        },
+        "action": {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards"
+        },
+        "response": {
+          "schema": "pokemon.collector-journey.v1",
+          "catalog_revision": "b030cc85dd42c563516c97c6d3807f5010a0699519713e02d8f9ead3166b198b",
+          "turn_count": 1,
+          "status": "candidate_clarification_needed",
+          "goal_question": "Recommend Japanese Pikachu cards",
+          "scope_filters": {
+            "language": "ja"
+          },
+          "candidate_cards": [
+            {
+              "card_id": "ja:FIX:001/100:holo",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "001/100",
+              "variant": "holo",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:002/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "002/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:004/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "004/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:143A/236:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "143A/236",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:001/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "001/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            }
+          ],
+          "discovery": {
+            "schema": "pokemon.collector-discovery.v1",
+            "question": "Recommend Japanese Pikachu cards",
+            "languages": [
+              "ja"
+            ],
+            "task": "collector_recommendations",
+            "status": "catalog_partial",
+            "cards": [
+              {
+                "card_id": "ja:FIX:001/100:holo",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "variant": "holo",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:002/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "002/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:004/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "004/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:143A/236:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "143A/236",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:001/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              }
+            ],
+            "next_question": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.",
+            "market_status": "no_live_market_evidence",
+            "prices": [],
+            "live_offers": [],
+            "public_display_allowed": false,
+            "complete_answer_established": false,
+            "unfulfilled_constraints": [],
+            "requested_scope": {
+              "language": "ja"
+            },
+            "coverage": {
+              "matched_catalog_records": 5,
+              "not_in_resolved_inventory": 5,
+              "returned": 5,
+              "offset": 0,
+              "limit": 5,
+              "has_more": false,
+              "global_printing_completeness_established": false,
+              "missing_character_facets_excluded": true,
+              "reviewed_name_affiliation_candidates": 0,
+              "exclusion_unknown_membership_withheld": 0,
+              "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+            },
+            "scope": "Internal preference matches; physical printing, taste, ownership and market claims remain separate.",
+            "ordering": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1"
+          },
+          "inventory": null,
+          "artwork_review_leads": [],
+          "selection_allowed": true,
+          "card_selection_blockers": {
+            "ja:FIX:001/100:holo": [],
+            "ja:FIX:002/100:normal": [],
+            "ja:FIX:004/100:normal": [],
+            "ja:FIX:143A/236:normal": [],
+            "ja:FIX:001/100:normal": []
+          },
+          "recommendation": {
+            "schema": "pokemon.collector-recommendation.v1",
+            "ranking_policy": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1",
+            "preference_evidence": "user_assertion_only",
+            "candidate_pool_complete": true,
+            "coverage_basis": "current_catalog_facets_and_reviewed_name_affiliations_only",
+            "global_catalog_completeness_established": false,
+            "unapplied_preferences": [],
+            "budget_fit": "unknown_no_live_price",
+            "grade_availability": "unknown_no_copy_offers",
+            "items": [
+              {
+                "card_id": "ja:FIX:001/100:holo",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 1
+              },
+              {
+                "card_id": "ja:FIX:002/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 2
+              },
+              {
+                "card_id": "ja:FIX:004/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 3
+              },
+              {
+                "card_id": "ja:FIX:143A/236:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 4
+              },
+              {
+                "card_id": "ja:FIX:001/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 5
+              }
+            ],
+            "coordinate_groups": [
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "shown_card_ids": [
+                  "ja:FIX:001/100:holo",
+                  "ja:FIX:001/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "002/100",
+                "shown_card_ids": [
+                  "ja:FIX:002/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "004/100",
+                "shown_card_ids": [
+                  "ja:FIX:004/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "143A/236",
+                "shown_card_ids": [
+                  "ja:FIX:143A/236:normal"
+                ],
+                "physical_versions_merged": false
+              }
+            ]
+          },
+          "selection_blockers": [],
+          "selected_catalog_target": null,
+          "target_reset_reason": null,
+          "preferences": {
+            "collecting": {
+              "preferred_dex_ids": [
+                25
+              ]
+            }
+          },
+          "preferences_applied_to_market": false,
+          "next_step": {
+            "field": "recommendation_feedback_or_choice",
+            "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+          },
+          "target_intent": null,
+          "trace": [
+            {
+              "turn": 1,
+              "action": "ask",
+              "task": "collector_recommendations",
+              "displayed_card_ids": [
+                "ja:FIX:001/100:holo",
+                "ja:FIX:002/100:normal",
+                "ja:FIX:004/100:normal",
+                "ja:FIX:143A/236:normal",
+                "ja:FIX:001/100:normal"
+              ],
+              "selection_blockers": [],
+              "selected_card_id": null,
+              "clarification_needed": false
+            }
+          ],
+          "resume": {
+            "caller_resubmits_turns": true,
+            "expected_revision": "b030cc85dd42c563516c97c6d3807f5010a0699519713e02d8f9ead3166b198b",
+            "max_turns": 20
+          },
+          "conversation_persisted": false,
+          "inventory_persisted": false,
+          "ownership_assertions_verified": false,
+          "physical_copy_verified": false,
+          "ready_for_offer_tracking": false,
+          "purchase_ready": false,
+          "complete_collection_established": false,
+          "public_display_allowed": false,
+          "prices": [],
+          "live_offers": [],
+          "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+        },
+        "execution_status": "executed",
+        "candidate_evidence": [
+          {
+            "card_id": "ja:FIX:001/100:holo",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:002/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Beta",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:004/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Beta",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:143A/236:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:001/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          }
+        ],
+        "duration_seconds": 0.020123
+      },
+      {
+        "step_index": 1,
+        "frozen_action": {
+          "type": "feedback",
+          "card_id": {
+            "$bind": "shown"
+          },
+          "reaction": "like"
+        },
+        "action": {
+          "type": "feedback",
+          "card_id": "ja:FIX:001/100:holo",
+          "reaction": "like"
+        },
+        "response": {
+          "schema": "pokemon.collector-journey.v1",
+          "catalog_revision": "b030cc85dd42c563516c97c6d3807f5010a0699519713e02d8f9ead3166b198b",
+          "turn_count": 2,
+          "status": "candidate_clarification_needed",
+          "goal_question": "Recommend Japanese Pikachu cards",
+          "scope_filters": {
+            "language": "ja"
+          },
+          "candidate_cards": [
+            {
+              "card_id": "ja:FIX:001/100:holo",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "001/100",
+              "variant": "holo",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:143A/236:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "143A/236",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:001/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "001/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:002/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "002/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            },
+            {
+              "card_id": "ja:FIX:004/100:normal",
+              "language": "ja",
+              "set_code": "FIX",
+              "collector_number": "004/100",
+              "variant": "normal",
+              "name": "Pikachu",
+              "rarity": null,
+              "provenance": "synthetic:collector-recommendation-v1",
+              "set_name": "Synthetic Collector Set",
+              "release_date": null,
+              "release_provenance": "synthetic:collector-recommendation-v1",
+              "structural_match_eligible": true,
+              "support_status": "research_candidate",
+              "price_comparable": false,
+              "automatic_offer_join_allowed": false
+            }
+          ],
+          "discovery": {
+            "schema": "pokemon.collector-discovery.v1",
+            "question": "Recommend Japanese Pikachu cards",
+            "languages": [
+              "ja"
+            ],
+            "task": "collector_recommendations",
+            "status": "catalog_partial",
+            "cards": [
+              {
+                "card_id": "ja:FIX:001/100:holo",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "variant": "holo",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:143A/236:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "143A/236",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:001/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:002/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "002/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              },
+              {
+                "card_id": "ja:FIX:004/100:normal",
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "004/100",
+                "variant": "normal",
+                "name": "Pikachu",
+                "rarity": null,
+                "provenance": "synthetic:collector-recommendation-v1",
+                "set_name": "Synthetic Collector Set",
+                "release_date": null,
+                "release_provenance": "synthetic:collector-recommendation-v1",
+                "structural_match_eligible": true,
+                "support_status": "research_candidate",
+                "price_comparable": false,
+                "automatic_offer_join_allowed": false
+              }
+            ],
+            "next_question": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record.",
+            "market_status": "no_live_market_evidence",
+            "prices": [],
+            "live_offers": [],
+            "public_display_allowed": false,
+            "complete_answer_established": false,
+            "unfulfilled_constraints": [],
+            "requested_scope": {
+              "language": "ja"
+            },
+            "coverage": {
+              "matched_catalog_records": 7,
+              "not_in_resolved_inventory": 7,
+              "returned": 5,
+              "offset": 0,
+              "limit": 5,
+              "has_more": true,
+              "global_printing_completeness_established": false,
+              "missing_character_facets_excluded": true,
+              "reviewed_name_affiliation_candidates": 0,
+              "exclusion_unknown_membership_withheld": 0,
+              "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+            },
+            "scope": "Internal preference matches; physical printing, taste, ownership and market claims remain separate.",
+            "ordering": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1"
+          },
+          "inventory": null,
+          "artwork_review_leads": [],
+          "selection_allowed": true,
+          "card_selection_blockers": {
+            "ja:FIX:001/100:holo": [],
+            "ja:FIX:143A/236:normal": [],
+            "ja:FIX:001/100:normal": [],
+            "ja:FIX:002/100:normal": [],
+            "ja:FIX:004/100:normal": []
+          },
+          "recommendation": {
+            "schema": "pokemon.collector-recommendation.v1",
+            "ranking_policy": "explicit_axes_then_liked_axes_then_coordinate_round_robin.v1",
+            "preference_evidence": "user_assertion_only",
+            "candidate_pool_complete": true,
+            "coverage_basis": "current_catalog_facets_and_reviewed_name_affiliations_only",
+            "global_catalog_completeness_established": false,
+            "unapplied_preferences": [],
+            "budget_fit": "unknown_no_live_price",
+            "grade_availability": "unknown_no_copy_offers",
+            "items": [
+              {
+                "card_id": "ja:FIX:001/100:holo",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [
+                  "character",
+                  "illustrator"
+                ],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "illustrator",
+                    "value": "Alpha",
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 1
+              },
+              {
+                "card_id": "ja:FIX:143A/236:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [
+                  "character",
+                  "illustrator"
+                ],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "illustrator",
+                    "value": "Alpha",
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 2
+              },
+              {
+                "card_id": "ja:FIX:001/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [
+                  "character",
+                  "illustrator"
+                ],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "illustrator",
+                    "value": "Alpha",
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 3
+              },
+              {
+                "card_id": "ja:FIX:002/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [
+                  "character"
+                ],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 4
+              },
+              {
+                "card_id": "ja:FIX:004/100:normal",
+                "explicit_match_axes": [
+                  "character"
+                ],
+                "liked_example_match_axes": [
+                  "character"
+                ],
+                "reasons": [
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  },
+                  {
+                    "field": "dex_id",
+                    "value": 25,
+                    "basis": "liked_example_catalog_facet",
+                    "source_ref": "synthetic:collector-recommendation-v1",
+                    "rights_reference": "synthetic:no-display"
+                  }
+                ],
+                "tradeoffs": [
+                  "Aesthetic fit, affordability, grade availability and physical printing are not established"
+                ],
+                "rank": 5
+              }
+            ],
+            "coordinate_groups": [
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "001/100",
+                "shown_card_ids": [
+                  "ja:FIX:001/100:holo",
+                  "ja:FIX:001/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "002/100",
+                "shown_card_ids": [
+                  "ja:FIX:002/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "004/100",
+                "shown_card_ids": [
+                  "ja:FIX:004/100:normal"
+                ],
+                "physical_versions_merged": false
+              },
+              {
+                "language": "ja",
+                "set_code": "FIX",
+                "collector_number": "143A/236",
+                "shown_card_ids": [
+                  "ja:FIX:143A/236:normal"
+                ],
+                "physical_versions_merged": false
+              }
+            ]
+          },
+          "selection_blockers": [],
+          "selected_catalog_target": null,
+          "target_reset_reason": null,
+          "preferences": {
+            "collecting": {
+              "preferred_dex_ids": [
+                25
+              ]
+            }
+          },
+          "preferences_applied_to_market": false,
+          "next_step": {
+            "field": "recommendation_feedback_or_choice",
+            "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+          },
+          "target_intent": null,
+          "trace": [
+            {
+              "turn": 1,
+              "action": "ask",
+              "task": "collector_recommendations",
+              "displayed_card_ids": [
+                "ja:FIX:001/100:holo",
+                "ja:FIX:002/100:normal",
+                "ja:FIX:004/100:normal",
+                "ja:FIX:143A/236:normal",
+                "ja:FIX:001/100:normal"
+              ],
+              "selection_blockers": [],
+              "selected_card_id": null,
+              "clarification_needed": false
+            },
+            {
+              "turn": 2,
+              "action": "feedback",
+              "task": "collector_recommendations",
+              "displayed_card_ids": [
+                "ja:FIX:001/100:holo",
+                "ja:FIX:143A/236:normal",
+                "ja:FIX:001/100:normal",
+                "ja:FIX:002/100:normal",
+                "ja:FIX:004/100:normal"
+              ],
+              "selection_blockers": [],
+              "selected_card_id": null,
+              "clarification_needed": false
+            }
+          ],
+          "resume": {
+            "caller_resubmits_turns": true,
+            "expected_revision": "b030cc85dd42c563516c97c6d3807f5010a0699519713e02d8f9ead3166b198b",
+            "max_turns": 20
+          },
+          "conversation_persisted": false,
+          "inventory_persisted": false,
+          "ownership_assertions_verified": false,
+          "physical_copy_verified": false,
+          "ready_for_offer_tracking": false,
+          "purchase_ready": false,
+          "complete_collection_established": false,
+          "public_display_allowed": false,
+          "prices": [],
+          "live_offers": [],
+          "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+        },
+        "execution_status": "executed",
+        "candidate_evidence": [
+          {
+            "card_id": "ja:FIX:001/100:holo",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:143A/236:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:001/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Alpha",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:002/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Beta",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          },
+          {
+            "card_id": "ja:FIX:004/100:normal",
+            "current_source_facets": [
+              {
+                "facet_type": "dex_id",
+                "value": "25",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              },
+              {
+                "facet_type": "illustrator",
+                "value": "Beta",
+                "provenance": "synthetic:collector-recommendation-v1",
+                "rights_reference": "synthetic:no-display"
+              }
+            ],
+            "current_source_classification": [],
+            "runtime_derived_name_affiliation": null,
+            "derived_affiliation_independently_revalidated": false,
+            "identity_blockers": []
+          }
+        ],
+        "duration_seconds": 0.011171
+      }
+    ],
+    "bindings": {
+      "shown": "ja:FIX:001/100:holo"
+    },
+    "safety_violations": [],
+    "mechanical_constraints": [
+      {
+        "requirement": {
+          "check": "minimum_candidates",
+          "value": 1
+        },
+        "mechanical_pass": true,
+        "observed": 5
+      },
+      {
+        "requirement": {
+          "check": "candidate_provenance_present"
+        },
+        "mechanical_pass": true,
+        "observed": null
+      }
+    ],
+    "mechanical_constraints_met": true,
+    "reviewer_scores": null
+  }
+}

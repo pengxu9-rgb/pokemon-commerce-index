@@ -25,11 +25,15 @@ jobs:
         run: python -m scripts.rehearse_collector_recommendations --output /tmp/recommendation-review-report.json
       - name: Rehearse identity holds against the pinned real catalog
         run: |
-          python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3
+          python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 > /tmp/review-catalog-build-report.json
+          cat /tmp/review-catalog-build-report.json
           python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
       - name: Measure bounded real-catalog runtime
         if: ${{ !cancelled() }}
         run: python -m scripts.benchmark_collector_runtime --db /tmp/review-catalog.sqlite3 --output /tmp/runtime-review-report.json
+      - name: Measure real-catalog HTTP admission and concurrency
+        if: ${{ !cancelled() }}
+        run: timeout 180s python -m scripts.benchmark_collector_concurrency --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --output /tmp/http-concurrency-review-report.json
       - name: Build staging image from the same manifest
         id: container_build
         if: ${{ !cancelled() }}
@@ -54,6 +58,23 @@ jobs:
       - name: Audit the supported collector cohort and broad research tasks
         if: ${{ !cancelled() }}
         run: python -m scripts.audit_supported_collector_pilot --db /tmp/review-catalog.sqlite3 --output /tmp/pilot-review-report.json
+      - name: Audit the 21 source-qualified character gaps
+        if: ${{ !cancelled() }}
+        run: python -m scripts.audit_character_affiliation_gaps --db /tmp/review-catalog.sqlite3 --output /tmp/character-gap-review-report.json
+      - name: Test the independent evaluation harness
+        if: ${{ !cancelled() }}
+        run: python -m unittest discover -s sandbox/collector_journeys/independent-collector-eval-v1 -p 'test_runner.py' -q
+      - name: Record the unchanged baseline on the frozen collector evaluation
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          git fetch --no-tags --depth=1 origin 024a72d79f30198301ca538cc818d07577343195
+          mkdir -p /tmp/collector-baseline-024a72d
+          git archive 024a72d79f30198301ca538cc818d07577343195 pokemon_index scripts/__init__.py scripts/build_catalog_snapshot.py | tar -x -C /tmp/collector-baseline-024a72d
+          python sandbox/collector_journeys/independent-collector-eval-v1/run.py --repo-root /tmp/collector-baseline-024a72d --manifest "$PWD/catalog-build-manifest-source-binding-v1.json" --db /tmp/review-catalog.sqlite3 --build-report /tmp/review-catalog-build-report.json --output /tmp/independent-collector-baseline-report.json --label baseline-024a72d79f30198301ca538cc818d07577343195
+      - name: Execute the frozen independent collector evaluation
+        if: ${{ !cancelled() }}
+        run: python sandbox/collector_journeys/independent-collector-eval-v1/run.py --repo-root . --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 --build-report /tmp/review-catalog-build-report.json --output /tmp/independent-collector-eval-report.json --label "$GITHUB_SHA"
       - name: Preserve independent diagnostic receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -64,4 +85,11 @@ jobs:
             /tmp/legacy-review-report.json
             /tmp/pilot-review-report.json
             /tmp/runtime-review-report.json
+            /tmp/http-concurrency-review-report.json
+            /tmp/character-gap-review-report.json
+            /tmp/independent-collector-eval-report.json
+            /tmp/independent-collector-eval-report.summary.json
+            /tmp/independent-collector-baseline-report.json
+            /tmp/independent-collector-baseline-report.summary.json
+            /tmp/review-catalog-build-report.json
           if-no-files-found: ignore

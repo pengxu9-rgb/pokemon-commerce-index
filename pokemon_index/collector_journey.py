@@ -6,7 +6,7 @@ physical-copy evidence or market data. Derived cards/approvals are never accepte
 from __future__ import annotations
 import hashlib,json,re
 from pathlib import Path
-from . import core,collector_discovery,collector_inventory,collector_recommendation,card_comparison,discovery_graph
+from . import core,collector_discovery,collector_inventory,collector_recommendation,card_comparison,discovery_graph,collector_runtime
 
 MAX_TURNS=20
 POLICY='pokemon.collector-journey.v1'
@@ -15,7 +15,7 @@ POLICY='pokemon.collector-journey.v1'
 def catalog_revision(db):
     """Portable evidence and runtime binding; excludes conversations/market state."""
     h=hashlib.sha256(POLICY.encode())
-    for name in ['collector_journey.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
+    for name in ['collector_journey.py','collector_runtime.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
                  'collector_character_affiliation.py','collector-character-affiliations-v1.json',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
                  'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
@@ -98,6 +98,7 @@ def _preferences(value,db=None):
     return result
 
 
+@collector_runtime.catalog_request
 def replay(db,request,*,revision=None):
     if not isinstance(request,dict) or set(request)-{'turns','limit','expected_revision'}:raise ValueError('unsupported journey request')
     turns=request.get('turns');limit=request.get('limit',5)
