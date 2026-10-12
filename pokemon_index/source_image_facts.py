@@ -143,9 +143,11 @@ def validate(row):
     if len(actors)!=2 or len(families)!=2:raise ValueError('distinct fact reviewer families required')
 
 def import_evidence(db,rows):
+    from . import variant_dimension_hold
     prepared=list(rows)
     for r in prepared:
         validate(r)
+        if variant_dimension_hold.held(db,r['card_id']):raise ValueError('image facts cannot bind a variant-dimension-held identity')
         if number_evidence.snapshot(db,r['card_id'])!=r['endpoint_snapshot']:raise ValueError('image fact endpoint is stale')
     with db:
         for r in prepared:

@@ -107,4 +107,13 @@ class RuntimeSafetyAdversarialTests(unittest.TestCase):
                 self.assertEqual(response.status,200);self.assertEqual(json.loads(response.read()),{'ok':True})
             finally:client.close();server.shutdown();thread.join(timeout=5)
 
+    def test_request_depth_bound_preserves_quoted_and_escaped_payload_characters(self):
+        from pokemon_index.cli import request_json
+        quoted=dict(question='['*10000+' "literal\\" text" '+'}'*10000)
+        self.assertEqual(request_json(json.dumps(quoted).encode()),quoted)
+        self.assertIsInstance(request_json(('['*128+'0'+']'*128).encode()),list)
+        for raw in [('['*129+'0'+']'*129),('{"x":'*129+'0'+'}'*129)]:
+            with self.assertRaisesRegex(ValueError,'nesting'):request_json(raw.encode())
+        with self.assertRaises(json.JSONDecodeError):request_json(b'{"unterminated": [}')
+
 if __name__=='__main__':unittest.main()

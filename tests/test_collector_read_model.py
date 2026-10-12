@@ -16,6 +16,7 @@ from unittest.mock import patch
 
 from pokemon_index import core,collector_runtime as runtime,collector_journey,collector_discovery
 from pokemon_index import collector_character_affiliation as affiliation
+from pokemon_index import variant_dimension_hold
 from pokemon_index.cli import create_server
 from scripts.rehearse_collector_recommendations import SUITE,create_fixture
 
@@ -228,6 +229,110 @@ class CatalogReadModelTests(unittest.TestCase):
         with patch.object(runtime,'CatalogReadModel',side_effect=runtime.CatalogReadModelUnsupported()):
             with create_server(str(self.path),'127.0.0.1',0,True) as server:
                 self.assertGreater(server.server_port,0)
+
+
+class CatalogReadModelHoldTests(unittest.TestCase):
+    """Real frozen hold metadata in disposable catalog fixtures; no acquisition."""
+
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.path=Path(self.tmp.name)/'held.sqlite3'
+        self.suite=json.loads(SUITE.read_text());create_fixture(self.path,self.suite)
+        path=Path(__file__).resolve().parents[1]/'catalog/variant-dimension-holds-v1/holds.jsonl'
+        self.holds=[json.loads(line) for line in path.read_text().splitlines()]
+        self.assertEqual(len(self.holds),44)
+        with closing(core.connect(self.path)) as db:
+            core.import_cards(db,[dict(row['identity'],match_eligible=row['prior_structural_match_eligible']) for row in self.holds])
+            result=variant_dimension_hold.import_evidence(db,self.holds)
+            self.assertEqual(result,dict(inserted=44,unchanged=0,eligibility_withdrawn=9))
+        self.before=hashlib.sha256(self.path.read_bytes()).hexdigest()
+
+    def tearDown(self):
+        self.assertIsNone(runtime._snapshot_scope.get());self.assertIsNone(runtime._catalog_scope.get())
+        self.assertEqual(hashlib.sha256(self.path.read_bytes()).hexdigest(),self.before)
+        self.tmp.cleanup()
+
+    def assert_unsupported(self,path):
+        before=hashlib.sha256(path.read_bytes()).hexdigest()
+        with closing(core.connect(path,readonly=True)) as db:
+            with self.assertRaises(runtime.CatalogReadModelUnsupported):runtime.CatalogReadModel(db)
+            self.assertEqual([r[1] for r in db.execute('PRAGMA database_list')],['main'])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),before)
+
+    def test_exact_44_hold_schema_keeps_native_and_accelerated_results_equal(self):
+        with closing(core.connect(self.path,readonly=True)) as db:
+            model=runtime.CatalogReadModel(db)
+        questions=['Japanese FIX cards','en:BASE1:058/102:normal',
+                   'en:BASE1:058/102:normal_unlimited','en:BASE1:058/102:normal first edition graded copy']
+        payload=dict(turns=[dict(type='ask',question='Recommend Japanese Pikachu cards')],limit=5)
+        outputs=[]
+        for accelerated in (False,True):
+            with closing(core.connect(self.path,readonly=True)) as db:
+                def run():
+                    exact=[core.catalog_card_internal(db,row['identity']['card_id']) for row in self.holds]
+                    self.assertTrue(all(item['card']['media_availability']['status']=='identity_hold' for item in exact))
+                    for row in self.holds:
+                        with self.assertRaisesRegex(ValueError,'hold'):core.units_for_card(db,row['identity']['card_id'])
+                    return dict(exact=exact,discovery=[collector_discovery.execute(db,q,limit=3) for q in questions],
+                        scanned=[collector_discovery.execute(db,q,limit=3,with_source_scans=True) for q in questions],
+                        journey=collector_journey.replay(db,payload,revision='a'*64))
+                if accelerated:
+                    with model.request(db):
+                        self.assertEqual(runtime.facet_lookup_relation(db),'collector_snapshot.facets')
+                        outputs.append(run())
+                else:outputs.append(run())
+        self.assertEqual(outputs[0],outputs[1])
+        self.assertEqual(outputs[0]['discovery'][1]['requested_exact_card_id'],'en:BASE1:058/102:normal')
+        self.assertEqual(outputs[0]['scanned'][1]['cards'],[])
+        self.assertFalse(outputs[0]['journey']['purchase_ready'])
+
+    def test_hold_rows_require_complete_guards_even_when_schema_matches_base(self):
+        path=Path(self.tmp.name)/'unguarded.sqlite3';path.write_bytes(self.path.read_bytes())
+        with closing(core.connect(path)) as db:
+            db.execute('DROP INDEX variant_dimension_hold_card_id')
+            db.execute('DROP TRIGGER variant_dimension_hold_card_insert')
+            db.execute('DROP TRIGGER variant_dimension_hold_card_update');db.commit()
+            self.assertEqual(db.execute("SELECT count(*) FROM catalog_identity_quarantine WHERE quarantine_id GLOB 'variant-dimension-hold:*'").fetchone()[0],44)
+        self.assert_unsupported(path)
+
+    def test_missing_wrong_or_extra_guard_objects_are_not_ignored(self):
+        mutations=[['DROP INDEX variant_dimension_hold_card_id'],
+            ['DROP TRIGGER variant_dimension_hold_card_insert'],['DROP TRIGGER variant_dimension_hold_card_update'],
+            ['DROP INDEX variant_dimension_hold_card_id',
+             "CREATE INDEX variant_dimension_hold_card_id ON catalog_identity_quarantine (json_extract(record_json,'$.identity.variant')) WHERE quarantine_id GLOB 'variant-dimension-hold:*'"],
+            ['CREATE INDEX variant_dimension_hold_extra ON card(name)']]
+        for index,statements in enumerate(mutations):
+            with self.subTest(statements=statements):
+                path=Path(self.tmp.name)/f'wrong_guard_{index}.sqlite3';path.write_bytes(self.path.read_bytes())
+                with closing(core.connect(path)) as db:
+                    for statement in statements:db.execute(statement)
+                    db.commit()
+                self.assert_unsupported(path)
+        path=Path(self.tmp.name)/'weakened_trigger.sqlite3';path.write_bytes(self.path.read_bytes())
+        with closing(core.connect(path)) as db:
+            original=db.execute("SELECT sql FROM sqlite_master WHERE name='variant_dimension_hold_card_update'").fetchone()[0]
+            weakened=original.replace('NEW.match_eligible=1 OR NEW.display_allowed=1','NEW.match_eligible=1')
+            self.assertNotEqual(weakened,original)
+            db.execute('DROP TRIGGER variant_dimension_hold_card_update');db.execute(weakened);db.commit()
+        self.assert_unsupported(path)
+
+    def test_empty_exact_guard_group_is_supported_without_relaxing_other_schema(self):
+        path=Path(self.tmp.name)/'before_ingest.sqlite3';create_fixture(path,self.suite)
+        with closing(core.connect(path)) as db:variant_dimension_hold.install_guards(db);db.commit()
+        before=hashlib.sha256(path.read_bytes()).hexdigest()
+        with closing(core.connect(path,readonly=True)) as db:model=runtime.CatalogReadModel(db)
+        with closing(core.connect(path,readonly=True)) as db,model.request(db):
+            self.assertEqual(runtime.facet_lookup_relation(db),'collector_snapshot.facets')
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),before)
+
+    def test_held_schema_with_noncanonical_facet_collation_still_fails_closed(self):
+        path=Path(self.tmp.name)/'held_nocase.sqlite3';path.write_bytes(self.path.read_bytes())
+        with closing(core.connect(path)) as db:
+            old=db.execute("SELECT sql FROM sqlite_master WHERE name='discovery_card_facet'").fetchone()[0]
+            db.execute('DROP VIEW discovery_card_facet')
+            db.execute(old.replace('CREATE VIEW discovery_card_facet','CREATE VIEW saved_discovery_card_facet'))
+            db.execute('CREATE VIEW discovery_card_facet AS SELECT card_id,facet_type,value COLLATE NOCASE AS value,provenance,rights_reference FROM saved_discovery_card_facet')
+            db.commit()
+        self.assert_unsupported(path)
 
 
 class RequestMentionCacheTests(unittest.TestCase):

@@ -57,10 +57,10 @@ def _hash(value):
 
 
 def validate_workload(workload):
-    if (not isinstance(workload, dict) or workload.get('schema') != 'pokemon.collector-mixed-workload.v1'
+    if (not isinstance(workload, dict) or workload.get('schema') not in ('pokemon.collector-mixed-workload.v1','pokemon.collector-mixed-workload.v2')
             or not _hash(workload.get('catalog_sha256')) or not _hash(workload.get('payloads_sha256'))
             or not isinstance(workload.get('catalog_evidence'), dict)
-            or workload['catalog_evidence'].get('schema') != catalog_evidence.SCHEMA
+            or workload['catalog_evidence'].get('schema') != {'pokemon.collector-mixed-workload.v1':catalog_evidence.SCHEMA,'pokemon.collector-mixed-workload.v2':catalog_evidence.LOCALIZED_SCHEMA}[workload['schema']]
             or not _hash(workload['catalog_evidence'].get('sha256'))
             or not isinstance(workload.get('sessions'), list) or len(workload['sessions']) != 16):
         raise ValueError('invalid mixed workload')
@@ -175,7 +175,7 @@ def benchmark(db, *, repo_root, workload_path, journal_path, execution_plan=None
     before = bench.file_hash(db)
     source_before = bench.source_receipt(root)
     with closing(core.connect(db, readonly=True)) as connection:
-        logical_catalog = catalog_evidence.catalog_evidence_digest(connection)
+        logical_catalog = catalog_evidence.catalog_evidence_digest(connection,schema=workload['catalog_evidence']['schema'])
         if logical_catalog != workload['catalog_evidence']['sha256']:
             raise ValueError('logical catalog evidence differs from frozen workload')
         revision = collector_journey.catalog_revision(connection)
@@ -253,7 +253,7 @@ def benchmark(db, *, repo_root, workload_path, journal_path, execution_plan=None
         'python_version': sys.version.split()[0], 'sqlite_version': sqlite3.sqlite_version,
         'fixture_original_catalog_sha256': workload['catalog_sha256'],
         'byte_identical_to_frozen_catalog': before == workload['catalog_sha256'],
-        'catalog_evidence': {'schema': catalog_evidence.SCHEMA, 'sha256': logical_catalog},
+        'catalog_evidence': {'schema': workload['catalog_evidence']['schema'], 'sha256': logical_catalog},
         'workload_file_sha256': workload_hash, 'workload_file_sha256_after': workload_hash_after,
         'revision_independent_payloads_sha256': workload['payloads_sha256'],
         'harness_sha256': harness_before, 'cpu_affinity': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,

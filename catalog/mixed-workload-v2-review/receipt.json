@@ -1,0 +1,1690 @@
+{
+  "schema": "pokemon.collector-mixed-workload-freeze.v2",
+  "frozen_at": "2026-10-12T12:53:43.768685+00:00",
+  "original_fixture": {
+    "path": "tests/fixtures/collector-mixed-workload-v1.json",
+    "sha256": "e7eb0adf0ddd3d7bbbdc81ac885224ea4cfc82e6fd9e54bdda8008e63f858bbe",
+    "preserved": true
+  },
+  "database": {
+    "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/stage16-ci-current-catalog.sqlite3",
+    "sha256_before": "0e6787ece29fc83ab21a9d986eab66f4d689469a342b1727c02795dd39009256",
+    "sha256_after": "0e6787ece29fc83ab21a9d986eab66f4d689469a342b1727c02795dd39009256",
+    "ordered_manifest": "catalog-build-manifest-source-binding-v1.json",
+    "ordered_inputs": 65,
+    "records": 70006
+  },
+  "source": {
+    "sha256": "83adfa43db65690e77eda255b1405ea3bebc0b58b0b15aee0ef9d9d9e901382b",
+    "files": {
+      "pokemon_index/__init__.py": "351ad29c6a2f3279c5f6d2dbb87dc3cef3652f862b076f2aa68f5f244605bf70",
+      "pokemon_index/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+      "pokemon_index/buyer_questions.py": "eb1197b7e811ab4dda25a6196f2c511eb74a4882a39a39d9adc2a312acc7fa54",
+      "pokemon_index/buyship_mercari.py": "26cce57779dc6ea3303fee64d4408e5046a3aa4eb8ff2d3947eff999d0e9fec8",
+      "pokemon_index/buyship_partner.py": "d50a22098844f66550c693e29f2c6974edfd565efca3aac22273f9bd83524974",
+      "pokemon_index/calibration.py": "25ba5559c2d4420ec5901115ce1f35364e309b8432857b6fc48b6ed9a3b4773a",
+      "pokemon_index/card_comparison.py": "dab0b93bb368d2e374fd0507f40fd6a3c5d282a6db19337b29b1b49f7d5e3089",
+      "pokemon_index/card_metadata.py": "85e850c30096ec19cce635c94d7413c7d08c0b370d077aeede58921859c07878",
+      "pokemon_index/card_rarity.py": "dd207a5afbd44c7c2b8c8ea2288cbbf403ed6958db7ae401650af86f13f94feb",
+      "pokemon_index/catalog_locale.py": "f0227f33bee5eb6e68823209da3b1ba862c1796c5d2c19e1777254af74aea42f",
+      "pokemon_index/catalog_media.py": "9874188ca941af1f52b4aaf0155263538f079739b6176496c5bc6fe2dc2a29a3",
+      "pokemon_index/catalog_question_resolver.py": "407fec589340e7dd2c253e84b3dc9b1e543e70bb477e8db944887303d34a9efe",
+      "pokemon_index/catalog_question_resolver_v2.py": "8614c3ecb14569e290964c6b53d2e468e624509beb8f912996367805530dd84d",
+      "pokemon_index/cli.py": "87c93cff756d3173fa00d6262b5143e478a392acefec84301279824cbc2c3293",
+      "pokemon_index/collector-character-affiliations-v1.json": "4e0b441ac1a1965275f44a26e848005bd2e2ea3eb6b935a2ec81bff9371228a1",
+      "pokemon_index/collector-release-name-aliases-v1.json": "9d4c3bdfb2965bb1a774288324f92ba099d28ce9df300c18adc065c8f6dbc651",
+      "pokemon_index/collector_character_affiliation.py": "46bc1848c5a6818bfc12af30a394028ed127b518b15a8e0197bab1665e2edbbc",
+      "pokemon_index/collector_discovery.py": "133e9dedac1592bbce522e909637a9ac29a27ff368a63d851fd8fad37db99f79",
+      "pokemon_index/collector_evidence.py": "8141e3fc187a31a8b28afe5ab0245f182a8ca6aff9a030be549021b75d62e8af",
+      "pokemon_index/collector_inventory.py": "4638c920be211f037a59e05bf83734224d3903e2181912a9e71096124a4aefed",
+      "pokemon_index/collector_journey.py": "2eafe2b1d9c0dcd94aa1a660196bca830aaaece7a19391062ea8b3efefe19001",
+      "pokemon_index/collector_recommendation.py": "1f6c5b7856ed4a7701454acd973db1a80f09bc1c29cdf32b732c838b979844d3",
+      "pokemon_index/collector_release_alias.py": "6f1b2e2a6e6b07f359bf2ccebd78edc31020527cc24a5e6a397004814ad901a2",
+      "pokemon_index/collector_runtime.py": "85faa63a2f6edda70e08bc3b7a3f87793609d5fc6a63e38925fa06eebf7d0b3b",
+      "pokemon_index/coordinate_family.py": "b158c7750c0a8573b49ae9901867caecc89fecd22e5fb0c81323b2ca3d970057",
+      "pokemon_index/core.py": "32b4e51b2281242d1d0a36d4bdaa48d6c011dbf04ace1ad05b54c9518629dbfb",
+      "pokemon_index/coverage_qualification.py": "834542717ea059d645b210e24c1ec1fcb82b7d5d16ddd94adffcde5442c14328",
+      "pokemon_index/discovery_graph.py": "d841e7268915ac710cbe19e8e2f4af9b21ad482b4ef8f64cde4882fcbcf0b4ca",
+      "pokemon_index/ebay_browse.py": "5d976c951536b78bb698fdb06e6b7772bf1833efc766b2f56685d031c621c520",
+      "pokemon_index/ingestion_worker.py": "019ede91ec90c68f4d631d8491ddb2de5e46fdff4f1f56561b281064faf20c1b",
+      "pokemon_index/languages.py": "754056020bd287bde2cf3b0ac34cf78564ed6ecef203a617a89bc76c45ac7d92",
+      "pokemon_index/listing_candidates.py": "c9c9362d8d7eb54c15afffe32156a20c6540a88a819c0d1cddff9b398a907b85",
+      "pokemon_index/metadata_views.sql": "d8490465d58f11a5758f1fa8fd2fe2e70bc2f5aa433942f6c2344f95761457eb",
+      "pokemon_index/multi_record_scans.py": "ab6506f0e60f4be3b0f9aee7a859aba97d260748c08f4a665fd9f12498e6b8f1",
+      "pokemon_index/number_aliases.py": "de58a031c1fb33d8c91d02fb9804ac24b8d503f0a1868df16e6baa6449aeea19",
+      "pokemon_index/number_conflicts.py": "050f5096edaef71c6a21550f1127cd38682218f3cc0fed267c32209ae82d8a8d",
+      "pokemon_index/number_evidence.py": "784f2794aee81cac36c2958767717c28b4144891f8451b25b4277175c4757dda",
+      "pokemon_index/number_graph.py": "4b1d2e9c9452fc2f5aded181ea949b962eae9f73d6e7c3cf7a62bae7221edaa3",
+      "pokemon_index/offer_comparison.py": "40c391088ea4ca7fcbf48a9ce1943febd0f9241b3d41a3d04be640eeaea648e5",
+      "pokemon_index/pivota.py": "eb0e979ec7a0d4802f020d00def384c9bdaf2de8e1a70b6f770d1f0575b090f6",
+      "pokemon_index/printing_evidence.py": "68515141fcae33bb21046ed6e2a838669870d1f8f6792fa7ff6b5f897873a4f1",
+      "pokemon_index/product_text.py": "6ca59fa5c2e59164bb4a60954e72d9b31887249421733b7265efda90dd17af57",
+      "pokemon_index/question_routing.py": "67e1b05dcb744fedfe75261766920e16a03b48a2c78e3adce45e9114c5737095",
+      "pokemon_index/question_routing_v2.py": "34550278ba2d5f8399fa06a1ee6e7fd412c76523ac15019613e59e6dfc16d789",
+      "pokemon_index/question_routing_v3.py": "bb18be781c4f49b3a0b0a6fca716282c7a5810efeb80138d6a8591893996bfbd",
+      "pokemon_index/question_routing_v4.py": "17f67ef36a0c4905eac57038dc4f6228ce20e224deab8949332eec769d0d342c",
+      "pokemon_index/question_routing_v5.py": "2c278eab835d2d18d8a8b1274775db9d769a6fc45928c10178baf17ff05c6f79",
+      "pokemon_index/question_routing_v6.py": "e095d07c8bc55e9bf6541a1a0e1907c29cc58ca68a30fcacf699f64543a4427e",
+      "pokemon_index/question_routing_v7.py": "ac5f161f8a9a2f3de015a6c38facfb74d32e8919b572c6768a059057182e3986",
+      "pokemon_index/schema.sql": "c89487f096e29828419a2280393fd9e9e62fd5283da7280d4f737bd6676ec330",
+      "pokemon_index/source_corrections.py": "a6fc6b597a2f10f08aad463f103e67fe8bc923b8b5682df960a4364e548847bb",
+      "pokemon_index/source_image_facts.py": "c4dea7505c152445bfa8692ea5f593c587a275e6206a0658b2b878becbb64884",
+      "pokemon_index/source_mechanic.py": "47026853fcbc3293800e67b3456a2e9e337e40784d55e4f118f118c31e2fe596",
+      "pokemon_index/supported_catalog.py": "0e39bb491541a7b1e65306703b80b062a3ebbe89ce1ba913996bc03d0579ca51",
+      "pokemon_index/tcgdex.py": "738ba5a31cee8e67a6b9d9545689889ecd672687d528059fb6b77a248ca6535d",
+      "pokemon_index/tcgdex_source.py": "d474cd5d17df1e2b4c409cfbf546ddcdfe496082a6f509596e87050b24e5c2b5",
+      "pokemon_index/variant_dimension_hold.py": "294c7c7e38a2ec1bf139f9fae1312f9447bc3b41df75c3773545ef6552786913",
+      "integrations/pivota/collectorClient.cjs": "f536fa6397cb30dbb4e8fc5c4c8f91a92a3e908d435c932abe4c7b0705fe8ff8"
+    }
+  },
+  "source_unchanged": true,
+  "helpers": {
+    "scripts/freeze_collector_mixed_v2.py": "5435a27afef293b7a3ef177003f7431e67f4e857b6e097c069aaa3075cb30559",
+    "scripts/benchmark_collector_mixed.py": "a4f34607492f677dc4b72513cb222c4b486d6fa6795da6b07232e600dd365b8a",
+    "scripts/benchmark_collector_caller.py": "eb784fe8384604c62f2c933b8ce46ec3a6aa5239fcc71e300c4bbfbaa3c3d60f",
+    "scripts/collector_catalog_evidence.py": "2929aa0e072f2435a61c24dfa8dc7c62d616663cb0eb17d634d59f28840a71f5"
+  },
+  "versioning": {
+    "old_workload": "pokemon.collector-mixed-workload.v1",
+    "old_evidence": "pokemon.collector-catalog-evidence.v2",
+    "old_frozen_evidence": "ac3f09b4330d1cd099077c046b44be0efb9ac34876d7318737d8c1666fc9baa6",
+    "current_default_v2_evidence": "b8d2fa4919f355787605ee9281097637b560ae842eb041884f0b4546f7ed05d3",
+    "new_workload": "pokemon.collector-mixed-workload.v2",
+    "new_evidence": "pokemon.collector-catalog-evidence.v3",
+    "new_evidence_sha256": "e304ef05789911b43283a2166ee961329fa77b3a5391108c3e9e84a3d854ea29",
+    "reason": "Versioned full-schema identity and five additional locale/source/concept/review/quarantine tables; strict v1/v2 compatibility pairing and original digest behavior retained."
+  },
+  "fixture_payloads_sha256": "40a2462a9311d656b630430b1c9aae12b6ac66840c0e7c1c5abaf13a8983e0dd",
+  "sessions": 16,
+  "turns_per_session": 20,
+  "patterns": {
+    "artist_preference_change_restore": 4,
+    "character_feedback_hidden_clear_restore": 4,
+    "artist_ownership_resolve_restore": 4,
+    "character_compare_focus_select": 4
+  },
+  "languages": {
+    "en": 8,
+    "ja": 8
+  },
+  "reference_changes": [
+    {
+      "session": 4,
+      "turn": 4,
+      "field": "card_id",
+      "old": "en:2014XY:005/012:holo_mcdonalds",
+      "new": "en:ME02.5:057/217:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:40059ed537b782e1c64f5ea0f2ae46f09922a27286abf58c760450544b42ceca",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/057/high.webp",
+        "image_sha256": "bcba6cd5513ce85e2bb5a92b8be45766aca8d485a9405211fed7dddde23d375c",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 4,
+      "turn": 6,
+      "field": "card_id",
+      "old": "en:2014XY:005/012:holo_mcdonalds",
+      "new": "en:ME02.5:057/217:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:40059ed537b782e1c64f5ea0f2ae46f09922a27286abf58c760450544b42ceca",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/057/high.webp",
+        "image_sha256": "bcba6cd5513ce85e2bb5a92b8be45766aca8d485a9405211fed7dddde23d375c",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 6,
+      "turn": 4,
+      "field": "card_id",
+      "old": "en:2024SV:001/015:normal",
+      "new": "en:ME02.5:022/217:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:083aa539084dcfaa240a6915a065534dec3f9a431589fa849248a25c934dc05b",
+        "warnings": [],
+        "inspection_tier": "ocr_and_image_model_screening",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/022/high.webp",
+        "image_sha256": "3541cafa6c1f61778f34ba6342cb231c10bb29f89a12d5780d956a1b137231fe",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 6,
+      "turn": 6,
+      "field": "card_id",
+      "old": "en:2024SV:001/015:normal",
+      "new": "en:ME02.5:022/217:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:083aa539084dcfaa240a6915a065534dec3f9a431589fa849248a25c934dc05b",
+        "warnings": [],
+        "inspection_tier": "ocr_and_image_model_screening",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/022/high.webp",
+        "image_sha256": "3541cafa6c1f61778f34ba6342cb231c10bb29f89a12d5780d956a1b137231fe",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 7,
+      "turn": 4,
+      "field": "card_id",
+      "old": "ja:E1:086/128:normal_1st_edition",
+      "new": "ja:M2A:063/193:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:b196f9cb0026c7cd3acc9de7fdbda9191334a44bc523bdbf97871fc0b36ced4a",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://www.pokemon-card.com/card-search/details.php/card/48585",
+        "image_sha256": "6c89cd73841e4bc232021e6cf17b4f9d91cb98f2ace95373e34701ecfb4469a4",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 7,
+      "turn": 6,
+      "field": "card_id",
+      "old": "ja:E1:086/128:normal_1st_edition",
+      "new": "ja:M2A:063/193:holo",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:b196f9cb0026c7cd3acc9de7fdbda9191334a44bc523bdbf97871fc0b36ced4a",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://www.pokemon-card.com/card-search/details.php/card/48585",
+        "image_sha256": "6c89cd73841e4bc232021e6cf17b4f9d91cb98f2ace95373e34701ecfb4469a4",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 8,
+      "turn": 4,
+      "field": "owned_items[0].set_code",
+      "old": "2012BW",
+      "new": "SV01",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 8,
+      "turn": 4,
+      "field": "owned_items[0].collector_number",
+      "old": "009/012",
+      "new": "010/198",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 8,
+      "turn": 5,
+      "field": "card_id",
+      "old": "en:2012BW:009/012:holo_mcdonalds",
+      "new": "en:SV01:010/198:normal",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:7d6bf4de892a0f6e79fde77f16bd1aaf204a56cf776fd3f224fa0ee39511320f",
+        "warnings": [],
+        "inspection_tier": "ocr_and_image_model_screening",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/sv/sv01/010/high.webp",
+        "image_sha256": "326e4a59dba9f9b0d25e64762ad068f43efad984c0547404fead73b962bfd256",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 10,
+      "turn": 4,
+      "field": "owned_items[0].set_code",
+      "old": "2015XY",
+      "new": "SM11",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 10,
+      "turn": 4,
+      "field": "owned_items[0].collector_number",
+      "old": "012/012",
+      "new": "015/236",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 10,
+      "turn": 5,
+      "field": "card_id",
+      "old": "en:2015XY:012/012:holo",
+      "new": "en:SM11:015/236:standard",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:d3a7e7e5c6f9615a3c7f785a83ca5904e5ef06533ce857c5b6e5c579c2e0cc8b",
+        "warnings": [],
+        "inspection_tier": "ocr_and_image_model_screening",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/sm/sm11/15/high.webp",
+        "image_sha256": "5fdd4b7d1d31157353871b6adc91b272c42435abd58f8ec7723ab4074b6816c3",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 11,
+      "turn": 4,
+      "field": "owned_items[0].set_code",
+      "old": "CP1",
+      "new": "S-P",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 11,
+      "turn": 4,
+      "field": "owned_items[0].collector_number",
+      "old": "004/034",
+      "new": "005/S-P",
+      "reason": "same synthetic uncertain owned-item assertion points to rebound shown source record"
+    },
+    {
+      "session": 11,
+      "turn": 5,
+      "field": "card_id",
+      "old": "ja:CP1:004/034:normal",
+      "new": "ja:S-P:005/S-P:normal",
+      "reason": "prior scan-less first-page reference displaced by current source-scan tier",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:1983642b8237a1be8ac22bc48c929fbce974042efc77a540716d4efa0533dbd2",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://www.pokemon-card.com/card-search/details.php/card/37604",
+        "image_sha256": "e7f30155c134ddf0ef4f3bf62fde7f9afafdd942f3389f9bb0d4855816fec40b",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 12,
+      "turn": 18,
+      "field": "left_card_id",
+      "old": "en:30TH-C:008/030:holo_30th_anniversary",
+      "new": "en:ME02.5:057/217:holo",
+      "reason": "old comparison reference not shown in unchanged page pattern after source-scan ranking",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:40059ed537b782e1c64f5ea0f2ae46f09922a27286abf58c760450544b42ceca",
+        "warnings": [],
+        "inspection_tier": "two_image_model_families",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/057/high.webp",
+        "image_sha256": "bcba6cd5513ce85e2bb5a92b8be45766aca8d485a9405211fed7dddde23d375c",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 12,
+      "turn": 18,
+      "field": "right_card_id",
+      "old": "en:30TH-C:014/030:holo_30th_anniversary",
+      "new": "en:SV02:063/193:holo",
+      "reason": "old comparison reference not shown in unchanged page pattern after source-scan ranking",
+      "old_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "missing_source_scan_evidence",
+        "evidence_basis": null,
+        "reason": "no exact imported source scan evidence",
+        "with_source_scans_eligible": false,
+        "source_scan_event_id": null,
+        "warnings": [],
+        "inspection_tier": null,
+        "current_endpoint": false,
+        "source_ref": null,
+        "image_sha256": null,
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      },
+      "new_scan": {
+        "schema": "pokemon.catalog-media-availability.v1",
+        "status": "current_source_scan_evidence",
+        "evidence_basis": "source_image_facts",
+        "reason": "current exact source evidence; live fetch, display rights and physical printing remain unverified",
+        "with_source_scans_eligible": true,
+        "source_scan_event_id": "source-image-fact:949345bc51afc0f57d3981e2604ccd13513f938d50dbee84b6012bd6a36469a1",
+        "warnings": [],
+        "inspection_tier": "ocr_and_image_model_screening",
+        "current_endpoint": true,
+        "source_ref": "https://assets.tcgdex.net/en/sv/sv02/063/high.webp",
+        "image_sha256": "11a10aca832108170f7c47a219b5c7eda3cd76e9e5e2a33c8041db018ec520ac",
+        "live_fetch_verified": false,
+        "display_allowed": false,
+        "physical_printing_verified": false
+      }
+    },
+    {
+      "session": 12,
+      "turn": 19,
+      "field": "card_id",
+      "old": "en:30TH-C:008/030:holo_30th_anniversary",
+      "new": "en:ME02.5:057/217:holo",
+      "reason": "preserve explicit left-side focus followed by separate select"
+    },
+    {
+      "session": 12,
+      "turn": 20,
+      "field": "card_id",
+      "old": "en:30TH-C:008/030:holo_30th_anniversary",
+      "new": "en:ME02.5:057/217:holo",
+      "reason": "preserve explicit left-side focus followed by separate select"
+    }
+  ],
+  "checks_by_session": [
+    {
+      "index": 0,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "artist_preference_change_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:SM11:005/236:standard",
+        "en:SM11:012/236:standard",
+        "en:SM11:013/236:standard",
+        "en:SM11:046/236:standard",
+        "en:SM12:013/236:standard"
+      ],
+      "source_axis_proofs": {
+        "en:SM11:005/236:standard": [
+          {
+            "card_id": "en:SM11:005/236:standard",
+            "facet_type": "illustrator",
+            "value": "Ken Sugimori",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/5.ts:sha256:bd59cd1eb6ea662b548cfd86ec8bd84818683836c1d359b998b7d4b241b2542a",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM11:012/236:standard": [
+          {
+            "card_id": "en:SM11:012/236:standard",
+            "facet_type": "illustrator",
+            "value": "Ken Sugimori",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/12.ts:sha256:10f621af96befea0b2220b2c97875b8de6802a043c51d56338b7a2d0b626951e",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM11:013/236:standard": [
+          {
+            "card_id": "en:SM11:013/236:standard",
+            "facet_type": "illustrator",
+            "value": "Ken Sugimori",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/13.ts:sha256:364aab6b7f8674a232b8522fc7e2ca2d8f86d9c2655698a4fd26f8d33a5c1080",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM11:046/236:standard": [
+          {
+            "card_id": "en:SM11:046/236:standard",
+            "facet_type": "illustrator",
+            "value": "Ken Sugimori",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/46.ts:sha256:cee5796924029d73484d3b1e81143f213876b79ddca458d53b0b34b15ef51151",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM12:013/236:standard": [
+          {
+            "card_id": "en:SM12:013/236:standard",
+            "facet_type": "illustrator",
+            "value": "Ken Sugimori",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/13.ts:sha256:17ba27dc9f4dd35139bf20c81d509454e137b726df1a21212e97ee40807a0328",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "dcc8229732444b08beab465a7c469995122e531e1a3ef8e4a20f53f5716b5fda",
+      "expected_result_semantic_sha256": "02a3f74e966b10f4f6ff3498dea6a0097e37d67949988ab9d27905b1b044663b"
+    },
+    {
+      "index": 1,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "artist_preference_change_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:M2A:034/193:normal",
+        "ja:S12A:010/172:normal",
+        "ja:S8B:037/184:normal",
+        "ja:S8B:056/184:holo",
+        "ja:SM12A:001/173:holo"
+      ],
+      "source_axis_proofs": {
+        "ja:M2A:034/193:normal": [
+          {
+            "card_id": "ja:M2A:034/193:normal",
+            "facet_type": "illustrator",
+            "value": "Mitsuhiro Arita",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/034.ts:sha256:b6c3277a7d8478e9fe0f6956dacc1b122f90e8645c5df290aeafb09b0c10da43",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S12A:010/172:normal": [
+          {
+            "card_id": "ja:S12A:010/172:normal",
+            "facet_type": "illustrator",
+            "value": "Mitsuhiro Arita",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/010.ts:sha256:1df74ca47c1c52f0398bda3e01b24b3c89c8f1fa88e4666673c0488bbe62c99f",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S8B:037/184:normal": [
+          {
+            "card_id": "ja:S8B:037/184:normal",
+            "facet_type": "illustrator",
+            "value": "Mitsuhiro Arita",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/037.ts:sha256:9f636dfcfe9a09854fc2eafd0672f7c625873cf54c9e0f14c071d3d05263e50e",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S8B:056/184:holo": [
+          {
+            "card_id": "ja:S8B:056/184:holo",
+            "facet_type": "illustrator",
+            "value": "Mitsuhiro Arita",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/056.ts:sha256:647ca63b5914fb875313212edf19135adf1097abb945fa2a7fa674159994ab95",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM12A:001/173:holo": [
+          {
+            "card_id": "ja:SM12A:001/173:holo",
+            "facet_type": "illustrator",
+            "value": "Mitsuhiro Arita",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/001.ts:sha256:973102bc58256c3f5a2815502a0ea062e82ae4fe57f1904374efcb2071c9c8e5",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "9661200e0c4b6716a7aa977d68e42eae0068542a9c30bc55946fe16ea5cab7b0",
+      "expected_result_semantic_sha256": "ec7118910fc3c26dba60fd64a5db6731adf6090360749b5cd06bfd18593eb32f"
+    },
+    {
+      "index": 2,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "artist_preference_change_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:SM11:045/236:standard",
+        "en:SV01:014/198:normal",
+        "en:SV01:018/198:normal",
+        "en:SV01:023/198:holo",
+        "en:SV01:027/198:normal"
+      ],
+      "source_axis_proofs": {
+        "en:SM11:045/236:standard": [
+          {
+            "card_id": "en:SM11:045/236:standard",
+            "facet_type": "illustrator",
+            "value": "Kouki Saitou",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/45.ts:sha256:f8571b2f4d79b03356df7de678d1cfefc3a7e8d5ae0b73e314c8f5d4cebb8be2",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV01:014/198:normal": [
+          {
+            "card_id": "en:SV01:014/198:normal",
+            "facet_type": "illustrator",
+            "value": "Kouki Saitou",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Scarlet & Violet/014.ts:sha256:a02ab63cecedddbf4a8e90701ca6ded79e80486189e3bc40f6a6ed01c82bd9dc",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV01:018/198:normal": [
+          {
+            "card_id": "en:SV01:018/198:normal",
+            "facet_type": "illustrator",
+            "value": "Kouki Saitou",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Scarlet & Violet/018.ts:sha256:763e723d31c2f8653ddbd2d24b2d4d6c6a0b338da09463e050a3113fbec095b0",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV01:023/198:holo": [
+          {
+            "card_id": "en:SV01:023/198:holo",
+            "facet_type": "illustrator",
+            "value": "Kouki Saitou",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Scarlet & Violet/023.ts:sha256:43c33f47282784a78a6e3b4b82eb258e1e4fcff7aafed968b6294eee9cc2be0c",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV01:027/198:normal": [
+          {
+            "card_id": "en:SV01:027/198:normal",
+            "facet_type": "illustrator",
+            "value": "Kouki Saitou",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Scarlet & Violet/027.ts:sha256:614f316f5f53ebfa646e335986baa78f301291d0af3111396221c549ed040f9d",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "419e1b429ad4b9dbe33e8d0c55eb306721124f1452a3ee79a61a2d30e90161b4",
+      "expected_result_semantic_sha256": "cca36607a4ed01cff8a877a1a0af071c5f7fa7b9d5997d453d697b23fc9aff91"
+    },
+    {
+      "index": 3,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "artist_preference_change_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:S12A:030/172:reverse",
+        "ja:S8B:012/184:normal",
+        "ja:S8B:040/184:normal",
+        "ja:SM12A:013/173:normal",
+        "ja:SM8B:007/150:normal"
+      ],
+      "source_axis_proofs": {
+        "ja:S12A:030/172:reverse": [
+          {
+            "card_id": "ja:S12A:030/172:reverse",
+            "facet_type": "illustrator",
+            "value": "Kagemaru Himeno",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/030.ts:sha256:b04d1972a61f345adfed570d0cb254663f5e7eefd07fff0cc811fe2c4b6cf487",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S8B:012/184:normal": [
+          {
+            "card_id": "ja:S8B:012/184:normal",
+            "facet_type": "illustrator",
+            "value": "Kagemaru Himeno",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/012.ts:sha256:869f19087eaab291f3f4d43b6c5da3bc79c2d5b82fdd925e6116c1f3db68c128",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S8B:040/184:normal": [
+          {
+            "card_id": "ja:S8B:040/184:normal",
+            "facet_type": "illustrator",
+            "value": "Kagemaru Himeno",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/040.ts:sha256:8465271983be91b489e69cb4b8a051dd1b13227d16fafe245b9fcadd68d69d7b",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM12A:013/173:normal": [
+          {
+            "card_id": "ja:SM12A:013/173:normal",
+            "facet_type": "illustrator",
+            "value": "Kagemaru Himeno",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/013.ts:sha256:9846a4d5aafb0d4b1ef5608cf858a2c47042f4487b177e39fa2dd9373c70adb0",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM8B:007/150:normal": [
+          {
+            "card_id": "ja:SM8B:007/150:normal",
+            "facet_type": "illustrator",
+            "value": "Kagemaru Himeno",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b/007.ts:sha256:226aab1ee611395ec86dc86a0d19d161c01691ebd98cff7cced30c6cad4c7156",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "d7a25a031ed70041a5eba71f7eba1322e17633d7c7082b6aaa0c31fd7781648e",
+      "expected_result_semantic_sha256": "fd2c7dff732991d9189f95e17d37caeaeb47bccee4603f5e065d569c656e139c"
+    },
+    {
+      "index": 4,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "dismiss_hides_card": true,
+        "feedback_hidden_clear_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:HGSSP:HGSS03/000025:holo",
+        "en:ME02.5:057/217:holo",
+        "en:SMP:SM04/0248:normal",
+        "en:SV02:063/193:holo",
+        "en:SV04.5:018/091:normal"
+      ],
+      "source_axis_proofs": {
+        "en:HGSSP:HGSS03/000025:holo": [
+          {
+            "card_id": "en:HGSSP:HGSS03/000025:holo",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/HeartGold & SoulSilver/HGSS Black Star Promos/HGSS03.ts:sha256:64c2ce40fc62f272b3764c3ec1a644967ea4f6c59caab6201358c6d5be8db6af",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:ME02.5:057/217:holo": [
+          {
+            "card_id": "en:ME02.5:057/217:holo",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Ascended Heroes/057.ts:sha256:98a963775538a3e4897dc487aa665e8403d7056ce727128d06bbc47034e11b95",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SMP:SM04/0248:normal": [
+          {
+            "card_id": "en:SMP:SM04/0248:normal",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/SM Black Star Promos/SM04.ts:sha256:f8a4053318ffbf0a8941858638914fbd6040f2a776d701c18f834e70f97b6f63",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV02:063/193:holo": [
+          {
+            "card_id": "en:SV02:063/193:holo",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paldea Evolved/063.ts:sha256:16bc1471f77a0baf5eca58c75dbfacac00fba568caa18f33a1b133149a94784b",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV04.5:018/091:normal": [
+          {
+            "card_id": "en:SV04.5:018/091:normal",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paldean Fates/018.ts:sha256:36f5914340f50db5789e62ee1e1661bbc1844b21ae125f9c5ad4ea05857ebe35",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "815428b81e6c8dfe22b328ceccbeee859fa915110aed89f91e3838eaf1a95de8",
+      "expected_result_semantic_sha256": "57430cae914702470cd8cc6c78f27a550cd5f35a0b692c852ed51f68653e92f4"
+    },
+    {
+      "index": 5,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "dismiss_hides_card": true,
+        "feedback_hidden_clear_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:E2:058/092:normal",
+        "ja:E4:065/088:normal_1st_edition",
+        "ja:M-P:134/M-P:normal",
+        "ja:M6A:094/103:normal",
+        "ja:MC:564/742:normal"
+      ],
+      "source_axis_proofs": {
+        "ja:E2:058/092:normal": [
+          {
+            "card_id": "ja:E2:058/092:normal",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:E4:065/088:normal_1st_edition": [
+          {
+            "card_id": "ja:E4:065/088:normal_1st_edition",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/065.ts:sha256:8c52015880626d4fccbe3f28991d2cc47000ffc807277cb4293403401869d10b",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:M-P:134/M-P:normal": [
+          {
+            "card_id": "ja:M-P:134/M-P:normal",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "official-metadata:3d360329edab3e13491ce3eb04104f38b22c619c41d9a9cfc95d82ca605cff32",
+            "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/50485",
+            "basis": "active_exact_official_metadata_facet",
+            "record_sha256": "2aa015a1beb2e10c4f38a9546bedc143ff6894cc8f5b34169695c9c55784494f"
+          }
+        ],
+        "ja:M6A:094/103:normal": [
+          {
+            "card_id": "ja:M6A:094/103:normal",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+            "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/50706",
+            "basis": "active_exact_official_metadata_facet",
+            "record_sha256": "8940e775df17a99dbf758a1df3dd37f32639e70f5a477e28ed1aed53c06e5f62"
+          }
+        ],
+        "ja:MC:564/742:normal": [
+          {
+            "card_id": "ja:MC:564/742:normal",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "2788dcc9f32b729eebb2bbf36bcdc3a597895a18a534dfc3ab77f859669290f2",
+      "expected_result_semantic_sha256": "f975eac8b7c6dda48d3f1197db866d266e374b9bafd8e60bbaf56a1082216efa"
+    },
+    {
+      "index": 6,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "dismiss_hides_card": true,
+        "feedback_hidden_clear_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:ME02.5:022/217:holo",
+        "en:SM12:022/236:standard",
+        "en:SV04.5:054/091:holo",
+        "en:2024SV:001/015:normal",
+        "en:30TH-C:001/030:holo_30th_anniversary"
+      ],
+      "source_axis_proofs": {
+        "en:ME02.5:022/217:holo": [
+          {
+            "card_id": "en:ME02.5:022/217:holo",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Ascended Heroes/022.ts:sha256:6294035013dcfac47d08a7235b8a484135ac7de9f9c1bc1421cdc6dd3d4b0d19",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM12:022/236:standard": [
+          {
+            "card_id": "en:SM12:022/236:standard",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/22.ts:sha256:b1e50d472143e623f81035d1c3c4dfb7e43799457f85ddd53202baa51359b97d",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV04.5:054/091:holo": [
+          {
+            "card_id": "en:SV04.5:054/091:holo",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paldean Fates/054.ts:sha256:7516369dff23e2f5112726de9c6e0cf843c345b8c9036cc772e0f7adb1f868da",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:2024SV:001/015:normal": [
+          {
+            "card_id": "en:2024SV:001/015:normal",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/McDonald's Collection/McDonald's Collection 2024/1.ts:sha256:a06faf75207ebe479f4260761b8e6ba06aa17b7f30254277d0220df0ea4b8017",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:30TH-C:001/030:holo_30th_anniversary": [
+          {
+            "card_id": "en:30TH-C:001/030:holo_30th_anniversary",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/001.ts:sha256:260bf3de5655537290359540036fcfa94c0864aa524a3308074ebbe4a51b5770",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "8687cb574060765b068120599b58b08fc8ec27b490dc70da71b272dd2dc20939",
+      "expected_result_semantic_sha256": "42c4c8c32a26798d7947624c201443e6ad0dde084da14af9a7cb209a21f46a30"
+    },
+    {
+      "index": 7,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "dismiss_hides_card": true,
+        "feedback_hidden_clear_restoration": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:M2A:063/193:holo",
+        "ja:M6A:055/103:holo",
+        "ja:S12A:050/172:holo",
+        "ja:S12A:051/172:holo",
+        "ja:SM12A:052/173:holo"
+      ],
+      "source_axis_proofs": {
+        "ja:M2A:063/193:holo": [
+          {
+            "card_id": "ja:M2A:063/193:holo",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/063.ts:sha256:e95ade0ddf0420689f59dc4bfd73a6de2f7cf5c31f7ed7cb008e07ee32c672ed",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:M6A:055/103:holo": [
+          {
+            "card_id": "ja:M6A:055/103:holo",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/055.ts:sha256:b85316d78afe2c0c021b00002ff69599d35f106ef66bb6063389d7fb2eaba321",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S12A:050/172:holo": [
+          {
+            "card_id": "ja:S12A:050/172:holo",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/050.ts:sha256:e3a04fb907c1d40c524eba37cdd09f59139ce4796b33f664796d56473f53ccf1",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S12A:051/172:holo": [
+          {
+            "card_id": "ja:S12A:051/172:holo",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/051.ts:sha256:08abd2e17a68ddc3fd92c6b6aebc87f7950b426d7f4ac4ecf289a8b26b4e0446",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM12A:052/173:holo": [
+          {
+            "card_id": "ja:SM12A:052/173:holo",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/052.ts:sha256:34deceda1445550726a74507562e08cbf3bc42596901a1d4b7a0134f42595ef9",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "bb7ba43221743210171fabd7837e1c44ed53b4545b3243f1e6ad27626ea4cdf0",
+      "expected_result_semantic_sha256": "c3cd21173a9928440ad010c409a528f021734c69719d700b5745832407ba9c84"
+    },
+    {
+      "index": 8,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "ownership_resolution_restoration": true,
+        "unresolved_ownership_blocks_target": true,
+        "inventory_clear_restores_scope": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:SV01:010/198:normal",
+        "en:2012BW:009/012:holo_mcdonalds",
+        "en:2012BW:012/012:holo_mcdonalds",
+        "en:30TH-C:002/030:holo_30th_anniversary",
+        "en:30TH:047/128:holo_30th_anniversary"
+      ],
+      "source_axis_proofs": {
+        "en:SV01:010/198:normal": [
+          {
+            "card_id": "en:SV01:010/198:normal",
+            "facet_type": "illustrator",
+            "value": "Atsuko Nishida",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Scarlet & Violet/010.ts:sha256:47d39e9d632514c7d7ac7a0ecd4518d00ae8b93588d9a674afec0da663be30e6",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:2012BW:009/012:holo_mcdonalds": [
+          {
+            "card_id": "en:2012BW:009/012:holo_mcdonalds",
+            "facet_type": "illustrator",
+            "value": "Atsuko Nishida",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/McDonald's Collection/McDonald's Collection 2012/9.ts:sha256:d6ad67bfcb40a6e5e7047fcdca69a43b99c296b71c0314c3d0fc91773a3c7d91",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:2012BW:012/012:holo_mcdonalds": [
+          {
+            "card_id": "en:2012BW:012/012:holo_mcdonalds",
+            "facet_type": "illustrator",
+            "value": "Atsuko Nishida",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/McDonald's Collection/McDonald's Collection 2012/12.ts:sha256:f02f52cf3b5f78e7efcc78d3f009f36428397b10b3394c6833b8ee471df1ca7f",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:30TH-C:002/030:holo_30th_anniversary": [
+          {
+            "card_id": "en:30TH-C:002/030:holo_30th_anniversary",
+            "facet_type": "illustrator",
+            "value": "Atsuko Nishida",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/002.ts:sha256:16ea16f0b795e3ad3a9f0abc0ab31276b85561c5d87337b846ee33a335b5c932",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:30TH:047/128:holo_30th_anniversary": [
+          {
+            "card_id": "en:30TH:047/128:holo_30th_anniversary",
+            "facet_type": "illustrator",
+            "value": "Atsuko Nishida",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Celebration/047.ts:sha256:a2bce342a24d64d1a9b75cb1a512fa2601d68324c006c9d95d37c3eb7503a7b3",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "10dbe3145e6aa1425d62e777dd8764e0a6461b76610c9f7f76e8f2715ebbd912",
+      "expected_result_semantic_sha256": "b3e16b0e4a85ee3e61b5db6ea59ef7a1cd0d89e4fdae4826336d3d2bdf22c0ed"
+    },
+    {
+      "index": 9,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "ownership_resolution_restoration": true,
+        "unresolved_ownership_blocks_target": true,
+        "inventory_clear_restores_scope": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:SM12A:008/173:normal",
+        "ja:CP2:025/027:normal",
+        "ja:M1S:019/063:normal",
+        "ja:M2:019/080:normal",
+        "ja:M6:088/076:holo"
+      ],
+      "source_axis_proofs": {
+        "ja:SM12A:008/173:normal": [
+          {
+            "card_id": "ja:SM12A:008/173:normal",
+            "facet_type": "illustrator",
+            "value": "Tomokazu Komiya",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/008.ts:sha256:5532d09261f1bf4baeb670090d54a69fed10aaeb39b8e284a519ea4f771c8412",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:CP2:025/027:normal": [
+          {
+            "card_id": "ja:CP2:025/027:normal",
+            "facet_type": "illustrator",
+            "value": "Tomokazu Komiya",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/025.ts:sha256:fbbc970a286aa4bd3e7ac888d24c15c4637593d974234ea4e9ec5cd49141233b",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:M1S:019/063:normal": [
+          {
+            "card_id": "ja:M1S:019/063:normal",
+            "facet_type": "illustrator",
+            "value": "Tomokazu Komiya",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/019.ts:sha256:bfe07f8cd35db30595a6b4e31a39a2582b6a31c4f59f3bfbaef04a766ef18dc6",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:M2:019/080:normal": [
+          {
+            "card_id": "ja:M2:019/080:normal",
+            "facet_type": "illustrator",
+            "value": "Tomokazu Komiya",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/019.ts:sha256:5d9549bb137318279b98b2372ba86656c04eff943d86fa00142dbc8f53e6eb29",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:M6:088/076:holo": [
+          {
+            "card_id": "ja:M6:088/076:holo",
+            "facet_type": "illustrator",
+            "value": "Tomokazu Komiya",
+            "provenance": "official-metadata:cd67919ed3a43c5d1360824c1284eb48641bc55b5394821abaa59186b58b1409",
+            "rights_reference": "https://www.pokemon-card.com/card-search/details.php/card/50529",
+            "basis": "active_exact_official_metadata_facet",
+            "record_sha256": "6ca5ee80212507e6bdbee6a509d6d9322c7ce47d89c5e3488b987aa657046b63"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "cab6e4e7e8d360803b0628426854f0f8a97ba7a9e509e7631a62a520e334a717",
+      "expected_result_semantic_sha256": "51c0e579887e3176f17bad3b6f492bf2f179fc3ca18c1e1225003afd5a15ebb1"
+    },
+    {
+      "index": 10,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "ownership_resolution_restoration": true,
+        "unresolved_ownership_blocks_target": true,
+        "inventory_clear_restores_scope": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "en:SM11:015/236:standard",
+        "en:SM12:017/236:standard",
+        "en:SV04:034/182:reverse",
+        "en:SV10:021/182:normal",
+        "en:2015XY:012/012:holo"
+      ],
+      "source_axis_proofs": {
+        "en:SM11:015/236:standard": [
+          {
+            "card_id": "en:SM11:015/236:standard",
+            "facet_type": "illustrator",
+            "value": "Yuka Morii",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Unified Minds/15.ts:sha256:4b076de6f04c9c16fb3f9c2dc746e66af7c7b4999351fdb7318a7b36c4682ae3",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SM12:017/236:standard": [
+          {
+            "card_id": "en:SM12:017/236:standard",
+            "facet_type": "illustrator",
+            "value": "Yuka Morii",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sun & Moon/Cosmic Eclipse/17.ts:sha256:90588f88e5246c5e2bd22dff255c5d356c76bc6c06e75faa5d5e53abb2e42705",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV04:034/182:reverse": [
+          {
+            "card_id": "en:SV04:034/182:reverse",
+            "facet_type": "illustrator",
+            "value": "Yuka Morii",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Paradox Rift/034.ts:sha256:cf626be6cf0bb48865330ba0501292768631ba04a1a80daf9d8fbed994af5662",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:SV10:021/182:normal": [
+          {
+            "card_id": "en:SV10:021/182:normal",
+            "facet_type": "illustrator",
+            "value": "Yuka Morii",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Scarlet & Violet/Destined Rivals/021.ts:sha256:6a33577a0cb27a41b4957613832156a76875cb49aa4f7dcbb1259a26c177821e",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "en:2015XY:012/012:holo": [
+          {
+            "card_id": "en:2015XY:012/012:holo",
+            "facet_type": "illustrator",
+            "value": "Yuka Morii",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/McDonald's Collection/McDonald's Collection 2015/12.ts:sha256:021a4a90f3daa2301031e158d58c2f97f601cdcfc60aaad57ce7279e483aaf7c",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "39c85e59a8bb266c7d8b45d059d143498a29d6bb9277c9a9567f62edd92c5cba",
+      "expected_result_semantic_sha256": "83e8eacaec4f15c47a40458d3faf2919bb08768e02afe9bac534d9577020cc15"
+    },
+    {
+      "index": 11,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "ownership_resolution_restoration": true,
+        "unresolved_ownership_blocks_target": true,
+        "inventory_clear_restores_scope": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true,
+        "no_held_selection": true
+      },
+      "final_source_ids": [
+        "ja:S-P:005/S-P:normal",
+        "ja:S8B:007/184:normal",
+        "ja:SM12A:037/173:holo",
+        "ja:SM12A:077/173:holo",
+        "ja:SM8B:156/150:holo"
+      ],
+      "source_axis_proofs": {
+        "ja:S-P:005/S-P:normal": [
+          {
+            "card_id": "ja:S-P:005/S-P:normal",
+            "facet_type": "illustrator",
+            "value": "Naoki Saito",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S-P/005.ts:sha256:1ea753207a30f80494e9a265d814de66d4641642472781b5cd5fcb77e2b9fee8",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:S8B:007/184:normal": [
+          {
+            "card_id": "ja:S8B:007/184:normal",
+            "facet_type": "illustrator",
+            "value": "Naoki Saito",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S8b/007.ts:sha256:ad1ed640ee1a38078122d127f7a581b395bb104ebac16b3812cddf27714ed448",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM12A:037/173:holo": [
+          {
+            "card_id": "ja:SM12A:037/173:holo",
+            "facet_type": "illustrator",
+            "value": "Naoki Saito",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/037.ts:sha256:c4b07fd7ad14199abf5bca11762cc2a500b07194ed2a2f23e86ab4d91860d1f0",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM12A:077/173:holo": [
+          {
+            "card_id": "ja:SM12A:077/173:holo",
+            "facet_type": "illustrator",
+            "value": "Naoki Saito",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/077.ts:sha256:79edd53d891fbdcb5002d18983dc250f5b663dbe9aa5e52aa3b8d394601f04ba",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ],
+        "ja:SM8B:156/150:holo": [
+          {
+            "card_id": "ja:SM8B:156/150:holo",
+            "facet_type": "illustrator",
+            "value": "Naoki Saito",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b/156.ts:sha256:40b655b9ed7c641faa7d03901a6a1178259206de4c845c0f0724719071d96868",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "47dbede58e7d199d2f9809ab6c6932d015757e24be95d447fdc41c08978c9b8f",
+      "expected_result_semantic_sha256": "5528760f88aad3e72b910277ea802192a0567e66c899af738fb180d170dd949f"
+    },
+    {
+      "index": 12,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "comparison_unselected": true,
+        "focus_unselected": true,
+        "focus_exact": true,
+        "selection_separate": true,
+        "no_held_selection": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true
+      },
+      "final_source_ids": [
+        "en:ME02.5:057/217:holo"
+      ],
+      "source_axis_proofs": {
+        "en:ME02.5:057/217:holo": [
+          {
+            "card_id": "en:ME02.5:057/217:holo",
+            "facet_type": "dex_id",
+            "value": "25",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/Ascended Heroes/057.ts:sha256:98a963775538a3e4897dc487aa665e8403d7056ce727128d06bbc47034e11b95",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "696bedc1ba40756280f1823339b0534cd28eb162666e23e61937bc1d1feac459",
+      "expected_result_semantic_sha256": "e9b52ff0506bf7b96743256e389700016a68d31e5c1d7fc7a147b3e1331116e7"
+    },
+    {
+      "index": 13,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "comparison_unselected": true,
+        "focus_unselected": true,
+        "focus_exact": true,
+        "selection_separate": true,
+        "no_held_selection": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true
+      },
+      "final_source_ids": [
+        "ja:E2:058/092:normal"
+      ],
+      "source_axis_proofs": {
+        "ja:E2:058/092:normal": [
+          {
+            "card_id": "ja:E2:058/092:normal",
+            "facet_type": "dex_id",
+            "value": "133",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "0e7a161ca7137a876e5e4dda65c0ba80acc7bd3507f4bc01dee4fc4bc429d190",
+      "expected_result_semantic_sha256": "70d3d21655f36ad16d25b19f61b36c82f13fad3e0e186a3a5b020f302891f6fc"
+    },
+    {
+      "index": 14,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "comparison_unselected": true,
+        "focus_unselected": true,
+        "focus_exact": true,
+        "selection_separate": true,
+        "no_held_selection": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true
+      },
+      "final_source_ids": [
+        "en:30TH-C:001/030:holo_30th_anniversary"
+      ],
+      "source_axis_proofs": {
+        "en:30TH-C:001/030:holo_30th_anniversary": [
+          {
+            "card_id": "en:30TH-C:001/030:holo_30th_anniversary",
+            "facet_type": "dex_id",
+            "value": "6",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Mega Evolution/30th Classic Collection/001.ts:sha256:260bf3de5655537290359540036fcfa94c0864aa524a3308074ebbe4a51b5770",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "f783551f2b5ee970cb184e8d71832121b03e37184a142f1a55b7909059655ff3",
+      "expected_result_semantic_sha256": "e9d0dd9079de3d61ee5ec1b1bc0ace192f81791d293268088628813807608cb0"
+    },
+    {
+      "index": 15,
+      "checks": {
+        "initial_nonempty_recommendation": true,
+        "language_scope": true,
+        "comparison_unselected": true,
+        "focus_unselected": true,
+        "focus_exact": true,
+        "selection_separate": true,
+        "no_held_selection": true,
+        "twenty_turns": true,
+        "all_commercial_gates_closed": true,
+        "native_accelerated_equal": true,
+        "source_axis_identifiers_preserved": true,
+        "final_scoped_pool_count_preserved": true
+      },
+      "final_source_ids": [
+        "ja:E1:086/128:normal_1st_edition"
+      ],
+      "source_axis_proofs": {
+        "ja:E1:086/128:normal_1st_edition": [
+          {
+            "card_id": "ja:E1:086/128:normal_1st_edition",
+            "facet_type": "dex_id",
+            "value": "150",
+            "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/086.ts:sha256:b8befd22bcc891af2c0717e5d6c83efd62caeb90f869c8fe5368775fc6e1107a",
+            "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+            "basis": "exact_native_source_facet"
+          }
+        ]
+      },
+      "trace_semantic_sha256": "5706af0f1cbcda447f986b95bb3a2250a7f7130c92cf3bff204b41b2afaffd04",
+      "expected_result_semantic_sha256": "5724919914e6ed9e04f0113c34cb9117f0bac39d5807f187ca3eaff49a338a14"
+    }
+  ],
+  "native_accelerated_equal_all": true,
+  "known_size_loss_ids_excluded": 44,
+  "actual_active_holds": 0,
+  "market_table_counts": {
+    "priceable_unit": 0,
+    "listing": 0,
+    "observation": 0,
+    "landed_quote": 0,
+    "verified_sale": 0
+  },
+  "comparison_focus_selection_separation_preserved": true,
+  "old_fixture_intent_semantics_preserved": true,
+  "freeze_scope": "Deterministic operator checks against actual source facets and replay traces; selected examples are synthetic development workloads, not new independent blind/user accuracy or real market behavior. Capacity is a separate actual caller/HTTP Linux run.",
+  "ci_regenerates_fixture": false,
+  "network": false,
+  "imports": false,
+  "frontend": false,
+  "deployment": false,
+  "push": false,
+  "trading": false,
+  "fixture_sha256": "dbf25d29c6785accd1621f6d1c9c837b28a7c2e27c8340cc420386ef651775ec"
+}

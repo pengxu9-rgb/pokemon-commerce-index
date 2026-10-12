@@ -113,11 +113,11 @@ function validateResult(result, request) {
   if (recommendation !== null) {
     if (!exactKeys(recommendation, ['schema', 'ranking_policy', 'preference_evidence', 'candidate_pool_complete', 'coverage_basis', 'global_catalog_completeness_established', 'unapplied_preferences', 'budget_fit', 'grade_availability', 'items', 'coordinate_groups'])
         || recommendation.schema !== 'pokemon.collector-recommendation.v1'
-        || recommendation.ranking_policy !== 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
+        || !['explicit_axes_then_liked_axes_then_coordinate_round_robin.v1', 'explicit_axes_then_liked_axes_then_source_scan_tiebreak_then_coordinate_round_robin.v2'].includes(recommendation.ranking_policy)
         || recommendation.preference_evidence !== 'user_assertion_only'
         || typeof recommendation.candidate_pool_complete !== 'boolean'
         || recommendation.global_catalog_completeness_established !== false
-        || recommendation.coverage_basis !== 'current_catalog_facets_and_reviewed_name_affiliations_only'
+        || !['current_catalog_facets_and_reviewed_name_affiliations_only', 'current_source_declared_catalog_and_facets_only'].includes(recommendation.coverage_basis)
         || recommendation.budget_fit !== 'unknown_no_live_price'
         || recommendation.grade_availability !== 'unknown_no_copy_offers'
         || !['collector_recommendations', 'collection_preferences_needed'].includes(result.discovery?.task)
@@ -140,7 +140,8 @@ function validateResult(result, request) {
           const fields = ['field', 'value', 'basis', 'source_ref', 'target_name', 'base_name_ja',
             'mechanic', 'source_asserted_dex_id', 'anchor_evidence', 'anchor_count',
             'anchor_evidence_sha256', 'derivation', 'affiliated_card_id', 'affiliation_role', 'preference_origin'];
-          if (!exactKeys(reason, fields) || reason.basis !== 'source_name_character_affiliation'
+          if (recommendation.coverage_basis !== 'current_catalog_facets_and_reviewed_name_affiliations_only'
+              || !exactKeys(reason, fields) || reason.basis !== 'source_name_character_affiliation'
               || reason.derivation !== 'exact_pinned_ex_name_to_unanimous_current_name_facets.v1'
               || !Number.isInteger(reason.value) || reason.value < 1 || reason.value > 1025
               || reason.source_asserted_dex_id !== false || reason.mechanic !== 'EX'

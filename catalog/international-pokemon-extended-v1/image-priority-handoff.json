@@ -1,0 +1,282 @@
+{
+  "schema": "pokemon.cached-image-priority-handoff.v1",
+  "input_database_sha256": "f044b1a5333945bddd6a7d667fca4fcd031231158901b0524ff455fa11b48c48",
+  "inspection_time": "2026-10-12T04:33:42Z",
+  "status": "all_five_held_not_resolved",
+  "new_source_image_bindings": 0,
+  "connected_ui_verified": false,
+  "cached_frontend_diagnosis_path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/current-image-gap-diagnosis.json",
+  "cached_frontend_diagnosis_sha256": "30a926529ad946e219df038183b408c54bb0343895075ef507f4cf74e4bd259c",
+  "reported_connected_backend": "https://review-5def-1007---pokemon-commerce-index-42ogcsuwxq-uw.a.run.app",
+  "live_scope": "Frontend diagnosis is supplied cached evidence; this session made no live backend or browser request.",
+  "intake_files": {
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/candidates.jsonl": {
+      "sha256": "b10261d23745f68f16e5501a145275aaf4e42f7415ee87c8f7b0ec8277771b00",
+      "bytes": 5280
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/promotion-gate-v4.json": {
+      "sha256": "d068c9b5c41e68688d9e88ca3ef1effc011878b99f5182a54e4c9e77d16452e4",
+      "bytes": 1186
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/variant-reviews-v2.jsonl": {
+      "sha256": "2fa68ed857772ff3fb63664ef8a1208012f2006f435b5e1b2ff7ec345fcb8543",
+      "bytes": 829
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/root-variant-review.json": {
+      "sha256": "318f61b6d344766ce830f43d7fecdb9a30f4e0dfffb0ab979793f024fd416c79",
+      "bytes": 431
+    }
+  },
+  "checked_provider_files": {
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f013b38db560414551c42d8f12ee3a072285c7f154a56f447fef7f06d7edfb6a.provider.json": {
+      "sha256": "9cf9ce543c11c6c56e236002715c61acd406c92c73024b4520bff193f4cf7946",
+      "bytes": 1132
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/41853bcf966bb059988a0379bef2bd1ecc7ab7a484b46ce03f14b3990a0dc088.provider.json": {
+      "sha256": "3ef49def73b56ed9307ba38866fd456e37f8549325d73d3b163171aaf9a5281f",
+      "bytes": 1000
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/7bb30cee04f3c2c3e0f54245acfdfa220df92e70ebca61f283e3db090dd11f99.provider.json": {
+      "sha256": "b49e34fb6cd2fe1d31046c079ab6e3280bc2d3a88338553b60a76b9d5cf192a1",
+      "bytes": 977
+    },
+    "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f8186953eb8e86abeb6326bb3d6bb46cfa7902f7d0487ea23b722bc5dbe07f8c.provider.json": {
+      "sha256": "74cb08a8e75ad9c17d3516286008232f70998b29d1448395b4c3645b22c468b7",
+      "bytes": 4832
+    }
+  },
+  "targets": [
+    {
+      "card_id": "ja:PMCG1:035/102:normal",
+      "endpoint_snapshot": {
+        "card_id": "ja:PMCG1:035/102:normal",
+        "language": "ja",
+        "set_code": "PMCG1",
+        "collector_number": "035/102",
+        "variant": "normal",
+        "name": "ピカチュウ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/035.ts:sha256:b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+        "match_eligible": 1,
+        "display_allowed": 0,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "identity_sha256": "f013b38db560414551c42d8f12ee3a072285c7f154a56f447fef7f06d7edfb6a",
+      "candidate_status": "missing_provider_image",
+      "current_source_image_facts": null,
+      "current_observed_printed_number": null,
+      "retained_image_review_artifacts": [],
+      "gate_reason": "candidate_not_reviewable",
+      "runtime_binding_created": false,
+      "source_rights_status": "image/display permission not established",
+      "physical_printing_verified": false,
+      "price_comparable": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "provider_url": "https://api.tcgdex.net/v2/ja/cards/PMCG1-035",
+      "provider_document_sha256": "9cf9ce543c11c6c56e236002715c61acd406c92c73024b4520bff193f4cf7946",
+      "declared_image": null,
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "provider": "tcgdex",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document_revision": null,
+      "provenance_scope": "Git revision/hash bind endpoint metadata only; cached API documents are unversioned and historical retrieval time is unknown",
+      "metadata_source_sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "confidence": null,
+      "confidence_scope": "held exact-variant image evidence; no approved asset",
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ]
+    },
+    {
+      "card_id": "ja:PMCG1:035/102:normal_no_rarity",
+      "endpoint_snapshot": {
+        "card_id": "ja:PMCG1:035/102:normal_no_rarity",
+        "language": "ja",
+        "set_code": "PMCG1",
+        "collector_number": "035/102",
+        "variant": "normal_no_rarity",
+        "name": "ピカチュウ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/035.ts:sha256:b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+        "match_eligible": 1,
+        "display_allowed": 0,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "identity_sha256": "d2622ea0385a69e5634f65a9a076826612cc421e626c6ed72adf46256413d0ad",
+      "candidate_status": "unresolved",
+      "current_source_image_facts": null,
+      "current_observed_printed_number": null,
+      "retained_image_review_artifacts": [],
+      "gate_reason": "candidate_not_reviewable",
+      "runtime_binding_created": false,
+      "source_rights_status": "image/display permission not established",
+      "physical_printing_verified": false,
+      "price_comparable": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "blocker": "no-rarity printing needs an independently sourced exact-variant scan; no sibling substitution",
+      "provider": "tcgdex",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document_revision": null,
+      "provenance_scope": "Git revision/hash bind endpoint metadata only; cached API documents are unversioned and historical retrieval time is unknown",
+      "metadata_source_sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "confidence": null,
+      "confidence_scope": "held exact-variant image evidence; no approved asset",
+      "unresolved_conflicts": [
+        "no-rarity printing needs an independently sourced exact-variant scan; no sibling substitution"
+      ]
+    },
+    {
+      "card_id": "ja:PMCG2:024/048:normal",
+      "endpoint_snapshot": {
+        "card_id": "ja:PMCG2:024/048:normal",
+        "language": "ja",
+        "set_code": "PMCG2",
+        "collector_number": "024/048",
+        "variant": "normal",
+        "name": "ピカチュウ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/024.ts:sha256:f9e6f485b59f61e5ee29af84b5bb8406841363bce8374fbe14948a103d5b7b53",
+        "match_eligible": 1,
+        "display_allowed": 0,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "identity_sha256": "41853bcf966bb059988a0379bef2bd1ecc7ab7a484b46ce03f14b3990a0dc088",
+      "candidate_status": "missing_provider_image",
+      "current_source_image_facts": null,
+      "current_observed_printed_number": null,
+      "retained_image_review_artifacts": [],
+      "gate_reason": "candidate_not_reviewable",
+      "runtime_binding_created": false,
+      "source_rights_status": "image/display permission not established",
+      "physical_printing_verified": false,
+      "price_comparable": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "provider_url": "https://api.tcgdex.net/v2/ja/cards/PMCG2-024",
+      "provider_document_sha256": "3ef49def73b56ed9307ba38866fd456e37f8549325d73d3b163171aaf9a5281f",
+      "declared_image": null,
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "provider": "tcgdex",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document_revision": null,
+      "provenance_scope": "Git revision/hash bind endpoint metadata only; cached API documents are unversioned and historical retrieval time is unknown",
+      "metadata_source_sha256": "f9e6f485b59f61e5ee29af84b5bb8406841363bce8374fbe14948a103d5b7b53",
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "confidence": null,
+      "confidence_scope": "held exact-variant image evidence; no approved asset",
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ]
+    },
+    {
+      "card_id": "ja:PMCG5:036/096:normal",
+      "endpoint_snapshot": {
+        "card_id": "ja:PMCG5:036/096:normal",
+        "language": "ja",
+        "set_code": "PMCG5",
+        "collector_number": "036/096",
+        "variant": "normal",
+        "name": "マチスのピカチュウ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG5/036.ts:sha256:b812ec6a921b6b87f645b9bea6b48ee611d75b7d5745cf87f6ef7fc01a281f1b",
+        "match_eligible": 1,
+        "display_allowed": 0,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "identity_sha256": "7bb30cee04f3c2c3e0f54245acfdfa220df92e70ebca61f283e3db090dd11f99",
+      "candidate_status": "missing_provider_image",
+      "current_source_image_facts": null,
+      "current_observed_printed_number": null,
+      "retained_image_review_artifacts": [],
+      "gate_reason": "candidate_not_reviewable",
+      "runtime_binding_created": false,
+      "source_rights_status": "image/display permission not established",
+      "physical_printing_verified": false,
+      "price_comparable": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "provider_url": "https://api.tcgdex.net/v2/ja/cards/PMCG5-036",
+      "provider_document_sha256": "b49e34fb6cd2fe1d31046c079ab6e3280bc2d3a88338553b60a76b9d5cf192a1",
+      "declared_image": null,
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "provider": "tcgdex",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document_revision": null,
+      "provenance_scope": "Git revision/hash bind endpoint metadata only; cached API documents are unversioned and historical retrieval time is unknown",
+      "metadata_source_sha256": "b812ec6a921b6b87f645b9bea6b48ee611d75b7d5745cf87f6ef7fc01a281f1b",
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "confidence": null,
+      "confidence_scope": "held exact-variant image evidence; no approved asset",
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ]
+    },
+    {
+      "card_id": "en:BASE1:058/102:normal",
+      "endpoint_snapshot": {
+        "card_id": "en:BASE1:058/102:normal",
+        "language": "en",
+        "set_code": "BASE1",
+        "collector_number": "058/102",
+        "variant": "normal",
+        "name": "Pikachu",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Base/Base Set/58.ts:sha256:3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+        "match_eligible": 1,
+        "display_allowed": 0,
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "identity_sha256": "f8186953eb8e86abeb6326bb3d6bb46cfa7902f7d0487ea23b722bc5dbe07f8c",
+      "candidate_status": "awaiting_two_reviews",
+      "current_source_image_facts": null,
+      "current_observed_printed_number": null,
+      "retained_image_review_artifacts": [],
+      "gate_reason": "variant_review_hold",
+      "runtime_binding_created": false,
+      "source_rights_status": "image/display permission not established",
+      "physical_printing_verified": false,
+      "price_comparable": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "provider_url": "https://api.tcgdex.net/v2/en/cards/base1-58",
+      "provider_document_sha256": "74cb08a8e75ad9c17d3516286008232f70998b29d1448395b4c3645b22c468b7",
+      "declared_image": "https://assets.tcgdex.net/en/base/base1/58",
+      "cached_source_ref": "https://assets.tcgdex.net/en/base/base1/58/high.webp",
+      "cached_image_sha256": "41382f71a19c925afccee1f818c5311ca14216b629baa3b93c3be9e58acb8ed7",
+      "cached_image_bytes": 80678,
+      "root_observation": "Visible first-edition stamp; exact scan cannot bind to requested normal printing. Single contextual inspection only; no promotion.",
+      "blocker": "compatible normal-printing source scan and exact-variant/source-rights review unavailable in this bounded cache",
+      "provider": "tcgdex",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document_revision": null,
+      "provenance_scope": "Git revision/hash bind endpoint metadata only; cached API documents are unversioned and historical retrieval time is unknown",
+      "metadata_source_sha256": "3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "confidence": null,
+      "confidence_scope": "held exact-variant image evidence; no approved asset",
+      "unresolved_conflicts": [
+        "compatible normal-printing source scan and exact-variant/source-rights review unavailable in this bounded cache"
+      ]
+    }
+  ],
+  "known_current_control": {
+    "card_id": "ja:M6A:124/103:holo",
+    "event_id": "source-image-fact:273057cb562181b08353acb235637bba0234b19f736dcef5a387eec811cc94ff",
+    "source_ref": "https://www.30th.pokemon-card.com/images/m6a/cards/m6a_124_4cigmvlq.png",
+    "image_sha256": "496d5fdc9648f9c5f60dfd266bbed03287eface7837ef03a733bc714c8493ab0"
+  },
+  "next_action": "Obtain a compatible exact scan from an already authorized source for each held target, preserve separate variant/source snapshots, perform genuine independent reviews and rights qualification, compile source/number evidence into a reviewed manifest. Only then request deployment authorization and verify the exact connected Pikachu comparison and media requests.",
+  "deployment_authorized": false,
+  "frontend_edits": false,
+  "network_retrieval": false,
+  "source_rights_promoted": false
+}

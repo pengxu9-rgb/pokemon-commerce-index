@@ -19,7 +19,7 @@ def catalog_revision(db):
                  'collector_character_affiliation.py','collector-character-affiliations-v1.json',
                  'collector_release_alias.py','collector-release-name-aliases-v1.json',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','core.py','cli.py']:
+                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','languages.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet','base_discovery_card_facet','active_source_correction_evidence','effective_card_reference'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
@@ -27,7 +27,8 @@ def catalog_revision(db):
     tables=['card','card_facet','card_classification','catalog_set_localized','catalog_vocabulary',
             'character_family','character_family_member','catalog_collector_evidence',
             'supported_card','card_reference','card_rarity_correction','catalog_release_evidence','card_metadata_evidence','coordinate_family_evidence',
-            'card_relationship_assertion','printing_source_evidence','source_correction_evidence','card_number_reading_evidence','source_image_fact_evidence','source_mechanic_binding']
+            'card_relationship_assertion','printing_source_evidence','source_correction_evidence','card_number_reading_evidence','source_image_fact_evidence','source_mechanic_binding','catalog_identity_quarantine',
+            'catalog_locale_evidence','catalog_source_mapping','bilingual_concept_revision','concept_review_event']
     for table in tables:
         if not db.execute("SELECT 1 FROM sqlite_master WHERE name=?",(table,)).fetchone():continue
         columns=[r[1] for r in db.execute('PRAGMA table_info('+table+')')]

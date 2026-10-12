@@ -1,0 +1,517 @@
+{
+  "schema": "pokemon.stage15-cached-evidence-qualification.v1",
+  "inspected_at": "2026-10-12T09:09:36.107143+00:00",
+  "audit_scope": "Read-only existing authorized cache/pin and frontend local receipts; no source retrieval or import",
+  "source_pin": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "metadata_source_inventory": [
+    {
+      "path": "LICENSE",
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063,
+      "pinned_blob_verified": true
+    },
+    {
+      "path": "data-asia/PMCG/PMCG1/035.ts",
+      "git_blob": "b97c2bfab0a60696fd464ebf473a58d55b118185",
+      "sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "bytes": 869,
+      "pinned_blob_verified": true
+    },
+    {
+      "path": "data-asia/PMCG/PMCG2/024.ts",
+      "git_blob": "201fdf3bcd9da7dbe39c8abd93f678220ece24be",
+      "sha256": "f9e6f485b59f61e5ee29af84b5bb8406841363bce8374fbe14948a103d5b7b53",
+      "bytes": 777,
+      "pinned_blob_verified": true
+    },
+    {
+      "path": "data-asia/PMCG/PMCG5/036.ts",
+      "git_blob": "2fd0fe4867839d6b50de8c4a1777c6e0703afca7",
+      "sha256": "b812ec6a921b6b87f645b9bea6b48ee611d75b7d5745cf87f6ef7fc01a281f1b",
+      "bytes": 749,
+      "pinned_blob_verified": true
+    },
+    {
+      "path": "data/Base/Base Set/58.ts",
+      "git_blob": "a83e12f31f0f0f91480262be20e6170371623d00",
+      "sha256": "3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+      "bytes": 2597,
+      "pinned_blob_verified": true
+    }
+  ],
+  "metadata_license_scope": "Metadata internal review only; not artwork/display/purchase rights",
+  "input_files": [
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/pokemon-commerce-index/catalog/international-pokemon-extended-v1/image-priority-handoff.json",
+      "sha256": "3c7b204d62117ab7e3045158c1f87bad4481c6951937616330ae72936d44d5c7",
+      "bytes": 16010
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/outputs/image-fix-backend-handoff.json",
+      "sha256": "e5f0aa35f7a11ffa13acbe5b32ffc69a0ee3e3529a95c267aa392bb0f3354707",
+      "bytes": 31601
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/vintage.sqlite3",
+      "sha256": "0f030b433fb5a285d3c9bd7acc15cd73a3ff09bbf10bf9767e49346d85cccfe6",
+      "bytes": 158998528
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/pokemon-commerce-index/catalog/variant-dimension-holds-v1/coverage-report.json",
+      "sha256": "a49c004236adc58865887eec77f13308bfbbc6432009cb682daa9ab152920026",
+      "bytes": 7261
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/pokemon-commerce-index/catalog/international-pokemon-vintage-v1/remaining-name-qualification.json",
+      "sha256": "232d49341c60bac36a690b64626278cf3bdc9d79df7647a85723db6945db56ee",
+      "bytes": 97047
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/pokemon-commerce-index/catalog/international-pokemon-vintage-v1/next-batch-plan.json",
+      "sha256": "dad272a370d143dc38fa0ffda887024c5d001f658d22498ebf8f936449c15f8c",
+      "bytes": 240457
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/outputs/stage14-backend-proof.json",
+      "sha256": "1d5497b51c634b5dfd49bb8da2033baf918eb0b61c369ef78a520b423aec21bf",
+      "bytes": 23751
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/candidates.jsonl",
+      "sha256": "b10261d23745f68f16e5501a145275aaf4e42f7415ee87c8f7b0ec8277771b00",
+      "bytes": 5280
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/promotion-gate-v4.json",
+      "sha256": "d068c9b5c41e68688d9e88ca3ef1effc011878b99f5182a54e4c9e77d16452e4",
+      "bytes": 1186
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/variant-reviews-v2.jsonl",
+      "sha256": "2fa68ed857772ff3fb63664ef8a1208012f2006f435b5e1b2ff7ec345fcb8543",
+      "bytes": 829
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/root-variant-review.json",
+      "sha256": "318f61b6d344766ce830f43d7fecdb9a30f4e0dfffb0ab979793f024fd416c79",
+      "bytes": 431
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f013b38db560414551c42d8f12ee3a072285c7f154a56f447fef7f06d7edfb6a.provider.json",
+      "sha256": "9cf9ce543c11c6c56e236002715c61acd406c92c73024b4520bff193f4cf7946",
+      "bytes": 1132
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/41853bcf966bb059988a0379bef2bd1ecc7ab7a484b46ce03f14b3990a0dc088.provider.json",
+      "sha256": "3ef49def73b56ed9307ba38866fd456e37f8549325d73d3b163171aaf9a5281f",
+      "bytes": 1000
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/7bb30cee04f3c2c3e0f54245acfdfa220df92e70ebca61f283e3db090dd11f99.provider.json",
+      "sha256": "b49e34fb6cd2fe1d31046c079ab6e3280bc2d3a88338553b60a76b9d5cf192a1",
+      "bytes": 977
+    },
+    {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f8186953eb8e86abeb6326bb3d6bb46cfa7902f7d0487ea23b722bc5dbe07f8c.provider.json",
+      "sha256": "74cb08a8e75ad9c17d3516286008232f70998b29d1448395b4c3645b22c468b7",
+      "bytes": 4832
+    }
+  ],
+  "input_database_unchanged_sha256": "0f030b433fb5a285d3c9bd7acc15cd73a3ff09bbf10bf9767e49346d85cccfe6",
+  "new_qualified_priority_targets": 0,
+  "new_source_image_imports": 0,
+  "targets": [
+    {
+      "card_id": "en:BASE1:058/102:normal",
+      "status": "identity_hold",
+      "structural_match_eligible": false,
+      "new_exact_image_qualified": false,
+      "metadata_source_sha256": "3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document": {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f8186953eb8e86abeb6326bb3d6bb46cfa7902f7d0487ea23b722bc5dbe07f8c.provider.json",
+        "sha256": "74cb08a8e75ad9c17d3516286008232f70998b29d1448395b4c3645b22c468b7",
+        "bytes": 4832
+      },
+      "provider_document_revision": null,
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "declared_provider_image": "https://assets.tcgdex.net/en/base/base1/58",
+      "cached_incompatible_image": {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/41382f71a19c925afccee1f818c5311ca14216b629baa3b93c3be9e58acb8ed7.webp",
+        "sha256": "41382f71a19c925afccee1f818c5311ca14216b629baa3b93c3be9e58acb8ed7",
+        "bytes": 80678
+      },
+      "prior_contextual_observation": "Visible first-edition stamp; exact scan cannot bind to requested normal printing. Single contextual inspection only; no promotion.",
+      "review_scope": "Existing prior contextual observation retained; no new visual/model review",
+      "blocker": "source-declared size 'jumbo' omitted by legacy variant 'normal'; dimension-complete printing identity unresolved; no standard-size or edition fallback",
+      "source_rights_status": "image/display permission not established",
+      "confidence": null,
+      "unresolved_conflicts": [
+        "source-declared size 'jumbo' omitted by legacy variant 'normal'; dimension-complete printing identity unresolved; no standard-size or edition fallback"
+      ],
+      "variant_dimension_hold": {
+        "schema": "pokemon.variant-dimension-context.v1",
+        "status": "held_legacy_variant_dimensions",
+        "event_id": "variant-dimension-hold:d48d3b12159b6899107276918f33a27070d67782d6162b0e78271e8dbc712799",
+        "legacy_card_id": "en:BASE1:058/102:normal",
+        "legacy_variant": "normal",
+        "declared_source_size": "jumbo",
+        "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "source_sha256": "3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+        "dimension_complete_identity": false,
+        "canonical_replacement_card_id": null,
+        "replacement_relationships": [],
+        "reason": "source-declared size 'jumbo' omitted by legacy variant 'normal'; dimension-complete printing identity unresolved; no standard-size or edition fallback",
+        "physical_size_verified": false,
+        "display_allowed": false,
+        "image_display_allowed": false,
+        "purchase_allowed": false,
+        "automatic_offer_join_allowed": false,
+        "physical_printing_verified": false,
+        "price_comparable": false
+      },
+      "source_image_facts": null,
+      "observed_printed_number": null,
+      "with_source_scans_eligible": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:PMCG5:036/096:normal",
+      "status": "missing_source_scan_evidence",
+      "structural_match_eligible": true,
+      "new_exact_image_qualified": false,
+      "metadata_source_sha256": "b812ec6a921b6b87f645b9bea6b48ee611d75b7d5745cf87f6ef7fc01a281f1b",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document": {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/7bb30cee04f3c2c3e0f54245acfdfa220df92e70ebca61f283e3db090dd11f99.provider.json",
+        "sha256": "b49e34fb6cd2fe1d31046c079ab6e3280bc2d3a88338553b60a76b9d5cf192a1",
+        "bytes": 977
+      },
+      "provider_document_revision": null,
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "declared_provider_image": null,
+      "cached_incompatible_image": null,
+      "prior_contextual_observation": null,
+      "review_scope": "Existing prior contextual observation retained; no new visual/model review",
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "source_rights_status": "image/display permission not established",
+      "confidence": null,
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ],
+      "variant_dimension_hold": null,
+      "source_image_facts": null,
+      "observed_printed_number": null,
+      "with_source_scans_eligible": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:PMCG1:035/102:normal",
+      "status": "missing_source_scan_evidence",
+      "structural_match_eligible": true,
+      "new_exact_image_qualified": false,
+      "metadata_source_sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document": {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/f013b38db560414551c42d8f12ee3a072285c7f154a56f447fef7f06d7edfb6a.provider.json",
+        "sha256": "9cf9ce543c11c6c56e236002715c61acd406c92c73024b4520bff193f4cf7946",
+        "bytes": 1132
+      },
+      "provider_document_revision": null,
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "declared_provider_image": null,
+      "cached_incompatible_image": null,
+      "prior_contextual_observation": null,
+      "review_scope": "Existing prior contextual observation retained; no new visual/model review",
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "source_rights_status": "image/display permission not established",
+      "confidence": null,
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ],
+      "variant_dimension_hold": null,
+      "source_image_facts": null,
+      "observed_printed_number": null,
+      "with_source_scans_eligible": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:PMCG1:035/102:normal_no_rarity",
+      "status": "missing_source_scan_evidence",
+      "structural_match_eligible": true,
+      "new_exact_image_qualified": false,
+      "metadata_source_sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document": null,
+      "provider_document_revision": null,
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "declared_provider_image": null,
+      "cached_incompatible_image": null,
+      "prior_contextual_observation": null,
+      "review_scope": "Existing prior contextual observation retained; no new visual/model review",
+      "blocker": "no-rarity printing needs an independently sourced exact-variant scan; no sibling substitution",
+      "source_rights_status": "image/display permission not established",
+      "confidence": null,
+      "unresolved_conflicts": [
+        "no-rarity printing needs an independently sourced exact-variant scan; no sibling substitution"
+      ],
+      "variant_dimension_hold": null,
+      "source_image_facts": null,
+      "observed_printed_number": null,
+      "with_source_scans_eligible": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:PMCG2:024/048:normal",
+      "status": "missing_source_scan_evidence",
+      "structural_match_eligible": true,
+      "new_exact_image_qualified": false,
+      "metadata_source_sha256": "f9e6f485b59f61e5ee29af84b5bb8406841363bce8374fbe14948a103d5b7b53",
+      "metadata_source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "provider_document": {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/media-backfill-20261012/intake-v1/41853bcf966bb059988a0379bef2bd1ecc7ab7a484b46ce03f14b3990a0dc088.provider.json",
+        "sha256": "3ef49def73b56ed9307ba38866fd456e37f8549325d73d3b163171aaf9a5281f",
+        "bytes": 1000
+      },
+      "provider_document_revision": null,
+      "retrieved_at": null,
+      "retrieval_status": "historical_acquisition_time_not_recorded",
+      "declared_provider_image": null,
+      "cached_incompatible_image": null,
+      "prior_contextual_observation": null,
+      "review_scope": "Existing prior contextual observation retained; no new visual/model review",
+      "blocker": "cached provider document declares no image; exact compatible scan unavailable in this bounded cache",
+      "source_rights_status": "image/display permission not established",
+      "confidence": null,
+      "unresolved_conflicts": [
+        "cached provider document declares no image; exact compatible scan unavailable in this bounded cache"
+      ],
+      "variant_dimension_hold": null,
+      "source_image_facts": null,
+      "observed_printed_number": null,
+      "with_source_scans_eligible": false,
+      "display_allowed": false,
+      "purchase_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    }
+  ],
+  "all_44_holds_current_and_flags_false": true,
+  "held_guard_rejection": "card has an unresolved variant-dimension hold",
+  "existing_direct_endpoint_receipt": [
+    {
+      "path": "/units",
+      "method": "GET",
+      "parameters": {
+        "card_id": "en:BASE1:058/102:normal"
+      },
+      "status": 400,
+      "seconds": 0.000952,
+      "response_sha256": "c54515432f484a64e05645c56a9b2180c5c39cb54a271bcdeb4ec2eea0f46418"
+    },
+    {
+      "path": "/offers",
+      "method": "GET",
+      "parameters": {
+        "card_id": "en:BASE1:058/102:normal"
+      },
+      "status": 400,
+      "seconds": 0.000834,
+      "response_sha256": "c54515432f484a64e05645c56a9b2180c5c39cb54a271bcdeb4ec2eea0f46418"
+    }
+  ],
+  "source_scan_coverage": {
+    "schema": "pokemon.source-scan-coverage.v1",
+    "catalog_records": 70006,
+    "source_scan_subjects": 1171,
+    "current_source_scan_subjects": 1171,
+    "by_status": {
+      "current_source_scan_evidence": 1171,
+      "stale_source_scan_evidence": 0,
+      "held_source_scan_evidence": 0,
+      "missing_source_scan_evidence": 68791,
+      "identity_hold": 44
+    },
+    "by_evidence_basis": {
+      "source_image_facts": 1141,
+      "number_reading": 30
+    },
+    "live_media_availability": "unverified",
+    "image_display_permissions": 0,
+    "scope": "Primary image facts if present; otherwise exact agreed number readings. Held/stale primary never falls through; no live/display/physical approval."
+  },
+  "frontend_acceptance": {
+    "thread_id": "01a1283b-a4e4-73e0-9e8c-a2e673478686",
+    "title": "Update Pokémon agent UI",
+    "read_thread_status": "systemError",
+    "latest_turn_id": "01a12f1a-62ab-7ed1-b5cd-bf00c1cccdaf",
+    "latest_turn_status": "failed",
+    "error": "Selected model is at capacity. Please try a different model.",
+    "latest_owner_report": "Six current English Pikachu scans fetched and matched archived hashes locally; staging deployment and private UI acceptance were intended next",
+    "completed_stage14_private_ui_acceptance_evidence_found": false,
+    "frozen_handoff_matches": true,
+    "owner_local_fetch_receipt": {
+      "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/image-fix-local-integration.json",
+      "sha256": "96ad5a7a3e7f042d8c809ebd9a0ee6ea1b43ee30f7e17c2830411fb34b25fc08",
+      "bytes": 5189
+    },
+    "owner_local_fetches": [
+      {
+        "card_id": "en:HGSSP:HGSS03/000025:holo",
+        "source_ref": "https://assets.tcgdex.net/en/hgss/hgssp/HGSS03/high.webp",
+        "bytes": 80658,
+        "sha256": "a5ce4cf92d56383ab1a4bdc2a2f95ca9c3968c20f2b6f504697e72c1ff3e0ef4",
+        "milliseconds": 50846,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      },
+      {
+        "card_id": "en:ME02.5:057/217:holo",
+        "source_ref": "https://assets.tcgdex.net/en/me/me02.5/057/high.webp",
+        "bytes": 110430,
+        "sha256": "bcba6cd5513ce85e2bb5a92b8be45766aca8d485a9405211fed7dddde23d375c",
+        "milliseconds": 24643,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      },
+      {
+        "card_id": "en:SMP:SM04/0248:normal",
+        "source_ref": "https://assets.tcgdex.net/en/sm/smp/SM04/high.webp",
+        "bytes": 75446,
+        "sha256": "94b3b34bc24ad7ad9c4bb2021e5e131771110032aaca614562d3ecded47064bb",
+        "milliseconds": 14883,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      },
+      {
+        "card_id": "en:SV02:063/193:holo",
+        "source_ref": "https://assets.tcgdex.net/en/sv/sv02/063/high.webp",
+        "bytes": 73796,
+        "sha256": "11a10aca832108170f7c47a219b5c7eda3cd76e9e5e2a33c8041db018ec520ac",
+        "milliseconds": 48557,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      },
+      {
+        "card_id": "en:SV04.5:018/091:normal",
+        "source_ref": "https://assets.tcgdex.net/en/sv/sv04.5/018/high.webp",
+        "bytes": 62314,
+        "sha256": "4b0b99c5be011e5a64ff8831c0398886cd8361e54693007f1a17d7266a8e7288",
+        "milliseconds": 14322,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      },
+      {
+        "card_id": "en:SV08:057/191:holo",
+        "source_ref": "https://assets.tcgdex.net/en/sv/sv08/057/high.webp",
+        "bytes": 100638,
+        "sha256": "794b30f06d76347d563d4e8a20dafe97696ccc185fd7ad55e8976d002feb6728",
+        "milliseconds": 24063,
+        "matches_current_archived_endpoint_and_image_hash": true,
+        "verification_scope": "Existing owner local fetch receipt; this audit made no live request or pixel review"
+      }
+    ],
+    "latency_min_milliseconds": 14322,
+    "latency_max_milliseconds": 50846,
+    "under_20_second_image_delivery_established": false,
+    "scope_warning": "Local integration receipt contains configured cloud backend/live_catalog labels, but explicitly describes actual peer read-only snapshot; these labels do not prove cloud deployment. Older 2026-10-11 passed UI receipt has all five requested media entries null and cannot establish stage14 image acceptance. No new connected UI or live asset fetch performed by this audit.",
+    "input_files": [
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/image-fix-local-integration.json",
+        "sha256": "96ad5a7a3e7f042d8c809ebd9a0ee6ea1b43ee30f7e17c2830411fb34b25fc08",
+        "bytes": 5189
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/source-url-admission-image-fix.json",
+        "sha256": "15a2a79d5a4f3fd3ba2a4e90d3f99394425da456529c3ae7a55524628075a442",
+        "bytes": 266
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/backend-image-fix-frozen-source.json",
+        "sha256": "f279528c16f4396f0dd12cfd1de6fb5172e4a0bab504b9a858054a6062407345",
+        "bytes": 543
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/image-fix-backend-handoff.json",
+        "sha256": "e5f0aa35f7a11ffa13acbe5b32ffc69a0ee3e3529a95c267aa392bb0f3354707",
+        "bytes": 31601
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/output/own-side-media-verification.json",
+        "sha256": "4845370acca87a25eb0c2d4a1a5ea88260d0f6e2bb69a1f1a33191b0edb1cb4c",
+        "bytes": 392
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/outputs/pikachu-live/verification.json",
+        "sha256": "b7dff86cbd98d550b7ecdff755b41acb0f6afb0e28aa5007cfdf4d96b69a2585",
+        "bytes": 10765
+      },
+      {
+        "path": "/Users/pengchydan/Documents/Codex/2026-10-11/let-s-update-the-pokemon-agent/outputs/pikachu-ui-deployment.json",
+        "sha256": "5b64aace744e7252ffd08f5b63f9eb9d8017a9c0afd0fc77886ba8441db0deca",
+        "bytes": 850
+      }
+    ]
+  },
+  "larger_batch_isolation": {
+    "prior_remaining_pool": 320,
+    "exact_priority_ids_in_prior_pool": [
+      "ja:PMCG1:035/102:normal",
+      "ja:PMCG1:035/102:normal_no_rarity",
+      "ja:PMCG2:024/048:normal"
+    ],
+    "priority_groups_to_exclude": [
+      "en:BASE1:058/102",
+      "ja:PMCG1:035/102",
+      "ja:PMCG2:024/048",
+      "ja:PMCG5:036/096"
+    ],
+    "pool_after_priority_group_exclusion": 317,
+    "prior_next_100_plan_already_excludes_priority_groups": true,
+    "prior_pool_held_id_intersection": [],
+    "proposed_japanese_target": 300,
+    "proposed_english_comparison_target": 75,
+    "qualified_this_audit": false,
+    "required_before_apply": [
+      "Exclude all five priority groups and all44 held IDs from larger selection",
+      "Requalify every selected pinned tuple, source variant dimensions and current name review; qualify75 English comparisons separately",
+      "Measure gaps, forbid existing-binding duplication and preserve complete eligible variant groups",
+      "Append a separate explicit hash-bound offline manifest preserving original65 and all78 existing inputs",
+      "Verify locale-only database transform, idempotence, exact unchanged-ID and hold/media/commerce negative behavior",
+      "Claim localized search bindings only; no new card identities, images, artwork reviews, display rights or commerce approval"
+    ],
+    "limits": "317 remaining JA full-name candidates after image-target-group exclusion provide bounded capacity for300, not thousands. Demand and live Buy&Ship supply remain unmeasured;75 EN qualification is outside this audit."
+  },
+  "boundaries": {
+    "network_retrieval": false,
+    "frontend_edited": false,
+    "existing_repository_files_edited": false,
+    "images_imported_or_approved": false,
+    "new_model_or_visual_review": false,
+    "market_prices": false,
+    "deployment": false,
+    "cloud_permissions": false,
+    "pushed": false,
+    "live_ingestion": false,
+    "purchases_or_payments": false,
+    "buy_and_ship_intended_mor": true,
+    "pivota_holds_customer_funds": false
+  }
+}

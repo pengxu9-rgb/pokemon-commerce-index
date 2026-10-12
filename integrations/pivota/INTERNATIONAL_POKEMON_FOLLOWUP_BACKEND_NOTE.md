@@ -1,0 +1,11 @@
+# Backend handoff: local 85-Japanese follow-up
+
+Explicit candidate manifest: `catalog-build-manifest-international-pokemon-followup-v1.json` (73 inputs; previous 72/original 65 preserved). It adds 85 Japanese records across eight partial set scopes and 25 disjoint English comparisons using current reviewed names. Locale/source bindings become 1,407: Japanese 1,282 / English 125. Card records stay 70,006; no new concept or counterpart is created. Runtime/schema/creator frontend are unchanged.
+
+All 110 target-ID discovery gaps close. Structured resolution returns 109 metadata coordinates and one `not_attempted` hold: English Alakazam SV06 082/167 with broad holo also matches its unbound holo_cosmos sibling. Search returning the regular holo record does not make the printing uniquely selected. Preserve resolver status, distinct variants and current per-record evidence; shared art/names/numbers cannot merge IDs or prices.
+
+The existing `localization_evidence` retains exact identity/release snapshots, reviewed names, source namespace/native ID, pin/blob/hash/licence and confidence scope. Region remains ZZ; physical distribution region and historical retrieval time remain unknown. All display/image/physical/price-comparability/automatic-offer/purchase claims stay false. Keep condition, grading company/grade, stock, asking/sold prices and destination landed costs separate. Buy&Ship remains intended MoR; Pivota does not hold customer funds.
+
+This is a local candidate. Docker keeps the original 65-input manifest, with no deployment/live ingestion or transaction activation. Verification: 791 Python cases (789 passed, two existing skips), 72 focused passes, 15 Node passes; all-column history, independent rebuild and idempotence pass. GPT-6.1 Sol high review is archived in the delivery.
+
+Rollback uses the unchanged stage9 snapshot or explicit 72-input thousand manifest and checked stage10 reverse patch. Next source-qualified proposal: 100 Japanese records across ten modern scopes, unapplied; 25 English comparisons remain a future target. Existing reviewed names yield a further 720 qualified Japanese records overall, with 14 evidence holds. Broader scale and any real third language require further qualification and measured demand/authorized supply.

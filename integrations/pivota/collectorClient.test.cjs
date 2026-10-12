@@ -202,6 +202,21 @@ test('nested candidate evidence cannot mint physical or commerce approvals', asy
   }
 });
 
+test('source-scan ranking policy stays metadata-only and rejects unknown policies', async () => {
+  const card = {card_id: 'en:FIX:001/100:normal', language: 'en', set_code: 'FIX', collector_number: '001/100', automatic_offer_join_allowed: false, price_comparable: false,
+    media_availability: {schema: 'pokemon.catalog-media-availability.v1', status: 'current_source_scan_evidence', evidence_basis: 'number_reading', with_source_scans_eligible: true, live_fetch_verified: false, display_allowed: false, physical_printing_verified: false}};
+  const rec = {schema: 'pokemon.collector-recommendation.v1', ranking_policy: 'explicit_axes_then_liked_axes_then_source_scan_tiebreak_then_coordinate_round_robin.v2',
+    preference_evidence: 'user_assertion_only', candidate_pool_complete: true, coverage_basis: 'current_source_declared_catalog_and_facets_only', global_catalog_completeness_established: false,
+    unapplied_preferences: [], budget_fit: 'unknown_no_live_price', grade_availability: 'unknown_no_copy_offers',
+    items: [{card_id: card.card_id, rank: 1, explicit_match_axes: ['character'], liked_example_match_axes: [], reasons: [{field: 'dex_id', value: 35, basis: 'catalog_facet', source_ref: 'synthetic', rights_reference: 'synthetic'}], tradeoffs: ['No live image or market claim']}],
+    coordinate_groups: [{language: 'en', set_code: 'FIX', collector_number: '001/100', shown_card_ids: [card.card_id], physical_versions_merged: false}]};
+  const call = value => client(async (_, options) => json(result(JSON.parse(options.body), {candidate_cards: [card], card_selection_blockers: {[card.card_id]: []}, recommendation: value, discovery: {task: 'collector_recommendations', coverage: {offset: 0}}}))).start({question: 'Recommend Cleffa cards'});
+  assert.equal((await call(rec)).result.recommendation.ranking_policy, rec.ranking_policy);
+  assert.equal((await call({...rec, coverage_basis: 'current_catalog_facets_and_reviewed_name_affiliations_only'})).status, 'accepted');
+  await assert.rejects(call({...rec, ranking_policy: 'invented_image_approval'}), error => error.code === 'invalid_catalog_response');
+  await assert.rejects(call({...rec, coverage_basis: 'invented_review'}), error => error.code === 'invalid_catalog_response');
+});
+
 test('typed name affiliations require exact current candidate and anchor proof shapes', async () => {
   const pin = require('../../pokemon_index/collector-character-affiliations-v1.json').records[0];
   const card = {...pin.identity, automatic_offer_join_allowed: false, price_comparable: false};
@@ -235,6 +250,11 @@ test('typed name affiliations require exact current candidate and anchor proof s
     if (!i) assert.equal((await c.start({question: 'Recommend Mew'})).result.recommendation.items[0].reasons[0].source_asserted_dex_id, false);
     else await assert.rejects(c.start({question: 'Recommend Mew'}), e => e.code === 'invalid_catalog_response');
   }
+  const sourceOnly = {...recommendation, coverage_basis: 'current_source_declared_catalog_and_facets_only'};
+  const sourceOnlyClient = client(async (_, o) => json(result(JSON.parse(o.body), {candidate_cards: [card],
+    card_selection_blockers: {[card.card_id]: []}, recommendation: sourceOnly,
+    discovery: {task: 'collector_recommendations', coverage: {offset: 0}}})));
+  await assert.rejects(sourceOnlyClient.start({question: 'Recommend Mew'}), e => e.code === 'invalid_catalog_response');
   const rec = structuredClone(recommendation);
   rec.items[0].explicit_match_axes = []; rec.items[0].liked_example_match_axes = ['character'];
   rec.items[0].reasons[0].affiliation_role = 'liked_example'; rec.items[0].reasons[0].preference_origin = 'liked_example';

@@ -1,0 +1,11 @@
+# Backend handoff: thousand-level local name discovery
+
+Explicit local candidate manifest: `catalog-build-manifest-international-pokemon-thousand-v1.json` (72 inputs; original 65/prior 70 prefixes preserved). It adds 1,000 existing Japanese variant records across 25 partial set scopes and 25 English comparisons. Locale/source mappings become 1,297: Japanese 1,197 / English 100. Catalogue records remain 70,006; independently verified physical-card total remains unknown.
+
+The batch adds 163 exact Pokémon full-name translation concepts. Every new concept requires a current per-record source-bound locale before v2 structured resolution can use it. Shared names/art/numbers do not create counterpart edges, identical SKUs or shared prices. Preserve all candidate IDs, variant ambiguity and `not_attempted` outcomes. Broad normal finishes can include unbound stamped siblings and correctly abstain. Discovery search can return candidates; resolution status/evidence is required for identity decisions.
+
+Sex symbols and EX/ex form boundaries are now guarded, including native and fullwidth queries. Unreviewed regional/owner/V/VSTAR/VMAX forms inherit no aliases. Existing response/schema contracts remain intact; `localization_evidence` carries the current exact tuple, review, pin/hash/licence and localized release snapshot. Set-filtered searches validate relevant locale records. No creator frontend code changed.
+
+All display/image/purchase/automatic-offer/physical/price-comparability flags remain false. Region stays ZZ; physical region and historical retrieval time remain unknown. Keep raw condition, grading company/grade, stock, asking/sold prices and destination landed costs separate. Buy&Ship remains intended MoR; Pivota does not hold customer funds. Docker still uses the original 65-input manifest; candidate application is local only.
+
+Validation and resolver outcome counts are in the accompanying coverage/test reports and independent GPT-6.1 Sol high review. Roll back to the untouched stage8 snapshot or explicit 70-input hundred manifest, and reverse only the checked stage9 incremental patch. Next supported Japanese batch: 85 further qualified records, currently unapplied. Larger expansion needs additional exact-name/release evidence and measured demand/authorized supply.

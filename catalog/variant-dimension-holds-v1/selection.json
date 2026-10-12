@@ -1,0 +1,234 @@
+{
+  "schema": "pokemon.variant-dimension-hold-selection.v1",
+  "input_database_sha256": "ebb883552bce5aaf7d2553f9f60d9e927c39a9ef8e849cee0b955063c3622b87",
+  "parent_audit_sha256": "5639c7464d3fffc245416b4a8db03c1657c34cd79825082ad81ba2a6bdbfa213",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "inspected_at": "2026-10-12T06:50:55Z",
+  "held_ids": 44,
+  "eligibility_withdrawal_target": 9,
+  "ids_renamed": 0,
+  "canonical_replacements": 0,
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data/Base/Base Set/44.ts": {
+      "git_blob": "bef8a03167c5191ac3332b429d609f6f97171f9b",
+      "sha256": "78a20989f935575e18cca889c247645126baca85c032ebb5b79391a718b8ed2c",
+      "bytes": 2312
+    },
+    "data/Base/Base Set/46.ts": {
+      "git_blob": "b94e7761ce45616d18d8200f235c041167f891d5",
+      "sha256": "f2d19a3f5f7849813e6870d6496fa312552d618068d3a54fddd5fc80dd7174df",
+      "bytes": 2267
+    },
+    "data/Base/Base Set/58.ts": {
+      "git_blob": "a83e12f31f0f0f91480262be20e6170371623d00",
+      "sha256": "3218933a3284247b6b87eda86c5baf8b8f33928312fbc248a4237b413895f025",
+      "bytes": 2597
+    },
+    "data/Base/Base Set/63.ts": {
+      "git_blob": "29316485fc16963e4bcfdbfd37a6066842acf827",
+      "sha256": "1fe93f44f2539a7865d4d532edbd55be79fbe03029663ca0432354a16ddc8b3f",
+      "bytes": 2946
+    },
+    "data/Diamond & Pearl/DP Black Star Promos/DP24.ts": {
+      "git_blob": "cd9257341454a6e8aad60d32c43c84dfd5475875",
+      "sha256": "a351d5b45f3672866b95dd7c6f7e8146cf0f1ef0ee41480ccb75ad36fc8e12d4",
+      "bytes": 2303
+    },
+    "data/Diamond & Pearl/DP Black Star Promos/DP26.ts": {
+      "git_blob": "9dc5f45293b998f760ab9e29fe85cff77d08e621",
+      "sha256": "8b6314ffbf0b992ceef12f62eecb0f43ab13c9d39653cd1d7f1d0114200309e3",
+      "bytes": 2004
+    },
+    "data/Diamond & Pearl/DP Black Star Promos/DP27.ts": {
+      "git_blob": "592041dfdd90132227f015e67a8d3f370c4f568f",
+      "sha256": "af1b521ec40d9568f5d8db024f0cb6011da4856beac58fc77c6bf8cffac28316",
+      "bytes": 2554
+    },
+    "data/Diamond & Pearl/DP Black Star Promos/DP40.ts": {
+      "git_blob": "02b6d8d5849e84053a7633d1cbc8ef7e63078378",
+      "sha256": "6571e9aef9e4fc295605194a336cc684f69534d5b3c6ec4cd8e90ec6f7bbc855",
+      "bytes": 1882
+    },
+    "data/Diamond & Pearl/Diamond & Pearl/103.ts": {
+      "git_blob": "849bdd5d5c9f97bc6a0e0a7f00db2e63777f483b",
+      "sha256": "63e5a8dc2f341f35a802c718040595ab69b241b77e37e7bd35879e88c48ff633",
+      "bytes": 1513
+    },
+    "data/Diamond & Pearl/Diamond & Pearl/76.ts": {
+      "git_blob": "82cbdac29f058dbdb89bc783fe8d7885dd4b2d2c",
+      "sha256": "dd04f65c9080a9e1f1e779e50362bbc469512e3c03a3b2dd770346bd19e1a749",
+      "bytes": 1715
+    },
+    "data/Diamond & Pearl/Diamond & Pearl/93.ts": {
+      "git_blob": "71e7e5abd2cb2d2aad91f9fbad2bd1afa1d30802",
+      "sha256": "926da76cf0200af39a989b4424f7eebc76a5b56fbc18c42472d584becc416350",
+      "bytes": 1869
+    },
+    "data/E-Card/Aquapolis/H21.ts": {
+      "git_blob": "b15be13a4669c9593361d23e34a17b788ba766de",
+      "sha256": "ee3ba703e15cb962cc6e702340bc043f163696bf0b32a15b298c53bf49e51a5d",
+      "bytes": 2419
+    },
+    "data/E-Card/Skyridge/146.ts": {
+      "git_blob": "f5c77d763a47800779843d70ab8b5460b72b9da1",
+      "sha256": "b5270218d43196b1d10ce2632705cf15a02d8efb63d6ebf80abd3da9090dd0ce",
+      "bytes": 1955
+    },
+    "data/E-Card/Skyridge/147.ts": {
+      "git_blob": "729c8842bbfc64e181010b3b32a1f876efbdd0c2",
+      "sha256": "819994990f8cf2d0f47949d85d468c53b9afa1ab8261de9027976e366a47334e",
+      "bytes": 1987
+    },
+    "data/E-Card/Skyridge/149.ts": {
+      "git_blob": "67c91ce18341cc04f0906da5df975771257cd1fd",
+      "sha256": "7ecc11a12d1ce2b973a3969574e596705bd08175838029071d01457d864bf348",
+      "bytes": 1843
+    },
+    "data/E-Card/Skyridge/150.ts": {
+      "git_blob": "ba2199a6584ff6088f60b728b396a4d4f7b7dece",
+      "sha256": "89b90024c21131cbb74964d59c207990fb50dfb9069e095a81fea2a7e8cbd17a",
+      "bytes": 1954
+    },
+    "data/EX/Ruby & Sapphire/59.ts": {
+      "git_blob": "c6f0644fc1930020e00659783e655416bbf8bbe1",
+      "sha256": "6a574be9049c7de79c7bbb2d3f272f64521ca4a8eb670c4b00ed589a8d6a8b82",
+      "bytes": 1299
+    },
+    "data/EX/Ruby & Sapphire/74.ts": {
+      "git_blob": "628a0c5c01e01e059e05c0c3de17f258461891e1",
+      "sha256": "3f3f9ba3856f86de8b05c2f6b7b909d145a59cb0dedb4ebe05e6bb980e281b46",
+      "bytes": 1258
+    },
+    "data/EX/Ruby & Sapphire/76.ts": {
+      "git_blob": "8e91ad87d2ac021f980e5f30e96f657bf75f9ca4",
+      "sha256": "7f39759ca91b70333394d5391591763386aae5c0ffcc968e078847476e80899d",
+      "bytes": 1209
+    },
+    "data/Gym/Gym Challenge/14.ts": {
+      "git_blob": "6fd9d752b62d707344af16fa889d730571766425",
+      "sha256": "42fdff698179a7e282615dd0b455e7a4d0591326db57ab2f71422c3324ae4235",
+      "bytes": 1432
+    },
+    "data/Gym/Gym Heroes/11.ts": {
+      "git_blob": "e804c920b1ad92992f7b92498be56dbe06af08ef",
+      "sha256": "2fd393b035de4abe8aad7a38a88846e61bb1ac14762d5ff775c4d1800c385420",
+      "bytes": 1334
+    },
+    "data/Mega Evolution/MEP Black Star Promos/011.ts": {
+      "git_blob": "9448911159e228a24f83e0863bce8ea5adc00686",
+      "sha256": "9c3e7b42e7ca6f3785d44dc7ae0806d0e54870e6207cde759966668312edef85",
+      "bytes": 2224
+    },
+    "data/Mega Evolution/MEP Black Star Promos/013.ts": {
+      "git_blob": "bdf8fccbdcb8ac57179c5108ed2a520e2616c2b3",
+      "sha256": "8510f520c9db6a2b3248e80f2beb17b2c1e6cf66df149673d0e990f20f482e2b",
+      "bytes": 3031
+    },
+    "data/Mega Evolution/MEP Black Star Promos/025.ts": {
+      "git_blob": "91bc45afd97cbfa2ad7b7180b8c66844bc569c12",
+      "sha256": "872d44e0079d3532acd3eeb4495afa30bb2865de108f8d04b9eba87708f67548",
+      "bytes": 3177
+    },
+    "data/Mega Evolution/MEP Black Star Promos/034.ts": {
+      "git_blob": "39dbde6e0c4320090577c92375c894bcba6a12d4",
+      "sha256": "8c80a1c93c4b57b3c64d4c115a6a27e92a17918e5c45f01b3557a2f4547f8654",
+      "bytes": 1822
+    },
+    "data/Mega Evolution/MEP Black Star Promos/035.ts": {
+      "git_blob": "eafd6d9459e6a835fe1c72af3ba2ca1af58eb7ee",
+      "sha256": "ccb205ebda4654fbb8ca602dce1c905ac3e185ee88b05ccc67c81777bcbc687b",
+      "bytes": 1593
+    },
+    "data/Mega Evolution/MEP Black Star Promos/036.ts": {
+      "git_blob": "c2c424799584b6f4f018393d28c435f74e5bafa1",
+      "sha256": "3af098091d6217b71ea1f0f57c526fe7d3a851d2e16cfe9fadc2dd6f62fd7092",
+      "bytes": 2037
+    },
+    "data/Mega Evolution/MEP Black Star Promos/071.ts": {
+      "git_blob": "9d1769565b37413daaf58366a08fe7e6f71ac226",
+      "sha256": "e7f8679081e3796934503e3e2ee96b0d7cbb1b3c4be908daa27701e8c605167d",
+      "bytes": 3920
+    },
+    "data/Mega Evolution/MEP Black Star Promos/081.ts": {
+      "git_blob": "16e5d8c803d8e07dcb01ab213171aecb0c4e76cf",
+      "sha256": "386951f864099445e9db77aad0affedf8369d191b2d4f2772c66933d92fc7a14",
+      "bytes": 4162
+    },
+    "data/Mega Evolution/MEP Black Star Promos/Museum.ts": {
+      "git_blob": "cee85c052936124a90969b8d336e7984e31223e6",
+      "sha256": "02dfb68a06db8c2f08a4f09e3193348ef837f072225dbb0906f6f6e2da766b05",
+      "bytes": 975
+    },
+    "data/Neo/Neo Genesis/54.ts": {
+      "git_blob": "5088c738c9baf9a8b7221d7c2d6910d9e74c0fcb",
+      "sha256": "7cbffebe2140f92e3e2228903d572946ffdb6a78bd67148f0318d79ad8e98f57",
+      "bytes": 2235
+    },
+    "data/Neo/Neo Genesis/57.ts": {
+      "git_blob": "75006a4d25da9ab49fc4b5a5095a3e52841064da",
+      "sha256": "95b273fdf58525be6c2618d55cb50b5c5cc8ce0e661868eb88a4655fffd2e8f3",
+      "bytes": 2240
+    },
+    "data/Neo/Neo Genesis/81.ts": {
+      "git_blob": "2d9209edb5681a09ff7a552394dd2575549dd13d",
+      "sha256": "ee22818de9ce19ca73d1f80a679303fe73068c128c139bb24b5c62c2ed861f60",
+      "bytes": 2375
+    },
+    "data/Scarlet & Violet/Paldea Evolved/062.ts": {
+      "git_blob": "6aa8d947a67a4587ed7b1b24bf6327d4a5aa7216",
+      "sha256": "46b39e453eac1ab043400b6e13a41604e47b8201142074b53ddbda2ac370fc8a",
+      "bytes": 2480
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/196.ts": {
+      "git_blob": "b1ea3c87b7d0b0db04d13a4a0ed43db7a6045b06",
+      "sha256": "d2727d3aaa635cd8a62e2d3452d2cea554dfb816cd6f31b5950fce3ca06a9d3a",
+      "bytes": 3600
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/500.ts": {
+      "git_blob": "000eece0f3366446333f76ad0c7773de0be569a3",
+      "sha256": "2b5e6abc13faea6713bb7941d5d58d352fc895e7bb4dbd20dbe238ace00d7806",
+      "bytes": 825
+    },
+    "data/Sword & Shield/Rebel Clash/70.ts": {
+      "git_blob": "b7ecb9a96d5e72c61136824123055ea389458a31",
+      "sha256": "b7338dea302d7ef47cd8f5f76d3fe57bcdc75422100c567e8143754b3b81d2dc",
+      "bytes": 2369
+    },
+    "data/Sword & Shield/SWSH Black Star Promos/SWSH001.ts": {
+      "git_blob": "0683da2f85de65e08a2600020b06b19162bf1d68",
+      "sha256": "f00e9582b1cd39e0c96bca576e7719c8323ced298614e8fa3ddda4425640bc55",
+      "bytes": 1170
+    },
+    "data/Sword & Shield/SWSH Black Star Promos/SWSH002.ts": {
+      "git_blob": "feb8d4bb4bb8244dfbd066ecdb907c1239c91b63",
+      "sha256": "d853f9e0a4a4868c7738839950293c6fc97f1e4159c5c02153a4f685e5648881",
+      "bytes": 1750
+    },
+    "data/Sword & Shield/SWSH Black Star Promos/SWSH003.ts": {
+      "git_blob": "d4688595460200778fdbfb47ce27ceb64fae0fe9",
+      "sha256": "cd2463086b63719a123e29a241bd7edcaf9623efd8415d46b880d0beb1c7e7eb",
+      "bytes": 1732
+    },
+    "data/Sword & Shield/SWSH Black Star Promos/SWSH225.ts": {
+      "git_blob": "8828ded60fd0a5b5378541e02be3b52f14aa1ee3",
+      "sha256": "2ba382f5ee48a750bf8dd4592def44c0840e15036dc85e1c2f16ed4580586875",
+      "bytes": 3426
+    },
+    "data/Sword & Shield/Vivid Voltage/43.ts": {
+      "git_blob": "a8dcc1cfe7aeb3608eadd82b818646c432b80ae0",
+      "sha256": "c422b98b0e59cb84457cf80c4142d229b04ea49ea45f0470472e03283e77fb56",
+      "bytes": 2372
+    }
+  },
+  "display_allowed": false,
+  "image_display_allowed": false,
+  "purchase_allowed": false,
+  "automatic_offer_join_allowed": false,
+  "physical_printing_verified": false,
+  "price_comparable": false
+}

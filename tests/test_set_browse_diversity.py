@@ -89,12 +89,15 @@ class SetBrowseDiversityTests(unittest.TestCase):
 
     def test_explicit_coordinate_and_source_variant_inspection_remain_unchanged(self):
         for question, expected_task in [('Japanese FIX 001/100', 'exact_coordinates'),
-                                        ('ja:FIX:001/100:normal', 'printing_variants')]:
+                                        ('ja:FIX:001/100:normal variants', 'printing_variants')]:
             result = collector_discovery.execute(self.db, question)
             self.assertEqual(result['task'], expected_task)
             self.assertEqual(self.ids(result['cards']),
                              [f'ja:FIX:001/100:{variant}' for variant in VARIANTS])
             self.assertNotIn('round-robin', result['ordering'])
+        exact = collector_discovery.execute(self.db, 'ja:FIX:001/100:normal')
+        self.assertEqual(self.ids(exact['cards']), ['ja:FIX:001/100:normal'])
+        self.assertEqual(exact['requested_exact_card_id'], 'ja:FIX:001/100:normal')
         narrowed = self.discovery(scope=dict(collector_number='001/100',
                                              variant='reverse_masterball'))
         self.assertEqual(self.ids(narrowed['cards']), ['ja:FIX:001/100:reverse_masterball'])

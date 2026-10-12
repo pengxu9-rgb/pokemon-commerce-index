@@ -1,0 +1,18 @@
+# Stage10 verification
+
+- Full Python suite: 791 run, 789 passed, two existing skips; 47.025 seconds.
+- Focused compiler/audit/resolver suites: 72 passed; 8.468 seconds. This includes 15 new stage10 cases.
+- Node backend caller tests: 15 passed; 277.841 milliseconds.
+- All 110 exact target-ID gaps close through 105 distinct translated queries; native/fullwidth/decomposed Unicode and wrong-language checks pass. Ten unfiltered queries pass.
+- Structured outcomes: 109 unique metadata coordinates; one correctly retained Alakazam holo/Cosmos sibling hold. No new physically verified copy or commerce approval.
+- All 51 historical tables/columns are preserved; only 110 locale and 110 provider mappings append. Exact installed SQL evidence IDs/card IDs/canonical JSON and source tuples match. No new review events/concepts, card identities, references or relationships.
+- Re-import: inserted 0 / unchanged 110 / quarantined 0; every table unchanged.
+- Independent 73-input rebuild matches all content outside four named existing generated timestamp columns: identity-exception applied_at 19, number-rule applied_at 2, rarity-correction applied_at 532, relationship asserted_at 657. Incremental copy preserves these too. Three snapshots pass SQLite integrity checks.
+- Four compiler artifacts independently reproduce byte-for-byte. Current source/tuple/name/Dex qualification covers 496 inventory entries including LICENSE. Frozen Japanese plan is exact; English comparisons use 25 distinct concepts from the same selected Japanese slice. The original 65/prior 72 ordered inputs and expected inventory remain unchanged. Docker remains on the original manifest.
+- The complete audit was rerun after report/prose files were present and reproduced byte-identically with the four explicit compiler-input signatures.
+
+New cases cover frozen plan/hash/identity/count/set scope, stale/withdrawn or forged reviews, omitted eligible foil/stamp siblings, distinct/disjoint English comparison names, underfill, immutable snapshots, source/plan drift, exclusive artifacts, historical preservation/idempotence, explicit record-bound resolution gains, stale/wrong candidate bindings, unchanged legacy audit defaults, auxiliary evidence drift before snapshot publication, rehashed wrong Japanese name/Dex, and out-of-slice or stale English aliases/Dex. Existing suites cover sex/EX/ex, localized languages/Unicode, source collisions, shared artwork, promos, repeated numbers, missing fields and synthetic test-only French.
+
+Initial synthetic tests failed because the fixture's release title contained its English target word, making an intended missing-query case already retrievable. The fixture title was corrected; no real data changed. Independent review found that audit bounds alone did not prove locale Dex/name equality to the frozen plan. Exact Japanese equality and English alias/Dex inclusion were added and tested. Explicit four-input hashing excludes audit/prose outputs, avoiding recursive report signatures. The first standalone next-plan invocation lacked the module search path; it was corrected before source qualification. Failed logs are retained. Only final completed runs are claimed; existing ResourceWarnings are non-fatal.
+
+The next read-only proposal qualifies 720 of 734 remaining Japanese candidates, retains 14 missing-singleton-Dex holds, and selects 100 complete-group modern-scope records without importing them. Demand, authorized live supply, real-user relevance and physical/transaction accuracy remain unmeasured. Final independent GPT-6.1 Sol high review and patch-application/reversal checks are archived separately.

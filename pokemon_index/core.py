@@ -11,6 +11,7 @@ from statistics import median
 from typing import Any, Iterable
 
 from . import number_conflicts, number_graph
+from .languages import normalize_language, is_query_language_tag
 from .card_rarity import OFFICIAL_ICON_RARITIES
 
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
@@ -256,7 +257,7 @@ def register_source(db: sqlite3.Connection, row: dict[str, Any]) -> None:
 
 
 def card_id(language: str, set_code: str, number: str, variant: str) -> str:
-    return ":".join((language.lower(), set_code.upper(), normalize_collector_number(number), variant.lower()))
+    return ":".join((normalize_language(language), set_code.upper(), normalize_collector_number(number), variant.lower()))
 
 
 def normalize_collector_number(number: str) -> str:
@@ -277,11 +278,14 @@ def import_cards(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
     for row in rows:
         _required(row, "language", "set_code", "collector_number", "name", "provenance",
                   "rights_reference")
+        normalize_language(row["language"])
         variant = str(row.get("variant") or "standard").lower()
         if "match_eligible" in row and type(row["match_eligible"]) is not bool:
             raise ValueError("match_eligible must be an explicit boolean")
         number = normalize_collector_number(row["collector_number"])
         cid = card_id(row["language"], row["set_code"], number, variant)
+        from . import variant_dimension_hold
+        variant_dimension_hold.check_reimport(db,cid,row)
         exception = db.execute("SELECT source_provenance FROM card_identity_exception WHERE card_id=?",
                                (cid,)).fetchone()
         if exception and exception["source_provenance"] != row["provenance"]:
@@ -460,12 +464,10 @@ def import_sets(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int:
         official = int(row.get("official_card_count", 0))
         if official < 0:
             raise ValueError("official card count cannot be negative")
-        language = str(row.get("language") or "ja").lower()
-        if language not in {"ja", "en"}:
-            raise ValueError("unsupported set language")
+        language = normalize_language(row.get("language") or "ja")
         set_code = str(row["set_code"]).upper()
-        name = row.get("name") if language == "en" else row.get("name_ja")
-        release_date = row.get("release_date") if language == "en" else row.get("release_date_ja")
+        name = row.get("name", row.get("name_ja") if language == "ja" else None)
+        release_date = row.get("release_date", row.get("release_date_ja") if language == "ja" else None)
         overlay = db.execute("SELECT evidence_json FROM catalog_release_evidence WHERE language=? AND set_code=?",
                              (language, set_code)).fetchone()
         if overlay:
@@ -730,7 +732,7 @@ def import_concept_review_bundle(db: sqlite3.Connection, bundle: dict[str, Any])
 
 def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     """Inventory of the internal identity seed, including its display gate."""
-    from . import number_evidence,source_image_facts
+    from . import number_evidence,source_image_facts,coverage_qualification,product_text
     totals = db.execute(
         """SELECT COUNT(*) AS printings, COUNT(DISTINCT language || ':' || set_code) AS sets,
         SUM(CASE WHEN display_allowed=1 THEN 1 ELSE 0 END) AS display_approved,
@@ -756,16 +758,20 @@ def catalog_status(db: sqlite3.Connection) -> dict[str, Any]:
     printing_type_coverage = {row["official_printing_type"]: row["cards"] for row in db.execute(
         """SELECT official_printing_type, COUNT(*) AS cards FROM card_identity_exception
            WHERE official_printing_type IS NOT NULL GROUP BY official_printing_type""")}
-    from . import source_mechanic
+    from . import source_mechanic,variant_dimension_hold,catalog_media
     return {"printings": totals["printings"], "sets": totals["sets"],
             "reference_records": references,
             "facet_coverage": facet_coverage,
             "official_printing_type_coverage": printing_type_coverage,
             "display_approved": totals["display_approved"] or 0,
             "match_eligible": totals["match_eligible"] or 0, "set_coverage": sets,
+            "coverage_qualification": coverage_qualification.status(db),
+            "product_text": product_text.status(db),
             "number_reading_evidence": number_evidence.status(db),
             "source_image_facts": source_image_facts.status(db),
             "source_mechanic_bindings": source_mechanic.status(db),
+            "variant_dimension_holds": variant_dimension_hold.status(db),
+            "source_scan_coverage": catalog_media.status(db),
             "scope": "internal catalog inventory; not a public display authorization"}
 
 
@@ -777,12 +783,15 @@ def _catalog_card_dict(row: sqlite3.Row) -> dict[str, Any]:
 
 def catalog_search_internal(db: sqlite3.Connection, query: str, *,
                             set_code: str | None = None, variant: str | None = None,
+                            language: str | None = None,
                             printing_type: str | None = None,
                             dex_id: int | None = None, illustrator: str | None = None,
-                            limit: int = 20, offset: int = 0) -> dict[str, Any]:
+                            limit: int = 20, offset: int = 0,
+                            with_source_scans: bool = False) -> dict[str, Any]:
     """Search internal card metadata without weakening public display controls."""
     if not 1 <= limit <= 100 or offset < 0:
         raise ValueError("limit must be 1–100 and offset cannot be negative")
+    if type(with_source_scans) is not bool:raise ValueError('source scan filter must be boolean')
     normalized = unicodedata.normalize("NFKC", query).strip()
     if dex_id is not None and (type(dex_id) is not int or not 1 <= dex_id <= 9999):
         raise ValueError("dex_id must be a positive integer below 10000")
@@ -791,6 +800,17 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
     if not normalized and not (set_code or printing_type or dex_id or illustrator):
         raise ValueError("a query, set code, printing type, dex ID or illustrator is required")
     terms = [normalize_collector_number(term) for term in normalized.casefold().split()]
+    known_languages = {r[0] for r in db.execute('SELECT DISTINCT language FROM card')} | {'en', 'ja'}
+    known_set_tokens = {r[0].casefold() for r in db.execute('SELECT DISTINCT set_code FROM card')}
+    # Preserve legacy set-code retrieval when a code also spells a language.
+    # Explicit language= always provides an unambiguous language constraint.
+    requested_languages = {term for term in terms if term not in known_set_tokens
+                           and (term in known_languages or is_query_language_tag(term))}
+    ambiguous_set_tokens = {term for term in terms if term in known_set_tokens
+                            and (term in known_languages or is_query_language_tag(term))}
+    terms = [term for term in terms if term not in requested_languages]
+    if language is not None:
+        requested_languages.add(normalize_language(language))
     candidates = db.execute(
         """SELECT c.*, s.name AS set_name, e.official_printing_type,
         CASE WHEN c.language='ja' THEN s.name END AS set_name_ja FROM card c
@@ -810,24 +830,45 @@ def catalog_search_internal(db: sqlite3.Connection, query: str, *,
          dex_id, str(dex_id) if dex_id is not None else None,
          illustrator, illustrator),
     )
+    from . import catalog_locale, product_text
+    aliases = catalog_locale.search_aliases(db, set_code=set_code)
+    for cid, names in product_text.search_aliases(db).items():
+        aliases.setdefault(cid, []).extend(names)
     def matches(row: sqlite3.Row) -> bool:
+        if ambiguous_set_tokens and ambiguous_set_tokens != {row['set_code'].casefold()}:
+            return False
+        if requested_languages and requested_languages != {row['language']}:
+            return False
         text = unicodedata.normalize(
             "NFKC", f"{row['name']} {row['set_name'] or ''} {row['set_code']} {row['collector_number']} "
             f"{row['language']} {row['variant']} {row['official_printing_type'] or ''} "
+            f"{' '.join(aliases.get(row['card_id'], []))} "
             f"{'プリズムスター Prism Star' if row['official_printing_type'] == 'prism_star' else ''}"
         ).casefold()
         return all(term in text for term in terms)
     found = [_catalog_card_dict(row) for row in candidates if matches(row)]
+    before_filter=len(found)
+    if with_source_scans:
+        from . import catalog_media
+        scanned=catalog_media.current_ids(db)
+        found=[card for card in found if card['card_id'] in scanned]
     return {"query": query, "set_code": set_code.upper() if set_code else None,
             "variant": variant.lower() if variant else None,
             "printing_type": printing_type, "dex_id": dex_id,
             "illustrator": illustrator, "total": len(found),
+            "with_source_scans":with_source_scans,"total_before_source_scan_filter":before_filter,
             "offset": offset, "cards": [_with_metadata(db,c) for c in found[offset:offset + limit]],
             "scope": "internal metadata only; display_allowed controls public APIs"}
 
 
 def _with_metadata(db, card):
-    from . import card_metadata,coordinate_family,printing_evidence,source_corrections
+    from . import card_metadata,coordinate_family,printing_evidence,source_corrections,catalog_locale,coverage_qualification,product_text
+    captions = product_text.context(db, card['card_id'])
+    if captions: card['publisher_product_text'] = captions
+    qualification = coverage_qualification.context(db, card['card_id'])
+    if qualification: card['coverage_qualification'] = qualification
+    localized = catalog_locale.context(db, card["card_id"])
+    if localized: card["localization_evidence"] = localized
     corrected=source_corrections.context(db,card['card_id'])
     if corrected:card['source_corrections']=corrected
     printing=printing_evidence.context(db,card['card_id'])
@@ -842,6 +883,10 @@ def _with_metadata(db, card):
         if evidence['status']=='official_coordinate_metadata_supported' and evidence['official']['rarity']:
             card['source_rarity'] = card['rarity']
             card['rarity'] = evidence['official']['rarity']
+    from . import catalog_media,variant_dimension_hold
+    hold=variant_dimension_hold.context(db,card['card_id'])
+    if hold:card['variant_dimension_hold']=hold
+    card['media_availability']=catalog_media.availability(db,card['card_id'])
     return card
 
 
@@ -897,6 +942,8 @@ def catalog_card_internal(db: sqlite3.Connection, cid: str) -> dict[str, Any]:
 
 
 def _unit(db: sqlite3.Connection, cid: str, company: str, grade: str, condition: str) -> str:
+    from . import variant_dimension_hold
+    if variant_dimension_hold.held(db,cid):raise ValueError('card has an unresolved variant-dimension hold')
     unit_id = "|".join((cid, company, grade, condition))
     db.execute("INSERT OR IGNORE INTO priceable_unit VALUES (?, ?, ?, ?, ?)",
                (unit_id, cid, company, grade, condition))
@@ -1040,6 +1087,8 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], 
         unit_id, method = resolve(db, row)
         existing = db.execute("SELECT unit_id, resolution_method FROM listing WHERE source=? AND native_id=?",
                               (row["source"], row["native_id"])).fetchone()
+        if existing and existing['unit_id']:
+            _reject_held_unit(db,existing['unit_id'])
         if existing and existing["resolution_method"] == "human":
             unit_id, method = existing["unit_id"], "human"
         if existing and existing["unit_id"] and unit_id and existing["unit_id"] != unit_id:
@@ -1105,6 +1154,7 @@ def override_resolution(db: sqlite3.Connection, source: str, native_id: str, uni
         raise ValueError("unknown listing")
     if not db.execute("SELECT 1 FROM priceable_unit WHERE unit_id=?", (unit_id,)).fetchone():
         raise ValueError("unknown priceable unit")
+    _reject_held_unit(db,unit_id)
     db.execute("UPDATE listing SET unit_id=?, resolution_method='human' WHERE source=? AND native_id=?",
                (unit_id, source, native_id))
     db.execute("""INSERT INTO resolution_record
@@ -1120,6 +1170,7 @@ def import_quotes(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]) -> int
         for row in rows:
             _required(row, "source", "native_id", "destination", "currency", "components", "quoted_at", "expires_at", "evidence_ref")
             _policy(db, row["source"])
+            _reject_held_listing(db,row['source'],row['native_id'])
             quoted_at = parse_time(row["quoted_at"]).isoformat()
             expires_at = parse_time(row["expires_at"]).isoformat()
             if expires_at <= quoted_at:
@@ -1153,6 +1204,7 @@ def import_verified_sales(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]
         _required(row, "source", "native_id", "settled_at", "paid_minor", "currency", "evidence_ref")
         _policy(db, row["source"])
         settled_at = parse_time(row["settled_at"]).isoformat()
+        _reject_held_listing(db,row['source'],row['native_id'])
         if type(row["paid_minor"]) is not int or not 0 <= row["paid_minor"] < 2**63:
             raise ValueError("paid amount must be nonnegative integer minor currency units")
         db.execute("INSERT OR IGNORE INTO verified_sale VALUES (?, ?, ?, ?, ?, ?)",
@@ -1225,7 +1277,21 @@ def _displayable(db: sqlite3.Connection, source: str) -> bool:
         return False
 
 
+def _reject_held_unit(db,unit_id):
+    from . import variant_dimension_hold
+    unit=db.execute('SELECT card_id FROM priceable_unit WHERE unit_id=?',(unit_id,)).fetchone()
+    if unit and variant_dimension_hold.held(db,unit['card_id']):raise ValueError('card has an unresolved variant-dimension hold')
+
+
+def _reject_held_listing(db,source,native_id):
+    listing=db.execute('SELECT unit_id FROM listing WHERE source=? AND native_id=?',(source,native_id)).fetchone()
+    if listing and listing['unit_id']:_reject_held_unit(db,listing['unit_id'])
+
+
 def _require_card_display(db: sqlite3.Connection, cid: str) -> None:
+    from . import variant_dimension_hold
+    if variant_dimension_hold.held(db,cid):
+        raise ValueError('card has an unresolved variant-dimension hold')
     card = db.execute("SELECT display_allowed FROM card WHERE card_id=?", (cid,)).fetchone()
     if not card:
         raise ValueError("unknown card")

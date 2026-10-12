@@ -13,7 +13,8 @@ from . import core, question_routing_v3
 
 
 def _key(value: str | None) -> str:
-    return re.sub(r"[\W_]+", "", unicodedata.normalize("NFKC", value or "").casefold())
+    normalized = unicodedata.normalize("NFKC", value or "").replace('♀', 'female').replace('♂', 'male')
+    return re.sub(r"[\W_]+", "", normalized.casefold())
 
 
 def _finish_matches(finish: str, variant: str) -> bool:

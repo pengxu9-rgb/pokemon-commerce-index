@@ -159,14 +159,23 @@ class CatalogReadModel:
         # Affinity labels alone do not capture collations, intermediate views or
         # compound-view comparison rules. Only the package's exact schema can
         # use the audited lookup optimization; other catalogs retain native SQL.
-        from . import core
+        from . import core, variant_dimension_hold
         query='SELECT type,name,tbl_name,sql FROM main.sqlite_master ORDER BY type,name,tbl_name'
         with closing(core.connect(':memory:')) as reference:
             core.init_db(reference)
             expected_schema=tuple(tuple(row) for row in reference.execute(query))
             expected_encoding=reference.execute('PRAGMA main.encoding').fetchone()[0]
-        if (tuple(tuple(row) for row in db.execute(query))!=expected_schema or
+            variant_dimension_hold.install_guards(reference)
+            held_schema=tuple(tuple(row) for row in reference.execute(query))
+        actual_schema=tuple(tuple(row) for row in db.execute(query))
+        if (actual_schema not in (expected_schema,held_schema) or
                 db.execute('PRAGMA main.encoding').fetchone()[0]!=expected_encoding):
+            raise CatalogReadModelUnsupported()
+        # The base schema remains supported before hold ingestion. Once hold
+        # rows exist, only the exact complete index/trigger group is accepted.
+        # Other schema objects, altered guards and partial groups fail above.
+        if (actual_schema==expected_schema and db.execute(
+                "SELECT 1 FROM main.catalog_identity_quarantine WHERE quarantine_id GLOB 'variant-dimension-hold:*' LIMIT 1").fetchone()):
             raise CatalogReadModelUnsupported()
         checkpoint()
         db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")

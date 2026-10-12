@@ -89,6 +89,22 @@ CREATE TABLE IF NOT EXISTS catalog_release_evidence (
   evidence_json TEXT NOT NULL,
   PRIMARY KEY(language,set_code)
 );
+-- Evidence-work candidates remain held and never authorize release/identity
+-- merges. History is retained even when the exact source snapshot becomes stale.
+CREATE TABLE IF NOT EXISTS catalog_coverage_candidate (
+  candidate_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  record_json TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS catalog_coverage_candidate_card ON catalog_coverage_candidate(card_id);
+-- Publisher captions support internal retrieval only on their exact existing
+-- coordinate-family IDs. Whole-release, physical variant and rights stay held.
+CREATE TABLE IF NOT EXISTS catalog_product_text (
+  evidence_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  record_json TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS catalog_product_text_card ON catalog_product_text(card_id);
 CREATE TABLE IF NOT EXISTS catalog_vocabulary (
   language TEXT NOT NULL,
   set_code TEXT NOT NULL,
@@ -559,3 +575,20 @@ CREATE INDEX IF NOT EXISTS idx_raw_item_time ON raw_item_blob(source, observed_a
 CREATE INDEX IF NOT EXISTS idx_resolution_item ON resolution_record(source, native_id, resolved_at);
 CREATE INDEX IF NOT EXISTS idx_quote_expiry ON landed_quote(expires_at);
 CREATE INDEX IF NOT EXISTS idx_offer_visual_snapshot ON offer_visual_review(source, native_id, observed_at, model_family, reviewed_at);
+
+-- Append-only localization evidence. A legacy tuple in two releases is held,
+-- never merged. Public display, physical-copy approval and commerce stay separate.
+CREATE TABLE IF NOT EXISTS catalog_locale_evidence (
+  evidence_id TEXT PRIMARY KEY,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  record_json TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS catalog_source_mapping (
+  provider TEXT NOT NULL, language TEXT NOT NULL, region TEXT NOT NULL,
+  release_id TEXT NOT NULL, native_id TEXT NOT NULL, source_variant TEXT NOT NULL,
+  card_id TEXT NOT NULL REFERENCES card(card_id),
+  PRIMARY KEY(provider,language,region,release_id,native_id,source_variant)
+);
+CREATE TABLE IF NOT EXISTS catalog_identity_quarantine (
+  quarantine_id TEXT PRIMARY KEY, reason TEXT NOT NULL, record_json TEXT NOT NULL
+);

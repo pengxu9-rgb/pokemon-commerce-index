@@ -1,0 +1,1392 @@
+{
+  "schema": "pokemon.international-next-batch-plan.v1",
+  "status": "proposed_offline_retrieval_only_not_imported",
+  "input_database_sha256": "72a1611592d47949cab972479aee007e118433fb926fb34039d0863bb8791cf3",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "inspected_at": "2026-10-12T00:23:07Z",
+  "japanese": 75,
+  "english": 25,
+  "total": 100,
+  "by_set": {
+    "ja:SM10": 5,
+    "ja:SM10A": 4,
+    "ja:SM11A": 4,
+    "ja:SM11B": 4,
+    "ja:SM12": 5,
+    "ja:SM3P": 4,
+    "ja:SM4P": 4,
+    "ja:SM5M": 4,
+    "ja:SM5P": 4,
+    "ja:SM7": 7,
+    "ja:SM8": 6,
+    "ja:SM9": 5,
+    "ja:SM9A": 4,
+    "ja:SV2P": 3,
+    "ja:SV3A": 3,
+    "ja:SV6A": 1,
+    "ja:SV9A": 3,
+    "ja:SVK": 5,
+    "en:SM10": 5,
+    "en:SM115": 1,
+    "en:SM11": 2,
+    "en:SM12": 5,
+    "en:SM1": 1,
+    "en:SM2": 1,
+    "en:SM3.5": 2,
+    "en:SM3": 1,
+    "en:SM5": 3,
+    "en:SM6": 1,
+    "en:SM7.5": 1,
+    "en:SM7": 2
+  },
+  "batch_scope": {
+    "name": "next-hundred-total-v1",
+    "sets": [
+      "SM7",
+      "SM8",
+      "SM10",
+      "SM12",
+      "SM9",
+      "SM10A",
+      "SM11A",
+      "SM11B",
+      "SM3P",
+      "SM4P",
+      "SM5M",
+      "SM5P",
+      "SM9A",
+      "SVK",
+      "SV2P",
+      "SV3A",
+      "SV9A",
+      "SV6A"
+    ],
+    "japanese_records": 75,
+    "english_records": 25
+  },
+  "gaps": [
+    {
+      "card_id": "ja:SM10:087/095:normal",
+      "query": "Welder ja SM10 087/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10:091/095:normal",
+      "query": "Triple Acceleration Energy ja SM10 091/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10:092/095:holo",
+      "query": "Fiery Flint ja SM10 092/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10:106/095:holo",
+      "query": "Welder ja SM10 106/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10:116/095:holo",
+      "query": "Triple Acceleration Energy ja SM10 116/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10A:048/054:normal",
+      "query": "Grimsley ja SM10A 048/054",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10A:049/054:normal",
+      "query": "Coach Trainer ja SM10A 049/054",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10A:061/054:holo",
+      "query": "Grimsley ja SM10A 061/054",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM10A:062/054:holo",
+      "query": "Coach Trainer ja SM10A 062/054",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11A:051/064:normal",
+      "query": "Energy Switch ja SM11A 051/064",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11A:056/064:normal",
+      "query": "Professor Oak’s Setup ja SM11A 056/064",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11A:064/064:holo",
+      "query": "Welder ja SM11A 064/064",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11A:072/064:holo",
+      "query": "Professor Oak’s Setup ja SM11A 072/064",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11B:046/049:normal",
+      "query": "Roxie ja SM11B 046/049",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11B:049/049:normal",
+      "query": "Lillie’s Full Force ja SM11B 049/049",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11B:068/049:holo",
+      "query": "Lillie’s Full Force ja SM11B 068/049",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM11B:075/049:holo",
+      "query": "Power Plant ja SM11B 075/049",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12:085/095:normal",
+      "query": "Island Challenge Amulet ja SM12 085/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12:087/095:normal",
+      "query": "Guzma & Hala ja SM12 087/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12:093/095:holo",
+      "query": "Adventure Bag ja SM12 093/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12:105/095:holo",
+      "query": "Guzma & Hala ja SM12 105/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12:116/095:holo",
+      "query": "Island Challenge Amulet ja SM12 116/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM3P:061/072:normal",
+      "query": "Great Ball ja SM3P 061/072",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM3P:068/072:normal",
+      "query": "Pokémon Breeder ja SM3P 068/072",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM3P:070/072:normal",
+      "query": "Lillie ja SM3P 070/072",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM3P:077/072:holo",
+      "query": "Pokémon Breeder ja SM3P 077/072",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM4P:101/114:normal",
+      "query": "Choice Band ja SM4P 101/114",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM4P:105/114:normal",
+      "query": "Guzma ja SM4P 105/114",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM4P:108/114:normal",
+      "query": "Lillie ja SM4P 108/114",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM4P:119/114:holo",
+      "query": "Lillie ja SM4P 119/114",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5M:053/066:normal",
+      "query": "Order Pad ja SM5M 053/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5M:057/066:normal",
+      "query": "Looker Whistle ja SM5M 057/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5M:063/066:normal",
+      "query": "Looker ja SM5M 063/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5M:072/066:holo",
+      "query": "Looker ja SM5M 072/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5P:041/050:normal",
+      "query": "Beast Ring ja SM5P 041/050",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5P:043/050:normal",
+      "query": "Choice Band ja SM5P 043/050",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5P:045/050:normal",
+      "query": "Looker ja SM5P 045/050",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM5P:062/050:holo",
+      "query": "Beast Ring ja SM5P 062/050",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:079/096:normal",
+      "query": "Last Chance Potion ja SM7 079/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:085/096:normal",
+      "query": "Rainbow Brush ja SM7 085/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:086/096:normal",
+      "query": "Choice Band ja SM7 086/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:087/096:normal",
+      "query": "Hustle Belt ja SM7 087/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:092/096:normal",
+      "query": "Lillie ja SM7 092/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:111/096:holo",
+      "query": "Rainbow Brush ja SM7 111/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM7:112/096:holo",
+      "query": "Hustle Belt ja SM7 112/096",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:084/095:normal",
+      "query": "Choice Band ja SM8 084/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:085/095:normal",
+      "query": "Choice Helmet ja SM8 085/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:089/095:normal",
+      "query": "Faba ja SM8 089/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:091/095:normal",
+      "query": "Lillie ja SM8 091/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:103/095:holo",
+      "query": "Faba ja SM8 103/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8:111/095:holo",
+      "query": "Choice Helmet ja SM8 111/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9:078/095:normal",
+      "query": "Judge Whistle ja SM9 078/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9:088/095:normal",
+      "query": "Sabrina’s Suggestion ja SM9 088/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9:094/095:holo",
+      "query": "Choice Band ja SM9 094/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9:109/095:holo",
+      "query": "Sabrina’s Suggestion ja SM9 109/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9:117/095:holo",
+      "query": "Judge Whistle ja SM9 117/095",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9A:043/055:normal",
+      "query": "Electromagnetic Radar ja SM9A 043/055",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9A:046/055:normal",
+      "query": "Stealthy Hood ja SM9A 046/055",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9A:055/055:holo",
+      "query": "Guzma ja SM9A 055/055",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM9A:068/055:holo",
+      "query": "Electromagnetic Radar ja SM9A 068/055",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV2P:069/071:normal",
+      "query": "Giacomo ja SV2P 069/071",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV2P:091/071:holo",
+      "query": "Giacomo ja SV2P 091/071",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV2P:096/071:holo",
+      "query": "Giacomo ja SV2P 096/071",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV3A:059/062:normal",
+      "query": "Shauntal ja SV3A 059/062",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV3A:062/062:normal",
+      "query": "Medical Energy ja SV3A 062/062",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV3A:082/062:holo",
+      "query": "Shauntal ja SV3A 082/062",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV6A:063/064:holo",
+      "query": "Neutralization Zone ja SV6A 063/064",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9A:063/063:standard",
+      "query": "Ethan's Adventure ja SV9A 063/063",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9A:084/063:standard",
+      "query": "Ethan's Adventure ja SV9A 084/063",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9A:089/063:standard",
+      "query": "Ethan's Adventure ja SV9A 089/063",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SVK:018/044:standard",
+      "query": "Buddy-Buddy Poffin ja SVK 018/044",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SVK:023/044:standard",
+      "query": "Bug Catching Set ja SVK 023/044",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SVK:032/044:standard",
+      "query": "Lana's Aid ja SVK 032/044",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SVK:037/044:standard",
+      "query": "Professor Turo's Scenario ja SVK 037/044",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SVK:044/044:standard",
+      "query": "Luminous Energy ja SVK 044/044",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:183/214:standard",
+      "query": "無人発電所 en SM10 183/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:186/214:standard",
+      "query": "隠密フード en SM10 186/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:214/214:standard",
+      "query": "溶接工 en SM10 214/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:230/214:standard",
+      "query": "電磁レーダー en SM10 230/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:234/214:standard",
+      "query": "トリプル加速エネルギー en SM10 234/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM115:065/068:standard",
+      "query": "ナツメの暗示 en SM115 065/068",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM11:192/236:standard",
+      "query": "コーチトレーナー en SM11 192/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM11:199/236:standard",
+      "query": "ギーマ en SM11 199/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM12:193/236:standard",
+      "query": "グズマ&ハラ en SM12 193/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM12:194/236:standard",
+      "query": "しまめぐりのあかし en SM12 194/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM12:196/236:standard",
+      "query": "リーリエの全力 en SM12 196/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM12:201/236:standard",
+      "query": "オーキド博士のセッティング en SM12 201/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM12:205/236:standard",
+      "query": "ホミカ en SM12 205/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM1:122/149:standard",
+      "query": "リーリエ en SM1 122/149",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM2:121/145:standard",
+      "query": "こだわりハチマキ en SM2 121/145",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3.5:060/073:standard",
+      "query": "スーパーボール en SM3.5 060/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3.5:063/073:standard",
+      "query": "ポケモンブリーダー en SM3.5 063/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3:115/147:reverse",
+      "query": "グズマ en SM3 115/147",
+      "before_total": 1,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM5:126/156:standard",
+      "query": "ハンサム en SM5 126/156",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM5:127/156:standard",
+      "query": "ハンサムホイッスル en SM5 127/156",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM5:131/156:standard",
+      "query": "おとりよせパッド en SM5 131/156",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM6:141/131:standard",
+      "query": "ビーストリング en SM6 141/131",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7.5:076/070:standard",
+      "query": "火打石 en SM7.5 076/070",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:134/168:standard",
+      "query": "ハッスルベルト en SM7 134/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:135/168:standard",
+      "query": "ギリギリポーション en SM7 135/168",
+      "before_total": 0,
+      "before_contains_target": false
+    }
+  ],
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/SM/SM10/087.ts": {
+      "git_blob": "28e61255031fdc1bc2b5c59c3301bd38551ef87c",
+      "sha256": "3272e80e26a5e34ed68b4de18b60271f7032bcec31aeb7bde1f0cdbe92754876",
+      "bytes": 548
+    },
+    "data-asia/SM/SM10/091.ts": {
+      "git_blob": "0bc2a74c1a50dff5181d8706296178b4b3fa7cf8",
+      "sha256": "c3ddf94fa0bf07b5ebb875ee0cdf16972f86f099845efb6f967cd69d1e988c1c",
+      "bytes": 752
+    },
+    "data-asia/SM/SM10/092.ts": {
+      "git_blob": "1479d918f546f56491f7bdf4173b5def2f7ab07d",
+      "sha256": "abccb1850155f0f04613443492ad3295cbeb8bb9e0eff90017f5377302ca0cbd",
+      "bytes": 624
+    },
+    "data-asia/SM/SM10/106.ts": {
+      "git_blob": "88e84c3f518087a16ad977e41ecf144cfad13621",
+      "sha256": "831e076acf7443d036e2f5d503b06b55c6bd0f35dc3e178b7b964ce1346fa552",
+      "bytes": 548
+    },
+    "data-asia/SM/SM10/116.ts": {
+      "git_blob": "c50410dcc04980adc44be33492516756c6e1035d",
+      "sha256": "204a14f7095e4abb713308ef4e77e872171ffb41579fc3da4f5591f08266b0ad",
+      "bytes": 740
+    },
+    "data-asia/SM/SM10a/048.ts": {
+      "git_blob": "58ada73c01614b0731eae873da0b3862448ca0b2",
+      "sha256": "822b23e5ad628c384a2792fb06e4d7bea2cbd1ad94f25d29de2ea8d70ee2a1ef",
+      "bytes": 528
+    },
+    "data-asia/SM/SM10a/049.ts": {
+      "git_blob": "c2b5bf05df2381210de79099909f778947cfad39",
+      "sha256": "566916707ef6f0a7dfdeaa89eaf1efa4250e4e5c9f97e33eebaea8193eb3350b",
+      "bytes": 525
+    },
+    "data-asia/SM/SM10a/061.ts": {
+      "git_blob": "9a1600296399563fa73d635b8a2926d18d3a15b6",
+      "sha256": "6ba68f302f36e582e06892ceb2e2185ef185da7884131a8e94e514f8b10d2ab8",
+      "bytes": 528
+    },
+    "data-asia/SM/SM10a/062.ts": {
+      "git_blob": "47bdd5d5aef6d1bef1ea659376e0088302c05451",
+      "sha256": "b6a915bc4fdfe4a24fe349d69c0d1b1ae1f3bb13c39d2e03f7df4c62db87adbd",
+      "bytes": 525
+    },
+    "data-asia/SM/SM11a/051.ts": {
+      "git_blob": "9e8bd7b8460423caeb46653f501bd48021b10c2b",
+      "sha256": "5c2700953ca08c031600f2a90f57fb165f48982e99d47e3547315f7e982e4f34",
+      "bytes": 532
+    },
+    "data-asia/SM/SM11a/056.ts": {
+      "git_blob": "679fc2c9abbdda1c257298043d109b0bd74cb1f8",
+      "sha256": "c992390f9f4bde883552ded37370baef0703a9c895e03207134bbb48b35af9ea",
+      "bytes": 580
+    },
+    "data-asia/SM/SM11a/064.ts": {
+      "git_blob": "d74ccea54f8f43e33a2e061f0d9c06be542f4250",
+      "sha256": "21551825d6bc89d39589f9271f639c07b9211a6f6d89e163cb8839f3e4fda8c3",
+      "bytes": 548
+    },
+    "data-asia/SM/SM11a/072.ts": {
+      "git_blob": "9a533bd3f14baa2672ed9b9c95111b99f6c4e26d",
+      "sha256": "cdac12859e0a706d4322c3d6b0c6b0e7cee55038374533848915296058322786",
+      "bytes": 579
+    },
+    "data-asia/SM/SM11b/046.ts": {
+      "git_blob": "34fe980c84c8ff53e872780359f590d25972b4e9",
+      "sha256": "16c370bd362155b6d4ff890431f3ec86a5395efe31164e17c9e3370a50dfe24b",
+      "bytes": 567
+    },
+    "data-asia/SM/SM11b/049.ts": {
+      "git_blob": "ff6e1a81a0a7d57201ecf79a52c7e2f6a97a5efd",
+      "sha256": "592116dfaee2e67905caff41c73636dc149cfec21736b92b0c704e890c82e098",
+      "bytes": 603
+    },
+    "data-asia/SM/SM11b/068.ts": {
+      "git_blob": "f876dedbacd8996bac86471f8542f617c8642654",
+      "sha256": "120b2da547c342b5cb8726546f8f677560b7377e704dd45d5a5c7489f9b70fdf",
+      "bytes": 608
+    },
+    "data-asia/SM/SM11b/075.ts": {
+      "git_blob": "a01b232007912d194ba6f2a0fb64080f2e471c70",
+      "sha256": "84db1010d266826651e55ae0e7e2da17f983493cd28fac6739b525479f80ae2d",
+      "bytes": 483
+    },
+    "data-asia/SM/SM12/085.ts": {
+      "git_blob": "dc0770e07806d4ea32fa8d8705e0ca491ed2cc6c",
+      "sha256": "da596e0f6cfd532a3939577487de016760a668840bdce8ab4d0c58163ad6f77b",
+      "bytes": 634
+    },
+    "data-asia/SM/SM12/087.ts": {
+      "git_blob": "57faa6113379f1f739f460d4045eab74446ba8a0",
+      "sha256": "365f46de01f19b5b09bc8b56f36f935a7692b18d561f784254773f2c9b5b19d4",
+      "bytes": 756
+    },
+    "data-asia/SM/SM12/093.ts": {
+      "git_blob": "3df3161ee4757c5a90c979bff45781decb13dc47",
+      "sha256": "6abb9cfc89a625a51543a04cceae44a97d76e63520618b505769b04b56dd5315",
+      "bytes": 561
+    },
+    "data-asia/SM/SM12/105.ts": {
+      "git_blob": "82e67d1e5f5a80b9d21e021bbd6efccd8b7b5311",
+      "sha256": "969530b56db87562e2bc1b066bca633c686dcd042fbc35c579130c5f9b847aa5",
+      "bytes": 759
+    },
+    "data-asia/SM/SM12/116.ts": {
+      "git_blob": "9a3c41ebbfebb2bbf6362d578ed7b6666aca2b0f",
+      "sha256": "54ce292c0fff4969d1220e364b8db298ccd1f721a29431c24a8b74886819b450",
+      "bytes": 629
+    },
+    "data-asia/SM/SM3p/061.ts": {
+      "git_blob": "bf65e9452390b4827039bd255ac36688a4120645",
+      "sha256": "f5950292f879ea608898962dc99f419f7c64eebdce428c6176ffc31165c66a85",
+      "bytes": 582
+    },
+    "data-asia/SM/SM3p/068.ts": {
+      "git_blob": "18308362d4f81d7a5cfed0b10f55cff4904bd303",
+      "sha256": "26ccd5e6cfb54f91affe9ec125590ce98b9c42a83ed8a6db4fb1d44384fe52ec",
+      "bytes": 501
+    },
+    "data-asia/SM/SM3p/070.ts": {
+      "git_blob": "980b961a7a33cc6b51c65a8b536636f1c4085abc",
+      "sha256": "78827c3bb65f1f871eafe619f84a5c737dfd65c739a20ba21d49654ef61e79c3",
+      "bytes": 519
+    },
+    "data-asia/SM/SM3p/077.ts": {
+      "git_blob": "b42e71648655928d0ff2e2c2f485d6bb113849f5",
+      "sha256": "b2028165ef88e16b41278991801d3f102340d95d2caba83b984df4740a2780af",
+      "bytes": 507
+    },
+    "data-asia/SM/SM4p/101.ts": {
+      "git_blob": "3f0e5bfc3200c756b37b7f28d8fa8396c5cc3195",
+      "sha256": "15d71466962fe11fbb8a2cc38a892ce0b15d15237e719e78edb3b26dfe65ca7f",
+      "bytes": 546
+    },
+    "data-asia/SM/SM4p/105.ts": {
+      "git_blob": "b5bc32e782907d8b732a6b9175e577d5730d9839",
+      "sha256": "e4d1d0fa1014036c84a08adf399817068f2a431963d227f9def2e9f7650eddc7",
+      "bytes": 553
+    },
+    "data-asia/SM/SM4p/108.ts": {
+      "git_blob": "f6d7a5874472a8c2b31cc3d290bb6de254870ab9",
+      "sha256": "64431c3c965db04315c17a4ba199d8f5daffd8b027d35eb2d5db7353356d0c98",
+      "bytes": 518
+    },
+    "data-asia/SM/SM4p/119.ts": {
+      "git_blob": "f8997c0d6f29a958422b73215f47e54a46043258",
+      "sha256": "25da6192b736f890d2f20f7b66d7c64dd275a537d787898cf3123af36f557205",
+      "bytes": 518
+    },
+    "data-asia/SM/SM5M/053.ts": {
+      "git_blob": "6ea7ce2a7ce19718f28d92b6d43fd05c4ee33e1d",
+      "sha256": "50f71677c4d407322c83695a50c218cfc426b7a05d780392d5e1860f520bd1d0",
+      "bytes": 549
+    },
+    "data-asia/SM/SM5M/057.ts": {
+      "git_blob": "8ace477409949015bdab1cc96c4462013c9dd54d",
+      "sha256": "c3866e4ead6a11ceea4b608503849a4eb7035fb93dc750e9cf50a4709a4607d0",
+      "bytes": 528
+    },
+    "data-asia/SM/SM5M/063.ts": {
+      "git_blob": "664fd122a49781bdd74f93c17cb0dc4928111155",
+      "sha256": "8db98f6b65f41a5610467e7adef9e8a096ea6046b537c35c9811b3ecc9886602",
+      "bytes": 423
+    },
+    "data-asia/SM/SM5M/072.ts": {
+      "git_blob": "d60b6a1eb92a7d829dd2adf8151147478fe551c2",
+      "sha256": "ccbdf313592277f75e9fdefc8a0b331f1fcc9eb8bf98122db691e3274ee2a0ba",
+      "bytes": 426
+    },
+    "data-asia/SM/SM5p/041.ts": {
+      "git_blob": "5259372f52ffcd4e9adf68b70a874073d1312327",
+      "sha256": "1eed2c6e3b238152b74f8301e293b3e8da47f4c829cefa096314311b3c388da9",
+      "bytes": 638
+    },
+    "data-asia/SM/SM5p/043.ts": {
+      "git_blob": "195e83af29a06c76c579dcc07dcf285b9a551721",
+      "sha256": "de2480479333f766e2b5d665c8207dae207e5885cb6ab972dc5a975d6c9d5754",
+      "bytes": 546
+    },
+    "data-asia/SM/SM5p/045.ts": {
+      "git_blob": "d39f89e4f84af0378aaff771c90c05fd8118fd5e",
+      "sha256": "4f641e6eaa1fe7fd2de5380357e08b1b9f0f911e5e82823a7e0440d373a0e9f0",
+      "bytes": 421
+    },
+    "data-asia/SM/SM5p/062.ts": {
+      "git_blob": "8286eee714f4c36cda064b13d429057e6b497363",
+      "sha256": "599abd14d463ec8e647255d54d4d24dc6a09d406b34ecb5fa65ebab3ecd25cba",
+      "bytes": 631
+    },
+    "data-asia/SM/SM7/079.ts": {
+      "git_blob": "1efb464bcc23dfc1e2e2bea0a7bfaaf796868807",
+      "sha256": "19772b8da799b5f6439153c5597d668a214abc01bf3cbe387b9a3976fff175cd",
+      "bytes": 480
+    },
+    "data-asia/SM/SM7/085.ts": {
+      "git_blob": "8660972bd904efbd5d009b01f2bdf7d8d1378090",
+      "sha256": "d8725654f78a470a7b50e7efbc3912b9c4eedc3cba7c93020871ef33d242146f",
+      "bytes": 592
+    },
+    "data-asia/SM/SM7/086.ts": {
+      "git_blob": "73445ac1399570a176014c153cd4f0b36605cb6e",
+      "sha256": "884cded5783f60eee54868f7db2a30074d163f6067449cc65c1b3fc8857e0af6",
+      "bytes": 549
+    },
+    "data-asia/SM/SM7/087.ts": {
+      "git_blob": "66c11b61cc6659344b10e3e52b47693736cc897c",
+      "sha256": "ad12376b39682efa4ab4b824ea38d07dc08579fc320e12995baf5df36ea91c5f",
+      "bytes": 644
+    },
+    "data-asia/SM/SM7/092.ts": {
+      "git_blob": "2bcae77f5fe4b5e9ce3ef053b69fcacebcb841da",
+      "sha256": "4550add8bec2b5863207065395282077c46614f399568e9173ec9bac042556ba",
+      "bytes": 521
+    },
+    "data-asia/SM/SM7/111.ts": {
+      "git_blob": "45f32d5fecc0b87b2d00dc076c4c6bbba50f0eff",
+      "sha256": "95b39aa394394c38c8eb81a0a892c83d21fb8ad9b98b0b4dfdae4ed6287338d6",
+      "bytes": 580
+    },
+    "data-asia/SM/SM7/112.ts": {
+      "git_blob": "2cc632892c86ced5c50be0964fb3f6ed8ae9d53f",
+      "sha256": "4c374c25abca501a874500dff21374e476bc17300a9aa8a40ea7a14ac9a9c521",
+      "bytes": 630
+    },
+    "data-asia/SM/SM8/084.ts": {
+      "git_blob": "1ce58f14d1905c6e03f24c1f396882716d032a31",
+      "sha256": "7a556400fb5f7946409a066f22a8ecac23ecdbac336f19aebcfa7e45a7df0613",
+      "bytes": 549
+    },
+    "data-asia/SM/SM8/085.ts": {
+      "git_blob": "7b1efe4886029fe3532637e16d211daf159b9efc",
+      "sha256": "e484b2da65ffa528db55e25cf594b017b985e23ede688ed39f7a3cb3d638190f",
+      "bytes": 534
+    },
+    "data-asia/SM/SM8/089.ts": {
+      "git_blob": "af1670d25835152214c2c108d43551e427a88fd0",
+      "sha256": "fcc7da0bf8bc9a511a2a42b72c9461fa2ecbc1774412f9486a1ce33584d6e6ef",
+      "bytes": 569
+    },
+    "data-asia/SM/SM8/091.ts": {
+      "git_blob": "87d20379dd5eb75bc18ee950a2acfbeb864a19ce",
+      "sha256": "93e84c6f3824824410cfcf9f2e3140167a3cbc12ff9fdb5220155852c5408e28",
+      "bytes": 521
+    },
+    "data-asia/SM/SM8/103.ts": {
+      "git_blob": "361818d9523d8b2919185401fda5d0441feae9af",
+      "sha256": "63f01c2db20628ef9fe3e7f9596ac1fdbae0c1be8af27b21cd9a159d58bd3395",
+      "bytes": 569
+    },
+    "data-asia/SM/SM8/111.ts": {
+      "git_blob": "911e7144ac5a59d2db017919b640148add5ce494",
+      "sha256": "f6f8a536b1dd2dbe4694a7ccdf479b41175c4e2ee2ad498ffb82746d39520079",
+      "bytes": 522
+    },
+    "data-asia/SM/SM9/078.ts": {
+      "git_blob": "4fac83c20cf75ac328cd7ac99d97e8969979ba8e",
+      "sha256": "d41511de0bea842cb6ed4081dd962b13a3a003c15287bb6db00047d822a5fe44",
+      "bytes": 640
+    },
+    "data-asia/SM/SM9/088.ts": {
+      "git_blob": "fbbefe6b82af80e8c1793b747cddb0fe1e706e33",
+      "sha256": "4b86a9f6cf66aa45f453b427a01098a830725ffcd899ac5ffa6a726c22c23bf5",
+      "bytes": 576
+    },
+    "data-asia/SM/SM9/094.ts": {
+      "git_blob": "7b76d7e4dd3d9a563558e4f6fe40b42aa605911d",
+      "sha256": "c1f2dfe8f30e02fb588f9336baa1cfa7be446c54a0b4c62ec8569be2765f1083",
+      "bytes": 570
+    },
+    "data-asia/SM/SM9/109.ts": {
+      "git_blob": "6b0f35ebe2af4fd7c87bd82f262dd95c5ad960e5",
+      "sha256": "fd9a38b088fccd5f9a22ce9aa4c69ce3773b888f6972fdcbcc13a8391a073acb",
+      "bytes": 576
+    },
+    "data-asia/SM/SM9/117.ts": {
+      "git_blob": "f679a7e4aadef5ef8579c0dccb6f22c5b8021f06",
+      "sha256": "15ae32af1024ae8894c49ecd9002dc21cb002622f547ae5992d3792b1b11e601",
+      "bytes": 628
+    },
+    "data-asia/SM/SM9a/043.ts": {
+      "git_blob": "44e8cd27b780c8f7254eccb85efe88586a33be3a",
+      "sha256": "523a5389818ba7bc1274ad3a3a5131b9e0d51299dad5364406c7083257eaca4e",
+      "bytes": 656
+    },
+    "data-asia/SM/SM9a/046.ts": {
+      "git_blob": "b3f86c8ce5a65557bf9e2fa33ec491403de49f5c",
+      "sha256": "94515e3ebf3185e419890f9b6e0991b12e1daea816ccfeb8a44d943f5dd210af",
+      "bytes": 512
+    },
+    "data-asia/SM/SM9a/055.ts": {
+      "git_blob": "68800258563bba04e60e09a43d95b985b2da7d73",
+      "sha256": "2cd1d0ebf959d193768bea1e6716089d05555df2b251121d405e8a761722381f",
+      "bytes": 581
+    },
+    "data-asia/SM/SM9a/068.ts": {
+      "git_blob": "20434958b20c96568d4a9fad5db78fdbb85444e4",
+      "sha256": "4565e3ebc14837138509409fd36da794e5947ff6a657ea7444e824de802dc756",
+      "bytes": 642
+    },
+    "data-asia/SV/SV2P/069.ts": {
+      "git_blob": "9bc9981c2b1c5a834455cee38ec80bed0dbc3fad",
+      "sha256": "7ed107110d14d7735db780e4be5dd7002a85eea725f3fa3166aa5eadfce8249b",
+      "bytes": 1116
+    },
+    "data-asia/SV/SV2P/091.ts": {
+      "git_blob": "d89deb816d15811b2274f5bafc1719dcbb964785",
+      "sha256": "ddf9e44bdae047bcb4b70ad90b9c0b77c2307517c2a72ad8eb4363ae0e5dcd64",
+      "bytes": 497
+    },
+    "data-asia/SV/SV2P/096.ts": {
+      "git_blob": "c4df5340d2d8304912520f304e23584aa9fd333b",
+      "sha256": "86958f9fc4acb65a1f492ef0844d1ba2aa6e36c7b2b16832a17d0c47312189fe",
+      "bytes": 507
+    },
+    "data-asia/SV/SV3a/059.ts": {
+      "git_blob": "c0072a9bc8f0a67f77fe5c90be5f049ae0943128",
+      "sha256": "69e1f653b2395e0c5d59496f0f29954f63bf00456ed45cb170505168046b3eed",
+      "bytes": 1315
+    },
+    "data-asia/SV/SV3a/062.ts": {
+      "git_blob": "3dabfc9f8ae04c7a4edafe2c2e770f045ca1c7c5",
+      "sha256": "1f2d36ff23b2760b5bd90ccbf34ce8977ed2f3c0ad9a05e00576a67fda9fe717",
+      "bytes": 1322
+    },
+    "data-asia/SV/SV3a/082.ts": {
+      "git_blob": "b03b692dc1c56b01fc94d0090c1159f83eb4d551",
+      "sha256": "793fce421be153782de762be7eaa15364bc475f381696bce6e9159adba0c9160",
+      "bytes": 1300
+    },
+    "data-asia/SV/SV6a/063.ts": {
+      "git_blob": "839fb8eda7abbb17d71cc4e7eaf6a51d75535e75",
+      "sha256": "6f66fbc8608053411fb2ef5fe37bba7acf88a5272752854a79c79c2043630d7d",
+      "bytes": 982
+    },
+    "data-asia/SV/SV9a/063.ts": {
+      "git_blob": "ba94b4edb73859d4b4596b54a8312fe17a01c48d",
+      "sha256": "25109913348bdda32f34dfd923bba9cfd663468a89a7f2c87d0a731cac44d43e",
+      "bytes": 894
+    },
+    "data-asia/SV/SV9a/084.ts": {
+      "git_blob": "20a8fb1a694656640e841cab194bb280ab600434",
+      "sha256": "d8d7389e08c07dce0b4712ed17969982bc7a2b3c6ad931614b70d646eced7bf5",
+      "bytes": 890
+    },
+    "data-asia/SV/SV9a/089.ts": {
+      "git_blob": "a423d3f9656acfbb84ce9b9d560f55a895d058ef",
+      "sha256": "36c8851fd93afb74717170669a1262015d2fcb40fa833afe60662f2be307e8bb",
+      "bytes": 885
+    },
+    "data-asia/SV/SVK/018.ts": {
+      "git_blob": "0321976f9e84f46c8c6db23c55561670921cbe5a",
+      "sha256": "9e64ca1cf33bcc2c96af8f9989ce7225b76f3881224e4ec3a8bd79d83bf01b85",
+      "bytes": 423
+    },
+    "data-asia/SV/SVK/023.ts": {
+      "git_blob": "0a8d9b65fbc55436a7ce51241695759d0b6ca41f",
+      "sha256": "bf78a90cb80e810f1626f2e5102f8e917124f176564a5bae421b3267679ff6d4",
+      "bytes": 504
+    },
+    "data-asia/SV/SVK/032.ts": {
+      "git_blob": "eaf4aa6733a56bb4bbc91a700622cb4d9a612388",
+      "sha256": "4924697b83fe4f7c4391f3ce80ea2c630e95386ba2d335cab3250aca4f33eb1f",
+      "bytes": 486
+    },
+    "data-asia/SV/SVK/037.ts": {
+      "git_blob": "8e8a35734b95810d784639ecace40ec642ddb54a",
+      "sha256": "f6dc046ba144adc6e03a187331838868a3b9264bfe9a753929ebb86f80fc3b26",
+      "bytes": 432
+    },
+    "data-asia/SV/SVK/044.ts": {
+      "git_blob": "7f7fb01a5b05f76ab3df8fac2d71f9b0b52d40f6",
+      "sha256": "e5e03cef771c9114d1f1fa2327cfd89f81620cd90a5650edeece948f8be8846c",
+      "bytes": 573
+    },
+    "data/Sun & Moon/Burning Shadows/115.ts": {
+      "git_blob": "8b8b2f9a13f16d1504136c6251f7e43f0689df8a",
+      "sha256": "79cbb4b0f98388f3bed719a038f9857b8eec56e2a0b7a36a5b8e31901459df77",
+      "bytes": 1575
+    },
+    "data/Sun & Moon/Celestial Storm/134.ts": {
+      "git_blob": "8de59e33d3b84d35d8767db8a7640a2992ac6326",
+      "sha256": "7a45dac67bf599a11bbb5410d3adeddc27ac69a497bafde25e073651437e3ddb",
+      "bytes": 2186
+    },
+    "data/Sun & Moon/Celestial Storm/135.ts": {
+      "git_blob": "a50f2bdeb5e9ae3f98da28d3fd029e74d91df5c9",
+      "sha256": "17f341e3372eb17a13d6bafca9f9b27a729b715187274c1e6d7f14998031b01b",
+      "bytes": 1149
+    },
+    "data/Sun & Moon/Cosmic Eclipse/193.ts": {
+      "git_blob": "97d87a3686b63d5bffc39cb70be5dffe76a0469e",
+      "sha256": "f0cc4e0cb2938a76f489fbea3233baf88794a009c125f815808e02cddc45dcb2",
+      "bytes": 2479
+    },
+    "data/Sun & Moon/Cosmic Eclipse/194.ts": {
+      "git_blob": "6478854366d5a87adfe59bf53a480f79aee384da",
+      "sha256": "9e0a01c0352b2c14465c372a6232db29a5cb32af1db054a3c175ccc56c60383b",
+      "bytes": 1961
+    },
+    "data/Sun & Moon/Cosmic Eclipse/196.ts": {
+      "git_blob": "4fefed2c8b8fb6b31d03dad45498aa439ff26589",
+      "sha256": "ed7cc99144727ad4926486d2bd0b41d9c63a6cdae6341d1f8794db852c76811f",
+      "bytes": 1639
+    },
+    "data/Sun & Moon/Cosmic Eclipse/201.ts": {
+      "git_blob": "f92a933e11ba00f13960ff420a69c3069e036fd2",
+      "sha256": "acf1be45e8b395058bba7b2a2246cca5324248c8062f845ecbd4c2107b79d9ba",
+      "bytes": 1031
+    },
+    "data/Sun & Moon/Cosmic Eclipse/205.ts": {
+      "git_blob": "245ea6dfdfdda9cb9725ee6ee81c8a3e5a81e8b7",
+      "sha256": "0323113daf9be7e9fae235162f8f765d0b666a0f7cd541b945acb421c7becd09",
+      "bytes": 1478
+    },
+    "data/Sun & Moon/Dragon Majesty/76.ts": {
+      "git_blob": "cbd44deac19995d0c6e3e29ecf31757b4458ee81",
+      "sha256": "9005dc24824fe25fb9786c672f1ce5fc04c7c0e1142fa2d04cbba6b8194732bb",
+      "bytes": 1892
+    },
+    "data/Sun & Moon/Forbidden Light/141.ts": {
+      "git_blob": "787e91ed5205147ce05a5485015bff89df54907d",
+      "sha256": "5d8d9e327a6c796d09e89687d51178932de8a1216d9b5af0683a59d365746ce2",
+      "bytes": 1999
+    },
+    "data/Sun & Moon/Guardians Rising/121.ts": {
+      "git_blob": "9160db38f4507e882a202cde47046ae969f16624",
+      "sha256": "160792fa53859af5481c24eb8d8901da23298b6c259f026e466e25a61433f268",
+      "bytes": 1882
+    },
+    "data/Sun & Moon/Hidden Fates/65.ts": {
+      "git_blob": "b6979648ca26a19d61dfffc7fbe191a55260f215",
+      "sha256": "b86b6fec0861e5dfb279e612d45055ee7831ed85b345e69f8439f268661b5445",
+      "bytes": 933
+    },
+    "data/Sun & Moon/Shining Legends/60.ts": {
+      "git_blob": "74fae23eed735c2db90cf51b53ba399a5edffd3c",
+      "sha256": "9157e911d873af040e3326266b2f7688c272888adefb0e64d4ed716e4c5af82b",
+      "bytes": 1616
+    },
+    "data/Sun & Moon/Shining Legends/63.ts": {
+      "git_blob": "6318596bc60934a31f53165c1352077d152937f3",
+      "sha256": "639eff13ac607067673fecb45210e527248e316c9a9768fe49bc86ca15be87ce",
+      "bytes": 1417
+    },
+    "data/Sun & Moon/Sun & Moon/122.ts": {
+      "git_blob": "83557f45bd05f444c9a3f86e98e155b3c68c509e",
+      "sha256": "beb217d59765f5cf67b5f11f30daec7664da12229295000566352397359bc9ad",
+      "bytes": 1338
+    },
+    "data/Sun & Moon/Ultra Prism/126.ts": {
+      "git_blob": "f71bf0aa565ee3c325dcb22afbf155db75992a1d",
+      "sha256": "1e9862d3737d6fd5cf2160d9a42eae5b363981a440f8c5157616651f5a6c0e47",
+      "bytes": 830
+    },
+    "data/Sun & Moon/Ultra Prism/127.ts": {
+      "git_blob": "616d694d035f6f9aee9841b60d747133069d4bc1",
+      "sha256": "35609e3221ca91442e65bbec34e823383eedbe4bd5e22d7c19a2393a9f51c480",
+      "bytes": 1430
+    },
+    "data/Sun & Moon/Ultra Prism/131.ts": {
+      "git_blob": "a6cb16a28c92ebeadd0ef3b954f86ff215fc5394",
+      "sha256": "de0cf9445b2719d7acccaf11b8c0e6e03d482d7f1eefa75deb332cf52615692a",
+      "bytes": 1479
+    },
+    "data/Sun & Moon/Unbroken Bonds/183.ts": {
+      "git_blob": "db8bb082710c286c6a0c73b0b492d20b5c0e73ad",
+      "sha256": "46a65f15674a82a5800629c7630496bfe215dd86fed30e253a0ec696ba12cd56",
+      "bytes": 1324
+    },
+    "data/Sun & Moon/Unbroken Bonds/186.ts": {
+      "git_blob": "e60c8e495f3d789e54940f73153502447d451ec7",
+      "sha256": "bab2c03cd3c72fcfac8f3dc5579b4fb9c6ac7218f5b087cb8921d89e6e93cc52",
+      "bytes": 1652
+    },
+    "data/Sun & Moon/Unbroken Bonds/214.ts": {
+      "git_blob": "d2b396b27f56bb727d6e0b6f6de3ffaae1af351b",
+      "sha256": "4a471b6556b195de17d15b93dae909e9a2b4c38e9f60647df79eeccdbd2777d0",
+      "bytes": 1209
+    },
+    "data/Sun & Moon/Unbroken Bonds/230.ts": {
+      "git_blob": "336e95bf483db563537ec64c6665eec4421c6baa",
+      "sha256": "28af836022a87c9461cda84ea40e6020e9c428cedce5c9c58b809e414f45e858",
+      "bytes": 2239
+    },
+    "data/Sun & Moon/Unbroken Bonds/234.ts": {
+      "git_blob": "92c5678405478990ee0b41e5c57389042dfe470b",
+      "sha256": "4506b718480fdf0f8a8701fb41058033d0e6ad91b13f8c187513679b81c32e96",
+      "bytes": 2774
+    },
+    "data/Sun & Moon/Unified Minds/192.ts": {
+      "git_blob": "caef2530c7240f6bcfa050f17ec10d957f4c64a8",
+      "sha256": "b8eb299560c5a8fd14a3a89e8b68cc3403bb4e516afa853e3a6dd59f845120dd",
+      "bytes": 1157
+    },
+    "data/Sun & Moon/Unified Minds/199.ts": {
+      "git_blob": "e657f9b2b40af8ccef24a67d9c4f91ab403f015c",
+      "sha256": "223d7d7b44a44d8d5c52b68e34d3aa6901abf88ffc05d4e743ce28381ef2fbaf",
+      "bytes": 1154
+    }
+  },
+  "release_snapshots": [
+    {
+      "language": "ja",
+      "set_code": "SM10",
+      "name": "ダブルブレイズ",
+      "release_date": "2019-03-01",
+      "official_card_count": 95,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM10A",
+      "name": "ジージーエンド",
+      "release_date": "2019-04-05",
+      "official_card_count": 54,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM11A",
+      "name": "リミックスバウト",
+      "release_date": "2019-07-05",
+      "official_card_count": 64,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM11a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM11B",
+      "name": "ドリームリーグ",
+      "release_date": "2019-08-02",
+      "official_card_count": 49,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM11b.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM12",
+      "name": "オルタージェネシス",
+      "release_date": "2019-09-06",
+      "official_card_count": 95,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM3P",
+      "name": "ひかる伝説",
+      "release_date": "2017-07-15",
+      "official_card_count": 72,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM3p.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM4P",
+      "name": "GXバトルブースト",
+      "release_date": "2017-10-20",
+      "official_card_count": 114,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4p.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM5M",
+      "name": "ウルトラムーン",
+      "release_date": "2017-12-08",
+      "official_card_count": 66,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM5M.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM5P",
+      "name": "ウルトラフォース",
+      "release_date": "2018-01-19",
+      "official_card_count": 50,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM5p.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM7",
+      "name": "裂空のカリスマ",
+      "release_date": "2018-06-01",
+      "official_card_count": 96,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM7.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM8",
+      "name": "超爆インパクト",
+      "release_date": "2018-09-07",
+      "official_card_count": 95,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM9",
+      "name": "タッグボルト",
+      "release_date": "2018-12-07",
+      "official_card_count": 95,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SM9A",
+      "name": "ナイトユニゾン",
+      "release_date": "2019-01-11",
+      "official_card_count": 55,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV2P",
+      "name": "スノーハザード",
+      "release_date": "2023-04-14",
+      "official_card_count": 71,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2P.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV3A",
+      "name": "レイジングサーフ",
+      "release_date": "2023-09-22",
+      "official_card_count": 62,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV6A",
+      "name": "ナイトワンダラー",
+      "release_date": "2024-06-07",
+      "official_card_count": 64,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV9A",
+      "name": "熱風のアリーナ",
+      "release_date": "2025-03-14",
+      "official_card_count": 63,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SVK",
+      "name": "デッキビルドBOX ステラミラクル",
+      "release_date": "2024-07-19",
+      "official_card_count": 44,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SVK.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    }
+  ],
+  "new_identities": 0,
+  "selection_reason": "Next hundred-level total batch:75 remaining Japanese exact-ID translation gaps in18 fixed heritage SM and additional SV physical set scopes, with25 disjoint English comparisons. All current approved names and exact source tuples checked offline; no import.",
+  "demand": "Japan-to-US discovery use case;set-level demand unmeasured",
+  "authorized_supply": "metadata only;live Buy&Ship offer availability unknown",
+  "physical_distribution_region": null,
+  "retrieved_at": null,
+  "retrieval_status": "historical_snapshot_time_not_recorded",
+  "rights_status": "metadata_internal_reviewed",
+  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+  "confidence": {
+    "pinned_bytes_existing_source_tuples_current_reviewed_text": 1.0,
+    "physical_printing_verification": null,
+    "demand_and_offer_supply": null
+  },
+  "unresolved_conflicts": [
+    "physical_distribution_region_unknown",
+    "authorized_offer_supply_unknown",
+    "set_level_demand_unmeasured",
+    "no_cross_language_counterpart_assertion"
+  ],
+  "flags": {
+    "display_allowed": false,
+    "image_display_allowed": false,
+    "purchase_allowed": false,
+    "automatic_offer_join_allowed": false,
+    "physical_printing_verified": false,
+    "price_comparable": false
+  },
+  "next_real_language": {
+    "candidate": "ko",
+    "status": "conditional_not_admitted",
+    "reason": "Reviewed provider has Korean localized headers. Real card expansion still requires demand,authorized Buy&Ship supply and complete reviewed card/variant sources;no real import is justified from headers or row count alone."
+  },
+  "plan_id": "international-next-batch-plan:a1dfc23bdcc12a74ece4fdc775e0fb190cf582e1a542b991a8e313c9d95d0a6e"
+}

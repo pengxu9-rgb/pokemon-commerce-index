@@ -6,7 +6,7 @@ import copy,json,re
 from . import collector_discovery as discovery, collector_inventory as inventory, collector_character_affiliation, collector_runtime
 
 SCHEMA = 'pokemon.collector-recommendation.v1'
-RANKING = 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
+RANKING = 'explicit_axes_then_liked_axes_then_source_scan_tiebreak_then_coordinate_round_robin.v2'
 FIELDS = {'mode', 'preferred_dex_ids', 'excluded_dex_ids', 'preferred_illustrators',
           'preferred_releases', 'subjective_notes'}
 NEXT = r'what (?:should|can|do) i collect(?: next)?\b|what to collect next|次に何を集め|次.*集める.*おすすめ|接下来.*(?:收藏|收集)|下一步.*(?:收藏|收集)'
@@ -144,7 +144,7 @@ def supported_goal(text):
 
 def is_goal(text):
     t=discovery._norm(text)
-    return supported_goal(text) and bool(re.search(NEXT+'|'+RECOMMEND,t)) and not re.search(MARKET,t)
+    return supported_goal(text) and bool(re.search(NEXT+'|'+RECOMMEND+r'|\b(?:help me )?(?:find|show)(?: me)? some\b.{0,160}\bcards?\b',t)) and not re.search(MARKET,t)
 
 
 def parse_taste(db, text, *, next_goal=False):
@@ -439,12 +439,15 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
             inv=inventory.partition_owned(db,owned,list(by_id))
             excluded_ids=inv.pop('excluded_card_ids')
             by_id={cid:r for cid,r in by_id.items() if cid not in excluded_ids}
+        from . import catalog_media
+        scan_tiebreak=not any(k in scope for k in ('set_code','collector_number','variant')) and not re.search(r'\b(?:ja|en):',question)
+        scanned=catalog_media.current_ids(db) if scan_tiebreak else set()
         tiers=defaultdict(lambda:defaultdict(deque))
         for batch in _facet_batches(db,list(by_id)):
             for cid,facets in batch.items():
                 row=by_id[cid];score=_score(row,facets,desired,liked,releases,affiliations,liked_affiliations)
                 group=(row['language'],row['set_code'],row['collector_number'])
-                tiers[(-len(score['explicit_match_axes']),-len(score['liked_example_match_axes']))][group].append(cid)
+                tiers[(-len(score['explicit_match_axes']),-len(score['liked_example_match_axes']),-int(cid in scanned))][group].append(cid)
         # Diversify equal-score coordinates only. Every source version retains its exact ID.
         ordered=[]
         for tier in sorted(tiers):
@@ -458,7 +461,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
                     ordered.append(groups[group].popleft())
                     if groups[group]:next_round.append(group)
                 active=next_round
-        cached=dict(count=count,by_id=by_id,ordered=ordered,inventory=inv,unknown_membership_withheld=withheld)
+        cached=dict(count=count,by_id=by_id,ordered=ordered,inventory=inv,unknown_membership_withheld=withheld,scan_tiebreak=scan_tiebreak)
         if pool_cache is not None:pool_cache.update(key=key,pool=cached)
     by_id=cached['by_id'];ordered=cached['ordered']
     # The response gains scope/page fields below; keep cached ownership unmodified.
@@ -466,6 +469,8 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     page=ordered[offset:offset+limit]
     scores={cid:_score(by_id[cid],facets,desired,liked,releases,affiliations,liked_affiliations)
             for batch in _facet_batches(db,page) for cid,facets in batch.items()}
+    if cached['scan_tiebreak']:
+        for score in scores.values():score['tradeoffs'].append('Current exact source-scan evidence breaks equal relevance ties only; live fetch and display rights remain unverified')
     cards=[discovery._card_result(db,by_id[cid]) for cid in page]
     meta.update(candidate_pool_complete=True,items=[dict(scores[cid],rank=offset+i+1) for i,cid in enumerate(page)])
     groups=defaultdict(list)

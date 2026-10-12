@@ -1,0 +1,728 @@
+{
+  "schema": "pokemon.remaining-name-qualification.v1",
+  "applied": false,
+  "inspected_at": "2026-10-12T09:36:27Z",
+  "input_database_sha256": "5289fb3167fe193257e4d58e715f9600a8f585443fdb9c61563aecd8c80f86cf",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+  "preliminary_japanese_records": 34,
+  "qualified_japanese_records": 20,
+  "qualified_complete_group_records": 20,
+  "complete_pool_by_set": {
+    "PMCG1": 18,
+    "PMCG2": 1,
+    "PMCG3": 1
+  },
+  "holds": [
+    {
+      "card_id": "ja:SV3:066/108:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV3:066/108:holo",
+        "language": "ja",
+        "set_code": "SV3",
+        "collector_number": "066/108",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "Double rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/066.ts:sha256:4f0fe5deeee8f9d8f143f6bfb3c63db42cea57ee8f2d2e565ebde0b4ea81844e",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV3/066.ts",
+      "git_blob": "37d926b46d4c4da912bedeec16d0f8a4a677ee9e",
+      "sha256": "4f0fe5deeee8f9d8f143f6bfb3c63db42cea57ee8f2d2e565ebde0b4ea81844e",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV3:125/108:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV3:125/108:holo",
+        "language": "ja",
+        "set_code": "SV3",
+        "collector_number": "125/108",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "SR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/125.ts:sha256:a8ac8ec88b019cf1503f07541d273945252a6fddae2f5f0d5066ab2577e6c7d3",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV3/125.ts",
+      "git_blob": "bedbf59c51eb1361bdcca52c651826bcf191fd76",
+      "sha256": "a8ac8ec88b019cf1503f07541d273945252a6fddae2f5f0d5066ab2577e6c7d3",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV3:134/108:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV3:134/108:holo",
+        "language": "ja",
+        "set_code": "SV3",
+        "collector_number": "134/108",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "SAR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/134.ts:sha256:181a31ee2749ee3d793f2402a2c37bba15742363987003f86fb3d71928480648",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV3/134.ts",
+      "git_blob": "f1000c1e9ef2f08d5830b00600e3d905135b0540",
+      "sha256": "181a31ee2749ee3d793f2402a2c37bba15742363987003f86fb3d71928480648",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV3:139/108:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV3:139/108:holo",
+        "language": "ja",
+        "set_code": "SV3",
+        "collector_number": "139/108",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "UR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/139.ts:sha256:11fee99bd5465d3dd805168dc2fdaaf7f4a5a1894275e3f2f2535b81cb4371f3",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV3/139.ts",
+      "git_blob": "f64f6810fe2c984ac3b1ced1b3ff7ee22ee31ac9",
+      "sha256": "11fee99bd5465d3dd805168dc2fdaaf7f4a5a1894275e3f2f2535b81cb4371f3",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:075/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:075/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "075/190",
+        "variant": "holo",
+        "name": "フーディンex",
+        "rarity": "Double rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/075.ts:sha256:5339ca3b5dfacab55187139ebe5186749ca2406e60d6aa0958a23b64b9ce648b",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/075.ts",
+      "git_blob": "29dc5e90f794b4450d2519fb2b700d7b407ab0cd",
+      "sha256": "5339ca3b5dfacab55187139ebe5186749ca2406e60d6aa0958a23b64b9ce648b",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:076/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:076/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "076/190",
+        "variant": "holo",
+        "name": "ミュウex",
+        "rarity": "Double rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/076.ts:sha256:0954cef1dc7cb2dc0608a0d5245aa41987e594e91b1303f06204425a54fe6c2f",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/076.ts",
+      "git_blob": "1c5461b8874ed2e41618ed06668905b8f43fcd09",
+      "sha256": "0954cef1dc7cb2dc0608a0d5245aa41987e594e91b1303f06204425a54fe6c2f",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:115/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:115/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "115/190",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "Double rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/115.ts:sha256:4a62d56f3236d8cfee224cc62ea1e90d5362d228af84c0c60483a3cce00ee465",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/115.ts",
+      "git_blob": "533e87a397ae5f07c8f9cae19a4846624b2c728f",
+      "sha256": "4a62d56f3236d8cfee224cc62ea1e90d5362d228af84c0c60483a3cce00ee465",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:326/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:326/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "326/190",
+        "variant": "holo",
+        "name": "フーディンex",
+        "rarity": "SSR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/326.ts:sha256:591304d5aee1b722a70d998b1dab5a76451ef6e04bfa6269f12aefcc2c718b44",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/326.ts",
+      "git_blob": "c7d3e7111aac0ab57f0c1b65cb5afd0e7213744b",
+      "sha256": "591304d5aee1b722a70d998b1dab5a76451ef6e04bfa6269f12aefcc2c718b44",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:327/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:327/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "327/190",
+        "variant": "holo",
+        "name": "ミュウex",
+        "rarity": "SSR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/327.ts:sha256:541eb77a08cc5ac498568539471b874dec8af998b7caab0a659989946efe655b",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/327.ts",
+      "git_blob": "f2452855dfb56d196e5144a3ab956614e8819a23",
+      "sha256": "541eb77a08cc5ac498568539471b874dec8af998b7caab0a659989946efe655b",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:331/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:331/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "331/190",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "SSR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/331.ts:sha256:9adfb09a66c821db02fac840120878a6a8bf451276fe61a69665a77880fee621",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/331.ts",
+      "git_blob": "3f0a09e6b26f2fde186ea4671c8e13ef5e218b29",
+      "sha256": "9adfb09a66c821db02fac840120878a6a8bf451276fe61a69665a77880fee621",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:336/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:336/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "336/190",
+        "variant": "holo",
+        "name": "プクリンex",
+        "rarity": "SSR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/336.ts:sha256:7497956bc85e6ecfb71f36d2fcdea0f2243d1ed38452d1a5ebd009165c39a9c9",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/336.ts",
+      "git_blob": "4612b51603b9bd2df1bf243969ec7a84fd8b4a47",
+      "sha256": "7497956bc85e6ecfb71f36d2fcdea0f2243d1ed38452d1a5ebd009165c39a9c9",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:347/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:347/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "347/190",
+        "variant": "holo",
+        "name": "ミュウex",
+        "rarity": "SAR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/347.ts",
+      "git_blob": "f160005474b2a85180b88fa809d66ec8435f30b9",
+      "sha256": "32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SV4A:349/190:holo",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SV4A:349/190:holo",
+        "language": "ja",
+        "set_code": "SV4A",
+        "collector_number": "349/190",
+        "variant": "holo",
+        "name": "リザードンex",
+        "rarity": "SAR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/349.ts:sha256:17e7f3855cd2d118f4c23252c1ea25e3ba81378d188b7e3f2f20ef98e110e86f",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SV4a/349.ts",
+      "git_blob": "d0c4b0c093a1f91f9384835dbdd147eb3093f274",
+      "sha256": "17e7f3855cd2d118f4c23252c1ea25e3ba81378d188b7e3f2f20ef98e110e86f",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "ja:SVK:006/044:standard",
+      "status": "held_no_name_binding",
+      "reason": "exact singleton Dex required; multi-character or missing fields held",
+      "identity": {
+        "card_id": "ja:SVK:006/044:standard",
+        "language": "ja",
+        "set_code": "SVK",
+        "collector_number": "006/044",
+        "variant": "standard",
+        "name": "ミュウex",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SVK/006.ts:sha256:9cab025fd0eebb23cfb82aca207e8531e0ab4fb65323cbd31d290e622a493014",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "provider": "tcgdex",
+      "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+      "native_id": "data-asia/SV/SVK/006.ts",
+      "git_blob": "2b418ac41cb620299fbea883021c8e1cca046107",
+      "sha256": "9cab025fd0eebb23cfb82aca207e8531e0ab4fb65323cbd31d290e622a493014",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "inspected_at": "2026-10-12T09:36:27Z",
+      "retrieved_at": null,
+      "retrieval_status": "historical_snapshot_time_not_recorded",
+      "physical_distribution_region": null,
+      "rights_status": "metadata_internal_reviewed",
+      "confidence": null,
+      "confidence_scope": "source/name/dimension qualification failed; no binding",
+      "unresolved_conflicts": [
+        "exact singleton Dex required; multi-character or missing fields held"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    }
+  ],
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/PMCG/PMCG1/035.ts": {
+      "git_blob": "b97c2bfab0a60696fd464ebf473a58d55b118185",
+      "sha256": "b94e730c8c60365341ec1fc44e203a66e93c31bcc3eb8454973aa008aec67cc1",
+      "bytes": 869
+    },
+    "data-asia/PMCG/PMCG1/062.ts": {
+      "git_blob": "45db3371cf72a4074e03b536ded117b4b021c9aa",
+      "sha256": "35f6fe53f476b8b273d3fd8f0e4e6996284ae26febded0a0a9e9337b5eb19d81",
+      "bytes": 880
+    },
+    "data-asia/PMCG/PMCG1/063.ts": {
+      "git_blob": "64b825ce8d50a0d6b2cc62b87aa02553fea177ad",
+      "sha256": "748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+      "bytes": 1085
+    },
+    "data-asia/PMCG/PMCG1/064.ts": {
+      "git_blob": "d7c300f775f677893436d5e328aebed4a415d935",
+      "sha256": "af202de2fb39d4a5b3e97c165b162251b3bcd1bc8ba7a403b12b07a8bb6986e8",
+      "bytes": 952
+    },
+    "data-asia/PMCG/PMCG1/065.ts": {
+      "git_blob": "1514ea1e236826bfc6d2ae179fbf53384ee98e43",
+      "sha256": "28e8ff461efa58acecbb28884b09cc0fdfe0ab529e717300298f5f2935198630",
+      "bytes": 607
+    },
+    "data-asia/PMCG/PMCG1/066.ts": {
+      "git_blob": "50ad9b55d571e0e8d66ce525a2cca7404fa4af7c",
+      "sha256": "d9a77b9dd531a89aa5f07ca713e495c0ebe8d2ff61319151060ae87c9707c5b0",
+      "bytes": 1087
+    },
+    "data-asia/PMCG/PMCG1/067.ts": {
+      "git_blob": "9d30283ca21b74fba9825bd35d98d81731ce9b3b",
+      "sha256": "6d1f6046b54e9b6e23b4aa291227193170a7cdd4fb2c41c2f9a7a457ddf45861",
+      "bytes": 983
+    },
+    "data-asia/PMCG/PMCG1/068.ts": {
+      "git_blob": "2bb90870b2d22a2091b881a5e009a3217fdd5037",
+      "sha256": "5503377617c9b13e01a0931c873902eab98186b707aa161055ac4a251ae92b00",
+      "bytes": 1074
+    },
+    "data-asia/PMCG/PMCG1/069.ts": {
+      "git_blob": "9310ad8749828f76c34f785a21ac14739eff5112",
+      "sha256": "78f190dc324692fa2b9e63e58c9b9edf9f30ea64932dfa6d52f4a207ab2bf6e7",
+      "bytes": 1079
+    },
+    "data-asia/PMCG/PMCG2/024.ts": {
+      "git_blob": "201fdf3bcd9da7dbe39c8abd93f678220ece24be",
+      "sha256": "f9e6f485b59f61e5ee29af84b5bb8406841363bce8374fbe14948a103d5b7b53",
+      "bytes": 777
+    },
+    "data-asia/PMCG/PMCG3/043.ts": {
+      "git_blob": "a1c0583c4227f4cd76f37d1abea62bf1a9814c03",
+      "sha256": "448f4759b009d433f7cfb6202d53f9327c4b1d55a51967a49cf8337d2f767416",
+      "bytes": 991
+    },
+    "data-asia/SV/SV3/066.ts": {
+      "git_blob": "37d926b46d4c4da912bedeec16d0f8a4a677ee9e",
+      "sha256": "4f0fe5deeee8f9d8f143f6bfb3c63db42cea57ee8f2d2e565ebde0b4ea81844e",
+      "bytes": 2342
+    },
+    "data-asia/SV/SV3/125.ts": {
+      "git_blob": "bedbf59c51eb1361bdcca52c651826bcf191fd76",
+      "sha256": "a8ac8ec88b019cf1503f07541d273945252a6fddae2f5f0d5066ab2577e6c7d3",
+      "bytes": 2314
+    },
+    "data-asia/SV/SV3/134.ts": {
+      "git_blob": "f1000c1e9ef2f08d5830b00600e3d905135b0540",
+      "sha256": "181a31ee2749ee3d793f2402a2c37bba15742363987003f86fb3d71928480648",
+      "bytes": 2312
+    },
+    "data-asia/SV/SV3/139.ts": {
+      "git_blob": "f64f6810fe2c984ac3b1ced1b3ff7ee22ee31ac9",
+      "sha256": "11fee99bd5465d3dd805168dc2fdaaf7f4a5a1894275e3f2f2535b81cb4371f3",
+      "bytes": 1039
+    },
+    "data-asia/SV/SV4a/075.ts": {
+      "git_blob": "29dc5e90f794b4450d2519fb2b700d7b407ab0cd",
+      "sha256": "5339ca3b5dfacab55187139ebe5186749ca2406e60d6aa0958a23b64b9ce648b",
+      "bytes": 1867
+    },
+    "data-asia/SV/SV4a/076.ts": {
+      "git_blob": "1c5461b8874ed2e41618ed06668905b8f43fcd09",
+      "sha256": "0954cef1dc7cb2dc0608a0d5245aa41987e594e91b1303f06204425a54fe6c2f",
+      "bytes": 2153
+    },
+    "data-asia/SV/SV4a/115.ts": {
+      "git_blob": "533e87a397ae5f07c8f9cae19a4846624b2c728f",
+      "sha256": "4a62d56f3236d8cfee224cc62ea1e90d5362d228af84c0c60483a3cce00ee465",
+      "bytes": 2791
+    },
+    "data-asia/SV/SV4a/326.ts": {
+      "git_blob": "c7d3e7111aac0ab57f0c1b65cb5afd0e7213744b",
+      "sha256": "591304d5aee1b722a70d998b1dab5a76451ef6e04bfa6269f12aefcc2c718b44",
+      "bytes": 1432
+    },
+    "data-asia/SV/SV4a/327.ts": {
+      "git_blob": "f2452855dfb56d196e5144a3ab956614e8819a23",
+      "sha256": "541eb77a08cc5ac498568539471b874dec8af998b7caab0a659989946efe655b",
+      "bytes": 1545
+    },
+    "data-asia/SV/SV4a/331.ts": {
+      "git_blob": "3f0a09e6b26f2fde186ea4671c8e13ef5e218b29",
+      "sha256": "9adfb09a66c821db02fac840120878a6a8bf451276fe61a69665a77880fee621",
+      "bytes": 1901
+    },
+    "data-asia/SV/SV4a/336.ts": {
+      "git_blob": "4612b51603b9bd2df1bf243969ec7a84fd8b4a47",
+      "sha256": "7497956bc85e6ecfb71f36d2fcdea0f2243d1ed38452d1a5ebd009165c39a9c9",
+      "bytes": 1575
+    },
+    "data-asia/SV/SV4a/347.ts": {
+      "git_blob": "f160005474b2a85180b88fa809d66ec8435f30b9",
+      "sha256": "32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+      "bytes": 1539
+    },
+    "data-asia/SV/SV4a/349.ts": {
+      "git_blob": "d0c4b0c093a1f91f9384835dbdd147eb3093f274",
+      "sha256": "17e7f3855cd2d118f4c23252c1ea25e3ba81378d188b7e3f2f20ef98e110e86f",
+      "bytes": 1899
+    },
+    "data-asia/SV/SVK/006.ts": {
+      "git_blob": "2b418ac41cb620299fbea883021c8e1cca046107",
+      "sha256": "9cab025fd0eebb23cfb82aca207e8531e0ab4fb65323cbd31d290e622a493014",
+      "bytes": 859
+    }
+  },
+  "qualified_ids": [
+    "ja:PMCG1:035/102:normal",
+    "ja:PMCG1:035/102:normal_no_rarity",
+    "ja:PMCG1:062/102:normal",
+    "ja:PMCG1:062/102:normal_no_rarity",
+    "ja:PMCG1:063/102:normal",
+    "ja:PMCG1:063/102:normal_no_rarity",
+    "ja:PMCG1:064/102:normal",
+    "ja:PMCG1:064/102:normal_no_rarity",
+    "ja:PMCG1:065/102:normal",
+    "ja:PMCG1:065/102:normal_no_rarity",
+    "ja:PMCG1:066/102:normal",
+    "ja:PMCG1:066/102:normal_no_rarity",
+    "ja:PMCG1:067/102:holo",
+    "ja:PMCG1:067/102:holo_no_rarity",
+    "ja:PMCG1:068/102:holo",
+    "ja:PMCG1:068/102:holo_no_rarity",
+    "ja:PMCG1:069/102:normal",
+    "ja:PMCG1:069/102:normal_no_rarity",
+    "ja:PMCG2:024/048:normal",
+    "ja:PMCG3:043/048:holo"
+  ],
+  "scope": "Read-only source/current-name qualification. No measured query gaps, future batch selection, imports or image/physical/commerce approvals.",
+  "next_priority": "44 size-loss legacy IDs are now held. Qualify exact compatible source scan evidence and rights for the five priority targets before further metadata batches; no image or deployment approval.",
+  "demand": "Japan-to-US discovery objective;actual query demand unmeasured",
+  "authorized_supply": "metadata only;live Buy&Ship availability unmeasured",
+  "display_allowed": false,
+  "image_display_allowed": false,
+  "purchase_allowed": false,
+  "automatic_offer_join_allowed": false,
+  "physical_printing_verified": false,
+  "price_comparable": false
+}

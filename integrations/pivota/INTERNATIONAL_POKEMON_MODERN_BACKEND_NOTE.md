@@ -1,0 +1,11 @@
+# Backend handoff: local hundred-record modern-scope batch
+
+Explicit candidate manifest: `catalog-build-manifest-international-pokemon-modern-v1.json` (74 inputs; prior 73/original 65 preserved). Adds retrieval evidence for 100 existing Japanese variants across ten partial scopes and 25 disjoint English comparisons. Locale/source bindings become 1,532: Japanese 1,382 / English 150. Source records remain 70,006. No new card, concept, review, counterpart or release date is created; creator frontend and runtime/schema are unchanged in this stage.
+
+All 125 target-ID discovery gaps close through 119 translated queries; all 125 structured requests resolve to exact metadata coordinates with current per-record evidence. Preserve IDs, source scopes and resolver status. The prior Alakazam holo/Cosmos ambiguity remains held, and the Cosmos sibling has no new binding. Names, art and collector numbers cannot merge variants, languages or prices.
+
+Existing `localization_evidence` carries exact identity/release snapshots, current approved aliases, provider/native ID, revision/blob/hash/licence and confidence scope. Region stays ZZ; physical distribution region and historical retrieval time remain unknown. All display/image/physical/price-comparability/automatic-offer/purchase claims stay false. Identity, stock, condition, grading company/grade, asking/sold prices and landed cost remain separate. Buy&Ship remains intended MoR; Pivota does not hold funds.
+
+Local candidate only. Docker keeps the original 65-input manifest; nothing is deployed or enabled for live ingestion/trading. Verification: 800 Python cases (798 passed, two existing skips), 76 focused passes and 15 Node passes; all-column history, idempotence, independent rebuild and modern/legacy byte reproduction pass. GPT-6.1 Sol high review is archived.
+
+Rollback: unchanged stage10 snapshot, explicit 73-input followup manifest or checked stage11 reverse patch. Next unapplied proposal: 100 Japanese records across 12 further scopes, followed by 25 English comparisons after qualification. The remaining cache supports 620 qualified Japanese records; 14 evidence holds remain. Broader scale and a real third language require further source/name qualification, measured demand and authorized supply.

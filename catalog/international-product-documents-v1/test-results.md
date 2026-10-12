@@ -1,0 +1,12 @@
+# Stage 5 verification
+
+- Final Python regression suite: `python3 -m unittest discover -s tests` — **707 run, 705 passed, two existing skips**, 37.722 seconds. Existing localhost-only API tests ran under the approved local test execution. No external ingestion or trading was enabled.
+- New focused suite: `python3 -m unittest tests.test_product_document_qualification -v` — **22 passed**, independently repeated by GPT-6.1 Sol high.
+- `python3 -m compileall -q pokemon_index scripts tests` and staged/unstaged `git diff --check` pass.
+- The real compiler and a second fresh-directory final-code rebuild produce seven byte-identical files: three raw pinned headers, MIT licence, provider documents, anchor outcomes and compiler coverage report. The six output hashes in that report match their packaged bytes.
+- Database SHA-256 remains `43efee62091ce157ea7d14182262c5c3a68f2e5e86058dbc5287da29b6cc1b82`; catalogue inventory equals stage4 before and after. The explicit68-step snapshot hashes and original ordered65 source-binding inputs remain unchanged. No stage5 manifest/runtime/schema changes.
+- Source blob IDs and reviewed licence bytes match the pinned Git tree with lazy fetching disabled and origin overridden to `/dev/null`. The selected pinned set directories contain no card entries.
+- New cases cover Unicode names; shared scalar and localized date uncertainty; missing and malformed fields; duplicate/dynamic properties; comments, quoted/templates and nested/unexported fake declarations; repeated collector numbers/shared names; foreign language and foil/stamp siblings; forged dates/regions/permissions; ambiguous request/caption bindings; source hash/path/collision and licence checks; input drift; deterministic requalification; cached-but-unqualified SMH documents; and overwrite refusal. Existing international, Unicode search, unchanged-ID, cross-language, variant and source-binding regressions also pass in the full suite.
+- Stage3's15 passing Node tests carry forward. No Node/runtime code changes in stages4–5; no claim of a new Node test run is made.
+
+Independent review identified two draft edge cases: quoted/nested declarations could qualify as real set headers, and newly cached SMH targets received an inaccurate missing-cache reason. Both are fixed and covered by regressions. The final evidence still qualifies three provider header declarations and zero exact publisher-product or cross-provider anchor bindings. Four anchor outcomes and all65 existing physical holds remain held; approvals and trading counts stay zero.

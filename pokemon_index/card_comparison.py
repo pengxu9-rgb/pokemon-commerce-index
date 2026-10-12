@@ -57,6 +57,11 @@ def _side(db, descriptor):
                 if (evidence := number_evidence.context(db, r['card_id'])) is not None]
     facts = [dict(card_id=r['card_id'], evidence=evidence) for r in rows
              if (evidence := source_image_facts.context(db,r['card_id'])) is not None]
+    from . import catalog_media,variant_dimension_hold
+    for row in rows:
+        row['media_availability']=catalog_media.availability(db,row['card_id'])
+        hold=variant_dimension_hold.context(db,row['card_id'])
+        if hold:row['variant_dimension_hold']=hold
     return dict(requested=descriptor, status=status, matched_records=count, records=rows,
                 records_truncated=count > MAX_CANDIDATES, number_context=context,
                 observed_printed_numbers=observed,
