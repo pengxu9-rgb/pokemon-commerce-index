@@ -1,6 +1,7 @@
 """Synthetic evidence tests; no real scan, reviewer or artwork is created."""
 import copy,unittest
-from pokemon_index import core,number_evidence,source_image_facts,catalog_media,collector_discovery,collector_recommendation
+from unittest.mock import patch
+from pokemon_index import core,number_evidence,source_image_facts,catalog_media,collector_discovery,collector_recommendation,collector_runtime
 from pokemon_index.cli import source_scan_filter
 from tests import test_number_evidence as number_fixtures
 
@@ -99,6 +100,35 @@ class CatalogMediaTests(unittest.TestCase):
             with self.assertRaises(ValueError):source_scan_filter(value)
         with self.assertRaises(ValueError):core.catalog_search_internal(self.db,'Cleffa',with_source_scans=1)
         with self.assertRaises(ValueError):collector_discovery.execute(self.db,'Cleffa',with_source_scans='true')
+
+    def test_cached_pages_keep_scan_order_and_do_not_accumulate_advisories(self):
+        number_evidence.import_evidence(self.db,[self.row]);normal='en:SVP:037/225:normal'
+        for cid in (normal,self.cid):self.db.execute('INSERT INTO card_facet VALUES (?,?,?,?,?)',(cid,'dex_id','35','synthetic','synthetic'))
+        self.db.commit();cache={};question='Recommend Cleffa cards';profile=dict(preferred_dex_ids=[35])
+        first=collector_recommendation.recommend(self.db,question,profile,{},limit=1,pool_cache=cache)
+        second=collector_recommendation.recommend(self.db,question,profile,{},limit=1,offset=1,pool_cache=cache)
+        again=collector_recommendation.recommend(self.db,question,profile,{},limit=1,pool_cache=cache)
+        self.assertEqual([c['card_id'] for c in first['cards']],[self.cid])
+        self.assertEqual([c['card_id'] for c in second['cards']],[normal])
+        self.assertEqual(again,first)
+        self.assertEqual(first['recommendation']['coverage_basis'],'current_catalog_facets_and_reviewed_name_affiliations_only')
+        dismissed=collector_recommendation.recommend(self.db,question,profile,{self.cid:'dismiss'},limit=1,pool_cache=cache)
+        self.assertEqual([c['card_id'] for c in dismissed['cards']],[normal])
+        self.assertFalse(dismissed['cards'][0]['media_availability']['with_source_scans_eligible'])
+
+    def test_scan_iteration_stops_when_python_evidence_work_exceeds_deadline(self):
+        number_evidence.import_evidence(self.db,[self.row])
+        # Model Python evidence work that does no SQL and consumes the remaining
+        # request budget; SQL progress callbacks alone cannot interrupt this path.
+        calls=[]
+        with patch.object(collector_runtime.time,'monotonic',return_value=0) as clock:
+            def slow_context(*args):
+                calls.append(args);clock.return_value=2
+                return dict(with_source_scans_eligible=True)
+            with patch.object(catalog_media,'availability',side_effect=slow_context), patch.object(catalog_media,'subjects',return_value={self.cid,'synthetic:test-only-subject'}):
+                with self.assertRaises(collector_runtime.CatalogDeadline):
+                    with collector_runtime.sqlite_deadline(self.db,1):catalog_media.current_ids(self.db)
+        self.assertEqual(len(calls),1)
 
     def test_exact_edition_ids_are_metadata_and_extra_copy_requests_still_block(self):
         for variant in ('normal_unlimited','normal_1st_edition'):

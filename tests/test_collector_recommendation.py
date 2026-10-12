@@ -197,9 +197,15 @@ class RecommendationTests(unittest.TestCase):
         changed=base+[self.profile(preferred_dex_ids=[151])]
         with self.assertRaises(ValueError):self.replay(changed+[dict(type='choose_comparison',side='right',card_id=B)],limit=20)
         with self.assertRaises(ValueError):self.replay(self.start()+[dict(type='compare',left_card_id=A,right_card_id=C)],limit=20)
-        raw=[dict(type='ask',question='Compare ja:FIX:001/100:normal and ja:FIX:002/100:normal'),dict(type='inventory',owned_items=[dict(item_id='owned',card_id=B)]),dict(type='choose_comparison',side='right',card_id=B)]
-        self.assertEqual(self.replay(raw)['candidate_cards'],[])
-        with self.assertRaises(ValueError):self.replay(raw+[dict(type='select',card_id=B)])
+        question='Compare ja:FIX:001/100:normal and ja:FIX:002/100:normal'
+        raw=[dict(type='ask',question=question),dict(type='inventory',owned_items=[dict(item_id='owned',card_id=B)])]
+        with self.assertRaisesRegex(ValueError,'active comparison'):
+            self.replay(raw+[dict(type='choose_comparison',side='right',card_id=B)])
+        # A newly requested comparison may be focused, but cannot revive an
+        # already owned record as a missing catalog target.
+        refreshed=raw+[dict(type='ask',question=question),dict(type='choose_comparison',side='right',card_id=B)]
+        self.assertEqual(self.replay(refreshed)['candidate_cards'],[])
+        with self.assertRaises(ValueError):self.replay(refreshed+[dict(type='select',card_id=B)])
     def test_pure_market_and_unsupported_product_goals_cannot_use_profile_to_bypass(self):
         for q in ['Cheapest Pikachu card','Where can I buy Pikachu?','Recommend Pikachu sleeves','Recommend Korean Pikachu cards']:
             r=self.replay([dict(type='ask',question=q),self.profile(preferred_dex_ids=[25])])

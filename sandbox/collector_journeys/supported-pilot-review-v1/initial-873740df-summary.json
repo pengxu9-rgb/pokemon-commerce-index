@@ -1,0 +1,183 @@
+{
+  "catalog_revision": "d00735b892303fa64cc15b0d26f704aab9bd3247601ed713555f24fac270cd16",
+  "catalog_counts": {
+    "source_records": 70006,
+    "coordinates": 45438,
+    "structurally_match_eligible": 33543
+  },
+  "stage_counts": {
+    "discoverable_by_exact_id": 100,
+    "catalog_selection_eligible": 100,
+    "current_supported_and_selection_eligible": 100,
+    "catalog_intent_roundtrip": 100,
+    "physical_printing_approval_exposed": 0,
+    "automatic_offer_join_approval_exposed": 0,
+    "declared_support_records": 100,
+    "currently_supported_records": 100,
+    "structurally_match_eligible": 100
+  },
+  "question_summary": {
+    "total": 34,
+    "passed": 27,
+    "failed": 7
+  },
+  "question_family_summary": {
+    "broad_research_artist": {
+      "total": 2,
+      "passed": 2
+    },
+    "broad_research_recommendation": {
+      "total": 4,
+      "passed": 4
+    },
+    "collector_continuation": {
+      "total": 5,
+      "passed": 1
+    },
+    "comparison_choice": {
+      "total": 4,
+      "passed": 4
+    },
+    "honest_limits": {
+      "total": 3,
+      "passed": 3
+    },
+    "inventory": {
+      "total": 4,
+      "passed": 1
+    },
+    "source_coordinate": {
+      "total": 12,
+      "passed": 12
+    }
+  },
+  "explicit_catalog_target_outcomes": {
+    "attempted": 4,
+    "succeeded": 4,
+    "scope": "separate explicit catalog selections; no physical-copy or shopping success"
+  },
+  "catalog_bytes_unchanged": true,
+  "suite_sha256": "3c0a1abbe6fdfda6b99ae6bdee910ac9d5b6aef6f1ad0fd31f259ed11cfc7852",
+  "script_sha256": "f5d789c67f1bf8bc010241cdd34d72146264d8065345e247b51ba40d70c4c617",
+  "schema": "pokemon.supported-pilot-initial-failure-receipt.v1",
+  "source_commit": "873740dfe4dbeced2bfb813306e3becf4ebc6b2f",
+  "ci_url": "https://github.com/pengxu9-rgb/pokemon-commerce-index/actions/runs/37162412603",
+  "artifact_id": 11288268260,
+  "artifact_sha256": "9637693f3e59b2c19ec60eb10fb97e524ea1f413248b4bf93d23d341c5aa19a4",
+  "failed_questions": [
+    {
+      "id": "pilot-13",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-15",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-16",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-17",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-22",
+      "errors": [
+        "selection_allowed",
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-23",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    },
+    {
+      "id": "pilot-24",
+      "errors": [
+        "missing_supported_anchors"
+      ],
+      "coverage": {
+        "matched_catalog_records": 0,
+        "not_in_resolved_inventory": 0,
+        "returned": 0,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true
+      }
+    }
+  ],
+  "interpretation": "Original frozen diagnostic result retained. Missing source dex facets prevented species-driven discovery of supported ex records; exact-ID eligibility is not discoverability. No expectations or identity holds were relaxed."
+}

@@ -1,0 +1,7 @@
+{
+  "catalog_sha256": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "read_only": true,
+  "sql": "SELECT c.card_id,c.name FROM card c WHERE c.language='ja' AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND f.value='25') AND EXISTS(SELECT 1 FROM discovery_card_facet f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value='Yuka Morii') ORDER BY c.card_id",
+  "rows": [],
+  "scope": "Zero matching current source-facet intersection does not prove no such physical card exists."
+}

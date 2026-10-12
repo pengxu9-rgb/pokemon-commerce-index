@@ -1,0 +1,1494 @@
+{
+  "schema": "pokemon.independent-collector-eval.v1",
+  "suite_id": "independent-collector-eval-v1",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "authored_at_utc": "2026-10-04T01:12:00Z",
+  "count": 30,
+  "design": {
+    "audience": "US and European collectors exploring Japanese Pokémon cards",
+    "market_feed": "unavailable; no Buy&Ship discovery/listing feed",
+    "unit": "one independently authored question and its precommitted follow-up actions; multi-turn cases remain one denominator unit",
+    "independence": "Authored by a separate evaluation worker after reading product/review documents and action schema. Existing implementation and selected source records were inspected for interface/identity grounding. No candidate responses were executed or inspected for these questions before freeze. Not blinded to architecture, not sampled from users, not real-user testing.",
+    "selection": "Purposive coverage of realistic discovery, clarification, feedback, scope, evidence gaps, comparison and catalog selection. Not representative statistical sampling.",
+    "not_a_tuning_fixture": "Freeze before baseline replay; later changes require a new version and explicit delta. Never edit expectations to make an implementation pass."
+  },
+  "cases": [
+    {
+      "id": "ICU-01",
+      "category": "novice_clarification",
+      "persona": "US novice; no set-code knowledge",
+      "question": "I'm new to Japanese Pokémon cards. What should I collect next?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'm new to Japanese Pokémon cards. What should I collect next?"
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Pikachu"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "The first response asks one useful taste question, with understandable choices such as Pokémon, artist or release",
+          "After Pikachu, show at least three Japanese Pikachu coordinates with source-backed reasons"
+        ],
+        "must_not": [
+          "Do not ask for budget before establishing taste",
+          "Do not pretend language alone determines taste"
+        ],
+        "completion": "A novice can answer the first question and reach a relevant short list in the provided two turns.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-02",
+      "category": "novice_discovery",
+      "persona": "German collector accustomed to English names",
+      "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "At least three different Japanese Eevee coordinates; English user vocabulary should not force English cards",
+          "Explain collector numbers and releases without assuming the user knows set codes"
+        ],
+        "must_not": [
+          "Do not expand to every Eeveelution without asking",
+          "Do not claim German shipping availability"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-03",
+      "category": "bilingual_name",
+      "persona": "French collector copying a Japanese card name",
+      "question": "Can you recommend Japanese リザードン cards for my collection?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Can you recommend Japanese リザードン cards for my collection?"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "At least three Charizard-affiliated Japanese coordinates",
+          "Keep exact Japanese name and coordinate inspectable; include an understandable species explanation"
+        ],
+        "must_not": [
+          "Do not treat Charizard ex as a separate unrelated species",
+          "Do not infer same printing across languages"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "6",
+            "affiliation_allowed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-04",
+      "category": "suffix_name_discovery",
+      "persona": "US collector exploring modern Mew ex",
+      "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Return a scoped Mew ex shortlist, including distinct catalog coordinates",
+          "A name match alone is not evidence of different artwork; separate source evidence from unknown visual differences"
+        ],
+        "must_not": [
+          "Do not assert every Mew is Mew ex",
+          "Do not label unreviewed artwork as different"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 2
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 2
+          },
+          {
+            "check": "candidate_provenance_present"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-05",
+      "category": "ambiguous_character",
+      "persona": "UK collector with an underspecified nickname",
+      "question": "I want the Japanese Mew card. Which one is it?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I want the Japanese Mew card. Which one is it?"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Explain that Mew names multiple catalog cards and ask for a release, number or example image/record",
+          "Show a few labeled alternatives if relevant; do not silently choose a target"
+        ],
+        "must_not": [
+          "Do not assume the latest, most valuable or a particular art"
+        ],
+        "completion": "A specific, answerable disambiguation with alternatives or missing coordinate fields; no exact selection until disambiguated.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-06",
+      "category": "illustrator_exact",
+      "persona": "UK collector interested in clay artwork",
+      "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "At least three source-attributed Yuka Morii Japanese coordinates",
+          "Printed illustrator credit is the matching evidence; any identity-held rows are labeled"
+        ],
+        "must_not": [
+          "Do not infer clay/cute imagery for each card from the artist name alone"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-07",
+      "category": "illustrator_exact",
+      "persona": "US collector following an illustrator",
+      "question": "What Japanese cards can I collect by Tomokazu Komiya?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "What Japanese cards can I collect by Tomokazu Komiya?"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "At least three distinct source-attributed Tomokazu Komiya Japanese coordinates"
+        ],
+        "must_not": [
+          "Do not silently substitute other illustrators or a popularity ranking"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Tomokazu Komiya"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-08",
+      "category": "illustrator_exact",
+      "persona": "Dutch collector who knows one modern illustrator",
+      "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Show sourced Shinji Kanda matches, with at least two coordinates or a specific evidenced coverage limit",
+          "Explain the illustrator match and retain original names/releases"
+        ],
+        "must_not": [
+          "Do not claim any starting point is affordable or obtainable"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 2
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 2
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Shinji Kanda"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-09",
+      "category": "compound_hard_constraint",
+      "persona": "US collector with a precise artist/species request",
+      "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Every candidate satisfies Japanese, Pikachu and Yuka Morii together",
+          "If no qualified intersection exists, say exactly which evidence is missing and offer an explicit relaxation"
+        ],
+        "must_not": [
+          "Do not treat species OR artist as satisfying this request",
+          "Do not silently relax only"
+        ],
+        "completion": "At least one exact intersection match, or a supported explanation that the catalog cannot establish one plus a specific optional relaxation. Empty generic refusal is not useful.",
+        "automatable_checks": [
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-10",
+      "category": "release_alias",
+      "persona": "US novice using the English title of a Japanese release",
+      "question": "Recommend cards only from the Japanese Shiny Treasure ex set.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend cards only from the Japanese Shiny Treasure ex set."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Interpret the Japanese release as SV4A; do not confuse a translated name with the English release",
+          "At least three Japanese SV4A coordinates, with the corrected source-backed Japanese release title"
+        ],
+        "must_not": [
+          "Do not return the previously mislabelled Raging Surf or unrelated releases",
+          "Do not claim an exhaustive list"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "set_code": "SV4A"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-11",
+      "category": "release_alias",
+      "persona": "Italian collector collecting Japanese 151",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Resolve the release to Japanese SV2A and show five distinct coordinates when available",
+          "Disclose catalog/source-version coverage"
+        ],
+        "must_not": [
+          "Do not mix English 151 cards or other Scarlet & Violet releases"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 5
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 5
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "set_code": "SV2A"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-12",
+      "category": "ambiguous_release",
+      "persona": "US novice who knows an era but not a release",
+      "question": "Recommend Japanese cards only from Scarlet and Violet.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards only from Scarlet and Violet."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Ask whether the collector means the whole Scarlet & Violet era or a named release, with a concrete example",
+          "Keep the only constraint unresolved until scope is clear"
+        ],
+        "must_not": [
+          "Do not silently interpret an era as one arbitrary set or ignore the exclusivity"
+        ],
+        "completion": "A focused era-versus-release question that preserves the user constraint; a generic no-records response does not complete it.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-13",
+      "category": "exact_coordinate",
+      "persona": "US collector with a release and number",
+      "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex."
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:SV4A:236/190:holo"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Expose the exact supported catalog identity ja:SV4A:236/190:holo, with provenance and source-declared finish",
+          "Only the separate select action creates a catalog target; explain physical-copy/offer limits"
+        ],
+        "must_not": [
+          "Do not convert source-declared holo into physical verification",
+          "Do not claim anything was bought or reserved"
+        ],
+        "completion": "Separate explicit selection yields that exact catalog target, with the provenance/physical-copy caveat intact.",
+        "automatable_checks": [
+          {
+            "check": "target_id",
+            "value": "ja:SV4A:236/190:holo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-14",
+      "category": "coordinate_ambiguity",
+      "persona": "UK collector transcribing a number without context",
+      "question": "Can you find card 025/165 for me?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Can you find card 025/165 for me?"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Ask for language/release or present clearly labeled coordinate alternatives",
+          "The shared number alone cannot select a Japanese, English or finish-specific target"
+        ],
+        "must_not": [
+          "Do not select the first matching row by stable sort"
+        ],
+        "completion": "Concrete disambiguation identifies the missing fields and makes the next reply easy.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-15",
+      "category": "unknown_coordinate",
+      "persona": "Dutch collector checking a possibly mistyped number",
+      "question": "Show me Japanese SV4A 999/190.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese SV4A 999/190."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "State no matching catalog coordinate is established and ask the user to check the number/release",
+          "Preserve the exact input so the user can correct it"
+        ],
+        "must_not": [
+          "Do not replace it with an unrelated popular card",
+          "Do not assert the physical card cannot exist merely because this catalog lacks it"
+        ],
+        "completion": "A precise not-found explanation and correction question, without fabricated identity.",
+        "automatable_checks": [
+          {
+            "check": "candidate_count",
+            "value": 0
+          },
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-16",
+      "category": "hard_exclusion",
+      "persona": "US collector who already has many Mew cards",
+      "question": "Recommend Japanese cards from SV4A, but exclude Mew.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A, but exclude Mew."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "A source-scoped Japanese SV4A shortlist excludes Mew and Mew ex affiliations",
+          "Unknown species membership is disclosed/withheld, never counted as proven non-Mew"
+        ],
+        "must_not": [
+          "Do not convert the exclusion into a positive Mew preference",
+          "Do not claim this excludes Mew artwork cameos"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja",
+              "set_code": "SV4A"
+            }
+          },
+          {
+            "check": "excluded_facet",
+            "facet": "dex_id",
+            "value": "151",
+            "affiliation_allowed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-17",
+      "category": "negative_refinement",
+      "persona": "UK collector correcting a recommendation direction",
+      "question": "Recommend Japanese Pikachu cards.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "I don't like Mew. Please keep looking for Pikachu."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Keep the positive Pikachu objective; do not replace it with Mew",
+          "Apply the supported exclusion or ask one explicit inclusion/exclusion clarification that mentions the unresolved preference"
+        ],
+        "must_not": [
+          "Do not show Mew as the intended replacement",
+          "Do not claim the negative was applied if it was held"
+        ],
+        "completion": "A relevant Pikachu shortlist with an applied exclusion, or a precise one-step clarification retaining Pikachu. A warning with unrelated results is not useful.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-18",
+      "category": "aesthetic_unknown",
+      "persona": "French collector drawn to quiet artwork",
+      "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?"
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Yuka Morii"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "At first, acknowledge the aesthetic evidence limit and ask for an artist, Pokémon or liked example",
+          "After Yuka Morii, show sourced artist matches as starting points and retain cozy/peaceful as unverified taste"
+        ],
+        "must_not": [
+          "Do not claim every Yuka Morii image is peaceful or cozy",
+          "Do not end at an unsupported-aesthetic warning after a usable artist reply"
+        ],
+        "completion": "The aesthetic request leads through one useful clarification to an evidence-backed shortlist; subjective image fit remains explicitly unverified.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-19",
+      "category": "pagination_diversity",
+      "persona": "US collector exploring beyond the first page",
+      "question": "Recommend Japanese Eevee cards.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards."
+          }
+        },
+        {
+          "action": {
+            "type": "page",
+            "offset": 5
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "The second page supplies additional candidates with absolute ranks and source IDs",
+          "Do not repeat first-page records; prefer coordinate diversity over five source-version duplicates when alternatives exist"
+        ],
+        "must_not": [
+          "Do not claim different IDs necessarily mean different artwork or physical printing"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          },
+          {
+            "check": "different_from_previous_page"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-20",
+      "category": "positive_feedback",
+      "persona": "German collector using a Like control",
+      "question": "Recommend Japanese cards from SV4A.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A."
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "liked_card"
+            },
+            "reaction": "like"
+          },
+          "bind": {
+            "liked_card": {
+              "from_step": 0,
+              "candidate_index": 0
+            }
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "liked_card"
+            },
+            "reaction": "like"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Record one like for the exact shown ID; use only source-backed shared facets in explanations",
+          "The second identical like leaves ordering/scores unchanged; do not invent taste"
+        ],
+        "must_not": [
+          "Do not infer cute, rarity, monetary value or verified ownership from a like"
+        ],
+        "completion": "The loop makes the like visible, preserves/reorders relevant candidates with evidence, and repeated likes do not compound scoring.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "idempotent_last_feedback"
+          },
+          {
+            "check": "candidate_provenance_present"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-21",
+      "category": "dismiss_undo",
+      "persona": "UK collector changing their mind",
+      "question": "Recommend Japanese Pikachu cards.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "dismissed_card"
+            },
+            "reaction": "dismiss"
+          },
+          "bind": {
+            "dismissed_card": {
+              "from_step": 0,
+              "candidate_index": 0
+            }
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "dismissed_card"
+            },
+            "reaction": "clear"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Dismiss removes exactly the shown record while preserving the collection goal",
+          "Clear restores its eligibility and the original deterministic page when no other context changed"
+        ],
+        "must_not": [
+          "Do not permanently exclude the species or coordinate family from one dismissal"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          {
+            "check": "dismiss_then_clear_restores"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-22",
+      "category": "context_refinement",
+      "persona": "US collector switching illustrator after feedback",
+      "question": "Recommend Japanese cards by Yuka Morii.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards by Yuka Morii."
+          }
+        },
+        {
+          "action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "prior_like"
+            },
+            "reaction": "like"
+          },
+          "bind": {
+            "prior_like": {
+              "from_step": 0,
+              "candidate_index": 0
+            }
+          }
+        },
+        {
+          "action": {
+            "type": "reply",
+            "text": "Tomokazu Komiya"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Treat the explicit new artist as the new positive artist preference",
+          "Source-backed Komiya candidates should replace the prior artist-only shortlist; old feedback must not override the direct request"
+        ],
+        "must_not": [
+          "Do not silently combine incompatible old and new hard requests or keep an old target"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Tomokazu Komiya"
+          },
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-23",
+      "category": "budget_unknown_us",
+      "persona": "US collector with a spending preference",
+      "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50."
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Provide relevant catalog candidates while preserving USD 5000 minor units as a user preference if parsed",
+          "Explicitly state current prices/affordability cannot be established without authorized fresh offers"
+        ],
+        "must_not": [
+          "Do not label any card under $50 or the cheapest",
+          "Do not hide the useful catalog shortlist behind only a market blocker"
+        ],
+        "completion": "An evidence-backed catalog shortlist plus a clear unresolved affordability check. This is partial completion of the budget-qualified objective, never full budget fit.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-24",
+      "category": "grade_destination_unknown_europe",
+      "persona": "German collector seeking graded cards",
+      "question": "Recommend Japanese Eevee cards for me.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards for me."
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Keep a relevant Eevee catalog shortlist and retain the exact stated preferences",
+          "Explain that PSA 10 copy availability, price and Germany delivery/fees remain unverified"
+        ],
+        "must_not": [
+          "Do not infer that a catalog card is PSA 10",
+          "Do not assert Buy&Ship European shipping support or a landed EUR total"
+        ],
+        "completion": "A useful catalog shortlist with explicit unresolved grade/destination/price checks; completion remains partial for the graded acquisition goal.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          },
+          {
+            "check": "preferences_equal",
+            "value": {
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-25",
+      "category": "market_blocked_with_catalog_salvage",
+      "persona": "UK collector asking for a ready-to-buy recommendation",
+      "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Clearly disclose absent fresh offers, copy condition and UK landed-cost evidence",
+          "Still offer a concrete catalog-exploration next step keyed to Mew, with scoped candidates or an easy choice"
+        ],
+        "must_not": [
+          "Do not recommend a merchant, fabricate a price, imply UK service support or report a purchase"
+        ],
+        "completion": "Acquisition is unavailable and remains incomplete. Useful partial credit needs a concrete Mew catalog next step; a safe blanket market refusal earns honesty only.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-26",
+      "category": "known_inventory",
+      "persona": "US collector avoiding an exact duplicate",
+      "question": "Recommend Japanese Pikachu cards I don't already own.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards I don't already own."
+          }
+        },
+        {
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "my-pikachu",
+                "card_id": "ja:SV4A:236/190:holo",
+                "quantity": 1
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Exclude the submitted exact catalog record while returning other relevant Japanese Pikachu candidates",
+          "Describe ownership as the user assertion and keep other source versions/printings distinct"
+        ],
+        "must_not": [
+          "Do not claim a complete Pikachu checklist or verified possession"
+        ],
+        "completion": "A relevant, source-explained shortlist or the specific completed catalog operation requested; generic abstention is not completion.",
+        "automatable_checks": [
+          {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          {
+            "check": "candidate_provenance_present"
+          },
+          {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          {
+            "check": "absent_ids",
+            "values": [
+              "ja:SV4A:236/190:holo"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-27",
+      "category": "uncertain_inventory",
+      "persona": "Italian collector without finish details",
+      "question": "Which Japanese 151 Pikachu cards am I missing?",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Which Japanese 151 Pikachu cards am I missing?"
+          }
+        },
+        {
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "binder-pika",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 1
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Ask which finish/version the submitted coordinate represents and retain possible-owned candidates separately",
+          "Explain that a complete physical missing list cannot yet be established"
+        ],
+        "must_not": [
+          "Do not call a possible-owned variant definitely missing",
+          "Do not select a target through unresolved inventory"
+        ],
+        "completion": "A specific finish/version clarification with the submitted coordinate and possible alternatives. The complete missing checklist remains incomplete.",
+        "automatable_checks": [
+          {
+            "check": "no_target"
+          },
+          {
+            "check": "inventory_unresolved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-28",
+      "category": "compare_focus_select",
+      "persona": "US collector deciding between two known Mew ex identities",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          }
+        },
+        {
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:SV4A:347/190:holo"
+          }
+        }
+      ],
+      "expected": {
+        "must": [
+          "Comparison distinguishes the two coordinates using available source evidence; rarity/number are not investment advice",
+          "The comparison step has no selected target; choosing right focuses the exact record without selecting; only the third action selects"
+        ],
+        "must_not": [
+          "Do not equate compared artwork with physical printing/price equivalence",
+          "Do not create a target during comparison or focus"
+        ],
+        "completion": "A usable sourced comparison, then exact focus, then separate explicit catalog selection, with three visibly distinct authority states.",
+        "automatable_checks": [
+          {
+            "check": "comparison_focus_separate_selection",
+            "value": "ja:SV4A:347/190:holo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-29",
+      "category": "stale_comparison",
+      "persona": "Dutch collector changing the task after comparison",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          }
+        },
+        {
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "expect_error": true
+        }
+      ],
+      "expected": {
+        "must": [
+          "Changing the preference invalidates the old comparison choice authority",
+          "Attempting the stale choice is rejected; tell the collector to restart the comparison under current preferences"
+        ],
+        "must_not": [
+          "Do not resurrect the old Mew comparison or select its prior choice"
+        ],
+        "completion": "A clear restart requirement with no stale target. A raw opaque exception is technically safe but receives reduced clarification/usefulness credit.",
+        "automatable_checks": [
+          {
+            "check": "last_step_error"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ICU-30",
+      "category": "held_identity",
+      "persona": "UK collector inspecting a suspicious catalog row",
+      "question": "Show me the catalog record ja:M6:098/076:holo.",
+      "limit": 5,
+      "steps": [
+        {
+          "action": {
+            "type": "ask",
+            "question": "Show me the catalog record ja:M6:098/076:holo."
+          }
+        },
+        {
+          "action": {
+            "type": "select",
+            "card_id": "ja:M6:098/076:holo"
+          },
+          "expect_error": true
+        }
+      ],
+      "expected": {
+        "must": [
+          "Make the record inspectable with exact conflicting source-name/finish evidence and its identity hold",
+          "An attempted selection is rejected; give a concrete resolution need rather than hiding the record"
+        ],
+        "must_not": [
+          "Do not treat discoverability or structural eligibility as verified physical identity",
+          "Do not erase the conflict or make a commerce-ready target"
+        ],
+        "completion": "Inspection explains the held identity and selection remains blocked. Safe abstention without inspectable evidence is not a useful answer; selecting this held printing is never success.",
+        "automatable_checks": [
+          {
+            "check": "last_step_error"
+          },
+          {
+            "check": "initial_id",
+            "value": "ja:M6:098/076:holo"
+          },
+          {
+            "check": "initial_identity_hold"
+          }
+        ]
+      }
+    }
+  ]
+}

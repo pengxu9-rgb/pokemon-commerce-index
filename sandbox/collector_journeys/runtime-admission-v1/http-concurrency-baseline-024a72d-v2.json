@@ -1,0 +1,593 @@
+{
+  "schema": "pokemon.collector-http-concurrency.v1",
+  "fixture_label": "synthetic",
+  "catalog_records": 70000,
+  "catalog_sha256": "ef9b00ab143dd42022f56fd08484769963d69597644d1e4f3ea513bd6d7513be",
+  "catalog_unchanged": true,
+  "axis": {
+    "facet_type": "dex_id",
+    "value": "25",
+    "catalog_axis_records": 10000,
+    "profile": {
+      "preferred_dex_ids": [
+        25
+      ]
+    },
+    "inventory_question": "Pikachu cards"
+  },
+  "startup_seconds": 0.7474,
+  "configured_workers": "server_default",
+  "client_timeout_seconds": 10,
+  "cpu_affinity_count": 9,
+  "process_peak_rss_mib": 220.64,
+  "cases": [
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 1.2903
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 1.2387
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16582,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 4.4247
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16582,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 4.5802
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 45964,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "gates_closed": true,
+          "elapsed_seconds": 0.3955
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 45964,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "gates_closed": true,
+          "elapsed_seconds": 0.3972
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 1.1897
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0049
+      },
+      "wall_seconds": 1.1923,
+      "counts": {
+        "accepted": 1,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.8387
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 2,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 2.0774
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 2.1564
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0049
+      },
+      "wall_seconds": 2.1572,
+      "counts": {
+        "accepted": 2,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.9271
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 4,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 5.4469
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 5.129
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 4.727
+        },
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 16346,
+          "coverage": {
+            "matched_catalog_records": 10000,
+            "not_in_resolved_inventory": 10000,
+            "returned": 5,
+            "offset": 90,
+            "limit": 5,
+            "has_more": true,
+            "global_printing_completeness_established": false,
+            "missing_character_facets_excluded": true,
+            "reviewed_name_affiliation_candidates": 0,
+            "exclusion_unknown_membership_withheld": 0,
+            "exclusion_scope": "current_source_or_reviewed_primary_character_affiliation_not_artwork_depictions"
+          },
+          "catalog_revision": "f1d9d553487a1e8a2fcc5f90d3099a99a0fc66fae6789180b202f77041f80e56",
+          "gates_closed": true,
+          "elapsed_seconds": 5.4275
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0108
+      },
+      "wall_seconds": 5.4487,
+      "counts": {
+        "accepted": 4,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.7341
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 16,
+      "results": [
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0087
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0133
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0128
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0315
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0336
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0114
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0319
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0087
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0297
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0094
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0091
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0299
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0336
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0331
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0323
+        },
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 11.0328
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 1.0698
+      },
+      "wall_seconds": 11.0406,
+      "counts": {
+        "accepted": 0,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 16,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.0
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "after_bursts_recovery",
+      "clients": 1,
+      "results": [
+        {
+          "status": "transport_error",
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_seconds": 10.0106
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "overloaded": 0,
+        "deadline": 0,
+        "transport_errors": 1,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    }
+  ],
+  "deployment_scope": "Local actual HTTP, no Node token acquisition or deployed Cloud Run measurement. Overload is unsuccessful work and remains in every denominator.",
+  "passed": false
+}

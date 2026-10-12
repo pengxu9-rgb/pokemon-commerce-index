@@ -51,11 +51,11 @@ def parse_time(value: str) -> datetime:
     return parsed.astimezone(timezone.utc)
 
 
-def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
+def connect(path: str | Path, *, readonly: bool = False, timeout: float = 5.0) -> sqlite3.Connection:
     if readonly:
-        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True)
+        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True, timeout=timeout)
     else:
-        db = sqlite3.connect(path)
+        db = sqlite3.connect(path, timeout=timeout)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
     if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='discovery_card_facet'").fetchone():
@@ -1082,8 +1082,8 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], 
         if poll_reason not in {"discovery", "tracking", "panel", "auction_end"}:
             raise ValueError(f"invalid poll reason: {poll_reason}")
         price = row.get("price_minor")
-        if price is not None and int(price) < 0:
-            raise ValueError("negative price")
+        if price is not None and (type(price) is not int or not 0 <= price < 2**63):
+            raise ValueError("price must be nonnegative integer minor currency units")
         unit_id, method = resolve(db, row)
         existing = db.execute("SELECT unit_id, resolution_method FROM listing WHERE source=? AND native_id=?",
                               (row["source"], row["native_id"])).fetchone()
@@ -1205,8 +1205,8 @@ def import_verified_sales(db: sqlite3.Connection, rows: Iterable[dict[str, Any]]
         _policy(db, row["source"])
         settled_at = parse_time(row["settled_at"]).isoformat()
         _reject_held_listing(db,row['source'],row['native_id'])
-        if int(row["paid_minor"]) < 0:
-            raise ValueError("negative paid amount")
+        if type(row["paid_minor"]) is not int or not 0 <= row["paid_minor"] < 2**63:
+            raise ValueError("paid amount must be nonnegative integer minor currency units")
         db.execute("INSERT OR IGNORE INTO verified_sale VALUES (?, ?, ?, ?, ?, ?)",
                    (row["source"], row["native_id"], settled_at, int(row["paid_minor"]),
                     row["currency"], row["evidence_ref"]))

@@ -1,0 +1,100 @@
+{
+  "before": {
+    "mechanical_constraints": [
+      {
+        "requirement": {
+          "check": "minimum_candidates",
+          "value": 5
+        },
+        "mechanical_pass": true,
+        "observed": 5
+      },
+      {
+        "requirement": {
+          "check": "all_candidate_fields",
+          "fields": {
+            "language": "ja"
+          }
+        },
+        "mechanical_pass": true,
+        "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+      },
+      {
+        "requirement": {
+          "check": "minimum_coordinates",
+          "value": 5
+        },
+        "mechanical_pass": false,
+        "observed": 2
+      },
+      {
+        "requirement": {
+          "check": "candidate_provenance_present"
+        },
+        "mechanical_pass": true,
+        "observed": null
+      },
+      {
+        "requirement": {
+          "check": "all_candidate_fields",
+          "fields": {
+            "set_code": "SV2A"
+          }
+        },
+        "mechanical_pass": true,
+        "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+      }
+    ],
+    "safety_violations": []
+  },
+  "after": {
+    "mechanical_constraints": [
+      {
+        "requirement": {
+          "check": "minimum_candidates",
+          "value": 5
+        },
+        "mechanical_pass": true,
+        "observed": 5
+      },
+      {
+        "requirement": {
+          "check": "all_candidate_fields",
+          "fields": {
+            "language": "ja"
+          }
+        },
+        "mechanical_pass": true,
+        "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+      },
+      {
+        "requirement": {
+          "check": "minimum_coordinates",
+          "value": 5
+        },
+        "mechanical_pass": true,
+        "observed": 5
+      },
+      {
+        "requirement": {
+          "check": "candidate_provenance_present"
+        },
+        "mechanical_pass": true,
+        "observed": null
+      },
+      {
+        "requirement": {
+          "check": "all_candidate_fields",
+          "fields": {
+            "set_code": "SV2A"
+          }
+        },
+        "mechanical_pass": true,
+        "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+      }
+    ],
+    "safety_violations": []
+  },
+  "frozen_questions_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "frozen_rubric_sha256": "0fea803b3dc9bcba61a14e6a3de320407d1e2a5d5a9844c982ca63874e76bf5f"
+}

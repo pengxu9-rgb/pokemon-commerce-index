@@ -1,0 +1,3115 @@
+{
+  "schema": "pokemon.character-affiliation-gap-source-review.v1",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "upstream_commit": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "gap_count": 21,
+  "baseline_coverage": {
+    "explicit_dex": 63,
+    "derived_affiliation": 6,
+    "unresolved_pokemon": 21,
+    "non_pokemon": 10
+  },
+  "input_sha256": {
+    "catalog/supported-discovery-v1/supported-cards.jsonl": "53af127d52f67c004963f6289e0fd92024acc58dac7b104b21fe0e3428df9727",
+    "catalog/ja-available-explicit-eligibility-v1.jsonl.gz": "8b07347d9ad0ead51887b353d3613bd92fb294b87fcff1349e3db065e49bf297"
+  },
+  "targets": [
+    {
+      "card_id": "ja:SV4A:320/190:holo",
+      "target_name": "フォレトスex",
+      "base_name_ja": "フォレトス",
+      "expected_derived_dex_id": 205,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/320.ts:sha256:b9d23de7414ff22bcc62dc36581c8e5f8dec5a4f03c2caed6e343809fa9020f8",
+      "source_sha256": "b9d23de7414ff22bcc62dc36581c8e5f8dec5a4f03c2caed6e343809fa9020f8",
+      "source_git_blob_sha": "96b97922c8d0115a09d04028dbc51c826bbe0349",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/320.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 4,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8/060.ts:sha256:df47564541d856450eae3d58c76aaa1422e5916364ad259dae720f492ba3f1e4",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/073.ts:sha256:c2d913f561c78b72528a7d265259fe03e3264a1b856217d4a4459de607deadaf",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/057.ts:sha256:206d0d1a42d8dae7fd783619be3b27403e8f528e0bb754b53ff39bbc78d104af",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/043.ts:sha256:7c292a2e94ebbf46637061898c3d27b118fbbab126026eebae5936ac630da32d"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:321/190:holo",
+      "target_name": "マスカーニャex",
+      "base_name_ja": "マスカーニャ",
+      "expected_derived_dex_id": 908,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/321.ts:sha256:47456ea7247672946234f47723a5b9d97638c7385957710a5f8e5657e456b10f",
+      "source_sha256": "47456ea7247672946234f47723a5b9d97638c7385957710a5f8e5657e456b10f",
+      "source_git_blob_sha": "8fb0b98fd9cdd91cddacbc72fead5136eecdde6f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/321.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 2,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/067.ts:sha256:52ade7f2e78244b0fa46a01b7d2a286913311de412deb360127b9569ea662be3",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/012.ts:sha256:c3b1ba1a5e1162364096d566a493d3f1b63987376abaf392e6b13f9706c3b573"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:322/190:holo",
+      "target_name": "リククラゲex",
+      "base_name_ja": "リククラゲ",
+      "expected_derived_dex_id": 949,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/322.ts:sha256:2edda342ac7ed638792ec78893928549838a0f007a950830a486dd94502a79ff",
+      "source_sha256": "2edda342ac7ed638792ec78893928549838a0f007a950830a486dd94502a79ff",
+      "source_git_blob_sha": "2fbf190ddedb1b547341a58e0ebe581ba30b0616",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/322.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 4,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/075.ts:sha256:704d925095be547e1ddefa6ec1021f72fca66a6a9ea608ede5019bd796ac6d1c",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/011.ts:sha256:de7f2898e5c9771766dcaf1651fa8a7b7c89b34f69ec02d89314479e749a7ebe",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/008.ts:sha256:9c15d98e98730703840d930cbf0864776490bc4c19147b1b8c9a4b903f46f5fc",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/068.ts:sha256:6352ffa6737c3bd645179d4a52702796e275ee6ef0f6a609693a699700ecb1fc"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:323/190:holo",
+      "target_name": "クエスパトラex",
+      "base_name_ja": "クエスパトラ",
+      "expected_derived_dex_id": 956,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/323.ts:sha256:616e9a8014fb334c329417dce73668952691b9883be292dae8c4b2ef599521ad",
+      "source_sha256": "616e9a8014fb334c329417dce73668952691b9883be292dae8c4b2ef599521ad",
+      "source_git_blob_sha": "69e0f864a83887effb2491a4899b0a64cc3fee77",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/323.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 5,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/006.ts:sha256:fc26e61ffe241c47818a2ff6ad78102c11ff705ae66dc14d0921a593944bf2e1",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1S/037.ts:sha256:6171c6a0b8e2fa95ca45f72231adeed37034afab44c529a99fb8e8872cddb747",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/033.ts:sha256:58b95ae52bf70d9fc38e52db052b6d6a10df0ab410cb25c15c166673e55a87b6",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/073.ts:sha256:35c761f449b68df85b33fbe427f874a5057f17675499cfd376e7ddcc2e0a834f",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/023.ts:sha256:722225a32170c3f06c27930aba9492fdf45c2fc9a0cf9ccef6f1a72b221e88bd"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:324/190:holo",
+      "target_name": "ラウドボーンex",
+      "base_name_ja": "ラウドボーン",
+      "expected_derived_dex_id": 911,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/324.ts:sha256:c68bc3255dc728f612fd018a79261e10ed73916ab5db931ac957e44a96dc8b87",
+      "source_sha256": "c68bc3255dc728f612fd018a79261e10ed73916ab5db931ac957e44a96dc8b87",
+      "source_git_blob_sha": "7cf3dca35634d1303a1597fadcf50c650d90e516",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/324.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 2,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/144.ts:sha256:cf0dbd12da266c28843bd237003429e31d9de5d17db40cd9a4d7b55403102dd9",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/019.ts:sha256:6a902d53751ed9f6f89c1eb83475956dbd975727fc4bd9dc7dccc6c7506cfd1b"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:325/190:holo",
+      "target_name": "ウェーニバルex",
+      "base_name_ja": "ウェーニバル",
+      "expected_derived_dex_id": 914,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/325.ts:sha256:98cdb1fb8990d120d7809443f2492f5c6fa2d6974bd0d39acd7066645e0144b2",
+      "source_sha256": "98cdb1fb8990d120d7809443f2492f5c6fa2d6974bd0d39acd7066645e0144b2",
+      "source_git_blob_sha": "c7ec07189d57c61099b23254418d21fec19dda6f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/325.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 2,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/213.ts:sha256:dce1a799c98320076917e1bb7b2b0190c781432a6cad47c2db93a9165e2b6a15",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/015.ts:sha256:b54a8f6a3eb761be33c3770c2ea83339e460f192f9e4ab3bab2326a234236568"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:326/190:holo",
+      "target_name": "フーディンex",
+      "base_name_ja": "フーディン",
+      "expected_derived_dex_id": 65,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/326.ts:sha256:591304d5aee1b722a70d998b1dab5a76451ef6e04bfa6269f12aefcc2c718b44",
+      "source_sha256": "591304d5aee1b722a70d998b1dab5a76451ef6e04bfa6269f12aefcc2c718b44",
+      "source_git_blob_sha": "c7d3e7111aac0ab57f0c1b65cb5afd0e7213744b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/326.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 5,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/038.ts:sha256:9cd8167a1fbd356ac8696c90c97c7e53ec18bffa814d7560244c489e7fd39b1e",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/071.ts:sha256:cbcdd04490f4a3abf584d6de83d5ea83b8ab7d026008dae72c9e5b8f10f38462",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/049.ts:sha256:5c587a9b789b01943870f5dbf605dc3752e3a6b1aea58ccb53196bb2e0ab3e2b",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/049.ts:sha256:628ffecf09e055fb9421d457648b7b58ff529986c21c52b8bc98ad0ecd395cb0",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/059.ts:sha256:468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:329/190:holo",
+      "target_name": "キラフロルex",
+      "base_name_ja": "キラフロル",
+      "expected_derived_dex_id": 970,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/329.ts:sha256:5ec2ccc7bc9d4852feb28aa46aad7dbd5261ca1ae1c7478d75fc43f681bfb0a0",
+      "source_sha256": "5ec2ccc7bc9d4852feb28aa46aad7dbd5261ca1ae1c7478d75fc43f681bfb0a0",
+      "source_git_blob_sha": "3afaabfa61492de1cea0e8d664f86208fb3a23f2",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/329.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2P/044.ts:sha256:c1745001de4368831c0e71097647be4efd05088e1b72db738bf7d2b566d26d7c",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/063.ts:sha256:880c1124866a0c68d9f99d704edbd7b74725c4a6ad48ae13c4b1eed761def1e9",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/068.ts:sha256:a246b5ab931c23e1c50c9931a7cfbd3a80734c570f2c6568e0da8c2de4104a61"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:330/190:holo",
+      "target_name": "イダイナキバex",
+      "base_name_ja": "イダイナキバ",
+      "expected_derived_dex_id": 984,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/330.ts:sha256:f12cc60d592d9050b77e22e90bd3bd5587419bc35abcd4249cb20b863916960d",
+      "source_sha256": "f12cc60d592d9050b77e22e90bd3bd5587419bc35abcd4249cb20b863916960d",
+      "source_git_blob_sha": "0b391fa6a379062267095a67bc8fc87748dc6a01",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/330.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/422.ts:sha256:34bca6e84506b6181c2fa0d74ce68dd53fac582188749edcacb7800008a76459",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/042.ts:sha256:efdfbbf78fbf92b217c46d3bfadca5925b6febf88a911e1e6f89e84a405df0c4",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/086.ts:sha256:64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:332/190:holo",
+      "target_name": "パルデア ドオーex",
+      "base_name_ja": "パルデア ドオー",
+      "expected_derived_dex_id": 980,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/332.ts:sha256:c24a5cc3f1678d48a7da9cc7d17764805705a78f4830ff5d9cbf010f31c5090e",
+      "source_sha256": "c24a5cc3f1678d48a7da9cc7d17764805705a78f4830ff5d9cbf010f31c5090e",
+      "source_git_blob_sha": "8c3c6fc7a8c61b6554f69f02f0c71a1f343db5b5",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/332.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 1,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/069.ts:sha256:e1ffa0757d6d7485eb6db97907a047de474a1d6297a2752c22e1f9be78de65ad"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:333/190:holo",
+      "target_name": "テツノワダチex",
+      "base_name_ja": "テツノワダチ",
+      "expected_derived_dex_id": 990,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/333.ts:sha256:9648255b497e4cb6bd5fcea6e71cffd46c65c10c1d96d3a60b2313236391c647",
+      "source_sha256": "9648255b497e4cb6bd5fcea6e71cffd46c65c10c1d96d3a60b2313236391c647",
+      "source_git_blob_sha": "d245b89aea48730aed565e11ee3d7eb549543799",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/333.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 2,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/051.ts:sha256:fed1a638dd92833cd7dd605e12aa96d37249f1a84f4dd9ab15a6ed78998b7a0e",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/116.ts:sha256:31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:334/190:holo",
+      "target_name": "オンバーンex",
+      "base_name_ja": "オンバーン",
+      "expected_derived_dex_id": 715,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/334.ts:sha256:76be7f84061623d71a6bc06ddeb56077cadf28dc0feced334feb1b6baab4f96c",
+      "source_sha256": "76be7f84061623d71a6bc06ddeb56077cadf28dc0feced334feb1b6baab4f96c",
+      "source_git_blob_sha": "9c320589725d32c3f3e13ae078f76e3d06f30e96",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/334.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 6,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/131.ts:sha256:81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/615.ts:sha256:5ccb9d273e75d0be7812221947bc4f23394e053982bccd14c1dbbbb423ae8ea3",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12/074.ts:sha256:0422cb5cf7fa8606d2caba8c03ef1ba1605e8c3724ae6c49653b7975aaa26c64",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM11/071.ts:sha256:8d268d66e4ea339e495736718664e8cee7ea505910f407a952b7dd8f04efba0b",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM6/075.ts:sha256:c4818ba7a75956ca88e2e4e9318908c93e78a703b0ba58610ad57f88648375af",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/081.ts:sha256:666661e6effc144a09faa345031cdda8795857d96e6d1c0c26867d48f34c907f"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:335/190:holo",
+      "target_name": "ピジョットex",
+      "base_name_ja": "ピジョット",
+      "expected_derived_dex_id": 18,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/335.ts:sha256:d8107481d903ceedbc482a7dc01341d772c84fefa2a01df9a04a8f8d84c103c3",
+      "source_sha256": "d8107481d903ceedbc482a7dc01341d772c84fefa2a01df9a04a8f8d84c103c3",
+      "source_git_blob_sha": "91067b8970adc31316c1cc3ea468a7cb1e3014e6",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/335.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/043.ts:sha256:09691afb33fbd1079da1254c594f1f6727de68299c79cc179ea826015d5d3f3c",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/070.ts:sha256:28c83b5d3631ea4bc980f2afe7e47c9e4213e90ed60555851e2894b043a0b470",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/018.ts:sha256:2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:336/190:holo",
+      "target_name": "プクリンex",
+      "base_name_ja": "プクリン",
+      "expected_derived_dex_id": 40,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/336.ts:sha256:7497956bc85e6ecfb71f36d2fcdea0f2243d1ed38452d1a5ebd009165c39a9c9",
+      "source_sha256": "7497956bc85e6ecfb71f36d2fcdea0f2243d1ed38452d1a5ebd009165c39a9c9",
+      "source_git_blob_sha": "4612b51603b9bd2df1bf243969ec7a84fd8b4a47",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/336.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 10,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/065.ts:sha256:8a1d3dad27d949817de4d4c7f8e192e43fd4cbe9961a8f49ffb7c639791fa0a9",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/091.ts:sha256:e1e4b1644567beac1b96f251866559bf4e5f2af4ae69e33bb41d11cecc5a19df",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/045.ts:sha256:e3dcfc35911a44f5c8e8ed2174ef1e08890568d325bda36544646abf81891b69",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S7D/011.ts:sha256:38ba6726a1988e7c4fa482bdfdea6e7997f69990ea8753b248b310be3342fa04",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10/063.ts:sha256:d51dc2cfad627e798f780d43e195797d44071a9f69ccb221e7895a5429c7e41c",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4A/035.ts:sha256:b6ee0e4ea61bd7537e84d257bfc1e796423c49abbf9914a70b65f6991928463b",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM7b/027.ts:sha256:cc835257f55392c5413a375a1d72aa5b23df463af333f522ff657eb4826ab98f",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2D/027.ts:sha256:2c40e597d68d7ac174cf1d7de8222d355aefb93f4329f6d68cf44539b6c9c60e",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/072.ts:sha256:18b892a815fce44f80623ee7f5e17fc9c68305093edb658eafaa6f52679006e2",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/252.ts:sha256:6cd1c576dfaad22e28a60f39c4b41bed72eb7be982f12f4fa03e9d1bbd2af307"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:337/190:holo",
+      "target_name": "イキリンコex",
+      "base_name_ja": "イキリンコ",
+      "expected_derived_dex_id": 931,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/337.ts:sha256:fa4875646812195283a267d3abfbe54704d24e821fc516de4fd40ff8c2b2aa9c",
+      "source_sha256": "fa4875646812195283a267d3abfbe54704d24e821fc516de4fd40ff8c2b2aa9c",
+      "source_git_blob_sha": "0a72a73b6d875300dcae7a5a819676460a28d8ef",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/337.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/626.ts:sha256:3392b87a77aba6c2d18485849a33a019add1606cc7c791116817d39fcdb83c9a",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/086.ts:sha256:c63899b14deb56dfde0b93e987c78eaaec1f9f572dfee4429e105ec9cd3ea744",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/067.ts:sha256:7bf02625f34b91d50f3b5f38fc1f415f6da15c28db91f5e624f66a3a44c109af"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:355/190:holo",
+      "target_name": "チオンジェンex",
+      "base_name_ja": "チオンジェン",
+      "expected_derived_dex_id": 1001,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/355.ts:sha256:09ca6134510af3360588234c99c14262e1ee4a92b41f1b6babdb1cd9dccb345b",
+      "source_sha256": "09ca6134510af3360588234c99c14262e1ee4a92b41f1b6babdb1cd9dccb345b",
+      "source_git_blob_sha": "6947f43c90a1061566734ea30066da740896d680",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/355.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/009.ts:sha256:90bda023f7b4e1d978c0e8a928ebf6389fa40148d997f0b8b75550c9cecc49b6",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/010.ts:sha256:cb9527bc83d2899789b81c8d744914b9036b30d466eb43a46fcf015f538565ed",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/015.ts:sha256:3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:356/190:holo",
+      "target_name": "イーユイex",
+      "base_name_ja": "イーユイ",
+      "expected_derived_dex_id": 1004,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/356.ts:sha256:3c68645f96b57df6f13f18d28fe0b81ed7384c519c51dacb2f8f54f95c987c48",
+      "source_sha256": "3c68645f96b57df6f13f18d28fe0b81ed7384c519c51dacb2f8f54f95c987c48",
+      "source_git_blob_sha": "e4231f5a11ea3d813eea0fdaf840253b760b7f36",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/356.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 5,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/014.ts:sha256:9d2a43043d7e940ed0675668d334435fd76a83e7fec2b0e597457983b90492e8",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/057.ts:sha256:bccd3f13da904fb0820aeeeedf2b9710b19963fdf05fc7f240069147b5d98450",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/016.ts:sha256:62bada0a5ba5419d7492a225eb59dfb6d23439e8c6ffcda12a6c879fe29941a9",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/018.ts:sha256:42c8ee94eaa14936d56a186f5385c63b192a4c11f1f069b5f181c26ec4c219b7",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/025.ts:sha256:a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:357/190:holo",
+      "target_name": "パオジアンex",
+      "base_name_ja": "パオジアン",
+      "expected_derived_dex_id": 1002,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/357.ts:sha256:d5ef1a82208fa2c7d0583f01cb6e05ee4253de252f415f458dc412368bdbe982",
+      "source_sha256": "d5ef1a82208fa2c7d0583f01cb6e05ee4253de252f415f458dc412368bdbe982",
+      "source_git_blob_sha": "4f8eb37d062914e55fcc68cc4449cfa071713eec",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/357.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 5,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/043.ts:sha256:21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M3/053.ts:sha256:330bc339940ee4db19fb5d368c6dff256d94dd323f192336f3fc4e97b7725eb5",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/021.ts:sha256:4b8118e064d617a4ee1304fffa259b8d52dcfe70b60fb4ecd75f29d10ce23bfb",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/032.ts:sha256:57176e427a1f16d11f3637a51b88ac6b05fe9608e7a053cfb893a16db9bc864b",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/048.ts:sha256:06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:358/190:holo",
+      "target_name": "ミライドンex",
+      "base_name_ja": "ミライドン",
+      "expected_derived_dex_id": 1008,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/358.ts:sha256:21b42550f251d079866ab5cd6e29a40b60b3664b9c88c413a15a1d4097d3797c",
+      "source_sha256": "21b42550f251d079866ab5cd6e29a40b60b3664b9c88c413a15a1d4097d3797c",
+      "source_git_blob_sha": "ff2b76941286463ae6afad2095ba34f25cf40c89",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/358.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 10,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/027.ts:sha256:824fcfb14e9323458044c7ee38fdbfb34079230bc53ea641624fd197d03210e7",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/053.ts:sha256:bc8ff6ce60b8df69efcef6c30fa0e5102b06d5d0b6ea49fd04be535002b73d74",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/283.ts:sha256:dac243081fceb8b2b4bee921df7a6e3ad5d52a0950b77853702eb7ff39f099dc",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/552.ts:sha256:a2b849823715352d436513d63ee40248359139a973c046f4445a01379174c8e3",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/005.ts:sha256:ce7a8a36cec0fe98fa8e557d0c01c47232623fc1109b0caf32e5305c298b4515",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/048.ts:sha256:7680a966f1e4e545ab48bd67f75f6c0ab52ea7ab0196054ce7bddba5601eed98",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/151.ts:sha256:dbd87f62461403fe1fc7671fb5f9edecffec3189d0943e8517131808eeb60768",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/052.ts:sha256:ff00c356fa7ae9e078a0d9cccc9a8eab75a77f80ce4c85fee5f5b6d811f4008f",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/044.ts:sha256:01819f6ae42bea5a46891a9ec99d8ffb8801872e2ab727a63e4cba10a7f9d1ed",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/123.ts:sha256:66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:359/190:holo",
+      "target_name": "ディンルーex",
+      "base_name_ja": "ディンルー",
+      "expected_derived_dex_id": 1003,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/359.ts:sha256:bccac5be37a26d64c9efee1d28ffdfd9dc27f81aab83bdf5929c8b8748dc6a36",
+      "source_sha256": "bccac5be37a26d64c9efee1d28ffdfd9dc27f81aab83bdf5929c8b8748dc6a36",
+      "source_git_blob_sha": "02900311be829ff1d56e4bf1da504f8c63c6b384",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/359.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 3,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/043.ts:sha256:2da152513bdef695914bd48ae2b3a277736d27fa2c75d1a9f3ec27be7f7e9d12",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/047.ts:sha256:6e97eecedaa021a243ea4e1a5720f9a6796b41b16259f252cbd79c9ca5c6f182",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/089.ts:sha256:0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:360/190:holo",
+      "target_name": "コライドンex",
+      "base_name_ja": "コライドン",
+      "expected_derived_dex_id": 1007,
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/360.ts:sha256:68a9360ca334db7940f809d3525c3500d6dfab7bf74b511867f45faab1c21664",
+      "source_sha256": "68a9360ca334db7940f809d3525c3500d6dfab7bf74b511867f45faab1c21664",
+      "source_git_blob_sha": "2b7912e5cb2232d6ae8e07e5c90ff5cad9e63111",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/360.ts",
+      "declared_category": "Pokemon",
+      "declared_suffix": "EX",
+      "source_asserted_dex_id": false,
+      "anchor_source_count": 9,
+      "anchor_source_refs": [
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/045.ts:sha256:62a7eec4ea5cb795ee46bd0ca27ad3aaf3ccb9bc757009182370606e2d5277a7",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/072.ts:sha256:d14f8b9096909ac0426edc318d40fcea00afff711874aa9d91c40b9d241f3769",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/550.ts:sha256:a77ff882c06c2fab4c50b8a87461ffb203dd38493a6e5de928eaafd71489d086",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/007.ts:sha256:fbbb03c9f3f99445f1c0a5d2f46bfbe7d818a7e413a8910839a101b974154e93",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/049.ts:sha256:56434a3d81a299d85a3c2419d8bb7a98d63102e8ac57044abb1e8c09cad10be1",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/152.ts:sha256:1c4526f0da9d29ee4157ca147021b4122d8a1c95b77d92b707bad6127716535c",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/052.ts:sha256:54b12f63893e61c2fc17704cee96efbb61f3d934658fe8dcd4419b20f1fddb5a",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/069.ts:sha256:2a54a5aa7a9f4f33b53b1056fe45e52aaf8debed7ae75fe3ff3d58c283a1e7a7",
+        "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/122.ts:sha256:8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa"
+      ]
+    }
+  ],
+  "anchor_sources": [
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8/060.ts:sha256:df47564541d856450eae3d58c76aaa1422e5916364ad259dae720f492ba3f1e4",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM8/060.ts",
+      "source_sha256": "df47564541d856450eae3d58c76aaa1422e5916364ad259dae720f492ba3f1e4",
+      "source_git_blob_sha": "f5caf9bccd24f11c5b79a30ff0bdb818d755d7eb",
+      "name_ja": "フォレトス",
+      "dex_ids": [
+        205
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM8:060/095:normal",
+          "collector_number": "060/095",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フォレトス",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8/060.ts:sha256:df47564541d856450eae3d58c76aaa1422e5916364ad259dae720f492ba3f1e4",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM8",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/073.ts:sha256:c2d913f561c78b72528a7d265259fe03e3264a1b856217d4a4459de607deadaf",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV10/073.ts",
+      "source_sha256": "c2d913f561c78b72528a7d265259fe03e3264a1b856217d4a4459de607deadaf",
+      "source_git_blob_sha": "ac2cae4806b39141c9c162865a5a05daa2ca41b0",
+      "name_ja": "フォレトス",
+      "dex_ids": [
+        205
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV10:073/098:normal",
+          "collector_number": "073/098",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フォレトス",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/073.ts:sha256:c2d913f561c78b72528a7d265259fe03e3264a1b856217d4a4459de607deadaf",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV10",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/057.ts:sha256:206d0d1a42d8dae7fd783619be3b27403e8f528e0bb754b53ff39bbc78d104af",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV1V/057.ts",
+      "source_sha256": "206d0d1a42d8dae7fd783619be3b27403e8f528e0bb754b53ff39bbc78d104af",
+      "source_git_blob_sha": "4c5476a4b7e7c3c2c3ae3fcf27cba9281324d5a8",
+      "name_ja": "フォレトス",
+      "dex_ids": [
+        205
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV1V:057/078:normal",
+          "collector_number": "057/078",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フォレトス",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/057.ts:sha256:206d0d1a42d8dae7fd783619be3b27403e8f528e0bb754b53ff39bbc78d104af",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV1V",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/043.ts:sha256:7c292a2e94ebbf46637061898c3d27b118fbbab126026eebae5936ac630da32d",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5M/043.ts",
+      "source_sha256": "7c292a2e94ebbf46637061898c3d27b118fbbab126026eebae5936ac630da32d",
+      "source_git_blob_sha": "764ff7113e05b534e4c03078ccecbf55e0409f78",
+      "name_ja": "フォレトス",
+      "dex_ids": [
+        205
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5M:043/071:normal",
+          "collector_number": "043/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フォレトス",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/043.ts:sha256:7c292a2e94ebbf46637061898c3d27b118fbbab126026eebae5936ac630da32d",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5M",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/067.ts:sha256:52ade7f2e78244b0fa46a01b7d2a286913311de412deb360127b9569ea662be3",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/067.ts",
+      "source_sha256": "52ade7f2e78244b0fa46a01b7d2a286913311de412deb360127b9569ea662be3",
+      "source_git_blob_sha": "e9e84dcc3d1dbc8c3ee12e833bac8258ab25141d",
+      "name_ja": "マスカーニャ",
+      "dex_ids": [
+        908
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:067/742:normal",
+          "collector_number": "067/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "マスカーニャ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/067.ts:sha256:52ade7f2e78244b0fa46a01b7d2a286913311de412deb360127b9569ea662be3",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/012.ts:sha256:c3b1ba1a5e1162364096d566a493d3f1b63987376abaf392e6b13f9706c3b573",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/012.ts",
+      "source_sha256": "c3b1ba1a5e1162364096d566a493d3f1b63987376abaf392e6b13f9706c3b573",
+      "source_git_blob_sha": "37b63b5f687e8bc9f9d25adf59982fe3ea123ac6",
+      "name_ja": "マスカーニャ",
+      "dex_ids": [
+        908
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV9:012/100:holo",
+          "collector_number": "012/100",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "マスカーニャ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/012.ts:sha256:c3b1ba1a5e1162364096d566a493d3f1b63987376abaf392e6b13f9706c3b573",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV9",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/075.ts:sha256:704d925095be547e1ddefa6ec1021f72fca66a6a9ea608ede5019bd796ac6d1c",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/075.ts",
+      "source_sha256": "704d925095be547e1ddefa6ec1021f72fca66a6a9ea608ede5019bd796ac6d1c",
+      "source_git_blob_sha": "88b1a090affe6662db1e219b8368a9608188939e",
+      "name_ja": "リククラゲ",
+      "dex_ids": [
+        949
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:075/742:normal",
+          "collector_number": "075/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "リククラゲ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/075.ts:sha256:704d925095be547e1ddefa6ec1021f72fca66a6a9ea608ede5019bd796ac6d1c",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/011.ts:sha256:de7f2898e5c9771766dcaf1651fa8a7b7c89b34f69ec02d89314479e749a7ebe",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV1V/011.ts",
+      "source_sha256": "de7f2898e5c9771766dcaf1651fa8a7b7c89b34f69ec02d89314479e749a7ebe",
+      "source_git_blob_sha": "36eef3f4f6cc4ae565ad070ddcabc225b2a45da1",
+      "name_ja": "リククラゲ",
+      "dex_ids": [
+        949
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV1V:011/078:normal",
+          "collector_number": "011/078",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "リククラゲ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/011.ts:sha256:de7f2898e5c9771766dcaf1651fa8a7b7c89b34f69ec02d89314479e749a7ebe",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV1V",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/008.ts:sha256:9c15d98e98730703840d930cbf0864776490bc4c19147b1b8c9a4b903f46f5fc",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/008.ts",
+      "source_sha256": "9c15d98e98730703840d930cbf0864776490bc4c19147b1b8c9a4b903f46f5fc",
+      "source_git_blob_sha": "789fcd9c5478c255e55f60dad0fc0d0af1e66b8b",
+      "name_ja": "リククラゲ",
+      "dex_ids": [
+        949
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:008/066:normal",
+          "collector_number": "008/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "リククラゲ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/008.ts:sha256:9c15d98e98730703840d930cbf0864776490bc4c19147b1b8c9a4b903f46f5fc",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/068.ts:sha256:6352ffa6737c3bd645179d4a52702796e275ee6ef0f6a609693a699700ecb1fc",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/068.ts",
+      "source_sha256": "6352ffa6737c3bd645179d4a52702796e275ee6ef0f6a609693a699700ecb1fc",
+      "source_git_blob_sha": "c4032493ecd2f41a7aa87e7deab607be1728ab41",
+      "name_ja": "リククラゲ",
+      "dex_ids": [
+        949
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:068/066:holo",
+          "collector_number": "068/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "リククラゲ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/068.ts:sha256:6352ffa6737c3bd645179d4a52702796e275ee6ef0f6a609693a699700ecb1fc",
+          "rarity": null,
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/006.ts:sha256:fc26e61ffe241c47818a2ff6ad78102c11ff705ae66dc14d0921a593944bf2e1",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/006.ts",
+      "source_sha256": "fc26e61ffe241c47818a2ff6ad78102c11ff705ae66dc14d0921a593944bf2e1",
+      "source_git_blob_sha": "1683011a10cc5626f4687b5febc14a05c0274c27",
+      "name_ja": "クエスパトラ",
+      "dex_ids": [
+        956
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:006/SV-P:normal",
+          "collector_number": "006/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "クエスパトラ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/006.ts:sha256:fc26e61ffe241c47818a2ff6ad78102c11ff705ae66dc14d0921a593944bf2e1",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1S/037.ts:sha256:6171c6a0b8e2fa95ca45f72231adeed37034afab44c529a99fb8e8872cddb747",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV1S/037.ts",
+      "source_sha256": "6171c6a0b8e2fa95ca45f72231adeed37034afab44c529a99fb8e8872cddb747",
+      "source_git_blob_sha": "8640ca923beb63ad6b8d750d518af3c61da44ac8",
+      "name_ja": "クエスパトラ",
+      "dex_ids": [
+        956
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV1S:037/078:normal",
+          "collector_number": "037/078",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "クエスパトラ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1S/037.ts:sha256:6171c6a0b8e2fa95ca45f72231adeed37034afab44c529a99fb8e8872cddb747",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV1S",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/033.ts:sha256:58b95ae52bf70d9fc38e52db052b6d6a10df0ab410cb25c15c166673e55a87b6",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/033.ts",
+      "source_sha256": "58b95ae52bf70d9fc38e52db052b6d6a10df0ab410cb25c15c166673e55a87b6",
+      "source_git_blob_sha": "11ee0718344126ce89aad05f67b733f1ab373fc1",
+      "name_ja": "クエスパトラ",
+      "dex_ids": [
+        956
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:033/066:holo",
+          "collector_number": "033/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "クエスパトラ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/033.ts:sha256:58b95ae52bf70d9fc38e52db052b6d6a10df0ab410cb25c15c166673e55a87b6",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/073.ts:sha256:35c761f449b68df85b33fbe427f874a5057f17675499cfd376e7ddcc2e0a834f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/073.ts",
+      "source_sha256": "35c761f449b68df85b33fbe427f874a5057f17675499cfd376e7ddcc2e0a834f",
+      "source_git_blob_sha": "e375c602dee297b1a6915342f42ee55151727b0f",
+      "name_ja": "クエスパトラ",
+      "dex_ids": [
+        956
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:073/066:holo",
+          "collector_number": "073/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "クエスパトラ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/073.ts:sha256:35c761f449b68df85b33fbe427f874a5057f17675499cfd376e7ddcc2e0a834f",
+          "rarity": null,
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/023.ts:sha256:722225a32170c3f06c27930aba9492fdf45c2fc9a0cf9ccef6f1a72b221e88bd",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV7a/023.ts",
+      "source_sha256": "722225a32170c3f06c27930aba9492fdf45c2fc9a0cf9ccef6f1a72b221e88bd",
+      "source_git_blob_sha": "cec64f179125a0901ac276d6b72ab780ebacae9e",
+      "name_ja": "クエスパトラ",
+      "dex_ids": [
+        956
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV7A:023/064:normal",
+          "collector_number": "023/064",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "クエスパトラ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/023.ts:sha256:722225a32170c3f06c27930aba9492fdf45c2fc9a0cf9ccef6f1a72b221e88bd",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV7a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/144.ts:sha256:cf0dbd12da266c28843bd237003429e31d9de5d17db40cd9a4d7b55403102dd9",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/144.ts",
+      "source_sha256": "cf0dbd12da266c28843bd237003429e31d9de5d17db40cd9a4d7b55403102dd9",
+      "source_git_blob_sha": "88d44a5fd189c77525b66e28d60af18f849215ba",
+      "name_ja": "ラウドボーン",
+      "dex_ids": [
+        911
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:144/742:normal",
+          "collector_number": "144/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ラウドボーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/144.ts:sha256:cf0dbd12da266c28843bd237003429e31d9de5d17db40cd9a4d7b55403102dd9",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/019.ts:sha256:6a902d53751ed9f6f89c1eb83475956dbd975727fc4bd9dc7dccc6c7506cfd1b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/019.ts",
+      "source_sha256": "6a902d53751ed9f6f89c1eb83475956dbd975727fc4bd9dc7dccc6c7506cfd1b",
+      "source_git_blob_sha": "d7fd28d4bdddb9999a22e29f02fb13cdcbfe765c",
+      "name_ja": "ラウドボーン",
+      "dex_ids": [
+        911
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:019/106:holo",
+          "collector_number": "019/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ラウドボーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/019.ts:sha256:6a902d53751ed9f6f89c1eb83475956dbd975727fc4bd9dc7dccc6c7506cfd1b",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/213.ts:sha256:dce1a799c98320076917e1bb7b2b0190c781432a6cad47c2db93a9165e2b6a15",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/213.ts",
+      "source_sha256": "dce1a799c98320076917e1bb7b2b0190c781432a6cad47c2db93a9165e2b6a15",
+      "source_git_blob_sha": "1a6f2361ec613850ea2f9e8f64bb98290b728d33",
+      "name_ja": "ウェーニバル",
+      "dex_ids": [
+        914
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:213/742:normal",
+          "collector_number": "213/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ウェーニバル",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/213.ts:sha256:dce1a799c98320076917e1bb7b2b0190c781432a6cad47c2db93a9165e2b6a15",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/015.ts:sha256:b54a8f6a3eb761be33c3770c2ea83339e460f192f9e4ab3bab2326a234236568",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV7a/015.ts",
+      "source_sha256": "b54a8f6a3eb761be33c3770c2ea83339e460f192f9e4ab3bab2326a234236568",
+      "source_git_blob_sha": "b727efe63efb05ac8a28ead8764e981afc08e10d",
+      "name_ja": "ウェーニバル",
+      "dex_ids": [
+        914
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV7A:015/064:normal",
+          "collector_number": "015/064",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ウェーニバル",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7a/015.ts:sha256:b54a8f6a3eb761be33c3770c2ea83339e460f192f9e4ab3bab2326a234236568",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV7a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/038.ts:sha256:9cd8167a1fbd356ac8696c90c97c7e53ec18bffa814d7560244c489e7fd39b1e",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M1S/038.ts",
+      "source_sha256": "9cd8167a1fbd356ac8696c90c97c7e53ec18bffa814d7560244c489e7fd39b1e",
+      "source_git_blob_sha": "709f3ace78e19687f67fcdd3985cd0d8141a69fc",
+      "name_ja": "フーディン",
+      "dex_ids": [
+        65
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M1S:038/063:holo",
+          "collector_number": "038/063",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/038.ts:sha256:9cd8167a1fbd356ac8696c90c97c7e53ec18bffa814d7560244c489e7fd39b1e",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M1S",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/071.ts:sha256:cbcdd04490f4a3abf584d6de83d5ea83b8ab7d026008dae72c9e5b8f10f38462",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M1S/071.ts",
+      "source_sha256": "cbcdd04490f4a3abf584d6de83d5ea83b8ab7d026008dae72c9e5b8f10f38462",
+      "source_git_blob_sha": "f74c81005e601b100f1509e0694e5da9a85fc3d7",
+      "name_ja": "フーディン",
+      "dex_ids": [
+        65
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M1S:071/063:holo",
+          "collector_number": "071/063",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/071.ts:sha256:cbcdd04490f4a3abf584d6de83d5ea83b8ab7d026008dae72c9e5b8f10f38462",
+          "rarity": "Illustration rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M1S",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/049.ts:sha256:5c587a9b789b01943870f5dbf605dc3752e3a6b1aea58ccb53196bb2e0ab3e2b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/PMCG/PMCG1/049.ts",
+      "source_sha256": "5c587a9b789b01943870f5dbf605dc3752e3a6b1aea58ccb53196bb2e0ab3e2b",
+      "source_git_blob_sha": "bf6e212cd6cd7e5fa42669b217db376b23fa538d",
+      "name_ja": "フーディン",
+      "dex_ids": [
+        65
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:PMCG1:049/102:holo",
+          "collector_number": "049/102",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/049.ts:sha256:5c587a9b789b01943870f5dbf605dc3752e3a6b1aea58ccb53196bb2e0ab3e2b",
+          "rarity": "Holo Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "PMCG1",
+          "variant": "holo"
+        },
+        {
+          "card_id": "ja:PMCG1:049/102:holo_no_rarity",
+          "collector_number": "049/102",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/049.ts:sha256:5c587a9b789b01943870f5dbf605dc3752e3a6b1aea58ccb53196bb2e0ab3e2b",
+          "rarity": "Holo Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "PMCG1",
+          "variant": "holo_no_rarity"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/049.ts:sha256:628ffecf09e055fb9421d457648b7b58ff529986c21c52b8bc98ad0ecd395cb0",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV6/049.ts",
+      "source_sha256": "628ffecf09e055fb9421d457648b7b58ff529986c21c52b8bc98ad0ecd395cb0",
+      "source_git_blob_sha": "4e907420dd715c28ab1c8cd5c15769d27bcdb156",
+      "name_ja": "フーディン",
+      "dex_ids": [
+        65
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV6:049/101:holo",
+          "collector_number": "049/101",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/049.ts:sha256:628ffecf09e055fb9421d457648b7b58ff529986c21c52b8bc98ad0ecd395cb0",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV6",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/059.ts:sha256:468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/059.ts",
+      "source_sha256": "468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207",
+      "source_git_blob_sha": "3f3e5893b8ae1f8b1a528c36472de6d5cd1d0b18",
+      "name_ja": "フーディン",
+      "dex_ids": [
+        65
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:059/187:normal",
+          "collector_number": "059/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/059.ts:sha256:468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:059/187:reverse",
+          "collector_number": "059/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/059.ts:sha256:468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:059/187:reverse_masterball",
+          "collector_number": "059/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "フーディン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/059.ts:sha256:468a53433f56f9f14ef726efb786f4930cf52547870b37594fabeeb3ee085207",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2P/044.ts:sha256:c1745001de4368831c0e71097647be4efd05088e1b72db738bf7d2b566d26d7c",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2P/044.ts",
+      "source_sha256": "c1745001de4368831c0e71097647be4efd05088e1b72db738bf7d2b566d26d7c",
+      "source_git_blob_sha": "def29049b5a0a9b42bf3a2e9a022f4dd2ef93aa8",
+      "name_ja": "キラフロル",
+      "dex_ids": [
+        970
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV2P:044/071:holo",
+          "collector_number": "044/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "キラフロル",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2P/044.ts:sha256:c1745001de4368831c0e71097647be4efd05088e1b72db738bf7d2b566d26d7c",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV2P",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/063.ts:sha256:880c1124866a0c68d9f99d704edbd7b74725c4a6ad48ae13c4b1eed761def1e9",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV6/063.ts",
+      "source_sha256": "880c1124866a0c68d9f99d704edbd7b74725c4a6ad48ae13c4b1eed761def1e9",
+      "source_git_blob_sha": "f32eb8624aa945dc7f0cfd5a2f3b56273d262cab",
+      "name_ja": "キラフロル",
+      "dex_ids": [
+        970
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV6:063/101:normal",
+          "collector_number": "063/101",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "キラフロル",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6/063.ts:sha256:880c1124866a0c68d9f99d704edbd7b74725c4a6ad48ae13c4b1eed761def1e9",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV6",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/068.ts:sha256:a246b5ab931c23e1c50c9931a7cfbd3a80734c570f2c6568e0da8c2de4104a61",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/068.ts",
+      "source_sha256": "a246b5ab931c23e1c50c9931a7cfbd3a80734c570f2c6568e0da8c2de4104a61",
+      "source_git_blob_sha": "10cca075f1b8e0baf001dc2cf383c47fd0e1b496",
+      "name_ja": "キラフロル",
+      "dex_ids": [
+        970
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:068/106:normal",
+          "collector_number": "068/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "キラフロル",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/068.ts:sha256:a246b5ab931c23e1c50c9931a7cfbd3a80734c570f2c6568e0da8c2de4104a61",
+          "rarity": "Common",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/422.ts:sha256:34bca6e84506b6181c2fa0d74ce68dd53fac582188749edcacb7800008a76459",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/422.ts",
+      "source_sha256": "34bca6e84506b6181c2fa0d74ce68dd53fac582188749edcacb7800008a76459",
+      "source_git_blob_sha": "612d5ad3083449436a97d43215742897549aca50",
+      "name_ja": "イダイナキバ",
+      "dex_ids": [
+        984
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:422/742:normal",
+          "collector_number": "422/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イダイナキバ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/422.ts:sha256:34bca6e84506b6181c2fa0d74ce68dd53fac582188749edcacb7800008a76459",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/042.ts:sha256:efdfbbf78fbf92b217c46d3bfadca5925b6febf88a911e1e6f89e84a405df0c4",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5K/042.ts",
+      "source_sha256": "efdfbbf78fbf92b217c46d3bfadca5925b6febf88a911e1e6f89e84a405df0c4",
+      "source_git_blob_sha": "3a6335ee9a6ed583ea5265a769bb72b17aa24623",
+      "name_ja": "イダイナキバ",
+      "dex_ids": [
+        984
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5K:042/071:normal",
+          "collector_number": "042/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イダイナキバ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/042.ts:sha256:efdfbbf78fbf92b217c46d3bfadca5925b6febf88a911e1e6f89e84a405df0c4",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5K",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/086.ts:sha256:64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/086.ts",
+      "source_sha256": "64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d",
+      "source_git_blob_sha": "5c2cf0f8d01f77bb5a333d8b72200f7fa6d68d57",
+      "name_ja": "イダイナキバ",
+      "dex_ids": [
+        984
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:086/187:normal",
+          "collector_number": "086/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イダイナキバ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/086.ts:sha256:64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:086/187:reverse",
+          "collector_number": "086/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イダイナキバ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/086.ts:sha256:64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:086/187:reverse_masterball",
+          "collector_number": "086/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イダイナキバ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/086.ts:sha256:64ef7b6d29a7eedf09e53cd8e4badc4aa4e81e2b49a1453c8bd18265faf3a84d",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/069.ts:sha256:e1ffa0757d6d7485eb6db97907a047de474a1d6297a2752c22e1f9be78de65ad",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV3/069.ts",
+      "source_sha256": "e1ffa0757d6d7485eb6db97907a047de474a1d6297a2752c22e1f9be78de65ad",
+      "source_git_blob_sha": "7f62b0c80abef12cdbe8a80d386c5384be4dc24a",
+      "name_ja": "パルデア ドオー",
+      "dex_ids": [
+        980
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV3:069/108:normal",
+          "collector_number": "069/108",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パルデア ドオー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV3/069.ts:sha256:e1ffa0757d6d7485eb6db97907a047de474a1d6297a2752c22e1f9be78de65ad",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV3",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/051.ts:sha256:fed1a638dd92833cd7dd605e12aa96d37249f1a84f4dd9ab15a6ed78998b7a0e",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5M/051.ts",
+      "source_sha256": "fed1a638dd92833cd7dd605e12aa96d37249f1a84f4dd9ab15a6ed78998b7a0e",
+      "source_git_blob_sha": "b1c16108d49694fc7d63f594c3f3e8c01d87258c",
+      "name_ja": "テツノワダチ",
+      "dex_ids": [
+        990
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5M:051/071:normal",
+          "collector_number": "051/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "テツノワダチ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/051.ts:sha256:fed1a638dd92833cd7dd605e12aa96d37249f1a84f4dd9ab15a6ed78998b7a0e",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5M",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/116.ts:sha256:31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/116.ts",
+      "source_sha256": "31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09",
+      "source_git_blob_sha": "7ae41ea37050a51872ee4837b5674974b6115a7a",
+      "name_ja": "テツノワダチ",
+      "dex_ids": [
+        990
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:116/187:normal",
+          "collector_number": "116/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "テツノワダチ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/116.ts:sha256:31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:116/187:reverse",
+          "collector_number": "116/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "テツノワダチ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/116.ts:sha256:31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:116/187:reverse_masterball",
+          "collector_number": "116/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "テツノワダチ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/116.ts:sha256:31ea26cb955985e1f64a4f5b6eaeeb5001d168fae77467e18d52e08790430c09",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/131.ts:sha256:81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2a/131.ts",
+      "source_sha256": "81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+      "source_git_blob_sha": "614a021e43e17b3e923adb34c5b3dfb2f39b366c",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M2A:131/193:normal",
+          "collector_number": "131/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/131.ts:sha256:81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:M2A:131/193:reverse_energy",
+          "collector_number": "131/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/131.ts:sha256:81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "reverse_energy"
+        },
+        {
+          "card_id": "ja:M2A:131/193:reverse_friendball",
+          "collector_number": "131/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/131.ts:sha256:81562f93ff9784cbe924b357dcd2ad826566b77dacab573c2a212b5dad07ab20",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "reverse_friendball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/615.ts:sha256:5ccb9d273e75d0be7812221947bc4f23394e053982bccd14c1dbbbb423ae8ea3",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/615.ts",
+      "source_sha256": "5ccb9d273e75d0be7812221947bc4f23394e053982bccd14c1dbbbb423ae8ea3",
+      "source_git_blob_sha": "0620e11f303a66bd67c53f9b8c4099d15f2b2cdc",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:615/742:normal",
+          "collector_number": "615/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/615.ts:sha256:5ccb9d273e75d0be7812221947bc4f23394e053982bccd14c1dbbbb423ae8ea3",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12/074.ts:sha256:0422cb5cf7fa8606d2caba8c03ef1ba1605e8c3724ae6c49653b7975aaa26c64",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S12/074.ts",
+      "source_sha256": "0422cb5cf7fa8606d2caba8c03ef1ba1605e8c3724ae6c49653b7975aaa26c64",
+      "source_git_blob_sha": "aa0143af218c8be277c463d72db0a24c34494db3",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:S12:074/098:normal",
+          "collector_number": "074/098",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12/074.ts:sha256:0422cb5cf7fa8606d2caba8c03ef1ba1605e8c3724ae6c49653b7975aaa26c64",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "S12",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM11/071.ts:sha256:8d268d66e4ea339e495736718664e8cee7ea505910f407a952b7dd8f04efba0b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM11/071.ts",
+      "source_sha256": "8d268d66e4ea339e495736718664e8cee7ea505910f407a952b7dd8f04efba0b",
+      "source_git_blob_sha": "2452fb7c2639ee1e0dcd8e3f2b392bd14224ee9b",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM11:071/094:normal",
+          "collector_number": "071/094",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM11/071.ts:sha256:8d268d66e4ea339e495736718664e8cee7ea505910f407a952b7dd8f04efba0b",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM11",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM6/075.ts:sha256:c4818ba7a75956ca88e2e4e9318908c93e78a703b0ba58610ad57f88648375af",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM6/075.ts",
+      "source_sha256": "c4818ba7a75956ca88e2e4e9318908c93e78a703b0ba58610ad57f88648375af",
+      "source_git_blob_sha": "6e82563c189bae840879d38da3e80092d4d4fadc",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM6:075/094:normal",
+          "collector_number": "075/094",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM6/075.ts:sha256:c4818ba7a75956ca88e2e4e9318908c93e78a703b0ba58610ad57f88648375af",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM6",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/081.ts:sha256:666661e6effc144a09faa345031cdda8795857d96e6d1c0c26867d48f34c907f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV9/081.ts",
+      "source_sha256": "666661e6effc144a09faa345031cdda8795857d96e6d1c0c26867d48f34c907f",
+      "source_git_blob_sha": "8bbac3e0d173805ddfb9e653442e3ea06aa2d6f7",
+      "name_ja": "オンバーン",
+      "dex_ids": [
+        715
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV9:081/100:normal",
+          "collector_number": "081/100",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "オンバーン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9/081.ts:sha256:666661e6effc144a09faa345031cdda8795857d96e6d1c0c26867d48f34c907f",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV9",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/043.ts:sha256:09691afb33fbd1079da1254c594f1f6727de68299c79cc179ea826015d5d3f3c",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/PMCG/PMCG2/043.ts",
+      "source_sha256": "09691afb33fbd1079da1254c594f1f6727de68299c79cc179ea826015d5d3f3c",
+      "source_git_blob_sha": "45f674b9ae6f3bbcc373de14e38e90665bd2a82f",
+      "name_ja": "ピジョット",
+      "dex_ids": [
+        18
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:PMCG2:043/048:holo",
+          "collector_number": "043/048",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ピジョット",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/043.ts:sha256:09691afb33fbd1079da1254c594f1f6727de68299c79cc179ea826015d5d3f3c",
+          "rarity": "Holo Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "PMCG2",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/070.ts:sha256:28c83b5d3631ea4bc980f2afe7e47c9e4213e90ed60555851e2894b043a0b470",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM9/070.ts",
+      "source_sha256": "28c83b5d3631ea4bc980f2afe7e47c9e4213e90ed60555851e2894b043a0b470",
+      "source_git_blob_sha": "0509588cff9061b188ece10ea08af62173045e71",
+      "name_ja": "ピジョット",
+      "dex_ids": [
+        18
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM9:070/095:normal",
+          "collector_number": "070/095",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ピジョット",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM9/070.ts:sha256:28c83b5d3631ea4bc980f2afe7e47c9e4213e90ed60555851e2894b043a0b470",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM9",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/018.ts:sha256:2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2a/018.ts",
+      "source_sha256": "2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca",
+      "source_git_blob_sha": "b4028935b9d3c5d2bcf5d5e44df86f9ec22ed9ef",
+      "name_ja": "ピジョット",
+      "dex_ids": [
+        18
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV2A:018/165:normal",
+          "collector_number": "018/165",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ピジョット",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/018.ts:sha256:2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV2a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV2A:018/165:reverse_masterball",
+          "collector_number": "018/165",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ピジョット",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/018.ts:sha256:2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV2a",
+          "variant": "reverse_masterball"
+        },
+        {
+          "card_id": "ja:SV2A:018/165:reverse_pokeball",
+          "collector_number": "018/165",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ピジョット",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/018.ts:sha256:2db20e193870d7d390ace8535438a43d560abaffef84a88767aed48ff1d625ca",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV2a",
+          "variant": "reverse_pokeball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/065.ts:sha256:8a1d3dad27d949817de4d4c7f8e192e43fd4cbe9961a8f49ffb7c639791fa0a9",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2/065.ts",
+      "source_sha256": "8a1d3dad27d949817de4d4c7f8e192e43fd4cbe9961a8f49ffb7c639791fa0a9",
+      "source_git_blob_sha": "a82eb4236a97dd9489d41b345db6e2f59652d19a",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M2:065/080:normal",
+          "collector_number": "065/080",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/065.ts:sha256:8a1d3dad27d949817de4d4c7f8e192e43fd4cbe9961a8f49ffb7c639791fa0a9",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/091.ts:sha256:e1e4b1644567beac1b96f251866559bf4e5f2af4ae69e33bb41d11cecc5a19df",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2/091.ts",
+      "source_sha256": "e1e4b1644567beac1b96f251866559bf4e5f2af4ae69e33bb41d11cecc5a19df",
+      "source_git_blob_sha": "5c6a8126555804b6f3c20c4fb6b7c48cd656b66e",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M2:091/080:holo",
+          "collector_number": "091/080",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/091.ts:sha256:e1e4b1644567beac1b96f251866559bf4e5f2af4ae69e33bb41d11cecc5a19df",
+          "rarity": "Illustration rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/045.ts:sha256:e3dcfc35911a44f5c8e8ed2174ef1e08890568d325bda36544646abf81891b69",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/PMCG/PMCG2/045.ts",
+      "source_sha256": "e3dcfc35911a44f5c8e8ed2174ef1e08890568d325bda36544646abf81891b69",
+      "source_git_blob_sha": "ca219d105acbfa91adf39ef9fd69352bea89ceea",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:PMCG2:045/048:holo",
+          "collector_number": "045/048",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/045.ts:sha256:e3dcfc35911a44f5c8e8ed2174ef1e08890568d325bda36544646abf81891b69",
+          "rarity": "Holo Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "PMCG2",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S7D/011.ts:sha256:38ba6726a1988e7c4fa482bdfdea6e7997f69990ea8753b248b310be3342fa04",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/S/S7D/011.ts",
+      "source_sha256": "38ba6726a1988e7c4fa482bdfdea6e7997f69990ea8753b248b310be3342fa04",
+      "source_git_blob_sha": "3f03c2599cb322b80e31a3a6c66dfc0a72fdca92",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:S7D:011/067:normal",
+          "collector_number": "011/067",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S7D/011.ts:sha256:38ba6726a1988e7c4fa482bdfdea6e7997f69990ea8753b248b310be3342fa04",
+          "rarity": "Common",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "S7D",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10/063.ts:sha256:d51dc2cfad627e798f780d43e195797d44071a9f69ccb221e7895a5429c7e41c",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM10/063.ts",
+      "source_sha256": "d51dc2cfad627e798f780d43e195797d44071a9f69ccb221e7895a5429c7e41c",
+      "source_git_blob_sha": "e1a8638b7c5f2928fd02edbaece72b0111abae4e",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM10:063/095:normal",
+          "collector_number": "063/095",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10/063.ts:sha256:d51dc2cfad627e798f780d43e195797d44071a9f69ccb221e7895a5429c7e41c",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM10",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4A/035.ts:sha256:b6ee0e4ea61bd7537e84d257bfc1e796423c49abbf9914a70b65f6991928463b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM4A/035.ts",
+      "source_sha256": "b6ee0e4ea61bd7537e84d257bfc1e796423c49abbf9914a70b65f6991928463b",
+      "source_git_blob_sha": "4419ed038752b2b005130b66e033608b29e4edc6",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM4A:035/050:normal",
+          "collector_number": "035/050",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4A/035.ts:sha256:b6ee0e4ea61bd7537e84d257bfc1e796423c49abbf9914a70b65f6991928463b",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM4A",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM7b/027.ts:sha256:cc835257f55392c5413a375a1d72aa5b23df463af333f522ff657eb4826ab98f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SM/SM7b/027.ts",
+      "source_sha256": "cc835257f55392c5413a375a1d72aa5b23df463af333f522ff657eb4826ab98f",
+      "source_git_blob_sha": "83a074a4db090ef9b3e54bf9ea0a75ad2bd492d2",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SM7B:027/050:normal",
+          "collector_number": "027/050",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM7b/027.ts:sha256:cc835257f55392c5413a375a1d72aa5b23df463af333f522ff657eb4826ab98f",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SM7b",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2D/027.ts:sha256:2c40e597d68d7ac174cf1d7de8222d355aefb93f4329f6d68cf44539b6c9c60e",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV2D/027.ts",
+      "source_sha256": "2c40e597d68d7ac174cf1d7de8222d355aefb93f4329f6d68cf44539b6c9c60e",
+      "source_git_blob_sha": "061a0dee4673611a0f9da7fb74dd2c5df08d5cf8",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV2D:027/071:holo",
+          "collector_number": "027/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2D/027.ts:sha256:2c40e597d68d7ac174cf1d7de8222d355aefb93f4329f6d68cf44539b6c9c60e",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV2D",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/072.ts:sha256:18b892a815fce44f80623ee7f5e17fc9c68305093edb658eafaa6f52679006e2",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/072.ts",
+      "source_sha256": "18b892a815fce44f80623ee7f5e17fc9c68305093edb658eafaa6f52679006e2",
+      "source_git_blob_sha": "b609af796e27699db5256037421815f3b3806ad9",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4A:072/190:normal",
+          "collector_number": "072/190",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/072.ts:sha256:18b892a815fce44f80623ee7f5e17fc9c68305093edb658eafaa6f52679006e2",
+          "rarity": null,
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/252.ts:sha256:6cd1c576dfaad22e28a60f39c4b41bed72eb7be982f12f4fa03e9d1bbd2af307",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4a/252.ts",
+      "source_sha256": "6cd1c576dfaad22e28a60f39c4b41bed72eb7be982f12f4fa03e9d1bbd2af307",
+      "source_git_blob_sha": "802b8a3daa21bff39a9df409b61082fc8fcfea9c",
+      "name_ja": "プクリン",
+      "dex_ids": [
+        40
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4A:252/190:holo",
+          "collector_number": "252/190",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "プクリン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/252.ts:sha256:6cd1c576dfaad22e28a60f39c4b41bed72eb7be982f12f4fa03e9d1bbd2af307",
+          "rarity": null,
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4a",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/626.ts:sha256:3392b87a77aba6c2d18485849a33a019add1606cc7c791116817d39fcdb83c9a",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/626.ts",
+      "source_sha256": "3392b87a77aba6c2d18485849a33a019add1606cc7c791116817d39fcdb83c9a",
+      "source_git_blob_sha": "d15d650ef4bd2c68840e49746450c022d23b16aa",
+      "name_ja": "イキリンコ",
+      "dex_ids": [
+        931
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:626/742:normal",
+          "collector_number": "626/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イキリンコ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/626.ts:sha256:3392b87a77aba6c2d18485849a33a019add1606cc7c791116817d39fcdb83c9a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/086.ts:sha256:c63899b14deb56dfde0b93e987c78eaaec1f9f572dfee4429e105ec9cd3ea744",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV10/086.ts",
+      "source_sha256": "c63899b14deb56dfde0b93e987c78eaaec1f9f572dfee4429e105ec9cd3ea744",
+      "source_git_blob_sha": "edff5cc9c4efb18f17b7456b4f78c704da443bab",
+      "name_ja": "イキリンコ",
+      "dex_ids": [
+        931
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV10:086/098:normal",
+          "collector_number": "086/098",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イキリンコ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV10/086.ts:sha256:c63899b14deb56dfde0b93e987c78eaaec1f9f572dfee4429e105ec9cd3ea744",
+          "rarity": "Common",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV10",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/067.ts:sha256:7bf02625f34b91d50f3b5f38fc1f415f6da15c28db91f5e624f66a3a44c109af",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV1V/067.ts",
+      "source_sha256": "7bf02625f34b91d50f3b5f38fc1f415f6da15c28db91f5e624f66a3a44c109af",
+      "source_git_blob_sha": "e4d52d906acce323ed14ad9ad66e15086ab30513",
+      "name_ja": "イキリンコ",
+      "dex_ids": [
+        931
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV1V:067/078:normal",
+          "collector_number": "067/078",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イキリンコ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1V/067.ts:sha256:7bf02625f34b91d50f3b5f38fc1f415f6da15c28db91f5e624f66a3a44c109af",
+          "rarity": "Common",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV1V",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/009.ts:sha256:90bda023f7b4e1d978c0e8a928ebf6389fa40148d997f0b8b75550c9cecc49b6",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/009.ts",
+      "source_sha256": "90bda023f7b4e1d978c0e8a928ebf6389fa40148d997f0b8b75550c9cecc49b6",
+      "source_git_blob_sha": "1223a6c1b37ef93fbddca248b8bb8e2867dcdd2c",
+      "name_ja": "チオンジェン",
+      "dex_ids": [
+        1001
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:009/066:holo",
+          "collector_number": "009/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "チオンジェン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/009.ts:sha256:90bda023f7b4e1d978c0e8a928ebf6389fa40148d997f0b8b75550c9cecc49b6",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/010.ts:sha256:cb9527bc83d2899789b81c8d744914b9036b30d466eb43a46fcf015f538565ed",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/010.ts",
+      "source_sha256": "cb9527bc83d2899789b81c8d744914b9036b30d466eb43a46fcf015f538565ed",
+      "source_git_blob_sha": "8fc2b5c3f5393c59274235bcf145b86b8b812167",
+      "name_ja": "チオンジェン",
+      "dex_ids": [
+        1001
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:010/106:normal",
+          "collector_number": "010/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "チオンジェン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/010.ts:sha256:cb9527bc83d2899789b81c8d744914b9036b30d466eb43a46fcf015f538565ed",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/015.ts:sha256:3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/015.ts",
+      "source_sha256": "3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a",
+      "source_git_blob_sha": "355fa41a98c442a389f3a366534058093cee9766",
+      "name_ja": "チオンジェン",
+      "dex_ids": [
+        1001
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:015/187:normal",
+          "collector_number": "015/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "チオンジェン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/015.ts:sha256:3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:015/187:reverse",
+          "collector_number": "015/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "チオンジェン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/015.ts:sha256:3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:015/187:reverse_masterball",
+          "collector_number": "015/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "チオンジェン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/015.ts:sha256:3e14bf32b2a6b76c798c1159085daf94c1f18ce14b5867046cbf0f7e2f53770a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/014.ts:sha256:9d2a43043d7e940ed0675668d334435fd76a83e7fec2b0e597457983b90492e8",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M1S/014.ts",
+      "source_sha256": "9d2a43043d7e940ed0675668d334435fd76a83e7fec2b0e597457983b90492e8",
+      "source_git_blob_sha": "ebace17ab36bc2334e32784cfd2273ef5de78df7",
+      "name_ja": "イーユイ",
+      "dex_ids": [
+        1004
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M1S:014/063:normal",
+          "collector_number": "014/063",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/014.ts:sha256:9d2a43043d7e940ed0675668d334435fd76a83e7fec2b0e597457983b90492e8",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M1S",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/057.ts:sha256:bccd3f13da904fb0820aeeeedf2b9710b19963fdf05fc7f240069147b5d98450",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/057.ts",
+      "source_sha256": "bccd3f13da904fb0820aeeeedf2b9710b19963fdf05fc7f240069147b5d98450",
+      "source_git_blob_sha": "256257dc5b41f2f62eac6a0eb49182299407108e",
+      "name_ja": "イーユイ",
+      "dex_ids": [
+        1004
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M5:057/081:holo",
+          "collector_number": "057/081",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/057.ts:sha256:bccd3f13da904fb0820aeeeedf2b9710b19963fdf05fc7f240069147b5d98450",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M5",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/016.ts:sha256:62bada0a5ba5419d7492a225eb59dfb6d23439e8c6ffcda12a6c879fe29941a9",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4K/016.ts",
+      "source_sha256": "62bada0a5ba5419d7492a225eb59dfb6d23439e8c6ffcda12a6c879fe29941a9",
+      "source_git_blob_sha": "26686c08a57a5d291b36a1bb1b5ce4a567bbde27",
+      "name_ja": "イーユイ",
+      "dex_ids": [
+        1004
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4K:016/066:holo",
+          "collector_number": "016/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/016.ts:sha256:62bada0a5ba5419d7492a225eb59dfb6d23439e8c6ffcda12a6c879fe29941a9",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4K",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/018.ts:sha256:42c8ee94eaa14936d56a186f5385c63b192a4c11f1f069b5f181c26ec4c219b7",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5a/018.ts",
+      "source_sha256": "42c8ee94eaa14936d56a186f5385c63b192a4c11f1f069b5f181c26ec4c219b7",
+      "source_git_blob_sha": "720e2ea50d0a1997c4540187ca58428a8903057a",
+      "name_ja": "イーユイ",
+      "dex_ids": [
+        1004
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5A:018/066:normal",
+          "collector_number": "018/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/018.ts:sha256:42c8ee94eaa14936d56a186f5385c63b192a4c11f1f069b5f181c26ec4c219b7",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/025.ts:sha256:a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/025.ts",
+      "source_sha256": "a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a",
+      "source_git_blob_sha": "15ca23b22a3d6126e337eff3e200d1e1df86249d",
+      "name_ja": "イーユイ",
+      "dex_ids": [
+        1004
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:025/187:normal",
+          "collector_number": "025/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/025.ts:sha256:a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:025/187:reverse",
+          "collector_number": "025/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/025.ts:sha256:a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:025/187:reverse_masterball",
+          "collector_number": "025/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "イーユイ",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/025.ts:sha256:a9aa5a0dd77c0dd8f51ab1bf7b4798c7c06760520d34b46db049c335a9aa520a",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/043.ts:sha256:21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M2a/043.ts",
+      "source_sha256": "21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+      "source_git_blob_sha": "78b70f7bca865a06065621c580abfafe10c269fc",
+      "name_ja": "パオジアン",
+      "dex_ids": [
+        1002
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M2A:043/193:normal",
+          "collector_number": "043/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/043.ts:sha256:21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:M2A:043/193:reverse",
+          "collector_number": "043/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/043.ts:sha256:21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:M2A:043/193:reverse_energy",
+          "collector_number": "043/193",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2a/043.ts:sha256:21549a117a820de3c93842aa468284759311bc7ecd50043700eb43955cf722a2",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M2a",
+          "variant": "reverse_energy"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M3/053.ts:sha256:330bc339940ee4db19fb5d368c6dff256d94dd323f192336f3fc4e97b7725eb5",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M3/053.ts",
+      "source_sha256": "330bc339940ee4db19fb5d368c6dff256d94dd323f192336f3fc4e97b7725eb5",
+      "source_git_blob_sha": "af7bbd866853096c668013c8f54e7d02e8710e32",
+      "name_ja": "パオジアン",
+      "dex_ids": [
+        1002
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M3:053/080:holo",
+          "collector_number": "053/080",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M3/053.ts:sha256:330bc339940ee4db19fb5d368c6dff256d94dd323f192336f3fc4e97b7725eb5",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M3",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/021.ts:sha256:4b8118e064d617a4ee1304fffa259b8d52dcfe70b60fb4ecd75f29d10ce23bfb",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4M/021.ts",
+      "source_sha256": "4b8118e064d617a4ee1304fffa259b8d52dcfe70b60fb4ecd75f29d10ce23bfb",
+      "source_git_blob_sha": "e1493e7689559bed799f3f9a020f8a91ba45af91",
+      "name_ja": "パオジアン",
+      "dex_ids": [
+        1002
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4M:021/066:holo",
+          "collector_number": "021/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4M/021.ts:sha256:4b8118e064d617a4ee1304fffa259b8d52dcfe70b60fb4ecd75f29d10ce23bfb",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/032.ts:sha256:57176e427a1f16d11f3637a51b88ac6b05fe9608e7a053cfb893a16db9bc864b",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/032.ts",
+      "source_sha256": "57176e427a1f16d11f3637a51b88ac6b05fe9608e7a053cfb893a16db9bc864b",
+      "source_git_blob_sha": "b7745d6fd4ac587f5c645574976811771e56e29e",
+      "name_ja": "パオジアン",
+      "dex_ids": [
+        1002
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:032/106:holo",
+          "collector_number": "032/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/032.ts:sha256:57176e427a1f16d11f3637a51b88ac6b05fe9608e7a053cfb893a16db9bc864b",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/048.ts:sha256:06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/048.ts",
+      "source_sha256": "06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5",
+      "source_git_blob_sha": "cbaece13f1f24c72ab7c226208dfd58fd18f343c",
+      "name_ja": "パオジアン",
+      "dex_ids": [
+        1002
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:048/187:normal",
+          "collector_number": "048/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/048.ts:sha256:06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:048/187:reverse",
+          "collector_number": "048/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/048.ts:sha256:06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:048/187:reverse_masterball",
+          "collector_number": "048/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "パオジアン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/048.ts:sha256:06e398da7aa951d2f6c4c6b306ffa869ea4498153d056a424a7c964a7b42b1b5",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/027.ts:sha256:824fcfb14e9323458044c7ee38fdbfb34079230bc53ea641624fd197d03210e7",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/027.ts",
+      "source_sha256": "824fcfb14e9323458044c7ee38fdbfb34079230bc53ea641624fd197d03210e7",
+      "source_git_blob_sha": "707a1f0914b422e1c1d84c47d2824c0a7d45d360",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M5:027/081:normal",
+          "collector_number": "027/081",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/027.ts:sha256:824fcfb14e9323458044c7ee38fdbfb34079230bc53ea641624fd197d03210e7",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M5",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/053.ts:sha256:bc8ff6ce60b8df69efcef6c30fa0e5102b06d5d0b6ea49fd04be535002b73d74",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M6a/053.ts",
+      "source_sha256": "bc8ff6ce60b8df69efcef6c30fa0e5102b06d5d0b6ea49fd04be535002b73d74",
+      "source_git_blob_sha": "10710ed871a8a9a6e9764b877895fafd6ec272b0",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M6A:053/103:normal",
+          "collector_number": "053/103",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/053.ts:sha256:bc8ff6ce60b8df69efcef6c30fa0e5102b06d5d0b6ea49fd04be535002b73d74",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M6a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/283.ts:sha256:dac243081fceb8b2b4bee921df7a6e3ad5d52a0950b77853702eb7ff39f099dc",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/283.ts",
+      "source_sha256": "dac243081fceb8b2b4bee921df7a6e3ad5d52a0950b77853702eb7ff39f099dc",
+      "source_git_blob_sha": "bc38c261efa55bde8b9c6d4ee19cbcb8ce2749d7",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:283/742:normal",
+          "collector_number": "283/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/283.ts:sha256:dac243081fceb8b2b4bee921df7a6e3ad5d52a0950b77853702eb7ff39f099dc",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/552.ts:sha256:a2b849823715352d436513d63ee40248359139a973c046f4445a01379174c8e3",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/552.ts",
+      "source_sha256": "a2b849823715352d436513d63ee40248359139a973c046f4445a01379174c8e3",
+      "source_git_blob_sha": "8bba04abd66f7574414834f1aa191e21980d0371",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:552/742:normal",
+          "collector_number": "552/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/552.ts:sha256:a2b849823715352d436513d63ee40248359139a973c046f4445a01379174c8e3",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/005.ts:sha256:ce7a8a36cec0fe98fa8e557d0c01c47232623fc1109b0caf32e5305c298b4515",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/005.ts",
+      "source_sha256": "ce7a8a36cec0fe98fa8e557d0c01c47232623fc1109b0caf32e5305c298b4515",
+      "source_git_blob_sha": "395ff28d1faa386b85edba82affd0b30ced4e75f",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:005/SV-P:normal",
+          "collector_number": "005/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/005.ts:sha256:ce7a8a36cec0fe98fa8e557d0c01c47232623fc1109b0caf32e5305c298b4515",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/048.ts:sha256:7680a966f1e4e545ab48bd67f75f6c0ab52ea7ab0196054ce7bddba5601eed98",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/048.ts",
+      "source_sha256": "7680a966f1e4e545ab48bd67f75f6c0ab52ea7ab0196054ce7bddba5601eed98",
+      "source_git_blob_sha": "0b18b3025bf9db331ea577dfb1daa2aba8feec46",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:048/SV-P:normal",
+          "collector_number": "048/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/048.ts:sha256:7680a966f1e4e545ab48bd67f75f6c0ab52ea7ab0196054ce7bddba5601eed98",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/151.ts:sha256:dbd87f62461403fe1fc7671fb5f9edecffec3189d0943e8517131808eeb60768",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/151.ts",
+      "source_sha256": "dbd87f62461403fe1fc7671fb5f9edecffec3189d0943e8517131808eeb60768",
+      "source_git_blob_sha": "bb53846dd1cb06f1d0faabad9bf707c0b2760ddc",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:151/SV-P:normal",
+          "collector_number": "151/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/151.ts:sha256:dbd87f62461403fe1fc7671fb5f9edecffec3189d0943e8517131808eeb60768",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/052.ts:sha256:ff00c356fa7ae9e078a0d9cccc9a8eab75a77f80ce4c85fee5f5b6d811f4008f",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5M/052.ts",
+      "source_sha256": "ff00c356fa7ae9e078a0d9cccc9a8eab75a77f80ce4c85fee5f5b6d811f4008f",
+      "source_git_blob_sha": "a0eeec3684c3bf14aeff01d374522fceb4c70c4d",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5M:052/071:holo",
+          "collector_number": "052/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5M/052.ts:sha256:ff00c356fa7ae9e078a0d9cccc9a8eab75a77f80ce4c85fee5f5b6d811f4008f",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5M",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/044.ts:sha256:01819f6ae42bea5a46891a9ec99d8ffb8801872e2ab727a63e4cba10a7f9d1ed",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/044.ts",
+      "source_sha256": "01819f6ae42bea5a46891a9ec99d8ffb8801872e2ab727a63e4cba10a7f9d1ed",
+      "source_git_blob_sha": "5b1c67bdeb14c6c0566317ff34628a5ec7c848ee",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:044/106:normal",
+          "collector_number": "044/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/044.ts:sha256:01819f6ae42bea5a46891a9ec99d8ffb8801872e2ab727a63e4cba10a7f9d1ed",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/123.ts:sha256:66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/123.ts",
+      "source_sha256": "66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340",
+      "source_git_blob_sha": "ac13a34a141d58689a5b8876dc5d036b7bbf988e",
+      "name_ja": "ミライドン",
+      "dex_ids": [
+        1008
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:123/187:normal",
+          "collector_number": "123/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/123.ts:sha256:66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:123/187:reverse",
+          "collector_number": "123/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/123.ts:sha256:66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:123/187:reverse_masterball",
+          "collector_number": "123/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ミライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/123.ts:sha256:66f652dda59fbd8fd07173731fd3ae3dc3fd7dae8db17a4f475780ba5a215340",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/043.ts:sha256:2da152513bdef695914bd48ae2b3a277736d27fa2c75d1a9f3ec27be7f7e9d12",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV4K/043.ts",
+      "source_sha256": "2da152513bdef695914bd48ae2b3a277736d27fa2c75d1a9f3ec27be7f7e9d12",
+      "source_git_blob_sha": "99ada05b8e9ed599998bd034b2fb3ce3cb339a0c",
+      "name_ja": "ディンルー",
+      "dex_ids": [
+        1003
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV4K:043/066:holo",
+          "collector_number": "043/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ディンルー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4K/043.ts:sha256:2da152513bdef695914bd48ae2b3a277736d27fa2c75d1a9f3ec27be7f7e9d12",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV4K",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/047.ts:sha256:6e97eecedaa021a243ea4e1a5720f9a6796b41b16259f252cbd79c9ca5c6f182",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5a/047.ts",
+      "source_sha256": "6e97eecedaa021a243ea4e1a5720f9a6796b41b16259f252cbd79c9ca5c6f182",
+      "source_git_blob_sha": "ff3e55c41eebbc3215bee172c43d0b3f644f692e",
+      "name_ja": "ディンルー",
+      "dex_ids": [
+        1003
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5A:047/066:holo",
+          "collector_number": "047/066",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ディンルー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a/047.ts:sha256:6e97eecedaa021a243ea4e1a5720f9a6796b41b16259f252cbd79c9ca5c6f182",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5a",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/089.ts:sha256:0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/089.ts",
+      "source_sha256": "0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e",
+      "source_git_blob_sha": "1617c9bf030c4d1b367b90958022b0e65f536261",
+      "name_ja": "ディンルー",
+      "dex_ids": [
+        1003
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:089/187:normal",
+          "collector_number": "089/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ディンルー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/089.ts:sha256:0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:089/187:reverse",
+          "collector_number": "089/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ディンルー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/089.ts:sha256:0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:089/187:reverse_masterball",
+          "collector_number": "089/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "ディンルー",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/089.ts:sha256:0cc82da2a509df3356e1424fdaa93c4bd19b54d7b2e00153ec60732611f6220e",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/045.ts:sha256:62a7eec4ea5cb795ee46bd0ca27ad3aaf3ccb9bc757009182370606e2d5277a7",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M5/045.ts",
+      "source_sha256": "62a7eec4ea5cb795ee46bd0ca27ad3aaf3ccb9bc757009182370606e2d5277a7",
+      "source_git_blob_sha": "4fe816c7a78b33ec1f1fa859dba88e325e5911a0",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M5:045/081:normal",
+          "collector_number": "045/081",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/045.ts:sha256:62a7eec4ea5cb795ee46bd0ca27ad3aaf3ccb9bc757009182370606e2d5277a7",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M5",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/072.ts:sha256:d14f8b9096909ac0426edc318d40fcea00afff711874aa9d91c40b9d241f3769",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/M6a/072.ts",
+      "source_sha256": "d14f8b9096909ac0426edc318d40fcea00afff711874aa9d91c40b9d241f3769",
+      "source_git_blob_sha": "c689c9037d49f8243e223d3a689f2003bc6ca6be",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:M6A:072/103:normal",
+          "collector_number": "072/103",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/072.ts:sha256:d14f8b9096909ac0426edc318d40fcea00afff711874aa9d91c40b9d241f3769",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "M6a",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/550.ts:sha256:a77ff882c06c2fab4c50b8a87461ffb203dd38493a6e5de928eaafd71489d086",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/M/MC/550.ts",
+      "source_sha256": "a77ff882c06c2fab4c50b8a87461ffb203dd38493a6e5de928eaafd71489d086",
+      "source_git_blob_sha": "bd476ea70b9d51c76ffbf6a4d70938cdcdef0018",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:MC:550/742:normal",
+          "collector_number": "550/742",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/550.ts:sha256:a77ff882c06c2fab4c50b8a87461ffb203dd38493a6e5de928eaafd71489d086",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "MC",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/007.ts:sha256:fbbb03c9f3f99445f1c0a5d2f46bfbe7d818a7e413a8910839a101b974154e93",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/007.ts",
+      "source_sha256": "fbbb03c9f3f99445f1c0a5d2f46bfbe7d818a7e413a8910839a101b974154e93",
+      "source_git_blob_sha": "c8e4f39a596daca32aaaad9bc8937ac5fd382793",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:007/SV-P:normal",
+          "collector_number": "007/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/007.ts:sha256:fbbb03c9f3f99445f1c0a5d2f46bfbe7d818a7e413a8910839a101b974154e93",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/049.ts:sha256:56434a3d81a299d85a3c2419d8bb7a98d63102e8ac57044abb1e8c09cad10be1",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/049.ts",
+      "source_sha256": "56434a3d81a299d85a3c2419d8bb7a98d63102e8ac57044abb1e8c09cad10be1",
+      "source_git_blob_sha": "dd6b0c1c7bd35a82775e58c6583da9ffba423371",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:049/SV-P:normal",
+          "collector_number": "049/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/049.ts:sha256:56434a3d81a299d85a3c2419d8bb7a98d63102e8ac57044abb1e8c09cad10be1",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/152.ts:sha256:1c4526f0da9d29ee4157ca147021b4122d8a1c95b77d92b707bad6127716535c",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV-P/152.ts",
+      "source_sha256": "1c4526f0da9d29ee4157ca147021b4122d8a1c95b77d92b707bad6127716535c",
+      "source_git_blob_sha": "dea4c697f7ba9b4c59d74e6fb66e061638169f18",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV-P:152/SV-P:normal",
+          "collector_number": "152/SV-P",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV-P/152.ts:sha256:1c4526f0da9d29ee4157ca147021b4122d8a1c95b77d92b707bad6127716535c",
+          "rarity": "Promo",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV-P",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/052.ts:sha256:54b12f63893e61c2fc17704cee96efbb61f3d934658fe8dcd4419b20f1fddb5a",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV5K/052.ts",
+      "source_sha256": "54b12f63893e61c2fc17704cee96efbb61f3d934658fe8dcd4419b20f1fddb5a",
+      "source_git_blob_sha": "814a8729b7386b0d3305828f9bd92873c82a3566",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV5K:052/071:holo",
+          "collector_number": "052/071",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5K/052.ts:sha256:54b12f63893e61c2fc17704cee96efbb61f3d934658fe8dcd4419b20f1fddb5a",
+          "rarity": "Rare",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV5K",
+          "variant": "holo"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/069.ts:sha256:2a54a5aa7a9f4f33b53b1056fe45e52aaf8debed7ae75fe3ff3d58c283a1e7a7",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8/069.ts",
+      "source_sha256": "2a54a5aa7a9f4f33b53b1056fe45e52aaf8debed7ae75fe3ff3d58c283a1e7a7",
+      "source_git_blob_sha": "6b2e4f9ae4a48a569cbdf2b30eab4201619675b2",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8:069/106:normal",
+          "collector_number": "069/106",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8/069.ts:sha256:2a54a5aa7a9f4f33b53b1056fe45e52aaf8debed7ae75fe3ff3d58c283a1e7a7",
+          "rarity": "Uncommon",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8",
+          "variant": "normal"
+        }
+      ]
+    },
+    {
+      "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/122.ts:sha256:8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa",
+      "source_url": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/data-asia/SV/SV8a/122.ts",
+      "source_sha256": "8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa",
+      "source_git_blob_sha": "13c04ce59825aa77fc6345866213a0a48382b70e",
+      "name_ja": "コライドン",
+      "dex_ids": [
+        1007
+      ],
+      "declared_category": "Pokemon",
+      "cards": [
+        {
+          "card_id": "ja:SV8A:122/187:normal",
+          "collector_number": "122/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/122.ts:sha256:8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "normal"
+        },
+        {
+          "card_id": "ja:SV8A:122/187:reverse",
+          "collector_number": "122/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/122.ts:sha256:8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse"
+        },
+        {
+          "card_id": "ja:SV8A:122/187:reverse_masterball",
+          "collector_number": "122/187",
+          "display_allowed": false,
+          "language": "ja",
+          "match_eligible": true,
+          "name": "コライドン",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV8a/122.ts:sha256:8b96afdebc3a68c330edfa1a450e45106e50c69334098b9738a7b12655da84fa",
+          "rarity": "None",
+          "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+          "set_code": "SV8a",
+          "variant": "reverse_masterball"
+        }
+      ]
+    }
+  ],
+  "scope": "Source-text name affiliation only. Runtime must revalidate all current same-name anchors, support, identity and rights. These pinned observations are not stored target dex facets, physical printing evidence or public/offer approvals.",
+  "new_physical_approvals": 0,
+  "new_offer_approvals": 0,
+  "new_public_display_approvals": 0
+}

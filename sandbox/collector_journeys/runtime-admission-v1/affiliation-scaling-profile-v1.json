@@ -1,0 +1,20 @@
+{
+  "before_7382318": {
+    "status": "ok",
+    "seconds": 0.22514506700099446,
+    "sql_statements": 56,
+    "sqlite_progress_callbacks": 6447,
+    "affiliations": 27
+  },
+  "after_batch": {
+    "status": "ok",
+    "seconds": 0.22809037799743237,
+    "sql_statements": 56,
+    "sqlite_progress_callbacks": 6447,
+    "affiliations": 27
+  },
+  "output_equivalent": true,
+  "fixture_scope": "synthetic70k+27targets+1correction;2497officialoverlays; unchanged productioneffectiveviews; synthetic qualified support",
+  "valid_before_after_comparison": false,
+  "invalid_reason": "The purported pre-fix helper copy raced the concurrent owner edit and is already batched; both measurements use post-fix code. Retain only as post-fix exploratory measurements."
+}

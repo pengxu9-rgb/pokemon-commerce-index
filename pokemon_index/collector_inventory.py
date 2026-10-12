@@ -5,7 +5,7 @@ physical printing completeness is verified by this comparison.
 """
 from __future__ import annotations
 from collections import defaultdict
-from . import core,collector_discovery
+from . import core,collector_discovery,collector_runtime
 
 MAX_ITEMS=1000
 MAX_SCOPE=10000
@@ -74,6 +74,7 @@ def partition_owned(db, owned, card_ids):
         next_question='Resolve unknown or version-uncertain inventory before selecting a target.' if unresolved else 'Inspect the remaining catalog candidates.')
 
 
+@collector_runtime.catalog_request
 def compare(db, request: dict) -> dict:
     if not isinstance(request,dict) or set(request)-{'question','owned_items','limit','offset','scope'}:
         raise ValueError('inventory request has unsupported fields')
@@ -87,7 +88,8 @@ def compare(db, request: dict) -> dict:
     entries=[_entry(db,row) for row in owned]
     if len({r['item_id'] for r in entries})!=len(entries):raise ValueError('duplicate item_id')
     explicit=collector_discovery.validate_scope(request.get('scope'))
-    scope=collector_discovery.execute(db,question,limit=100,scope=explicit)
+    rows=[]
+    scope=collector_discovery.execute(db,question,limit=100,scope=explicit,_row_capture=(MAX_SCOPE,rows))
     result=dict(schema='pokemon.collector-inventory.v1',question=question,scope=scope,
                 status='scope_clarification_needed',inventory_entries=entries,
                 owned_in_scope=[],possible_owned=[],missing_catalog_records=[],
@@ -104,19 +106,19 @@ def compare(db, request: dict) -> dict:
     if count>MAX_SCOPE:
         result['next_question']='Narrow the character, artist, language or release scope before comparing inventory.'
         return result
-    cards=list(scope['cards']);page=scope
-    while page['coverage']['has_more']:
-        page=collector_discovery.execute(db,question,limit=100,offset=len(cards),scope=explicit)
-        cards.extend(page['cards'])
-    ids={c['card_id'] for c in cards}
-    if len(cards)!=count or len(ids)!=count:raise ValueError('catalog scope changed during pagination')
+    ids={r['card_id'] for r in rows}
+    if len(rows)!=count or len(ids)!=count:raise ValueError('catalog scope changed during projection')
     partition=partition_owned(db,owned,list(ids))
     excluded=partition.pop('excluded_card_ids')
     result.update(partition)
     exact={r['card_id'] for r in result['owned_in_scope']}
     possible={r['card_id'] for r in result['possible_owned']}
-    missing=[c for c in cards if c['card_id'] not in excluded]
-    result['missing_catalog_records']=missing[offset:offset+limit]
+    missing=[r for r in rows if r['card_id'] not in excluded]
+    if scope['task'] == 'set_cards':
+        # Removing owned versions changes which coordinate has an available
+        # first version. Diversify the remaining full pool before pagination.
+        missing=collector_discovery._set_browse_order(missing)
+    result['missing_catalog_records']=[collector_discovery._card_result(db,r) for r in missing[offset:offset+limit]]
     result['coverage']=dict(scoped_catalog_records=count,asserted_owned_records=len(exact),
                             possible_owned_records=len(possible),not_in_resolved_inventory=len(missing),
                             unresolved_inventory_entries=len(result['unresolved_items']),

@@ -1,0 +1,4164 @@
+{
+  "method": "Read-only SQL only, no product helpers. Facets resolved to their claimed raw, official or correction evidence rather than falsely treating source corrections as raw-table mismatches. This checks source fidelity, not fresh visual verification of publisher assets.",
+  "candidate_occurrences": 145,
+  "issues": [],
+  "verified_occurrences": [
+    {
+      "case_id": "ICU-01",
+      "step_index": 1,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-01",
+      "step_index": 1,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-01",
+      "step_index": 1,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-01",
+      "step_index": 1,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-01",
+      "step_index": 1,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "step_index": 0,
+      "card_id": "ja:PMCG2:037/048:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/037.ts:sha256:f7204a67f3cad992e4213e647bdb78833ccbdc9b1a2f5c04649f2d6f825d66fb",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Kagemaru Himeno",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG2/037.ts:sha256:f7204a67f3cad992e4213e647bdb78833ccbdc9b1a2f5c04649f2d6f825d66fb",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "step_index": 0,
+      "card_id": "ja:PMCG4:049/065:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG4/049.ts:sha256:156f7dd4d3750ad05cffb31e3ba96e6a12c28702e0bdb9491c00a2aa751d2096",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Atsuko Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG4/049.ts:sha256:156f7dd4d3750ad05cffb31e3ba96e6a12c28702e0bdb9491c00a2aa751d2096",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "step_index": 0,
+      "card_id": "ja:PMCG5:062/096:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG5/062.ts:sha256:307ef288c2944f854d8579918e0e33a9f36bd4a7e765e2378a3d089b8a136188",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Ken Sugimori",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG5/062.ts:sha256:307ef288c2944f854d8579918e0e33a9f36bd4a7e765e2378a3d089b8a136188",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "step_index": 0,
+      "card_id": "ja:NEO2:049/056:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/neo/neo2/049.ts:sha256:4d36716fe582dfc38e58d9aba2c3f36146cbe763f5f142f1a57c7495b4e9866e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "step_index": 0,
+      "card_id": "ja:E2:058/092:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "step_index": 0,
+      "card_id": "ja:M6A:057/103:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/057.ts:sha256:ba1d53a482f07c28c29e1cd95a06b400795c16fa1a300df843dfd40811b227cd",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "aky CG Works",
+          "source_ref": "official-metadata:7b22248f6798c347faa1b6232c42f90944f1fa07edfa09cb7a06eff8a13ee850",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "step_index": 0,
+      "card_id": "ja:M6A:129/103:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/129.ts:sha256:52377566b0a162c008aefd502462f21a40ed8ada8ebf5f4b0f494c3f054bba9e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Kuroimori",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/129.ts:sha256:52377566b0a162c008aefd502462f21a40ed8ada8ebf5f4b0f494c3f054bba9e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "step_index": 0,
+      "card_id": "ja:M6A:135/103:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/135.ts:sha256:d7788640d96df228614634a596dda257cf948d91e728422ea46b73c3fd83c103",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/135.ts:sha256:d7788640d96df228614634a596dda257cf948d91e728422ea46b73c3fd83c103",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "step_index": 0,
+      "card_id": "ja:PCG5:041/086:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PCG/PCG5/041.ts:sha256:1b2884fe0c7dd7216354de43657fff30596ad5c1e7bac4c9fccb4b782a2316b6",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "step_index": 0,
+      "card_id": "ja:SV2A:151/165:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/151.ts:sha256:4d167a6b0bcf7b7f3e5054065023b038b700d2837e8dd778c4b5ba5dbcebb607",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "aky CG Works",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/151.ts:sha256:4d167a6b0bcf7b7f3e5054065023b038b700d2837e8dd778c4b5ba5dbcebb607",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "step_index": 0,
+      "card_id": "ja:PMCG3:033/048:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG3/033.ts:sha256:527f2dd24a8f0f2f7e833fd6aca8c727ade92185b9dc6dae1884b9ef3ecb23b4",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Ken Sugimori",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG3/033.ts:sha256:527f2dd24a8f0f2f7e833fd6aca8c727ade92185b9dc6dae1884b9ef3ecb23b4",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "step_index": 0,
+      "card_id": "ja:E1:087/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/087.ts:sha256:483805fcd38899715a9a2ac73f2b1b4b70cf09fe74bd7b7acd129c1cd8f5d878",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "step_index": 0,
+      "card_id": "ja:E1:087/128:normal_unlimited",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/087.ts:sha256:483805fcd38899715a9a2ac73f2b1b4b70cf09fe74bd7b7acd129c1cd8f5d878",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "step_index": 0,
+      "card_id": "ja:E1:119/128:holo_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/119.ts:sha256:95232c8066bab276382ad9320a224dad8be054182eed78a776450b5029457294",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "step_index": 0,
+      "card_id": "ja:E1:119/128:holo_unlimited",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/119.ts:sha256:95232c8066bab276382ad9320a224dad8be054182eed78a776450b5029457294",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "step_index": 0,
+      "card_id": "ja:SM1S:002/060:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "11",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM1S/002.ts:sha256:ff746bd2dce334af492f028b33add5f3b4c83066f0335a668a7545e665041b6b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM1S/002.ts:sha256:ff746bd2dce334af492f028b33add5f3b4c83066f0335a668a7545e665041b6b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "step_index": 0,
+      "card_id": "ja:SM2K:025/050:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "574",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2K/025.ts:sha256:3ce5642b19e326e42bca55b0511928b2a8ffe08e5bc53a5fa01683285ce5e19c",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2K/025.ts:sha256:3ce5642b19e326e42bca55b0511928b2a8ffe08e5bc53a5fa01683285ce5e19c",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "step_index": 0,
+      "card_id": "ja:SM2L:018/050:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "568",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2L/018.ts:sha256:4634d404fcb8d9aa7e47b21fb1b1539645b4e88aae236627ad43ff7ccfb7c0ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2L/018.ts:sha256:4634d404fcb8d9aa7e47b21fb1b1539645b4e88aae236627ad43ff7ccfb7c0ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "step_index": 0,
+      "card_id": "ja:SM2P:024/049:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "568",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2p/024.ts:sha256:70712ef29bad70a54993a022128fadb8ae69132b7bb3826addd297c016ef7e06",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2p/024.ts:sha256:70712ef29bad70a54993a022128fadb8ae69132b7bb3826addd297c016ef7e06",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "step_index": 0,
+      "card_id": "ja:SM4A:024/050:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "57",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4A/024.ts:sha256:7d7543c411cf193b8b46781e597e897c75aedd7cb211fb9694f5947d0efbce29",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM4A/024.ts:sha256:7d7543c411cf193b8b46781e597e897c75aedd7cb211fb9694f5947d0efbce29",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "step_index": 0,
+      "card_id": "ja:PMCG1:063/102:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "83",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/063.ts:sha256:748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/063.ts:sha256:748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "step_index": 0,
+      "card_id": "ja:PMCG1:063/102:normal_no_rarity",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "83",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/063.ts:sha256:748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG1/063.ts:sha256:748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "step_index": 0,
+      "card_id": "ja:CP2:025/027:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "627",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/025.ts:sha256:fbbc970a286aa4bd3e7ac888d24c15c4637593d974234ea4e9ec5cd49141233b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/025.ts:sha256:fbbc970a286aa4bd3e7ac888d24c15c4637593d974234ea4e9ec5cd49141233b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "step_index": 0,
+      "card_id": "ja:SM1M:040/060:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "209",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM1M/040.ts:sha256:dc47cd7cd737245be0ddfb33441a8531d49d463ddb4b3ac806a760b553b5d8b7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM1M/040.ts:sha256:dc47cd7cd737245be0ddfb33441a8531d49d463ddb4b3ac806a760b553b5d8b7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "step_index": 0,
+      "card_id": "ja:SM2K:015/050:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "361",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2K/015.ts:sha256:56e128d23b1b3c02e1746826dab075a08fc23a87496f64c11b6f061a3b8b48ce",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM2K/015.ts:sha256:56e128d23b1b3c02e1746826dab075a08fc23a87496f64c11b6f061a3b8b48ce",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "step_index": 0,
+      "card_id": "ja:M1L:020/063:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "27",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1L/020.ts:sha256:eb74406fc74ab3afd98f7db7db503cb21b2188d3852b926f8ea346691ac58bae",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shinji Kanda",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1L/020.ts:sha256:eb74406fc74ab3afd98f7db7db503cb21b2188d3852b926f8ea346691ac58bae",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "step_index": 0,
+      "card_id": "ja:M2:062/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "884",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/062.ts:sha256:7c90c5e04276d49343480db31c6278acffd876167cae8e8be17f81ee4181ce95",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shinji Kanda",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/062.ts:sha256:7c90c5e04276d49343480db31c6278acffd876167cae8e8be17f81ee4181ce95",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "step_index": 0,
+      "card_id": "ja:M2:111/080:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "741",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/111.ts:sha256:52425bd66f1853027ffdbed0cd3da0a317d857bb111aff60b8fc79c7a98e24b1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shinji Kanda",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/111.ts:sha256:52425bd66f1853027ffdbed0cd3da0a317d857bb111aff60b8fc79c7a98e24b1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "step_index": 0,
+      "card_id": "ja:M3:014/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "663",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M3/014.ts:sha256:8cbbe45656ec7f0c841475c617d724541f18e97cd5dd37453422064b5d4a6c9d",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shinji Kanda",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M3/014.ts:sha256:8cbbe45656ec7f0c841475c617d724541f18e97cd5dd37453422064b5d4a6c9d",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "step_index": 0,
+      "card_id": "ja:M6:046/076:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "302",
+          "source_ref": "official-metadata:ae4902cbb73c9237794bad4dd7df404fda764cc696709d8b89f14442791a8f1b",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shinji Kanda",
+          "source_ref": "official-metadata:ae4902cbb73c9237794bad4dd7df404fda764cc696709d8b89f14442791a8f1b",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "step_index": 0,
+      "card_id": "ja:SV4A:001/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "step_index": 0,
+      "card_id": "ja:SV4A:002/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "44",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "step_index": 0,
+      "card_id": "ja:SV4A:003/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "45",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "step_index": 0,
+      "card_id": "ja:SV4A:004/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "123",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/004.ts:sha256:bb61fbc2851b2b33af4d53d6f5c84e0024e863e2f6852e953617255fb6202c00",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shin Nagasawa",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/004.ts:sha256:bb61fbc2851b2b33af4d53d6f5c84e0024e863e2f6852e953617255fb6202c00",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "step_index": 0,
+      "card_id": "ja:SV4A:005/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "187",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/005.ts:sha256:2725803bd86586e5998756891c78dc4bb80135c13f16f71a68e74ded028cb833",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yukiko Baba",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/005.ts:sha256:2725803bd86586e5998756891c78dc4bb80135c13f16f71a68e74ded028cb833",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "step_index": 0,
+      "card_id": "ja:SV2A:001/165:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "1",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "step_index": 0,
+      "card_id": "ja:SV2A:001/165:reverse_masterball",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "1",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "step_index": 0,
+      "card_id": "ja:SV2A:001/165:reverse_pokeball",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "1",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "step_index": 0,
+      "card_id": "ja:SV2A:002/165:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "2",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "step_index": 0,
+      "card_id": "ja:SV2A:002/165:reverse_masterball",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "2",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-13",
+      "step_index": 0,
+      "card_id": "ja:SV4A:236/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/236.ts:sha256:9e055dc3362cb037ce4ed8e7eb23b2eca337f223e92fe2a18eb98d321eda027e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/236.ts:sha256:9e055dc3362cb037ce4ed8e7eb23b2eca337f223e92fe2a18eb98d321eda027e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-13",
+      "step_index": 1,
+      "card_id": "ja:SV4A:236/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/236.ts:sha256:9e055dc3362cb037ce4ed8e7eb23b2eca337f223e92fe2a18eb98d321eda027e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/236.ts:sha256:9e055dc3362cb037ce4ed8e7eb23b2eca337f223e92fe2a18eb98d321eda027e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 0,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 0,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 0,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 0,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 0,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 1,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 1,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 1,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 1,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "step_index": 1,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "step_index": 1,
+      "card_id": "ja:M1S:034/063:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "694",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "step_index": 1,
+      "card_id": "ja:M2:009/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "919",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "step_index": 1,
+      "card_id": "ja:M5:040/081:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "56",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "step_index": 1,
+      "card_id": "ja:M6A:101/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:3c41fee29495b35147f3af1fe2bb39e7fc9ae9aa931af74ab560b702f36d712c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "step_index": 1,
+      "card_id": "ja:M6A:102/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:4274334229f2411be4ad8fa09f18ab0daed235e9190d435c891347fa2865a00b",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 0,
+      "card_id": "ja:E2:058/092:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 0,
+      "card_id": "ja:E4:065/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/065.ts:sha256:8c52015880626d4fccbe3f28991d2cc47000ffc807277cb4293403401869d10b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 0,
+      "card_id": "ja:M-P:134/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:3d360329edab3e13491ce3eb04104f38b22c619c41d9a9cfc95d82ca605cff32",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "HACCAN",
+          "source_ref": "source-correction:267cb091be4559ffae3c497c86f4d8da5342f1604330a02c6ba0b9bf95ba24db",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 0,
+      "card_id": "ja:M6A:094/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Wintr Wandr",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 0,
+      "card_id": "ja:MC:564/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Mina Nakai",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 1,
+      "card_id": "ja:MC:565/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/565.ts:sha256:7bd060aadf6a70fd2701874e52ddd4d85ec4d42f0deda0854c3b31a54c52fcb5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Naoyo Kimura",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/565.ts:sha256:7bd060aadf6a70fd2701874e52ddd4d85ec4d42f0deda0854c3b31a54c52fcb5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 1,
+      "card_id": "ja:MC:566/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/566.ts:sha256:d36ee162631f22a2304cfd45f5e88d4cd5e5265230f1a961c0f3ea97272b50ab",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "aky CG Works",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/566.ts:sha256:d36ee162631f22a2304cfd45f5e88d4cd5e5265230f1a961c0f3ea97272b50ab",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 1,
+      "card_id": "ja:MC:755/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/755.ts:sha256:4e131ea5384c64e8e9a322da1d77e91a6d6eea42927c77e21e15ffa890a1efa7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Makura Tami",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/755.ts:sha256:4e131ea5384c64e8e9a322da1d77e91a6d6eea42927c77e21e15ffa890a1efa7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 1,
+      "card_id": "ja:MF:025/040:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MF/025.ts:sha256:59e8e688414f3ae3d2ef2909f59f991f30af77648ff88d09969d7c7da07d142f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "En Morikura",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MF/025.ts:sha256:59e8e688414f3ae3d2ef2909f59f991f30af77648ff88d09969d7c7da07d142f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "step_index": 1,
+      "card_id": "ja:MF:026/040:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MF/026.ts:sha256:34a5e2b5ed60c9d549406764a0721dfeb2203b1a4231e530fb5f55f5345946b5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MF/026.ts:sha256:34a5e2b5ed60c9d549406764a0721dfeb2203b1a4231e530fb5f55f5345946b5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 0,
+      "card_id": "ja:SV4A:001/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 0,
+      "card_id": "ja:SV4A:002/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "44",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 0,
+      "card_id": "ja:SV4A:003/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "45",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 0,
+      "card_id": "ja:SV4A:004/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "123",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/004.ts:sha256:bb61fbc2851b2b33af4d53d6f5c84e0024e863e2f6852e953617255fb6202c00",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Shin Nagasawa",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/004.ts:sha256:bb61fbc2851b2b33af4d53d6f5c84e0024e863e2f6852e953617255fb6202c00",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 0,
+      "card_id": "ja:SV4A:005/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "187",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/005.ts:sha256:2725803bd86586e5998756891c78dc4bb80135c13f16f71a68e74ded028cb833",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yukiko Baba",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/005.ts:sha256:2725803bd86586e5998756891c78dc4bb80135c13f16f71a68e74ded028cb833",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 1,
+      "card_id": "ja:SV4A:001/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 1,
+      "card_id": "ja:SV4A:001/190:reverse",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 1,
+      "card_id": "ja:SV4A:002/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "44",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 1,
+      "card_id": "ja:SV4A:003/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "45",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 1,
+      "card_id": "ja:SV4A:191/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/191.ts:sha256:7884e31375be56b55fd761fb553eae70ac747c7ef8ae7c022e0f3265f02b1934",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "otumami",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/191.ts:sha256:7884e31375be56b55fd761fb553eae70ac747c7ef8ae7c022e0f3265f02b1934",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 2,
+      "card_id": "ja:SV4A:001/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 2,
+      "card_id": "ja:SV4A:001/190:reverse",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/001.ts:sha256:28e2236c75f945797adf8360fe2b688f2ef73f8377f42851d920526be01d84f5",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 2,
+      "card_id": "ja:SV4A:002/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "44",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/002.ts:sha256:1cb1ff1849526dafb05518500f1d88cac871000e76c9ab094f7b2b79688021a7",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 2,
+      "card_id": "ja:SV4A:003/190:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "45",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Sekio",
+          "source_ref": "official-metadata:a6c427a6455cb630711a177e54d0f48ea53e96a13ad8bf625423f5079d96496c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "step_index": 2,
+      "card_id": "ja:SV4A:191/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "43",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/191.ts:sha256:7884e31375be56b55fd761fb553eae70ac747c7ef8ae7c022e0f3265f02b1934",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "otumami",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/191.ts:sha256:7884e31375be56b55fd761fb553eae70ac747c7ef8ae7c022e0f3265f02b1934",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 0,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 0,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 0,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 0,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 0,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 1,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 1,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 1,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 1,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 1,
+      "card_id": "ja:M-P:132/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/132.ts:sha256:7532f17a3e7a99a9273628d8bc48f507656621f118473b6936bcba59ef044a2a",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:90cf6b92b0c451f1c170d0869d5ed9a6f3e5c8830f94b057f5bc00dd66d0e3ab",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 2,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 2,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 2,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 2,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "step_index": 2,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 0,
+      "card_id": "ja:M1S:034/063:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "694",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 0,
+      "card_id": "ja:M2:009/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "919",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 0,
+      "card_id": "ja:M5:040/081:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "56",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 0,
+      "card_id": "ja:M6A:101/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:3c41fee29495b35147f3af1fe2bb39e7fc9ae9aa931af74ab560b702f36d712c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 0,
+      "card_id": "ja:M6A:102/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:4274334229f2411be4ad8fa09f18ab0daed235e9190d435c891347fa2865a00b",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 1,
+      "card_id": "ja:M1S:034/063:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "694",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/034.ts:sha256:fbe780091873a0801b644066a47a5772bc351097bae9e96641301bb3685fc7dc",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 1,
+      "card_id": "ja:M2:009/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "919",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/009.ts:sha256:6458d0c4c62b2461d473ee41f9456b53b735e625f6a2cd11b0a25a92f5bb0a30",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 1,
+      "card_id": "ja:M5:040/081:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "56",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M5/040.ts:sha256:4d5dd330eb6419155bd2df82e9fc6657a0b9a06d850c207667770d4f0f6fd929",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 1,
+      "card_id": "ja:M6A:101/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:3c41fee29495b35147f3af1fe2bb39e7fc9ae9aa931af74ab560b702f36d712c",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 1,
+      "card_id": "ja:M6A:102/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Yuka Morii",
+          "source_ref": "official-metadata:4274334229f2411be4ad8fa09f18ab0daed235e9190d435c891347fa2865a00b",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 2,
+      "card_id": "ja:CP2:025/027:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "627",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/025.ts:sha256:fbbc970a286aa4bd3e7ac888d24c15c4637593d974234ea4e9ec5cd49141233b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/025.ts:sha256:fbbc970a286aa4bd3e7ac888d24c15c4637593d974234ea4e9ec5cd49141233b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 2,
+      "card_id": "ja:M1S:019/063:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "692",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/019.ts:sha256:bfe07f8cd35db30595a6b4e31a39a2582b6a31c4f59f3bfbaef04a766ef18dc6",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M1S/019.ts:sha256:bfe07f8cd35db30595a6b4e31a39a2582b6a31c4f59f3bfbaef04a766ef18dc6",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 2,
+      "card_id": "ja:M2:019/080:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "935",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/019.ts:sha256:5d9549bb137318279b98b2372ba86656c04eff943d86fa00142dbc8f53e6eb29",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M2/019.ts:sha256:5d9549bb137318279b98b2372ba86656c04eff943d86fa00142dbc8f53e6eb29",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 2,
+      "card_id": "ja:M6:088/076:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "352",
+          "source_ref": "official-metadata:cd67919ed3a43c5d1360824c1284eb48641bc55b5394821abaa59186b58b1409",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "official-metadata:cd67919ed3a43c5d1360824c1284eb48641bc55b5394821abaa59186b58b1409",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "step_index": 2,
+      "card_id": "ja:M6A:026/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:f60ea027ba86cf115aa8437d2dfff37c60a6f894d421bda67f7ff4707ecae05d",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Tomokazu Komiya",
+          "source_ref": "official-metadata:f60ea027ba86cf115aa8437d2dfff37c60a6f894d421bda67f7ff4707ecae05d",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "step_index": 0,
+      "card_id": "ja:CP2:008/027:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hitoshi Ariga",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/XY/CP2/008.ts:sha256:47403cf0dcbc43467598a82195573260cd3ef7f4eb07c12d7ffb877eaf8c2c2e",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "step_index": 0,
+      "card_id": "ja:E1:016/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/016.ts:sha256:323ea13b66bc95026d8070846affb1e8b951bd7243621788a899d6fcaad37cc1",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "step_index": 0,
+      "card_id": "ja:E4:033/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/033.ts:sha256:2bcff4bc1eefc56c35b461f5e1483ed3b2f07b368c20f40adaafad3af75d77ed",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "step_index": 0,
+      "card_id": "ja:M-P:020/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Yuu Nishida",
+          "source_ref": "official-metadata:34fb437fbce397de1c35aae5acc49204493686af65e16c988b722b893d594091",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "step_index": 0,
+      "card_id": "ja:M-P:131/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M-P/131.ts:sha256:5a6585461a5cdcee9a55be9f936eac36194f99be919dd7b8bfcd4c0cea8f220f",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "YOSHIROTTEN",
+          "source_ref": "source-correction:9f7d943a922205d2c9376d84f7d2773abe1df5f1313f66c690f51c86545d1ac9",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 0,
+      "card_id": "ja:E2:058/092:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 0,
+      "card_id": "ja:E4:065/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/065.ts:sha256:8c52015880626d4fccbe3f28991d2cc47000ffc807277cb4293403401869d10b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 0,
+      "card_id": "ja:M-P:134/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:3d360329edab3e13491ce3eb04104f38b22c619c41d9a9cfc95d82ca605cff32",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "HACCAN",
+          "source_ref": "source-correction:267cb091be4559ffae3c497c86f4d8da5342f1604330a02c6ba0b9bf95ba24db",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 0,
+      "card_id": "ja:M6A:094/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Wintr Wandr",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 0,
+      "card_id": "ja:MC:564/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Mina Nakai",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 1,
+      "card_id": "ja:E2:058/092:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E2/058.ts:sha256:d45e6f574573ba6b108b97603c26b2b7ab39e90e293fc37578d451ff5642fc5a",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 1,
+      "card_id": "ja:E4:065/088:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E4/065.ts:sha256:8c52015880626d4fccbe3f28991d2cc47000ffc807277cb4293403401869d10b",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 1,
+      "card_id": "ja:M-P:134/M-P:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:3d360329edab3e13491ce3eb04104f38b22c619c41d9a9cfc95d82ca605cff32",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "HACCAN",
+          "source_ref": "source-correction:267cb091be4559ffae3c497c86f4d8da5342f1604330a02c6ba0b9bf95ba24db",
+          "independent_sql_evidence_table": "source_correction_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 1,
+      "card_id": "ja:M6A:094/103:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Wintr Wandr",
+          "source_ref": "official-metadata:1fa9100e4fbf120b0934999d790ebc8c80b577a7289f1a7636b044bcc17ec873",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "step_index": 1,
+      "card_id": "ja:MC:564/742:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "133",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Mina Nakai",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MC/564.ts:sha256:f7657ce7ade07ad05923f60a6b1cfbb55813ce87a4a7100ac3e499067847ddc3",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "step_index": 0,
+      "card_id": "ja:PMCG3:033/048:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG3/033.ts:sha256:527f2dd24a8f0f2f7e833fd6aca8c727ade92185b9dc6dae1884b9ef3ecb23b4",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Ken Sugimori",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG3/033.ts:sha256:527f2dd24a8f0f2f7e833fd6aca8c727ade92185b9dc6dae1884b9ef3ecb23b4",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "step_index": 0,
+      "card_id": "ja:E1:087/128:normal_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/087.ts:sha256:483805fcd38899715a9a2ac73f2b1b4b70cf09fe74bd7b7acd129c1cd8f5d878",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "step_index": 0,
+      "card_id": "ja:E1:087/128:normal_unlimited",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/087.ts:sha256:483805fcd38899715a9a2ac73f2b1b4b70cf09fe74bd7b7acd129c1cd8f5d878",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "step_index": 0,
+      "card_id": "ja:E1:119/128:holo_1st_edition",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/119.ts:sha256:95232c8066bab276382ad9320a224dad8be054182eed78a776450b5029457294",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "step_index": 0,
+      "card_id": "ja:E1:119/128:holo_unlimited",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "151",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/119.ts:sha256:95232c8066bab276382ad9320a224dad8be054182eed78a776450b5029457294",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "step_index": 0,
+      "card_id": "ja:SV2A:025/165:normal",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Naoyo Kimura",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "step_index": 0,
+      "card_id": "ja:SV2A:025/165:reverse_masterball",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Naoyo Kimura",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "step_index": 0,
+      "card_id": "ja:SV2A:025/165:reverse_pokeball",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Naoyo Kimura",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/025.ts:sha256:39a6426624aacf0934d3fd7fc5757ec8c8cefbf3e6d7bdf798e0b23095c80dbe",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "step_index": 0,
+      "card_id": "ja:SV2A:173/165:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/173.ts:sha256:565cdd5761e5c73c029e78af363f6f280fb3fd2d49eafca416cf2ffc0a2b1510",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hiroyuki Yamamoto",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/173.ts:sha256:565cdd5761e5c73c029e78af363f6f280fb3fd2d49eafca416cf2ffc0a2b1510",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "step_index": 1,
+      "card_id": "ja:SV2A:173/165:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "dex_id",
+          "value": "25",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/173.ts:sha256:565cdd5761e5c73c029e78af363f6f280fb3fd2d49eafca416cf2ffc0a2b1510",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        },
+        {
+          "facet_type": "illustrator",
+          "value": "Hiroyuki Yamamoto",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/173.ts:sha256:565cdd5761e5c73c029e78af363f6f280fb3fd2d49eafca416cf2ffc0a2b1510",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-28",
+      "step_index": 1,
+      "card_id": "ja:SV4A:347/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "USGMEN",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-28",
+      "step_index": 2,
+      "card_id": "ja:SV4A:347/190:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "USGMEN",
+          "source_ref": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+          "independent_sql_evidence_table": "card_facet",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-30",
+      "step_index": 0,
+      "card_id": "ja:M6:098/076:holo",
+      "card_identity_keys_verified": [
+        "name",
+        "language",
+        "set_code",
+        "collector_number",
+        "variant",
+        "provenance"
+      ],
+      "card_identity_verified": true,
+      "facets": [
+        {
+          "facet_type": "illustrator",
+          "value": "Studio Bora Inc.",
+          "source_ref": "official-metadata:e397fd568bfff6af2744f9cbd8c2615bafb4285727edb15a9d4e95bab30e6be0",
+          "independent_sql_evidence_table": "card_metadata_evidence",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "derived_affiliation_validation": {
+    "case": "ICU-28",
+    "target": "ja:SV4A:347/190:holo",
+    "exact_target_name": "ミュウex",
+    "base": "ミュウ",
+    "all_exact_base_anchors": [
+      {
+        "card_id": "ja:M6A:00B/103:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/B.ts:sha256:37a3cb31f8806b3ce1c2243524d07a890df29c26772fb440771e3f70384ab638",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:M6A:00G/103:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/G.ts:sha256:37a3cb31f8806b3ce1c2243524d07a890df29c26772fb440771e3f70384ab638",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:M6A:00R/103:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/R.ts:sha256:37a3cb31f8806b3ce1c2243524d07a890df29c26772fb440771e3f70384ab638",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:M6A:056/103:normal",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6a/056.ts:sha256:9a74071fadbf28ab6b50708e50c7d75987c7569f65b65525a388e19089c786c8",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:MF:011/040:normal",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/MF/011.ts:sha256:d0d5f95f238e4ebf76af21a0b4b75d2fb45f7ee28fa4c6b2adf7c3fdc8b526fd",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:PMCG3:033/048:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/PMCG/PMCG3/033.ts:sha256:527f2dd24a8f0f2f7e833fd6aca8c727ade92185b9dc6dae1884b9ef3ecb23b4",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:S12A:052/172:normal",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/052.ts:sha256:1e0daea93590f45f5e53de64a26615d43a8300f39d204f8f05e52ed45d590138",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:S12A:183/172:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/S12a/183.ts:sha256:62120b1713ad98cfca3b592bd54bb81ab7bfbbe7643c384715604c986ff8b43b",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:SK:007/030:standard",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/S/SK/007.ts:sha256:df66cd8b7a0603ee05efa4a0024bbc12d8fa1d7879c2d638483ae465a01fa80d",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:SM10:037/095:holo",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM10/037.ts:sha256:7f654d138bc261c058ac2b1db1be1bd66511b16e4549b3d58373dc78258eedc6",
+        "match_eligible": 1
+      },
+      {
+        "card_id": "ja:SM12A:055/173:normal",
+        "name": "ミュウ",
+        "value": "151",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/055.ts:sha256:0580defe49462eef1eed95ed628e7ee360c40e0449593da3cfe6d3a648b2b735",
+        "match_eligible": 1
+      }
+    ],
+    "all_anchors_unanimous_151": true,
+    "scope": "Narrow primary-character affiliation only; not mechanic, physical-copy or artwork equivalence"
+  }
+}

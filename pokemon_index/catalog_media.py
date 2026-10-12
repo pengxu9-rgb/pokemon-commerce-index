@@ -1,6 +1,6 @@
 """Exact source-scan coverage; no sibling fallback or live/display approval."""
 from collections import Counter
-from . import source_image_facts,number_evidence,variant_dimension_hold
+from . import source_image_facts,number_evidence,variant_dimension_hold,collector_runtime
 
 
 def present(db,table):
@@ -37,16 +37,28 @@ def availability(db,cid):
 def subjects(db):
     ids=set()
     for table in ('source_image_fact_evidence','card_number_reading_evidence'):
-        if present(db,table):ids.update(r[0] for r in db.execute('SELECT DISTINCT card_id FROM '+table))
+        collector_runtime.checkpoint()
+        if present(db,table):
+            for row in db.execute('SELECT DISTINCT card_id FROM '+table):
+                collector_runtime.checkpoint();ids.add(row[0])
     return ids
 
 
 def current_ids(db):
-    return {cid for cid in subjects(db) if availability(db,cid)['with_source_scans_eligible']}
+    ids=set()
+    for cid in subjects(db):
+        collector_runtime.checkpoint()
+        current=availability(db,cid)['with_source_scans_eligible']
+        collector_runtime.checkpoint()
+        if current:ids.add(cid)
+    return ids
 
 
 def status(db):
-    ids=subjects(db);contexts=[availability(db,cid) for cid in ids]
+    ids=subjects(db);contexts=[]
+    for cid in ids:
+        collector_runtime.checkpoint();contexts.append(availability(db,cid))
+        collector_runtime.checkpoint()
     counts=Counter({key:0 for key in ('current_source_scan_evidence','stale_source_scan_evidence',
         'held_source_scan_evidence','missing_source_scan_evidence','identity_hold')})
     counts.update(c['status'] for c in contexts)

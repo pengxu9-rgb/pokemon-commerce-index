@@ -24,8 +24,8 @@ class DiscoveryJourneyEvalTests(unittest.TestCase):
              "expect": {"code": "confirm_target", "next_field": "target_card_id",
                         "required_card_id": "ja:SV2A:025/165:normal"}},
             {"utterance": "Yes", "target_card_id": "ja:SV2A:025/165:normal",
-             "expect": {"code": "target_selected", "next_field": None,
-                        "ready_for_offer_tracking": True}},
+             "expect": {"code": "target_selected", "next_field": "offer_and_copy_evidence",
+                        "ready_for_offer_tracking": False}},
         ]}]}
         report = evaluate(self.db, suite)
         self.assertEqual((report["passed"], report["failed"]), (2, 0))

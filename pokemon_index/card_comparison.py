@@ -182,13 +182,33 @@ def from_question(db, question):
         if len(fractions) != 2:
             return None
         releases = list(db.execute('SELECT language,set_code,name FROM catalog_set_localized'))
+        from . import collector_release_alias
+        releases.extend(dict(language=r['language'],set_code=r['set_code'],name=r['alias'])
+                        for r in collector_release_alias.aliases(db,['ja','en']))
         descriptors = []
         start = 0
+        language_pattern=r'japanese|english|日本語|英語|日文|英文|日版|英版|\bjp\b|\ben\b'
+        code_pattern=r'\b(?:(?:sv|sm|swsh|xy|bw|me)\d|s\d|m\d)[a-z0-9.\-]*\b'
         for match in fractions:
             segment = text[start:match.start()]
             start = match.end()
-            languages = list(re.finditer(r'japanese|english|日本語|英語|日文|英文|日版|英版|\bjp\b|\ben\b', segment))
+            languages = list(re.finditer(language_pattern, segment))
             if not languages:
+                later_text=text[fractions[0].end():]
+                later_release_names={row['set_code'] for row in releases if row['name']
+                    and re.search(r'(?<![a-z0-9])'+re.escape(_norm(row['name']))+r'(?![a-z0-9])',later_text)}
+                # A bare conjunction can retain the one explicit shared scope.
+                # New/missing side-specific scope is still never guessed from
+                # card numbers, species, catalog order or artwork relations.
+                if (len(descriptors)==1 and 'set_code' in descriptors[0]
+                        and len(re.findall(language_pattern,text))==1
+                        and re.fullmatch(r'\s*(?:and|versus|vs\.?|与|與|和|と|及び|、|&)\s*',segment)
+                        and not re.search(r"\b(?:not|except|excluding|without|other than)\b|ではなく|以外|除外|不是|不要",text)
+                        and later_release_names <= {descriptors[0]['set_code']}
+                        and {t.upper() for t in re.findall(code_pattern,text)} <= {descriptors[0]['set_code']}):
+                    descriptors.append(_descriptor(dict(language=descriptors[0]['language'],
+                        set_code=descriptors[0]['set_code'],collector_number=match.group()),partial=True))
+                    continue
                 return None
             language = 'ja' if languages[-1].group() in {'japanese','日本語','日文','日版','jp'} else 'en'
             # Only inspect text after that side's language mention. This avoids
@@ -204,7 +224,7 @@ def from_question(db, question):
                         found.add(row['set_code'])
             # An explicit unsupported code is preserved, never replaced with
             # another release inferred from the number or a graph neighbor.
-            code_tokens = re.findall(r'\b(?:(?:sv|sm|swsh|xy|bw|me)\d|s\d|m\d)[a-z0-9.\-]*\b', release_text)
+            code_tokens = re.findall(code_pattern, release_text)
             if code_tokens:
                 found.update(token.upper() for token in code_tokens)
             if len(found) > 1:
@@ -214,7 +234,7 @@ def from_question(db, question):
                 descriptor['set_code'] = next(iter(found))
             descriptors.append(_descriptor(descriptor, partial=True))
         result = _compare(db, *descriptors)
-    result['interpretation'] = 'Explicit IDs or nearest preceding language/release/number tokens only; named character, illustrator, grade and finish assertions are not independently resolved.'
+    result['interpretation'] = 'Explicit IDs or explicit language/release/number tokens, with one unambiguous shared scope allowed across a bare conjunction; named character, illustrator, grade and finish assertions are not independently resolved.'
     result['question'] = question
     result['unfulfilled_constraints'] = ['named_identity_and_physical_version_claims', 'physical_copy_evidence', 'live_market_evidence']
     if auxiliary:

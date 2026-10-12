@@ -1,0 +1,38 @@
+{
+  "schema": "pokemon.independent-eval-freeze.v1",
+  "frozen_at_utc": "2026-10-04T01:12:48Z",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "before_any_case_execution": true,
+  "files": {
+    "questions.json": {
+      "sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+      "bytes": 47612
+    },
+    "rubric.json": {
+      "sha256": "0fea803b3dc9bcba61a14e6a3de320407d1e2a5d5a9844c982ca63874e76bf5f",
+      "bytes": 5064
+    },
+    "binding-contract.json": {
+      "sha256": "443df817f6171fa6a11505702a4f5d06a2bb95b8052e712897ff651e54819aca",
+      "bytes": 1482
+    }
+  },
+  "baseline_snapshot": {
+    "path": "/workspace/shared/pokemon-continuation-20261004/baseline",
+    "parent_manifest_sha256": "8eb799a03af2faea456436dd837882b0f1a9cdd92f70cc8567e885eb1d1d3c2f",
+    "origin": "Parent copied the code/docs before current edits; remote main verified by parent at 024a72d. Materialized source is incomplete for ten catalog inputs; this is not a full Git checkout."
+  },
+  "interface_reference_sha256": {
+    "pokemon_index/collector_journey.py": "91fb9f211342f39ca8a8a033a3253a1e1d613e7b7d28f89bfe94f41a88cf37bb",
+    "pokemon_index/collector_inventory.py": "76a383f93f2d0b57bc027a5f3dc34f88279034bbd254fc83cf39b1c643ebc7b4",
+    "integrations/pivota/README.md": "a1879e7135716a045d87a59305859ad4880702f00c2cd7933296509b962c28b5",
+    "BUILD_SEQUENCE.md": "d9ac5f5b8d934ad44e438021cb2cb0da167b2e8f36dcf9296b438ec94edd2984",
+    "INDEPENDENT_REVIEW_20261004.md": "03a26c45a745dae3744467eff5dd7bad474323b9228f2e7e06e32883da59de76"
+  },
+  "source_grounding": {
+    "catalog/supported-discovery-v1/supported-cards.jsonl": "53af127d52f67c004963f6289e0fd92024acc58dac7b104b21fe0e3428df9727",
+    "catalog/jp-card-identity-exceptions.jsonl": "e28bf8fd55bd64e90308b34ea29c025070cdf5bb4cde478d4ef3091f0b80f81d"
+  },
+  "execution_status_at_freeze": "not_run",
+  "integrity_policy": "Never change frozen files. Corrections require v2, a written reason and separate old/new outcomes. Runner bug fixes are recorded separately and never mutate frozen expectations."
+}

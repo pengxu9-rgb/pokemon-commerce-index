@@ -1,0 +1,377 @@
+{
+  "schema": "pokemon.two-agent-score-disagreements.v1",
+  "scope": "ec7104e0dc849aef519de647a53217c01958e3aa only; no scores of later fixes",
+  "first_review": "/workspace/shared/pokemon-review-20261004/sandbox/collector_journeys/independent-collector-eval-v1/reviews/ci-37173068035/agent-review-v1.json",
+  "first_review_sha256": "45cc0658f8dfd6f23fafef40cd9387bee414df4c8cfdfa48097765c0bf340e06",
+  "second_review": "/workspace/shared/pokemon-continuation-20261004/second-usefulness-review/second-agent-scores.frozen.json",
+  "second_review_sha256": "76aeb23c7920b787063985c467ece232763a3ab65e38669e9cad4a4fb9b479be",
+  "compared_after_second_file_freeze": true,
+  "independence_disclosure": "All individual judgments were determined from the frozen raw report and read-only DB before opening any peer score artifact. Before serialization, an unsolicited peer message arrived at 03:32:01Z disclosing aggregate counts (14 strict/21 useful) and qualitative notes on ICU09/11/28. These did not change the previously determined individual judgments; no peer per-case scores were consulted before this freeze. Therefore do not claim perfectly blinded scorer independence.",
+  "case_denominator": 30,
+  "exact_all_axis_agreement_count": 15,
+  "axis_agreement_counts_out_of_30": {
+    "relevance": 21,
+    "evidence_honesty": 28,
+    "clarification_usefulness": 25,
+    "completion": 29,
+    "abstention_quality": 24
+  },
+  "first_summary": {
+    "case_denominator": 30,
+    "cases_executed": 30,
+    "cases_agent_scored": 30,
+    "execution_error_cases": 0,
+    "observed_safety_violation_cases": 0,
+    "mechanical_pass_cases": 26,
+    "mechanical_fail_cases": 4,
+    "strict_completed_cases": 14,
+    "useful_progress_cases": 21,
+    "meaning": "Strict completion and useful progress use the pre-frozen rubric; these are agent judgments on an exposed cohort, not real-user success or population accuracy.",
+    "overall_quality_percentage": null
+  },
+  "second_summary": {
+    "denominator": 30,
+    "scored_cases": 30,
+    "not_executed": 0,
+    "executed_cases": 30,
+    "strict_completed_count": 13,
+    "useful_progress_count": 17,
+    "axis_distributions": {
+      "relevance": {
+        "3": 11,
+        "2": 7,
+        "0": 3,
+        "1": 9
+      },
+      "evidence_honesty": {
+        "2": 26,
+        "1": 4
+      },
+      "clarification_usefulness": {
+        "2": 4,
+        "not_applicable": 13,
+        "0": 9,
+        "1": 4
+      },
+      "completion": {
+        "2": 13,
+        "1": 11,
+        "0": 6
+      },
+      "abstention_quality": {
+        "none": 13,
+        "unjustified": 4,
+        "justified_helpful": 9,
+        "justified_unhelpful": 4
+      }
+    },
+    "latest_response_identity_held_occurrences": 8,
+    "any_prefix_identity_held_cases": [
+      "ICU-10",
+      "ICU-20",
+      "ICU-30"
+    ]
+  },
+  "metric_membership_disagreements": [
+    {
+      "case_id": "ICU-05",
+      "first_review": {
+        "strict_completed": false,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": false,
+        "useful_progress": false
+      }
+    },
+    {
+      "case_id": "ICU-07",
+      "first_review": {
+        "strict_completed": true,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": true,
+        "useful_progress": false
+      }
+    },
+    {
+      "case_id": "ICU-11",
+      "first_review": {
+        "strict_completed": false,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": false,
+        "useful_progress": false
+      }
+    },
+    {
+      "case_id": "ICU-20",
+      "first_review": {
+        "strict_completed": true,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": true,
+        "useful_progress": false
+      }
+    },
+    {
+      "case_id": "ICU-23",
+      "first_review": {
+        "strict_completed": false,
+        "useful_progress": false
+      },
+      "second_review": {
+        "strict_completed": false,
+        "useful_progress": true
+      }
+    },
+    {
+      "case_id": "ICU-24",
+      "first_review": {
+        "strict_completed": false,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": false,
+        "useful_progress": false
+      }
+    },
+    {
+      "case_id": "ICU-28",
+      "first_review": {
+        "strict_completed": true,
+        "useful_progress": true
+      },
+      "second_review": {
+        "strict_completed": false,
+        "useful_progress": true
+      }
+    }
+  ],
+  "case_disagreements": [
+    {
+      "case_id": "ICU-04",
+      "differences": {
+        "clarification_usefulness": {
+          "first_review": "not_applicable",
+          "second_review": 0
+        }
+      },
+      "first_explanation": "All five returned catalog names now carry Mew ex/Ex and have species-151 provenance. Five coordinates provide a relevant starting set. Different illustrations is explicitly retained as unapplied, so visual difference remains unestablished and that part of the collector objective remains partial.",
+      "second_explanation": "Five Mew ex source-title matches are useful, and different illustrations is explicitly unapplied. The answer neither establishes illustration differences nor asks a focused visual-comparison question; a generic Like/Compare instruction leaves the requested illustration exploration partial.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-05",
+      "differences": {
+        "relevance": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "Relevant alternatives are shown without a selected target, including five records across three coordinates. The next step is a generic narrowing prompt rather than explicitly explaining the ambiguity and asking for a particular missing field.",
+      "second_explanation": "The answer safely avoids selecting one Mew and shows relevant alternatives, but five rows cover only three coordinates. The next-step prompt says choose/narrow rather than explaining that Mew names many cards and asking release/number/example.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-07",
+      "differences": {
+        "relevance": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "All five returned records carry Tomokazu Komiya credit; four distinct coordinates satisfy the minimum, but two source-declared versions of the same PMCG1 coordinate consume page space.",
+      "second_explanation": "The precommitted minimum of three artist coordinates is achieved with four, and all five records have sourced Komiya credits. One coordinate occupies two top-five slots despite alternatives, so relevance is reduced under the rubric duplicate criterion even though the bounded goal completes.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-11",
+      "differences": {
+        "relevance": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "Japanese 151 resolves to SV2A, but five slots contain only two coordinates (001 and 002), dominated by finish variants. Relevant catalog data is returned but not the frozen five-coordinate exploration outcome. Read-only catalog inspection finds 210 SV2A coordinates. The five distinct record IDs are valid variants, so the failed five-coordinate expectation is a product/exploration-granularity gap, not false identities or missing source coverage.",
+      "second_explanation": "All five rows are valid Japanese SV2A source variants, but only two coordinates are shown despite 210 available in the catalog. The frozen five-coordinate expectation is not met. This is presentation granularity, not identity/source corruption.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-15",
+      "differences": {
+        "relevance": {
+          "first_review": 0,
+          "second_review": 1
+        },
+        "abstention_quality": {
+          "first_review": "unjustified",
+          "second_review": "justified_unhelpful"
+        }
+      },
+      "first_explanation": "For nonexistent-in-catalog SV4A 999/190, the reply asks which language and physical finish despite Japanese being explicit. It does not explain the zero match or request correction of the number/release.",
+      "second_explanation": "The exact nonexistent-in-catalog coordinate returns no match without asserting physical nonexistence. But the prompt asks language and finish although Japanese is already supplied, instead of asking the user to correct 999/190 or SV4A. Safe not-found alone does not achieve the correction goal.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-16",
+      "differences": {
+        "relevance": {
+          "first_review": 1,
+          "second_review": 0
+        },
+        "clarification_usefulness": {
+          "first_review": 1,
+          "second_review": 0
+        },
+        "abstention_quality": {
+          "first_review": "justified_unhelpful",
+          "second_review": "unjustified"
+        }
+      },
+      "first_explanation": "The explicit SV4A-plus-exclude-Mew request returns no candidates, retaining the whole question as unapplied subjective text. The generic inclusion/exclusion clarification is safe but does not advance the already stated goal. The snapshot has 319 SV4A records across 245 coordinates with current known non-Mew primary-species facets. Fail-closed behavior is safe, but the natural-language intent is not applied.",
+      "second_explanation": "A clear SV4A excluding Mew instruction is converted into an unapplied negative note. No candidates are returned despite at least 315 records/241 coordinates with known non-Mew primary character facets.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-17",
+      "differences": {
+        "abstention_quality": {
+          "first_review": "justified_helpful",
+          "second_review": "unjustified"
+        }
+      },
+      "first_explanation": "Pikachu remains the positive goal and five relevant cards remain shown. The Mew dislike is held and labeled unapplied instead of inverted. The follow-up question is generic rather than specifically confirming the supplied Mew exclusion, so this is useful partial progress.",
+      "second_explanation": "The earlier Pikachu list is retained and the negative preference is honestly marked unapplied. However, the generic inclusion/exclusion instruction neither applies “do not like Mew” nor explicitly asks whether to exclude Mew. This is partial progress, not the frozen precise one-step clarification.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-20",
+      "differences": {
+        "relevance": {
+          "first_review": 3,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "One like produces source-backed species/artist affinities, and the second identical like preserves recommendations. Three held rows remain labeled; the like creates no physical or ownership authority.",
+      "second_explanation": "The like produces source-backed character/artist reasons and repeating it leaves the recommendation items/order identical. The bounded idempotent loop completes. Relevance is reduced because the liked coordinate consumes two top-five slots when distinct alternatives exist.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-23",
+      "differences": {
+        "evidence_honesty": {
+          "first_review": 1,
+          "second_review": 2
+        },
+        "abstention_quality": {
+          "first_review": "none",
+          "second_review": "justified_helpful"
+        }
+      },
+      "first_explanation": "Five Pikachu coordinates remain useful and budget_fit is explicitly unknown. However, the natural $50 budget is absent from structured preferences and the next-step prompt does not acknowledge the ignored amount. No actual affordability result exists.",
+      "second_explanation": "Five relevant Pikachu coordinates give useful catalog progress; budget_fit is unknown_no_live_price and affordability is expressly unestablished. The natural-language $50 is not parsed into preferences, but the frozen expectation made parsing conditional. No claim of budget fit is made.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-24",
+      "differences": {
+        "evidence_honesty": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "The typed EUR 100 / Germany / PSA 10 preferences are retained exactly while relevant Eevee candidates remain. Budget and grade are explicitly unknown without offers; preferences_applied_to_market is false. This is partial catalog exploration, never a verified graded acquisition.",
+      "second_explanation": "The exact structured EUR100/DE/PSA10 preferences are retained and five Eevee coordinates remain useful. Grade and price unknowns are explicit, but the response does not explain Germany delivery/fees as unverified or provide destination-specific checks; evidence boundary communication is incomplete.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-25",
+      "differences": {
+        "relevance": {
+          "first_review": 2,
+          "second_review": 1
+        },
+        "clarification_usefulness": {
+          "first_review": 1,
+          "second_review": 0
+        }
+      },
+      "first_explanation": "A Mew shortlist provides some catalog progress and market_status says no live evidence. The £40/UK delivery goal is neither retained in structured preferences nor addressed in the next-step prompt; no landed-cost or acquisition completion is established.",
+      "second_explanation": "Relevant Mew catalog alternatives provide some progress, but five rows are only three coordinates. £40/UK are retained only in the original question, and the response gives generic market/copy caveats without clearly identifying absent UK landed-cost evidence. No merchant or fabricated price is asserted.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-26",
+      "differences": {
+        "abstention_quality": {
+          "first_review": "justified_unhelpful",
+          "second_review": "unjustified"
+        }
+      },
+      "first_explanation": "The phrase “do not already own” is treated as a generic negative preference, losing the Pikachu direction. Supplying exact inventory does not unblock it: zero candidates and the same inclusion/exclusion question remain. The snapshot has 127 other Japanese Pikachu records across 117 coordinates after excluding the submitted owned ID, so the empty continuation is not explained by missing candidates.",
+      "second_explanation": "The “do not own” phrase is misrouted to a generic negative preference, discarding Pikachu. Even after an exact owned card is submitted, inventory remains null and no candidates appear. There are 127 source-faceted Japanese Pikachu rows besides the submitted ID.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-27",
+      "differences": {
+        "relevance": {
+          "first_review": 3,
+          "second_review": 2
+        },
+        "clarification_usefulness": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "The uncertain 025/165 inventory exposes all three possible finish variants and blocks selection; only 173/165 remains outside possible ownership. Specific version resolution is requested and completeness/ownership claims remain false. Complete checklist goal remains partial by rubric.",
+      "second_explanation": "The submitted 025/165 produces three separately retained possible-owned variants; 173/165 is the sole not-in-resolved-inventory candidate, never a complete missing checklist. Selection is held. The next-step text is jargon-heavy and does not plainly ask which of normal/Poké Ball/Master Ball finishes the user has.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-28",
+      "differences": {
+        "clarification_usefulness": {
+          "first_review": "not_applicable",
+          "second_review": 0
+        },
+        "completion": {
+          "first_review": 2,
+          "second_review": 1
+        },
+        "abstention_quality": {
+          "first_review": "none",
+          "second_review": "justified_helpful"
+        }
+      },
+      "first_explanation": "The requested comparison now contains two exact source-bound Mew ex coordinates, keeps artwork/physical/market conclusions unestablished, then focuses the right ID with no target and selects it only in the third action. The supported comparison/focus/selection goal completes. Relevance is 2 rather than 3 because the comparison explains mostly identity/numbering boundaries and supplies little collector decision detail.",
+      "second_explanation": "Comparison, focus and separate selection authority are correctly separated and the exact right target is selected. The comparison itself only explains differing numbers: sourced SSR vs SAR and aky CG Works vs USGMEN exist in the DB but are omitted, while the prompt asks for copy/offers unnecessarily for catalog comparison. Thus the usable-comparison goal is partial.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    },
+    {
+      "case_id": "ICU-30",
+      "differences": {
+        "relevance": {
+          "first_review": 2,
+          "second_review": 1
+        }
+      },
+      "first_explanation": "The exact held record and current official metadata are inspectable, and select is refused. However, the original conflicting source name/finish and concrete resolution need are not surfaced; the generic next question refers to exclusions/checklist/scope instead of this identity conflict. Useful inspection is partial; the refusal explanation is unhelpful.",
+      "second_explanation": "The exact record and official metadata are inspectable, and selection is held/rejected. However, the original conflicting source name and hold reason are absent from the response although available in card_identity_exception. The next prompt incorrectly asks exclusions/checklist scope rather than identity/finish resolution.",
+      "resolution": "Unadjudicated; original scores preserved. Underlying response facts agree; differing rubric weighting/axis applicability is retained."
+    }
+  ],
+  "adjudication": {
+    "status": "not_adjudicated",
+    "do_not_average_into_accuracy": true,
+    "recommended_reporting": "Report 13–14 strict completed and 17–21 useful-progress agent judgments, or retain each scorer count separately, with the exact disagreement file. This is neither confidence interval nor measured user success.",
+    "key_completion_disagreement": "ICU28: exact compare/focus/select authority works; whether minimalist number-only comparison fulfills a usable comparison is disputed. DB supplies SSR/SAR and illustrator differences that were not shown.",
+    "key_relevance_disagreement": "Second reviewer uses relevance=1 for avoidable repeated coordinate slots per the frozen rubric; first uses 2 or 3 where relevant source-version operations still have value. ICU30 instead differs over missing conflict explanation, not duplicate slots.",
+    "clarification_axes_disagreement": "Second reviewer scores missing focused follow-ups 0 for ICU04/28; first marks clarification not applicable.",
+    "boundary_clarity_disagreement": "Both assign four evidence-honesty=1 cases overall, but first penalizes omitted natural $50 and second penalizes missing Germany landed-cost explanation. Both agree no supported affordability/acquisition completion."
+  }
+}

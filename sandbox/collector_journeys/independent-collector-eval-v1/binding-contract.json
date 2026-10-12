@@ -1,0 +1,9 @@
+{
+  "schema": "pokemon.independent-eval-action-binding.v1",
+  "plain_language": "Every initial question and natural-language continuation is sent unchanged. No post-hoc translation into preferred species, artist or release filters. Explicit structured controls represent UI interactions already frozen in questions.json.",
+  "bindings": "$bind placeholders in card_id are replaced only with the zero-based candidate_index from the previously recorded from_step result; bindings are never resolved by database search or reviewer discretion. Missing candidate blocks the remaining case and stays in the 30 denominator.",
+  "prefix_execution": "Execute each full accumulated turn prefix through collector_journey.replay or /collector-journey. Record every raw response, exception and resolved action, not only final state. Expected-error cases stop after their final rejected action. Unexpected errors block remaining steps; do not silently retry changed inputs.",
+  "limits": "Five candidates per response; at most 20 transcript actions. No live offers or marketplace requests. Runtime measurements and transport errors are reported without counting absent answers as useful.",
+  "scoring": "Machine constraint checks and reviewer usefulness scores are separate. Full raw responses plus source/DB facet evidence are retained for independent scoring.",
+  "sample_status": "Fresh agent-authored scenario set, architecture-aware, not real-user testing or a blinded randomized sample."
+}

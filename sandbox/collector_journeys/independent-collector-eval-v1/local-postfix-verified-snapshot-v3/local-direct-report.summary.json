@@ -1,0 +1,3495 @@
+{
+  "schema": "pokemon.local-verified-ci-snapshot-collector-replay.v1",
+  "started_at_utc": "2026-10-04T03:52:34.392425+00:00",
+  "finished_at_utc": "2026-10-04T03:54:08.113509+00:00",
+  "run_label": "local-verified-ci-ec7104e-snapshot-current-name-dominance-fix-20261004T035222-v3",
+  "baseline_commit": "024a72d79f30198301ca538cc818d07577343195",
+  "suite_sha256": "2c6013fe0362e0eb9164063e7184ad264ae337c363a15e2eb9b17e4ca0a03ab1",
+  "runner_sha256": "bf56243147b4467f91ccbc7be1c23815e8c4cc0e12e53171b8c3bd003e026011",
+  "denominator": 30,
+  "real_user_testing": false,
+  "usefulness_scored": false,
+  "status": "executed_awaiting_independent_scoring",
+  "exit_code": 0,
+  "interpretation": "Mechanical constraints, safety and execution are separate from reviewer usefulness. No quality rate is inferred from this report.",
+  "summary": {
+    "cases_total": 30,
+    "cases_with_results": 30,
+    "execution_error_cases": 0,
+    "safety_violation_cases": 0,
+    "product_path_blocked_cases": 0,
+    "mechanical_constraint_pass_cases": 30,
+    "mechanical_constraint_fail_cases": 0,
+    "reviewer_scored_cases": 0,
+    "strict_completed_count": null,
+    "useful_progress_count": null,
+    "planned_prefixes": 49,
+    "prefix_status_counts": {
+      "executed": 47,
+      "expected_rejection": 2
+    }
+  },
+  "catalog_revision": "e3eae1d645e0150191ad8e8b1933515e32ba99b1a12e07fb814accdae5b988ab",
+  "catalog_sha256_before": "d1118b9241e014b56455ff93228bb52d208a5856aac49eaa6489d6f7e045b4f9",
+  "catalog_bytes_unchanged": true,
+  "runtime_bytes_unchanged": true,
+  "results": [
+    {
+      "case_id": "ICU-01",
+      "category": "novice_clarification",
+      "question": "I'm new to Japanese Pokémon cards. What should I collect next?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I'm new to Japanese Pokémon cards. What should I collect next?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "I'm new to Japanese Pokémon cards. What should I collect next?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.003128,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "collection_preferences_needed",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Which character, illustrator or release would you like to explore, or which shown card do you like?",
+              "required_evidence": [],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "reply",
+            "text": "Pikachu"
+          },
+          "action": {
+            "type": "reply",
+            "text": "Pikachu"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.085413,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-02",
+      "category": "novice_discovery",
+      "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore."
+          },
+          "action": {
+            "type": "ask",
+            "question": "I'd like to start a small Japanese Eevee collection. Show me a few different cards to explore."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.732277,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "character_cards",
+            "candidate_ids": [
+              "ja:PMCG2:037/048:normal",
+              "ja:PMCG4:049/065:normal",
+              "ja:PMCG5:062/096:normal",
+              "ja:NEO2:049/056:normal",
+              "ja:E2:058/092:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "set_code",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:PMCG2:037/048:normal": [],
+              "ja:PMCG4:049/065:normal": [],
+              "ja:PMCG5:062/096:normal": [],
+              "ja:NEO2:049/056:normal": [],
+              "ja:E2:058/092:normal": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-03",
+      "category": "bilingual_name",
+      "question": "Can you recommend Japanese リザードン cards for my collection?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "6",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Can you recommend Japanese リザードン cards for my collection?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "Can you recommend Japanese リザードン cards for my collection?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.081807,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:E1:071/128:normal_1st_edition",
+              "ja:E1:103/128:normal_1st_edition",
+              "ja:E5:089/088:normal_1st_edition",
+              "ja:M2:013/080:holo",
+              "ja:M2:094/080:holo"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:E1:071/128:normal_1st_edition": [],
+              "ja:E1:103/128:normal_1st_edition": [],
+              "ja:E5:089/088:normal_1st_edition": [],
+              "ja:M2:013/080:holo": [],
+              "ja:M2:094/080:holo": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  6
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-04",
+      "category": "suffix_name_discovery",
+      "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 2
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 2
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Mew ex cards. I want to explore different illustrations."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.068197,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:M6A:057/103:holo",
+              "ja:M6A:129/103:holo",
+              "ja:M6A:135/103:holo",
+              "ja:PCG5:041/086:normal_1st_edition",
+              "ja:SV2A:151/165:holo"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:M6A:057/103:holo": [],
+              "ja:M6A:129/103:holo": [],
+              "ja:M6A:135/103:holo": [],
+              "ja:PCG5:041/086:normal_1st_edition": [],
+              "ja:SV2A:151/165:holo": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  151
+                ],
+                "subjective_notes": [
+                  "different illustrations"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-05",
+      "category": "ambiguous_character",
+      "question": "I want the Japanese Mew card. Which one is it?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I want the Japanese Mew card. Which one is it?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "I want the Japanese Mew card. Which one is it?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.781615,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "character_cards",
+            "candidate_ids": [
+              "ja:PMCG3:033/048:holo",
+              "ja:E1:087/128:normal_1st_edition",
+              "ja:E1:087/128:normal_unlimited",
+              "ja:E1:119/128:holo_1st_edition",
+              "ja:E1:119/128:holo_unlimited"
+            ],
+            "distinct_coordinates": 3,
+            "next_step": {
+              "field": "set_code",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:PMCG3:033/048:holo": [],
+              "ja:E1:087/128:normal_1st_edition": [],
+              "ja:E1:087/128:normal_unlimited": [],
+              "ja:E1:119/128:holo_1st_edition": [],
+              "ja:E1:119/128:holo_unlimited": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-06",
+      "category": "illustrator_exact",
+      "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese Pokémon cards illustrated by Yuka Morii."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.897604,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "artist_cards",
+            "candidate_ids": [
+              "ja:SM1S:002/060:normal",
+              "ja:SM2K:025/050:normal",
+              "ja:SM2L:018/050:normal",
+              "ja:SM2P:024/049:normal",
+              "ja:SM4A:024/050:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "set_code",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SM1S:002/060:normal": [],
+              "ja:SM2K:025/050:normal": [],
+              "ja:SM2L:018/050:normal": [],
+              "ja:SM2P:024/049:normal": [],
+              "ja:SM4A:024/050:normal": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-07",
+      "category": "illustrator_exact",
+      "question": "What Japanese cards can I collect by Tomokazu Komiya?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 4
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Tomokazu Komiya"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "What Japanese cards can I collect by Tomokazu Komiya?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "What Japanese cards can I collect by Tomokazu Komiya?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.875027,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "artist_cards",
+            "candidate_ids": [
+              "ja:PMCG1:063/102:normal",
+              "ja:PMCG1:063/102:normal_no_rarity",
+              "ja:CP2:025/027:normal",
+              "ja:SM1M:040/060:normal",
+              "ja:SM2K:015/050:normal"
+            ],
+            "distinct_coordinates": 4,
+            "next_step": {
+              "field": "set_code",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:PMCG1:063/102:normal": [],
+              "ja:PMCG1:063/102:normal_no_rarity": [],
+              "ja:CP2:025/027:normal": [],
+              "ja:SM1M:040/060:normal": [],
+              "ja:SM2K:015/050:normal": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-08",
+      "category": "illustrator_exact",
+      "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 2
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 2
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Shinji Kanda"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points."
+          },
+          "action": {
+            "type": "ask",
+            "question": "I'd like a Japanese Shinji Kanda collection. Recommend a few starting points."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.304067,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:M1L:020/063:normal",
+              "ja:M2:062/080:normal",
+              "ja:M2:111/080:holo",
+              "ja:M3:014/080:normal",
+              "ja:M6:046/076:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:M1L:020/063:normal": [],
+              "ja:M2:062/080:normal": [],
+              "ja:M2:111/080:holo": [],
+              "ja:M3:014/080:normal": [],
+              "ja:M6:046/076:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Shinji Kanda"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-09",
+      "category": "compound_hard_constraint",
+      "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Only show Japanese Pikachu cards illustrated by Yuka Morii."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.635271,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "artist_cards",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint or start a new collection question.",
+              "required_evidence": [],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-10",
+      "category": "release_alias",
+      "question": "Recommend cards only from the Japanese Shiny Treasure ex set.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "set_code": "SV4A"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend cards only from the Japanese Shiny Treasure ex set."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend cards only from the Japanese Shiny Treasure ex set."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.151535,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:SV4A:001/190:normal",
+              "ja:SV4A:002/190:normal",
+              "ja:SV4A:003/190:normal",
+              "ja:SV4A:004/190:normal",
+              "ja:SV4A:005/190:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:001/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:002/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:003/190:normal": [],
+              "ja:SV4A:004/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:005/190:normal": [
+                "coordinate_family_copy_evidence"
+              ]
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_releases": [
+                  {
+                    "language": "ja",
+                    "set_code": "SV4A"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-11",
+      "category": "release_alias",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 5
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 5
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "set_code": "SV2A"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set."
+          },
+          "action": {
+            "type": "ask",
+            "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.733235,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "set_cards",
+            "candidate_ids": [
+              "ja:SV2A:001/165:normal",
+              "ja:SV2A:002/165:normal",
+              "ja:SV2A:003/165:holo",
+              "ja:SV2A:004/165:normal",
+              "ja:SV2A:005/165:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "collector_number",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV2A:001/165:normal": [],
+              "ja:SV2A:002/165:normal": [],
+              "ja:SV2A:003/165:holo": [],
+              "ja:SV2A:004/165:normal": [],
+              "ja:SV2A:005/165:normal": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-12",
+      "category": "ambiguous_release",
+      "question": "Recommend Japanese cards only from Scarlet and Violet.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards only from Scarlet and Violet."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards only from Scarlet and Violet."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.691194,
+          "observed": {
+            "status": "followup_clarification_needed",
+            "task": "collection_preferences_needed",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "scope_or_new_question",
+              "prompt": "Which single release must the cards come from? The only-from release constraint was not applied; supply an exact release code."
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "recommendation_release_scope_confirmation",
+              "supported_catalog_scope_needed",
+              "unresolved_collection_preference"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {
+              "collecting": {
+                "subjective_notes": [
+                  "Recommend Japanese cards only from Scarlet and Violet."
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-13",
+      "category": "exact_coordinate",
+      "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "target_id",
+            "value": "ja:SV4A:236/190:holo"
+          },
+          "mechanical_pass": true,
+          "observed": "ja:SV4A:236/190:holo"
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese Pikachu 236/190 from Shiny Treasure ex."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.674427,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "exact_coordinates",
+            "candidate_ids": [
+              "ja:SV4A:236/190:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "card_id",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:236/190:holo": []
+            },
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "select",
+            "card_id": "ja:SV4A:236/190:holo"
+          },
+          "action": {
+            "type": "select",
+            "card_id": "ja:SV4A:236/190:holo"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.693733,
+          "observed": {
+            "status": "catalog_target_selected",
+            "task": "exact_coordinates",
+            "candidate_ids": [
+              "ja:SV4A:236/190:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "offer_and_copy_evidence",
+              "prompt": "Catalog target saved in this replay. Continue catalog exploration, or later verify copy condition and an authorized fresh offer when a feed is available."
+            },
+            "target_id": "ja:SV4A:236/190:holo",
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:236/190:holo": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-14",
+      "category": "coordinate_ambiguity",
+      "question": "Can you find card 025/165 for me?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Can you find card 025/165 for me?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "Can you find card 025/165 for me?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.257329,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "need_release_scope",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Which printed set code or release name accompanies that number?",
+              "required_evidence": [],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-15",
+      "category": "unknown_coordinate",
+      "question": "Show me Japanese SV4A 999/190.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "candidate_count",
+            "value": 0
+          },
+          "mechanical_pass": true,
+          "observed": 0
+        },
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Show me Japanese SV4A 999/190."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Show me Japanese SV4A 999/190."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.686456,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "exact_coordinates",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Which language and physical finish do you mean?",
+              "required_evidence": [],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-16",
+      "category": "hard_exclusion",
+      "question": "Recommend Japanese cards from SV4A, but exclude Mew.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja",
+              "set_code": "SV4A"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "excluded_facet",
+            "facet": "dex_id",
+            "value": "151",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A, but exclude Mew."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A, but exclude Mew."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 2.295407,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:SV4A:001/190:normal",
+              "ja:SV4A:002/190:normal",
+              "ja:SV4A:003/190:normal",
+              "ja:SV4A:004/190:normal",
+              "ja:SV4A:005/190:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record. 55 additional catalog records were withheld because current character membership could not be established for the exclusions."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:001/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:002/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:003/190:normal": [],
+              "ja:SV4A:004/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:005/190:normal": [
+                "coordinate_family_copy_evidence"
+              ]
+            },
+            "preferences": {
+              "collecting": {
+                "excluded_dex_ids": [
+                  151
+                ],
+                "preferred_releases": [
+                  {
+                    "language": "ja",
+                    "set_code": "SV4A"
+                  }
+                ],
+                "preferred_dex_ids": []
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-17",
+      "category": "negative_refinement",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.179475,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "reply",
+            "text": "I don't like Mew. Please keep looking for Pikachu."
+          },
+          "action": {
+            "type": "reply",
+            "text": "I don't like Mew. Please keep looking for Pikachu."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.189072,
+          "observed": {
+            "status": "followup_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "scope_or_new_question",
+              "prompt": "That negative preference was not applied. Explicitly choose which character, illustrator or release to include or exclude before selecting a target."
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "unresolved_collection_preference"
+            ],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ],
+                "subjective_notes": [
+                  "I don't like Mew. Please keep looking for Pikachu."
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-18",
+      "category": "aesthetic_unknown",
+      "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Yuka Morii"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "I want Japanese cards with peaceful, cozy illustrations. What should I collect?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.241429,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "collection_preferences_needed",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Which character, illustrator or release would you like to explore, or which shown card do you like? The requested visual style remains unverified; an artist or character can provide a source-backed starting point.",
+              "required_evidence": [],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {
+              "collecting": {
+                "subjective_notes": [
+                  "peaceful",
+                  "cozy"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "reply",
+            "text": "Yuka Morii"
+          },
+          "action": {
+            "type": "reply",
+            "text": "Yuka Morii"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.130129,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:M1S:034/063:normal",
+              "ja:M2:009/080:normal",
+              "ja:M5:040/081:normal",
+              "ja:M6A:101/103:normal",
+              "ja:M6A:102/103:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:M1S:034/063:normal": [],
+              "ja:M2:009/080:normal": [],
+              "ja:M5:040/081:normal": [],
+              "ja:M6A:101/103:normal": [],
+              "ja:M6A:102/103:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "subjective_notes": [
+                  "peaceful",
+                  "cozy"
+                ],
+                "preferred_illustrators": [
+                  "Yuka Morii"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-19",
+      "category": "pagination_diversity",
+      "question": "Recommend Japanese Eevee cards.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "different_from_previous_page"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.132701,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:E2:058/092:normal",
+              "ja:E4:065/088:normal_1st_edition",
+              "ja:M-P:134/M-P:normal",
+              "ja:M6A:094/103:normal",
+              "ja:MC:564/742:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:E2:058/092:normal": [],
+              "ja:E4:065/088:normal_1st_edition": [],
+              "ja:M-P:134/M-P:normal": [],
+              "ja:M6A:094/103:normal": [],
+              "ja:MC:564/742:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "page",
+            "offset": 5
+          },
+          "action": {
+            "type": "page",
+            "offset": 5
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.20811,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:MC:565/742:normal",
+              "ja:MC:566/742:normal",
+              "ja:MC:755/742:normal",
+              "ja:MF:025/040:normal",
+              "ja:MF:026/040:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:MC:565/742:normal": [],
+              "ja:MC:566/742:normal": [],
+              "ja:MC:755/742:normal": [],
+              "ja:MF:025/040:normal": [],
+              "ja:MF:026/040:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-20",
+      "category": "positive_feedback",
+      "question": "Recommend Japanese cards from SV4A.",
+      "execution_status": "executed",
+      "bindings": {
+        "liked_card": "ja:SV4A:001/190:normal"
+      },
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "idempotent_last_feedback"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards from SV4A."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.121978,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:SV4A:001/190:normal",
+              "ja:SV4A:002/190:normal",
+              "ja:SV4A:003/190:normal",
+              "ja:SV4A:004/190:normal",
+              "ja:SV4A:005/190:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:001/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:002/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:003/190:normal": [],
+              "ja:SV4A:004/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:005/190:normal": [
+                "coordinate_family_copy_evidence"
+              ]
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_releases": [
+                  {
+                    "language": "ja",
+                    "set_code": "SV4A"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "liked_card"
+            },
+            "reaction": "like"
+          },
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:SV4A:001/190:normal",
+            "reaction": "like"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.252387,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:SV4A:001/190:normal",
+              "ja:SV4A:001/190:reverse",
+              "ja:SV4A:002/190:normal",
+              "ja:SV4A:003/190:normal",
+              "ja:SV4A:191/190:holo"
+            ],
+            "distinct_coordinates": 4,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:001/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:001/190:reverse": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:002/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:003/190:normal": [],
+              "ja:SV4A:191/190:holo": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_releases": [
+                  {
+                    "language": "ja",
+                    "set_code": "SV4A"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 2,
+          "frozen_action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "liked_card"
+            },
+            "reaction": "like"
+          },
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:SV4A:001/190:normal",
+            "reaction": "like"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.235661,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:SV4A:001/190:normal",
+              "ja:SV4A:001/190:reverse",
+              "ja:SV4A:002/190:normal",
+              "ja:SV4A:003/190:normal",
+              "ja:SV4A:191/190:holo"
+            ],
+            "distinct_coordinates": 4,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:001/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:001/190:reverse": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:002/190:normal": [
+                "coordinate_family_copy_evidence"
+              ],
+              "ja:SV4A:003/190:normal": [],
+              "ja:SV4A:191/190:holo": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_releases": [
+                  {
+                    "language": "ja",
+                    "set_code": "SV4A"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-21",
+      "category": "dismiss_undo",
+      "question": "Recommend Japanese Pikachu cards.",
+      "execution_status": "executed",
+      "bindings": {
+        "dismissed_card": "ja:CP2:008/027:holo"
+      },
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "dismiss_then_clear_restores"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.153611,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "dismissed_card"
+            },
+            "reaction": "dismiss"
+          },
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:CP2:008/027:holo",
+            "reaction": "dismiss"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.212617,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal",
+              "ja:M-P:132/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": [],
+              "ja:M-P:132/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 2,
+          "frozen_action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "dismissed_card"
+            },
+            "reaction": "clear"
+          },
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:CP2:008/027:holo",
+            "reaction": "clear"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.202363,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-22",
+      "category": "context_refinement",
+      "question": "Recommend Japanese cards by Yuka Morii.",
+      "execution_status": "executed",
+      "bindings": {
+        "prior_like": "ja:M1S:034/063:normal"
+      },
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "illustrator",
+            "value": "Tomokazu Komiya"
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards by Yuka Morii."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese cards by Yuka Morii."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.276896,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:M1S:034/063:normal",
+              "ja:M2:009/080:normal",
+              "ja:M5:040/081:normal",
+              "ja:M6A:101/103:normal",
+              "ja:M6A:102/103:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:M1S:034/063:normal": [],
+              "ja:M2:009/080:normal": [],
+              "ja:M5:040/081:normal": [],
+              "ja:M6A:101/103:normal": [],
+              "ja:M6A:102/103:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Yuka Morii"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "feedback",
+            "card_id": {
+              "$bind": "prior_like"
+            },
+            "reaction": "like"
+          },
+          "action": {
+            "type": "feedback",
+            "card_id": "ja:M1S:034/063:normal",
+            "reaction": "like"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.414904,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:M1S:034/063:normal",
+              "ja:M2:009/080:normal",
+              "ja:M5:040/081:normal",
+              "ja:M6A:101/103:normal",
+              "ja:M6A:102/103:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:M1S:034/063:normal": [],
+              "ja:M2:009/080:normal": [],
+              "ja:M5:040/081:normal": [],
+              "ja:M6A:101/103:normal": [],
+              "ja:M6A:102/103:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Yuka Morii"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 2,
+          "frozen_action": {
+            "type": "reply",
+            "text": "Tomokazu Komiya"
+          },
+          "action": {
+            "type": "reply",
+            "text": "Tomokazu Komiya"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.569199,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:025/027:normal",
+              "ja:M1S:019/063:normal",
+              "ja:M2:019/080:normal",
+              "ja:M6:088/076:holo",
+              "ja:M6A:026/103:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:025/027:normal": [],
+              "ja:M1S:019/063:normal": [],
+              "ja:M2:019/080:normal": [],
+              "ja:M6:088/076:holo": [],
+              "ja:M6A:026/103:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_illustrators": [
+                  "Tomokazu Komiya"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-23",
+      "category": "budget_unknown_us",
+      "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards for my collection. My budget is $50."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.152497,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-24",
+      "category": "grade_destination_unknown_europe",
+      "question": "Recommend Japanese Eevee cards for me.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "133",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "preferences_equal",
+            "value": {
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards for me."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Eevee cards for me."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.138332,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:E2:058/092:normal",
+              "ja:E4:065/088:normal_1st_edition",
+              "ja:M-P:134/M-P:normal",
+              "ja:M6A:094/103:normal",
+              "ja:MC:564/742:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:E2:058/092:normal": [],
+              "ja:E4:065/088:normal_1st_edition": [],
+              "ja:M-P:134/M-P:normal": [],
+              "ja:M6A:094/103:normal": [],
+              "ja:MC:564/742:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "preferences",
+            "preferences": {
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          },
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.239247,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:E2:058/092:normal",
+              "ja:E4:065/088:normal_1st_edition",
+              "ja:M-P:134/M-P:normal",
+              "ja:M6A:094/103:normal",
+              "ja:MC:564/742:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "Like or dismiss a shown card, compare two shown cards, or explicitly choose a catalog record."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:E2:058/092:normal": [],
+              "ja:E4:065/088:normal_1st_edition": [],
+              "ja:M-P:134/M-P:normal": [],
+              "ja:M6A:094/103:normal": [],
+              "ja:MC:564/742:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  133
+                ]
+              },
+              "budget_minor": 10000,
+              "currency": "EUR",
+              "destination": "DE",
+              "grade_company": "PSA",
+              "grade_value": "10"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-25",
+      "category": "market_blocked_with_catalog_salvage",
+      "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "Which Japanese Mew card should I buy for under £40 delivered to the UK?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.735436,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "character_cards",
+            "candidate_ids": [
+              "ja:PMCG3:033/048:holo",
+              "ja:E1:087/128:normal_1st_edition",
+              "ja:E1:087/128:normal_unlimited",
+              "ja:E1:119/128:holo_1st_edition",
+              "ja:E1:119/128:holo_unlimited"
+            ],
+            "distinct_coordinates": 3,
+            "next_step": {
+              "field": "set_code",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:PMCG3:033/048:holo": [],
+              "ja:E1:087/128:normal_1st_edition": [],
+              "ja:E1:087/128:normal_unlimited": [],
+              "ja:E1:119/128:holo_1st_edition": [],
+              "ja:E1:119/128:holo_unlimited": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-26",
+      "category": "known_inventory",
+      "question": "Recommend Japanese Pikachu cards I don't already own.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "minimum_candidates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "all_candidate_fields",
+            "fields": {
+              "language": "ja"
+            }
+          },
+          "mechanical_pass": true,
+          "observed": "vacuous for zero candidates; minimum-candidate and reviewer relevance checks are separate"
+        },
+        {
+          "requirement": {
+            "check": "minimum_coordinates",
+            "value": 3
+          },
+          "mechanical_pass": true,
+          "observed": 5
+        },
+        {
+          "requirement": {
+            "check": "candidate_provenance_present"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "candidate_facet",
+            "facet": "dex_id",
+            "value": "25",
+            "affiliation_allowed": true
+          },
+          "mechanical_pass": true,
+          "observed": []
+        },
+        {
+          "requirement": {
+            "check": "absent_ids",
+            "values": [
+              "ja:SV4A:236/190:holo"
+            ]
+          },
+          "mechanical_pass": true,
+          "observed": []
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards I don't already own."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Recommend Japanese Pikachu cards I don't already own."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.159058,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Share your owned-card list first. Results can exclude only those supplied records; they cannot establish what you own globally.",
+              "required_evidence": [],
+              "blockers": [
+                "owned_inventory_not_supplied"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "owned_inventory_not_supplied"
+            ],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "my-pikachu",
+                "card_id": "ja:SV4A:236/190:holo",
+                "quantity": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "my-pikachu",
+                "card_id": "ja:SV4A:236/190:holo",
+                "quantity": 1
+              }
+            ]
+          },
+          "execution_status": "executed",
+          "duration_seconds": 1.255507,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "collector_recommendations",
+            "candidate_ids": [
+              "ja:CP2:008/027:holo",
+              "ja:E1:016/128:normal_1st_edition",
+              "ja:E4:033/088:normal_1st_edition",
+              "ja:M-P:020/M-P:normal",
+              "ja:M-P:131/M-P:normal"
+            ],
+            "distinct_coordinates": 5,
+            "next_step": {
+              "field": "recommendation_feedback_or_choice",
+              "prompt": "These candidates are not in your supplied inventory records. Choose a shown record or refine the scope; possession and a complete collection are not verified."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:CP2:008/027:holo": [],
+              "ja:E1:016/128:normal_1st_edition": [],
+              "ja:E4:033/088:normal_1st_edition": [],
+              "ja:M-P:020/M-P:normal": [],
+              "ja:M-P:131/M-P:normal": []
+            },
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-27",
+      "category": "uncertain_inventory",
+      "question": "Which Japanese 151 Pikachu cards am I missing?",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "no_target"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "inventory_unresolved"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Which Japanese 151 Pikachu cards am I missing?"
+          },
+          "action": {
+            "type": "ask",
+            "question": "Which Japanese 151 Pikachu cards am I missing?"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.774425,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "character_cards",
+            "candidate_ids": [
+              "ja:SV2A:025/165:normal",
+              "ja:SV2A:025/165:reverse_masterball",
+              "ja:SV2A:025/165:reverse_pokeball",
+              "ja:SV2A:173/165:holo"
+            ],
+            "distinct_coordinates": 2,
+            "next_step": {
+              "field": "collector_number",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV2A:025/165:normal": [],
+              "ja:SV2A:025/165:reverse_masterball": [],
+              "ja:SV2A:025/165:reverse_pokeball": [],
+              "ja:SV2A:173/165:holo": []
+            },
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "binder-pika",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "inventory",
+            "owned_items": [
+              {
+                "item_id": "binder-pika",
+                "language": "ja",
+                "set_code": "SV2A",
+                "collector_number": "025/165",
+                "quantity": 1
+              }
+            ]
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.770457,
+          "observed": {
+            "status": "inventory_review_needed",
+            "task": "character_cards",
+            "candidate_ids": [
+              "ja:SV2A:173/165:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "owned_item_resolution",
+              "prompt": "Resolve the unknown or version-uncertain inventory entries before treating these catalog gaps as purchase targets.",
+              "items": [
+                {
+                  "item_id": "binder-pika",
+                  "quantity": 1,
+                  "ownership_evidence": "user_assertion_only",
+                  "candidate_card_ids": [
+                    "ja:SV2A:025/165:normal",
+                    "ja:SV2A:025/165:reverse_masterball",
+                    "ja:SV2A:025/165:reverse_pokeball"
+                  ],
+                  "status": "version_evidence_needed",
+                  "language": "ja",
+                  "set_code": "SV2A",
+                  "collector_number": "025/165"
+                }
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "owned_inventory_resolution"
+            ],
+            "card_selection_blockers": {
+              "ja:SV2A:173/165:holo": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-28",
+      "category": "compare_focus_select",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "comparison_focus_separate_selection",
+            "value": "ja:SV4A:347/190:holo"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.017853,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "two_card_comparison",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Choose exact catalog versions and supply physical-copy evidence before offer comparison.",
+              "required_evidence": [
+                "physical_finish_edition_and_copy_condition",
+                "authorized_fresh_offers"
+              ],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.264386,
+          "observed": {
+            "status": "candidate_clarification_needed",
+            "task": "exact_coordinates",
+            "candidate_ids": [
+              "ja:SV4A:347/190:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "card_id",
+              "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+            },
+            "target_id": null,
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:347/190:holo": []
+            },
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 2,
+          "frozen_action": {
+            "type": "select",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "action": {
+            "type": "select",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.266673,
+          "observed": {
+            "status": "catalog_target_selected",
+            "task": "exact_coordinates",
+            "candidate_ids": [
+              "ja:SV4A:347/190:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "offer_and_copy_evidence",
+              "prompt": "Catalog target saved in this replay. Continue catalog exploration, or later verify copy condition and an authorized fresh offer when a feed is available."
+            },
+            "target_id": "ja:SV4A:347/190:holo",
+            "selection_blockers": [],
+            "card_selection_blockers": {
+              "ja:SV4A:347/190:holo": []
+            },
+            "preferences": {}
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-29",
+      "category": "stale_comparison",
+      "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "last_step_error"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Compare Japanese SV4A Mew ex 327/190 and 347/190."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.015976,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "two_card_comparison",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Choose exact catalog versions and supply physical-copy evidence before offer comparison.",
+              "required_evidence": [
+                "physical_finish_edition_and_copy_condition",
+                "authorized_fresh_offers"
+              ],
+              "blockers": [
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          },
+          "action": {
+            "type": "preferences",
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.031408,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "two_card_comparison",
+            "candidate_ids": [],
+            "distinct_coordinates": 0,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "The comparison context changed. Start the comparison again before choosing a side.",
+              "required_evidence": [
+                "physical_finish_edition_and_copy_condition",
+                "authorized_fresh_offers"
+              ],
+              "blockers": [
+                "live_market_evidence",
+                "named_identity_and_physical_version_claims",
+                "physical_copy_evidence",
+                "supported_catalog_scope_needed"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "live_market_evidence",
+              "named_identity_and_physical_version_claims",
+              "physical_copy_evidence",
+              "supported_catalog_scope_needed"
+            ],
+            "card_selection_blockers": {},
+            "preferences": {
+              "collecting": {
+                "preferred_dex_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step_index": 2,
+          "frozen_action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "action": {
+            "type": "choose_comparison",
+            "side": "right",
+            "card_id": "ja:SV4A:347/190:holo"
+          },
+          "execution_status": "expected_rejection",
+          "error_type": "ValueError",
+          "error": "choose requires an active comparison side",
+          "duration_seconds": 0.032178
+        }
+      ]
+    },
+    {
+      "case_id": "ICU-30",
+      "category": "held_identity",
+      "question": "Show me the catalog record ja:M6:098/076:holo.",
+      "execution_status": "executed",
+      "bindings": {},
+      "safety_violations": [],
+      "mechanical_constraints": [
+        {
+          "requirement": {
+            "check": "last_step_error"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "initial_id",
+            "value": "ja:M6:098/076:holo"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        },
+        {
+          "requirement": {
+            "check": "initial_identity_hold"
+          },
+          "mechanical_pass": true,
+          "observed": null
+        }
+      ],
+      "mechanical_constraints_met": true,
+      "reviewer_scores": null,
+      "prefixes": [
+        {
+          "step_index": 0,
+          "frozen_action": {
+            "type": "ask",
+            "question": "Show me the catalog record ja:M6:098/076:holo."
+          },
+          "action": {
+            "type": "ask",
+            "question": "Show me the catalog record ja:M6:098/076:holo."
+          },
+          "execution_status": "executed",
+          "duration_seconds": 0.504435,
+          "observed": {
+            "status": "evidence_or_scope_needed",
+            "task": "printing_variants",
+            "candidate_ids": [
+              "ja:M6:098/076:holo"
+            ],
+            "distinct_coordinates": 1,
+            "next_step": {
+              "field": "collection_evidence",
+              "prompt": "Clarify the requested exclusions, referenced checklist or unresolved collection scope before choosing a target.",
+              "required_evidence": [],
+              "blockers": [
+                "catalog_identity_review_needed",
+                "match_disabled_identity"
+              ]
+            },
+            "target_id": null,
+            "selection_blockers": [
+              "catalog_identity_review_needed",
+              "match_disabled_identity"
+            ],
+            "card_selection_blockers": {
+              "ja:M6:098/076:holo": [
+                "catalog_identity_review_needed",
+                "match_disabled_identity"
+              ]
+            },
+            "preferences": {}
+          }
+        },
+        {
+          "step_index": 1,
+          "frozen_action": {
+            "type": "select",
+            "card_id": "ja:M6:098/076:holo"
+          },
+          "action": {
+            "type": "select",
+            "card_id": "ja:M6:098/076:holo"
+          },
+          "execution_status": "expected_rejection",
+          "error_type": "ValueError",
+          "error": "catalog identity or copy evidence review needed before selecting this record",
+          "duration_seconds": 0.497062
+        }
+      ]
+    }
+  ]
+}

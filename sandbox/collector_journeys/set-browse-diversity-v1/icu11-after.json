@@ -1,0 +1,1295 @@
+{
+  "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+  "response": {
+    "schema": "pokemon.collector-journey.v1",
+    "catalog_revision": "447367c0e44be99ee8ac6c9781e7888558505d32ef9d7b3966402f65f9e172de",
+    "turn_count": 1,
+    "status": "candidate_clarification_needed",
+    "goal_question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+    "scope_filters": {},
+    "candidate_cards": [
+      {
+        "card_id": "ja:SV2A:001/165:normal",
+        "language": "ja",
+        "set_code": "SV2A",
+        "collector_number": "001/165",
+        "variant": "normal",
+        "name": "フシギダネ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+        "set_name": "ポケモンカード151",
+        "release_date": "2023-06-16",
+        "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+        "structural_match_eligible": true,
+        "support_status": "research_candidate",
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "collector_evidence": {
+          "schema": "pokemon.collector-evidence-context.v1",
+          "findings": [
+            {
+              "actor": "collector-evidence-v1",
+              "claim": "finish_exists",
+              "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+              "evidence": {
+                "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                "kind": "official_release_text",
+                "locator": "anchor-mirror section",
+                "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+              },
+              "expected_head": null,
+              "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+              "recorded_at": "2026-10-01T00:00:00+00:00",
+              "role": "release_declaration",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "source_supported",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "value": "reverse_pokeball",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "physical_finish_verified": false,
+          "copy_condition_verified": false,
+          "card_pair_relationship_verified": false,
+          "price_comparable": false,
+          "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+        },
+        "printing_source_evidence": {
+          "schema": "pokemon.printing-source-context.v1",
+          "findings": [
+            {
+              "automatic_offer_join_allowed": false,
+              "copy_condition_verified": false,
+              "display_allowed": false,
+              "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+              "hold_reason": null,
+              "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+              "listing_copy_verified": false,
+              "names_are_exact_aliases": false,
+              "observations": [
+                {
+                  "claim": "manufacturer_finish_declaration",
+                  "coordinate": null,
+                  "locator": "mirror section text; release-level declaration only",
+                  "scope": "release_only",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                  "value": "pokeball_pattern_mirror"
+                }
+              ],
+              "page_to_variant_mapping_verified": false,
+              "physical_finish_verified": false,
+              "price_comparable": false,
+              "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+              "reviewers": [
+                {
+                  "actor": "codex-printing-pilot-agent",
+                  "method": "official_release_text",
+                  "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                  "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                  "source_image_sha256s": []
+                }
+              ],
+              "revision": 1,
+              "schema": "pokemon.printing-source-evidence.v1",
+              "sources": [
+                {
+                  "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                  "image_sha256": null,
+                  "image_url": null,
+                  "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                }
+              ],
+              "status": "source_observed",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "copy_evidence_needed": true,
+          "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+          "physical_finish_verified": false,
+          "listing_copy_verified": false,
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "display_allowed": false,
+          "page_to_variant_mapping_verified": false,
+          "names_are_exact_aliases": false,
+          "copy_condition_verified": false
+        }
+      },
+      {
+        "card_id": "ja:SV2A:002/165:normal",
+        "language": "ja",
+        "set_code": "SV2A",
+        "collector_number": "002/165",
+        "variant": "normal",
+        "name": "フシギソウ",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+        "set_name": "ポケモンカード151",
+        "release_date": "2023-06-16",
+        "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+        "structural_match_eligible": true,
+        "support_status": "research_candidate",
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "collector_evidence": {
+          "schema": "pokemon.collector-evidence-context.v1",
+          "findings": [
+            {
+              "actor": "collector-evidence-v1",
+              "claim": "finish_exists",
+              "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+              "evidence": {
+                "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                "kind": "official_release_text",
+                "locator": "anchor-mirror section",
+                "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+              },
+              "expected_head": null,
+              "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+              "recorded_at": "2026-10-01T00:00:00+00:00",
+              "role": "release_declaration",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "source_supported",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "value": "reverse_pokeball",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "physical_finish_verified": false,
+          "copy_condition_verified": false,
+          "card_pair_relationship_verified": false,
+          "price_comparable": false,
+          "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+        },
+        "printing_source_evidence": {
+          "schema": "pokemon.printing-source-context.v1",
+          "findings": [
+            {
+              "automatic_offer_join_allowed": false,
+              "copy_condition_verified": false,
+              "display_allowed": false,
+              "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+              "hold_reason": null,
+              "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+              "listing_copy_verified": false,
+              "names_are_exact_aliases": false,
+              "observations": [
+                {
+                  "claim": "manufacturer_finish_declaration",
+                  "coordinate": null,
+                  "locator": "mirror section text; release-level declaration only",
+                  "scope": "release_only",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                  "value": "pokeball_pattern_mirror"
+                }
+              ],
+              "page_to_variant_mapping_verified": false,
+              "physical_finish_verified": false,
+              "price_comparable": false,
+              "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+              "reviewers": [
+                {
+                  "actor": "codex-printing-pilot-agent",
+                  "method": "official_release_text",
+                  "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                  "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                  "source_image_sha256s": []
+                }
+              ],
+              "revision": 1,
+              "schema": "pokemon.printing-source-evidence.v1",
+              "sources": [
+                {
+                  "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                  "image_sha256": null,
+                  "image_url": null,
+                  "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                }
+              ],
+              "status": "source_observed",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "copy_evidence_needed": true,
+          "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+          "physical_finish_verified": false,
+          "listing_copy_verified": false,
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "display_allowed": false,
+          "page_to_variant_mapping_verified": false,
+          "names_are_exact_aliases": false,
+          "copy_condition_verified": false
+        }
+      },
+      {
+        "card_id": "ja:SV2A:003/165:holo",
+        "language": "ja",
+        "set_code": "SV2A",
+        "collector_number": "003/165",
+        "variant": "holo",
+        "name": "フシギバナex",
+        "rarity": "Double rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/003.ts:sha256:69ecf967a86bf1b40d17a2cb4f1a54ab9f5a6a42748782460a372584dc5da31b",
+        "set_name": "ポケモンカード151",
+        "release_date": "2023-06-16",
+        "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+        "structural_match_eligible": true,
+        "support_status": "research_candidate",
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "collector_evidence": {
+          "schema": "pokemon.collector-evidence-context.v1",
+          "findings": [
+            {
+              "actor": "collector-evidence-v1",
+              "claim": "finish_exists",
+              "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+              "evidence": {
+                "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                "kind": "official_release_text",
+                "locator": "anchor-mirror section",
+                "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+              },
+              "expected_head": null,
+              "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+              "recorded_at": "2026-10-01T00:00:00+00:00",
+              "role": "release_declaration",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "source_supported",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "value": "reverse_pokeball",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "physical_finish_verified": false,
+          "copy_condition_verified": false,
+          "card_pair_relationship_verified": false,
+          "price_comparable": false,
+          "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+        },
+        "printing_source_evidence": {
+          "schema": "pokemon.printing-source-context.v1",
+          "findings": [
+            {
+              "automatic_offer_join_allowed": false,
+              "copy_condition_verified": false,
+              "display_allowed": false,
+              "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+              "hold_reason": null,
+              "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+              "listing_copy_verified": false,
+              "names_are_exact_aliases": false,
+              "observations": [
+                {
+                  "claim": "manufacturer_finish_declaration",
+                  "coordinate": null,
+                  "locator": "mirror section text; release-level declaration only",
+                  "scope": "release_only",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                  "value": "pokeball_pattern_mirror"
+                }
+              ],
+              "page_to_variant_mapping_verified": false,
+              "physical_finish_verified": false,
+              "price_comparable": false,
+              "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+              "reviewers": [
+                {
+                  "actor": "codex-printing-pilot-agent",
+                  "method": "official_release_text",
+                  "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                  "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                  "source_image_sha256s": []
+                }
+              ],
+              "revision": 1,
+              "schema": "pokemon.printing-source-evidence.v1",
+              "sources": [
+                {
+                  "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                  "image_sha256": null,
+                  "image_url": null,
+                  "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                }
+              ],
+              "status": "source_observed",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "copy_evidence_needed": true,
+          "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+          "physical_finish_verified": false,
+          "listing_copy_verified": false,
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "display_allowed": false,
+          "page_to_variant_mapping_verified": false,
+          "names_are_exact_aliases": false,
+          "copy_condition_verified": false
+        }
+      },
+      {
+        "card_id": "ja:SV2A:004/165:normal",
+        "language": "ja",
+        "set_code": "SV2A",
+        "collector_number": "004/165",
+        "variant": "normal",
+        "name": "ヒトカゲ",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/004.ts:sha256:842cafd61b96c53de224ba013de813d19f02fe7fd1b90a6be65524f740186f5f",
+        "set_name": "ポケモンカード151",
+        "release_date": "2023-06-16",
+        "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+        "structural_match_eligible": true,
+        "support_status": "research_candidate",
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "collector_evidence": {
+          "schema": "pokemon.collector-evidence-context.v1",
+          "findings": [
+            {
+              "actor": "collector-evidence-v1",
+              "claim": "finish_exists",
+              "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+              "evidence": {
+                "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                "kind": "official_release_text",
+                "locator": "anchor-mirror section",
+                "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+              },
+              "expected_head": null,
+              "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+              "recorded_at": "2026-10-01T00:00:00+00:00",
+              "role": "release_declaration",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "source_supported",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "value": "reverse_pokeball",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "physical_finish_verified": false,
+          "copy_condition_verified": false,
+          "card_pair_relationship_verified": false,
+          "price_comparable": false,
+          "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+        },
+        "printing_source_evidence": {
+          "schema": "pokemon.printing-source-context.v1",
+          "findings": [
+            {
+              "automatic_offer_join_allowed": false,
+              "copy_condition_verified": false,
+              "display_allowed": false,
+              "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+              "hold_reason": null,
+              "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+              "listing_copy_verified": false,
+              "names_are_exact_aliases": false,
+              "observations": [
+                {
+                  "claim": "manufacturer_finish_declaration",
+                  "coordinate": null,
+                  "locator": "mirror section text; release-level declaration only",
+                  "scope": "release_only",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                  "value": "pokeball_pattern_mirror"
+                }
+              ],
+              "page_to_variant_mapping_verified": false,
+              "physical_finish_verified": false,
+              "price_comparable": false,
+              "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+              "reviewers": [
+                {
+                  "actor": "codex-printing-pilot-agent",
+                  "method": "official_release_text",
+                  "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                  "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                  "source_image_sha256s": []
+                }
+              ],
+              "revision": 1,
+              "schema": "pokemon.printing-source-evidence.v1",
+              "sources": [
+                {
+                  "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                  "image_sha256": null,
+                  "image_url": null,
+                  "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                }
+              ],
+              "status": "source_observed",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "copy_evidence_needed": true,
+          "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+          "physical_finish_verified": false,
+          "listing_copy_verified": false,
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "display_allowed": false,
+          "page_to_variant_mapping_verified": false,
+          "names_are_exact_aliases": false,
+          "copy_condition_verified": false
+        }
+      },
+      {
+        "card_id": "ja:SV2A:005/165:normal",
+        "language": "ja",
+        "set_code": "SV2A",
+        "collector_number": "005/165",
+        "variant": "normal",
+        "name": "リザード",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/005.ts:sha256:92df3f911a59815869b356f25142984f1057f20835383949340213d790163bbb",
+        "set_name": "ポケモンカード151",
+        "release_date": "2023-06-16",
+        "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+        "structural_match_eligible": true,
+        "support_status": "research_candidate",
+        "price_comparable": false,
+        "automatic_offer_join_allowed": false,
+        "collector_evidence": {
+          "schema": "pokemon.collector-evidence-context.v1",
+          "findings": [
+            {
+              "actor": "collector-evidence-v1",
+              "claim": "finish_exists",
+              "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+              "evidence": {
+                "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                "kind": "official_release_text",
+                "locator": "anchor-mirror section",
+                "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+              },
+              "expected_head": null,
+              "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+              "recorded_at": "2026-10-01T00:00:00+00:00",
+              "role": "release_declaration",
+              "schema": "pokemon.collector-evidence.v1",
+              "status": "source_supported",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "value": "reverse_pokeball",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "physical_finish_verified": false,
+          "copy_condition_verified": false,
+          "card_pair_relationship_verified": false,
+          "price_comparable": false,
+          "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+        },
+        "printing_source_evidence": {
+          "schema": "pokemon.printing-source-context.v1",
+          "findings": [
+            {
+              "automatic_offer_join_allowed": false,
+              "copy_condition_verified": false,
+              "display_allowed": false,
+              "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+              "hold_reason": null,
+              "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+              "listing_copy_verified": false,
+              "names_are_exact_aliases": false,
+              "observations": [
+                {
+                  "claim": "manufacturer_finish_declaration",
+                  "coordinate": null,
+                  "locator": "mirror section text; release-level declaration only",
+                  "scope": "release_only",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                  "value": "pokeball_pattern_mirror"
+                }
+              ],
+              "page_to_variant_mapping_verified": false,
+              "physical_finish_verified": false,
+              "price_comparable": false,
+              "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+              "reviewers": [
+                {
+                  "actor": "codex-printing-pilot-agent",
+                  "method": "official_release_text",
+                  "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                  "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                  "source_image_sha256s": []
+                }
+              ],
+              "revision": 1,
+              "schema": "pokemon.printing-source-evidence.v1",
+              "sources": [
+                {
+                  "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                  "image_sha256": null,
+                  "image_url": null,
+                  "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                }
+              ],
+              "status": "source_observed",
+              "subject_id": "ja:SV2A",
+              "subject_kind": "release",
+              "current_identity": true
+            }
+          ],
+          "stale_findings": 0,
+          "copy_evidence_needed": true,
+          "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+          "physical_finish_verified": false,
+          "listing_copy_verified": false,
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "display_allowed": false,
+          "page_to_variant_mapping_verified": false,
+          "names_are_exact_aliases": false,
+          "copy_condition_verified": false
+        }
+      }
+    ],
+    "discovery": {
+      "schema": "pokemon.collector-discovery.v1",
+      "question": "I collect Japanese Pokémon Card 151. Show me five cards from that set.",
+      "languages": [
+        "ja"
+      ],
+      "task": "set_cards",
+      "status": "results",
+      "cards": [
+        {
+          "card_id": "ja:SV2A:001/165:normal",
+          "language": "ja",
+          "set_code": "SV2A",
+          "collector_number": "001/165",
+          "variant": "normal",
+          "name": "フシギダネ",
+          "rarity": "Common",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/001.ts:sha256:2342fc93e7ceb8a026f6d521d1d78524318aed506ecd9e484e5fe04170fcc814",
+          "set_name": "ポケモンカード151",
+          "release_date": "2023-06-16",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "collector_evidence": {
+            "schema": "pokemon.collector-evidence-context.v1",
+            "findings": [
+              {
+                "actor": "collector-evidence-v1",
+                "claim": "finish_exists",
+                "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                "evidence": {
+                  "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                  "kind": "official_release_text",
+                  "locator": "anchor-mirror section",
+                  "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                },
+                "expected_head": null,
+                "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                "recorded_at": "2026-10-01T00:00:00+00:00",
+                "role": "release_declaration",
+                "schema": "pokemon.collector-evidence.v1",
+                "status": "source_supported",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "value": "reverse_pokeball",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "physical_finish_verified": false,
+            "copy_condition_verified": false,
+            "card_pair_relationship_verified": false,
+            "price_comparable": false,
+            "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+          },
+          "printing_source_evidence": {
+            "schema": "pokemon.printing-source-context.v1",
+            "findings": [
+              {
+                "automatic_offer_join_allowed": false,
+                "copy_condition_verified": false,
+                "display_allowed": false,
+                "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+                "hold_reason": null,
+                "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+                "listing_copy_verified": false,
+                "names_are_exact_aliases": false,
+                "observations": [
+                  {
+                    "claim": "manufacturer_finish_declaration",
+                    "coordinate": null,
+                    "locator": "mirror section text; release-level declaration only",
+                    "scope": "release_only",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                    "value": "pokeball_pattern_mirror"
+                  }
+                ],
+                "page_to_variant_mapping_verified": false,
+                "physical_finish_verified": false,
+                "price_comparable": false,
+                "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                "reviewers": [
+                  {
+                    "actor": "codex-printing-pilot-agent",
+                    "method": "official_release_text",
+                    "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                    "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                    "source_image_sha256s": []
+                  }
+                ],
+                "revision": 1,
+                "schema": "pokemon.printing-source-evidence.v1",
+                "sources": [
+                  {
+                    "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                    "image_sha256": null,
+                    "image_url": null,
+                    "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  }
+                ],
+                "status": "source_observed",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "copy_evidence_needed": true,
+            "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+            "physical_finish_verified": false,
+            "listing_copy_verified": false,
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "display_allowed": false,
+            "page_to_variant_mapping_verified": false,
+            "names_are_exact_aliases": false,
+            "copy_condition_verified": false
+          }
+        },
+        {
+          "card_id": "ja:SV2A:002/165:normal",
+          "language": "ja",
+          "set_code": "SV2A",
+          "collector_number": "002/165",
+          "variant": "normal",
+          "name": "フシギソウ",
+          "rarity": "Uncommon",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/002.ts:sha256:adca5b00a1ec7c1b3370cf7ea6940582dad9b6a2dd8b57bae622219fd970fc85",
+          "set_name": "ポケモンカード151",
+          "release_date": "2023-06-16",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "collector_evidence": {
+            "schema": "pokemon.collector-evidence-context.v1",
+            "findings": [
+              {
+                "actor": "collector-evidence-v1",
+                "claim": "finish_exists",
+                "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                "evidence": {
+                  "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                  "kind": "official_release_text",
+                  "locator": "anchor-mirror section",
+                  "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                },
+                "expected_head": null,
+                "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                "recorded_at": "2026-10-01T00:00:00+00:00",
+                "role": "release_declaration",
+                "schema": "pokemon.collector-evidence.v1",
+                "status": "source_supported",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "value": "reverse_pokeball",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "physical_finish_verified": false,
+            "copy_condition_verified": false,
+            "card_pair_relationship_verified": false,
+            "price_comparable": false,
+            "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+          },
+          "printing_source_evidence": {
+            "schema": "pokemon.printing-source-context.v1",
+            "findings": [
+              {
+                "automatic_offer_join_allowed": false,
+                "copy_condition_verified": false,
+                "display_allowed": false,
+                "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+                "hold_reason": null,
+                "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+                "listing_copy_verified": false,
+                "names_are_exact_aliases": false,
+                "observations": [
+                  {
+                    "claim": "manufacturer_finish_declaration",
+                    "coordinate": null,
+                    "locator": "mirror section text; release-level declaration only",
+                    "scope": "release_only",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                    "value": "pokeball_pattern_mirror"
+                  }
+                ],
+                "page_to_variant_mapping_verified": false,
+                "physical_finish_verified": false,
+                "price_comparable": false,
+                "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                "reviewers": [
+                  {
+                    "actor": "codex-printing-pilot-agent",
+                    "method": "official_release_text",
+                    "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                    "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                    "source_image_sha256s": []
+                  }
+                ],
+                "revision": 1,
+                "schema": "pokemon.printing-source-evidence.v1",
+                "sources": [
+                  {
+                    "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                    "image_sha256": null,
+                    "image_url": null,
+                    "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  }
+                ],
+                "status": "source_observed",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "copy_evidence_needed": true,
+            "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+            "physical_finish_verified": false,
+            "listing_copy_verified": false,
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "display_allowed": false,
+            "page_to_variant_mapping_verified": false,
+            "names_are_exact_aliases": false,
+            "copy_condition_verified": false
+          }
+        },
+        {
+          "card_id": "ja:SV2A:003/165:holo",
+          "language": "ja",
+          "set_code": "SV2A",
+          "collector_number": "003/165",
+          "variant": "holo",
+          "name": "フシギバナex",
+          "rarity": "Double rare",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/003.ts:sha256:69ecf967a86bf1b40d17a2cb4f1a54ab9f5a6a42748782460a372584dc5da31b",
+          "set_name": "ポケモンカード151",
+          "release_date": "2023-06-16",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "collector_evidence": {
+            "schema": "pokemon.collector-evidence-context.v1",
+            "findings": [
+              {
+                "actor": "collector-evidence-v1",
+                "claim": "finish_exists",
+                "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                "evidence": {
+                  "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                  "kind": "official_release_text",
+                  "locator": "anchor-mirror section",
+                  "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                },
+                "expected_head": null,
+                "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                "recorded_at": "2026-10-01T00:00:00+00:00",
+                "role": "release_declaration",
+                "schema": "pokemon.collector-evidence.v1",
+                "status": "source_supported",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "value": "reverse_pokeball",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "physical_finish_verified": false,
+            "copy_condition_verified": false,
+            "card_pair_relationship_verified": false,
+            "price_comparable": false,
+            "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+          },
+          "printing_source_evidence": {
+            "schema": "pokemon.printing-source-context.v1",
+            "findings": [
+              {
+                "automatic_offer_join_allowed": false,
+                "copy_condition_verified": false,
+                "display_allowed": false,
+                "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+                "hold_reason": null,
+                "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+                "listing_copy_verified": false,
+                "names_are_exact_aliases": false,
+                "observations": [
+                  {
+                    "claim": "manufacturer_finish_declaration",
+                    "coordinate": null,
+                    "locator": "mirror section text; release-level declaration only",
+                    "scope": "release_only",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                    "value": "pokeball_pattern_mirror"
+                  }
+                ],
+                "page_to_variant_mapping_verified": false,
+                "physical_finish_verified": false,
+                "price_comparable": false,
+                "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                "reviewers": [
+                  {
+                    "actor": "codex-printing-pilot-agent",
+                    "method": "official_release_text",
+                    "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                    "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                    "source_image_sha256s": []
+                  }
+                ],
+                "revision": 1,
+                "schema": "pokemon.printing-source-evidence.v1",
+                "sources": [
+                  {
+                    "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                    "image_sha256": null,
+                    "image_url": null,
+                    "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  }
+                ],
+                "status": "source_observed",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "copy_evidence_needed": true,
+            "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+            "physical_finish_verified": false,
+            "listing_copy_verified": false,
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "display_allowed": false,
+            "page_to_variant_mapping_verified": false,
+            "names_are_exact_aliases": false,
+            "copy_condition_verified": false
+          }
+        },
+        {
+          "card_id": "ja:SV2A:004/165:normal",
+          "language": "ja",
+          "set_code": "SV2A",
+          "collector_number": "004/165",
+          "variant": "normal",
+          "name": "ヒトカゲ",
+          "rarity": "Common",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/004.ts:sha256:842cafd61b96c53de224ba013de813d19f02fe7fd1b90a6be65524f740186f5f",
+          "set_name": "ポケモンカード151",
+          "release_date": "2023-06-16",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "collector_evidence": {
+            "schema": "pokemon.collector-evidence-context.v1",
+            "findings": [
+              {
+                "actor": "collector-evidence-v1",
+                "claim": "finish_exists",
+                "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                "evidence": {
+                  "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                  "kind": "official_release_text",
+                  "locator": "anchor-mirror section",
+                  "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                },
+                "expected_head": null,
+                "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                "recorded_at": "2026-10-01T00:00:00+00:00",
+                "role": "release_declaration",
+                "schema": "pokemon.collector-evidence.v1",
+                "status": "source_supported",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "value": "reverse_pokeball",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "physical_finish_verified": false,
+            "copy_condition_verified": false,
+            "card_pair_relationship_verified": false,
+            "price_comparable": false,
+            "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+          },
+          "printing_source_evidence": {
+            "schema": "pokemon.printing-source-context.v1",
+            "findings": [
+              {
+                "automatic_offer_join_allowed": false,
+                "copy_condition_verified": false,
+                "display_allowed": false,
+                "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+                "hold_reason": null,
+                "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+                "listing_copy_verified": false,
+                "names_are_exact_aliases": false,
+                "observations": [
+                  {
+                    "claim": "manufacturer_finish_declaration",
+                    "coordinate": null,
+                    "locator": "mirror section text; release-level declaration only",
+                    "scope": "release_only",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                    "value": "pokeball_pattern_mirror"
+                  }
+                ],
+                "page_to_variant_mapping_verified": false,
+                "physical_finish_verified": false,
+                "price_comparable": false,
+                "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                "reviewers": [
+                  {
+                    "actor": "codex-printing-pilot-agent",
+                    "method": "official_release_text",
+                    "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                    "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                    "source_image_sha256s": []
+                  }
+                ],
+                "revision": 1,
+                "schema": "pokemon.printing-source-evidence.v1",
+                "sources": [
+                  {
+                    "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                    "image_sha256": null,
+                    "image_url": null,
+                    "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  }
+                ],
+                "status": "source_observed",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "copy_evidence_needed": true,
+            "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+            "physical_finish_verified": false,
+            "listing_copy_verified": false,
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "display_allowed": false,
+            "page_to_variant_mapping_verified": false,
+            "names_are_exact_aliases": false,
+            "copy_condition_verified": false
+          }
+        },
+        {
+          "card_id": "ja:SV2A:005/165:normal",
+          "language": "ja",
+          "set_code": "SV2A",
+          "collector_number": "005/165",
+          "variant": "normal",
+          "name": "リザード",
+          "rarity": "Uncommon",
+          "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a/005.ts:sha256:92df3f911a59815869b356f25142984f1057f20835383949340213d790163bbb",
+          "set_name": "ポケモンカード151",
+          "release_date": "2023-06-16",
+          "release_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV2a.ts",
+          "structural_match_eligible": true,
+          "support_status": "research_candidate",
+          "price_comparable": false,
+          "automatic_offer_join_allowed": false,
+          "collector_evidence": {
+            "schema": "pokemon.collector-evidence-context.v1",
+            "findings": [
+              {
+                "actor": "collector-evidence-v1",
+                "claim": "finish_exists",
+                "event_id": "colevidence-v1:b26198200882e8401c52af508aa6c35c",
+                "evidence": {
+                  "finding": "The release page declares a Poké Ball patterned mirror treatment. It does not enumerate every eligible card or all finishes.",
+                  "kind": "official_release_text",
+                  "locator": "anchor-mirror section",
+                  "source_page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                  "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                },
+                "expected_head": null,
+                "identity_sha256": "ad1b4f26fdf8da7461e0c10ef0e4bc331f3d240abc0a54c28552b48f68e49c85",
+                "recorded_at": "2026-10-01T00:00:00+00:00",
+                "role": "release_declaration",
+                "schema": "pokemon.collector-evidence.v1",
+                "status": "source_supported",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "value": "reverse_pokeball",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "physical_finish_verified": false,
+            "copy_condition_verified": false,
+            "card_pair_relationship_verified": false,
+            "price_comparable": false,
+            "interpretation": "Official source declarations and AI proposals, scoped to pinned artwork or a release. No copy, comprehensive variant or cross-region equivalence approval."
+          },
+          "printing_source_evidence": {
+            "schema": "pokemon.printing-source-context.v1",
+            "findings": [
+              {
+                "automatic_offer_join_allowed": false,
+                "copy_condition_verified": false,
+                "display_allowed": false,
+                "event_id": "printing-source:3569233b796a425bc2c351077a94965e9326c3cde2cd25791e9840021ee29296",
+                "hold_reason": null,
+                "identity_sha256": "d96d68865cad39030d893b2c7bd229e3996b4461eaf0bdd44169fb5344219bbb",
+                "listing_copy_verified": false,
+                "names_are_exact_aliases": false,
+                "observations": [
+                  {
+                    "claim": "manufacturer_finish_declaration",
+                    "coordinate": null,
+                    "locator": "mirror section text; release-level declaration only",
+                    "scope": "release_only",
+                    "source_url": "https://www.pokemon-card.com/ex/sv2a/index.html",
+                    "value": "pokeball_pattern_mirror"
+                  }
+                ],
+                "page_to_variant_mapping_verified": false,
+                "physical_finish_verified": false,
+                "price_comparable": false,
+                "recorded_at": "2026-10-02T00:43:35.986895+00:00",
+                "reviewers": [
+                  {
+                    "actor": "codex-printing-pilot-agent",
+                    "method": "official_release_text",
+                    "observations_sha256": "25ac8c06089f23b50dfc1130280a262f18d2a20687216c9f732ea5bd0de7bdd8",
+                    "reviewed_at": "2026-10-02T00:43:35.986895+00:00",
+                    "source_image_sha256s": []
+                  }
+                ],
+                "revision": 1,
+                "schema": "pokemon.printing-source-evidence.v1",
+                "sources": [
+                  {
+                    "fetched_at": "2026-10-02T00:41:53.166457+00:00",
+                    "image_sha256": null,
+                    "image_url": null,
+                    "page_sha256": "7537cd1ce7e242bcabbcbc437c72c5a7461711f533b6233f28787c1c54ae0c45",
+                    "url": "https://www.pokemon-card.com/ex/sv2a/index.html"
+                  }
+                ],
+                "status": "source_observed",
+                "subject_id": "ja:SV2A",
+                "subject_kind": "release",
+                "current_identity": true
+              }
+            ],
+            "stale_findings": 0,
+            "copy_evidence_needed": true,
+            "interpretation": "Publisher image readings and release declarations; seed conflicts, physical finish, actual seller copies and complete editions remain separate.",
+            "physical_finish_verified": false,
+            "listing_copy_verified": false,
+            "price_comparable": false,
+            "automatic_offer_join_allowed": false,
+            "display_allowed": false,
+            "page_to_variant_mapping_verified": false,
+            "names_are_exact_aliases": false,
+            "copy_condition_verified": false
+          }
+        }
+      ],
+      "next_question": null,
+      "market_status": "no_live_market_evidence",
+      "live_offers": [],
+      "prices": [],
+      "public_display_allowed": false,
+      "unfulfilled_constraints": [
+        "physical_variant_completeness"
+      ],
+      "complete_answer_established": false,
+      "scope": "Internal catalog results; printing/character membership is not physical-copy, availability or price evidence",
+      "claim_basis": "pinned language-specific release records and source-declared variants",
+      "variant_summary": [
+        {
+          "variant": "holo",
+          "records": 82
+        },
+        {
+          "variant": "normal",
+          "records": 128
+        },
+        {
+          "variant": "reverse_masterball",
+          "records": 153
+        },
+        {
+          "variant": "reverse_pokeball",
+          "records": 153
+        }
+      ],
+      "rarity_summary": [
+        {
+          "rarity": "Common",
+          "records": 198
+        },
+        {
+          "rarity": "Double rare",
+          "records": 12
+        },
+        {
+          "rarity": "Illustration rare",
+          "records": 18
+        },
+        {
+          "rarity": "Mega Hyper Rare",
+          "records": 3
+        },
+        {
+          "rarity": "Rare",
+          "records": 75
+        },
+        {
+          "rarity": "Special illustration rare",
+          "records": 8
+        },
+        {
+          "rarity": "Ultra Rare",
+          "records": 16
+        },
+        {
+          "rarity": "Uncommon",
+          "records": 186
+        }
+      ],
+      "physical_finish_verification": "not_established_by_catalog",
+      "coverage": {
+        "matched_catalog_records": 516,
+        "returned": 5,
+        "offset": 0,
+        "limit": 5,
+        "has_more": true,
+        "undated_records": 0,
+        "release_metadata_missing": 0,
+        "global_printing_completeness_established": false,
+        "missing_character_facets_excluded": true,
+        "artwork_cameos_supported": false
+      },
+      "ordering": "stable coordinate round-robin; every exact source version retained; no physical versions merged"
+    },
+    "inventory": null,
+    "artwork_review_leads": [],
+    "selection_allowed": true,
+    "card_selection_blockers": {
+      "ja:SV2A:001/165:normal": [],
+      "ja:SV2A:002/165:normal": [],
+      "ja:SV2A:003/165:holo": [],
+      "ja:SV2A:004/165:normal": [],
+      "ja:SV2A:005/165:normal": []
+    },
+    "recommendation": null,
+    "selection_blockers": [],
+    "selected_catalog_target": null,
+    "target_reset_reason": null,
+    "preferences": {},
+    "preferences_applied_to_market": false,
+    "next_step": {
+      "field": "collector_number",
+      "prompt": "Choose a shown catalog record or narrow the collection scope; source-declared finish does not verify a physical copy."
+    },
+    "target_intent": null,
+    "trace": [
+      {
+        "turn": 1,
+        "action": "ask",
+        "task": "set_cards",
+        "displayed_card_ids": [
+          "ja:SV2A:001/165:normal",
+          "ja:SV2A:002/165:normal",
+          "ja:SV2A:003/165:holo",
+          "ja:SV2A:004/165:normal",
+          "ja:SV2A:005/165:normal"
+        ],
+        "selection_blockers": [],
+        "selected_card_id": null,
+        "clarification_needed": false
+      }
+    ],
+    "resume": {
+      "caller_resubmits_turns": true,
+      "expected_revision": "447367c0e44be99ee8ac6c9781e7888558505d32ef9d7b3966402f65f9e172de",
+      "max_turns": 20
+    },
+    "conversation_persisted": false,
+    "inventory_persisted": false,
+    "ownership_assertions_verified": false,
+    "physical_copy_verified": false,
+    "ready_for_offer_tracking": false,
+    "purchase_ready": false,
+    "complete_collection_established": false,
+    "public_display_allowed": false,
+    "prices": [],
+    "live_offers": [],
+    "interpretation": "Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate."
+  }
+}

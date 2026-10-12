@@ -334,7 +334,9 @@ class DiscoveryGraphTests(unittest.TestCase):
             target_card_id=self.ja))
         self.assertEqual(selected["status"], "targeted")
         self.assertEqual(selected["constraints"]["collector_number"], "025/165")
-        self.assertTrue(selected["ready_for_offer_tracking"])
+        self.assertFalse(selected["ready_for_offer_tracking"])
+        self.assertTrue(selected["catalog_target_selected"])
+        self.assertTrue(selected["structural_match_eligible"])
         candidates = discovery_graph.exploration_candidates(self.db, "s1", "opaque-user-1")
         self.assertEqual([card["card_id"] for card in candidates["cards"]], [self.ja])
         self.assertEqual(candidates["cards"][0]["display_allowed"], 0)
@@ -376,7 +378,9 @@ class DiscoveryGraphTests(unittest.TestCase):
         resumed = discovery_graph.save_exploration(self.db, dict(
             session_id="paused", owner_key="user", expected_version=3,
             status="targeted"))
-        self.assertTrue(resumed["ready_for_offer_tracking"])
+        self.assertFalse(resumed["ready_for_offer_tracking"])
+        self.assertTrue(resumed["catalog_target_selected"])
+        self.assertTrue(resumed["structural_match_eligible"])
         with self.assertRaisesRegex(ValueError, "conflicts with variant"):
             discovery_graph.save_exploration(self.db, dict(
                 session_id="paused", owner_key="user", expected_version=4,
@@ -412,6 +416,28 @@ class DiscoveryGraphTests(unittest.TestCase):
             constraints={"query": "Pikachu", "language": "en", "set_code": "ME1"}))
         self.assertEqual(discovery_graph.exploration_decision(
             self.db, "unverified", "user")["code"], "unverified_printing")
+
+    def test_legacy_direct_caller_selection_never_grants_offer_authority(self):
+        state = discovery_graph.save_exploration(self.db, dict(
+            session_id="catalog-only", owner_key="user", expected_version=0,
+            target_card_id=self.ja))
+        returned = discovery_graph.get_exploration(self.db, "catalog-only", "user")
+        decision = discovery_graph.exploration_decision(self.db, "catalog-only", "user")
+        for result in (state, returned, decision):
+            self.assertTrue(result["catalog_target_selected"])
+            self.assertTrue(result["structural_match_eligible"])
+            self.assertEqual(result["target_card_id"], self.ja)
+            for field in ("ready_for_offer_tracking", "automatic_offer_join_allowed",
+                          "physical_printing_verified", "transaction_ready", "public_display_allowed"):
+                self.assertIs(result[field], False)
+        self.assertEqual(decision["code"], "target_selected")
+        self.assertEqual(decision["next_question"]["field"], "offer_and_copy_evidence")
+        self.db.execute("UPDATE card SET match_eligible=0 WHERE card_id=?", (self.ja,))
+        held = discovery_graph.exploration_decision(self.db, "catalog-only", "user")
+        self.assertTrue(held["catalog_target_selected"])
+        self.assertFalse(held["structural_match_eligible"])
+        self.assertFalse(held["ready_for_offer_tracking"])
+        self.assertEqual(held["code"], "target_unverified")
 
 
 if __name__ == "__main__":

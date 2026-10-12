@@ -1,0 +1,37 @@
+{
+  "schema": "pokemon.reviewed-release-name-aliases.v1",
+  "records": [
+    {
+      "schema": "pokemon.reviewed-release-name-alias.v1",
+      "alias": "Shiny Treasure ex",
+      "language": "ja",
+      "set_code": "SV4A",
+      "derivation": "reviewed_english_rendering_of_exact_official_japanese_title.v1",
+      "source_published_alias": false,
+      "source_title": "シャイニートレジャーex",
+      "release_evidence": {
+        "evidence_locator": "HTML title and product release-date block",
+        "language": "ja",
+        "name": "シャイニートレジャーex",
+        "official_page_sha256": "a2335bd64c136b52ffc6f35bd80374169f57420bfcb8f491f6f10703d5e39ac1",
+        "official_url": "https://www.pokemon-card.com/ex/sv4a/index.html",
+        "original_name": "レイジングサーフ",
+        "release_date": "2023-12-01",
+        "set_code": "SV4A",
+        "source_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+        "verified_at": "2026-09-30"
+      },
+      "current_release": {
+        "language": "ja",
+        "set_code": "SV4A",
+        "name": "シャイニートレジャーex",
+        "release_date": "2023-12-01",
+        "official_card_count": 190,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "scope": "Query interpretation only; no translation expansion, physical printing, display or commerce authority"
+    }
+  ]
+}

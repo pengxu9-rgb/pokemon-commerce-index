@@ -1,0 +1,136 @@
+{
+  "charizard_facets": {
+    "sql": "select count(*) records,count(distinct c.language||':'||c.set_code||':'||c.collector_number) coordinates from card c join card_facet f on f.card_id=c.card_id where c.language='ja' and f.facet_type='dex_id' and f.value='6'",
+    "rows": [
+      {
+        "records": 56,
+        "coordinates": 48
+      }
+    ]
+  },
+  "charizard_examples": {
+    "sql": "select c.card_id,c.name,c.provenance from card c join card_facet f on f.card_id=c.card_id where c.language='ja' and f.facet_type='dex_id' and f.value='6' limit 5",
+    "rows": [
+      {
+        "card_id": "ja:E1:071/128:normal_1st_edition",
+        "name": "カリザード",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/071.ts:sha256:69d793a31ae53bc7ab09dd63001add25d85a84bde09a486f94941168858fee2c"
+      },
+      {
+        "card_id": "ja:E1:071/128:normal_unlimited",
+        "name": "カリザード",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/071.ts:sha256:69d793a31ae53bc7ab09dd63001add25d85a84bde09a486f94941168858fee2c"
+      },
+      {
+        "card_id": "ja:E1:103/128:normal_1st_edition",
+        "name": "カリザード",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/103.ts:sha256:e66579c2da80f1250dcf9aa5ddae6fe16d409bd54bef0f3aed750638217b42b4"
+      },
+      {
+        "card_id": "ja:E1:103/128:normal_unlimited",
+        "name": "カリザード",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E1/103.ts:sha256:e66579c2da80f1250dcf9aa5ddae6fe16d409bd54bef0f3aed750638217b42b4"
+      },
+      {
+        "card_id": "ja:E5:089/088:normal_1st_edition",
+        "name": "カリザード",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/e/E5/089.ts:sha256:e6312a0d11fa59f96d1c85a4f7f36c77a01ec7bc3291217d2587d3b517c35052"
+      }
+    ]
+  },
+  "pikachu_yuka_intersection": {
+    "sql": "select c.card_id,c.name from card c join card_facet d on d.card_id=c.card_id and d.facet_type='dex_id' and d.value='25' join card_facet f on f.card_id=c.card_id and f.facet_type='illustrator' and f.value='Yuka Morii' where c.language='ja'",
+    "rows": []
+  },
+  "sv2a_coordinates": {
+    "sql": "select count(*) records,count(distinct collector_number) coordinates from card where language='ja' and set_code='SV2A'",
+    "rows": [
+      {
+        "records": 516,
+        "coordinates": 210
+      }
+    ]
+  },
+  "sv4a_not_mew_known": {
+    "sql": "select count(*) records,count(distinct c.collector_number) coordinates from card c where language='ja' and set_code='SV4A' and exists(select 1 from card_facet f where f.card_id=c.card_id and facet_type='dex_id' and value!='151') and not exists(select 1 from card_facet f where f.card_id=c.card_id and facet_type='dex_id' and value='151')",
+    "rows": [
+      {
+        "records": 315,
+        "coordinates": 241
+      }
+    ]
+  },
+  "pikachu_not_owned": {
+    "sql": "select count(*) records,count(distinct c.set_code||':'||c.collector_number) coordinates from card c join card_facet f on f.card_id=c.card_id where c.language='ja' and f.facet_type='dex_id' and f.value='25' and c.card_id!='ja:SV4A:236/190:holo'",
+    "rows": [
+      {
+        "records": 127,
+        "coordinates": 117
+      }
+    ]
+  },
+  "mew_comparison_metadata": {
+    "sql": "select c.card_id,c.name,c.rarity,c.provenance,f.facet_type,f.value,f.provenance facet_provenance from card c left join card_facet f on f.card_id=c.card_id where c.card_id in ('ja:SV4A:327/190:holo','ja:SV4A:347/190:holo')",
+    "rows": [
+      {
+        "card_id": "ja:SV4A:327/190:holo",
+        "name": "ミュウex",
+        "rarity": "SSR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/327.ts:sha256:541eb77a08cc5ac498568539471b874dec8af998b7caab0a659989946efe655b",
+        "facet_type": "illustrator",
+        "value": "aky CG Works",
+        "facet_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/327.ts:sha256:541eb77a08cc5ac498568539471b874dec8af998b7caab0a659989946efe655b"
+      },
+      {
+        "card_id": "ja:SV4A:347/190:holo",
+        "name": "ミュウex",
+        "rarity": "SAR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa",
+        "facet_type": "illustrator",
+        "value": "USGMEN",
+        "facet_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV4a/347.ts:sha256:32cad82f1ec18186ea8be9b994a16fda95b79b7bcb51663c4e8aa2a6054bdfaa"
+      }
+    ]
+  },
+  "held_identity": {
+    "sql": "select * from card where card_id='ja:M6:098/076:holo'",
+    "rows": [
+      {
+        "card_id": "ja:M6:098/076:holo",
+        "language": "ja",
+        "set_code": "M6",
+        "collector_number": "098/076",
+        "variant": "holo",
+        "name": "ポケモンキャッチャー",
+        "rarity": "SR",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/098.ts:sha256:36aa954d9cb4e822fd97bed138af140e75804705732c0e98631bcf2495394f9a",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0,
+        "match_eligible": 0,
+        "attributes_json": "{}"
+      }
+    ]
+  },
+  "held_exception": {
+    "sql": "select * from card_identity_exception where card_id='ja:M6:098/076:holo'",
+    "rows": [
+      {
+        "card_id": "ja:M6:098/076:holo",
+        "original_name": "とくちゅうチョッキ",
+        "source_provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/M/M6/098.ts:sha256:36aa954d9cb4e822fd97bed138af140e75804705732c0e98631bcf2495394f9a",
+        "corrected_name": "ポケモンキャッチャー",
+        "corrected_rarity": "SR",
+        "official_printing_type": null,
+        "official_url": "https://www.pokemon-card.com/card-search/details.php/card/50539",
+        "official_page_sha256": "bd76f9e780767b54ff4147d134aac2837717c98542a137ba3d4d8bca4df8fda4",
+        "reason": "Official exact set/number page contradicts pinned source name; finish held for review",
+        "applied_at": "2026-10-04T03:06:24+00:00"
+      }
+    ]
+  },
+  "pikachu_yuka_all_evidence_intersection": {
+    "sql": "select c.card_id,c.name,f.value artist_source_value from card c left join card_facet f on f.card_id=c.card_id and f.facet_type='illustrator' where c.language='ja' and (exists(select 1 from card_facet cf where cf.card_id=c.card_id and cf.facet_type='dex_id' and cf.value='25') or exists(select 1 from card_metadata_evidence me where me.card_id=c.card_id and json_extract(me.record_json,'$.official.dex_id')=25)) and (exists(select 1 from card_facet af where af.card_id=c.card_id and af.facet_type='illustrator' and af.value='Yuka Morii') or exists(select 1 from card_metadata_evidence me,json_each(me.record_json,'$.official.illustrators') j where me.card_id=c.card_id and j.value='Yuka Morii') or exists(select 1 from source_correction_evidence ce where ce.language=c.language and ce.set_code=c.set_code and ce.collector_number=c.collector_number and ce.kind='printed_artist' and json_extract(ce.record_json,'$.value')='Yuka Morii'))",
+    "rows": [],
+    "note": "Broad union of raw and official dex facets and raw/official/correction artist evidence is empty, so precedence cannot produce a direct-facet intersection."
+  }
+}

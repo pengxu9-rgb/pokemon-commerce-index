@@ -12,9 +12,134 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Install test dependencies
         run: python -m pip install -e '.[test]'
+      - name: Build pinned diagnostic catalog
+        run: |
+          python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 > /tmp/review-catalog-build-report.json
+          cat /tmp/review-catalog-build-report.json
       - name: Run tests and rebuild pinned catalog
         run: python -m unittest discover -s tests -q
+      - name: Validate the Node caller contracts
+        if: ${{ !cancelled() }}
+        run: node --test integrations/pivota/collectorClient.test.cjs integrations/pivota/collectorOperation.test.cjs
+      - name: Rehearse recommendations through Python HTTP and Node
+        if: ${{ !cancelled() }}
+        run: python -m scripts.rehearse_collector_recommendations --output /tmp/recommendation-review-report.json
+      - name: Rehearse identity holds against the pinned real catalog
+        if: ${{ !cancelled() }}
+        run: |
+          python -m scripts.rehearse_pivota_collector --db /tmp/review-catalog.sqlite3 --suite sandbox/collector_journeys/recommendation-v1/legacy-v2-identity-holds-suite.json --output /tmp/legacy-review-report.json
+      - name: Prepare private short-lived catalog diagnostic
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f /tmp/review-catalog.sqlite3 ]; then
+            gzip -c /tmp/review-catalog.sqlite3 > /tmp/collector-debug-catalog.sqlite3.gz
+            sha256sum /tmp/review-catalog.sqlite3 /tmp/collector-debug-catalog.sqlite3.gz > /tmp/collector-debug-catalog.sha256
+          fi
+      - name: Preserve private short-lived catalog diagnostic
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-catalog-diagnostic
+          retention-days: 1
+          path: |
+            /tmp/collector-debug-catalog.sqlite3.gz
+            /tmp/collector-debug-catalog.sha256
+            /tmp/review-catalog-build-report.json
+          if-no-files-found: ignore
+      - name: Measure bounded real-catalog runtime
+        if: ${{ !cancelled() }}
+        run: python -m scripts.benchmark_collector_runtime --db /tmp/review-catalog.sqlite3 --output /tmp/runtime-review-report.json
+      - name: Measure real-catalog HTTP admission and concurrency
+        if: ${{ !cancelled() }}
+        run: timeout 180s python -m scripts.benchmark_collector_concurrency --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --output /tmp/http-concurrency-review-report.json
+      - name: Measure actual Node caller overload and recommendation recovery
+        if: ${{ !cancelled() }}
+        run: timeout 300s python -m scripts.benchmark_collector_caller --db /tmp/review-catalog.sqlite3 --fixture-label real_pinned_catalog --require-current-client --output /tmp/caller-concurrency-review-report.json
+      - name: Measure distinct-session caller capacity and isolation
+        if: ${{ !cancelled() }}
+        run: |
+          CPU="$(python -c 'import os; print(min(os.sched_getaffinity(0)))')"
+          timeout 300s python -m scripts.benchmark_collector_mixed --db /tmp/review-catalog.sqlite3 --workload tests/fixtures/collector-mixed-workload-v1.json --cpu "$CPU" --output /tmp/mixed-caller-capacity-review-report.json
       - name: Build staging image from the same manifest
+        id: container_build
+        if: ${{ !cancelled() }}
         run: docker build -t pokemon-commerce-index:verify .
+      - name: Verify read-only collector behavior inside the image
+        if: ${{ !cancelled() && steps.container_build.outcome == 'success' }}
+        run: |
+          docker run --pull=never --rm -i pokemon-commerce-index:verify python - <<'PY'
+          import json
+          from contextlib import closing
+          from pokemon_index import core, collector_journey
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
+              result = collector_journey.replay(db, {'turns': [
+                  {'type': 'ask', 'question': 'Recommend Japanese Mew cards'},
+                  {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50})
+              ids = {card['card_id'] for card in result['candidate_cards']}
+              assert {'ja:SV4A:327/190:holo', 'ja:SV4A:347/190:holo'} <= ids
+              assert result['purchase_ready'] is False and result['public_display_allowed'] is False
+              assert result['prices'] == [] and result['live_offers'] == []
+              # Exercise the actual image's SQLite serializer/affinities as well as
+          # direct replay. Unsupported acceleration is not silently accepted here.
+          from pokemon_index import collector_runtime
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
+              model = collector_runtime.CatalogReadModel(db)
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db, model.request(db):
+              accelerated = collector_journey.replay(db, {'turns': [
+                  {'type': 'ask', 'question': 'Recommend Japanese Mew cards'},
+                  {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50})
+              assert accelerated == result
+              assert db.execute('PRAGMA query_only').fetchone()[0] == 1
+          print(json.dumps({'container_catalog_smoke': 'passed',
+              'snapshot_read_model_smoke': 'passed',
+              'python_version': __import__('sys').version.split()[0],
+              'sqlite_version': __import__('sqlite3').sqlite_version,
+              'candidate_ids': sorted(ids)}))
+          PY
+      - name: Audit the supported collector cohort and broad research tasks
+        if: ${{ !cancelled() }}
+        run: python -m scripts.audit_supported_collector_pilot --db /tmp/review-catalog.sqlite3 --output /tmp/pilot-review-report.json
+      - name: Audit the 21 source-qualified character gaps
+        if: ${{ !cancelled() }}
+        run: python -m scripts.audit_character_affiliation_gaps --db /tmp/review-catalog.sqlite3 --output /tmp/character-gap-review-report.json
+      - name: Test the independent evaluation harness
+        if: ${{ !cancelled() }}
+        run: python -m unittest discover -s sandbox/collector_journeys/independent-collector-eval-v1 -p 'test_runner.py' -q
+      - name: Record the unchanged baseline on the frozen collector evaluation
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          git fetch --no-tags --depth=1 origin 024a72d79f30198301ca538cc818d07577343195
+          mkdir -p /tmp/collector-baseline-024a72d
+          git archive 024a72d79f30198301ca538cc818d07577343195 pokemon_index scripts/__init__.py scripts/build_catalog_snapshot.py | tar -x -C /tmp/collector-baseline-024a72d
+          python sandbox/collector_journeys/independent-collector-eval-v1/run.py --repo-root /tmp/collector-baseline-024a72d --manifest "$PWD/catalog-build-manifest-source-binding-v1.json" --db /tmp/review-catalog.sqlite3 --build-report /tmp/review-catalog-build-report.json --output /tmp/independent-collector-baseline-report.json --label baseline-024a72d79f30198301ca538cc818d07577343195
+      - name: Execute the frozen independent collector evaluation
+        if: ${{ !cancelled() }}
+        run: python sandbox/collector_journeys/independent-collector-eval-v1/run.py --repo-root . --manifest catalog-build-manifest-source-binding-v1.json --db /tmp/review-catalog.sqlite3 --build-report /tmp/review-catalog-build-report.json --output /tmp/independent-collector-eval-report.json --label "$GITHUB_SHA"
+      - name: Preserve independent diagnostic receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-review-receipts
+          path: |
+            /tmp/recommendation-review-report.json
+            /tmp/legacy-review-report.json
+            /tmp/pilot-review-report.json
+            /tmp/runtime-review-report.json
+            /tmp/http-concurrency-review-report.json
+            /tmp/caller-concurrency-review-report.json
+            /tmp/caller-concurrency-review-report.journal.jsonl
+            /tmp/mixed-caller-capacity-review-report.json
+            /tmp/mixed-caller-capacity-review-report.journal.jsonl
+            /tmp/character-gap-review-report.json
+            /tmp/independent-collector-eval-report.json
+            /tmp/independent-collector-eval-report.summary.json
+            /tmp/independent-collector-baseline-report.json
+            /tmp/independent-collector-baseline-report.summary.json
+            /tmp/review-catalog-build-report.json
+          if-no-files-found: ignore

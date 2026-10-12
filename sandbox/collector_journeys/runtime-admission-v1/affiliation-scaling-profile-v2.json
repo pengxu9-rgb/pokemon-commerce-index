@@ -1,0 +1,20 @@
+{
+  "before_7382318": {
+    "status": "ok",
+    "seconds": 5.213660590001382,
+    "sql_statements": 129,
+    "sqlite_progress_callbacks": 147858,
+    "affiliations": 27
+  },
+  "after_batch": {
+    "status": "ok",
+    "seconds": 0.2258019900036743,
+    "sql_statements": 56,
+    "sqlite_progress_callbacks": 6447,
+    "affiliations": 27
+  },
+  "output_equivalent": true,
+  "fixture_scope": "synthetic70k+27targets+1correction;2497officialoverlays; unchanged productioneffectiveviews; synthetic qualified support",
+  "published_baseline_sha256": "738be34a1cfc8b2d222a040953ade70f0b6e98c54dcb1044112a9cb6749f5980",
+  "baseline_git_blob_sha": "0b110665e92b30dd2aee38b213ca21563bdba645"
+}

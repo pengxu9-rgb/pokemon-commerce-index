@@ -1,0 +1,451 @@
+{
+  "schema": "pokemon.collector-http-concurrency.v1",
+  "fixture_label": "synthetic",
+  "catalog_records": 70028,
+  "catalog_sha256": "9cb0206ac823c32a0f24ac5fb1690a963bc30a4488a76358c21c0319a01a66ec",
+  "catalog_unchanged": true,
+  "axis": {
+    "facet_type": "illustrator",
+    "value": "Fixture Artist",
+    "catalog_axis_records": 10000,
+    "profile": {
+      "preferred_illustrators": [
+        "Fixture Artist"
+      ]
+    },
+    "inventory_question": "Cards by Fixture Artist"
+  },
+  "startup_seconds": 1.0113,
+  "configured_workers": "server_default",
+  "client_timeout_seconds": 10,
+  "cpu_affinity_count": 9,
+  "process_peak_rss_mib": 107.04,
+  "cases": [
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.7688
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.8265
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.8222
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_distinct_preferences",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.7426
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "first_use",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 143909,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 3.3347
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "inventory_bounded_pool",
+      "phase": "warm",
+      "clients": 1,
+      "results": [
+        {
+          "status": 200,
+          "error": null,
+          "response_bytes": 143909,
+          "coverage": {
+            "scoped_catalog_records": 10000,
+            "asserted_owned_records": 0,
+            "possible_owned_records": 0,
+            "not_in_resolved_inventory": 10000,
+            "unresolved_inventory_entries": 0,
+            "unknown_inventory_may_cover_missing_records": false,
+            "returned": 5,
+            "offset": 0,
+            "limit": 5,
+            "has_more": true
+          },
+          "catalog_revision": null,
+          "exercised_pool_records": 10000,
+          "gates_closed": true,
+          "elapsed_seconds": 3.21
+        }
+      ],
+      "counts": {
+        "accepted": 1,
+        "deadline": 0,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 9.0653
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0008
+      },
+      "wall_seconds": 9.0675,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.0
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 2,
+      "results": [
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2525
+        },
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.7953
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0019
+      },
+      "wall_seconds": 8.7964,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 1,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.0
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 4,
+      "results": [
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2544
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2534
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2542
+        },
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.6344
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0024
+      },
+      "wall_seconds": 8.6356,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 3,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.0
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "simultaneous_burst",
+      "clients": 16,
+      "results": [
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2562
+        },
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 9.0082
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0134
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0126
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2557
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0065
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0114
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0136
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0148
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0099
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0154
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2557
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.2567
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0112
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0105
+        },
+        {
+          "status": 503,
+          "error": "catalog_busy",
+          "response_bytes": 25,
+          "elapsed_seconds": 0.0079
+        }
+      ],
+      "health": {
+        "status": 200,
+        "error": null,
+        "response_bytes": 12,
+        "elapsed_seconds": 0.0155
+      },
+      "wall_seconds": 9.0174,
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 15,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": 0.0
+    },
+    {
+      "case": "recommendation_20_turn_pages",
+      "phase": "after_bursts_recovery",
+      "clients": 1,
+      "results": [
+        {
+          "status": 504,
+          "error": "catalog_work_budget_exceeded",
+          "response_bytes": 41,
+          "elapsed_seconds": 8.9395
+        }
+      ],
+      "counts": {
+        "accepted": 0,
+        "deadline": 1,
+        "transport_errors": 0,
+        "overloaded": 0,
+        "snapshot_changed": 0,
+        "other": 0
+      },
+      "accepted_throughput_per_second": null
+    }
+  ],
+  "health_counts": {
+    "accepted": 4,
+    "failed": 0,
+    "max_elapsed_seconds": 0.0155
+  },
+  "limits": {
+    "process_peak_rss_mib": 450,
+    "health_seconds": 1
+  },
+  "deployment_scope": "Local actual HTTP, no Node token acquisition or deployed Cloud Run measurement. Overload is unsuccessful work and remains in every denominator.",
+  "passed": false,
+  "fixture_scope": "70k filler+27synthetic-qualifiedtargets+1currentcorrection;2497activeofficialoverlays;10000artistpool; productioneffectiveviews"
+}

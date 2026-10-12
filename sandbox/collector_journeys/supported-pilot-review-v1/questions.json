@@ -1,0 +1,1008 @@
+{
+  "schema": "pokemon.supported-collector-pilot-questions.v1",
+  "frozen_at": "2026-10-03T23:18:51Z",
+  "source_ref": "https://github.com/pengxu9-rgb/pokemon-commerce-index/blob/f499b46f7f0898c5c0478c53fef960d435f1765f/catalog/supported-discovery-v1/supported-cards.jsonl",
+  "source_selection_independent_of_runtime": false,
+  "authorship": "Independent review worker, after reading code and source-support records; frozen before first full-catalog run. Not a blinded held-out or real-user evaluation.",
+  "reference_scope": "Required anchors come only from existing source-supported SV4A records; other returned records are reported as research candidates, not treated as false positives. Full-catalog reference truth is unavailable.",
+  "questions": [
+    {
+      "id": "pilot-01",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 191/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:191/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "191/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-02",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 236/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:236/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "236/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-03",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 327/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:327/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "327/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-04",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 328/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:328/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "328/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-05",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 331/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:331/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "331/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-06",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 343/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:343/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "343/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-07",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 347/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:347/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "347/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-08",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 348/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:348/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "348/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-09",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 349/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:349/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "349/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-10",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 350/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:350/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "350/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-11",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese SV4A 351/190"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:351/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "351/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-12",
+      "family": "source_coordinate",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "日本語 SV4A 360/190 のカード"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:360/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A",
+          "collector_number": "360/190"
+        }
+      }
+    },
+    {
+      "id": "pilot-13",
+      "family": "collector_continuation",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "Japanese"
+        },
+        {
+          "type": "reply",
+          "text": "Mew"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "required_anchor_ids": [
+          "ja:SV4A:327/190:holo",
+          "ja:SV4A:347/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A"
+        }
+      }
+    },
+    {
+      "id": "pilot-14",
+      "family": "collector_continuation",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "Japanese"
+        },
+        {
+          "type": "reply",
+          "text": "Pikachu"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "required_anchor_ids": [
+          "ja:SV4A:236/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A"
+        }
+      }
+    },
+    {
+      "id": "pilot-15",
+      "family": "collector_continuation",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "Japanese"
+        },
+        {
+          "type": "reply",
+          "text": "Charizard"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "required_anchor_ids": [
+          "ja:SV4A:331/190:holo",
+          "ja:SV4A:349/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A"
+        }
+      }
+    },
+    {
+      "id": "pilot-16",
+      "family": "collector_continuation",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "Japanese"
+        },
+        {
+          "type": "reply",
+          "text": "Gardevoir"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "required_anchor_ids": [
+          "ja:SV4A:328/190:holo",
+          "ja:SV4A:348/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A"
+        }
+      }
+    },
+    {
+      "id": "pilot-17",
+      "family": "collector_continuation",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "下一步应该收藏什么？"
+        },
+        {
+          "type": "reply",
+          "text": "日文"
+        },
+        {
+          "type": "reply",
+          "text": "梦幻"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "required_anchor_ids": [
+          "ja:SV4A:327/190:holo",
+          "ja:SV4A:347/190:holo"
+        ],
+        "returned_scope": {
+          "language": "ja",
+          "set_code": "SV4A"
+        }
+      }
+    },
+    {
+      "id": "pilot-18",
+      "family": "comparison_choice",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Compare Japanese SV4A 327/190 and Japanese SV4A 347/190"
+        },
+        {
+          "type": "choose_comparison",
+          "side": "right",
+          "card_id": "ja:SV4A:347/190:holo"
+        },
+        {
+          "type": "select",
+          "card_id": "ja:SV4A:347/190:holo"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:347/190:holo"
+        ],
+        "target_card_id": "ja:SV4A:347/190:holo",
+        "status": "catalog_target_selected"
+      }
+    },
+    {
+      "id": "pilot-19",
+      "family": "comparison_choice",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Compare Japanese SV4A 328/190 and Japanese SV4A 348/190"
+        },
+        {
+          "type": "choose_comparison",
+          "side": "right",
+          "card_id": "ja:SV4A:348/190:holo"
+        },
+        {
+          "type": "select",
+          "card_id": "ja:SV4A:348/190:holo"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:348/190:holo"
+        ],
+        "target_card_id": "ja:SV4A:348/190:holo",
+        "status": "catalog_target_selected"
+      }
+    },
+    {
+      "id": "pilot-20",
+      "family": "comparison_choice",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Compare Japanese SV4A 331/190 and Japanese SV4A 349/190"
+        },
+        {
+          "type": "choose_comparison",
+          "side": "right",
+          "card_id": "ja:SV4A:349/190:holo"
+        },
+        {
+          "type": "select",
+          "card_id": "ja:SV4A:349/190:holo"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:349/190:holo"
+        ],
+        "target_card_id": "ja:SV4A:349/190:holo",
+        "status": "catalog_target_selected"
+      }
+    },
+    {
+      "id": "pilot-21",
+      "family": "comparison_choice",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Compare Japanese SV4A 343/190 and Japanese SV4A 351/190"
+        },
+        {
+          "type": "choose_comparison",
+          "side": "right",
+          "card_id": "ja:SV4A:351/190:holo"
+        },
+        {
+          "type": "select",
+          "card_id": "ja:SV4A:351/190:holo"
+        }
+      ],
+      "expect": {
+        "task": "exact_coordinates",
+        "required_anchor_ids": [
+          "ja:SV4A:351/190:holo"
+        ],
+        "target_card_id": "ja:SV4A:351/190:holo",
+        "status": "catalog_target_selected"
+      }
+    },
+    {
+      "id": "pilot-22",
+      "family": "inventory",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Mew cards"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        },
+        {
+          "type": "inventory",
+          "owned_items": [
+            {
+              "item_id": "owned-mew",
+              "card_id": "ja:SV4A:327/190:holo"
+            }
+          ]
+        }
+      ],
+      "expect": {
+        "required_anchor_ids": [
+          "ja:SV4A:347/190:holo"
+        ],
+        "absent_ids": [
+          "ja:SV4A:327/190:holo"
+        ],
+        "selection_allowed": true
+      }
+    },
+    {
+      "id": "pilot-23",
+      "family": "inventory",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Mew cards"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        },
+        {
+          "type": "inventory",
+          "owned_items": [
+            {
+              "item_id": "uncertain-mew",
+              "language": "ja",
+              "set_code": "SV4A",
+              "collector_number": "327/190"
+            }
+          ]
+        }
+      ],
+      "expect": {
+        "required_anchor_ids": [
+          "ja:SV4A:347/190:holo"
+        ],
+        "absent_ids": [
+          "ja:SV4A:327/190:holo"
+        ],
+        "selection_allowed": false,
+        "required_blockers": [
+          "owned_inventory_resolution"
+        ]
+      }
+    },
+    {
+      "id": "pilot-24",
+      "family": "inventory",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Mew cards"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        },
+        {
+          "type": "inventory",
+          "owned_items": [
+            {
+              "item_id": "unidentified",
+              "card_id": "ja:UNKNOWN:999/999:unknown"
+            }
+          ]
+        }
+      ],
+      "expect": {
+        "required_anchor_ids": [
+          "ja:SV4A:327/190:holo",
+          "ja:SV4A:347/190:holo"
+        ],
+        "selection_allowed": false,
+        "required_blockers": [
+          "owned_inventory_resolution"
+        ]
+      }
+    },
+    {
+      "id": "pilot-25",
+      "family": "inventory",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Mew cards"
+        },
+        {
+          "type": "refine",
+          "scope": {
+            "set_code": "SV4A"
+          }
+        },
+        {
+          "type": "inventory",
+          "owned_items": [
+            {
+              "item_id": "mew-ssr",
+              "card_id": "ja:SV4A:327/190:holo"
+            },
+            {
+              "item_id": "mew-sar",
+              "card_id": "ja:SV4A:347/190:holo"
+            }
+          ]
+        }
+      ],
+      "expect": {
+        "absent_ids": [
+          "ja:SV4A:327/190:holo",
+          "ja:SV4A:347/190:holo"
+        ]
+      }
+    },
+    {
+      "id": "pilot-26",
+      "family": "honest_limits",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "English"
+        }
+      ],
+      "expect": {
+        "task": "collection_preferences_needed",
+        "selection_allowed": false,
+        "target_card_id": null
+      }
+    },
+    {
+      "id": "pilot-27",
+      "family": "honest_limits",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "quiet scenes and nostalgia"
+        }
+      ],
+      "expect": {
+        "selection_allowed": false,
+        "target_card_id": null
+      }
+    },
+    {
+      "id": "pilot-28",
+      "family": "honest_limits",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Where can I buy the cheapest Japanese SV4A Mew?"
+        }
+      ],
+      "expect": {
+        "task": "market_evidence_needed",
+        "selection_allowed": false,
+        "target_card_id": null
+      }
+    },
+    {
+      "id": "pilot-29",
+      "family": "broad_research_artist",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese cards by Yuka Morii"
+        }
+      ],
+      "expect": {
+        "task": "artist_cards",
+        "returned_scope": {
+          "language": "ja"
+        }
+      }
+    },
+    {
+      "id": "pilot-30",
+      "family": "broad_research_artist",
+      "limit": 50,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Japanese cards illustrated by Akira Egawa"
+        }
+      ],
+      "expect": {
+        "task": "artist_cards",
+        "returned_scope": {
+          "language": "ja"
+        }
+      }
+    },
+    {
+      "id": "pilot-31",
+      "family": "broad_research_recommendation",
+      "limit": 5,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "I completed my Pikachu collection. What should I collect next?"
+        },
+        {
+          "type": "reply",
+          "text": "English"
+        },
+        {
+          "type": "reply",
+          "text": "Mew"
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "returned_facet": {
+          "field": "dex_id",
+          "value": 151
+        },
+        "returned_scope": {
+          "language": "en"
+        }
+      }
+    },
+    {
+      "id": "pilot-32",
+      "family": "broad_research_recommendation",
+      "limit": 5,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards"
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "returned_facet": {
+          "field": "dex_id",
+          "value": 25
+        },
+        "returned_scope": {
+          "language": "ja"
+        }
+      }
+    },
+    {
+      "id": "pilot-33",
+      "family": "broad_research_recommendation",
+      "limit": 5,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese cards by Yuka Morii"
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "returned_facet": {
+          "field": "illustrator",
+          "value": "Yuka Morii"
+        },
+        "returned_scope": {
+          "language": "ja"
+        }
+      }
+    },
+    {
+      "id": "pilot-34",
+      "family": "broad_research_recommendation",
+      "limit": 5,
+      "turns": [
+        {
+          "type": "ask",
+          "question": "Recommend Japanese Pikachu cards"
+        },
+        {
+          "type": "preferences",
+          "preferences": {
+            "collecting": {
+              "preferred_releases": [
+                {
+                  "language": "ja",
+                  "set_code": "SV4A"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "expect": {
+        "task": "collector_recommendations",
+        "returned_scope": {
+          "language": "ja"
+        }
+      }
+    }
+  ],
+  "source_evidence_blob_sha": "0fb5b33a8565f3cd6a81b8c6f0e4174afa19289e",
+  "frozen_before_first_full_catalog_run": true,
+  "expected_cohort_card_ids": [
+    "ja:SV4A:191/190:holo",
+    "ja:SV4A:192/190:holo",
+    "ja:SV4A:193/190:holo",
+    "ja:SV4A:194/190:holo",
+    "ja:SV4A:195/190:holo",
+    "ja:SV4A:196/190:holo",
+    "ja:SV4A:197/190:holo",
+    "ja:SV4A:198/190:holo",
+    "ja:SV4A:199/190:holo",
+    "ja:SV4A:200/190:holo",
+    "ja:SV4A:201/190:holo",
+    "ja:SV4A:202/190:holo",
+    "ja:SV4A:203/190:holo",
+    "ja:SV4A:204/190:holo",
+    "ja:SV4A:205/190:holo",
+    "ja:SV4A:206/190:holo",
+    "ja:SV4A:207/190:holo",
+    "ja:SV4A:208/190:holo",
+    "ja:SV4A:209/190:holo",
+    "ja:SV4A:210/190:holo",
+    "ja:SV4A:211/190:holo",
+    "ja:SV4A:212/190:holo",
+    "ja:SV4A:213/190:holo",
+    "ja:SV4A:214/190:holo",
+    "ja:SV4A:215/190:holo",
+    "ja:SV4A:216/190:holo",
+    "ja:SV4A:217/190:holo",
+    "ja:SV4A:218/190:holo",
+    "ja:SV4A:219/190:holo",
+    "ja:SV4A:220/190:holo",
+    "ja:SV4A:221/190:holo",
+    "ja:SV4A:222/190:holo",
+    "ja:SV4A:223/190:holo",
+    "ja:SV4A:224/190:holo",
+    "ja:SV4A:225/190:holo",
+    "ja:SV4A:226/190:holo",
+    "ja:SV4A:227/190:holo",
+    "ja:SV4A:228/190:holo",
+    "ja:SV4A:229/190:holo",
+    "ja:SV4A:230/190:holo",
+    "ja:SV4A:231/190:holo",
+    "ja:SV4A:232/190:holo",
+    "ja:SV4A:233/190:holo",
+    "ja:SV4A:234/190:holo",
+    "ja:SV4A:235/190:holo",
+    "ja:SV4A:236/190:holo",
+    "ja:SV4A:237/190:holo",
+    "ja:SV4A:238/190:holo",
+    "ja:SV4A:239/190:holo",
+    "ja:SV4A:240/190:holo",
+    "ja:SV4A:241/190:holo",
+    "ja:SV4A:242/190:holo",
+    "ja:SV4A:243/190:holo",
+    "ja:SV4A:244/190:holo",
+    "ja:SV4A:245/190:holo",
+    "ja:SV4A:246/190:holo",
+    "ja:SV4A:247/190:holo",
+    "ja:SV4A:248/190:holo",
+    "ja:SV4A:249/190:holo",
+    "ja:SV4A:320/190:holo",
+    "ja:SV4A:321/190:holo",
+    "ja:SV4A:322/190:holo",
+    "ja:SV4A:323/190:holo",
+    "ja:SV4A:324/190:holo",
+    "ja:SV4A:325/190:holo",
+    "ja:SV4A:326/190:holo",
+    "ja:SV4A:327/190:holo",
+    "ja:SV4A:328/190:holo",
+    "ja:SV4A:329/190:holo",
+    "ja:SV4A:330/190:holo",
+    "ja:SV4A:331/190:holo",
+    "ja:SV4A:332/190:holo",
+    "ja:SV4A:333/190:holo",
+    "ja:SV4A:334/190:holo",
+    "ja:SV4A:335/190:holo",
+    "ja:SV4A:336/190:holo",
+    "ja:SV4A:337/190:holo",
+    "ja:SV4A:338/190:holo",
+    "ja:SV4A:339/190:holo",
+    "ja:SV4A:340/190:holo",
+    "ja:SV4A:341/190:holo",
+    "ja:SV4A:342/190:holo",
+    "ja:SV4A:343/190:holo",
+    "ja:SV4A:344/190:holo",
+    "ja:SV4A:345/190:holo",
+    "ja:SV4A:346/190:holo",
+    "ja:SV4A:347/190:holo",
+    "ja:SV4A:348/190:holo",
+    "ja:SV4A:349/190:holo",
+    "ja:SV4A:350/190:holo",
+    "ja:SV4A:351/190:holo",
+    "ja:SV4A:352/190:holo",
+    "ja:SV4A:353/190:holo",
+    "ja:SV4A:354/190:holo",
+    "ja:SV4A:355/190:holo",
+    "ja:SV4A:356/190:holo",
+    "ja:SV4A:357/190:holo",
+    "ja:SV4A:358/190:holo",
+    "ja:SV4A:359/190:holo",
+    "ja:SV4A:360/190:holo"
+  ],
+  "expected_current_supported_records": 100,
+  "broad_research_questions_added_before_first_full_catalog_run_at": "2026-10-03T23:22:00Z"
+}

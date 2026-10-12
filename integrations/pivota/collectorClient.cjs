@@ -84,6 +84,14 @@ function requestFor(session, action, limit) {
 }
 function validateResult(result, request) {
   const invalid = () => { throw new CollectorCallError('invalid_catalog_response'); };
+  const likedIds = new Set();
+  for (const action of request.turns) {
+    if (action.type === 'ask') likedIds.clear();
+    if (action.type === 'feedback') {
+      if (action.reaction === 'like') likedIds.add(action.card_id);
+      else likedIds.delete(action.card_id);
+    }
+  }
   if (!result || result.schema !== 'pokemon.collector-journey.v1'
       || !STATUSES.has(result.status) || !/^[a-f0-9]{64}$/.test(result.catalog_revision)
       || result.turn_count !== request.turns.length || !Array.isArray(result.trace)
@@ -109,7 +117,7 @@ function validateResult(result, request) {
         || recommendation.preference_evidence !== 'user_assertion_only'
         || typeof recommendation.candidate_pool_complete !== 'boolean'
         || recommendation.global_catalog_completeness_established !== false
-        || recommendation.coverage_basis !== 'current_source_declared_catalog_and_facets_only'
+        || !['current_catalog_facets_and_reviewed_name_affiliations_only', 'current_source_declared_catalog_and_facets_only'].includes(recommendation.coverage_basis)
         || recommendation.budget_fit !== 'unknown_no_live_price'
         || recommendation.grade_availability !== 'unknown_no_copy_offers'
         || !['collector_recommendations', 'collection_preferences_needed'].includes(result.discovery?.task)
@@ -127,6 +135,48 @@ function validateResult(result, request) {
           || !Array.isArray(item.reasons) || !item.reasons.length
           || !Array.isArray(item.tradeoffs) || item.tradeoffs.some(t => typeof t !== 'string')) invalid();
       for (const reason of item.reasons) {
+        if (reason.field === 'character_name_affiliation') {
+          const card = result.candidate_cards[i];
+          const fields = ['field', 'value', 'basis', 'source_ref', 'target_name', 'base_name_ja',
+            'mechanic', 'source_asserted_dex_id', 'anchor_evidence', 'anchor_count',
+            'anchor_evidence_sha256', 'derivation', 'affiliated_card_id', 'affiliation_role', 'preference_origin'];
+          if (recommendation.coverage_basis !== 'current_catalog_facets_and_reviewed_name_affiliations_only'
+              || !exactKeys(reason, fields) || reason.basis !== 'source_name_character_affiliation'
+              || reason.derivation !== 'exact_pinned_ex_name_to_unanimous_current_name_facets.v1'
+              || !Number.isInteger(reason.value) || reason.value < 1 || reason.value > 1025
+              || reason.source_asserted_dex_id !== false || reason.mechanic !== 'EX'
+              || typeof reason.source_ref !== 'string' || !reason.source_ref
+              || typeof reason.target_name !== 'string' || !reason.target_name || reason.target_name.length > 160
+              || typeof reason.base_name_ja !== 'string' || !reason.base_name_ja
+              || reason.target_name !== reason.base_name_ja + 'ex'
+              || typeof reason.affiliated_card_id !== 'string' || !reason.affiliated_card_id.startsWith('ja:')
+              || !['candidate', 'liked_example'].includes(reason.affiliation_role)
+              || !['explicit_preference', 'liked_example'].includes(reason.preference_origin)
+              || (reason.affiliation_role === 'candidate' && (reason.affiliated_card_id !== card.card_id
+                || reason.target_name !== card.name || reason.source_ref !== card.provenance))
+              || (reason.affiliation_role === 'liked_example' && (reason.preference_origin !== 'liked_example'
+                || !likedIds.has(reason.affiliated_card_id)))
+              || (reason.affiliated_card_id === card.card_id && (reason.target_name !== card.name
+                || reason.source_ref !== card.provenance))
+              || (reason.affiliation_role === 'liked_example' && !item.reasons.some(candidate =>
+                (candidate.field === 'dex_id' && candidate.value === reason.value
+                  && candidate.basis === 'liked_example_catalog_facet')
+                || (candidate.field === 'character_name_affiliation' && candidate.value === reason.value
+                  && candidate.affiliation_role === 'candidate' && candidate.affiliated_card_id === card.card_id
+                  && candidate.preference_origin === 'liked_example')))
+              || !(reason.preference_origin === 'explicit_preference' ? item.explicit_match_axes : item.liked_example_match_axes).includes('character')
+              || !Number.isInteger(reason.anchor_count) || reason.anchor_count < 1
+              || !/^[a-f0-9]{64}$/.test(reason.anchor_evidence_sha256)
+              || !Array.isArray(reason.anchor_evidence) || reason.anchor_evidence.length !== 1) invalid();
+          for (const anchor of reason.anchor_evidence) {
+            if (!exactKeys(anchor, ['card_id', 'name', 'dex_id', 'provenance', 'rights_reference'])
+                || typeof anchor.card_id !== 'string' || !anchor.card_id.startsWith('ja:')
+                || anchor.card_id === reason.affiliated_card_id || anchor.name !== reason.base_name_ja
+                || anchor.dex_id !== reason.value || typeof anchor.provenance !== 'string' || !anchor.provenance
+                || typeof anchor.rights_reference !== 'string' || !anchor.rights_reference) invalid();
+          }
+          continue;
+        }
         const fields = reason.field === 'language_set_coordinate' ? ['field', 'value', 'basis', 'source_ref'] : ['field', 'value', 'basis', 'source_ref', 'rights_reference'];
         if (!exactKeys(reason, fields) || !['dex_id', 'illustrator', 'language_set_coordinate'].includes(reason.field)
             || !['catalog_facet', 'liked_example_catalog_facet', 'catalog_coordinate'].includes(reason.basis)
@@ -188,94 +238,256 @@ function validateResult(result, request) {
   }
   return result;
 }
-async function readBounded(response, maxBytes) {
-  const declared = response.headers.get('content-length');
-  if (declared && (!/^\d+$/.test(declared) || Number(declared) > maxBytes)) {
-    await response.body?.cancel(); throw new CollectorCallError('response_too_large');
+// These helpers never await cleanup or telemetry supplied by dependencies. A
+// cancelled fetch/token provider may ignore AbortSignal; a single independent
+// watchdog bounds asynchronous waits, and guards keep late results from advancing
+// an expired attempt. JavaScript timers cannot preempt synchronous dependency
+// code or a blocked event loop; callbacks must not do blocking CPU work.
+function bestEffort(callback, settled = () => {}) {
+  try { Promise.resolve(callback()).then(() => settled('settled'), () => settled('failed')); }
+  catch { settled('failed'); }
+}
+function responseDiagnostics(headers) {
+  const id = headers.get('x-collector-request-id');
+  const timing = {receive: null, queue: null, compute: null};
+  const seen = new Set();
+  for (const part of (headers.get('server-timing') || '').split(',')) {
+    const match = /^(receive|queue|compute);\s*dur=(\d+(?:\.\d+)?)$/.exec(part.trim());
+    if (!match) continue;
+    const [, key, raw] = match; const value = Number(raw);
+    timing[key] = !seen.has(key) && Number.isFinite(value) && value >= 0 ? value : null;
+    seen.add(key);
   }
+  return {request_id: typeof id === 'string' && /^[a-f0-9]{32}$/.test(id) ? id : null,
+    server_timing_ms: Object.freeze(timing)};
+}
+function throwIfCancelled(signal) {
+  if (signal?.aborted) throw new CollectorCallError('catalog_cancelled');
+}
+function retrySleep(ms, signal) {
+  throwIfCancelled(signal);
+  if (!ms) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const finish = error => {
+      clearTimeout(timer); signal?.removeEventListener('abort', abort);
+      if (error) reject(error); else resolve();
+    };
+    const abort = () => finish(new CollectorCallError('catalog_cancelled'));
+    const timer = setTimeout(() => finish(), ms);
+    signal?.addEventListener('abort', abort, {once: true});
+    if (signal?.aborted) abort();
+  });
+}
+async function readBounded(response, maxBytes, guard) {
+  const declared = response.headers.get('content-length');
+  if (declared && (!/^\d+$/.test(declared) || Number(declared) > maxBytes))
+    throw new CollectorCallError('response_too_large');
   if (!response.body) throw new CollectorCallError('invalid_catalog_response');
   const reader = response.body.getReader(); const chunks = []; let total = 0;
-  try {
-    while (true) {
-      const {done, value} = await reader.read(); if (done) break;
-      total += value.byteLength;
-      if (total > maxBytes) throw new CollectorCallError('response_too_large');
-      chunks.push(Buffer.from(value));
-    }
-  } finally { await reader.cancel().catch(() => {}); }
+  guard.setCleanup(() => {
+    // Native cancellation may close the stream while its underlying source's
+    // cancel promise never settles. Release our reader independently, including
+    // when a custom cancel method throws synchronously.
+    try { return reader.cancel(); }
+    finally { bestEffort(() => reader.releaseLock?.()); }
+  });
+  while (true) {
+    guard.ensureActive();
+    const {done, value} = await reader.read();
+    guard.ensureActive();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) throw new CollectorCallError('response_too_large');
+    chunks.push(Buffer.from(value));
+  }
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
   catch { throw new CollectorCallError('invalid_catalog_response'); }
 }
 
 function createCollectorClient({baseUrl, getIdToken, fetchImpl = globalThis.fetch,
-  allowLoopback = false, timeoutMs = 10000, retryDelayMs = 200, maxResponseBytes = 8 * 1024 * 1024} = {}) {
+  allowLoopback = false, timeoutMs = 10000, retryDelayMs = 200, maxResponseBytes = 8 * 1024 * 1024,
+  onAttempt} = {}) {
   let base; try { base = new URL(baseUrl); } catch { throw new CollectorCallError('invalid_service_url'); }
   const local = allowLoopback && base.protocol === 'http:' && base.hostname === '127.0.0.1';
   if ((!local && base.protocol !== 'https:') || base.username || base.password
       || base.search || base.hash || base.pathname !== '/') throw new CollectorCallError('invalid_service_url');
   if ((!local && typeof getIdToken !== 'function') || typeof fetchImpl !== 'function'
+      || (onAttempt !== undefined && typeof onAttempt !== 'function')
       || !Number.isInteger(timeoutMs) || timeoutMs < 50 || timeoutMs > 30000
       || !Number.isInteger(retryDelayMs) || retryDelayMs < 0 || retryDelayMs > 1000
       || !Number.isInteger(maxResponseBytes) || maxResponseBytes < 1024 || maxResponseBytes > 16 * 1024 * 1024)
     throw new CollectorCallError('invalid_client_configuration');
   const audience = base.origin;
-  async function advance({session = null, action, limit = 5} = {}) {
+  // Only connector-owned error classes can appear in telemetry or error text.
+  // Dependency errors (including thrown CollectorCallError objects) are mapped
+  // at the auth/fetch boundary instead of exposing provider-controlled details.
+  const safeCodes = new Set(['catalog_cancelled', 'catalog_timeout', 'catalog_auth_unavailable',
+    'catalog_work_budget_exceeded', 'catalog_snapshot_changed', 'catalog_temporarily_unavailable',
+    'catalog_access_denied', 'catalog_http_error', 'invalid_catalog_response',
+    'response_too_large', 'catalog_rejected_action', 'catalog_transport_error', 'invalid_caller_state']);
+  function sanitizedFailure(error) {
+    // Dependencies can throw exported errors with mutable/throwing accessors or
+    // proxy prototypes. Snapshot each field once inside the defensive boundary.
+    try {
+      if (error instanceof CollectorCallError) {
+        const code = error.code;
+        const retryable = error.retryable === true;
+        if (safeCodes.has(code)) return new CollectorCallError(code, retryable);
+      }
+    } catch {}
+    return new CollectorCallError('catalog_transport_error', true);
+  }
+  async function advance({session = null, action, limit = 5, signal} = {}) {
+    if (signal !== undefined && signal !== null && !(signal instanceof AbortSignal))
+      throw new CollectorCallError('invalid_cancellation_signal');
+    throwIfCancelled(signal);
     const request = requestFor(session, action, limit); const body = JSON.stringify(request);
     for (let attempt = 0; attempt < 2; attempt++) {
-      const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const headers = {'Content-Type': 'application/json'};
-        if (getIdToken) {
-          let token;
-          try { token = await Promise.race([getIdToken(audience, {signal: controller.signal}),
-            new Promise((_, reject) => controller.signal.addEventListener('abort',
-              () => reject(new CollectorCallError('catalog_timeout', true)), {once: true}))]); }
-          catch (err) {
-            if (err instanceof CollectorCallError) throw err;
-            throw new CollectorCallError('catalog_auth_unavailable');
+      throwIfCancelled(signal);
+      let retryWaitMs = retryDelayMs;
+      const controller = new AbortController();
+      const started = performance.now();
+      let phase = getIdToken ? 'auth' : 'fetch'; let phaseStarted = started;
+      const timings = {auth: null, fetch: null, body: null};
+      let httpStatus = null; let diagnostics = responseDiagnostics(new Headers());
+      let stopError; let rejectStopped; let cleanupAction;
+      let cleanupState = 'not_needed'; let cleanupRequested = false;
+      const stopped = new Promise((_, reject) => { rejectStopped = reject; });
+      const setPhase = next => {
+        if (Object.hasOwn(timings, phase)) timings[phase] = performance.now() - phaseStarted;
+        phase = next; phaseStarted = performance.now();
+      };
+      const cleanup = () => {
+        if (!cleanupAction || cleanupRequested) return;
+        cleanupRequested = true; cleanupState = 'requested';
+        bestEffort(cleanupAction, state => { cleanupState = state; });
+      };
+      const stop = error => {
+        if (stopError) return;
+        stopError = error; rejectStopped(error);
+        controller.abort(); cleanup();
+      };
+      const guard = {
+        ensureActive() {
+          if (signal?.aborted) stop(new CollectorCallError('catalog_cancelled'));
+          if (!stopError && performance.now() - started >= timeoutMs)
+            stop(new CollectorCallError('catalog_timeout', true));
+          if (stopError) throw stopError;
+        },
+        setCleanup(callback) {
+          cleanupAction = callback;
+          // A dependency can synchronously abort while handing us a reader.
+          // Adopting that new resource needs its own cleanup even if the prior
+          // body-level cancellation was already requested while it was locked.
+          cleanupRequested = false;
+          if (stopError) cleanup();
+        },
+      };
+      const timer = setTimeout(() => stop(new CollectorCallError('catalog_timeout', true)), timeoutMs);
+      const abort = () => stop(new CollectorCallError('catalog_cancelled'));
+      signal?.addEventListener('abort', abort, {once: true});
+      const execute = async () => {
+        try {
+          guard.ensureActive();
+          const headers = {'Content-Type': 'application/json'};
+          if (getIdToken) {
+            let token;
+            try { token = await getIdToken(audience, {signal: controller.signal}); }
+            catch { guard.ensureActive(); throw new CollectorCallError('catalog_auth_unavailable'); }
+            guard.ensureActive();
+            if (typeof token !== 'string' || !token || /[\r\n]/.test(token))
+              throw new CollectorCallError('catalog_auth_unavailable');
+            headers.Authorization = 'Bearer ' + token;
+            setPhase('fetch');
           }
-          if (typeof token !== 'string' || !token || /[\r\n]/.test(token))
-            throw new CollectorCallError('catalog_auth_unavailable');
-          headers.Authorization = 'Bearer ' + token;
-        }
-        const response = await fetchImpl(new URL('/collector-journey', base),
-          {method: 'POST', headers, body, redirect: 'error', signal: controller.signal});
-        if ([429, 502, 503, 504].includes(response.status)) {
-          await response.body?.cancel(); throw new CollectorCallError('catalog_temporarily_unavailable', true);
-        }
-        if ([401, 403].includes(response.status)) {
-          await response.body?.cancel(); throw new CollectorCallError('catalog_access_denied');
-        }
-        if (response.status !== 200 && response.status !== 400) {
-          await response.body?.cancel(); throw new CollectorCallError('catalog_http_error');
-        }
-        if (!(response.headers.get('content-type') || '').toLowerCase().startsWith('application/json'))
-          throw new CollectorCallError('invalid_catalog_response');
-        const result = await readBounded(response, maxResponseBytes);
-        if (response.status === 400) {
-          if (request.expected_revision && result.error ===
-              'catalog or journey policy changed; replay without the old revision and reconfirm the target')
-            return {schema: 'pokemon.pivota-collector-call.v1', status: 'catalog_changed',
-              session: null, result: null, target_intent: null,
-              next_step: {field: 'restart_and_reconfirm',
-                prompt: 'The catalog changed. Start the collection question again and reconfirm the target.'}};
-          throw new CollectorCallError('catalog_rejected_action');
-        }
-        validateResult(result, request);
-        return {schema: 'pokemon.pivota-collector-call.v1', status: 'accepted',
-          session: {schema: SESSION, turns: jsonCopy(request.turns), limit: request.limit,
-            expected_revision: result.catalog_revision}, result,
-          target_intent: result.target_intent, next_step: result.next_step};
+          let response;
+          try {
+            response = await fetchImpl(new URL('/collector-journey', base),
+              {method: 'POST', headers, body, redirect: 'error', signal: controller.signal});
+          } catch { guard.ensureActive(); throw new CollectorCallError('catalog_transport_error', true); }
+          // A fetch that ignored cancellation can resolve after this attempt's
+          // watchdog. Dispose that late response without consuming its body.
+          guard.setCleanup(() => response.body?.cancel());
+          guard.ensureActive();
+          setPhase('headers');
+          httpStatus = Number.isInteger(response.status) && response.status >= 100 && response.status <= 599
+            ? response.status : null;
+          if (onAttempt) diagnostics = responseDiagnostics(response.headers);
+          // These explicit rejections cannot improve by replaying the same
+          // expensive transcript immediately. Preserve the caller session.
+          const runtimeError = response.headers.get('x-collector-error');
+          if ((response.status === 504 && runtimeError === 'catalog_work_budget_exceeded')
+              || (response.status === 503 && runtimeError === 'catalog_snapshot_changed'))
+            throw new CollectorCallError(runtimeError);
+          if ([429, 502, 503, 504].includes(response.status)) {
+            const retryAfter = response.headers.get('retry-after');
+            if (response.status === 503 && runtimeError === 'catalog_busy'
+                && retryAfter !== null && /^\d+$/.test(retryAfter))
+              retryWaitMs = Math.max(retryDelayMs, Math.min(1000, Number(retryAfter) * 1000));
+            throw new CollectorCallError('catalog_temporarily_unavailable', true);
+          }
+          if ([401, 403].includes(response.status)) throw new CollectorCallError('catalog_access_denied');
+          if (response.status !== 200 && response.status !== 400) throw new CollectorCallError('catalog_http_error');
+          if (!(response.headers.get('content-type') || '').toLowerCase().startsWith('application/json'))
+            throw new CollectorCallError('invalid_catalog_response');
+          setPhase('body');
+          const result = await readBounded(response, maxResponseBytes, guard);
+          guard.ensureActive();
+          setPhase('validate');
+          if (response.status === 400) {
+            if (request.expected_revision && result?.error ===
+                'catalog or journey policy changed; replay without the old revision and reconfirm the target')
+              return {schema: 'pokemon.pivota-collector-call.v1', status: 'catalog_changed',
+                session: null, result: null, target_intent: null,
+                next_step: {field: 'restart_and_reconfirm',
+                  prompt: 'The catalog changed. Start the collection question again and reconfirm the target.'}};
+            throw new CollectorCallError('catalog_rejected_action');
+          }
+          validateResult(result, request);
+          guard.ensureActive();
+          return {schema: 'pokemon.pivota-collector-call.v1', status: 'accepted',
+            session: {schema: SESSION, turns: jsonCopy(request.turns), limit: request.limit,
+              expected_revision: result.catalog_revision}, result,
+            target_intent: result.target_intent, next_step: result.next_step};
+        } finally { cleanup(); }
+      };
+      let call; let failure;
+      try {
+        call = await Promise.race([execute(), stopped]);
+        guard.ensureActive();
+        setPhase('complete');
       } catch (error) {
-        const safe = error instanceof CollectorCallError ? error :
-          new CollectorCallError(controller.signal.aborted ? 'catalog_timeout' : 'catalog_transport_error', true);
-        if (!safe.retryable || attempt === 1) throw safe;
-      } finally { clearTimeout(timer); }
-      if (retryDelayMs) await new Promise(resolve => setTimeout(resolve, retryDelayMs));
+        failure = stopError || sanitizedFailure(error);
+        controller.abort(); cleanup();
+      } finally {
+        clearTimeout(timer); signal?.removeEventListener('abort', abort);
+      }
+      const retry = !!failure?.retryable && attempt === 0 && !signal?.aborted;
+      if (onAttempt) {
+        const ended = performance.now();
+        const duration = key => {
+          const value = key === phase ? ended - phaseStarted : timings[key];
+          return value === null ? null : Math.round(value * 1000) / 1000;
+        };
+        // Deliberately allowlisted values only: no URL, raw headers, token,
+        // body, exception message/reason, question, session or target evidence.
+        // cleanup_state is its state at emission, not proof of remote teardown.
+        const event = Object.freeze({schema: 'pokemon.collector-attempt.v1', attempt: attempt + 1,
+          outcome: failure ? 'error' : call.status, phase,
+          duration_ms: Math.round((ended - started) * 1000) / 1000,
+          auth_ms: duration('auth'), headers_ms: duration('fetch'), body_ms: duration('body'),
+          http_status: httpStatus, ...diagnostics, error_class: failure?.code || null,
+          retryable: !!failure?.retryable, retry_delay_ms: retry ? retryWaitMs : 0,
+          abort_requested: controller.signal.aborted, cleanup_state: cleanupState});
+        bestEffort(() => onAttempt(event));
+      }
+      if (!failure) return call;
+      if (!retry) throw failure;
+      await retrySleep(retryWaitMs, signal);
     }
   }
-  return Object.freeze({advance, start: ({question, limit = 5} = {}) =>
-    advance({action: {type: 'ask', question}, limit})});
+  return Object.freeze({advance, start: ({question, limit = 5, signal} = {}) =>
+    advance({action: {type: 'ask', question}, limit, signal})});
 }
 
 module.exports = {createCollectorClient, CollectorCallError};
