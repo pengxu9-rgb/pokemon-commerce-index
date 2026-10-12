@@ -4,7 +4,9 @@ This is the evidence-only portion of the reviewed collector journey revision:
 twenty evidence tables and five view definitions retain their reviewed data
 encoding. Version2 additionally binds the complete stored main schema (including
 column types, collations, indexes, triggers and intermediate views), encoding,
-application ID and user version. It deliberately does not read runtime
+application ID and user version. Explicit version3 additionally binds locale,
+provider mappings, concept revisions/reviews and identity quarantine rows. The
+version2 default is retained for historical fixtures. It deliberately does not read runtime
 source files, mutable conversation state, or market state. The two documented
 build-time timestamp normalizations are the only excluded evidence fields.
 """
@@ -16,6 +18,7 @@ import json
 
 
 SCHEMA = 'pokemon.collector-catalog-evidence.v2'
+LOCALIZED_SCHEMA = 'pokemon.collector-catalog-evidence.v3'
 VIEW_NAMES = (
     'active_card_metadata_evidence', 'discovery_card_facet',
     'base_discovery_card_facet', 'active_source_correction_evidence',
@@ -62,7 +65,7 @@ def encoded_schema_record(db):
         ensure_ascii=False, separators=(',', ':')).encode() + b'\n'
 
 
-def catalog_evidence_digest(db):
+def catalog_evidence_digest(db, *, schema=SCHEMA):
     """Return evidence identity without writes, source reads, or row-factory edits.
 
     ``db`` is an existing SQLite connection, ideally opened read-only. Callers
@@ -70,14 +73,16 @@ def catalog_evidence_digest(db):
     before and after their measurement. This digest permits only the original
     review's narrow bookkeeping differences between equivalent database builds.
     """
-    digest = hashlib.sha256(SCHEMA.encode())
+    if schema not in (SCHEMA,LOCALIZED_SCHEMA):raise ValueError('unsupported catalog evidence schema')
+    tables=TABLE_NAMES if schema==SCHEMA else TABLE_NAMES+('catalog_identity_quarantine','catalog_locale_evidence','catalog_source_mapping','bilingual_concept_revision','concept_review_event')
+    digest = hashlib.sha256(schema.encode())
     digest.update(encoded_schema_record(db))
     for name in VIEW_NAMES:
         definition = db.execute(
             "SELECT sql FROM sqlite_master WHERE type='view' AND name=?", (name,)
         ).fetchone()
         digest.update(json.dumps([name, definition[0] if definition else None]).encode())
-    for table in TABLE_NAMES:
+    for table in tables:
         if not db.execute('SELECT 1 FROM sqlite_master WHERE name=?', (table,)).fetchone():
             continue
         columns = [row[1] for row in db.execute('PRAGMA table_info(' + table + ')')]

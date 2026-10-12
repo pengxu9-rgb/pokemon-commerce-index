@@ -64,7 +64,7 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           CPU="$(python -c 'import os; print(min(os.sched_getaffinity(0)))')"
-          timeout 300s python -m scripts.benchmark_collector_mixed --db /tmp/review-catalog.sqlite3 --workload tests/fixtures/collector-mixed-workload-v1.json --cpu "$CPU" --output /tmp/mixed-caller-capacity-review-report.json
+          timeout 300s python -m scripts.benchmark_collector_mixed --db /tmp/review-catalog.sqlite3 --workload tests/fixtures/collector-mixed-workload-v2.json --cpu "$CPU" --output /tmp/mixed-caller-capacity-review-report.json
       - name: Build staging image from the same manifest
         id: container_build
         if: ${{ !cancelled() }}
