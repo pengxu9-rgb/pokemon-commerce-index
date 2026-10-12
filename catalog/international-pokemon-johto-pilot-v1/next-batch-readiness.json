@@ -1,0 +1,1476 @@
+{
+  "schema": "pokemon.bounded-next-batch-readiness.v1",
+  "applied": false,
+  "inspected_at": "2026-10-12T12:56:43.237471+00:00",
+  "qualification_packet": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/stage16-next-qualification.json",
+  "qualification_packet_sha256": "79a243ce9e9f1115a9d82affef7ff9364f33f689ba6bb3d271c2b78f42d97085",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "input_database": "/Users/pengchydan/Documents/Codex/2026-10-11/implement-a-staged-international-pok-mon/work/expanded.sqlite3",
+  "input_database_sha256": "5289fb3167fe193257e4d58e715f9600a8f585443fdb9c61563aecd8c80f86cf",
+  "authorized_inventory_entries": 153,
+  "english_card_source_entries_examined": 40,
+  "english_card_source_scan_errors": [],
+  "candidates": [
+    {
+      "label": "Hoppip",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 187,
+      "identity": {
+        "card_id": "ja:SM12A:004/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "004/173",
+        "variant": "normal",
+        "name": "ハネッコ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/004.ts:sha256:bec3174802cb4202248e387f158dc2ae945f770ff425e54c737681e15fda21b0",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/004.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "d0793f1349d8300d843a1f67204fbc2ddf6bb537",
+        "sha256": "bec3174802cb4202248e387f158dc2ae945f770ff425e54c737681e15fda21b0",
+        "bytes": 768,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "ハネッコ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:004/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Skiploom",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 188,
+      "identity": {
+        "card_id": "ja:SM12A:005/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "005/173",
+        "variant": "normal",
+        "name": "ポポッコ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/005.ts:sha256:dbc4cf0143c35c30842b546ef99d67c0546a63b9f37eca1c9201f45b7ca2d6de",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/005.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "b0ba1f556a7b3a17437fac9294c89cfe73c1dea4",
+        "sha256": "dbc4cf0143c35c30842b546ef99d67c0546a63b9f37eca1c9201f45b7ca2d6de",
+        "bytes": 1239,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "ポポッコ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:005/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Jumpluff",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 189,
+      "identity": {
+        "card_id": "ja:SM12A:006/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "006/173",
+        "variant": "normal",
+        "name": "ワタッコ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/006.ts:sha256:6e98bd8273bafd9a89bd9a1a03f39da34d1e1649357acb177b9d56c23bfab6bf",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/006.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "c9112d4f5b6887c332bfe23de591e7c3c3b47570",
+        "sha256": "6e98bd8273bafd9a89bd9a1a03f39da34d1e1649357acb177b9d56c23bfab6bf",
+        "bytes": 974,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "ワタッコ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:006/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Shuckle",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 213,
+      "identity": {
+        "card_id": "ja:SM12A:007/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "007/173",
+        "variant": "normal",
+        "name": "ツボツボ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/007.ts:sha256:f71cb9081e30232bf39e1fb3346415cd019c0f0efbdff2b3ec5c87dedce84881",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/007.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "542466bfd8981db504dc59bec71c85d6ef439f99",
+        "sha256": "f71cb9081e30232bf39e1fb3346415cd019c0f0efbdff2b3ec5c87dedce84881",
+        "bytes": 1209,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "ツボツボ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:007/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Tyrogue",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 236,
+      "identity": {
+        "card_id": "ja:SM12A:068/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "068/173",
+        "variant": "normal",
+        "name": "バルキー",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/068.ts:sha256:6d4b7b03e24cb39a9fd97ae7894a6c965d5b684392496e99b1dd6ac8396bff88",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/068.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "188213ca628823a51b39025f2175bac4e2e576a2",
+        "sha256": "6d4b7b03e24cb39a9fd97ae7894a6c965d5b684392496e99b1dd6ac8396bff88",
+        "bytes": 909,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "バルキー"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:068/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Cleffa",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 173,
+      "identity": {
+        "card_id": "ja:SM12A:096/173:normal",
+        "language": "ja",
+        "set_code": "SM12A",
+        "collector_number": "096/173",
+        "variant": "normal",
+        "name": "ピィ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a/096.ts:sha256:59b386c7a7f3709d881932bb17ec2d27af7ac969ab4f9ff30e156c1feb59c404",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM12a/096.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "5ef7ef1aca6e576223f269bfb6061da2b4388bb3",
+        "sha256": "59b386c7a7f3709d881932bb17ec2d27af7ac969ab4f9ff30e156c1feb59c404",
+        "bytes": 939,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "ピィ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM12A",
+        "name": "TAG TEAM GX タッグオールスターズ",
+        "release_date": "2019-10-04",
+        "official_card_count": 173,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM12a.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM12a.ts",
+        "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+        "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+        "facts": {
+          "provider_set_id": "SM12a",
+          "name": "TAG TEAM GX タッグオールスターズ",
+          "release_date": "2019-10-04",
+          "declared_official_card_count": 173,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM12A:096/173:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Slugma",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 218,
+      "identity": {
+        "card_id": "ja:SM8B:010/150:normal",
+        "language": "ja",
+        "set_code": "SM8B",
+        "collector_number": "010/150",
+        "variant": "normal",
+        "name": "マグマッグ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b/010.ts:sha256:319fd79169703fc2894975fe33023c69e7e6480957d1cd2113659ddaeba18a9d",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM8b/010.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "ba797a14840b2372486413d6c284a8f391721b1a",
+        "sha256": "319fd79169703fc2894975fe33023c69e7e6480957d1cd2113659ddaeba18a9d",
+        "bytes": 926,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "マグマッグ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM8B",
+        "name": "GXウルトラシャイニー",
+        "release_date": "2018-10-05",
+        "official_card_count": 150,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM8b.ts",
+        "git_blob": "ddc36ad5c2ad9952f55a519a97d66a448ed6e5d0",
+        "sha256": "6ae64a476008d212f842e5437ed2a0f3f4e8aa08e4139991a4810ea4e668162d",
+        "facts": {
+          "provider_set_id": "SM8b",
+          "name": "GXウルトラシャイニー",
+          "release_date": "2018-10-05",
+          "declared_official_card_count": 150,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM8B:010/150:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "label": "Magcargo",
+      "label_scope": "user-requested species label only; no name-pair approval",
+      "dex_id": 219,
+      "identity": {
+        "card_id": "ja:SM8B:011/150:normal",
+        "language": "ja",
+        "set_code": "SM8B",
+        "collector_number": "011/150",
+        "variant": "normal",
+        "name": "マグカルゴ",
+        "rarity": "None",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b/011.ts:sha256:c2398d51801492a9e554a2a6c36acd7da48ef8352960b9f077552b6a5d234c8b",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data-asia/SM/SM8b/011.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "249c3c74f5065b8c9449bf6e4ccaf0e9234135ae",
+        "sha256": "c2398d51801492a9e554a2a6c36acd7da48ef8352960b9f077552b6a5d234c8b",
+        "bytes": 1049,
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded"
+      },
+      "raw_localized_names": {
+        "ja": "マグカルゴ"
+      },
+      "release_snapshot": {
+        "language": "ja",
+        "set_code": "SM8B",
+        "name": "GXウルトラシャイニー",
+        "release_date": "2018-10-05",
+        "official_card_count": 150,
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SM/SM8b.ts",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "display_allowed": 0
+      },
+      "release_header": {
+        "native_id": "data-asia/SM/SM8b.ts",
+        "git_blob": "ddc36ad5c2ad9952f55a519a97d66a448ed6e5d0",
+        "sha256": "6ae64a476008d212f842e5437ed2a0f3f4e8aa08e4139991a4810ea4e668162d",
+        "facts": {
+          "provider_set_id": "SM8b",
+          "name": "GXウルトラシャイニー",
+          "release_date": "2018-10-05",
+          "declared_official_card_count": 150,
+          "date_kind": "shared_scalar_provider_date",
+          "date_scope": "provider_declaration_not_region_or_initial_vs_copy_release_verified"
+        }
+      },
+      "cached_source_tuple_and_header_checks_passed": true,
+      "eligible_unbound_sibling_ids": [
+        "ja:SM8B:011/150:normal"
+      ],
+      "complete_eligible_unbound_group": true,
+      "existing_localized_binding": false,
+      "independent_semantic_name_review": false,
+      "exact_english_bare_name_source_witnesses_in_packet": [],
+      "qualified_ready_to_import": false,
+      "confidence": {
+        "pinned_source_bytes": 1.0,
+        "source_tuple": 1.0,
+        "semantic_translation": null,
+        "physical_printing": null
+      },
+      "blockers": [
+        "No exact English bare-name/singleton-Dex card witness in the permitted packet inventory",
+        "Independent full-name semantic review not performed"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    }
+  ],
+  "cached_japanese_candidate_ids": [
+    "ja:SM12A:004/173:normal",
+    "ja:SM12A:005/173:normal",
+    "ja:SM12A:006/173:normal",
+    "ja:SM12A:007/173:normal",
+    "ja:SM12A:068/173:normal",
+    "ja:SM12A:096/173:normal",
+    "ja:SM8B:010/150:normal",
+    "ja:SM8B:011/150:normal"
+  ],
+  "cached_candidates": 8,
+  "source_tuple_and_raw_header_checks_passed_candidates": 8,
+  "complete_eligible_unbound_groups": 8,
+  "candidate_by_set": {
+    "SM12A": 6,
+    "SM8B": 2
+  },
+  "exact_english_bare_name_witness_files_in_permitted_inventory": 0,
+  "independently_reviewed_name_pairs": 0,
+  "qualified_ready_to_import_records": 0,
+  "current_name_bound_candidate_ids": 0,
+  "new_identities": 0,
+  "new_bindings": 0,
+  "new_reviews": 0,
+  "new_images": 0,
+  "new_prices": 0,
+  "next_justified_step": "Qualify exact English bare-name/Dex witnesses for these eight identities under a separately bounded source-inventory decision using existing authorized cached metadata. Then obtain independent exact full-name semantic review, recheck complete groups and measured query gaps, and propose at most eight Japanese bindings plus justified English comparison witnesses. This packet alone supplies zero complete bilingual review pairs and supports no next import.",
+  "hundred_level_supported": false,
+  "scale_limit": "Only eight existing Japanese IDs across two releases are evidenced here. Hundreds would require additional qualified source and semantic evidence, not padding or broader unreviewed cache enumeration.",
+  "demand": "Japan-to-US objective; actual species/release query demand unmeasured",
+  "authorized_supply": "Internal metadata only; live Buy&Ship stock unmeasured",
+  "scope": "Only the 153 paths already hash-bound in the current qualification packet were read. Other catalog/cache English records were not qualified or counted. Cached Japanese source tuples are not verified physical printings or approved translations.",
+  "source_inventory": {
+    "data-asia/PMCG/PMCG1/062.ts": {
+      "git_blob": "45db3371cf72a4074e03b536ded117b4b021c9aa",
+      "sha256": "35f6fe53f476b8b273d3fd8f0e4e6996284ae26febded0a0a9e9337b5eb19d81",
+      "bytes": 880
+    },
+    "data-asia/PMCG/PMCG1.ts": {
+      "git_blob": "51ae082860cf6e9df5000553cd1b97ccacdc332c",
+      "sha256": "85686e18fa0a15155a12907ef2f2a3c961b75b6a9be394cb5e738eb3064d892b",
+      "bytes": 238
+    },
+    "data/Scarlet & Violet/151/020.ts": {
+      "git_blob": "6a38fd19012d13113f029e4501e70ec87222cb1c",
+      "sha256": "58178a28de1b8f11461e6d0c655cae936fa0a13438c56ccc332a6e62a7935309",
+      "bytes": 2145
+    },
+    "data/Scarlet & Violet/151.ts": {
+      "git_blob": "9beb49e95513181eaea7d0ba096b258d12d24008",
+      "sha256": "00878d874a829a2bbfee8348b2e0797839305e146586a8faf4869fe2a5626e2e",
+      "bytes": 419
+    },
+    "data-asia/SV/SV2a/020.ts": {
+      "git_blob": "98876a994e1af38056b96c56a35beb40133ecd3c",
+      "sha256": "3412a1ee4874761138331da8513f47bb02f7aa67ba1e80bc6d952ff77942f671",
+      "bytes": 2386
+    },
+    "data-asia/SV/SV2a.ts": {
+      "git_blob": "a459f3bf7e475241955464c210049afc5266ab7e",
+      "sha256": "a9c27017a1b1afce71dca355c15c2ca02ded082fe18bb30806d2bc3c287523be",
+      "bytes": 502
+    },
+    "data-asia/PMCG/PMCG1/063.ts": {
+      "git_blob": "64b825ce8d50a0d6b2cc62b87aa02553fea177ad",
+      "sha256": "748dc480c7b8b4271d6746fc7cd0c745e9895fc439a806fb682d75c352e6a8fa",
+      "bytes": 1085
+    },
+    "data/Scarlet & Violet/151/083.ts": {
+      "git_blob": "d1ece25b54ee2538aa13b00253738d7f251a9d41",
+      "sha256": "0b76af2e4ca421b3631e276ff4432924dcbab8b65fa3ec38732318c52ff6bcdf",
+      "bytes": 1713
+    },
+    "data-asia/SV/SV2a/083.ts": {
+      "git_blob": "f817873f92710649a1088e40029c0b1243825b50",
+      "sha256": "dbdf50a5655f11525b842e25436d8a2ee03af6a4659cfd787b0cf51a9c9542a2",
+      "bytes": 2069
+    },
+    "data-asia/PMCG/PMCG1/064.ts": {
+      "git_blob": "d7c300f775f677893436d5e328aebed4a415d935",
+      "sha256": "af202de2fb39d4a5b3e97c165b162251b3bcd1bc8ba7a403b12b07a8bb6986e8",
+      "bytes": 952
+    },
+    "data/Scarlet & Violet/151/137.ts": {
+      "git_blob": "5df588d336ffd9198e50aee3771e3f8bad08e874",
+      "sha256": "751ff751635b578b9c509d09d4c424b12fb68effe9ab2fa47d7f25020fd1792a",
+      "bytes": 2472
+    },
+    "data-asia/SV/SV2a/137.ts": {
+      "git_blob": "ebd674476a44a137efddb868d9b125ffc22a240f",
+      "sha256": "703fe3c8c0a4556f5c4185254ad248c4f488a7876597b2b3833e3cd401baac9e",
+      "bytes": 3319
+    },
+    "data-asia/PMCG/PMCG1/065.ts": {
+      "git_blob": "1514ea1e236826bfc6d2ae179fbf53384ee98e43",
+      "sha256": "28e8ff461efa58acecbb28884b09cc0fdfe0ab529e717300298f5f2935198630",
+      "bytes": 607
+    },
+    "data/Scarlet & Violet/151/147.ts": {
+      "git_blob": "cdf7113718fed2b761ca3e22b58f9c3875d9b276",
+      "sha256": "5542cc5fa04e688b4c1d0d2230a985ce879a521c218001cb31e8a31b37033901",
+      "bytes": 1313
+    },
+    "data-asia/SV/SV2a/147.ts": {
+      "git_blob": "156e0efc6e0a5595883d0cdb8b0d867f4d46c5fc",
+      "sha256": "7903328c2dfcfaa52f2d4aa676124340de3567d4a6678260dd198c6d3e61cdd3",
+      "bytes": 1664
+    },
+    "data-asia/PMCG/PMCG1/066.ts": {
+      "git_blob": "50ad9b55d571e0e8d66ce525a2cca7404fa4af7c",
+      "sha256": "d9a77b9dd531a89aa5f07ca713e495c0ebe8d2ff61319151060ae87c9707c5b0",
+      "bytes": 1087
+    },
+    "data/Scarlet & Violet/151/017.ts": {
+      "git_blob": "f5ff236be61a3931157edad7a9985950116d7874",
+      "sha256": "8ae23ed7190d0637e9a6401e00d6929116fbf7830a6cbf964b8a0a91bae77221",
+      "bytes": 1333
+    },
+    "data-asia/SV/SV2a/017.ts": {
+      "git_blob": "19d936471adfb5a29a9f7d17e7a043355ba74591",
+      "sha256": "647227e6b3dee6f06214915c30f6b02e44130bc8d766220fbd7b19d77bed1628",
+      "bytes": 1608
+    },
+    "data-asia/PMCG/PMCG1/067.ts": {
+      "git_blob": "9d30283ca21b74fba9825bd35d98d81731ce9b3b",
+      "sha256": "6d1f6046b54e9b6e23b4aa291227193170a7cdd4fb2c41c2f9a7a457ddf45861",
+      "bytes": 983
+    },
+    "data/Scarlet & Violet/151/035.ts": {
+      "git_blob": "50c672a0dcab9977fe02280fe83dfe635bd94a4c",
+      "sha256": "c6d53eee014cf7fb5b9deb4754f11cf761add42a9aa953cfeafeaa5df454a77b",
+      "bytes": 2129
+    },
+    "data-asia/SV/SV2a/035.ts": {
+      "git_blob": "f2c933f4798e814929d7b2f8ecb410084b67cd87",
+      "sha256": "1cb81067b2571564c506ffe0f0737f74f0a7ff845b04a9cdba3b7b6f9e559966",
+      "bytes": 2492
+    },
+    "data-asia/PMCG/PMCG1/068.ts": {
+      "git_blob": "2bb90870b2d22a2091b881a5e009a3217fdd5037",
+      "sha256": "5503377617c9b13e01a0931c873902eab98186b707aa161055ac4a251ae92b00",
+      "bytes": 1074
+    },
+    "data/Scarlet & Violet/151/113.ts": {
+      "git_blob": "b109009c929f83d339614cc04a168595c432acb2",
+      "sha256": "48f9eaf8c8b88cb6151b16e676ab35699e5828c6858d5dcbdb7d32db815cd4db",
+      "bytes": 3364
+    },
+    "data-asia/SV/SV2a/113.ts": {
+      "git_blob": "100e89027b2ed47ae76e9905af9c824c2be928a9",
+      "sha256": "36183145c09a1a8b01d8f13893798adf5edc7719b6eea21c0058d75742b0252c",
+      "bytes": 3509
+    },
+    "data-asia/PMCG/PMCG1/069.ts": {
+      "git_blob": "9310ad8749828f76c34f785a21ac14739eff5112",
+      "sha256": "78f190dc324692fa2b9e63e58c9b9edf9f30ea64932dfa6d52f4a207ab2bf6e7",
+      "bytes": 1079
+    },
+    "data/Scarlet & Violet/151/148.ts": {
+      "git_blob": "27c5d209de4f9b7479dba78260607d5c6e0a7aec",
+      "sha256": "e2ec5ddb9a2721eb7f0d0052700d847843434971917aebac70f0f3d9694a5ba1",
+      "bytes": 1889
+    },
+    "data-asia/SV/SV2a/148.ts": {
+      "git_blob": "735bb5283e8108eabe47c9e51e91a23afff30a86",
+      "sha256": "55bcd274327a4c1570050f7db6e6e3a9c35949673b5d02b7473a95935415503c",
+      "bytes": 2170
+    },
+    "data-asia/PMCG/PMCG3/043.ts": {
+      "git_blob": "a1c0583c4227f4cd76f37d1abea62bf1a9814c03",
+      "sha256": "448f4759b009d433f7cfb6202d53f9327c4b1d55a51967a49cf8337d2f767416",
+      "bytes": 991
+    },
+    "data-asia/PMCG/PMCG3.ts": {
+      "git_blob": "7e2031c834e8747bb76908276d3c1f07faa53f12",
+      "sha256": "8204a08eda80d4c7382f38157f9c0f098143015e3cdee9a96ce0552c8b234361",
+      "bytes": 237
+    },
+    "data/Scarlet & Violet/151/149.ts": {
+      "git_blob": "36a7ca76455e713a969099f4a72fdcaeb60826eb",
+      "sha256": "8243bd9f80b20bf2cfaa4d72c81d06ae577765473691806f645977024130f0fb",
+      "bytes": 2319
+    },
+    "data-asia/SV/SV2a/149.ts": {
+      "git_blob": "28e6ad244e3b579ca3aef83bc4926f3eb88d258a",
+      "sha256": "8a7d6a33ef0cadf9b83a3bd883127cdfd9ed41bd55334c7100dce3ce2be36d0c",
+      "bytes": 2761
+    },
+    "data/Sun & Moon/Hidden Fates/46.ts": {
+      "git_blob": "4af762468c9cb4da2c886f6d1ff17f9f06d6b9b7",
+      "sha256": "34590aa1a0c80e9fcd65bfb3892e12ec8187417b82599d2d1009427c0f11ad5a",
+      "bytes": 1184
+    },
+    "data/Sun & Moon/Hidden Fates.ts": {
+      "git_blob": "baf96122dc8bedbf9ff9effa255ee06b5d622b9e",
+      "sha256": "ed32023d4107b8de3a7cd160bc1c1a981032fac2d265edceca9b51a767a84f34",
+      "bytes": 516
+    },
+    "data/Sun & Moon/Hidden Fates/39.ts": {
+      "git_blob": "a6c4c1b4315b2ce31f64ce46d800c23c52a70807",
+      "sha256": "561428f1833940ab65c4885c86192d52c492f016be8f1d907af5de1dee32d39f",
+      "bytes": 1125
+    },
+    "data/Sun & Moon/Unified Minds/149.ts": {
+      "git_blob": "c277199ca524da11cb141c581542cf0d5fde08fe",
+      "sha256": "9d06511f37e5b6115ef5731cde9b5dd85ed15294c754973a8a672549b6b0c5d5",
+      "bytes": 2147
+    },
+    "data/Sun & Moon/Unified Minds.ts": {
+      "git_blob": "b3f0db4d515e743362c3629660c0d25ea72c6149",
+      "sha256": "d52aa38ca1e8ba5aa5967f0fe84481f7f83ebf6b270bcc1a3d018a837888fb33",
+      "bytes": 515
+    },
+    "data/Sun & Moon/Unified Minds/151.ts": {
+      "git_blob": "ce65f220a24dcef0c4bb3c353466f5a4d0c2dbfc",
+      "sha256": "71b9e31784822dc867f01cd5aa230c2cb44315afa5151cbc0e44ff2f0effe693",
+      "bytes": 2987
+    },
+    "data/Sun & Moon/Unified Minds/147.ts": {
+      "git_blob": "6254be77dfaaddcd0daf0445e95d3ba112b924f0",
+      "sha256": "58743fa60661d7399a2f549745b3c67f25f1cce4f9d662f4c9cdcb3eeb03a2e0",
+      "bytes": 2077
+    },
+    "data/Sun & Moon/Unbroken Bonds/154.ts": {
+      "git_blob": "327acfce6006f26bac885d11675d7f7e8dc656df",
+      "sha256": "9bf3315a53357331aed6d235eb742bba1133a2a1b7130e3e7f4fadcf79fca750",
+      "bytes": 2300
+    },
+    "data/Sun & Moon/Unbroken Bonds.ts": {
+      "git_blob": "021848060e6318d8c281737b62b01b1cf658339b",
+      "sha256": "7d56a4267fc29a89f32510064a804a09331bc123f77dff100fdb1ea2e80c33af",
+      "bytes": 528
+    },
+    "data-asia/S/S12a/036.ts": {
+      "git_blob": "cc22728f1e8ab81cd857661343bb3dbf52ff486b",
+      "sha256": "9661966351be3bd15cf5ffc2b1448b7f2bd104200bd6d2ba7401fd1aa7b43fe6",
+      "bytes": 1561
+    },
+    "data-asia/S/S12a.ts": {
+      "git_blob": "a700a45d4857a9170ccca534ffb4a73ef6f8145d",
+      "sha256": "5ca74d35c7e9725f4a8c0af37e7fe3716c741fb89e04fe061530f00d3ecb5f81",
+      "bytes": 497
+    },
+    "data-asia/S/S12a/037.ts": {
+      "git_blob": "45866e4aee8cf0fc8b48c9b9b07b2d225e87ba24",
+      "sha256": "01e2639d7fecc7d76d60bf36e5855fa94320c13dd17acc92efe2b83bee577ef2",
+      "bytes": 2228
+    },
+    "data-asia/S/S12a/118.ts": {
+      "git_blob": "df999819eb44d81af13b68029d64588b10f6b5df",
+      "sha256": "790b3c37e21fbd577883b9d4ded109df8f644daa5a88591f2f2a0ce74fb1bd04",
+      "bytes": 2037
+    },
+    "data-asia/S/S12a/119.ts": {
+      "git_blob": "f8c9f6a63386b006cf6d7d86e1c6547e288a55fa",
+      "sha256": "31455d23357544d69a5f09c2be3b3c30ad0c4c4a2fe1c0f624064d671cc6e53a",
+      "bytes": 2260
+    },
+    "data-asia/S/S12a/198.ts": {
+      "git_blob": "bb34c93a55114c2ec6ffcdd17eff01453e9bb2f0",
+      "sha256": "14e08f79445565742e10896d8bdb6268e49a34758820c4ecd30b96d246219a97",
+      "bytes": 1353
+    },
+    "data-asia/S/S12a/199.ts": {
+      "git_blob": "d48c7f0555938a7ff4cb6846f4e073138669e52a",
+      "sha256": "a899004bcc6569236b7ca5af3489e600d4390210765b815214c18756b3624aea",
+      "bytes": 1469
+    },
+    "data-asia/S/S12a/209.ts": {
+      "git_blob": "37174241fba4d9a292df0ea71d74f4bd079cf69f",
+      "sha256": "56963df88adacdfe76717a3b8c7ecc4646427888cb520750503c859a4cff79a2",
+      "bytes": 1107
+    },
+    "data-asia/S/S8b/026.ts": {
+      "git_blob": "791614cac3d6967f3d9525dfefd935590578f397",
+      "sha256": "92d610b45a4554fb7e73977804a7cce0d87e6149a5169b924acea7448354d9ac",
+      "bytes": 1827
+    },
+    "data-asia/S/S8b.ts": {
+      "git_blob": "9a2e9524e3b8d3bfd85e7a0f0f4f08fa6ef9d818",
+      "sha256": "8d1b4da70018abfad085f3964aa6e00ba2c0ebc37d1ae9f2183ad62dd2e22844",
+      "bytes": 482
+    },
+    "data-asia/S/S8b/030.ts": {
+      "git_blob": "2ed3924405ff0bd4f9ae8b99293212e645f2aed3",
+      "sha256": "c6d48458228383a4d552150a796f45ad6417235e8273c512b21c5a91da8d0823",
+      "bytes": 1146
+    },
+    "data-asia/S/S8b/031.ts": {
+      "git_blob": "a3cc499a6e102dc525a11490e85d1a777c823354",
+      "sha256": "7e37ee4cc97fcc9b6606165dd84ab780f9fa6d885e7a04172aaab8b28e43100e",
+      "bytes": 1676
+    },
+    "data-asia/S/S8b/051.ts": {
+      "git_blob": "9f0222f5a3bafbf00bbae3987c21497398859ca8",
+      "sha256": "09f2f2524b3c19025a030309ace4dd8052b504a9eb2505187899e3ed7f2311f4",
+      "bytes": 1403
+    },
+    "data-asia/S/S8b/052.ts": {
+      "git_blob": "bd0265a55d2c5c86c8df29ae59be99d6ad54d347",
+      "sha256": "eb5e8497e42bf9108617285b47c2e591c6f9e59b1dd687735093083d7bed02ec",
+      "bytes": 1542
+    },
+    "data-asia/S/S8b/097.ts": {
+      "git_blob": "890e1cad0ff08d315c53c915bbef744b44e2c95c",
+      "sha256": "6e3fe686153bb33038b3d165c1b28e4dea451bf6063c64606ee2387d396406de",
+      "bytes": 1150
+    },
+    "data-asia/S/S8b/098.ts": {
+      "git_blob": "2284752e2fc8a7ff278fe8796d020744ece085ed",
+      "sha256": "ab7207b8113347236317786f38d21f183dbd01ccd8dec037cc8f1bd711e6751d",
+      "bytes": 1725
+    },
+    "data-asia/S/S8b/102.ts": {
+      "git_blob": "181ef528ae31099e93ed11c5cc398b01b8a85189",
+      "sha256": "3bdacdec90ac22f7032081d597df7a05c3cf7047f57e010c13cdf76a61f5121b",
+      "bytes": 1005
+    },
+    "data-asia/S/S8b/103.ts": {
+      "git_blob": "726aac310290c2108025052fa0e795ef7f53931a",
+      "sha256": "3c254f2cb4b035a0848945fb9bedc8a70f1677b1ff221ca19722c6de7df42121",
+      "bytes": 1653
+    },
+    "data-asia/S/S8b/190.ts": {
+      "git_blob": "3dda9b6d2da7542894a8382a58cf84cce422ff80",
+      "sha256": "200be83310ad1eadb40b90a7eb85eaa72572215dfc3e524b532f8fa6b78efa8f",
+      "bytes": 1322
+    },
+    "data-asia/S/S8b/191.ts": {
+      "git_blob": "dc0bc9b3b797e629c5ffcf4090739fa4963037af",
+      "sha256": "e8c94f110fe41ec54ffca097b5c2e71fc2a2bff300556d27ff286d5741c6e356",
+      "bytes": 1217
+    },
+    "data-asia/S/S8b/194.ts": {
+      "git_blob": "8be1f7c48f8385635b7df3fff99d53fd1e760c07",
+      "sha256": "9f563047a82e557df002ed719910b131b18caeb4ee8e3dc2df7c75dcedb71970",
+      "bytes": 1116
+    },
+    "data-asia/S/S8b/205.ts": {
+      "git_blob": "a73e256680fee585a99d691273d279c38749ec6d",
+      "sha256": "b25ac80d5b8fb91c950b8ebaeac728cf40fed9bb9d2fcd0c9a74e4a1ff473f10",
+      "bytes": 1229
+    },
+    "data-asia/S/S8b/206.ts": {
+      "git_blob": "362d8144abf6e423f3c870de84be691414c2f640",
+      "sha256": "d62c16415001cea612bab0853ad90d27be6b69e1cfb03e127bedfc8015d6f818",
+      "bytes": 1189
+    },
+    "data-asia/SM/SM12a/004.ts": {
+      "git_blob": "d0793f1349d8300d843a1f67204fbc2ddf6bb537",
+      "sha256": "bec3174802cb4202248e387f158dc2ae945f770ff425e54c737681e15fda21b0",
+      "bytes": 768
+    },
+    "data-asia/SM/SM12a.ts": {
+      "git_blob": "4d2edbb15af3944e1bd129d20422aa74e7391d4c",
+      "sha256": "fb413d88342e7fa18edd6a11d883bf03cf5ac150b5001b2cd50a5ae74fb3153b",
+      "bytes": 342
+    },
+    "data-asia/SM/SM12a/005.ts": {
+      "git_blob": "b0ba1f556a7b3a17437fac9294c89cfe73c1dea4",
+      "sha256": "dbc4cf0143c35c30842b546ef99d67c0546a63b9f37eca1c9201f45b7ca2d6de",
+      "bytes": 1239
+    },
+    "data-asia/SM/SM12a/006.ts": {
+      "git_blob": "c9112d4f5b6887c332bfe23de591e7c3c3b47570",
+      "sha256": "6e98bd8273bafd9a89bd9a1a03f39da34d1e1649357acb177b9d56c23bfab6bf",
+      "bytes": 974
+    },
+    "data-asia/SM/SM12a/007.ts": {
+      "git_blob": "542466bfd8981db504dc59bec71c85d6ef439f99",
+      "sha256": "f71cb9081e30232bf39e1fb3346415cd019c0f0efbdff2b3ec5c87dedce84881",
+      "bytes": 1209
+    },
+    "data-asia/SM/SM12a/044.ts": {
+      "git_blob": "088b03d096fa1cdaa10e88aaf41c4a05851b6920",
+      "sha256": "0fc5b58980417e47387d4ac14d03359a88c295a7c832ad89b5e71aadb60f33f5",
+      "bytes": 915
+    },
+    "data-asia/SM/SM12a/056.ts": {
+      "git_blob": "4140c7e81823c7daa286eaf73a9d4011c4027d59",
+      "sha256": "8cb1e1627a767f99852c3b7dad7f39aeadb6a8bc14e4410a8c1286a236d4d71c",
+      "bytes": 929
+    },
+    "data-asia/SM/SM12a/068.ts": {
+      "git_blob": "188213ca628823a51b39025f2175bac4e2e576a2",
+      "sha256": "6d4b7b03e24cb39a9fd97ae7894a6c965d5b684392496e99b1dd6ac8396bff88",
+      "bytes": 909
+    },
+    "data-asia/SM/SM12a/073.ts": {
+      "git_blob": "9029a9d945f5e236348b9c3e7688f799c55bb590",
+      "sha256": "c39cb707323252206ca382a89b494ae9e0b22ac8b8616f99ffdc2bc9bd8b9879",
+      "bytes": 795
+    },
+    "data-asia/SM/SM12a/096.ts": {
+      "git_blob": "5ef7ef1aca6e576223f269bfb6061da2b4388bb3",
+      "sha256": "59b386c7a7f3709d881932bb17ec2d27af7ac969ab4f9ff30e156c1feb59c404",
+      "bytes": 939
+    },
+    "data-asia/SM/SM8b/010.ts": {
+      "git_blob": "ba797a14840b2372486413d6c284a8f391721b1a",
+      "sha256": "319fd79169703fc2894975fe33023c69e7e6480957d1cd2113659ddaeba18a9d",
+      "bytes": 926
+    },
+    "data-asia/SM/SM8b.ts": {
+      "git_blob": "ddc36ad5c2ad9952f55a519a97d66a448ed6e5d0",
+      "sha256": "6ae64a476008d212f842e5437ed2a0f3f4e8aa08e4139991a4810ea4e668162d",
+      "bytes": 328
+    },
+    "data-asia/SM/SM8b/011.ts": {
+      "git_blob": "249c3c74f5065b8c9449bf6e4ccaf0e9234135ae",
+      "sha256": "c2398d51801492a9e554a2a6c36acd7da48ef8352960b9f077552b6a5d234c8b",
+      "bytes": 1049
+    },
+    "data-asia/SM/SM8b/023.ts": {
+      "git_blob": "f7c5e3e4cceb883bc7d803d6049e6272dd5564d0",
+      "sha256": "3e9fa451ba6ea4933f1ba3a1eee415109c2b29e8a1f3305a6b6bb95885dd9a41",
+      "bytes": 803
+    },
+    "data-asia/SM/SM8b/024.ts": {
+      "git_blob": "5f5de8dee5805ff7d5586b4d383864ade66fdedb",
+      "sha256": "84aa78a31c29f1caebdc091e2a960c023794771af3461e5779c036e361a6bdfc",
+      "bytes": 1170
+    },
+    "data-asia/SM/SM8b/034.ts": {
+      "git_blob": "b4ebddc8e54812ca1c64332bafbce6f61740ed26",
+      "sha256": "dc2280ed61d4379523846e7638cf06add25a7e8d34c0d5ad6b346af1ec32c486",
+      "bytes": 1023
+    },
+    "data-asia/SM/SM8b/054.ts": {
+      "git_blob": "129acfcbf0cd8a9d4e745628e4a7464df94e566f",
+      "sha256": "8844f3dbbfa07d0cd6bf25bc4561128a230753d9c643903aa3b8c113fb2b15d1",
+      "bytes": 1180
+    },
+    "data-asia/SM/SM8b/065.ts": {
+      "git_blob": "9bc4d36789390b5dd71a15238b428d3541e3089b",
+      "sha256": "44dc02cfd46def3ad661926d5f3d939d10f0b344fbd23d69d1c32bfbbd1b7cc9",
+      "bytes": 1142
+    },
+    "data-asia/SM/SM8b/106.ts": {
+      "git_blob": "d62a8706213b5e9f357255d85b8cb3f3983fc8d6",
+      "sha256": "f6cc6e26abf1a6b5eab928f90db7a21b4501af07b6681ed9c38a36475fb565d4",
+      "bytes": 1165
+    },
+    "data-asia/SM/SM8b/169.ts": {
+      "git_blob": "8365c6d7e96023f2f44cf50420143b8179897329",
+      "sha256": "2323b1ee411fa60720f333c4d155ba13fe10df1d848dae3111004d012ab52754",
+      "bytes": 810
+    },
+    "data-asia/SM/SM8b/170.ts": {
+      "git_blob": "8e57161aefb910f88e6de067042bfece43daae09",
+      "sha256": "ab6de47c3751be1ae283a48a4067d06b9fa27c4b1e837e584e5bc5d1912b6d85",
+      "bytes": 1174
+    },
+    "data-asia/SM/SM8b/180.ts": {
+      "git_blob": "c6bad0afcadbde20cdb055d739e2e0230d9d5598",
+      "sha256": "00148eb637e946e5dce194e0bcb3488a3ea478eedf0b8349efbeaaeb01e3108d",
+      "bytes": 1182
+    },
+    "data-asia/SV/SV4a/005.ts": {
+      "git_blob": "5263d65abc19aa51703049b2c55a6e8aa042c556",
+      "sha256": "2725803bd86586e5998756891c78dc4bb80135c13f16f71a68e74ded028cb833",
+      "bytes": 2209
+    },
+    "data-asia/SV/SV4a.ts": {
+      "git_blob": "b4db860e85aa28b4a61b6d5aa95712eff7e0603e",
+      "sha256": "a21a8e39bf8ce84a04ff96dfdae12940c1d00dadeac7357b428e2791a3161265",
+      "bytes": 496
+    },
+    "data-asia/SV/SV4a/006.ts": {
+      "git_blob": "6309f8343e0d63ea398d44fa688e6cd56b36db80",
+      "sha256": "2a3f42d8f1aca312591906eb9775d08b5d0e06cf15bc83d1c8f98c4253631b0e",
+      "bytes": 3186
+    },
+    "data-asia/SV/SV4a/007.ts": {
+      "git_blob": "3d46bf3e37f3c98a069ef85e8af6ab3f6f004856",
+      "sha256": "4408e30788e51b0c4fc07feb44ec0b8b6ae47c7d57199c337e908318eb8ea876",
+      "bytes": 3185
+    },
+    "data-asia/SV/SV4a/008.ts": {
+      "git_blob": "ac2498f4189d7ed7d141d1270e026398fde04245",
+      "sha256": "e791ff7f551e74e02da601a805eeb679c1f4ad33baae2c051b3d9140491d24f4",
+      "bytes": 1458
+    },
+    "data-asia/SV/SV4a/028.ts": {
+      "git_blob": "29d138e4ad74de0a6e2c7537714c8aad7944b613",
+      "sha256": "6b2f927deb04e51681c5a6a98d045f914323b4312a57727265be3540e93cb4c8",
+      "bytes": 2665
+    },
+    "data-asia/SV/SV4a/077.ts": {
+      "git_blob": "72fe37c1a8a5f9e3be83b8dddefc2c7a28e7463a",
+      "sha256": "1cc9ba71b2efaf83306687bc989f031afe8e3d7b26542333426504a52459b389",
+      "bytes": 1782
+    },
+    "data-asia/SV/SV4a/078.ts": {
+      "git_blob": "a1d4e9e10d52ae2713095a1dac252c540d67bd9f",
+      "sha256": "f63e0af7b81e8ab878db71f3846f22134489265873b7d6dca4f12945fbe18b2a",
+      "bytes": 1984
+    },
+    "data-asia/SV/SV4a/079.ts": {
+      "git_blob": "0395fcb47e59fd2c2cd004a8b274fd3e5192d288",
+      "sha256": "d631f45d814b50ed4bb99187a8d7264b6c029ea4a91c92f08f60b84b3e497688",
+      "bytes": 2796
+    },
+    "data-asia/SV/SV4a/118.ts": {
+      "git_blob": "bb924396a990f662900f84475fbbf947d531332a",
+      "sha256": "df800aab42b70e3d29878e74755ddffe4940beeff204617e3c12b8e94d7b66e2",
+      "bytes": 2745
+    },
+    "data-asia/SV/SV4a/119.ts": {
+      "git_blob": "4fbbc914d15b905fa51c33e841e6965065669abd",
+      "sha256": "81cc10a959a8138b779316723c63964ecdc3c2b6c988e18b1dac6c844e2d3187",
+      "bytes": 1493
+    },
+    "data-asia/SV/SV4a/195.ts": {
+      "git_blob": "2aa4ae5cbc34a4e49706c55aa9b93e99ef623b0f",
+      "sha256": "179844e3e29d1ce3061235297783a735d51aa625357e80e5390cf97a5863d3ab",
+      "bytes": 1527
+    },
+    "data-asia/SV/SV4a/196.ts": {
+      "git_blob": "4864631430696d260d1eaa338ef1511a38f84d2d",
+      "sha256": "62fc28e34cee7bdc80e6c41d95249bd39605a921800361538adee4d273d0c0dd",
+      "bytes": 2122
+    },
+    "data-asia/SV/SV4a/197.ts": {
+      "git_blob": "3414ced9e7f385cfd8cc246edfc93b58df460427",
+      "sha256": "8bed1d4d1a4e8a3e44ca0513933982ddb376795498ce09acd1c2268943406da0",
+      "bytes": 2173
+    },
+    "data-asia/SV/SV4a/198.ts": {
+      "git_blob": "bd39ed5eff7b578dd73cddea53ed3dcfcdeea2c6",
+      "sha256": "c530d1f0d359fbe30cb94d0e973983c44f29ba10e56df4d35c348fd5efc6a852",
+      "bytes": 1056
+    },
+    "data-asia/SV/SV4a/213.ts": {
+      "git_blob": "afc82714b60089c4857fef83a4906e7507ef6b8f",
+      "sha256": "59458d1844328d5b6ab97d88c7ce971a3ba3c31d35bf599e0905a2b044179561",
+      "bytes": 1903
+    },
+    "data-asia/SV/SV4a/255.ts": {
+      "git_blob": "3f02341f98019b8ccbba3ccaec2ac9e5ad12b913",
+      "sha256": "36dfdff3dd7acc553a0b34e4e05c8dae8e71ffd9f93a90f2f33002d9733741c3",
+      "bytes": 1281
+    },
+    "data-asia/SV/SV4a/256.ts": {
+      "git_blob": "d4f42d3b2d0ea0924a5f488caaef952c7cdcb2c0",
+      "sha256": "8a26e5bf80874fc57370ca84533536ec6f60937a3a691612b861a52c27010c81",
+      "bytes": 1397
+    },
+    "data-asia/SV/SV4a/257.ts": {
+      "git_blob": "a7fd152e0ca6c0dde483a5a045998b1258eae46e",
+      "sha256": "d6a223c40f658b6ab3a672c3305233655ecbe5367244cbdf0a07e0126c2a3493",
+      "bytes": 1858
+    },
+    "data-asia/SV/SV4a/288.ts": {
+      "git_blob": "c977adbba754d8b1ffefc2c6c87172eec7ee8e9e",
+      "sha256": "1cb37714eae4e7521d1a7898a2a67f7f3f6ac79079a0b82b147dff10ac6e57e5",
+      "bytes": 1916
+    },
+    "data-asia/SV/SV4a/289.ts": {
+      "git_blob": "99c5512bbe9c86053cbd263c7dad0b1053b566ac",
+      "sha256": "66e0a9da43f17fce40a7fa4aecd7314d8b88ba766e728b7c22e4ee73a99ffccd",
+      "bytes": 1093
+    },
+    "data-asia/SV/SV4a/299.ts": {
+      "git_blob": "b753c1abd32972a337e150f26d8d1de70a832e6d",
+      "sha256": "10aefea718e4c97b4c7f9fa2f9e8c38fd13cb11f89436a4ef94c6e6cf828dfd4",
+      "bytes": 1550
+    },
+    "data-asia/SV/SV8a/032.ts": {
+      "git_blob": "2054f3b61d3dcb7602a2590b20b4167c6a3e2491",
+      "sha256": "17e2274cf81283bc128f982af277cc919944c953a169432e83a887bf0419902d",
+      "bytes": 2317
+    },
+    "data-asia/SV/SV8a.ts": {
+      "git_blob": "618d684c42f05b588d547d4a16f56eb5c02b6899",
+      "sha256": "30e49ca79a0afab94b0d387fa17ec8ebad309a4e01d7dcb14e083a0c95db0eb5",
+      "bytes": 489
+    },
+    "data-asia/SV/SV8a/033.ts": {
+      "git_blob": "9c2d4e52a3e011d5a83b0f9843a0edec71ad791c",
+      "sha256": "6460723620910e004280bb2532b10653957db853643e7004e778a60805bdc84a",
+      "bytes": 2063
+    },
+    "data-asia/SV/SV8a/034.ts": {
+      "git_blob": "387010135d3d6a2d3f516466f0adcd996610678a",
+      "sha256": "cd8f74f42ae9097deb743dd1f279f098073ddb3c9708a2514775b38c012af312",
+      "bytes": 3954
+    },
+    "data-asia/SV/SV8a/060.ts": {
+      "git_blob": "41ba1dc832136d1ab87b4a3253794917e9b75cf2",
+      "sha256": "609f21dc9af2136736aa1e830e72c68c6d665e4153a722d7457f67d21de16fc1",
+      "bytes": 2341
+    },
+    "data-asia/SV/SV8a/061.ts": {
+      "git_blob": "21e68546419ef35219292e3dad551552c60f9c5c",
+      "sha256": "c0fe320b156260deb0dad55a2dee418f6ff5f563eeb01848dc25ad59ff21b1bf",
+      "bytes": 3280
+    },
+    "data-asia/SV/SV8a/062.ts": {
+      "git_blob": "8110664d75546dcb82e7e38e95b8515d99c557a7",
+      "sha256": "39d77656e6701268982bc1728f4c5af1cb1efe0b37495766c61ffc4b56518096",
+      "bytes": 3189
+    },
+    "data-asia/SV/SV8a/092.ts": {
+      "git_blob": "6e7fde32e2eeecb07e41c4d6f2985a04fa8ad744",
+      "sha256": "a27b2db16e5f7013e5ca13183a67acf747c743e7e939cf94695bb8794ef52211",
+      "bytes": 3654
+    },
+    "data-asia/SV/SV8a/127.ts": {
+      "git_blob": "9a831d9a4dfb94f9d9252805c7bada2f02c73a80",
+      "sha256": "44708628ed44f0256cef614780608b5f8f727fb6853700e6e05d03d31fd93841",
+      "bytes": 2394
+    },
+    "data-asia/SV/SV8a/128.ts": {
+      "git_blob": "e3635c19e469e1f4c8ff32defb665ba5ac482505",
+      "sha256": "4653f56cf07fd40d592e1a8d523a0e127e2bddfe2fe857f6cc569d672916c0db",
+      "bytes": 3831
+    },
+    "data-asia/SV/SV8a/129.ts": {
+      "git_blob": "1ab5eb27117d45a471dd3248ee8ba8f713949cbb",
+      "sha256": "d67ec7acd8e075a6001c43a03152d5462ec02ebbcbe02b13a35f3d6f8d157520",
+      "bytes": 2702
+    },
+    "data/Sun & Moon/Celestial Storm/110.ts": {
+      "git_blob": "3463a311cb369af1db7c69217083a81fa34c802b",
+      "sha256": "4ab1d50ac2c6ff6ed04554c0d7673cedf94c36e1fa5b0cc294c744fb4ce783a2",
+      "bytes": 3357
+    },
+    "data/Sun & Moon/Celestial Storm.ts": {
+      "git_blob": "1087ae24ebda819cada623a4e320d22ac91ffff8",
+      "sha256": "c912f55d1ccb0acf9a7a758919a3497cd83f0db313b08517e072ec92d43a11f0",
+      "bytes": 514
+    },
+    "data/Sun & Moon/Lost Thunder/75.ts": {
+      "git_blob": "a73daa6fc1c5edc714b5e93439872c82ec38a038",
+      "sha256": "7d812c5afb97bb95e737a90fdc2b44248b8bc8c18f6380860d0d1fe293aaa536",
+      "bytes": 2324
+    },
+    "data/Sun & Moon/Lost Thunder.ts": {
+      "git_blob": "2f1aafce453aa8235a2163b0a62a54a7cbf8e755",
+      "sha256": "124055da0526b123028c09f47dc321b1722ffbba81a916bf100e070fedaf99b8",
+      "bytes": 498
+    },
+    "data/Sun & Moon/Lost Thunder/77.ts": {
+      "git_blob": "9384a19fff8b587f9cd5afd360f810e23dcfef02",
+      "sha256": "62c39ebc5170ee40a6e5265ebeb4365bdd63da7ec74be241eaf48c8d7bf3e8b5",
+      "bytes": 1592
+    },
+    "data/Sun & Moon/Cosmic Eclipse/78.ts": {
+      "git_blob": "caa3dff7676fc0da33b58a391af269a53c25e6cd",
+      "sha256": "1611abae57e51c920146184e9c71b814091eafe918e3a1c82240ae5cc28b86a2",
+      "bytes": 1875
+    },
+    "data/Sun & Moon/Cosmic Eclipse.ts": {
+      "git_blob": "3e29164efb78b684551e740e8087a041d483b773",
+      "sha256": "08120138cea54dff55a98a858d01550f75bec368ec14b6352431316b7fabdbd5",
+      "bytes": 507
+    },
+    "data/Sun & Moon/Shining Legends/18.ts": {
+      "git_blob": "5de4ee53eda4b927c5168419d55603c6413f8c2d",
+      "sha256": "46e5a7a99752e75d64ab44e74619ad892269dbbfa21f5470faad4c2f9f8446cb",
+      "bytes": 1203
+    },
+    "data/Sun & Moon/Shining Legends.ts": {
+      "git_blob": "e55ed18a0ba6d66501c71fa426228d4bfe3aff01",
+      "sha256": "bd07c99a5a8ab84b117438d35e6107d857c8e477a91cf9cae80b81f5ebd65b02",
+      "bytes": 526
+    },
+    "data/Sun & Moon/Shining Legends/19.ts": {
+      "git_blob": "24fa46e847edede00c0dff29cc8bed878a9d1bea",
+      "sha256": "3e8cdbfc43e18e1186d9775013b8a0c6bbd9ec4fd365716e378380cad14b9ccb",
+      "bytes": 2676
+    },
+    "data/Sun & Moon/Shining Legends/20.ts": {
+      "git_blob": "e6bd27776d773e4a7a328b2dbe8e3ec1347a0ac3",
+      "sha256": "e7861b015db91e269cd5f9d47e1fb514b495750fdabf2fffb23cc60be58fff2a",
+      "bytes": 1816
+    },
+    "data/Sun & Moon/Unified Minds/165.ts": {
+      "git_blob": "4e4ef15da14b833201868bafe5cfc441b7251fc4",
+      "sha256": "7a4b7bbc0a81311c8ed5d43741871c45a301725fc513272de20e32f4ac0f9725",
+      "bytes": 1480
+    },
+    "data/Sun & Moon/Unified Minds/166.ts": {
+      "git_blob": "a83fbf342b5d888c997be06e3f1ecaf7ce5f9828",
+      "sha256": "ce61d045576fdb1a460f5f39b4815dd436ed868a073bc0347620e2a26ad227a2",
+      "bytes": 2616
+    },
+    "data/Sun & Moon/Celestial Storm/6.ts": {
+      "git_blob": "5ac672626fa6d62a10c40d6841322115680d8037",
+      "sha256": "04dd07495cdf356c68b0699752828424973e42b1f069034afcb12124d7741f1e",
+      "bytes": 3229
+    },
+    "data/Sun & Moon/Cosmic Eclipse/79.ts": {
+      "git_blob": "ca60d1263b16d637e73fbf28bf386e6740cc01cf",
+      "sha256": "f2c34627ae10b5360eb5e07ce545102dc970e0b0376e49ddb9be6e4660f1faf9",
+      "bytes": 2672
+    },
+    "data/Sun & Moon/Lost Thunder/89.ts": {
+      "git_blob": "3be13c5bb9a7c3a356722b43ef2ca6134942c37b",
+      "sha256": "0dfb7a3b9bf912e36564d468c6d39f77f38ebfa990ee6110f0b9588895f60276",
+      "bytes": 2267
+    },
+    "data/Sun & Moon/Lost Thunder/120.ts": {
+      "git_blob": "8d81b92f73a64e7517aacd5f08d5b5040623068b",
+      "sha256": "67ea27a96db637d1cf295662be329201c0e6e18fd9395c772bd301a5da30756f",
+      "bytes": 2546
+    },
+    "data/Sun & Moon/Celestial Storm/5.ts": {
+      "git_blob": "891b0c9c1ae53fc75fa6b4c1d3c1204445f0a384",
+      "sha256": "3cc45ef4f15add38fda7700c2106203ef7632458fd36fd35d4ef7cc8fc5cb6d8",
+      "bytes": 1879
+    },
+    "data/Sun & Moon/Guardians Rising/66.ts": {
+      "git_blob": "06ab5fda934cb0becf981f7f7515f788f6e7661d",
+      "sha256": "c460067e70d82390c3796a6b58e8ed870f652bb99b551b47b4b904d34d827b1d",
+      "bytes": 3010
+    },
+    "data/Sun & Moon/Guardians Rising.ts": {
+      "git_blob": "9693fff87d860e5081e5388b5b171e4123974f61",
+      "sha256": "cf821b511b11d4d3fe87448585ddf481166c9147cd2b1908689ceeaf196a2223",
+      "bytes": 522
+    },
+    "data/Sun & Moon/Unbroken Bonds/96.ts": {
+      "git_blob": "38c884ea735045c6291d2ab1dc9b8e4a24ee384a",
+      "sha256": "30051700de544570801f3bce788bea718822713e970c0ace5952e2710429ace0",
+      "bytes": 1023
+    },
+    "data/Sun & Moon/Unbroken Bonds/97.ts": {
+      "git_blob": "dcc3b78e8d090e77036ad8a25f0eaecc45fc7b03",
+      "sha256": "103d6e7d2cd9518ded34caea90c9deceee1e65f321fc7fc8c33d4bfb2706a352",
+      "bytes": 1281
+    },
+    "data/Sun & Moon/Unified Minds/131.ts": {
+      "git_blob": "b241d3b1231c4b1da190ef78dc0dde5e28d568a1",
+      "sha256": "1a87a49ebd407338641bbd86333ebda152fbfd5303c6fbd5316ff6bbc9a26427",
+      "bytes": 1137
+    },
+    "data/Sun & Moon/Crimson Invasion/22.ts": {
+      "git_blob": "c694b0182e8e06ff1f46bb60a6f9fb97a7e505b9",
+      "sha256": "af18945490d12c4952eecccae001233f44004cdfd4293f7c4480a49330c77e19",
+      "bytes": 1031
+    },
+    "data/Sun & Moon/Crimson Invasion.ts": {
+      "git_blob": "7a5f05f474382070a49bb830aed3453c72e06d77",
+      "sha256": "2d88b037bb9d10f09e101830acb4e351d8e5d991bc605e7cd86dbaa8e95c52bb",
+      "bytes": 517
+    },
+    "data/Sun & Moon/Crimson Invasion/23.ts": {
+      "git_blob": "3e81873d88ce85723c7bf98bd2c1966f06e4dc35",
+      "sha256": "ef4fc60238201c80ca77cae3250b1773121b6e9ed6c44df8689dfa90051a4b9c",
+      "bytes": 3269
+    },
+    "data/Sun & Moon/Crimson Invasion/58.ts": {
+      "git_blob": "241c967943391420ff09f70168884dd17c35dcc2",
+      "sha256": "8f7ff5165833680e2d2df6348ed55680dab44a1089aeed9c26d1d8d0a6e27bd7",
+      "bytes": 1328
+    },
+    "data/Sun & Moon/Crimson Invasion/59.ts": {
+      "git_blob": "8e76804397b82e887eea96c211499f49e2b6bd8d",
+      "sha256": "141445d569f9264885a626e5f9162b223dcc808dca998ba4760bb0da6b52bda0",
+      "bytes": 2283
+    },
+    "data/Sun & Moon/Burning Shadows/31.ts": {
+      "git_blob": "20c3c487a389485888baddcfbeb002daf32dbdf4",
+      "sha256": "89e941de40d44750fd57f2d9755d72ea90813ec33f91cd00f4d69a7cb3d5e510",
+      "bytes": 3744
+    },
+    "data/Sun & Moon/Burning Shadows.ts": {
+      "git_blob": "160fa040f3178731f90ab6cfbdea444c21cb1fee",
+      "sha256": "dd310414762803f54b35b1fbe05e02b5ff7c1a26d8a954514646ccd03db6db92",
+      "bytes": 504
+    },
+    "data/Sun & Moon/Crimson Invasion/78.ts": {
+      "git_blob": "9d1273350d39b4153dd1669f84d719e65112cc4d",
+      "sha256": "9dcd52ec3f76ff1fbb693caddc56009503003bef6bf0eb62e2d472c74e037886",
+      "bytes": 2983
+    },
+    "data/Sun & Moon/Shining Legends/32.ts": {
+      "git_blob": "5de0aaa1f7a099ef421f7684d6c971cafbdb6e1a",
+      "sha256": "94060d0e24ce1d747ca2b5d6c3f1ddf2864c5a1affb4df06385d468273f91145",
+      "bytes": 2000
+    },
+    "data-asia/neo/neo1/009.ts": {
+      "git_blob": "3d19df5e006f78d30084d74cd06d8750efab23f0",
+      "sha256": "33207c446ce168a01faf35fe4bc844d4259fbf62fb2e3299f91a5740e15495c4",
+      "bytes": 1204
+    },
+    "data-asia/neo/neo1/005.ts": {
+      "git_blob": "cfaebd0b2b53f35d06119ec78a4b51e91bd6bd7d",
+      "sha256": "04cfaa494958c206b1022b1de3c46ed579dec71444753187f61930830ded431b",
+      "bytes": 767
+    },
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    }
+  },
+  "checks": {
+    "all_153_original_pins_and_bytes_rechecked": true,
+    "license_unchanged": true,
+    "input_packet_unchanged": true,
+    "input_database_unchanged": true,
+    "complete_group_membership_recalculated": true,
+    "all_44_identity_holds_retained": true,
+    "five_priority_targets_excluded": true,
+    "integrity_and_foreign_keys": true,
+    "no_broader_cache_paths": true,
+    "no_imports": true,
+    "no_semantic_approvals": true,
+    "no_network": true,
+    "no_repository_edits": true,
+    "no_artwork_or_prices": true
+  },
+  "display_allowed": false,
+  "image_display_allowed": false,
+  "purchase_allowed": false,
+  "automatic_offer_join_allowed": false,
+  "physical_printing_verified": false,
+  "price_comparable": false
+}
