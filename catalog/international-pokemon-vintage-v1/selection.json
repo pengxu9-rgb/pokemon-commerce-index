@@ -1,0 +1,4026 @@
+{
+  "schema": "pokemon.pokemon-name-profile-selection.v1",
+  "inspected_at": "2026-10-12T07:07:36Z",
+  "input_database_sha256": "39e3eb70c595a5480e1e78def0a41ea9c19d304b271ccccc9bfa0601a09218b5",
+  "basis_plan_sha256": "658a8197a3286553ff8049dd05f84422988aad8cf1616b5f7b55a9b9980f1170",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "japanese": 100,
+  "english": 25,
+  "by_set": {
+    "ja:PMCG1": 44,
+    "ja:PMCG2": 20,
+    "ja:PMCG3": 23,
+    "ja:E3": 5,
+    "ja:E5": 8,
+    "en:SV03.5": 11,
+    "en:SWSH10.5": 2,
+    "en:SM9": 4,
+    "en:SM7.5": 1,
+    "en:SM3": 1,
+    "en:SM115": 2,
+    "en:SM3.5": 1,
+    "en:SV02": 1,
+    "en:SV03": 2
+  },
+  "japanese_coordinate_groups": 72,
+  "japanese_full_name_concepts": 67,
+  "english_full_name_concepts": 25,
+  "english_preliminary_candidates": 697,
+  "english_qualified_candidates": 678,
+  "holds": [
+    {
+      "card_id": "en:SWSH1:022/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:022/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "022/202",
+        "variant": "standard",
+        "name": "Vulpix",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/22.ts:sha256:5d19ba43375aab4070dd504a2cdfa0d66c6a2d2cd12c550bb8a6bf89349386a0",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/22.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "7d95f80562487f6d6f989b4e268b711d525b8150",
+        "sha256": "5d19ba43375aab4070dd504a2cdfa0d66c6a2d2cd12c550bb8a6bf89349386a0",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:023/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:023/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "023/202",
+        "variant": "standard",
+        "name": "Ninetales",
+        "rarity": "Rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/23.ts:sha256:850e9b26dbcc05d52b04befb25d8f89bf2705981b0302e88dff90593d9fd1f45",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/23.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "17c50306cda802d7743edbfec07d2da42df79fcd",
+        "sha256": "850e9b26dbcc05d52b04befb25d8f89bf2705981b0302e88dff90593d9fd1f45",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:040/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:040/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "040/202",
+        "variant": "standard",
+        "name": "Shellder",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/40.ts:sha256:588d2877705f241a74a7e1c161dc84e74e46198635a41009df1840571f720006",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/40.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "b17adbe02ed5375c0078e8b4682c7aa5765d04a4",
+        "sha256": "588d2877705f241a74a7e1c161dc84e74e46198635a41009df1840571f720006",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:041/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:041/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "041/202",
+        "variant": "standard",
+        "name": "Cloyster",
+        "rarity": "Rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/41.ts:sha256:7b6bc9df9be70554c0d540458a79af4cbc24c8d41cbcf8811db252176602642d",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/41.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "dd2878f854144621e2a1dd13f7012a38b9dbbb75",
+        "sha256": "7b6bc9df9be70554c0d540458a79af4cbc24c8d41cbcf8811db252176602642d",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:042/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:042/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "042/202",
+        "variant": "standard",
+        "name": "Krabby",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/42.ts:sha256:57a0bb21ef9ae235424cf30cf59fe5d7da569785f3aaba39f23f0920d24a31a3",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/42.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "5fc50d8d53b6161cafc2f4d9f7b7c4d64a9e4d83",
+        "sha256": "57a0bb21ef9ae235424cf30cf59fe5d7da569785f3aaba39f23f0920d24a31a3",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:043/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:043/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "043/202",
+        "variant": "standard",
+        "name": "Krabby",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/43.ts:sha256:de97f2571fad85e9a4e6a9425f6cd4c9b9c89f07f396f4791670736cd4cbcc6d",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/43.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "699281ed22e53820fe9797850a2cecfe1aa103a3",
+        "sha256": "de97f2571fad85e9a4e6a9425f6cd4c9b9c89f07f396f4791670736cd4cbcc6d",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:044/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:044/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "044/202",
+        "variant": "standard",
+        "name": "Kingler",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/44.ts:sha256:b0990216a15aaabef9c196eec0ef06b8bf964b45d2c6f8336eb9003aaeb3492b",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/44.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "b496b1a59fa44f6b9c757bba681535adb63d8d3a",
+        "sha256": "b0990216a15aaabef9c196eec0ef06b8bf964b45d2c6f8336eb9003aaeb3492b",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:048/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:048/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "048/202",
+        "variant": "standard",
+        "name": "Lapras",
+        "rarity": "Rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/48.ts:sha256:7618fb00a46230166c804053a89fb5c1d7cf439aed46b7c387ecb4a28b4c1d37",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/48.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "c1c786d13bdb2e6341ad0dee794b9d5ab1df80fe",
+        "sha256": "7618fb00a46230166c804053a89fb5c1d7cf439aed46b7c387ecb4a28b4c1d37",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:066/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:066/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "066/202",
+        "variant": "standard",
+        "name": "Raichu",
+        "rarity": "Rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/66.ts:sha256:f04797e2d0ba0dda14c8deac6062e7073fcee0143d5e5414d071c38a5919ccd9",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/66.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "f04add4c60c3bbf36bd590f03fb11310091ff1d3",
+        "sha256": "f04797e2d0ba0dda14c8deac6062e7073fcee0143d5e5414d071c38a5919ccd9",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:096/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:096/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "096/202",
+        "variant": "standard",
+        "name": "Rhyhorn",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/96.ts:sha256:92598adaf41610aa50b2bc789cb32fa6063c0400c6567ed28830c65e47bda8c7",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/96.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "a2e29af7a812cc6f23533faf00504a18c8f67874",
+        "sha256": "92598adaf41610aa50b2bc789cb32fa6063c0400c6567ed28830c65e47bda8c7",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:097/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:097/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "097/202",
+        "variant": "standard",
+        "name": "Rhyhorn",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/97.ts:sha256:5332111643d28161148060b1221167e793e805de0e64960f1d4a29eb14a3392f",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/97.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "bbe2c3fb317cddce0a8601c1954e11abbbcaf1bd",
+        "sha256": "5332111643d28161148060b1221167e793e805de0e64960f1d4a29eb14a3392f",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:098/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:098/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "098/202",
+        "variant": "standard",
+        "name": "Rhydon",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/98.ts:sha256:c2592c1dc69d77b5142e32de40004c3d515342b77721fa4731e7eee2e8c907f5",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/98.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "e38eaf9b82f83ee917830f4f78dbc030129044b9",
+        "sha256": "c2592c1dc69d77b5142e32de40004c3d515342b77721fa4731e7eee2e8c907f5",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH1:140/202:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH1:140/202:standard",
+        "language": "en",
+        "set_code": "SWSH1",
+        "collector_number": "140/202",
+        "variant": "standard",
+        "name": "Snorlax",
+        "rarity": "Rare",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Sword & Shield/140.ts:sha256:b01daf523c6ddff6ddebeb62f2204c4cda827467db01845af2cc3adc295ea52e",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Sword & Shield/140.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "59801755b1212f4ee65a43df15b125f3ee5fb1b5",
+        "sha256": "b01daf523c6ddff6ddebeb62f2204c4cda827467db01845af2cc3adc295ea52e",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:002/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:002/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "002/073",
+        "variant": "standard",
+        "name": "Weedle",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/2.ts:sha256:893638fb72d03a816377be766723834534319d1b36b3f2f216079a31fb49678d",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/2.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "03c143090ee4d111bbf77c8332e861c33be7850a",
+        "sha256": "893638fb72d03a816377be766723834534319d1b36b3f2f216079a31fb49678d",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:003/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:003/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "003/073",
+        "variant": "standard",
+        "name": "Kakuna",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/3.ts:sha256:6b0b3386d2af5729c178ffbedc1f691aa5bcd20aa3166a55a587b0bcef1f1981",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/3.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "96779a99e9a57e9ff026b358bd4d8bea877eade7",
+        "sha256": "6b0b3386d2af5729c178ffbedc1f691aa5bcd20aa3166a55a587b0bcef1f1981",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:004/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:004/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "004/073",
+        "variant": "standard",
+        "name": "Beedrill",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/4.ts:sha256:0c85a5511a19f113a7bb826cac157510110f634632f625400a76578045031156",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/4.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "3fe85c85f5311db8b9fb84cf27e06b4838b7ddcf",
+        "sha256": "0c85a5511a19f113a7bb826cac157510110f634632f625400a76578045031156",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:006/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:006/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "006/073",
+        "variant": "standard",
+        "name": "Vulpix",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/6.ts:sha256:75df8a9c3316c32f24532733f848a07681e26b36972ac9c2023eda5e2c8d289d",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/6.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "19b54a06fcd3c2adffbae1cc4d01b976116f228d",
+        "sha256": "75df8a9c3316c32f24532733f848a07681e26b36972ac9c2023eda5e2c8d289d",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:033/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:033/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "033/073",
+        "variant": "standard",
+        "name": "Ekans",
+        "rarity": "Common",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/33.ts:sha256:0bf0ef1bb69ad62d3dbdaa1c17ff6f328060c6594452b34226b1152bed166bde",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/33.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "fa8ac895b26c8759ee8d99674b2db5b8f6347f0d",
+        "sha256": "0bf0ef1bb69ad62d3dbdaa1c17ff6f328060c6594452b34226b1152bed166bde",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    },
+    {
+      "card_id": "en:SWSH3.5:034/073:standard",
+      "reason": "literal source variants required",
+      "status": "held_source_dimension",
+      "identity": {
+        "card_id": "en:SWSH3.5:034/073:standard",
+        "language": "en",
+        "set_code": "SWSH3.5",
+        "collector_number": "034/073",
+        "variant": "standard",
+        "name": "Arbok",
+        "rarity": "Uncommon",
+        "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data/Sword & Shield/Champion's Path/34.ts:sha256:9ca9929226a184c733c18518452f3f8c75b9c9bb2de9003ccf074e323c7b08dd",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE"
+      },
+      "source": {
+        "provider": "tcgdex",
+        "native_id": "data/Sword & Shield/Champion's Path/34.ts",
+        "revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+        "git_blob": "3a6ada7ca53ba1ec641e8910b9db604cc29f2280",
+        "sha256": "9ca9929226a184c733c18518452f3f8c75b9c9bb2de9003ccf074e323c7b08dd",
+        "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+        "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+        "rights_status": "metadata_internal_reviewed",
+        "inspected_at": "2026-10-12T07:07:36Z",
+        "retrieved_at": null,
+        "retrieval_status": "historical_snapshot_time_not_recorded",
+        "physical_distribution_region": null
+      },
+      "confidence": null,
+      "confidence_scope": "unresolved legacy size dimension; no binding",
+      "unresolved_conflicts": [
+        "literal source variants required"
+      ],
+      "display_allowed": false,
+      "image_display_allowed": false,
+      "purchase_allowed": false,
+      "automatic_offer_join_allowed": false,
+      "physical_printing_verified": false,
+      "price_comparable": false
+    }
+  ],
+  "gaps": [
+    {
+      "card_id": "ja:PMCG1:001/102:normal",
+      "query": "Bulbasaur ja PMCG1 001/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:001/102:normal_no_rarity",
+      "query": "Bulbasaur ja PMCG1 001/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:028/048:normal",
+      "query": "Mankey ja PMCG2 028/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:001/048:normal",
+      "query": "Ekans ja PMCG3 001/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E3:006/087:normal_1st_edition",
+      "query": "Parasect ja E3 006/087",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E3:006/087:normal_unlimited",
+      "query": "Parasect ja E3 006/087",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:008/088:normal",
+      "query": "Nidorina ja E5 008/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:008/088:normal_1st_edition",
+      "query": "Nidorina ja E5 008/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:002/102:normal",
+      "query": "Caterpie ja PMCG1 002/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:002/102:normal_no_rarity",
+      "query": "Caterpie ja PMCG1 002/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:029/048:normal",
+      "query": "Cubone ja PMCG2 029/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:002/048:normal",
+      "query": "Zubat ja PMCG3 002/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E3:054/087:normal_1st_edition",
+      "query": "Mankey ja E3 054/087",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E3:054/087:normal_unlimited",
+      "query": "Mankey ja E3 054/087",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:027/088:normal_1st_edition",
+      "query": "Gyarados ja E5 027/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:027/088:normal_unlimited",
+      "query": "Gyarados ja E5 027/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:003/102:normal",
+      "query": "Metapod ja PMCG1 003/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:003/102:normal_no_rarity",
+      "query": "Metapod ja PMCG1 003/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:030/048:normal",
+      "query": "Rhyhorn ja PMCG2 030/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:003/048:normal",
+      "query": "Grimer ja PMCG3 003/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E3:088/087:normal",
+      "query": "Nidoking ja E3 088/087",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:028/088:normal_1st_edition",
+      "query": "Gyarados ja E5 028/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:028/088:normal_unlimited",
+      "query": "Gyarados ja E5 028/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:004/102:normal",
+      "query": "Weedle ja PMCG1 004/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:004/102:normal_no_rarity",
+      "query": "Weedle ja PMCG1 004/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:031/048:normal",
+      "query": "Primeape ja PMCG2 031/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:004/048:normal",
+      "query": "Arbok ja PMCG3 004/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:029/088:normal_1st_edition",
+      "query": "Lapras ja E5 029/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:E5:029/088:normal_unlimited",
+      "query": "Lapras ja E5 029/088",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:005/102:normal",
+      "query": "Nidoran♂ ja PMCG1 005/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:005/102:normal_no_rarity",
+      "query": "Nidoran♂ ja PMCG1 005/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:032/048:normal",
+      "query": "Marowak ja PMCG2 032/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:005/048:normal",
+      "query": "Golbat ja PMCG3 005/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:006/102:normal",
+      "query": "Koffing ja PMCG1 006/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:006/102:normal_no_rarity",
+      "query": "Koffing ja PMCG1 006/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:033/048:normal",
+      "query": "Rhydon ja PMCG2 033/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:006/048:normal",
+      "query": "Weezing ja PMCG3 006/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:007/102:normal",
+      "query": "Tangela ja PMCG1 007/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:007/102:normal_no_rarity",
+      "query": "Tangela ja PMCG1 007/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:034/048:normal",
+      "query": "Spearow ja PMCG2 034/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:007/048:holo",
+      "query": "Muk ja PMCG3 007/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:008/102:normal",
+      "query": "Ivysaur ja PMCG1 008/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:008/102:normal_no_rarity",
+      "query": "Ivysaur ja PMCG1 008/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:035/048:normal",
+      "query": "Jigglypuff ja PMCG2 035/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:008/048:normal",
+      "query": "Magmar ja PMCG3 008/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:009/102:normal",
+      "query": "Kakuna ja PMCG1 009/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:009/102:normal_no_rarity",
+      "query": "Kakuna ja PMCG1 009/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:036/048:normal",
+      "query": "Meowth ja PMCG2 036/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:009/048:holo",
+      "query": "Moltres ja PMCG3 009/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:010/102:normal",
+      "query": "Nidorino ja PMCG1 010/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:010/102:normal_no_rarity",
+      "query": "Nidorino ja PMCG1 010/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:037/048:normal",
+      "query": "Eevee ja PMCG2 037/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:010/048:normal",
+      "query": "Psyduck ja PMCG3 010/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:011/102:holo",
+      "query": "Venusaur ja PMCG1 011/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:011/102:holo_no_rarity",
+      "query": "Venusaur ja PMCG1 011/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:038/048:normal",
+      "query": "Fearow ja PMCG2 038/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:011/048:normal",
+      "query": "Tentacool ja PMCG3 011/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:012/102:normal",
+      "query": "Beedrill ja PMCG1 012/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:012/102:normal_no_rarity",
+      "query": "Beedrill ja PMCG1 012/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:039/048:normal",
+      "query": "Persian ja PMCG2 039/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:012/048:normal",
+      "query": "Shellder ja PMCG3 012/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:013/102:holo",
+      "query": "Nidoking ja PMCG1 013/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:013/102:holo_no_rarity",
+      "query": "Nidoking ja PMCG1 013/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:040/048:normal",
+      "query": "Dodrio ja PMCG2 040/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:013/048:normal",
+      "query": "Krabby ja PMCG3 013/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:014/102:normal",
+      "query": "Charmander ja PMCG1 014/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:014/102:normal_no_rarity",
+      "query": "Charmander ja PMCG1 014/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:041/048:normal",
+      "query": "Lickitung ja PMCG2 041/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:015/048:normal",
+      "query": "Omanyte ja PMCG3 015/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:015/102:normal",
+      "query": "Vulpix ja PMCG1 015/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:015/102:normal_no_rarity",
+      "query": "Vulpix ja PMCG1 015/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:042/048:normal",
+      "query": "Tauros ja PMCG2 042/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:016/048:normal",
+      "query": "Golduck ja PMCG3 016/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:016/102:normal",
+      "query": "Ponyta ja PMCG1 016/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:016/102:normal_no_rarity",
+      "query": "Ponyta ja PMCG1 016/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:043/048:holo",
+      "query": "Pidgeot ja PMCG2 043/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:017/048:normal",
+      "query": "Tentacruel ja PMCG3 017/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:017/102:normal",
+      "query": "Charmeleon ja PMCG1 017/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:017/102:normal_no_rarity",
+      "query": "Charmeleon ja PMCG1 017/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:044/048:holo",
+      "query": "Clefable ja PMCG2 044/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:018/048:normal",
+      "query": "Cloyster ja PMCG3 018/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:018/102:normal",
+      "query": "Growlithe ja PMCG1 018/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:018/102:normal_no_rarity",
+      "query": "Growlithe ja PMCG1 018/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:045/048:holo",
+      "query": "Wigglytuff ja PMCG2 045/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:019/048:normal",
+      "query": "Kingler ja PMCG3 019/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:020/102:normal",
+      "query": "Magmar ja PMCG1 020/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:020/102:normal_no_rarity",
+      "query": "Magmar ja PMCG1 020/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:046/048:holo",
+      "query": "Kangaskhan ja PMCG2 046/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:020/048:normal",
+      "query": "Seadra ja PMCG3 020/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:021/102:holo",
+      "query": "Charizard ja PMCG1 021/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:021/102:holo_no_rarity",
+      "query": "Charizard ja PMCG1 021/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG2:047/048:holo",
+      "query": "Snorlax ja PMCG2 047/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:021/048:normal",
+      "query": "Omastar ja PMCG3 021/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:022/102:holo",
+      "query": "Ninetales ja PMCG1 022/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:022/102:holo_no_rarity",
+      "query": "Ninetales ja PMCG1 022/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:022/048:holo",
+      "query": "Lapras ja PMCG3 022/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:023/102:normal",
+      "query": "Squirtle ja PMCG1 023/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG1:023/102:normal_no_rarity",
+      "query": "Squirtle ja PMCG1 023/102",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:023/048:holo",
+      "query": "Articuno ja PMCG3 023/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:PMCG3:024/048:holo",
+      "query": "Raichu ja PMCG3 024/048",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:166/165:holo",
+      "query": "フシギダネ en SV03.5 166/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:167/165:holo",
+      "query": "フシギソウ en SV03.5 167/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SWSH10.5:003/078:reverse",
+      "query": "フシギバナ en SWSH10.5 003/078",
+      "before_contains_target": false,
+      "before_total": 1
+    },
+    {
+      "card_id": "en:SM9:011/181:standard",
+      "query": "ヒトカゲ en SM9 011/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM7.5:002/070:standard",
+      "query": "リザード en SM7.5 002/070",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SWSH10.5:010/078:holo",
+      "query": "リザードン en SWSH10.5 010/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM9:023/181:standard",
+      "query": "ゼニガメ en SM9 023/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:010/165:normal",
+      "query": "キャタピー en SV03.5 010/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM3:002/147:normal",
+      "query": "トランセル en SM3 002/147",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM9:003/181:standard",
+      "query": "ビードル en SM9 003/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:014/165:normal",
+      "query": "コクーン en SV03.5 014/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:015/165:holo",
+      "query": "スピアー en SV03.5 015/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM9:124/181:standard",
+      "query": "ピジョット en SM9 124/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:021/165:normal",
+      "query": "オニスズメ en SV03.5 021/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:022/165:normal",
+      "query": "オニドリル en SV03.5 022/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM115:026/068:standard",
+      "query": "アーボ en SM115 026/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM3.5:037/073:standard",
+      "query": "アーボック en SM3.5 037/073",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV02:064/193:normal",
+      "query": "ライチュウ en SV02 064/193",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:030/165:reverse",
+      "query": "ニドリーナ en SV03.5 030/165",
+      "before_contains_target": false,
+      "before_total": 1
+    },
+    {
+      "card_id": "en:SV03.5:032/165:normal",
+      "query": "ニドラン♂ en SV03.5 032/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:033/165:normal",
+      "query": "ニドリーノ en SV03.5 033/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:034/165:holo",
+      "query": "ニドキング en SV03.5 034/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM115:040/068:standard",
+      "query": "ピクシー en SM115 040/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03:028/197:normal",
+      "query": "ロコン en SV03 028/197",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03:199/197:holo",
+      "query": "キュウコン en SV03 199/197",
+      "before_contains_target": false,
+      "before_total": 0
+    }
+  ],
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/PMCG/PMCG1/001.ts": {
+      "git_blob": "3e9180c51457eb9774d9cfbd268eca0b783ba0a8",
+      "sha256": "6ced1ce7c9234aaf2799f37903dc78afc2e1629137537f333fe6d8ce0334a7ae",
+      "bytes": 704
+    },
+    "data-asia/PMCG/PMCG1/002.ts": {
+      "git_blob": "58c442695d7c773965b6a2f777415e7018d1c3f2",
+      "sha256": "32a800dff7e93ff5c98a25224ff6e118e1de4428d954ccea1d0d75398c250b6e",
+      "bytes": 766
+    },
+    "data-asia/PMCG/PMCG1/003.ts": {
+      "git_blob": "625da2da96d87cb97c179b889053001509ebe8b2",
+      "sha256": "99afeb1f62775c30d067cc753d3f073b3cd6a76da9a08785b13425d2546310ca",
+      "bytes": 1073
+    },
+    "data-asia/PMCG/PMCG1/004.ts": {
+      "git_blob": "c92dd24327e9eaaf2c372d52e2bcb9a6f59122e4",
+      "sha256": "595b904a3894480b6521bb1997f027c855176a9c1c5c1763c92facecaf3aa177",
+      "bytes": 739
+    },
+    "data-asia/PMCG/PMCG1/005.ts": {
+      "git_blob": "77d163f2f6c10f422dc701b3dc5e2ae541e7775e",
+      "sha256": "99f5656ac3a36b419240399d55d9e5c8da79770da17460459a65df0ca07aed5d",
+      "bytes": 730
+    },
+    "data-asia/PMCG/PMCG1/006.ts": {
+      "git_blob": "ba62fa3daac535470ce177549a4bebddbab32c21",
+      "sha256": "aa2475408b31cf3b88cbbaf748e675f669dad3ce55b2ecb5dc3c26dd9876b0b3",
+      "bytes": 806
+    },
+    "data-asia/PMCG/PMCG1/007.ts": {
+      "git_blob": "8b94ad0f29e09a33a254b06219781754b9fe61c0",
+      "sha256": "81855657fb72af1f04c9adb7100ca48d26edd148d41df20124889cb81f8e647a",
+      "bytes": 941
+    },
+    "data-asia/PMCG/PMCG1/008.ts": {
+      "git_blob": "7e026415935190c60f07cc54d4f31354a82b0531",
+      "sha256": "a4550cc5e3fd77d1256196a735b4fd25009fc0d81234682452568aacc03cd264",
+      "bytes": 828
+    },
+    "data-asia/PMCG/PMCG1/009.ts": {
+      "git_blob": "bb0d00dcd92e59a6a73d51b182d9090b9779ce15",
+      "sha256": "53476dbe2490f2a80389ad5ab420827b5da238e902f62a5f92ce9615afe25c28",
+      "bytes": 1078
+    },
+    "data-asia/PMCG/PMCG1/010.ts": {
+      "git_blob": "500fdb1201dbb63da86d8a7305bd02f508cf2783",
+      "sha256": "4aca34e307e581d5b5b9a1a42ca7898eab4c80fbc1e7ec5536164373931a9b0e",
+      "bytes": 904
+    },
+    "data-asia/PMCG/PMCG1/011.ts": {
+      "git_blob": "a2563a9661ca1dbd5746aa99e6479fec3cb62272",
+      "sha256": "fda7f4870c9dea9dd7431d199878d3314a2bfe5762756b37bdc19d65c98c0a5a",
+      "bytes": 1049
+    },
+    "data-asia/PMCG/PMCG1/012.ts": {
+      "git_blob": "11b3338a3c743fb910fbfb87b82c960050772ba8",
+      "sha256": "e78cec839de23002fc6fd6cbcbbcec301edcadde14d11103a4033baa0108c937",
+      "bytes": 983
+    },
+    "data-asia/PMCG/PMCG1/013.ts": {
+      "git_blob": "4e9e7f449764eab82557b5d6d92eccf7d85ddde2",
+      "sha256": "7136722f7c4101a1aff2f66ee56400e8c0ae28bd74e1c86f762f3348ef318110",
+      "bytes": 1233
+    },
+    "data-asia/PMCG/PMCG1/014.ts": {
+      "git_blob": "5a8be56769e51c8ec2beb9499d9c5521676680b3",
+      "sha256": "068dda91b15206f6dd8f137e87235221d5bbaa1cb6b87469386d50492b4e2b20",
+      "bytes": 783
+    },
+    "data-asia/PMCG/PMCG1/015.ts": {
+      "git_blob": "46712c9c354e2611f8ae88fdc4674181c27d49b9",
+      "sha256": "be1f48481e926d0dffab3237328ea48e1f84d96c2a0515f7ed32a1ee0711e77d",
+      "bytes": 745
+    },
+    "data-asia/PMCG/PMCG1/016.ts": {
+      "git_blob": "af8628581dd4bc8cf3b140704409d6c69090868b",
+      "sha256": "ee937fa3a59035d0905aaddb287a3be22bc602e1cb134f1325d9fa8e40c3afbd",
+      "bytes": 714
+    },
+    "data-asia/PMCG/PMCG1/017.ts": {
+      "git_blob": "2c08d83d8af45965de68aa77bfa7f30903753945",
+      "sha256": "3496af80af71b24b270f17528f71623fb40cadaa77997f22a56a6fa39d6658a8",
+      "bytes": 842
+    },
+    "data-asia/PMCG/PMCG1/018.ts": {
+      "git_blob": "b42ce5a4b87d6d047576fc7610e55c37938c7d20",
+      "sha256": "936c80a53c8e943f0ea09836d87d06764d37c603e647d9120d6720024a6fb31c",
+      "bytes": 607
+    },
+    "data-asia/PMCG/PMCG1/020.ts": {
+      "git_blob": "5ad14b8a100d216e709f4ff716e8b139d741c186",
+      "sha256": "bdac681f2e754f8343c327d70a7bce189cd96483fd067e075502ff5354b821bd",
+      "bytes": 881
+    },
+    "data-asia/PMCG/PMCG1/021.ts": {
+      "git_blob": "594d53e7092955a2982b11667be12ffe1362c291",
+      "sha256": "96854094621d31510acec1c807db20518f947b09b841e78024c7e3dccd01333a",
+      "bytes": 1135
+    },
+    "data-asia/PMCG/PMCG1/022.ts": {
+      "git_blob": "118757e60337b48894651b2b467f3684f4c745db",
+      "sha256": "48d8c9c1956a23e9e37455dcf52fa9d3e2186ed4d7420d5b75b27bece28e8f8d",
+      "bytes": 1035
+    },
+    "data-asia/PMCG/PMCG1/023.ts": {
+      "git_blob": "f8ab0f3393247358950d24ae3d6fe55ca2a0ae48",
+      "sha256": "4045dd62312367fe1ed57dc77463519cc58e3779545932258afb714755fb7907",
+      "bytes": 1012
+    },
+    "data-asia/PMCG/PMCG2/028.ts": {
+      "git_blob": "b1a8c474d49a4c1f3fd3e626798aedf64f4876b5",
+      "sha256": "bcd5439a964e1df99df7dbe4a0a0050682ca279b4d74ae8544fa70f082bafc76",
+      "bytes": 980
+    },
+    "data-asia/PMCG/PMCG2/029.ts": {
+      "git_blob": "9e97cb3c7c0e7b71a3ac5686a01f6a671d3cd25a",
+      "sha256": "ea6f4d13d9c9efd974dadc2820ee053f40c97eb039c9a1af5436e676288a2dc0",
+      "bytes": 1067
+    },
+    "data-asia/PMCG/PMCG2/030.ts": {
+      "git_blob": "0960e0d77f3f88dce88344d6b99c5fdccca6a664",
+      "sha256": "75104d6e8f5baa515a18825feb3361846e22e02343cd3a46d4df40e4b87f0f50",
+      "bytes": 898
+    },
+    "data-asia/PMCG/PMCG2/031.ts": {
+      "git_blob": "1037541f8bceb1238cb01f72c51fbe6445806021",
+      "sha256": "555e2470b3c2946584adcb052cb50af11375ef20ab4122d882b8bacd40abb10c",
+      "bytes": 951
+    },
+    "data-asia/PMCG/PMCG2/032.ts": {
+      "git_blob": "09cc1913572a16b3aef7978adeb58675a58534fd",
+      "sha256": "507d120fb592b9a313df1059af6f19d5fa973ff17a3b3ce97c8de2fdf3f69ee3",
+      "bytes": 1038
+    },
+    "data-asia/PMCG/PMCG2/033.ts": {
+      "git_blob": "cc19821126c41b6703aae5b401294c8e253a1c9e",
+      "sha256": "140c275e9e7f9b5cc2f5800388e705e497924bc9f0583173af4ac609931bbad5",
+      "bytes": 1013
+    },
+    "data-asia/PMCG/PMCG2/034.ts": {
+      "git_blob": "24beb0520e511c426e612e84a71302e08b5f83cb",
+      "sha256": "eaa15b60dd70a0375b880d6ddfde4f3e66b9ddd4c4e2d90e2b0b831e3d75ab68",
+      "bytes": 769
+    },
+    "data-asia/PMCG/PMCG2/035.ts": {
+      "git_blob": "cbe63a8ab3ccfe4afc623d9f530e34413c9daa2e",
+      "sha256": "93460ea9102fbc644b3b71852307ff823f5efbaded0d4d81e2c2b8969b5c4464",
+      "bytes": 668
+    },
+    "data-asia/PMCG/PMCG2/036.ts": {
+      "git_blob": "c524775a3f6f5782fcc389a51a41c0c083acfc82",
+      "sha256": "d533c093eab8fb5fc354a3585d83f3efa85875ae5c2d2f9d07e09c79d433657f",
+      "bytes": 635
+    },
+    "data-asia/PMCG/PMCG2/037.ts": {
+      "git_blob": "98fd328f68a817e984a9061fae63b15cc1179e8a",
+      "sha256": "f7204a67f3cad992e4213e647bdb78833ccbdc9b1a2f5c04649f2d6f825d66fb",
+      "bytes": 1119
+    },
+    "data-asia/PMCG/PMCG2/038.ts": {
+      "git_blob": "6e4f5fed99bba51daa721d811b5fd1fae57aa77a",
+      "sha256": "c9e8621847c4bbb52f8dd447cbf97b45847db45bdaf2cb2a1011a850f10ccad3",
+      "bytes": 861
+    },
+    "data-asia/PMCG/PMCG2/039.ts": {
+      "git_blob": "5e4b4d0985da3a58059699b1207a58a1071fa68d",
+      "sha256": "c0dd2ef0ab9631797fa1028d4b8ec311f7748d2531b446c6b6ae3037b0e894ba",
+      "bytes": 859
+    },
+    "data-asia/PMCG/PMCG2/040.ts": {
+      "git_blob": "3bbeabc7f420d05eff55711ec46345a9a127d2e4",
+      "sha256": "cca822f2bf540610c7015664b0b422088d0e1f364c6aae17d9a7850038f0f9d0",
+      "bytes": 896
+    },
+    "data-asia/PMCG/PMCG2/041.ts": {
+      "git_blob": "ac0468057f517c65fc7d9192bacb4b8ae0f05c00",
+      "sha256": "f0e25c9d6a49a63276b4aa548cc57b334424e4bdbcdb2cd0f908bf70e9cde603",
+      "bytes": 864
+    },
+    "data-asia/PMCG/PMCG2/042.ts": {
+      "git_blob": "c2d58700a2f8b4d1860cf8db0a5d4d0f9d0c9c64",
+      "sha256": "d4fd5823ad7472cb57f5789b86fa1357faf00d420c95b36237f215ddb6caebf9",
+      "bytes": 1102
+    },
+    "data-asia/PMCG/PMCG2/043.ts": {
+      "git_blob": "45f674b9ae6f3bbcc373de14e38e90665bd2a82f",
+      "sha256": "09691afb33fbd1079da1254c594f1f6727de68299c79cc179ea826015d5d3f3c",
+      "bytes": 838
+    },
+    "data-asia/PMCG/PMCG2/044.ts": {
+      "git_blob": "b9e90a702a135ab23de7f213e0a37f20a4886a4f",
+      "sha256": "28684908f610d4eee4a4114e53a4374e8d3107fb263557aa736c6d791e97b51e",
+      "bytes": 930
+    },
+    "data-asia/PMCG/PMCG2/045.ts": {
+      "git_blob": "ca219d105acbfa91adf39ef9fd69352bea89ceea",
+      "sha256": "e3dcfc35911a44f5c8e8ed2174ef1e08890568d325bda36544646abf81891b69",
+      "bytes": 803
+    },
+    "data-asia/PMCG/PMCG2/046.ts": {
+      "git_blob": "e142cb38d1db32d8f5d11e4b88bdaecf180c4bd4",
+      "sha256": "dbd8cab00f5fafd4e1efbe6a4b6a028b96ba993ee3f6d29ad97d1af537f61db5",
+      "bytes": 815
+    },
+    "data-asia/PMCG/PMCG2/047.ts": {
+      "git_blob": "13a5b1b088d7e8264c22812b56d61812bc32e155",
+      "sha256": "79dd6afd48eeaa01ee563de79925d2cf7726f21b7a4ed980d0d6cdb16d319028",
+      "bytes": 995
+    },
+    "data-asia/PMCG/PMCG3/001.ts": {
+      "git_blob": "e857a109cd69cae3798284ec98a30f361b93a46b",
+      "sha256": "195daedf56b66f4effac567ec6af525fad8941072d683490880650f3856d6482",
+      "bytes": 847
+    },
+    "data-asia/PMCG/PMCG3/002.ts": {
+      "git_blob": "a04ddc7be776b379d15e9cdbf9be5d8796a51e1a",
+      "sha256": "2060fe3828dfcedaf2a87d0673b481d1bcfb1d32e5b8880def8ffa9f073b7db6",
+      "bytes": 1030
+    },
+    "data-asia/PMCG/PMCG3/003.ts": {
+      "git_blob": "7bfbe0d3ea93d84fef2789aa33a687e24dfcc242",
+      "sha256": "07ad003f21dd40f6bfcd017b23577a5dfda8a818ae2bd09c0ba6482e6a1cc282",
+      "bytes": 912
+    },
+    "data-asia/PMCG/PMCG3/004.ts": {
+      "git_blob": "c759e1fb3a0edd6405bb0714ff03a64e00b754ba",
+      "sha256": "51f1f61e4d236a1f02df2cdea38a231da36d067065eded3448aa51899f3df093",
+      "bytes": 1016
+    },
+    "data-asia/PMCG/PMCG3/005.ts": {
+      "git_blob": "a800cd272aa2d39717d95899e54f020a31112dac",
+      "sha256": "dd67cc0dfceca8a1966ae1e3a5e275fcca16544f8f801d71dc072a58d8c3c521",
+      "bytes": 947
+    },
+    "data-asia/PMCG/PMCG3/006.ts": {
+      "git_blob": "25a6cb601f1f82bd6b46a4609883d0f8bf0dbe55",
+      "sha256": "bba8a49af276961bd5838adc24827bf6ca948e656738ad488a048af1d664e18a",
+      "bytes": 1039
+    },
+    "data-asia/PMCG/PMCG3/007.ts": {
+      "git_blob": "14c2533475c5b5e9e424066b69695fe308791097",
+      "sha256": "d00163ccd3542a5d3b4ba733ea7bd2636c5e0df002fca9fd8e101753b5e945ce",
+      "bytes": 963
+    },
+    "data-asia/PMCG/PMCG3/008.ts": {
+      "git_blob": "04bdcde53d90693f8549e8edaeff5c8a0388d52a",
+      "sha256": "ed9cf68e5b726c55f2ea7d1447ee4fc5dff552b05bb907f645c0212acff2e7fe",
+      "bytes": 967
+    },
+    "data-asia/PMCG/PMCG3/009.ts": {
+      "git_blob": "1a260154ff3176ff1f26b2d91d78feb37d9f020e",
+      "sha256": "ea4f706eec7d88d2efd416c9d4fd74f77945c73267773268d9742d1581de76fc",
+      "bytes": 993
+    },
+    "data-asia/PMCG/PMCG3/010.ts": {
+      "git_blob": "ca91dc707abe4f3c4182ee2d97a22ce048a31728",
+      "sha256": "5f0b47703793a5a1a41e0a67f35cfd8fab6fd568179150b5859901bc107b5bdc",
+      "bytes": 834
+    },
+    "data-asia/PMCG/PMCG3/011.ts": {
+      "git_blob": "8e1052cc41a91823ef8fdb200f9d4afbb6cf529f",
+      "sha256": "6d0f3e564749d9c965a427be130190eb3bd07a58fe235d1e2c389ebaed69ca31",
+      "bytes": 944
+    },
+    "data-asia/PMCG/PMCG3/012.ts": {
+      "git_blob": "55e32a25c8f9a60f3fae73b76aa524ab18eaf9a2",
+      "sha256": "c286d232531e08cc2d61570c5e590f0e7ab4e94dc3a4237f09e40cfda8043a66",
+      "bytes": 956
+    },
+    "data-asia/PMCG/PMCG3/013.ts": {
+      "git_blob": "7d5352b03e08a5de4551dc5f887947810d313271",
+      "sha256": "57249f5228d8fb399b2c92057b63441343c882225d2da762b65fa0bca98b4c91",
+      "bytes": 864
+    },
+    "data-asia/PMCG/PMCG3/015.ts": {
+      "git_blob": "f854b2f0702d7f5b95fa63d33478fcac2d3c6bc1",
+      "sha256": "ee6cfde2e803535323eb4036992def147cf10836e7301a442a3b5735fa6a2f96",
+      "bytes": 1105
+    },
+    "data-asia/PMCG/PMCG3/016.ts": {
+      "git_blob": "59c13a7a08c6378c7651b8866b67c5aa0ff932e8",
+      "sha256": "b0acb01d638f2cf4eee643e3b1f0928c17ac4c0aa7d7d32673b7f4b2acb61a5a",
+      "bytes": 920
+    },
+    "data-asia/PMCG/PMCG3/017.ts": {
+      "git_blob": "eee45aa5f9154a99e288788a4dff330d9590bbcf",
+      "sha256": "c6427556b359ade493f6192138264e0e7c6f78d320df07f604f41fc3ce4c38dd",
+      "bytes": 800
+    },
+    "data-asia/PMCG/PMCG3/018.ts": {
+      "git_blob": "59c24e45b161203ad12bc98eb9bead2dc97a34a2",
+      "sha256": "690b00c88f320047b3eef2f65f132eb7ab1552183d195017e198e86e79c43c3d",
+      "bytes": 984
+    },
+    "data-asia/PMCG/PMCG3/019.ts": {
+      "git_blob": "717b0c8a786db6a49685876ab72b968b537d5b1d",
+      "sha256": "33e37480e88abc3a8398e67d3291e6167f16a6e8d0f5931b8fca35148693fb1e",
+      "bytes": 702
+    },
+    "data-asia/PMCG/PMCG3/020.ts": {
+      "git_blob": "84017104a0a32cbb239ab3ee5dfc71d6f0876c00",
+      "sha256": "ccca8497cd8dc42dfc21dd207f6fd004a25cc6e8ee89952722a019a94f36f903",
+      "bytes": 1170
+    },
+    "data-asia/PMCG/PMCG3/021.ts": {
+      "git_blob": "5a9b773a3d8135db688a8b4f92591af3f3ece8b4",
+      "sha256": "ccf4a2acbcabd84f0e3fe61ec63a6e6fd34e6d3fcef4bad0b9f929276cff1222",
+      "bytes": 1081
+    },
+    "data-asia/PMCG/PMCG3/022.ts": {
+      "git_blob": "d5109016e6b29f12d1a9a9ea18208f51391ad2c9",
+      "sha256": "5b26814b982df5833f06135f23c8577bdcdfb6bbabe445a2d3d0b1e9bbc1a1d1",
+      "bytes": 1064
+    },
+    "data-asia/PMCG/PMCG3/023.ts": {
+      "git_blob": "5d40a758bf6101d803b3c877fc95cad6dc6b3aa4",
+      "sha256": "8e44a631493b9d92c169674f06ed4a40898f6ac2060e255233381ea9504c6858",
+      "bytes": 1161
+    },
+    "data-asia/PMCG/PMCG3/024.ts": {
+      "git_blob": "af707c1e274045f6c6a3846c131a72c41a91edee",
+      "sha256": "a76685c00cfce471a625abda04a92dbc762be38d767e80c25709d4b62f47d840",
+      "bytes": 915
+    },
+    "data-asia/e/E3/006.ts": {
+      "git_blob": "dc76e2c8e7c8c5a0befdda5ec9cd007fd951dee9",
+      "sha256": "172ab69cb615894f341a09d4e5c1eddda66d1f41a05a9a1517476fbd72185d9a",
+      "bytes": 1305
+    },
+    "data-asia/e/E3/054.ts": {
+      "git_blob": "13cc6e581ac25819c898832a04ef51428b2703c1",
+      "sha256": "0c746cbf4dbd309762dacc502c627c454fabd779bb21c0002bf466639563e78b",
+      "bytes": 1179
+    },
+    "data-asia/e/E3/088.ts": {
+      "git_blob": "ccaa492dc3e3e8ebe0b0e9a72e0bc06da56a44e2",
+      "sha256": "961eb4acfad88cea3e5a8cfe492cc509931a4254b5f7c7303f34bcfcddbfb154",
+      "bytes": 1765
+    },
+    "data-asia/e/E5/008.ts": {
+      "git_blob": "218bb8a07fbaf48c04f777152185b104fd9bbb96",
+      "sha256": "032d8b612a197ae89c1f883556e60ef851bf29c5e23c73396a64b42eda58de4b",
+      "bytes": 739
+    },
+    "data-asia/e/E5/027.ts": {
+      "git_blob": "10b6996afb18bb7a2469a9245be1f2d5d7627435",
+      "sha256": "81ebbed08ea9afc6be7a1b2c865d89c4d8511dc53735b7055ca92ad95f69476a",
+      "bytes": 1090
+    },
+    "data-asia/e/E5/028.ts": {
+      "git_blob": "0cd3bdc67efa60e5006c93cfb22f03dc6cc3d09f",
+      "sha256": "d6ae3095003976b7a246646c7017096ffbdc8cd2cbefe9c5dc36bc185d3a1402",
+      "bytes": 1096
+    },
+    "data-asia/e/E5/029.ts": {
+      "git_blob": "e1bb5d5969bb043a363a676700a536db8ba30267",
+      "sha256": "4c5cbc5c5b86257ab72d57403d23c3bd5f00f8ff1f3441e1b50ae064972d5a12",
+      "bytes": 942
+    },
+    "data/Scarlet & Violet/151/001.ts": {
+      "git_blob": "c3137b208368ba7f6dc884dc9db0189d80d07982",
+      "sha256": "fd270810ce6cdd132f62ae32120ca41d9d83aef222b0c82c8f8d36b022041f53",
+      "bytes": 1683
+    },
+    "data/Scarlet & Violet/151/002.ts": {
+      "git_blob": "aa58acad4491f79e925c53776f644a83a746ff31",
+      "sha256": "95db71f622af9f3a58e62a31464405a541d146820c0d9c91a6de63ddf930455e",
+      "bytes": 1838
+    },
+    "data/Scarlet & Violet/151/004.ts": {
+      "git_blob": "470f63714cf33fe4d4c3abc2a908708653f0a654",
+      "sha256": "fcc3fe4ecdf2c9649b18ea5729aa6d9772e9c61dfa40222f216b4c2da0e4283c",
+      "bytes": 2162
+    },
+    "data/Scarlet & Violet/151/005.ts": {
+      "git_blob": "7c36189dd0702878cac5f461a95565eb77d292d5",
+      "sha256": "42f3cf7e8c9c48ff079b53fae0aa795de0ed53ca9ea82339918022c3d881a387",
+      "bytes": 1926
+    },
+    "data/Scarlet & Violet/151/007.ts": {
+      "git_blob": "3e75093d279f7f69f66b6a3e48f0e8cb0f8816c4",
+      "sha256": "8854c1beef70367e9daa96c6c8d17b9c54861c6fa5ad61e1b9346946fe2c6532",
+      "bytes": 2414
+    },
+    "data/Scarlet & Violet/151/010.ts": {
+      "git_blob": "79efd8bc98999fa41fd2074e2a13076d1b862266",
+      "sha256": "62413398ca5f0588a00f1c2547405689e1a2158d179f47fde64078c68a014093",
+      "bytes": 1860
+    },
+    "data/Scarlet & Violet/151/011.ts": {
+      "git_blob": "c4832c6244824859751f9951aa5b884dd8b20d13",
+      "sha256": "9438baa4f86de9e9b2a10869da34260529bb38922c67d2113e522f0bdd4bcfd0",
+      "bytes": 2398
+    },
+    "data/Scarlet & Violet/151/013.ts": {
+      "git_blob": "8cfcbed43c5f12902f2298c6401695a58f49a718",
+      "sha256": "b898c51c636d68ca8973a7c3365ec543aaeb6daf53e5fd1db419821e81c28597",
+      "bytes": 1304
+    },
+    "data/Scarlet & Violet/151/014.ts": {
+      "git_blob": "c433a383ae879e799809466f9663a7dde1869724",
+      "sha256": "f207b7b872bacbcf1e364593aa7ceb4cfde4134ae1b78fb9c3d6df8acdbabfa2",
+      "bytes": 2345
+    },
+    "data/Scarlet & Violet/151/015.ts": {
+      "git_blob": "407a26b798629bcbda9a51c6bf5ea7899e31e50e",
+      "sha256": "5adfa7a4ec08d2bb9a0b41d8ef79aeb4bc710bfd783184fe6a8e539b24e0baf9",
+      "bytes": 2556
+    },
+    "data/Scarlet & Violet/151/018.ts": {
+      "git_blob": "9c45f437ad613772f9162d88e42a05c8f6d9d7df",
+      "sha256": "a0da5afa7d90bc03fc829d368c7faacef4dd9d7e0c2b97aaef4c341d43670743",
+      "bytes": 2803
+    },
+    "data/Scarlet & Violet/151/021.ts": {
+      "git_blob": "0c94d7878e81265140f3efc4fa8aaa5a8a544650",
+      "sha256": "0e887e17d3c4532409d52237193a20ca168148f4d8ea9d3dc1a6c6991c4451df",
+      "bytes": 2121
+    },
+    "data/Scarlet & Violet/151/022.ts": {
+      "git_blob": "aac2dd5d701784a3a1213db7503ae2abd1f53810",
+      "sha256": "480045d4c9ed2bb1ce23fdb59d9d4b2f2665386b4a06026268c1edc87f721f3c",
+      "bytes": 2274
+    },
+    "data/Scarlet & Violet/151/023.ts": {
+      "git_blob": "33cc053e0ba4c70edb76c31bd4d9b3e5ab5a9b52",
+      "sha256": "a5e19a51bdfac5dbc4ecd10b1952d068a8a5d8f878171fa73d086bc8f2fe2bba",
+      "bytes": 1874
+    },
+    "data/Scarlet & Violet/151/026.ts": {
+      "git_blob": "60ae4a00dffb07477e34d9606c0c1984cff6b573",
+      "sha256": "71dfa78673e923666b688010da93e7f3686cc99803c47b3cc7de7242b004721f",
+      "bytes": 3131
+    },
+    "data/Scarlet & Violet/151/030.ts": {
+      "git_blob": "7b85ec3b2b680bc95e03880a5a9a8688f113170f",
+      "sha256": "4312b1bcc0382b0ca73f3c0a6d5facefa5cc8180a65aa6f98a1deeadbdaeaf43",
+      "bytes": 2398
+    },
+    "data/Scarlet & Violet/151/032.ts": {
+      "git_blob": "62038f0f5e98d43ab10f662e68bd5cb80ed7a329",
+      "sha256": "9b489e8a521c61e6cac2116ccb24f96172d5333f53004a4e989b4eebfb3f276e",
+      "bytes": 1265
+    },
+    "data/Scarlet & Violet/151/033.ts": {
+      "git_blob": "326c2e19dd29ac05d8be45289dc961ccc9005860",
+      "sha256": "e3363daa40eaa75d67a70b33f0eb2a7260a2624901e12e7ce146c87479792e62",
+      "bytes": 1679
+    },
+    "data/Scarlet & Violet/151/034.ts": {
+      "git_blob": "ac3175479c01704ce8fc1bb5ed9978235a34790e",
+      "sha256": "5dabe78c6675f7731748abc101be21f1ad6abed6db957314b85336ac9f2229d5",
+      "bytes": 2826
+    },
+    "data/Scarlet & Violet/151/036.ts": {
+      "git_blob": "f94287e8721e4fc659e6139abcc38a571d6ed8fb",
+      "sha256": "f0cac72c010f2126fe25b8777bd1589b0beb4e7297d2d5bd2bfcdf9693afed8a",
+      "bytes": 2806
+    },
+    "data/Scarlet & Violet/151/037.ts": {
+      "git_blob": "e4e05be43a002e743f90eafef4714cbb19f7cd88",
+      "sha256": "f4406064604ec66c76e06da1fd759f7c08e64061141d9eda7d667a40a7317329",
+      "bytes": 1777
+    },
+    "data/Scarlet & Violet/151/039.ts": {
+      "git_blob": "c83ccef31342f724a35b9e9858cc9d8ef60ef2b0",
+      "sha256": "61db4a322ad7a077be042d8b1e5c20a8574263268991feabda31de3296f7c630",
+      "bytes": 2683
+    },
+    "data/Scarlet & Violet/151/041.ts": {
+      "git_blob": "bb2b3eacbb6dd765fddc2d454c1d02061f067796",
+      "sha256": "498d56942ff5dd3533a8c8f38b8b5756bba2a5196dcbf5cee295c811d348bcd7",
+      "bytes": 2348
+    },
+    "data/Scarlet & Violet/151/042.ts": {
+      "git_blob": "9d395702bbd00ba9277159fc5f857fd36e59f3fd",
+      "sha256": "7642af557caeb7be9ff5bdab879868761c9d25bd02394075c52061780470a7f8",
+      "bytes": 2331
+    },
+    "data/Scarlet & Violet/151/047.ts": {
+      "git_blob": "db6a0df8fbcebeaec0e609bca5bd0ed8e9745f03",
+      "sha256": "155deb204a5c59bf39b1e561c12aa098d78f33f340db1df4f008b4fe0fa5b4b8",
+      "bytes": 2715
+    },
+    "data/Scarlet & Violet/151/052.ts": {
+      "git_blob": "f3b81dc12612e56d75e3ad6bee2eb460ffe93484",
+      "sha256": "4ef98279f8ccd5cc58c2265f8d65ff9b2956ef072c74e7a823d86cdb7f49b7e9",
+      "bytes": 2106
+    },
+    "data/Scarlet & Violet/151/053.ts": {
+      "git_blob": "d94c0a52318af389a633ec687bcd61adcbf46348",
+      "sha256": "24b6c57f991065e21def44385de3546fe48b0cb297a847bbf79877c17a0b407f",
+      "bytes": 2625
+    },
+    "data/Scarlet & Violet/151/054.ts": {
+      "git_blob": "e1154e37421ff7fa632d6499823998b33308ba80",
+      "sha256": "72a5207179868b78339edb66801610ba28a6426dde7275c9a71a54500ca150b7",
+      "bytes": 2070
+    },
+    "data/Scarlet & Violet/151/055.ts": {
+      "git_blob": "97645443dc93bb506311cebe9853cb248ace8517",
+      "sha256": "8698f7fc11b2920441738bab8a6d55b284fd015d476a0dfe77930fe0399abef6",
+      "bytes": 2054
+    },
+    "data/Scarlet & Violet/151/056.ts": {
+      "git_blob": "dddba8d733f37f2bd10ef7c25e7a873423cd6e0b",
+      "sha256": "a0d9383891c6a7da76910515d95d09e1ae8e7daa8e439b8575133b6b95956b20",
+      "bytes": 2081
+    },
+    "data/Scarlet & Violet/151/057.ts": {
+      "git_blob": "b2cc60ec3527b81d3bf51a4b4c0bf6bbfc2b0674",
+      "sha256": "b799ed06a20dffb83d8aa4e2d6dd85775324b02a72dc851297f02e2e71af2a1b",
+      "bytes": 2347
+    },
+    "data/Scarlet & Violet/151/058.ts": {
+      "git_blob": "d9de21e63ddc5996ee52fe914db92922654bf79d",
+      "sha256": "0196a57c621db29722b557a9319cc1676d3f48869c80baf70e552aca84126b76",
+      "bytes": 1665
+    },
+    "data/Scarlet & Violet/151/072.ts": {
+      "git_blob": "2d1f6c73254f304c652e09758e0beb269eb4a9d6",
+      "sha256": "6a36dc75746fd3d2994676f53b69bf1ba98f745c31acd4ba024d0fd58885eebe",
+      "bytes": 1388
+    },
+    "data/Scarlet & Violet/151/073.ts": {
+      "git_blob": "76a2be510e2841070e406306f5db1ad2ea07755d",
+      "sha256": "9c18c7dbfb7f775d90d9c7b8cf842232e3577ea4c3bfe5f6a9ff570c52235f75",
+      "bytes": 3282
+    },
+    "data/Scarlet & Violet/151/077.ts": {
+      "git_blob": "406af4fe571db76385e44c458e5c0280684d24a2",
+      "sha256": "f50f32f72e8401c00761db55b729010a8aa314724efbdfc1a860c16e8c30b63c",
+      "bytes": 1508
+    },
+    "data/Scarlet & Violet/151/085.ts": {
+      "git_blob": "699158b6bcd4af88293f19e90fcc256af8d351c1",
+      "sha256": "083d454f2874f4fa7c81f965af59db21d1d6dc8d6e14ebaafe800863b3d698e6",
+      "bytes": 2956
+    },
+    "data/Scarlet & Violet/151/088.ts": {
+      "git_blob": "fc097c6b5c387d48717fe6aa5fca66389150cb9f",
+      "sha256": "d7a4ec5349df89dd9d7e7e68a2c6721e668b6ba5c01bf226b979cbae7b551029",
+      "bytes": 1920
+    },
+    "data/Scarlet & Violet/151/089.ts": {
+      "git_blob": "639e8c02ea32d9ef4cf548ade0b4a61b16bed083",
+      "sha256": "71294171eddf20043570fd54c4503bde41a790d64f65a2d7e900560a9af949cf",
+      "bytes": 2535
+    },
+    "data/Scarlet & Violet/151/090.ts": {
+      "git_blob": "584168e761164b0c42535daff3e1c81d4701769b",
+      "sha256": "985180dd921d5b4452e752b7e1eeed445b462b9f3742bfe6ceb465add5f7bca6",
+      "bytes": 2167
+    },
+    "data/Scarlet & Violet/151/091.ts": {
+      "git_blob": "6d05cdf691b9a410b2272b19c0665b126f841617",
+      "sha256": "8bde2d7e645961dcc375938984c669e673d150c3fdd03f531cbea5b74bd31fbe",
+      "bytes": 2331
+    },
+    "data/Scarlet & Violet/151/098.ts": {
+      "git_blob": "4730d075989f9feadfe8e85803580a0c9d9127e8",
+      "sha256": "24e07745e117133efec003952c92ffc08bd1ce11cb3e3341236b168b625bb622",
+      "bytes": 2348
+    },
+    "data/Scarlet & Violet/151/099.ts": {
+      "git_blob": "bb12a3bb749b10a502273eb7a5760e57830bc0c0",
+      "sha256": "0f27a5b58c252f83fdc0b4532a6afac1d00eeacddd1cf7b34705525ca880b9f4",
+      "bytes": 1925
+    },
+    "data/Scarlet & Violet/151/104.ts": {
+      "git_blob": "624f6e99cbc838007181a2457e5a256f502e4485",
+      "sha256": "e3dbe6215ac24c04e25427eb60ad6fa43672ab6ce753b18af2786723aff87d5c",
+      "bytes": 3240
+    },
+    "data/Scarlet & Violet/151/105.ts": {
+      "git_blob": "43b3da6dcdeed4f04654dbb8243183017408b7c5",
+      "sha256": "135c6048da3da495403634931954dfea310514c6b4508c5d18388a84eb400a54",
+      "bytes": 3040
+    },
+    "data/Scarlet & Violet/151/108.ts": {
+      "git_blob": "308487337c4a0c22fe71fc089bb185e436947de2",
+      "sha256": "59f1006264fabe039fc1409f649f5044adb0ef73dc0e80a70cf3da103102021b",
+      "bytes": 1896
+    },
+    "data/Scarlet & Violet/151/109.ts": {
+      "git_blob": "8c51aefce8cda24ccc389bfdcb583da11e1ae64c",
+      "sha256": "1c0aa6ef18c3ad3c0849483e55af9a6caf1106099351c6efbd14d44cf8384577",
+      "bytes": 1651
+    },
+    "data/Scarlet & Violet/151/110.ts": {
+      "git_blob": "2ba13a4403c3a5c1da3367c6b9a42d1979b467e9",
+      "sha256": "29c21e6de7c08fcc241280f5b59f3c5cba7484d90b71e474d2edf99e02fabccc",
+      "bytes": 3789
+    },
+    "data/Scarlet & Violet/151/111.ts": {
+      "git_blob": "eafbbd7b014a442e825e3afb8da6dfa1de7eef0b",
+      "sha256": "248da572cd416a1e189921fe6cb1e0e12afeeeb717b7dd8c37ebc5f64578f809",
+      "bytes": 2127
+    },
+    "data/Scarlet & Violet/151/112.ts": {
+      "git_blob": "8c87c82b1a72e22a8bd21bef4048503f6e8e2233",
+      "sha256": "0dcd2857cfc577bbfc7f58a99067d0ca618c5a6725b11b831997365331cfb0fb",
+      "bytes": 2395
+    },
+    "data/Scarlet & Violet/151/114.ts": {
+      "git_blob": "ff63a56cb5807781e6a5a0346b923ca59e9eef12",
+      "sha256": "f8d45695224d8c5b409b00f852e6b59d0ef9140c07b335575e5469bd95c49bdb",
+      "bytes": 2052
+    },
+    "data/Scarlet & Violet/151/117.ts": {
+      "git_blob": "f0a91bce2f7fd4c7bd1bba454e98be035165c94e",
+      "sha256": "7150a3fdc367e3fe5c21463387addd2bbc023329fe8751faf1675ce747a2a467",
+      "bytes": 2625
+    },
+    "data/Scarlet & Violet/151/126.ts": {
+      "git_blob": "ce193bbfcc820dca10b1c6a8a06037380de1bc16",
+      "sha256": "308cdc743e31a909e159f6666b8f0ae49e4c740da38e5128e8b4b4937962ac7c",
+      "bytes": 1959
+    },
+    "data/Scarlet & Violet/151/128.ts": {
+      "git_blob": "6f2992e1b7a2adcb38275ccde0820dfa1a81cc74",
+      "sha256": "759ad7ef8be4a58f6738292b04f78397be1ad3038aef399fcd29f11a1eba8192",
+      "bytes": 2706
+    },
+    "data/Scarlet & Violet/151/130.ts": {
+      "git_blob": "9b7daab1b2d6143f9268664dfde9d975a16c980f",
+      "sha256": "e4bffc364cfec253820304722e43dfe6b8975bc3e33e7617d91ab2dc816ebc0a",
+      "bytes": 2991
+    },
+    "data/Scarlet & Violet/151/131.ts": {
+      "git_blob": "c7cc1c8df2aa73e7c6f6e224596ce57a69074e03",
+      "sha256": "5a91763ce414f1548db355f1f2103b9658e5f38f74afbeda75d6de19a01f034e",
+      "bytes": 2214
+    },
+    "data/Scarlet & Violet/151/133.ts": {
+      "git_blob": "50d6c8ac71d0bc461a89d3d12e018890e845a195",
+      "sha256": "80432e16cbae0160af62f9dbc2a064bb65c5fabb2519fb1848d6f47d309362c9",
+      "bytes": 2479
+    },
+    "data/Scarlet & Violet/151/138.ts": {
+      "git_blob": "34b4dc14d002b9645a767481b6801565a6bc08c5",
+      "sha256": "4a3a9e3fce3ca0a7c38538f3f5df6100e915fc94f5f1bb3166766539a7f82e32",
+      "bytes": 2088
+    },
+    "data/Scarlet & Violet/151/139.ts": {
+      "git_blob": "2c0279608cf6b6772c8aefc59b52ef40db9dfd9f",
+      "sha256": "ed131e5d0121a1fed12544c5c6993554185747e617968e0af3f5f790189977f5",
+      "bytes": 3315
+    },
+    "data/Scarlet & Violet/151/143.ts": {
+      "git_blob": "f37731e04c4f3792fc4f5f79ef7348199e19a40a",
+      "sha256": "e8dbd300b91266c05bc924d7445d36e348af413fa532f4a79d9d8b582c5f333a",
+      "bytes": 2571
+    },
+    "data/Scarlet & Violet/151/144.ts": {
+      "git_blob": "76fb9706601c033a6a940dd636db3dc6cc0ef5f1",
+      "sha256": "7ceee93874ff7b1f51b81723df2a81a889616b502ffd3a19beb0f2097bf386f6",
+      "bytes": 3045
+    },
+    "data/Scarlet & Violet/151/146.ts": {
+      "git_blob": "b5bcc30b9f76c1051ee193697f22ddcd495e01ab",
+      "sha256": "54e4083be82860fb55aeed50611eadf93cf89c12f69c78267999f227eb9c99a9",
+      "bytes": 3339
+    },
+    "data/Scarlet & Violet/151/166.ts": {
+      "git_blob": "030811e125fb7ea5f222306638343ec595c70e67",
+      "sha256": "835d9b5f3c53dba23c2e1312aade3805caa08c0d97eeb11abac8b3405c9d17dc",
+      "bytes": 1386
+    },
+    "data/Scarlet & Violet/151/167.ts": {
+      "git_blob": "da025d00bf7cdd08f76aef70c3b1483505df8487",
+      "sha256": "9a40a570af8c426f8c9da1f2307586bd97968cf9b34c8157ff426e6209e03a64",
+      "bytes": 1729
+    },
+    "data/Scarlet & Violet/151/168.ts": {
+      "git_blob": "e8c71891b62a0210e5c0e56b68d949712db01d02",
+      "sha256": "473ccc42d3a9e53e98d4b83954ab729b1642e52173eefb140b6c704824ce1ddd",
+      "bytes": 1656
+    },
+    "data/Scarlet & Violet/151/169.ts": {
+      "git_blob": "6af523425c04566936abeaadfec86a7b2af9ecc8",
+      "sha256": "02e348259ed37a6ad7c9791018a5fabbc023e6df619e1466ef2896cd7afec026",
+      "bytes": 1725
+    },
+    "data/Scarlet & Violet/151/170.ts": {
+      "git_blob": "273bf1b83d5d0587f83d6b3d12ca192f0558776a",
+      "sha256": "7a3ae3971993ab26e8ebeddb449ee83c6b571eda9e902925e82b41ab0fc32c26",
+      "bytes": 2143
+    },
+    "data/Scarlet & Violet/151/172.ts": {
+      "git_blob": "19dabe62eb7e3cb08348ece2f1158af688ba3ad8",
+      "sha256": "086694b214b643d3d06c98a90481fced4866d309f6a2576b41a394b2d04cfe5c",
+      "bytes": 1771
+    },
+    "data/Scarlet & Violet/151/174.ts": {
+      "git_blob": "dc87f91d27da6700b0c5cb80128ef5c09cc618cf",
+      "sha256": "840d6288a166f3289dfd29fed319e9e8908dec6a4a2e1d1898d050caa0848665",
+      "bytes": 2722
+    },
+    "data/Scarlet & Violet/151/175.ts": {
+      "git_blob": "a4c7db23d989cc0dacc0ba000a468723c97a8970",
+      "sha256": "3689c5706213907237019305a5d807740c3965761dd993234f6d006db898f6cf",
+      "bytes": 1953
+    },
+    "data/Scarlet & Violet/151/178.ts": {
+      "git_blob": "96b6baaa84e3e33896a3f54a6ca0d2a78c205c52",
+      "sha256": "aa0fbd3e6a63700fbc6aaa660f096dfc79887322cddd5753ee3234f057631e5e",
+      "bytes": 1942
+    },
+    "data/Scarlet & Violet/151/180.ts": {
+      "git_blob": "0d97087a8954d428da4804dcd4d6df3024f5b2a9",
+      "sha256": "cd132bae0f2ec256d5da20f08e2958ebad071d12cd44ff77073055d466b5d2c2",
+      "bytes": 1996
+    },
+    "data/Scarlet & Violet/Destined Rivals/027.ts": {
+      "git_blob": "2386a454a4adf1aadef5c437d613d6c05cf6dbc8",
+      "sha256": "da1c5a166daddc16b8e1d7e0babe48a7d7b2b32a7863fd8619f8f7db72a77cb6",
+      "bytes": 1209
+    },
+    "data/Scarlet & Violet/Destined Rivals/029.ts": {
+      "git_blob": "00defb223fa4ac6bafdfa76649c5d05593ec2ee7",
+      "sha256": "b85247320f91c56dea7b6d00dc685ddd512b3cf13902bff63215d555646424e7",
+      "bytes": 1560
+    },
+    "data/Scarlet & Violet/Destined Rivals/090.ts": {
+      "git_blob": "cf543a4b034523fd1855c523778e0832dd2c0a3d",
+      "sha256": "4c15190a23ea5930bc61f67859f0eb83ef67538aef64cbc91f26d41ab8113feb",
+      "bytes": 1475
+    },
+    "data/Scarlet & Violet/Destined Rivals/091.ts": {
+      "git_blob": "727485f7e707bac8f9460225bfccbc487675662d",
+      "sha256": "e26f0ec41cdb6b8638b051f1394291ea01a37b2fb71198a19e1250d6f03541b3",
+      "bytes": 2166
+    },
+    "data/Scarlet & Violet/Destined Rivals/151.ts": {
+      "git_blob": "5c5f91455357f214f9bb78821a0c07d2c2abc154",
+      "sha256": "434df0189c498ba18ecfe0bf17e8fa7200c5e27d8135269726b15bf2221aaf2c",
+      "bytes": 1825
+    },
+    "data/Scarlet & Violet/Destined Rivals/152.ts": {
+      "git_blob": "dda74d14a63931821f437aed8d1d64ef21d84624",
+      "sha256": "2f8bf9154077f12b84edfc83e73f5367d3c41666d8a444ec2563234b57894e81",
+      "bytes": 2034
+    },
+    "data/Scarlet & Violet/Destined Rivals/204.ts": {
+      "git_blob": "1028ea105c538acd8ef54bebe5bcb07d888c4932",
+      "sha256": "6b83cb066f9c71e997bff9c8416cddebeb765754968b2802992d5018c0795453",
+      "bytes": 1750
+    },
+    "data/Scarlet & Violet/Journey Together/001.ts": {
+      "git_blob": "bd6d7186a99892893916aa525a73de413cc89c24",
+      "sha256": "4ced206c4effa8c4a71c666ffd53a760d2e158f77e45ba9d89af0069abbfb9e5",
+      "bytes": 928
+    },
+    "data/Scarlet & Violet/Journey Together/002.ts": {
+      "git_blob": "1a17297dc6346098b931817b87762d5cf61c14ad",
+      "sha256": "155e69783298166a6853d115ab35a316075f552b4447b3425c4f078d6d2c14a5",
+      "bytes": 2142
+    },
+    "data/Scarlet & Violet/Journey Together/005.ts": {
+      "git_blob": "67194256fe08593315547c72bfdd120395afac19",
+      "sha256": "dcfc67f249cdb0949567d454b50605ba537b9ed01666b16323a4911fe444664f",
+      "bytes": 2376
+    },
+    "data/Scarlet & Violet/Journey Together/020.ts": {
+      "git_blob": "e3768ff29e75b0ac3a920371cd79a297b04fe602",
+      "sha256": "0fe5b3576e0c08c1942124fbe284fde167c8d449842c51e4a49cfc3d0059e04d",
+      "bytes": 1663
+    },
+    "data/Scarlet & Violet/Journey Together/032.ts": {
+      "git_blob": "a405e8201828f3e3b5127c29ec578964072eedd4",
+      "sha256": "6adc8272a7372b813955dfc0467b0f6bfb6edf18ef21290e768afafc2f3ad6e5",
+      "bytes": 2359
+    },
+    "data/Scarlet & Violet/Journey Together/076.ts": {
+      "git_blob": "a606a2e1b5c7fc5267989a2064565dc77ad929d7",
+      "sha256": "8736d4d9aac7aed1d7cc3527919121009c9ba3a519b23e82af72a4baa09f60f7",
+      "bytes": 1160
+    },
+    "data/Scarlet & Violet/Journey Together/091.ts": {
+      "git_blob": "4ddb8c6ba5df929d43bbd4073650c0822efcd086",
+      "sha256": "8c02e3749b4b490bccdaebc7a2816b8782435d23dca5047600ccddca3b1caf34",
+      "bytes": 1156
+    },
+    "data/Scarlet & Violet/Journey Together/092.ts": {
+      "git_blob": "6da4708619608c89418db129a520f1af90e66d39",
+      "sha256": "833bd5e5845d3ea3dc7339cd222adf34e524a8c0f367b43dc8a4fbfa8233cddd",
+      "bytes": 2745
+    },
+    "data/Scarlet & Violet/Journey Together/161.ts": {
+      "git_blob": "7b19bb45ef36f7b8b7fa5204c70f78ffcc757971",
+      "sha256": "58342509087bb14db6a4527fd400916cff784a2ffc62aaa7e7ef0ae9b83ce554",
+      "bytes": 2170
+    },
+    "data/Scarlet & Violet/Obsidian Flames/026.ts": {
+      "git_blob": "e74ca04ee0ea774fc54137395b2ff1c619dffea7",
+      "sha256": "104d433afc8544d2b0fa2c45c86499b44e22c4c8d2d550b6740ee4012d2fc021",
+      "bytes": 1708
+    },
+    "data/Scarlet & Violet/Obsidian Flames/027.ts": {
+      "git_blob": "20ecafc4314fc41bcaeac8d8399f98af4fe47477",
+      "sha256": "64d4ea4729ba2a965dd069309db30a55ccc4c4ac3eea108c4051414a85b73835",
+      "bytes": 1861
+    },
+    "data/Scarlet & Violet/Obsidian Flames/028.ts": {
+      "git_blob": "e5d9df457464040e412fa28d962002d8b62f63bf",
+      "sha256": "bad160038794fa6225e66b9d9047ff9283058cb2e9a9b17db8eb7671bc199870",
+      "bytes": 1776
+    },
+    "data/Scarlet & Violet/Obsidian Flames/029.ts": {
+      "git_blob": "f762a14c2f87472d23ac4b97a7fa98daabf2942c",
+      "sha256": "647003a1d13fe0921695a91b2869fd047246eb32650de7963cf65fe30d32c9a2",
+      "bytes": 2397
+    },
+    "data/Scarlet & Violet/Obsidian Flames/045.ts": {
+      "git_blob": "16b099e66ed137a7d1041e6c8129164b569e5a2f",
+      "sha256": "82b76db40e9a0dcc53f278a43014bf08dca39e7e7d304c4e8226e1bb9ec6305e",
+      "bytes": 2334
+    },
+    "data/Scarlet & Violet/Obsidian Flames/165.ts": {
+      "git_blob": "c3147194a32ba77560bb113a571c36484de0cc31",
+      "sha256": "3651e064aa3bf0271cd5595497591f28bb5754446575747837524a7b6fb18112",
+      "bytes": 1578
+    },
+    "data/Scarlet & Violet/Obsidian Flames/166.ts": {
+      "git_blob": "3361d66646a3c0ce8143ebd52030494ee76bc211",
+      "sha256": "28f2e4943bca32735464f76ae0fa6d3be1d6efd7f241a576c7bca2d2ec87e857",
+      "bytes": 1793
+    },
+    "data/Scarlet & Violet/Obsidian Flames/199.ts": {
+      "git_blob": "1ad9f7845371e7768132e54364fa298b3a8c9b92",
+      "sha256": "7e0b60f81037a1a398ddf23b7d02e3c9002937a9057f4688b7071478a9542f93",
+      "bytes": 2287
+    },
+    "data/Scarlet & Violet/Paldea Evolved/043.ts": {
+      "git_blob": "9baeaf22d0778af45380a43eaa4cc5c2af2cc6d4",
+      "sha256": "f57bddcbc9a215cd739904e9ee3ad16e98aaa5b24b23ebcec6490352700d4d00",
+      "bytes": 2803
+    },
+    "data/Scarlet & Violet/Paldea Evolved/064.ts": {
+      "git_blob": "f6e7c1e5c94087af063928b208d543b5ea04aaf2",
+      "sha256": "6069969cbcb57f2a20988c68350ef8c39e84126d13b766601eac8412db630f70",
+      "bytes": 2730
+    },
+    "data/Scarlet & Violet/Paldea Evolved/083.ts": {
+      "git_blob": "8012a1b68ebe98ad5a0ee31256fac36bd08892c1",
+      "sha256": "94c2228bffbfee1ce369e705515c2289725827d4a04b2797ce8422b82ab3c01f",
+      "bytes": 1749
+    },
+    "data/Scarlet & Violet/Paldea Evolved/084.ts": {
+      "git_blob": "6470466e75833b8e363966fc335f92277861d617",
+      "sha256": "be2784cff451e71d830689da005eab5b18ca13f31e790382647126dc69f801ad",
+      "bytes": 2390
+    },
+    "data/Scarlet & Violet/Paldea Evolved/106.ts": {
+      "git_blob": "ad0a097466716bb962a40fbd047907a87da91a27",
+      "sha256": "e25cd08b749a3fdfaee302ea2951bbdd26eef38919ca0505a5b0c04bf9e75c8b",
+      "bytes": 1381
+    },
+    "data/Scarlet & Violet/Paldea Evolved/107.ts": {
+      "git_blob": "113e8653d3478648d1091fd4e2c0f82f9fc2e2a0",
+      "sha256": "ffa680bd7d8acebaa259c257d904cdd6b0ac22a0259c8b5457003a83c7aec934",
+      "bytes": 2030
+    },
+    "data/Scarlet & Violet/Paldea Evolved/211.ts": {
+      "git_blob": "da59b65fc21f4eccf902674dc588f6f41e8230e7",
+      "sha256": "df8012b366bb24b00c760b2b49a86e11b1523884d347d2438e15bd459d2044d0",
+      "bytes": 2622
+    },
+    "data/Scarlet & Violet/Paldean Fates/007.ts": {
+      "git_blob": "6ed35e7cd556aceca93de181bd1592af54d71b3d",
+      "sha256": "51369814d93b1aa5b4a3f63402dc647578154bb621de3ccdf33d171383b5b3b2",
+      "bytes": 1863
+    },
+    "data/Scarlet & Violet/Paldean Fates/008.ts": {
+      "git_blob": "a38a2ab3ba9f969414c9dd337bf7d8c33c6a2451",
+      "sha256": "8b6957903437d21b02224e971353687ffd3168d9a4ea2de142652363367f59ad",
+      "bytes": 2507
+    },
+    "data/Scarlet & Violet/Paldean Fates/009.ts": {
+      "git_blob": "04f11da99bf45d64a777dcb731b06bf0f9f13aa4",
+      "sha256": "6f1bf70940696a8f39eae9079c58e792540a955b4fa6f8cfd2ba341ac2984ca5",
+      "bytes": 1569
+    },
+    "data/Scarlet & Violet/Paldean Fates/016.ts": {
+      "git_blob": "8849709cf6ec5c8fe696ef53b43ec015b2c6a7d3",
+      "sha256": "acb5580e11b4d00a2d0160bfc74ea27f83e0f4608be2f3d1e316b265991923d4",
+      "bytes": 2582
+    },
+    "data/Scarlet & Violet/Paldean Fates/019.ts": {
+      "git_blob": "6a7c479dd619d88ccbe3c4e5415953ba73d3f126",
+      "sha256": "343e34315da729304756b721332e9b5a261448fa9026850632e099708b83d3ca",
+      "bytes": 3049
+    },
+    "data/Scarlet & Violet/Paldean Fates/045.ts": {
+      "git_blob": "4acc9d7f3d3d4f5042dbe12267abda1a9c7f4298",
+      "sha256": "6997b01b5ab2297a0d309e8265a65c10b0b0d8f7beff56f8a4bcb48d27cf8443",
+      "bytes": 1616
+    },
+    "data/Scarlet & Violet/Paldean Fates/046.ts": {
+      "git_blob": "0afff02a0efa35ee5c4f3d998f59ecf8e22fce89",
+      "sha256": "3f661db4c2a0630e4f25e4db4d4bebb598797c7699bff8a7dcecd0cacae4e44d",
+      "bytes": 1702
+    },
+    "data/Scarlet & Violet/Paldean Fates/109.ts": {
+      "git_blob": "22634f2639cabf335b82384025a62bc643dd75db",
+      "sha256": "3c5fe95d3106f8b2467aa3653733acaef9a24e9101c312e8d93742c35e25fcfa",
+      "bytes": 1654
+    },
+    "data/Scarlet & Violet/Paldean Fates/110.ts": {
+      "git_blob": "39867e8d294830cdda5175ed1e1dd062b781ab77",
+      "sha256": "ebe086eabbd1fed39b3054eb572bf4456df679260fa8577c8247e53287d24246",
+      "bytes": 2295
+    },
+    "data/Scarlet & Violet/Paldean Fates/132.ts": {
+      "git_blob": "eaebabf0c265e0f43584c6368353eadfb18bc424",
+      "sha256": "c2911a5348033db0428bd5a7aa8a8022ae8db4b90184cdfe2c72f8ae711c6e8c",
+      "bytes": 2937
+    },
+    "data/Scarlet & Violet/Paldean Fates/147.ts": {
+      "git_blob": "49482288281435dda2dffba5e638e94695630da9",
+      "sha256": "67847a7a272a33d272d03f755df3fbbbc5d34c89fb9ce1b924ed5aa1ce81ae21",
+      "bytes": 2277
+    },
+    "data/Scarlet & Violet/Paldean Fates/169.ts": {
+      "git_blob": "bfa27a6cd5a0b913778b3dbde26ddbf6248f1c78",
+      "sha256": "5a5151426378a27bbb26bd5750f96a085032064623a18ae84829fcd5c41f0bd0",
+      "bytes": 1497
+    },
+    "data/Scarlet & Violet/Paldean Fates/170.ts": {
+      "git_blob": "02845a5cec3ccb8232c24b2cb73ac94caba088fa",
+      "sha256": "4255fb508f38161dfff1ab956a2f9b36accc04231c3522c7d8188172ade7ba33",
+      "bytes": 1575
+    },
+    "data/Scarlet & Violet/Paldean Fates/198.ts": {
+      "git_blob": "1da2fc722baa4dfd4626826e74654a2a38be0b20",
+      "sha256": "ef656f868ffaa25959c1b9e93f224ed038d396ad6a51e233e8cbbb7261c0fcd2",
+      "bytes": 2572
+    },
+    "data/Scarlet & Violet/Paldean Fates/200.ts": {
+      "git_blob": "b1db7345208d0654ed575b2d1567b963936a6c64",
+      "sha256": "2c1b0b75bb94736ddf3755fbf812accc5ab76fc4adab72b70d7e98c43d735398",
+      "bytes": 2842
+    },
+    "data/Scarlet & Violet/Paldean Fates/202.ts": {
+      "git_blob": "9042e8fb73a226685aae3681d01a7254c7581b22",
+      "sha256": "6102c4deb09dc69339f756ecc2238fe4014486b28266e3852e7ce6b39850c6ba",
+      "bytes": 2464
+    },
+    "data/Scarlet & Violet/Paradox Rift/031.ts": {
+      "git_blob": "b3edecd792f18a6bd0253cbe67a91b72df07e6a4",
+      "sha256": "969be0bb8f43cd527abcf80a50ecf8a32797276d274caa71a4100e43a5667a36",
+      "bytes": 1975
+    },
+    "data/Scarlet & Violet/Paradox Rift/110.ts": {
+      "git_blob": "cab4d3e98a9372551e98a298e6a800e73eb506d8",
+      "sha256": "ca1de8d4806461c7d1b022de2a720c505b838e660bf643338caa6ed27014f083",
+      "bytes": 2103
+    },
+    "data/Scarlet & Violet/Paradox Rift/111.ts": {
+      "git_blob": "4324b42b8580abb31fe7b247f52e2e66547dc6bb",
+      "sha256": "140fe56593a3edd7e63930756979d7c25df4d2512ad40e060cc5e91522763e07",
+      "bytes": 2169
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/074.ts": {
+      "git_blob": "5bbe2179857ff6b2fb5460f4a60b8cf1170a18d9",
+      "sha256": "ec7e47917ab100ae8f806290671643d8b85b1fecdcb2afe5a3ac9be7dadd84dc",
+      "bytes": 2787
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/024.ts": {
+      "git_blob": "ddf58a202f8d78982dbe7f1adf9afb6acf549d31",
+      "sha256": "7cf81d2bd83bafc6e36c8ce595371cc4609c69728e3cce777b617e8e1b5516b8",
+      "bytes": 1954
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/043.ts": {
+      "git_blob": "1c85b805c43ab4f6a923e0326dfe24f656c0ce87",
+      "sha256": "f741e72eab73bc2429f2be4cd597f4fe8db71ff1897c0d6340ebfe8d283ddcfc",
+      "bytes": 1843
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/044.ts": {
+      "git_blob": "ab17eb83fe12a0f7b51a69787655856211dee92c",
+      "sha256": "309a9788a8c13bdaff6e8a99d64c7c227d7fcac13b977fe6e18b9f074399073c",
+      "bytes": 1531
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/046.ts": {
+      "git_blob": "fcecf969aa893c250613f34721d8686a9790438b",
+      "sha256": "221e1f5d1d78f29d767315276380a39e7da5724d1be6b400eff1b6c70a8bf5b3",
+      "bytes": 975
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/047.ts": {
+      "git_blob": "24c081bef0c7e9cb0e39cfcbdbd87c0aa6544b56",
+      "sha256": "2c786626e26c5757f505c4009fb276ac6eef2d5d6c705f6b3669537e13e8f26d",
+      "bytes": 1274
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/048.ts": {
+      "git_blob": "0df16913f277d998cbf582d77d932ec7bb8cc1a1",
+      "sha256": "9142b77b268380bc4932b89e2148ee384d60421aeb23bb68c17633e158b5eb0f",
+      "bytes": 1515
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/051.ts": {
+      "git_blob": "49ac012a93f48ee06e72197b73c76ee78c8b3606",
+      "sha256": "b1ee2d41da3c093ecaa39622057c822b827a9f432b1854f1967d82715e19d4d7",
+      "bytes": 2467
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/122.ts": {
+      "git_blob": "fd80e9320f0874af606122b5c61d68d9084cf1d3",
+      "sha256": "8a3772caf76df68e3a6844e677642e17775d80df68a65b45cfe844cb7ceca65a",
+      "bytes": 1042
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/173.ts": {
+      "git_blob": "0824ba01a6d52a9b442418daabd13db13ef22e08",
+      "sha256": "f5c82a105abb80859f5525533dec2610e7f5645a93ae2c2c1ff539353db2c9e0",
+      "bytes": 2462
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/200.ts": {
+      "git_blob": "02c01f59a293314bd6f0107be80ebe5fb2f9bc85",
+      "sha256": "728e744d9dcfa1f357b16292b600b181e85064657ce2c558fa5101961bbc8b03",
+      "bytes": 1679
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/202.ts": {
+      "git_blob": "5c17d44de09b5e624ebdb3a426e4fb11c15d36f1",
+      "sha256": "edecf7454826f24467aa7ff8d62f7cc0b7a4104b185c2d624d72ce00e69f7ca3",
+      "bytes": 1735
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/030.ts": {
+      "git_blob": "703302e8009d3eeea7ed9e108bfac213a86af161",
+      "sha256": "cdcd3efab530f7ba884260c3843e6b6281247b2188a1b14a352beff7a43b219c",
+      "bytes": 1735
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/031.ts": {
+      "git_blob": "260efa6d7623e57f176a6c49c1d021d873d8663e",
+      "sha256": "652f92d97989c1bc905208543564ebc935407e4b183177729c8cfbd6d71c1e72",
+      "bytes": 2081
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/107.ts": {
+      "git_blob": "fe6093ee7150376ad8973f7f9f0dc2ac1805b03c",
+      "sha256": "2b8d2ea0c358e6d8e56ebfe6a3c6f96c0c39d60184df618545a6f9c89127c314",
+      "bytes": 1496
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/108.ts": {
+      "git_blob": "e5e443af727b9227fed1f942b2f9c7dadb93be82",
+      "sha256": "22b1b7b3affbb1316390deef4ec1c66f70aab21eaa4aa46fbe7867f33f286c3d",
+      "bytes": 1534
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/126.ts": {
+      "git_blob": "005e9f76bd22c42804a99c3c544c6f4d15472cc4",
+      "sha256": "39cb46e302782b68ac07a646297e8f04350b7e32c8027ce782f4ae900ef4e1b3",
+      "bytes": 1586
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/127.ts": {
+      "git_blob": "89b7574514305432110215e2e16e558932854585",
+      "sha256": "7c3b475ee79e3050253e0f14d070b1d79473a03a145fd8ce41b8a76ec96132bb",
+      "bytes": 2657
+    },
+    "data/Scarlet & Violet/Shrouded Fable/011.ts": {
+      "git_blob": "c97faa7cde937cb5ea2f7da36268db462ecb2437",
+      "sha256": "3dab75cb3a4506b7413858d502be7d7d9bb8e2e098de6664f4eb8818447a2b80",
+      "bytes": 2097
+    },
+    "data/Scarlet & Violet/Shrouded Fable/027.ts": {
+      "git_blob": "3c03f349bbd37309d6335dcc317942469be8c39c",
+      "sha256": "f90a4a5c1cce8fb7997f9626ca76001c83d7bd1fb9fd097729f2bb69ee326cc3",
+      "bytes": 1922
+    },
+    "data/Scarlet & Violet/Shrouded Fable/028.ts": {
+      "git_blob": "071de55568137fd490f5231007604927599301c0",
+      "sha256": "4a78dac9fe15614844b86077a6cb5a029c956c8c6c8c77b7d12725800e546ca8",
+      "bytes": 1781
+    },
+    "data/Scarlet & Violet/Shrouded Fable/048.ts": {
+      "git_blob": "580a834d516c6f47259d1ae0664806a0f25f4198",
+      "sha256": "3388cdd610c5e2da5c35a3fc48d213ab4cd3fc889b18012e8b89da3b2094af3d",
+      "bytes": 1414
+    },
+    "data/Scarlet & Violet/Shrouded Fable/049.ts": {
+      "git_blob": "3b1a3c2dfd09bb1a640cc42e2b1c034040c5925c",
+      "sha256": "b637df218ca4b40259f6799e4fd5c739b9ac19f009bc7ba7719fab40c1852f96",
+      "bytes": 1790
+    },
+    "data/Scarlet & Violet/Shrouded Fable/050.ts": {
+      "git_blob": "13aa1d793ec37b23a61aadecde167b0c0c63594d",
+      "sha256": "166806890290909a5a791300313817d2948655e769d51c78b389cff6fdb7b0a9",
+      "bytes": 2095
+    },
+    "data/Scarlet & Violet/Shrouded Fable/078.ts": {
+      "git_blob": "d8fac81ff00ba2d09f6d7708388a7360e2d46a72",
+      "sha256": "73cc6e30034b14191fbf927fbcd5dfafba25e8eb92b2cdcaec0e5feee8de10e0",
+      "bytes": 1700
+    },
+    "data/Scarlet & Violet/Stellar Crown/019.ts": {
+      "git_blob": "1ae9184616e23922a7897a52c199ff92d8dca2eb",
+      "sha256": "b0a3e5fc66cc4d502433f891ba2f1f875022e79b020e85de10e63617754206ab",
+      "bytes": 851
+    },
+    "data/Scarlet & Violet/Stellar Crown/031.ts": {
+      "git_blob": "eb6c04e3e3f7dc0b69cae7970d7364123821cad3",
+      "sha256": "0001a4805551929142349d7c2a0eea93ca4fe486d1c0da2ce4b1f045804c373a",
+      "bytes": 1067
+    },
+    "data/Scarlet & Violet/Stellar Crown/072.ts": {
+      "git_blob": "6e2075816b27fdc8cabf94666b0545d80d1ca04c",
+      "sha256": "7c43fa74578beab8312e2209561e4805b1c3931897130d02f43dd7f197d69c3d",
+      "bytes": 1325
+    },
+    "data/Scarlet & Violet/Stellar Crown/073.ts": {
+      "git_blob": "651ec3e5d4999dae7ba33680e1bd69cb1d84eccd",
+      "sha256": "f1563b22bc01e64624dd6bda4923064e5f22bf9930a2d34f16c5e02a7942c8bc",
+      "bytes": 3065
+    },
+    "data/Scarlet & Violet/Stellar Crown/074.ts": {
+      "git_blob": "d7c8c9b44922df3e361dfc78281fd54fa8721193",
+      "sha256": "cd8e5b4111ba3c8af9c462c791f48ccc6e99c3bed1bfef822798205a6dcb304e",
+      "bytes": 906
+    },
+    "data/Scarlet & Violet/Stellar Crown/075.ts": {
+      "git_blob": "7edd9728987c63ccfdd2417691efc409564c53cf",
+      "sha256": "0fa3fd44d27b02c59de245283bf0b84c5a560b2b80a59a6dde502bdf6176e02c",
+      "bytes": 1707
+    },
+    "data/Scarlet & Violet/Stellar Crown/112.ts": {
+      "git_blob": "d98fe912ebaa8128dfd855016b240e3ec16e600d",
+      "sha256": "244dc7e7fb8e67a1301ab8e4727db9db3fa464e5e4e0c052d63708bfe57986fe",
+      "bytes": 1580
+    },
+    "data/Scarlet & Violet/Stellar Crown/113.ts": {
+      "git_blob": "7f50900124e63bcd63923ebef21f148aa5532df5",
+      "sha256": "57f41d3ffeebb2d7af186a8d092a49fbbe06a20e20a9e7d47565a9e78ea02bf3",
+      "bytes": 1773
+    },
+    "data/Scarlet & Violet/Stellar Crown/143.ts": {
+      "git_blob": "4f32473b2ff572ce330ffb97cab1eba26dc4e0b9",
+      "sha256": "1444db4d30c82596e29f7e5b6a8c0fd5171effdf526b1b4fa7780bc6d42e49e3",
+      "bytes": 1148
+    },
+    "data/Scarlet & Violet/Stellar Crown/148.ts": {
+      "git_blob": "ebd120fd4114d4b9eae1f10705273a8b653e8f59",
+      "sha256": "c82296e9fab6858689f68a8df49e69d84dfd1803d2e6d77c428ac8338c5f3044",
+      "bytes": 1883
+    },
+    "data/Scarlet & Violet/Surging Sparks/016.ts": {
+      "git_blob": "0890284c5fc1426464e14337edaa50e6b0fcd39c",
+      "sha256": "ccb363d8629fa0ad760556d3de69d9c23aad52b35f8c3de344dca3c3e606ec12",
+      "bytes": 1268
+    },
+    "data/Scarlet & Violet/Surging Sparks/017.ts": {
+      "git_blob": "b7f5540245d60f132a87d385bd9a358682e19d0c",
+      "sha256": "5882a9ebf69a8579ba987cb2681734ff9535d5d7673cb93920db350435f359fe",
+      "bytes": 2005
+    },
+    "data/Scarlet & Violet/Surging Sparks/098.ts": {
+      "git_blob": "39f8d4ca3aea92c4b054f806844dbc97b8a663a8",
+      "sha256": "aee98306206a84e3e03193ccd149b675ff9089a700d1e44c7911190e90119183",
+      "bytes": 1396
+    },
+    "data/Scarlet & Violet/Surging Sparks/099.ts": {
+      "git_blob": "6b46c823541ba70360948806a1f62b55906cb3be",
+      "sha256": "9a8328dc0a94f8942e258d693808d51726b3c6522299af2159f732d2538c3c87",
+      "bytes": 1838
+    },
+    "data/Scarlet & Violet/Surging Sparks/143.ts": {
+      "git_blob": "7aaab03bf8e3c1339fe97a2b31cafe4f31675781",
+      "sha256": "cbd2219c6e8bc3f222df3abdbc86762edc9dd224e2b0b35ac3c55b501df1b182",
+      "bytes": 2451
+    },
+    "data/Scarlet & Violet/Surging Sparks/144.ts": {
+      "git_blob": "14c13d7c0c46009f938c7094cf7bc138cbf8a757",
+      "sha256": "c3f5eb28ec3f5b13831bca057bc980b8fa8791353602b8d184b83e1288e667b3",
+      "bytes": 1282
+    },
+    "data/Scarlet & Violet/Temporal Forces/026.ts": {
+      "git_blob": "e201926f6ae198caa3bb9fc4b9e7aea99566ba53",
+      "sha256": "697d2a3a7d3c66434fbc501d40fa0f20c0417904d55a8eaf3aaa1dd889867fd3",
+      "bytes": 2078
+    },
+    "data/Scarlet & Violet/Temporal Forces/052.ts": {
+      "git_blob": "25694ae8daa93e0c5ce7da8e35ecf65ad011441f",
+      "sha256": "9316f165cfd39e80c6609e56cf719ed8c2f068ef3e290c0edf788d16023eb485",
+      "bytes": 2781
+    },
+    "data/Scarlet & Violet/Temporal Forces/100.ts": {
+      "git_blob": "b41a293d198646ec47b32175f95df221daae7bc3",
+      "sha256": "f20301e72a72aa11c526f00c972c54159661702ec947502221db220a600d4bd7",
+      "bytes": 1871
+    },
+    "data/Scarlet & Violet/Temporal Forces/101.ts": {
+      "git_blob": "d5fbfe0f864dbedc93fac07fbca0b4b7a76f52a9",
+      "sha256": "076f44118c66e9014fdc80f6641e60265250d4b98e107458e16b174d2a0ca1b7",
+      "bytes": 1903
+    },
+    "data/Scarlet & Violet/Temporal Forces/124.ts": {
+      "git_blob": "37178c622d3cadab874eea21816662ed5a3e796d",
+      "sha256": "c3d11099c20c16d1b349ef439c3be158295a0150de5526b839e15d5b83d4c795",
+      "bytes": 2045
+    },
+    "data/Scarlet & Violet/Temporal Forces/176.ts": {
+      "git_blob": "c4882f57173c2c1f6bb9df719e8716e23fdb2387",
+      "sha256": "d567e5a05684cdf135b5333f766100a53d92bfe766f849e234012d55fbd665ee",
+      "bytes": 1835
+    },
+    "data/Scarlet & Violet/Temporal Forces/180.ts": {
+      "git_blob": "e9b5cdd0f768c7c1154dac10cbf37b9b6ea7de79",
+      "sha256": "6d5bc6d104ee4ea4fa3e1fe6137a0c961b934bc17b3493c1975b0a72d3b6138c",
+      "bytes": 1953
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/001.ts": {
+      "git_blob": "51d2af62da523ee0b3c261319378504d8796ce4a",
+      "sha256": "f4a03ed3a6d6feed6ffee0f150a1312ddc466123eeba71a503d83add9bcd920d",
+      "bytes": 1433
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/026.ts": {
+      "git_blob": "e0e61b98ea419f6ae6afd4fa1f793536848e992a",
+      "sha256": "4db69aa6de79e910a623f96aa4b94cf0f075e23572327db7367e1feaee8ff524",
+      "bytes": 1138
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/027.ts": {
+      "git_blob": "3aaa116e36130ae7dd1b1bb8ff222d27f6f269e1",
+      "sha256": "fef8c8e6fa678f62617207f0cb1dc90e3f0a022f5d706749e489f698763f2374",
+      "bytes": 1755
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/079.ts": {
+      "git_blob": "6885a5ed849b7e8ec7f8b834033eb72e48ae670c",
+      "sha256": "ce037ec98275f37903874daa009217416066082c25fa3aafef15e2ab7a95d7dc",
+      "bytes": 2111
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/135.ts": {
+      "git_blob": "36b624c4afad327c776bf329bcd3402f5be83438",
+      "sha256": "d959a5afb2d557d500bc6d22097d7b895e064f84994ae7c90f019cfe42675731",
+      "bytes": 2800
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/136.ts": {
+      "git_blob": "530e429723c7461bbb4cceedc72cb87d3c81f102",
+      "sha256": "ed34bf764c5ed1581c5dbd3985e08b03052ef4efe62fab4a98bdef40266c0b39",
+      "bytes": 2188
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/188.ts": {
+      "git_blob": "33d072e3bbe0e7f649190aec0950f7d5ce40b25a",
+      "sha256": "b20d54aa49929c29e163b1ddf9fe6637bbd5b969b2df0f5ea2dd5a7d2640ee4c",
+      "bytes": 2738
+    },
+    "data/Sun & Moon/Burning Shadows/1.ts": {
+      "git_blob": "9999656f8bccf7ed6bc0f584a5f82fbd417514f1",
+      "sha256": "11e1ef0cb9ff426eafd2094de12e409ac297f016dbed72c085bf3d4781602275",
+      "bytes": 1611
+    },
+    "data/Sun & Moon/Burning Shadows/101.ts": {
+      "git_blob": "e8139bf7a3fde6f65e6c4224ad3c83332f04539f",
+      "sha256": "404947b1f4aa91db93fa3f8f29ef91be26a24de81412f26c885b3bb4ba85060a",
+      "bytes": 1696
+    },
+    "data/Sun & Moon/Burning Shadows/102.ts": {
+      "git_blob": "ae932407ac23c3119a1e970e1030e4e2751d7408",
+      "sha256": "a36c6510275b6deed0e080bb1e261619bbf121c2f5d9d47bd4059e1c8c8d5f0f",
+      "bytes": 2329
+    },
+    "data/Sun & Moon/Burning Shadows/18.ts": {
+      "git_blob": "7d5e95638b8576b7d18a29397bf849d14e62be10",
+      "sha256": "e66f31f0bb10e7c6991d3f9721f03143df1a4bb3e5dcaf36c8893d9b004e8ad8",
+      "bytes": 1333
+    },
+    "data/Sun & Moon/Burning Shadows/19.ts": {
+      "git_blob": "a9c409b35bae6e01e2cd58e653483f24cda71920",
+      "sha256": "73b69158ee5f8e1fabce0d752828d4623b6775e6a6b857aa70c9b07b47c430c0",
+      "bytes": 1510
+    },
+    "data/Sun & Moon/Burning Shadows/2.ts": {
+      "git_blob": "a108b495c8bb3c65e931fdbde1d5dab08f211611",
+      "sha256": "783790c9332c110660385f734731a1a74b26fc3984b1ca5a8092e82d6b16ff73",
+      "bytes": 1675
+    },
+    "data/Sun & Moon/Burning Shadows/30.ts": {
+      "git_blob": "edefa58fa59969fba79c4199ce83c0ce208b98c4",
+      "sha256": "220502e9c2c33879b14a5062286ca401d4b92299ce3fc0514d60ad1bdb3efc20",
+      "bytes": 2090
+    },
+    "data/Sun & Moon/Burning Shadows/33.ts": {
+      "git_blob": "955c4fd3c148781bf7aba76bc5c9695bba5c20ae",
+      "sha256": "bf0743e21626ac7ab5412ad3651a73b20b17de96fae5a7a7106cad6b4967f793",
+      "bytes": 3031
+    },
+    "data/Sun & Moon/Burning Shadows/41.ts": {
+      "git_blob": "f2ccb5ef353693b757a87b5981aa10266223abd5",
+      "sha256": "00d78e2558fc21e2178ed735869359ec2c4adcd4e5e88ee22ccd2ddf37c1bd15",
+      "bytes": 2953
+    },
+    "data/Sun & Moon/Burning Shadows/65.ts": {
+      "git_blob": "75ad1df4e020847fb91619a908e054fa9329c7ba",
+      "sha256": "43872b4732d06b4ab4f5d98a5bce98c8a7fd7118ad9771a21b86bab1b114cd6e",
+      "bytes": 1348
+    },
+    "data/Sun & Moon/Burning Shadows/66.ts": {
+      "git_blob": "dbe5dd5bc8a2da7d0b712938c9a2a5c6c7ca00fc",
+      "sha256": "2f067b2700d69a2db50301794d28f6eee2ed0ace3c9399c0acbd260e4666ba0c",
+      "bytes": 2347
+    },
+    "data/Sun & Moon/Burning Shadows/7.ts": {
+      "git_blob": "b3d213431ce870de1c52a8db9d1bde56b4e0a350",
+      "sha256": "fcb55b8e29afd52f172bbfd06b45d3df9033c657232cb8def93d65136f93e1a9",
+      "bytes": 1708
+    },
+    "data/Sun & Moon/Cosmic Eclipse/166.ts": {
+      "git_blob": "189476521d48a015f083b9ac6858238e5bee084f",
+      "sha256": "44df3d43d599abb6064e3497fc05bce5c1346f99bc4e6d1775ef78f56989e3c4",
+      "bytes": 1957
+    },
+    "data/Sun & Moon/Cosmic Eclipse/167.ts": {
+      "git_blob": "17ba3cf6fc627d7cd67075163aec4a561ed9c922",
+      "sha256": "772ffbb03da86f172f532b3e64a05010ba0578c744927c483e5af6b055617533",
+      "bytes": 2006
+    },
+    "data/Sun & Moon/Cosmic Eclipse/23.ts": {
+      "git_blob": "123d18d984eab307416aca36ffef4660539728e0",
+      "sha256": "e68aeff2cd906b8b58c8680ff5a12aec31cf0f69e3ecd2da45f6ec886ee4b192",
+      "bytes": 2076
+    },
+    "data/Sun & Moon/Cosmic Eclipse/243.ts": {
+      "git_blob": "6d0f1be6c057b131b9ce2e3d449984193076c3e2",
+      "sha256": "3603d34b665e3f35394cb166af6358873c3842d3970b5060b931a438dd106eec",
+      "bytes": 3149
+    },
+    "data/Sun & Moon/Cosmic Eclipse/40.ts": {
+      "git_blob": "7d60c2a1d73a47b248a74fdb2b9cc73d1564a00b",
+      "sha256": "1df6bbb0388812ac59f91dbafb755551627bd9c714cc901475283145eebddb6a",
+      "bytes": 1626
+    },
+    "data/Sun & Moon/Cosmic Eclipse/41.ts": {
+      "git_blob": "62c43202e97945ebde86789a5f4be5200ceb9149",
+      "sha256": "97544a72d0d9baadabb0b870a60a0d97398fba3721b6b3acce5c8ea3fbf00a5c",
+      "bytes": 1785
+    },
+    "data/Sun & Moon/Cosmic Eclipse/5.ts": {
+      "git_blob": "0bcc6eec1a1d270f76f275b4ea42cd2b96c3bd8c",
+      "sha256": "41705196ce1c936826d29f0b4d804fcfb14eaeb8c9af146bbbaae14f1d87ae5b",
+      "bytes": 1889
+    },
+    "data/Sun & Moon/Cosmic Eclipse/76.ts": {
+      "git_blob": "1b7d6343001661e60a8246d416abe4fdffff6956",
+      "sha256": "608e372954adc29f0aa94759300ded721385e202f531663aa72ee559889f0e65",
+      "bytes": 3145
+    },
+    "data/Sun & Moon/Cosmic Eclipse/77.ts": {
+      "git_blob": "b55067f5e0eb9b01d36f4bf54de3764053c59e9f",
+      "sha256": "4b09a3e578ca229adbef0f9d7f7ddab20c1998d5d0728e81c19594ee0a02a6eb",
+      "bytes": 3252
+    },
+    "data/Sun & Moon/Crimson Invasion/52.ts": {
+      "git_blob": "ce3f566ca83f856c6ea18baef699f66c6b8eb50e",
+      "sha256": "ca73afe23afa861849dc1cea2110094cb0a7e97d410cf66631735f7186da21a3",
+      "bytes": 1852
+    },
+    "data/Sun & Moon/Crimson Invasion/71.ts": {
+      "git_blob": "dced42ddf0511210f442ddad8125b728b3a4d138",
+      "sha256": "17d6541e8c1ccff98f8157d422063a2aa630ac11b968e18e56de8abee14cd510",
+      "bytes": 1889
+    },
+    "data/Sun & Moon/Crimson Invasion/72.ts": {
+      "git_blob": "7c8ec4b23ed7ca9f1daa46cd3f814e8c2174d713",
+      "sha256": "e3f181b33750f3ccc61078bdcaf937570a894c043a716a46723e4adf8ce56579",
+      "bytes": 2777
+    },
+    "data/Sun & Moon/Dragon Majesty/17.ts": {
+      "git_blob": "7bb597f26fce2348f536b17596490916b2779e26",
+      "sha256": "0625b293e9251939c8761a55fb6432b6f8b6637a894a2b024d5c4aec6892225a",
+      "bytes": 1755
+    },
+    "data/Sun & Moon/Dragon Majesty/2.ts": {
+      "git_blob": "68c9f3bf9b2604493f11a36e3b6250c23ae3d278",
+      "sha256": "bdec41dbb836365e4f0f8ee9c9eff0a9ad925cc5132ba29a19e7a4df3af90f57",
+      "bytes": 3171
+    },
+    "data/Sun & Moon/Dragon Majesty/20.ts": {
+      "git_blob": "23399050fbc0c9d670ff9bd1e349fd27c519ad79",
+      "sha256": "39c6c1647fb98f83f5289d5aeedf990cbd7f8eaa44aa980059e9cea782cc2538",
+      "bytes": 2982
+    },
+    "data/Sun & Moon/Dragon Majesty/21.ts": {
+      "git_blob": "d1bf6980f08b7c8764a8f7d919fa212e74ed3a91",
+      "sha256": "302ef8a574ddeab795d6b0d8c15bb3b2b9619a4cecb7a03deb34281f50192657",
+      "bytes": 2979
+    },
+    "data/Sun & Moon/Dragon Majesty/55.ts": {
+      "git_blob": "9cce4462dacd66fbef8454324e69966a138c13ba",
+      "sha256": "701c0ca1920aed5d1e01b94040e0b092fc8270b77c6a5b22aa095f9c1b53aa76",
+      "bytes": 2252
+    },
+    "data/Sun & Moon/Forbidden Light/57.ts": {
+      "git_blob": "be979d59b840624257df12265929048bccbbd27b",
+      "sha256": "e743a4bab96ba3df69c209cd96dfedcee3145eac6db72037eb6d1ac3e8100ad5",
+      "bytes": 1590
+    },
+    "data/Sun & Moon/Guardians Rising/23.ts": {
+      "git_blob": "16571cf7c8e9c8048a219cace79b1ce4823961b0",
+      "sha256": "28b3120109737d40a7bcef1678db7f92c6852860105a7f5c68d589e5760f48ad",
+      "bytes": 1701
+    },
+    "data/Sun & Moon/Guardians Rising/24.ts": {
+      "git_blob": "271055f07ab0021ceb785573f161bade9d384ba9",
+      "sha256": "4d91c5ab6afa9704e3e1eb973fe1a2888d7a65cd63581f2d8300e4d5adce1bf1",
+      "bytes": 2798
+    },
+    "data/Sun & Moon/Guardians Rising/89.ts": {
+      "git_blob": "c2e547e67f1bd23f7ea00241950fef8982ffddc0",
+      "sha256": "51bbc99159d5af93c507c821a5ef07fe9f30353280d79764a4c1064534fa6135",
+      "bytes": 2814
+    },
+    "data/Sun & Moon/Hidden Fates/10.ts": {
+      "git_blob": "5c184df9cde5612bba5fd0e03eeef546528c73b2",
+      "sha256": "a756cc3fe09d84250d4ffb657485e1e453f94872c100d1759016f03daa935789",
+      "bytes": 908
+    },
+    "data/Sun & Moon/Hidden Fates/17.ts": {
+      "git_blob": "c392c35c0e4df7234729e7798d25400e016181ed",
+      "sha256": "b44d148d888c723b8d5144339f19cfbd9bfc9fc1b1efc0b22c759fb3673a5899",
+      "bytes": 940
+    },
+    "data/Sun & Moon/Hidden Fates/26.ts": {
+      "git_blob": "0c1719f74093e21046b27047b87f805805cfbd92",
+      "sha256": "7c27b557a42943d7f642330974e27a72ec6f0f495eb191d72493941df21c0fad",
+      "bytes": 956
+    },
+    "data/Sun & Moon/Hidden Fates/28.ts": {
+      "git_blob": "df77e6bca652ab37251c182c5a27276d1f2ade07",
+      "sha256": "f4e8d2780f0fb757598aca3a8eac994270303e1eefbfa9f450a356971bf66d8f",
+      "bytes": 901
+    },
+    "data/Sun & Moon/Hidden Fates/29.ts": {
+      "git_blob": "05817473484a8d26cdafc452336ea4bf6dfaf8cf",
+      "sha256": "83587ad6ae3adbde0dbb70e318da440c430927b8a68f5e14182c56505a4229d3",
+      "bytes": 1907
+    },
+    "data/Sun & Moon/Hidden Fates/37.ts": {
+      "git_blob": "a516acaabbc28320ea8422986a23c05cea48509c",
+      "sha256": "53327886b6bb6b1e6a53b6a6c04c86b512b64fd7e5a99f3d8a06339c7e17b60a",
+      "bytes": 1431
+    },
+    "data/Sun & Moon/Hidden Fates/40.ts": {
+      "git_blob": "78ecfd02f9c871f133681c9d2ec29383bb2780fd",
+      "sha256": "0f0873becd42a003a67e7318446ad884a6690bb4e501f28818c5406ef19c630f",
+      "bytes": 1268
+    },
+    "data/Sun & Moon/Hidden Fates/47.ts": {
+      "git_blob": "519652251edcc9d3129dfd68a71585041cc694ba",
+      "sha256": "fce44a68cfcabe546e5df1b0f043657713f4c2e2dac9803de985d2fc7e478d70",
+      "bytes": 1366
+    },
+    "data/Sun & Moon/Hidden Fates/48.ts": {
+      "git_blob": "3d213d7f11ae6ee9a8cca1fca871688b249660d3",
+      "sha256": "b9aeae161ddc649a8249f7615493ffc4397a8a13fc4637acc993bfb4468130fc",
+      "bytes": 1486
+    },
+    "data/Sun & Moon/Hidden Fates/49.ts": {
+      "git_blob": "cbe3363cf82007d6ee039215d3d0e7e40a7c86f3",
+      "sha256": "9549ef47edda7e1f52210f4a5e3ced25cc0b8e458dd3375869aa3b812dd156cf",
+      "bytes": 846
+    },
+    "data/Sun & Moon/Hidden Fates/50.ts": {
+      "git_blob": "d64f0aee94a8fbd040e657d6bc5788f39a8ba039",
+      "sha256": "9c7e4962ccc34964f39b6768834a36ba711d99a80419576f668847f5b8b45df2",
+      "bytes": 996
+    },
+    "data/Sun & Moon/Lost Thunder/1.ts": {
+      "git_blob": "0c97e16365ac9c11a4cec3818c0be1d9845350ca",
+      "sha256": "d729b52eb6d0551b12ee4d826346a3733ed89fcb8407e825a108af9aa319e40a",
+      "bytes": 1833
+    },
+    "data/Sun & Moon/Lost Thunder/133.ts": {
+      "git_blob": "4d8e328d9be022a4855181f65a88cdc606fdb81d",
+      "sha256": "5292c7e779751a80e02c552d933995fff65cfc55df37b1c0229aa1762f19783c",
+      "bytes": 1704
+    },
+    "data/Sun & Moon/Lost Thunder/134.ts": {
+      "git_blob": "04891ff517d23120874c3e687c01c38ec8b691a2",
+      "sha256": "7aa116da69c10d67ce51421520345ea8055981e658df5c05470994d76b0320b2",
+      "bytes": 3432
+    },
+    "data/Sun & Moon/Lost Thunder/155.ts": {
+      "git_blob": "748256c7a227138adab5b05a03f020b5366e15bb",
+      "sha256": "93f7824825f637955b73327f08306eabe246b342f6426c050eb001a4f1787fc5",
+      "bytes": 943
+    },
+    "data/Sun & Moon/Lost Thunder/38.ts": {
+      "git_blob": "94e5d0e5c179a35a58398cffdbecf24e3892a0c2",
+      "sha256": "ef76ca257ff3a19e2f1840652bee1850c671a45ec5654c9f85e2204231edc164",
+      "bytes": 1827
+    },
+    "data/Sun & Moon/Lost Thunder/56.ts": {
+      "git_blob": "0beb9f05f156008767214ffc3f44db5665350f44",
+      "sha256": "5991a4d4f7d112898f3edd7979e5ecf81e3f1601f1b8dd3de16edb493789c60f",
+      "bytes": 2878
+    },
+    "data/Sun & Moon/Shining Legends/36.ts": {
+      "git_blob": "b1b605fb14bbac1b4e3d01b705aed83cdcc05dcc",
+      "sha256": "4f6575a50f707cc63b5bfa9255ceaee68df5daafe4782f2d4a3419cb346ff5c9",
+      "bytes": 1596
+    },
+    "data/Sun & Moon/Shining Legends/37.ts": {
+      "git_blob": "381e93c5c16de7dad4cd21183b7b2ed96613465b",
+      "sha256": "cd9ef1471fdf13ce0416af9a9f0889f51a9ca4b2f524762bc5d7db935f69c11d",
+      "bytes": 2927
+    },
+    "data/Sun & Moon/Sun & Moon/101.ts": {
+      "git_blob": "8d0edc1fd93e66987a6074ccf38472d9fd6497fd",
+      "sha256": "594eaa3f29064b15f657caeebec8cdd370d3e656573ff7946578150f84d944aa",
+      "bytes": 3516
+    },
+    "data/Sun & Moon/Sun & Moon/28.ts": {
+      "git_blob": "e4fcc296a12765a40ca006a260359de606cdca9f",
+      "sha256": "7b14595cefbeec92c6e49ae000dd55421855f970112fb07266c51aa5c9e8d80a",
+      "bytes": 1409
+    },
+    "data/Sun & Moon/Sun & Moon/29.ts": {
+      "git_blob": "02a91263f0951c5adbfbdaf9841a2e6bde660cfc",
+      "sha256": "95c09607a2abe1d6b5e825a2679d85c8f96e2294189a2e836de3d862bf48df4f",
+      "bytes": 2266
+    },
+    "data/Sun & Moon/Sun & Moon/33.ts": {
+      "git_blob": "35fd05c61a1c60658249e046a1f0048c073eb6b6",
+      "sha256": "f1b1b1efeba8deae11421819cd083ab1b4baeb28c99630e358cb3fa3550d070c",
+      "bytes": 1019
+    },
+    "data/Sun & Moon/Sun & Moon/34.ts": {
+      "git_blob": "f9335af58bdf3edf8e05e8f6e48a56a5e582702e",
+      "sha256": "a7b9d835e3e8df433d0be79194a215efce213f09d58cc0e5ad64b7990a7ed1d2",
+      "bytes": 3327
+    },
+    "data/Sun & Moon/Sun & Moon/99.ts": {
+      "git_blob": "2586a7bf81f266a98cfca02bd372872861155f95",
+      "sha256": "34bb6725f56bff66c29413916435febf1599e36f70c46d9b7111c4d1fc73d13b",
+      "bytes": 2622
+    },
+    "data/Sun & Moon/Team Up/11.ts": {
+      "git_blob": "5882ab829393754cbeb72f012eeb8e9a8e83e29a",
+      "sha256": "081105591b325ec5664cab230de759c311a4d6b59c8af225875ac3728e13abc5",
+      "bytes": 1802
+    },
+    "data/Sun & Moon/Team Up/12.ts": {
+      "git_blob": "45f05a1961d25b616cd8b697b482433a1a0f1668",
+      "sha256": "8c46b958c7e44c1048b7555b7ad9522ad6c1464332d251e3c8dcafe2ca9acae9",
+      "bytes": 1321
+    },
+    "data/Sun & Moon/Team Up/124.ts": {
+      "git_blob": "1c8561ae3102bc004fa0a3cfb98cd5e5087b69b7",
+      "sha256": "bdb175c823bbf19d26005f3e640e37914d14971d8213dc4d299a15882e11eea0",
+      "bytes": 2589
+    },
+    "data/Sun & Moon/Team Up/125.ts": {
+      "git_blob": "95e1a8d48fb7398c100d5073679bf11d08400fd3",
+      "sha256": "c093179759d3be14eac003864b7284d493c52fb3c5414005eeb25741a2b1835d",
+      "bytes": 1208
+    },
+    "data/Sun & Moon/Team Up/126.ts": {
+      "git_blob": "45b7bbe26722400ab578c54bfe16fdbe870ab007",
+      "sha256": "75e5a4134faa749f5403a25eb559792b0c83035ed05dbb6862e6de24ce6ce509",
+      "bytes": 3080
+    },
+    "data/Sun & Moon/Team Up/128.ts": {
+      "git_blob": "6e275d1843a23e44e1a8ca4d94ec4926b42abe4b",
+      "sha256": "fbb5be90a8b6fc38e6b322e84246ac2f5224f6019fc4690c665bf6d182fe74b9",
+      "bytes": 2217
+    },
+    "data/Sun & Moon/Team Up/129.ts": {
+      "git_blob": "77a3c387137e99e55830ea7bb526cacf943e12b8",
+      "sha256": "5e08dc4cd5699cac5499cda91a43b1a1a12ef5c0d748883af5a318881bee7fbb",
+      "bytes": 1804
+    },
+    "data/Sun & Moon/Team Up/13.ts": {
+      "git_blob": "c41aa9534d4225c356ca30cb33e6fde52b141e5d",
+      "sha256": "e686ecaf82250fd48fb2c5e568f643bffec18f90c6303232cf228f358424b590",
+      "bytes": 1541
+    },
+    "data/Sun & Moon/Team Up/17.ts": {
+      "git_blob": "e96a8adfee6ce2b4ae7e6aff236b0b744a0bc4c5",
+      "sha256": "a33f31901edb224ff5359f4563b03b162eacb86099c3bda1ec676ae1a8ec3c96",
+      "bytes": 1733
+    },
+    "data/Sun & Moon/Team Up/19.ts": {
+      "git_blob": "dded04ab8ab2485e29155ceb5a9e65efd9c3ea8a",
+      "sha256": "6550edbdd35022fbcf8bde3b478e02419760c3b082d8d10c0d33ed498bf6031a",
+      "bytes": 2768
+    },
+    "data/Sun & Moon/Team Up/23.ts": {
+      "git_blob": "9fa35daee53ab227a7a477ea334745509d66a4f5",
+      "sha256": "97765843690c3a4734ea80f57b148a1140cf7f6878f14b3be09b9391c696a9f5",
+      "bytes": 1209
+    },
+    "data/Sun & Moon/Team Up/26.ts": {
+      "git_blob": "f03373a2c30976a014a578f5b46cdade5fbb695c",
+      "sha256": "f4bbe782d22762fd18414663ca0648a404176d776d2d1c927a8d090195857f69",
+      "bytes": 1867
+    },
+    "data/Sun & Moon/Team Up/27.ts": {
+      "git_blob": "e32cf7ecda6d827e51f65cbeeba8f8dc47be5840",
+      "sha256": "65cc4b05da436801d7ad930b13743630fe590f680c8cfe9aed9e53eb0091c91f",
+      "bytes": 3889
+    },
+    "data/Sun & Moon/Team Up/3.ts": {
+      "git_blob": "021406ff96d9f88311f507903777d89299b2df15",
+      "sha256": "5bd88eb01b9a8011e34fb0857ca5983d7fd744141b1bf88cac6074aa98bf54a2",
+      "bytes": 1430
+    },
+    "data/Sun & Moon/Team Up/30.ts": {
+      "git_blob": "cd2810d81684119900510c27b2250b8895e232ae",
+      "sha256": "268239ae402e2108ba64b59b7486fdc89eef6df7c6f1d9dd738a06c1efda39e9",
+      "bytes": 3388
+    },
+    "data/Sun & Moon/Team Up/31.ts": {
+      "git_blob": "577206aa438032f32d0baad09900b71d60792582",
+      "sha256": "6943b22440ae4252ed1ac10a934ae6198db278880ce7067bf9b10c69e2017ab1",
+      "bytes": 2347
+    },
+    "data/Sun & Moon/Team Up/32.ts": {
+      "git_blob": "87989fbba89890ca624b06b0ee65a038f16a4dfb",
+      "sha256": "192b2a043ff07eab984a3b8751200e7b544d33eee450468a956ffd5f2ad07a9d",
+      "bytes": 3095
+    },
+    "data/Sun & Moon/Team Up/4.ts": {
+      "git_blob": "7341353b42ea0731dd3a2e766bc1462718f91cbe",
+      "sha256": "22b946d1ca8b69de7267c6e9191a375f14b14f2559b5c72e31fe70f2e066ba5c",
+      "bytes": 2453
+    },
+    "data/Sun & Moon/Team Up/60.ts": {
+      "git_blob": "6bf579dba15c483519a9ca587fb32a1f354561d7",
+      "sha256": "dfc880bcf1563cc5f6ae91ac346dd652a62d3b5ca02eab409ef8cbb836337012",
+      "bytes": 1661
+    },
+    "data/Sun & Moon/Team Up/61.ts": {
+      "git_blob": "f38594edc52c795a62fa125c5ca533702cc9dba8",
+      "sha256": "c62f9bb8148e2c4850d435ae5eff45992255a68b0ef52af5320ec1b7245bbd71",
+      "bytes": 2747
+    },
+    "data/Sun & Moon/Team Up/62.ts": {
+      "git_blob": "0a767b5019ea0c993bd8ebfd62397d00aa3eebad",
+      "sha256": "bdea49cb36d27a588ef09de274c9ea9a881d6799a163ac9fa181cefd9dc2c83f",
+      "bytes": 1025
+    },
+    "data/Sun & Moon/Team Up/63.ts": {
+      "git_blob": "c09143351ec7cc0cf9820ad2491c6a0c708b02c0",
+      "sha256": "5ea8beee18e5c1f08f501ef1a4e647d6004265937715691dd50421d816f8c7fd",
+      "bytes": 3097
+    },
+    "data/Sun & Moon/Team Up/75.ts": {
+      "git_blob": "f2852539aafd45265165fc7d4efa78b0adb37189",
+      "sha256": "ff634e55bd88f09da3665434a03d60c1596f716ec85e20ea73648259d1282bdc",
+      "bytes": 1756
+    },
+    "data/Sun & Moon/Team Up/76.ts": {
+      "git_blob": "f78c57872c89e2445f6e752427b337beb896e635",
+      "sha256": "a879dcd77f31e0258ffe7690e0cf350d6890b8674ed5605e8dafb2bc33772aee",
+      "bytes": 2122
+    },
+    "data/Sun & Moon/Ultra Prism/102.ts": {
+      "git_blob": "c0eb5e87656c92f8982ecf7238ef13f8fee57b49",
+      "sha256": "f9727221a783b3f58d24268f0467dca661d6ad65186ca3898bad0fba8debd358",
+      "bytes": 1984
+    },
+    "data/Sun & Moon/Ultra Prism/104.ts": {
+      "git_blob": "d66248020bba15f153f54be387392209b14cd836",
+      "sha256": "464e3799db07d3bada450f648039c1f340cbbc0885657fce68d9f254fee07a6c",
+      "bytes": 951
+    },
+    "data/Sun & Moon/Ultra Prism/105.ts": {
+      "git_blob": "8265abe6d1f76c1f142fe1835a8f35213d2a5451",
+      "sha256": "076f48b2819c303f6863aed728948546dead2949c706e97c9d5f3d192a50a449",
+      "bytes": 1653
+    },
+    "data/Sun & Moon/Ultra Prism/18.ts": {
+      "git_blob": "3cf0ea67961478a0dcbf255e4a3d3ef9d5bfd092",
+      "sha256": "b060e2dcb80caec410df673d5ae4f3b90451f984797c9765f46dd672c7410880",
+      "bytes": 2050
+    },
+    "data/Sun & Moon/Unbroken Bonds/148.ts": {
+      "git_blob": "5401053935f7c76f4898418028b62000ef2e5d81",
+      "sha256": "8159b6c96d930b3c31a418479369c3a4398682000b444a01afaf92acdb3b7a28",
+      "bytes": 2204
+    },
+    "data/Sun & Moon/Unbroken Bonds/151.ts": {
+      "git_blob": "17d6ca9a4d600452d1cec2976aff22a693a33cae",
+      "sha256": "176ba1d490a16ef73def22818e40e4451a38fb365573de5eece7a3c37031c1dd",
+      "bytes": 2535
+    },
+    "data/Sun & Moon/Unbroken Bonds/152.ts": {
+      "git_blob": "a213f927bc70be50a4b74ac49aeabf383bf1f56a",
+      "sha256": "642ac68b8f18102751b443e8293eda518fbcd95fc644a9c284fadb860af12c5b",
+      "bytes": 1696
+    },
+    "data/Sun & Moon/Unbroken Bonds/158.ts": {
+      "git_blob": "6fa1362b8cc060ed1500e8fd1159acb5d5b431ee",
+      "sha256": "3405bdc2b0cd23b036e2655b5066ce2c04572bb132b567bf01fde20d6118c9ba",
+      "bytes": 2492
+    },
+    "data/Sun & Moon/Unbroken Bonds/16.ts": {
+      "git_blob": "1c0d47277badf1416a476f8cea1dee1c1bff8d17",
+      "sha256": "749e71a88644ea541e9261a52956a46898afc665dcb2cac059f634f7b51d3c25",
+      "bytes": 1826
+    },
+    "data/Sun & Moon/Unbroken Bonds/40.ts": {
+      "git_blob": "1ab83b855a4f3bd7fe5c167074db1f9ebb20249a",
+      "sha256": "1acdc5d1050da5bb8b4f3468d581c299e5f6d4b8c17850bdc9a7c7e0fd0a8f9c",
+      "bytes": 1801
+    },
+    "data/Sun & Moon/Unbroken Bonds/41.ts": {
+      "git_blob": "3d9aff69db465719a990ba93322859effded760c",
+      "sha256": "61de2d66ccd9e45773f5b61b8e5e2674368ffc7fcccfaad032294aac9f6752a3",
+      "bytes": 3139
+    },
+    "data/Sun & Moon/Unbroken Bonds/46.ts": {
+      "git_blob": "597458dd91600e12e52ad35fdf9fb307dbab0c97",
+      "sha256": "878e1ce3cfea384322cf65f770c752f770f48c57be2bae26cb7cd0f6bce7577e",
+      "bytes": 1184
+    },
+    "data/Sun & Moon/Unbroken Bonds/47.ts": {
+      "git_blob": "65fd5c3ccdde16bda8180d6eae77f68d80128bf8",
+      "sha256": "6042fd6903810ba7b7318d6e8e9a254a0f3766f990a73ab39454314bb832a11f",
+      "bytes": 2031
+    },
+    "data/Sun & Moon/Unbroken Bonds/73.ts": {
+      "git_blob": "9f3f5f0d6ac237db4e2901f97e3954d60b63bb79",
+      "sha256": "2e89d2d7c3dcac44a08c0fc12ac1fa2a3364a7912f80fa38555cd4b5025815c2",
+      "bytes": 1372
+    },
+    "data/Sun & Moon/Unbroken Bonds/74.ts": {
+      "git_blob": "4002117f224dd06c6192dfe550b149739bed2c5a",
+      "sha256": "9de96d3bc9054b9e761aa3d4601db1ef5c41b570c8feb772c43a7199feb0a3ac",
+      "bytes": 3503
+    },
+    "data/Sun & Moon/Unbroken Bonds/90.ts": {
+      "git_blob": "be5b276939aa4c84d2a9f8e880d711343e2c934c",
+      "sha256": "01d0b066967d9e6200b650ea5c4a2254429ca83b85b00e558f5c8b99ef8b7442",
+      "bytes": 1877
+    },
+    "data/Sun & Moon/Unbroken Bonds/91.ts": {
+      "git_blob": "102cbbb2f7bb806e47ff2c1d44023849d2a61728",
+      "sha256": "52219d31e388aefcc0e3970951a950c18af42dbdba93e17919023a5f553a094f",
+      "bytes": 2914
+    },
+    "data/Sun & Moon/Unbroken Bonds/92.ts": {
+      "git_blob": "fbe0c7b1640a15e200c9566287d58f1799f523d4",
+      "sha256": "774b02231222dacf30aee4283192f7addbccb7f7dea2bb71ca72d25f32d18173",
+      "bytes": 1555
+    },
+    "data/Sun & Moon/Unbroken Bonds/93.ts": {
+      "git_blob": "13bd379d76b9541c575aef2641b8b3c0f3f9fce3",
+      "sha256": "29c64b92a612edb6b8090c780ea1d9e56db153c76dd867f872d4dacc7f36c08a",
+      "bytes": 1317
+    },
+    "data/Sun & Moon/Unbroken Bonds/94.ts": {
+      "git_blob": "b530f947717c9243520f54fb353fb4029db23eea",
+      "sha256": "3e96a3554835ed4d03922deab1b52a25e7b09f671113567ea00e2b6dfde11ec1",
+      "bytes": 2467
+    },
+    "data/Sun & Moon/Unified Minds/105.ts": {
+      "git_blob": "f1009c85f936618eb1db318e632a089c02039515",
+      "sha256": "e97cf2fb890755b19b4225b22af4fa306b1dfd73a8cd2e5a5b88c682c741f4e1",
+      "bytes": 2779
+    },
+    "data/Sun & Moon/Unified Minds/161.ts": {
+      "git_blob": "2ef3c994ddc1f7f59a627326fe6eca606ef35857",
+      "sha256": "84913df01c61693942eb371291a1a3f9929f351ff8def700d30b2ab564ba0d01",
+      "bytes": 2011
+    },
+    "data/Sun & Moon/Unified Minds/163.ts": {
+      "git_blob": "535e8ee849052b85e1e5d6385e6b693a9276d468",
+      "sha256": "6587c4f47dacd8b2fe1f5e6a32bb0ccc4e27093997d0d260d42a8398a7a44e01",
+      "bytes": 2160
+    },
+    "data/Sun & Moon/Unified Minds/164.ts": {
+      "git_blob": "9e5f72534db62fbc62e4dc24cdcc694444bb6c06",
+      "sha256": "13027d6f82fc746fa6ef74743575c17472760dca8c2bbc20d121835aee3753b2",
+      "bytes": 2378
+    },
+    "data/Sun & Moon/Unified Minds/21.ts": {
+      "git_blob": "38e3ac6157b867c77c52cbc28c638e54ae4ccb38",
+      "sha256": "6d4a50310c9678d9621479391629aa68eb95b1d674c305f658431a2edd69b965",
+      "bytes": 2066
+    },
+    "data/Sun & Moon/Unified Minds/36.ts": {
+      "git_blob": "59d7da18b086e66f2424f96cf48502ccc41565ea",
+      "sha256": "42c52e75f87e23008206dd73c953b723058e1c6504aa67f408fd47e0672bb289",
+      "bytes": 2191
+    },
+    "data/Sword & Shield/Astral Radiance/021.ts": {
+      "git_blob": "aeaca77c2d28622d375ae3b62da9106f27288dd8",
+      "sha256": "d48f58ad9fa07649fc33dca4eb5cfdad4d3f9be4ff814737113399588a52c088",
+      "bytes": 1208
+    },
+    "data/Sword & Shield/Astral Radiance/028.ts": {
+      "git_blob": "91613a579e62d25a6a5b41d917226ffca2f3c2dc",
+      "sha256": "d7c30cf490a1892ee0f457b5a07984cac82699dbaf1c75b8e1efa4c1f2368950",
+      "bytes": 1932
+    },
+    "data/Sword & Shield/Astral Radiance/029.ts": {
+      "git_blob": "4abb79fa5ba470103159ebe5780788c7d03c1da1",
+      "sha256": "198352049dbdd338ac46c4316b5d8cb8aff39077b761f5b88abe50103d7bbc09",
+      "bytes": 2411
+    },
+    "data/Sword & Shield/Astral Radiance/119.ts": {
+      "git_blob": "4009b79beae19386b54ab21de164f7f1a89c279b",
+      "sha256": "8f02e1e7e8e0f750b4547225870b8eef8635840a9db6800d9c7454cdb934a827",
+      "bytes": 3024
+    },
+    "data/Sword & Shield/Battle Styles/111.ts": {
+      "git_blob": "63f8eef25a6cc29d7b891847dabbba2fd29b17ae",
+      "sha256": "5939ca3266d9a6a844016673049fae28f53696bbb1ee71b1671946b8e6c9eed3",
+      "bytes": 1196
+    },
+    "data/Sword & Shield/Battle Styles/112.ts": {
+      "git_blob": "024c51c19c0a23a4ad0d1196da923499cb4bb51b",
+      "sha256": "4fef4cf664ddc7f00d6049e9d63adb520ab1c6c3822a2fbdb30a8f35dd597cde",
+      "bytes": 1333
+    },
+    "data/Sword & Shield/Battle Styles/113.ts": {
+      "git_blob": "667d24827076735dd42f4ccead9e17f217d829c5",
+      "sha256": "cced880824c0161be3858cc4c32c2762a2483776b36ea8911bf694f892e77377",
+      "bytes": 1470
+    },
+    "data/Sword & Shield/Battle Styles/32.ts": {
+      "git_blob": "a71b519956d88258b1cf8a8ef3f11d6fc79c6542",
+      "sha256": "683e7ed1aef2a22319f5122d8e8ac86aca0e202b76ae958de24e3c7bc2a9a0d3",
+      "bytes": 1235
+    },
+    "data/Sword & Shield/Battle Styles/66.ts": {
+      "git_blob": "b1c7d9cfecb5a29e323fca2d9626137b644eb2e3",
+      "sha256": "8387bb270053c1a427b92fcd9b122afa548e7eb99dcef5346fe52066aa807f50",
+      "bytes": 1607
+    },
+    "data/Sword & Shield/Battle Styles/67.ts": {
+      "git_blob": "aaaf2e190b39b9731e899683f0795417b93f3c79",
+      "sha256": "df18098d5c406bf15ad5b407f0391b5778ed25b3692541352a84f7a78dbfa75c",
+      "bytes": 2775
+    },
+    "data/Sword & Shield/Battle Styles/69.ts": {
+      "git_blob": "0dedd024493686f9429fa9572e0805cad5ab81d6",
+      "sha256": "89f124f42171c5a567c21e5adfed06175c92a4d748e69106c73b71734dc7a3b3",
+      "bytes": 1363
+    },
+    "data/Sword & Shield/Battle Styles/70.ts": {
+      "git_blob": "14f807985f353a36d4723a14abf6d817eb6479de",
+      "sha256": "2107f5f109f85c2e26900a2c3b469defc0a0ed91186fcb370616c84e66ade18a",
+      "bytes": 2712
+    },
+    "data/Sword & Shield/Battle Styles/89.ts": {
+      "git_blob": "598a43a032b9eb90165c7556707ec82b7c22b82f",
+      "sha256": "322e58a91839d72288a09ac270b4fd9c8632684253f6da15d2534d45444af787",
+      "bytes": 1842
+    },
+    "data/Sword & Shield/Battle Styles/90.ts": {
+      "git_blob": "73632a20c271ec873105b16e08d092e3b2d553d9",
+      "sha256": "14f0482bbbcc543fdaa163f1137dfec52ca51f525fabd4b90c063563cfb32a34",
+      "bytes": 2658
+    },
+    "data/Sword & Shield/Brilliant Stars/019.ts": {
+      "git_blob": "2df1451fed98622ba290ec892a6a415e959a5ca4",
+      "sha256": "788d60841a21b28baa9b815381765a0b8a6449b39cf21ce43635998d8e901113",
+      "bytes": 1406
+    },
+    "data/Sword & Shield/Brilliant Stars/021.ts": {
+      "git_blob": "40e9314137486d4cf58d1628cdec9c6f2c0f3bfd",
+      "sha256": "c9e671369805f92d0f047b4978fa31921d30c4d636a9a0faabeb5fb603a7c424",
+      "bytes": 2309
+    },
+    "data/Sword & Shield/Brilliant Stars/031.ts": {
+      "git_blob": "56eb505895200f7873366a010177db9bdd66dee6",
+      "sha256": "8aa35a3121a41b1e99173cf50ddcf3639e366f8cee8caae4d4ef2ca8f3adb869",
+      "bytes": 2459
+    },
+    "data/Sword & Shield/Brilliant Stars/054.ts": {
+      "git_blob": "503b3fd18a7b1a4ab0dca157dea8530fe37fc889",
+      "sha256": "9a67242565c2c3faa5cfafcafd50e7f9eafa4ca85d43da181b6d010b726b7222",
+      "bytes": 3280
+    },
+    "data/Sword & Shield/Brilliant Stars/084.ts": {
+      "git_blob": "f5b4fc61acadb853a9d76750c8c79a81ec0e300b",
+      "sha256": "96603cf27d0e6bd6c80076d05277946add78c3beb7be47399ea4c8fea0b7ec5b",
+      "bytes": 1609
+    },
+    "data/Sword & Shield/Brilliant Stars/085.ts": {
+      "git_blob": "1a4fb22ec32a80caf7ec2e5527fd36ad2052ac14",
+      "sha256": "fcd0a2786cf423ec4ed4588179c1c8ef673ecb2f3e66f94a23f0804729b37588",
+      "bytes": 2587
+    },
+    "data/Sword & Shield/Champion's Path/2.ts": {
+      "git_blob": "03c143090ee4d111bbf77c8332e861c33be7850a",
+      "sha256": "893638fb72d03a816377be766723834534319d1b36b3f2f216079a31fb49678d",
+      "bytes": 1800
+    },
+    "data/Sword & Shield/Champion's Path/3.ts": {
+      "git_blob": "96779a99e9a57e9ff026b358bd4d8bea877eade7",
+      "sha256": "6b0b3386d2af5729c178ffbedc1f691aa5bcd20aa3166a55a587b0bcef1f1981",
+      "bytes": 1138
+    },
+    "data/Sword & Shield/Champion's Path/33.ts": {
+      "git_blob": "fa8ac895b26c8759ee8d99674b2db5b8f6347f0d",
+      "sha256": "0bf0ef1bb69ad62d3dbdaa1c17ff6f328060c6594452b34226b1152bed166bde",
+      "bytes": 1371
+    },
+    "data/Sword & Shield/Champion's Path/34.ts": {
+      "git_blob": "3a6ada7ca53ba1ec641e8910b9db604cc29f2280",
+      "sha256": "9ca9929226a184c733c18518452f3f8c75b9c9bb2de9003ccf074e323c7b08dd",
+      "bytes": 1490
+    },
+    "data/Sword & Shield/Champion's Path/4.ts": {
+      "git_blob": "3fe85c85f5311db8b9fb84cf27e06b4838b7ddcf",
+      "sha256": "0c85a5511a19f113a7bb826cac157510110f634632f625400a76578045031156",
+      "bytes": 1639
+    },
+    "data/Sword & Shield/Champion's Path/6.ts": {
+      "git_blob": "19b54a06fcd3c2adffbae1cc4d01b976116f228d",
+      "sha256": "75df8a9c3316c32f24532733f848a07681e26b36972ac9c2023eda5e2c8d289d",
+      "bytes": 1675
+    },
+    "data/Sword & Shield/Chilling Reign/1.ts": {
+      "git_blob": "6e55867672c1ccf68af6c1bd6ca6ec50cd4799dc",
+      "sha256": "595328c1dc8011e8afbe417ca818cb59ba9e91b3bade68682e6a985b286075d6",
+      "bytes": 1115
+    },
+    "data/Sword & Shield/Chilling Reign/115.ts": {
+      "git_blob": "25b8a92eb5259031f0ae912ef4c17954a04e42af",
+      "sha256": "fd15109b11b65407fd310db79f6774bc548883af3b2d0896230a08b7a1a19986",
+      "bytes": 2598
+    },
+    "data/Sword & Shield/Chilling Reign/2.ts": {
+      "git_blob": "b213d811bc91fa40a77418a550061d22779d4874",
+      "sha256": "c638dc048565e3553f65b1ef4fcd7b130eb21d55832ed11094afa346af1fa05c",
+      "bytes": 2181
+    },
+    "data/Sword & Shield/Chilling Reign/224.ts": {
+      "git_blob": "3333cb2b29bd03fc74aa360415ad96f23a662928",
+      "sha256": "a44775fd8cb3eeeeac349f70dfc3b52c6d9f0ea213a94a874457f11467e258f8",
+      "bytes": 3052
+    },
+    "data/Sword & Shield/Chilling Reign/29.ts": {
+      "git_blob": "ea56e4a8f33867ec7f2c93c646910cd8ca4e9518",
+      "sha256": "82d658921a6c7b95b3a3764079e07c5ce73951cfbe8509a142a468098faefbc9",
+      "bytes": 2589
+    },
+    "data/Sword & Shield/Chilling Reign/3.ts": {
+      "git_blob": "ede2ac5b0fddb06232c09e6cce03031a53467491",
+      "sha256": "8fadad4cf1b5a937568451c86fc57f024b61eb6616ced2f7894f74c963bb89ee",
+      "bytes": 2483
+    },
+    "data/Sword & Shield/Chilling Reign/94.ts": {
+      "git_blob": "6a26583cc89f1625f416fe0c8b0ac69b2a25d478",
+      "sha256": "1b1709fca40fa9b903164bea3bba549b4f0dc1339dd196c244335844f166fbe4",
+      "bytes": 1584
+    },
+    "data/Sword & Shield/Chilling Reign/95.ts": {
+      "git_blob": "f0b0d88c2cbc656bace6da8e5b13af900c27d52f",
+      "sha256": "c9e485d17083f10df61ed2ab4bd6ed47c824d3fa9d6fc75248ea2a4996276a2c",
+      "bytes": 3033
+    },
+    "data/Sword & Shield/Crown Zenith/004.ts": {
+      "git_blob": "624f29e656514d46e301601e78d29e7e049db591",
+      "sha256": "c28122532d305a8da5da91e2dff711406d1a90892529be6ca04b27418e207c0b",
+      "bytes": 1392
+    },
+    "data/Sword & Shield/Crown Zenith/075.ts": {
+      "git_blob": "121858cf1566f304f1d352b0c31276381ce4d3d9",
+      "sha256": "cba8aef28165945467640fcb412483448392fbf0acbd9bfabeafceb8832355a6",
+      "bytes": 1593
+    },
+    "data/Sword & Shield/Crown Zenith/106.ts": {
+      "git_blob": "10f2dc759a7a083e7e3918c85147a40800cc260b",
+      "sha256": "7a715568261fb929a692de0285d77cd1da4e9a0eeb2ee3db65086c6b39b9301c",
+      "bytes": 2035
+    },
+    "data/Sword & Shield/Crown Zenith/109.ts": {
+      "git_blob": "30f34788e55345049e3700fe6d645b5421603f3d",
+      "sha256": "c124f6e0adc197581ee0a3d6f63c4fa4eefddb7e40584c80979babdc02b2f4cb",
+      "bytes": 1174
+    },
+    "data/Sword & Shield/Darkness Ablaze/100.ts": {
+      "git_blob": "6702a5cf26933bd199f84dbc8f7901e82983ba75",
+      "sha256": "8aa45c77512cb1c646644cd0a6364bdea9f29094e759a2bbdb672ff3c78b8666",
+      "bytes": 1777
+    },
+    "data/Sword & Shield/Darkness Ablaze/101.ts": {
+      "git_blob": "1bc8fd5f2ea6614939e13235c2a606248117f60d",
+      "sha256": "0fae40e79472dfe979c7ea29b4ca61add1a6f9a2f3112b3c0eceeeb5efc3a558",
+      "bytes": 2446
+    },
+    "data/Sword & Shield/Darkness Ablaze/133.ts": {
+      "git_blob": "fbc1c5bb2f55aabcae3cd35c82dcd6a68f7b3dcd",
+      "sha256": "0ac6f381c34e962292b39209d8092cde4710a068263cf28d48896d3760c31703",
+      "bytes": 2562
+    },
+    "data/Sword & Shield/Darkness Ablaze/134.ts": {
+      "git_blob": "bd84d1e309f93b3d5ab1a2ce93484be67541bf68",
+      "sha256": "778f76210ebda6d14ca7dff055bfbbab91c2a4bffca1f6ce49340a16a6581b29",
+      "bytes": 1087
+    },
+    "data/Sword & Shield/Darkness Ablaze/4.ts": {
+      "git_blob": "ab2464540392748fc08194f900e093b2c9cc56ac",
+      "sha256": "38533d4a7372b83a83d047dfdaced537d4a01d038a7c21e355c247fa8afd336f",
+      "bytes": 2055
+    },
+    "data/Sword & Shield/Darkness Ablaze/67.ts": {
+      "git_blob": "e69ca9bea85f951ead686953d44ec38401c71300",
+      "sha256": "0b99db10a40a867aa8e654c43ed86a6432ce40aa087bb6d12d213e37e2ec14de",
+      "bytes": 1316
+    },
+    "data/Sword & Shield/Darkness Ablaze/68.ts": {
+      "git_blob": "885e0fa84cfa6a044530cf19d601fa8caf9732bd",
+      "sha256": "63ea8eb86199f5cc970f28643b5895c9f5c316ed2ae1454f966c3446bdebb403",
+      "bytes": 2433
+    },
+    "data/Sword & Shield/Evolving Skies/125.ts": {
+      "git_blob": "a67395312daa3411d048572f881964fd7a359b32",
+      "sha256": "941f7e9dfae3a5683a21dff4f95c901aca20abe3b7453f81922e581d2ea4c203",
+      "bytes": 2144
+    },
+    "data/Sword & Shield/Evolving Skies/24.ts": {
+      "git_blob": "58260a97aa41414bba590351fddc86cc2e4c1a7f",
+      "sha256": "4e21811c46d70e1303b659e75eadbfe37a7005660b2b7191461c2eb7fca19212",
+      "bytes": 1157
+    },
+    "data/Sword & Shield/Evolving Skies/25.ts": {
+      "git_blob": "1e03d0201521b8f688469ed8f572d3f1ea0012e3",
+      "sha256": "24c145a2b52e23793fa1c995725ab8cf3eac41b4930a4f3dd8f0ee24b142160a",
+      "bytes": 1832
+    },
+    "data/Sword & Shield/Evolving Skies/26.ts": {
+      "git_blob": "bf23e548e01459456598487a833ca342053ea36e",
+      "sha256": "342c7bf1420dbe07d824777e8bee26028ff741d803a06935ea1cc19c2f0000d6",
+      "bytes": 1143
+    },
+    "data/Sword & Shield/Evolving Skies/27.ts": {
+      "git_blob": "fd5f1b03a8bada0916019bbfe8cebba07b65a0a8",
+      "sha256": "8b2fa6535c558e2cfa61a1534b4df04dfb8fc824cc78d5e2f158ad26c241ee61",
+      "bytes": 2473
+    },
+    "data/Sword & Shield/Evolving Skies/50.ts": {
+      "git_blob": "89cc40e47ba6381024fb728716bb2b7284b8cf83",
+      "sha256": "d953e32aec6cdc1ef54ab1f1ba0f8834933cd25bbcdee934eb230723f773fa26",
+      "bytes": 2944
+    },
+    "data/Sword & Shield/Fusion Strike/1.ts": {
+      "git_blob": "5d1d05077515c9dac4ef2d7f74c75f4d7f906fcf",
+      "sha256": "57962b9dbf3d553dd4d18df4c06cd4fba7f89a694e026f8f2a8d84a4a7465cd7",
+      "bytes": 1907
+    },
+    "data/Sword & Shield/Fusion Strike/110.ts": {
+      "git_blob": "b32b5a2bce99e404a9644ee49a405828d6f83f64",
+      "sha256": "e8a8331c3de165d3f66f72dd9f8434f9e2a0d9bf49aa5af37f6a489d75c82290",
+      "bytes": 2144
+    },
+    "data/Sword & Shield/Fusion Strike/111.ts": {
+      "git_blob": "e8aa4cff5cd678a4de491da1197b81ee105821b7",
+      "sha256": "c49ec4679401b84315d75870d0e6d8f7416c3114dafd99d9ba60ecf6d878cbf1",
+      "bytes": 2237
+    },
+    "data/Sword & Shield/Fusion Strike/133.ts": {
+      "git_blob": "05dced98a3231216c86eafe7244334b26018242a",
+      "sha256": "174497d4d07ac09526348892edd98a6bc23696b72772b6add33bd585da790dca",
+      "bytes": 1127
+    },
+    "data/Sword & Shield/Fusion Strike/134.ts": {
+      "git_blob": "4b884b439d6d2c9014a71d23f0ba9815f4fc41a8",
+      "sha256": "9e41261ae4af0afdfa04c203f2fb77c6c7180fbc57540a7b2130566f06508f4d",
+      "bytes": 2011
+    },
+    "data/Sword & Shield/Fusion Strike/199.ts": {
+      "git_blob": "81ee1083581fe6f0a9b0b1169ab1f177d8ddfb9d",
+      "sha256": "9acffd3761f2cdfb98de997993c15b40930ccea4dcc29cc2e56a32c07859534f",
+      "bytes": 1377
+    },
+    "data/Sword & Shield/Fusion Strike/2.ts": {
+      "git_blob": "9ecad6a1503ff93cced5ebe77963a45fb2a5be24",
+      "sha256": "e29269fc915c86ed232a2edb8a89a4638fdccbb74855af29eee2259a102ac27e",
+      "bytes": 2158
+    },
+    "data/Sword & Shield/Fusion Strike/200.ts": {
+      "git_blob": "0fb3835b839da2f857be98c12124248676c50393",
+      "sha256": "139243f0eb01618840587cd5192e118aa879fe8e47037b7c1c4216f2a7160358",
+      "bytes": 1678
+    },
+    "data/Sword & Shield/Fusion Strike/204.ts": {
+      "git_blob": "6b904eba4455c6d9b52cb5dbeb6fdd817638daf4",
+      "sha256": "1642cec448b50add7ff6d0f7b74d440fd8833e7e4fda38463fee5f367f1cc2a7",
+      "bytes": 2038
+    },
+    "data/Sword & Shield/Fusion Strike/205.ts": {
+      "git_blob": "05b9f1cc8eadf2032704b637bf4bce5d43c05cba",
+      "sha256": "6557b3033f894d1b3ea77832d3cce8b9a7b327411e24ca5bdc8a20cf3ad7bdef",
+      "bytes": 1843
+    },
+    "data/Sword & Shield/Fusion Strike/206.ts": {
+      "git_blob": "b07cf10d236507155d67c6fc871ba7ce567162a2",
+      "sha256": "82ac526f4188ff6fc9f04b5f37d334743d987df43c36002d32e884c5ed0bc366",
+      "bytes": 1176
+    },
+    "data/Sword & Shield/Fusion Strike/28.ts": {
+      "git_blob": "b6c0797a008ff3c8584cc84468dc55a97b2e044a",
+      "sha256": "2ea1fa136b5142d384cb8d13f11ac957faf0575f6ff490cda3dad92cd3cca831",
+      "bytes": 1151
+    },
+    "data/Sword & Shield/Fusion Strike/29.ts": {
+      "git_blob": "c803928290de4898d4f0716c0e6c42c4c80c4aa1",
+      "sha256": "ba525f850deb422232004fb97ff8757e0d3ab91e1936440d9af31c70f63bed90",
+      "bytes": 1154
+    },
+    "data/Sword & Shield/Fusion Strike/30.ts": {
+      "git_blob": "5ee3e640529657b486defcd3a315e46dea55b180",
+      "sha256": "00a43eafbae81cb31e6027a081315a3741f245f130c38f0e9eab6de64fbfa07d",
+      "bytes": 1368
+    },
+    "data/Sword & Shield/Fusion Strike/31.ts": {
+      "git_blob": "05901a28979a1d30fe43c1c6526957b08982ee2a",
+      "sha256": "3ea8c54210e05704d6638c377bef714056513a5b33bb1f5e30427794248e134c",
+      "bytes": 2351
+    },
+    "data/Sword & Shield/Fusion Strike/32.ts": {
+      "git_blob": "10b1a5c9fbfc8eea05612e6ce00281ef0aa67043",
+      "sha256": "7fb23732747620baacdc5b098b294a1679c2702aab4a7be3fffb5067dbcc1ed3",
+      "bytes": 2076
+    },
+    "data/Sword & Shield/Fusion Strike/50.ts": {
+      "git_blob": "2f4958ab94d796c593348a34843db4a8b8f8f5fe",
+      "sha256": "7c6f45916c5eb06890298114c7ef052e575e27c0e6d1d3d54098f2432ac2c8ef",
+      "bytes": 1346
+    },
+    "data/Sword & Shield/Fusion Strike/51.ts": {
+      "git_blob": "0d4761c1e3aa19150f6054d9a796d9681976a8b8",
+      "sha256": "e56424c346b901c073b3ad32399ecdcf4cd3073bd6bd0f4fb6201453c1437b5b",
+      "bytes": 3170
+    },
+    "data/Sword & Shield/Fusion Strike/54.ts": {
+      "git_blob": "c1be4574f4eab531bae5752c6ad3a5cf27b0115a",
+      "sha256": "9abd723192c82f8970dd5ee2e8b40bbfad14e5ec478b5123e0157d995ef35066",
+      "bytes": 3130
+    },
+    "data/Sword & Shield/Lost Origin/005.ts": {
+      "git_blob": "378749f93e97a978ade5583fe942e7fda1686c3d",
+      "sha256": "c87d15e1fe538f53bd9cdb9ebe17dd49a9636f517f72543719617e0001f29bf7",
+      "bytes": 2763
+    },
+    "data/Sword & Shield/Lost Origin/036.ts": {
+      "git_blob": "91f68c5c824ccb8c85513b6e174bd054f7daaf7c",
+      "sha256": "8905186cc48192939ec1e7bc1757153745e28ae63459d12d9511a9bc8ecd18c4",
+      "bytes": 3269
+    },
+    "data/Sword & Shield/Lost Origin/053.ts": {
+      "git_blob": "151ee3cd7c49713037935d76cce64f85237e099a",
+      "sha256": "6bde38da0c0ad732ef27686d4fa9430e8c3b2095c24184a6abb9eb198f1b3ebe",
+      "bytes": 2342
+    },
+    "data/Sword & Shield/Lost Origin/063.ts": {
+      "git_blob": "a8b349f1d7b9dba282b785c52b1729389fc8a761",
+      "sha256": "c47581edcfc840a709a509cdcc4ff8d7e811e3f5601a6f2504fb424701acfe5a",
+      "bytes": 2587
+    },
+    "data/Sword & Shield/Lost Origin/089.ts": {
+      "git_blob": "dc42bf4ec9adcdf78f32457ba68d46a878422ec2",
+      "sha256": "091462d43809633b06834b5d4da7407b6cfb5b69b235365fd14024b76a81d0e0",
+      "bytes": 1237
+    },
+    "data/Sword & Shield/Lost Origin/090.ts": {
+      "git_blob": "49a9aa3c539b2cd6b04165c4adc1375933bbf625",
+      "sha256": "e7eaee9a1438296e39c20ca6046126228e3c128e36750a0805c819348ff770e5",
+      "bytes": 1570
+    },
+    "data/Sword & Shield/Lost Origin/138.ts": {
+      "git_blob": "6cbe76449c6cbc00c1e295fc348943218a716a6f",
+      "sha256": "a5babfe121adfdaf79b69689b0c15d49ce50ac33312727b2e02d5b44025cd6e3",
+      "bytes": 833
+    },
+    "data/Sword & Shield/Lost Origin/143.ts": {
+      "git_blob": "b9b1be7638dd03d75fca283e44405aafddc71e4b",
+      "sha256": "68784d5708b09dbd2b52c5b5869f40f1ad83f8e006e3e8036e2b447b16d5243f",
+      "bytes": 2978
+    },
+    "data/Sword & Shield/Pokémon GO/001.ts": {
+      "git_blob": "096216e149e65744e1d83456fcc1376dfb608cdb",
+      "sha256": "e5f9a345fb303d8f0a2aa37e24362ac0839df65134b9c61074ab811d2760241e",
+      "bytes": 1367
+    },
+    "data/Sword & Shield/Pokémon GO/002.ts": {
+      "git_blob": "479c5b7d30e14fda455e118f1521ed67eee789f6",
+      "sha256": "f7cbde8094f38ae967a3f5839069e541f2410b53c6623fb342a3cca6d79e3f81",
+      "bytes": 2309
+    },
+    "data/Sword & Shield/Pokémon GO/003.ts": {
+      "git_blob": "1ed14d34b61062c1f727cd7d37b4d02eddce739f",
+      "sha256": "17014d0291de5911c5667638c9d3d108cb6067b8cbb56f13e736c46a914f06ec",
+      "bytes": 2844
+    },
+    "data/Sword & Shield/Pokémon GO/008.ts": {
+      "git_blob": "4f939dc7ba9e1b0f9e3b839f0d691c9ba53d2ff5",
+      "sha256": "20834f08a918ea487eaea640c7caa5a837585450c7d24aab03ce091af109c862",
+      "bytes": 1877
+    },
+    "data/Sword & Shield/Pokémon GO/009.ts": {
+      "git_blob": "818b3f57fc56a31592c403cf00c4e1cf8165752b",
+      "sha256": "4fb68abf6b9551412a011848825afd79cdd4c390e3c2631dad6eef19a4ab5ddf",
+      "bytes": 1891
+    },
+    "data/Sword & Shield/Pokémon GO/010.ts": {
+      "git_blob": "210f2d772ab4cad47d7c2de59c6b4a5a5617c2a7",
+      "sha256": "9700a595c38862e3c68e2b7eaefbee875a30ad9e03ff23e70344eadab5f8e040",
+      "bytes": 2835
+    },
+    "data/Sword & Shield/Pokémon GO/012.ts": {
+      "git_blob": "68f08ffacf53c8c05fde9c855396a75e1c8e0a13",
+      "sha256": "b42863a9794ed83b9a63102dc3954fdebbabb938647b4ad5939a88892a2eb091",
+      "bytes": 2585
+    },
+    "data/Sword & Shield/Pokémon GO/015.ts": {
+      "git_blob": "7719b49882303bf717e9c9a81c673d2fc2b9ef08",
+      "sha256": "23c3d0d3a0f4d75587ee9b3f7f46deb6302930087c9167d1dbca25fbfd6dd6d3",
+      "bytes": 1124
+    },
+    "data/Sword & Shield/Pokémon GO/022.ts": {
+      "git_blob": "bcfcdc7411b5273d8a32ff82f6dca02a3142827b",
+      "sha256": "270c5223edf000bd89b94e8d2efaaecd99a921cbbb581cebc0cc4604bffe6748",
+      "bytes": 2723
+    },
+    "data/Sword & Shield/Pokémon GO/023.ts": {
+      "git_blob": "d8e2556b7ebd86cfd78d2f9c9920a1675e8dab1c",
+      "sha256": "7e2669d2ef67dff19be4782dd0d80ae32f25b4c9a23f0a877d6622fdc6b770c9",
+      "bytes": 1933
+    },
+    "data/Sword & Shield/Pokémon GO/024.ts": {
+      "git_blob": "bfb8a3a8f4491b847af56bf019eb865f422b666d",
+      "sha256": "49f0d2c092cab0b3841e19819f7daafbc06bdb585cf75818837a339919740238",
+      "bytes": 2645
+    },
+    "data/Sword & Shield/Pokémon GO/054.ts": {
+      "git_blob": "599312ca95034a1538020dc2094b71a264c26c0a",
+      "sha256": "ea1ab4b6ee2e0aaf816c8ea5ef48100422409cf06808192a85ad34afc0f9a596",
+      "bytes": 2064
+    },
+    "data/Sword & Shield/Pokémon GO/055.ts": {
+      "git_blob": "e0baa5fb996e78f0532ed121574221d0e282a5a3",
+      "sha256": "e4ba4e3e1f007ef3ce3c66c056207b32ceadb1b12a07628ae5782e4c45149620",
+      "bytes": 2373
+    },
+    "data/Sword & Shield/Rebel Clash/1.ts": {
+      "git_blob": "f661e18a72878892df0d4a5ada7c117ca8b281c5",
+      "sha256": "c2e9efa1e585e0c9952acac48e56775270a8846da1e8738675b3b84a6dcf4314",
+      "bytes": 2032
+    },
+    "data/Sword & Shield/Rebel Clash/112.ts": {
+      "git_blob": "63c0c025803031f3af22d94a728e5ea2874da079",
+      "sha256": "3a8c0d7c187ccb61175339582bf2e04dc8db2b5757c06140d221f092b3b47cfd",
+      "bytes": 1220
+    },
+    "data/Sword & Shield/Rebel Clash/141.ts": {
+      "git_blob": "da67922145cf25ef15c97c8ddf493230140f0707",
+      "sha256": "fdb4850c53aacd88559a79273bd0055541b2585ae9bac1c724dfe131154bdf39",
+      "bytes": 1868
+    },
+    "data/Sword & Shield/Rebel Clash/2.ts": {
+      "git_blob": "3b23338c04ef2a6b522ec86d7337453bf7397901",
+      "sha256": "b529a878edd0c207b3d5740e9e6dbdde6d21e6295c0882fa34df705e66af4c56",
+      "bytes": 2257
+    },
+    "data/Sword & Shield/Rebel Clash/24.ts": {
+      "git_blob": "d7647ae1791ee5b04821587637a25737ff35cc83",
+      "sha256": "99563efbe044ac17645f766f335965f6f7381e23e83f4db7b87b8c766bd80a0f",
+      "bytes": 1792
+    },
+    "data/Sword & Shield/Rebel Clash/25.ts": {
+      "git_blob": "e0d6bdebcd2fe42a670f754052539491042228e1",
+      "sha256": "318b2343e0757ccd437b87134939a91aa303440bbb728927b8cc9eb284d9eadc",
+      "bytes": 2755
+    },
+    "data/Sword & Shield/Rebel Clash/27.ts": {
+      "git_blob": "c9b1775403518c28b80b07971748cdc9e4f7386d",
+      "sha256": "139e56af07ba0d4d634d3a07af1aa2732f20c6c6862266abaa09cb08ed726ed1",
+      "bytes": 2032
+    },
+    "data/Sword & Shield/Rebel Clash/29.ts": {
+      "git_blob": "1aab6f9e9ed00d116bc71fbcfcb275b1d6d00da6",
+      "sha256": "369af118fe9db495e368c47b5f5d199355e894dee0ea0e8ae6da286c3b139d79",
+      "bytes": 1908
+    },
+    "data/Sword & Shield/Rebel Clash/40.ts": {
+      "git_blob": "85c2edd613fc6e87635b7390a3590b7e30919958",
+      "sha256": "ef96abaf821edea47a5bff65cde115c5c1478e42c5b0019ebedd984d847fbc62",
+      "bytes": 1977
+    },
+    "data/Sword & Shield/Rebel Clash/75.ts": {
+      "git_blob": "da7a33f18a6be9bcc184736348de8b9410b532c6",
+      "sha256": "3ed5a5c2e8f72a55781533b245607a52d20fd426a420d3717eb2ca26123e1c1b",
+      "bytes": 2809
+    },
+    "data/Sword & Shield/Shining Fates/41.ts": {
+      "git_blob": "8d32897914bac6a07e924b2698936439aa5d2041",
+      "sha256": "9ff3591ac2ea9be15f12b0e0653cd012ad757cb86cb1c3e6f7e2bdde605a6715",
+      "bytes": 2104
+    },
+    "data/Sword & Shield/Shining Fates/52.ts": {
+      "git_blob": "67ff73529f39156edc8699a4859d8950a651dcd8",
+      "sha256": "b5bd15518fb17645f6eb0014e8dea802fbb5ed891e6ef707c0e978e04b6ca316",
+      "bytes": 2665
+    },
+    "data/Sword & Shield/Silver Tempest/017.ts": {
+      "git_blob": "48e34c692eec115ac3ff7b437e10195d41193166",
+      "sha256": "5198940cb480b453fb0c76e6f0a64b38d3eee63b32294a92fc449a1cd01df6f7",
+      "bytes": 1628
+    },
+    "data/Sword & Shield/Silver Tempest/018.ts": {
+      "git_blob": "45abc6f958343360087d871305cb6eda0b1d93d8",
+      "sha256": "34aa9668de470e4af2ad56a2b7c370a5ecf6946680c8a7415a33af2709ab86d2",
+      "bytes": 2338
+    },
+    "data/Sword & Shield/Silver Tempest/019.ts": {
+      "git_blob": "66c4267ce8127cb981e559b769fcdf5d893d58ba",
+      "sha256": "05c852856ae068ec7cd9e8fef5de2804876632db343733a8fe715f83c3180e9d",
+      "bytes": 1311
+    },
+    "data/Sword & Shield/Silver Tempest/021.ts": {
+      "git_blob": "8a85fdf03aa1e03f5c7d249bc5186ddde14139be",
+      "sha256": "a6a7ecce4a6f04d433eb4b3de3fb54c6815b898d464087aac4b41c9f8bc96087",
+      "bytes": 1566
+    },
+    "data/Sword & Shield/Silver Tempest/036.ts": {
+      "git_blob": "dea8863585ceb3c03fb8b829d459092550dd53bc",
+      "sha256": "71f004ec0496daead80a7f9473801a9d8d5bf4ec5d3bb29eb2aed0a32b2ed713",
+      "bytes": 2278
+    },
+    "data/Sword & Shield/Silver Tempest/050.ts": {
+      "git_blob": "0021db64157e43d890b6be82817227c55d64fddd",
+      "sha256": "b0e6859da1b49124083b7ce79989509e356cc13124b415e9c1a9b292184e54e7",
+      "bytes": 2291
+    },
+    "data/Sword & Shield/Silver Tempest/103.ts": {
+      "git_blob": "be325e0ea86c00343c2cce38522cfd952ad569c2",
+      "sha256": "52fb96d7c020d96d0e5d7b4e723f465aba6234b4f30bf69e27e19adea80e0621",
+      "bytes": 1164
+    },
+    "data/Sword & Shield/Silver Tempest/104.ts": {
+      "git_blob": "f2bf97d9223dbe3baf9fa109dfcf9b0b18de86a2",
+      "sha256": "d3b0967797138d6741162327a6ccb0f998c68586cba7dbef640f703e01c59b44",
+      "bytes": 1323
+    },
+    "data/Sword & Shield/Sword & Shield/140.ts": {
+      "git_blob": "59801755b1212f4ee65a43df15b125f3ee5fb1b5",
+      "sha256": "b01daf523c6ddff6ddebeb62f2204c4cda827467db01845af2cc3adc295ea52e",
+      "bytes": 1479
+    },
+    "data/Sword & Shield/Sword & Shield/22.ts": {
+      "git_blob": "7d95f80562487f6d6f989b4e268b711d525b8150",
+      "sha256": "5d19ba43375aab4070dd504a2cdfa0d66c6a2d2cd12c550bb8a6bf89349386a0",
+      "bytes": 1080
+    },
+    "data/Sword & Shield/Sword & Shield/23.ts": {
+      "git_blob": "17c50306cda802d7743edbfec07d2da42df79fcd",
+      "sha256": "850e9b26dbcc05d52b04befb25d8f89bf2705981b0302e88dff90593d9fd1f45",
+      "bytes": 1986
+    },
+    "data/Sword & Shield/Sword & Shield/40.ts": {
+      "git_blob": "b17adbe02ed5375c0078e8b4682c7aa5765d04a4",
+      "sha256": "588d2877705f241a74a7e1c161dc84e74e46198635a41009df1840571f720006",
+      "bytes": 1664
+    },
+    "data/Sword & Shield/Sword & Shield/41.ts": {
+      "git_blob": "dd2878f854144621e2a1dd13f7012a38b9dbbb75",
+      "sha256": "7b6bc9df9be70554c0d540458a79af4cbc24c8d41cbcf8811db252176602642d",
+      "bytes": 2136
+    },
+    "data/Sword & Shield/Sword & Shield/42.ts": {
+      "git_blob": "5fc50d8d53b6161cafc2f4d9f7b7c4d64a9e4d83",
+      "sha256": "57a0bb21ef9ae235424cf30cf59fe5d7da569785f3aaba39f23f0920d24a31a3",
+      "bytes": 2231
+    },
+    "data/Sword & Shield/Sword & Shield/43.ts": {
+      "git_blob": "699281ed22e53820fe9797850a2cecfe1aa103a3",
+      "sha256": "de97f2571fad85e9a4e6a9425f6cd4c9b9c89f07f396f4791670736cd4cbcc6d",
+      "bytes": 1745
+    },
+    "data/Sword & Shield/Sword & Shield/44.ts": {
+      "git_blob": "b496b1a59fa44f6b9c757bba681535adb63d8d3a",
+      "sha256": "b0990216a15aaabef9c196eec0ef06b8bf964b45d2c6f8336eb9003aaeb3492b",
+      "bytes": 2763
+    },
+    "data/Sword & Shield/Sword & Shield/48.ts": {
+      "git_blob": "c1c786d13bdb2e6341ad0dee794b9d5ab1df80fe",
+      "sha256": "7618fb00a46230166c804053a89fb5c1d7cf439aed46b7c387ecb4a28b4c1d37",
+      "bytes": 1844
+    },
+    "data/Sword & Shield/Sword & Shield/66.ts": {
+      "git_blob": "f04add4c60c3bbf36bd590f03fb11310091ff1d3",
+      "sha256": "f04797e2d0ba0dda14c8deac6062e7073fcee0143d5e5414d071c38a5919ccd9",
+      "bytes": 1501
+    },
+    "data/Sword & Shield/Sword & Shield/96.ts": {
+      "git_blob": "a2e29af7a812cc6f23533faf00504a18c8f67874",
+      "sha256": "92598adaf41610aa50b2bc789cb32fa6063c0400c6567ed28830c65e47bda8c7",
+      "bytes": 1338
+    },
+    "data/Sword & Shield/Sword & Shield/97.ts": {
+      "git_blob": "bbe2c3fb317cddce0a8601c1954e11abbbcaf1bd",
+      "sha256": "5332111643d28161148060b1221167e793e805de0e64960f1d4a29eb14a3392f",
+      "bytes": 1830
+    },
+    "data/Sword & Shield/Sword & Shield/98.ts": {
+      "git_blob": "e38eaf9b82f83ee917830f4f78dbc030129044b9",
+      "sha256": "c2592c1dc69d77b5142e32de40004c3d515342b77721fa4731e7eee2e8c907f5",
+      "bytes": 2535
+    },
+    "data/Sword & Shield/Vivid Voltage/1.ts": {
+      "git_blob": "8af861b0d2d3d950671b8c3001cb10706bcda3ef",
+      "sha256": "96dcf1bb9e01e134f145d0b4a70525a4628f85002b949e51ee2ec731413e6503",
+      "bytes": 1880
+    },
+    "data/Sword & Shield/Vivid Voltage/130.ts": {
+      "git_blob": "5a65cb021121e651dfffb1b209664eb9ea254317",
+      "sha256": "db79980b2af2140893f83de5717bf001db1ba7e2d5091f4c70029dfade085de5",
+      "bytes": 1256
+    },
+    "data/Sword & Shield/Vivid Voltage/131.ts": {
+      "git_blob": "27550f3fa67efe274452f17ea209e4382be455a4",
+      "sha256": "f4d056dda37d7e865fe0c34989d36423e23710069ad6da07b46e0120b8d5eb20",
+      "bytes": 3178
+    },
+    "data/Sword & Shield/Vivid Voltage/2.ts": {
+      "git_blob": "977e420ca36d698fd74b02e107a519713d8140bc",
+      "sha256": "ba439b85fa06221ab7abfce12c54c104d1b69850e90ccde46e14159ea8880ed5",
+      "bytes": 1633
+    },
+    "data/Sword & Shield/Vivid Voltage/23.ts": {
+      "git_blob": "dae205f2dc7db93ebe543fc43c3eb15892139438",
+      "sha256": "bf5b4783ef560a6ad38cdbf8924f691a622563ab2f959c3d8a4ce3e38af9a8ba",
+      "bytes": 1399
+    },
+    "data/Sword & Shield/Vivid Voltage/24.ts": {
+      "git_blob": "a7095c71527ec1b4806d2bfa891d2557666f44c1",
+      "sha256": "9cfeabba53118f248fb599d8f5bad9624eaeda4b82fa96a9f903fd72c41f33db",
+      "bytes": 1801
+    },
+    "data/Sword & Shield/Vivid Voltage/25.ts": {
+      "git_blob": "c54a3c75846ab6acb7d8e0ea0e8c95f864ca90d4",
+      "sha256": "8d66af66fa203855d76d820ca58a3e715fd66f4659db131af8c97314db0e5d3c",
+      "bytes": 3147
+    },
+    "data/Sword & Shield/Vivid Voltage/3.ts": {
+      "git_blob": "07a5f044063106e0086da26c5eaf7a44c31e4cfe",
+      "sha256": "9493625f0c7e6b458f37189b2f6cb001bbd7a37950dff20babed6055d63f2e06",
+      "bytes": 2406
+    },
+    "data/Sword & Shield/Vivid Voltage/64.ts": {
+      "git_blob": "51c0da6f9a040b0c9b405c59f8b5265b77318d06",
+      "sha256": "e7cdf792d9acbc8213610673b3f4edcf7982b075032767b4aa7d721e45537755",
+      "bytes": 2598
+    }
+  },
+  "new_card_identities": 0,
+  "new_concepts": 0,
+  "new_review_events": 0,
+  "new_counterpart_relationships": 0,
+  "physical_distribution_region": null,
+  "historical_retrieval_time": null,
+  "selection_reason": "Exact frozen 100 Japanese records across 5 named scopes;complete eligible groups;25 distinct existing reviewed-name English comparisons. No new translation or counterpart assertions.",
+  "demand": "Japan-to-US discovery objective;set-level demand unmeasured",
+  "authorized_supply": "metadata only;live Buy&Ship availability unknown",
+  "batch_profile": "pokemon-name-vintage",
+  "strict_variant_dimensions": true
+}

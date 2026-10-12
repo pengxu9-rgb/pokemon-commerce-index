@@ -1,0 +1,3753 @@
+{
+  "schema": "pokemon.international-coverage-audit.v1",
+  "relationship_rebuild_timestamp_differences": 657,
+  "relationship_timestamp_scope": "Existing builder generates import timestamps when absent in source; only asserted_at excluded in independent rebuild comparison. Incremental pilot append below preserves every historical column.",
+  "baseline_commit": "f499b46f7f0898c5c0478c53fef960d435f1765f",
+  "manifest_inputs_before": 65,
+  "manifest_inputs_after": 66,
+  "preserved_ordered_prefix": true,
+  "baseline_manifest_sha256": "c046f0280ba5e5d442b557407bbed2870500be13c3e46970722e79b1d389fbd5",
+  "pilot_manifest_sha256": "8fe1033ca39d21710eca93ecaa583f576a52a5c9a1a7064e4898b3a7ac8aea68",
+  "before": {
+    "source_records": 70006,
+    "language_counts": {
+      "en": 42911,
+      "ja": 27095
+    },
+    "language_set_number_groups": 45438,
+    "distinct_internal_identity_tuples": 70006,
+    "source_declared_variant_records": 49916,
+    "unresolved_label_records": 20090,
+    "unresolved_coordinate_families": 20090,
+    "independently_verified_physical_printings": null,
+    "structural_match_eligible": 33543,
+    "display_permissions": 0,
+    "catalog_image_files": 0,
+    "whole_catalog_image_availability": "not inventoried; missing images are not missing identities",
+    "source_image_fact_subjects": 1141,
+    "source_image_evidence_distinct_hashes": 1141,
+    "image_display_permissions": 0,
+    "automatic_offer_approvals": 0,
+    "purchase_eligible": 0,
+    "offers": 0,
+    "observations": 0,
+    "paid_sales": 0,
+    "localized_bindings": 0,
+    "release_gap_records": 8114,
+    "release_gap_groups": 200,
+    "release_gaps": [
+      {
+        "language": "ja",
+        "set_code": "SMP",
+        "records": 408,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S-P",
+        "records": 316,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYP",
+        "records": 296,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY",
+        "records": 259,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BWP",
+        "records": 229,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVD",
+        "records": 139,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMH",
+        "records": 131,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPP",
+        "records": 127,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SD",
+        "records": 127,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WCP",
+        "records": 108,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CP6",
+        "records": 103,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-B",
+        "records": 100,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT1-B",
+        "records": 96,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW10-B",
+        "records": 93,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-B",
+        "records": 92,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-B",
+        "records": 90,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-B",
+        "records": 90,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY9-B",
+        "records": 88,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY10-B",
+        "records": 87,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7-B",
+        "records": 84,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "LP",
+        "records": 79,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BG",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BT",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6-B",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "20TH",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-B",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L3-B",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW9-B",
+        "records": 76,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW7-B",
+        "records": 70,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW4-B",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BHG",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BSS",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMA",
+        "records": 68,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW2-B",
+        "records": 66,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVI",
+        "records": 66,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BB",
+        "records": 64,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BR",
+        "records": 64,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BX",
+        "records": 63,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BY",
+        "records": 63,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BC",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BF",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SH",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BB",
+        "records": 58,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BR",
+        "records": 58,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SML",
+        "records": 57,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BB",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BW",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHK",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHM",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BH",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BP",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVG",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRF",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRN",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPTP",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRN",
+        "records": 50,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRZ",
+        "records": 50,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-P",
+        "records": 49,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-S",
+        "records": 49,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WAK",
+        "records": 47,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MDB",
+        "records": 46,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVN",
+        "records": 45,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MA",
+        "records": 43,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SCS",
+        "records": 41,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HXY",
+        "records": 39,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "LL",
+        "records": 39,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMI",
+        "records": 38,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVF",
+        "records": 38,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMJ",
+        "records": 35,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SF",
+        "records": 33,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CP3",
+        "records": 32,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SO",
+        "records": 32,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMK",
+        "records": 31,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMM",
+        "records": 31,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SJ",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SK",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMD",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WCS23",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMN",
+        "records": 29,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVB",
+        "records": 28,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYH",
+        "records": 26,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-P",
+        "records": 25,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SB",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SGI",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SN",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MP1",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SLL",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAM",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAW",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYC",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-MRP09",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MBD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MBG",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SLD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SPD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SPZ",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYE",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BTV",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SC2",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SEF",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SGG",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMC",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SME",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAL",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVC",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJL",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYA",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DS",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEE",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEZ",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SC",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SEK",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEL",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEM",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOM",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SB",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SH",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "RAN",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJP",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOD",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYG",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKB",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKR",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKW",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKZ",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SE",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SG",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "KK",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEM",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYB",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYD",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SGF",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SLP",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PPD",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SG",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SL",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PBG",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-G",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYF",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPI",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPO",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "EL",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "GBR",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSM",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSP",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HST",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "KLD",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMB",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SZD",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKC",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKV",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SD",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SG",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBNA",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "EM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPP",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZP",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "X30",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "Y30",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BGST",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BGSV",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPD",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPG",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPP",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBHI",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMP1",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPM",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPR",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPS",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SM-XY",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMF",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMG",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BR",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BD",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BK",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPO",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPR",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BB",
+        "records": 9,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MPS08",
+        "records": 9,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP2",
+        "records": 8,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP4",
+        "records": 8,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PPP",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP1",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVP1",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP3",
+        "records": 6,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP6",
+        "records": 6,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SA",
+        "records": 5,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SM0",
+        "records": 4,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP5",
+        "records": 4,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1M",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1P",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1T",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      }
+    ],
+    "release_missing_name_records": 7745,
+    "release_missing_name_groups": 197,
+    "release_missing_date_records": 8114,
+    "release_missing_date_groups": 200,
+    "release_date_scope": "Missing date is unknown, not an assertion that a promo series has one release date."
+  },
+  "after": {
+    "source_records": 70006,
+    "language_counts": {
+      "en": 42911,
+      "ja": 27095
+    },
+    "language_set_number_groups": 45438,
+    "distinct_internal_identity_tuples": 70006,
+    "source_declared_variant_records": 49916,
+    "unresolved_label_records": 20090,
+    "unresolved_coordinate_families": 20090,
+    "independently_verified_physical_printings": null,
+    "structural_match_eligible": 33543,
+    "display_permissions": 0,
+    "catalog_image_files": 0,
+    "whole_catalog_image_availability": "not inventoried; missing images are not missing identities",
+    "source_image_fact_subjects": 1141,
+    "source_image_evidence_distinct_hashes": 1141,
+    "image_display_permissions": 0,
+    "automatic_offer_approvals": 0,
+    "purchase_eligible": 0,
+    "offers": 0,
+    "observations": 0,
+    "paid_sales": 0,
+    "localized_bindings": 60,
+    "release_gap_records": 8114,
+    "release_gap_groups": 200,
+    "release_gaps": [
+      {
+        "language": "ja",
+        "set_code": "SMP",
+        "records": 408,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S-P",
+        "records": 316,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYP",
+        "records": 296,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY",
+        "records": 259,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BWP",
+        "records": 229,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVD",
+        "records": 139,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMH",
+        "records": 131,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPP",
+        "records": 127,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SD",
+        "records": 127,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WCP",
+        "records": 108,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CP6",
+        "records": 103,
+        "missing_name": 0,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-B",
+        "records": 100,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT1-B",
+        "records": 96,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW10-B",
+        "records": 93,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-B",
+        "records": 92,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-B",
+        "records": 90,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-B",
+        "records": 90,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY9-B",
+        "records": 88,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY10-B",
+        "records": 87,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7-B",
+        "records": 84,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "LP",
+        "records": 79,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BG",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY5-BT",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6-B",
+        "records": 78,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "20TH",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-B",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L3-B",
+        "records": 77,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW9-B",
+        "records": 76,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW7-B",
+        "records": 70,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW4-B",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BHG",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L1-BSS",
+        "records": 69,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMA",
+        "records": 68,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW2-B",
+        "records": 66,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVI",
+        "records": 66,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BB",
+        "records": 64,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY8-BR",
+        "records": 64,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BX",
+        "records": 63,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY1-BY",
+        "records": 63,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BC",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW6-BF",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SH",
+        "records": 59,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BB",
+        "records": 58,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY11-BR",
+        "records": 58,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SML",
+        "records": 57,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BB",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW1-BW",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHK",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVHM",
+        "records": 53,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BH",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW3-BP",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVG",
+        "records": 52,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRF",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW8-BRN",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPTP",
+        "records": 51,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRN",
+        "records": 50,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW5-BRZ",
+        "records": 50,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-P",
+        "records": 49,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MMB-S",
+        "records": 49,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WAK",
+        "records": 47,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MDB",
+        "records": 46,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVN",
+        "records": 45,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MA",
+        "records": 43,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SCS",
+        "records": 41,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HXY",
+        "records": 39,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "LL",
+        "records": 39,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMI",
+        "records": 38,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVF",
+        "records": 38,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMJ",
+        "records": 35,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SF",
+        "records": 33,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CP3",
+        "records": 32,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SO",
+        "records": 32,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMK",
+        "records": 31,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMM",
+        "records": 31,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SJ",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SK",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMD",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "WCS23",
+        "records": 30,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMN",
+        "records": 29,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVB",
+        "records": 28,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYH",
+        "records": 26,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-P",
+        "records": 25,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SB",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SGI",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SN",
+        "records": 24,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MP1",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SLL",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAM",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAW",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYC",
+        "records": 23,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-MRP09",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MBD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MBG",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SLD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SPD",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SPZ",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYE",
+        "records": 22,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BTV",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SC2",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SEF",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SGG",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMC",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SME",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVAL",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVC",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJL",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYA",
+        "records": 21,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DS",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEE",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEZ",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SC",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SEK",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEL",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVEM",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOM",
+        "records": 20,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SB",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "L2-SH",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "RAN",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVJP",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVOD",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYG",
+        "records": 19,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKB",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKR",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKW",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKZ",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SE",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT2-SG",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "KK",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MEM",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYB",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYD",
+        "records": 18,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SGF",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT4-SLP",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PPD",
+        "records": 17,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SG",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT3-SL",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PBG",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "S8A-G",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XYF",
+        "records": 16,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPI",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBPO",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "EL",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "GBR",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSM",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSP",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HST",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "KLD",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMB",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SZD",
+        "records": 15,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKC",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BKV",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SD",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPS-SG",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBNA",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "EM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPP",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSPT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZM",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZP",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "HSZT",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "X30",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "Y30",
+        "records": 14,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BGST",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BGSV",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPD",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPG",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-EPP",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "DPT-GBHI",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMP1",
+        "records": 13,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BW",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPM",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPR",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CPS",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SM-XY",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMF",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SMG",
+        "records": 12,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BR",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY6",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "XY7",
+        "records": 11,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BD",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BK",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPO",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SNPR",
+        "records": 10,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "BB",
+        "records": 9,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "MPS08",
+        "records": 9,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP2",
+        "records": 8,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP4",
+        "records": 8,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "PPP",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP1",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SVP1",
+        "records": 7,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP3",
+        "records": 6,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP6",
+        "records": 6,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SA",
+        "records": 5,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SM0",
+        "records": 4,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "SP5",
+        "records": 4,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1M",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1P",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      },
+      {
+        "language": "ja",
+        "set_code": "CS1T",
+        "records": 3,
+        "missing_name": 1,
+        "missing_date": 1
+      }
+    ],
+    "release_missing_name_records": 7745,
+    "release_missing_name_groups": 197,
+    "release_missing_date_records": 8114,
+    "release_missing_date_groups": 200,
+    "release_date_scope": "Missing date is unknown, not an assertion that a promo series has one release date."
+  },
+  "unchanged_tables": {
+    "card": true,
+    "card_reference": true,
+    "card_facet": true,
+    "observation": true,
+    "listing": true,
+    "source_policy": true,
+    "relationships_excluding_builder_generated_asserted_at": true
+  },
+  "pilot_by_set": {
+    "ja:SV4A": 4,
+    "ja:SV2A": 9,
+    "ja:SV8": 7,
+    "ja:S12A": 15,
+    "en:SV02": 2,
+    "en:SV03.5": 7,
+    "en:SV06": 1,
+    "en:SV08": 11,
+    "en:SWSH10": 4
+  },
+  "queries": [
+    {
+      "card_id": "ja:SV4A:173/190:normal",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV4A 173/190",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV4A:173/190:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:173/190:reverse",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV4A 173/190",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV4A:173/190:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:190/190:normal",
+      "language": "ja",
+      "query": "Luminous Energy ja SV4A 190/190",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV4A:190/190:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV4A:190/190:reverse",
+      "language": "ja",
+      "query": "Luminous Energy ja SV4A 190/190",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV4A:190/190:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:162/165:normal",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV2A 162/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:162/165:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:162/165:reverse_masterball",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV2A 162/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:162/165:reverse_masterball"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:162/165:reverse_pokeball",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV2A 162/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:162/165:reverse_pokeball"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:163/165:normal",
+      "language": "ja",
+      "query": "Daisy's Help ja SV2A 163/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:163/165:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:163/165:reverse_masterball",
+      "language": "ja",
+      "query": "Daisy's Help ja SV2A 163/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:163/165:reverse_masterball"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:163/165:reverse_pokeball",
+      "language": "ja",
+      "query": "Daisy's Help ja SV2A 163/165",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:163/165:reverse_pokeball"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:197/165:holo",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV2A 197/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:197/165:holo"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:198/165:holo",
+      "language": "ja",
+      "query": "Daisy's Help ja SV2A 198/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:198/165:holo"
+      ]
+    },
+    {
+      "card_id": "ja:SV2A:207/165:holo",
+      "language": "ja",
+      "query": "Giovanni's Charisma ja SV2A 207/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV2A:207/165:holo"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:094/106:normal",
+      "language": "ja",
+      "query": "Deduction Kit ja SV8 094/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:094/106:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:097/106:holo",
+      "language": "ja",
+      "query": "Miracle Headset ja SV8 097/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:097/106:holo"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:100/106:normal",
+      "language": "ja",
+      "query": "Babiri Berry ja SV8 100/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:100/106:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:104/106:normal",
+      "language": "ja",
+      "query": "Jasmine's Gaze ja SV8 104/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:104/106:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:105/106:normal",
+      "language": "ja",
+      "query": "Lively Stadium ja SV8 105/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:105/106:normal"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:129/106:holo",
+      "language": "ja",
+      "query": "Jasmine's Gaze ja SV8 129/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:129/106:holo"
+      ]
+    },
+    {
+      "card_id": "ja:SV8:135/106:holo",
+      "language": "ja",
+      "query": "Jasmine's Gaze ja SV8 135/106",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:SV8:135/106:holo"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:134/172:normal",
+      "language": "ja",
+      "query": "Fog Crystal ja S12A 134/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:134/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:134/172:reverse",
+      "language": "ja",
+      "query": "Fog Crystal ja S12A 134/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:134/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:137/172:normal",
+      "language": "ja",
+      "query": "Trekking Shoes ja S12A 137/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:137/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:137/172:reverse",
+      "language": "ja",
+      "query": "Trekking Shoes ja S12A 137/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:137/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:141/172:normal",
+      "language": "ja",
+      "query": "Mirage Gate ja S12A 141/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:141/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:141/172:reverse",
+      "language": "ja",
+      "query": "Mirage Gate ja S12A 141/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:141/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:146/172:normal",
+      "language": "ja",
+      "query": "Sky Seal Stone ja S12A 146/172",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:146/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:157/172:normal",
+      "language": "ja",
+      "query": "Roxanne ja S12A 157/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:157/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:157/172:reverse",
+      "language": "ja",
+      "query": "Roxanne ja S12A 157/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:157/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:164/172:normal",
+      "language": "ja",
+      "query": "Stormy Mountains ja S12A 164/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:164/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:164/172:reverse",
+      "language": "ja",
+      "query": "Stormy Mountains ja S12A 164/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:164/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:170/172:normal",
+      "language": "ja",
+      "query": "Magma Basin ja S12A 170/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:170/172:normal"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:170/172:reverse",
+      "language": "ja",
+      "query": "Magma Basin ja S12A 170/172",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:170/172:reverse"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:242/172:holo",
+      "language": "ja",
+      "query": "Roxanne ja S12A 242/172",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:242/172:holo"
+      ]
+    },
+    {
+      "card_id": "ja:S12A:245/172:holo",
+      "language": "ja",
+      "query": "Volo ja S12A 245/172",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "ja:S12A:245/172:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV02:191/193:normal",
+      "language": "en",
+      "query": "ルミナスエネルギー en SV02 191/193",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV02:191/193:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV02:191/193:reverse",
+      "language": "en",
+      "query": "ルミナスエネルギー en SV02 191/193",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV02:191/193:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:158/165:normal",
+      "language": "en",
+      "query": "ナナミの手助け en SV03.5 158/165",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:158/165:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:158/165:reverse",
+      "language": "en",
+      "query": "ナナミの手助け en SV03.5 158/165",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:158/165:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:161/165:normal",
+      "language": "en",
+      "query": "サカキのカリスマ en SV03.5 161/165",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:161/165:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:161/165:reverse",
+      "language": "en",
+      "query": "サカキのカリスマ en SV03.5 161/165",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:161/165:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:195/165:holo",
+      "language": "en",
+      "query": "ナナミの手助け en SV03.5 195/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:195/165:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:197/165:holo",
+      "language": "en",
+      "query": "サカキのカリスマ en SV03.5 197/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:197/165:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV03.5:204/165:holo",
+      "language": "en",
+      "query": "サカキのカリスマ en SV03.5 204/165",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV03.5:204/165:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV06:226/167:holo_gold",
+      "language": "en",
+      "query": "ルミナスエネルギー en SV06 226/167",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV06:226/167:holo_gold"
+      ]
+    },
+    {
+      "card_id": "en:SV08:163/191:normal",
+      "language": "en",
+      "query": "リリバのみ en SV08 163/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:163/191:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV08:163/191:reverse",
+      "language": "en",
+      "query": "リリバのみ en SV08 163/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:163/191:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV08:171/191:normal",
+      "language": "en",
+      "query": "推理セット en SV08 171/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:171/191:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV08:171/191:reverse",
+      "language": "en",
+      "query": "推理セット en SV08 171/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:171/191:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV08:178/191:normal",
+      "language": "en",
+      "query": "ミカンのまなざし en SV08 178/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:178/191:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV08:178/191:reverse",
+      "language": "en",
+      "query": "ミカンのまなざし en SV08 178/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:178/191:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV08:180/191:normal",
+      "language": "en",
+      "query": "エキサイトスタジアム en SV08 180/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:180/191:normal"
+      ]
+    },
+    {
+      "card_id": "en:SV08:180/191:reverse",
+      "language": "en",
+      "query": "エキサイトスタジアム en SV08 180/191",
+      "before": 0,
+      "after": 2,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:180/191:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SV08:183/191:holo",
+      "language": "en",
+      "query": "ミラクルインカム en SV08 183/191",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:183/191:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV08:233/191:holo",
+      "language": "en",
+      "query": "ミカンのまなざし en SV08 233/191",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:233/191:holo"
+      ]
+    },
+    {
+      "card_id": "en:SV08:245/191:holo",
+      "language": "en",
+      "query": "ミカンのまなざし en SV08 245/191",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SV08:245/191:holo"
+      ]
+    },
+    {
+      "card_id": "en:SWSH10:150/189:normal",
+      "language": "en",
+      "query": "ツツジ en SWSH10 150/189",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "multiple_candidates",
+      "resolver_after": "multiple_candidates",
+      "resolver_after_ids": [
+        "en:SWSH10:150/189:normal",
+        "en:SWSH10:150/189:normal_regional_championships"
+      ]
+    },
+    {
+      "card_id": "en:SWSH10:150/189:normal_regional_championships",
+      "language": "en",
+      "query": "ツツジ en SWSH10 150/189",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SWSH10:150/189:normal_regional_championships"
+      ]
+    },
+    {
+      "card_id": "en:SWSH10:150/189:reverse",
+      "language": "en",
+      "query": "ツツジ en SWSH10 150/189",
+      "before": 0,
+      "after": 3,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SWSH10:150/189:reverse"
+      ]
+    },
+    {
+      "card_id": "en:SWSH10:156/189:normal",
+      "language": "en",
+      "query": "トレッキングシューズ en SWSH10 156/189",
+      "before": 0,
+      "after": 1,
+      "after_contains_target": true,
+      "native_contains_target": true,
+      "resolver_before": "unique",
+      "resolver_after": "unique",
+      "resolver_after_ids": [
+        "en:SWSH10:156/189:normal"
+      ]
+    }
+  ],
+  "queries_before_missing": 60,
+  "queries_after_found": 60,
+  "scope": "existing printing retrieval coverage; zero new identities, artwork, prices, rights or live capabilities",
+  "idempotent_reimport": {
+    "inserted": 0,
+    "unchanged": 60,
+    "quarantined": 0
+  },
+  "incremental_append_all_existing_tables_unchanged": true
+}

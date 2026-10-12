@@ -1,0 +1,3184 @@
+{
+  "schema": "pokemon.pokemon-name-followup-selection.v1",
+  "inspected_at": "2026-10-12T03:03:38Z",
+  "input_database_sha256": "2778cafe8b7e2e1e57fc775f0ce84c3963bc7eca0067fc5d92a8a2505552a7e0",
+  "basis_plan_sha256": "03b902152be82b527ab9e7fc87b86ae6e339095ed77cee26da5b2e936159305c",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "japanese": 85,
+  "english": 25,
+  "by_set": {
+    "ja:M3": 11,
+    "ja:M6": 12,
+    "ja:S11A": 13,
+    "ja:S9": 10,
+    "ja:SM11B": 12,
+    "ja:SM1S": 1,
+    "ja:SV1V": 11,
+    "ja:SV6": 15,
+    "en:SV03.5": 3,
+    "en:SV06": 2,
+    "en:SM10": 15,
+    "en:SM9": 2,
+    "en:SM4": 2,
+    "en:SM11": 1
+  },
+  "japanese_coordinate_groups": 80,
+  "japanese_full_name_concepts": 52,
+  "english_full_name_concepts": 25,
+  "english_preliminary_candidates": 701,
+  "english_qualified_candidates": 701,
+  "holds": [],
+  "gaps": [
+    {
+      "card_id": "ja:M3:019/080:holo",
+      "query": "Dewgong ja M3 019/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:020/080:normal",
+      "query": "Staryu ja M3 020/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:029/080:normal",
+      "query": "Clefairy ja M3 029/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:047/080:normal",
+      "query": "Gastly ja M3 047/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:048/080:normal",
+      "query": "Haunter ja M3 048/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:049/080:normal",
+      "query": "Gengar ja M3 049/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:059/080:normal",
+      "query": "Rattata ja M3 059/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:060/080:normal",
+      "query": "Raticate ja M3 060/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:062/080:normal",
+      "query": "Snorlax ja M3 062/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:086/080:holo",
+      "query": "Clefairy ja M3 086/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M3:092/080:holo",
+      "query": "Raticate ja M3 092/080",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:011/076:holo",
+      "query": "Arcanine ja M6 011/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:012/076:normal",
+      "query": "Magmar ja M6 012/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:022/076:normal",
+      "query": "Electabuzz ja M6 022/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:029/076:normal",
+      "query": "Drowzee ja M6 029/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:030/076:normal",
+      "query": "Hypno ja M6 030/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:035/076:normal",
+      "query": "Sandshrew ja M6 035/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:036/076:normal",
+      "query": "Sandslash ja M6 036/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:037/076:normal",
+      "query": "Onix ja M6 037/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:041/076:normal",
+      "query": "Nidoran♀ ja M6 041/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:042/076:normal",
+      "query": "Nidorina ja M6 042/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:043/076:holo",
+      "query": "Nidoqueen ja M6 043/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:M6:078/076:holo",
+      "query": "Growlithe ja M6 078/076",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:012/068:normal",
+      "query": "Growlithe ja S11A 012/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:012/068:reverse_pokeball",
+      "query": "Growlithe ja S11A 012/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:013/068:normal",
+      "query": "Arcanine ja S11A 013/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:013/068:reverse_pokeball",
+      "query": "Arcanine ja S11A 013/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:024/068:holo",
+      "query": "Articuno ja S11A 024/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:032/068:normal",
+      "query": "Exeggcute ja S11A 032/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:032/068:reverse_pokeball",
+      "query": "Exeggcute ja S11A 032/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:033/068:normal",
+      "query": "Exeggutor ja S11A 033/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:033/068:reverse_pokeball",
+      "query": "Exeggutor ja S11A 033/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:034/068:normal",
+      "query": "Jynx ja S11A 034/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:034/068:reverse_pokeball",
+      "query": "Jynx ja S11A 034/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:035/068:holo",
+      "query": "Mewtwo ja S11A 035/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S11A:071/068:holo",
+      "query": "Jynx ja S11A 071/068",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:002/100:normal",
+      "query": "Exeggutor ja S9 002/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:016/100:normal",
+      "query": "Magmar ja S9 016/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:018/100:holo",
+      "query": "Moltres ja S9 018/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:022/100:normal",
+      "query": "Lapras ja S9 022/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:035/100:normal",
+      "query": "Electabuzz ja S9 035/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:041/100:normal",
+      "query": "Clefairy ja S9 041/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:042/100:normal",
+      "query": "Clefable ja S9 042/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:060/100:normal",
+      "query": "Grimer ja S9 060/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:061/100:normal",
+      "query": "Muk ja S9 061/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:S9:076/100:normal",
+      "query": "Farfetch'd ja S9 076/100",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:002/049:normal",
+      "query": "Gloom ja SM11B 002/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:016/049:normal",
+      "query": "Pikachu ja SM11B 016/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:017/049:normal",
+      "query": "Raichu ja SM11B 017/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:018/049:normal",
+      "query": "Magnemite ja SM11B 018/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:019/049:holo",
+      "query": "Magneton ja SM11B 019/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:021/049:normal",
+      "query": "Koffing ja SM11B 021/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:022/049:normal",
+      "query": "Weezing ja SM11B 022/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:029/049:normal",
+      "query": "Onix ja SM11B 029/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:035/049:normal",
+      "query": "Clefairy ja SM11B 035/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:054/049:holo",
+      "query": "Pikachu ja SM11B 054/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:055/049:holo",
+      "query": "Magnemite ja SM11B 055/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM11B:056/049:holo",
+      "query": "Koffing ja SM11B 056/049",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SM1S:044/060:normal",
+      "query": "Eevee ja SM1S 044/060",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:019/078:normal",
+      "query": "Slowpoke ja SV1V 019/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:020/078:holo",
+      "query": "Slowbro ja SV1V 020/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:026/078:normal",
+      "query": "Magnemite ja SV1V 026/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:027/078:normal",
+      "query": "Magneton ja SV1V 027/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:038/078:normal",
+      "query": "Drowzee ja SV1V 038/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:039/078:normal",
+      "query": "Hypno ja SV1V 039/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:049/078:normal",
+      "query": "Mankey ja SV1V 049/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:050/078:normal",
+      "query": "Primeape ja SV1V 050/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:059/078:normal",
+      "query": "Chansey ja SV1V 059/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:082/078:holo",
+      "query": "Slowpoke ja SV1V 082/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV1V:086/078:holo",
+      "query": "Drowzee ja SV1V 086/078",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:024/101:normal",
+      "query": "Poliwhirl ja SV6 024/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:025/101:normal",
+      "query": "Poliwrath ja SV6 025/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:026/101:normal",
+      "query": "Goldeen ja SV6 026/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:027/101:normal",
+      "query": "Seaking ja SV6 027/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:028/101:normal",
+      "query": "Jynx ja SV6 028/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:045/101:normal",
+      "query": "Clefairy ja SV6 045/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:046/101:normal",
+      "query": "Clefable ja SV6 046/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:047/101:normal",
+      "query": "Abra ja SV6 047/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:048/101:normal",
+      "query": "Kadabra ja SV6 048/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:049/101:holo",
+      "query": "Alakazam ja SV6 049/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:057/101:normal",
+      "query": "Sandshrew ja SV6 057/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:058/101:normal",
+      "query": "Sandslash ja SV6 058/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:083/101:normal",
+      "query": "Farfetch'd ja SV6 083/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:084/101:normal",
+      "query": "Chansey ja SV6 084/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "ja:SV6:113/101:holo",
+      "query": "Chansey ja SV6 113/101",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:029/165:normal",
+      "query": "ニドラン♀ en SV03.5 029/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV06:132/167:normal",
+      "query": "カモネギ en SV06 132/167",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:143/214:standard",
+      "query": "コラッタ en SM10 143/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:144/214:standard",
+      "query": "ラッタ en SM10 144/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:054/214:standard",
+      "query": "ピカチュウ en SM10 054/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:055/214:standard",
+      "query": "ライチュウ en SM10 055/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:083/214:standard",
+      "query": "サンド en SM10 083/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:084/214:standard",
+      "query": "サンドパン en SM10 084/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM9:055/181:standard",
+      "query": "ニドリーナ en SM9 055/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM9:056/181:standard",
+      "query": "ニドクイン en SM9 056/181",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:132/214:standard",
+      "query": "ピッピ en SM10 132/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:133/214:standard",
+      "query": "ピクシー en SM10 133/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:007/214:standard",
+      "query": "クサイハナ en SM10 007/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM4:050/111:standard",
+      "query": "マンキー en SM4 050/111",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM4:051/111:standard",
+      "query": "オコリザル en SM4 051/111",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:021/214:standard",
+      "query": "ガーディ en SM10 021/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:022/214:standard",
+      "query": "ウインディ en SM10 022/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:038/214:standard",
+      "query": "ニョロゾ en SM10 038/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:039/214:standard",
+      "query": "ニョロボン en SM10 039/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:063/165:normal",
+      "query": "ケーシィ en SV03.5 063/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV03.5:064/165:normal",
+      "query": "ユンゲラー en SV03.5 064/165",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SV06:082/167:holo",
+      "query": "フーディン en SV06 082/167",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:042/214:standard",
+      "query": "ヤドン en SM10 042/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM10:043/214:standard",
+      "query": "ヤドラン en SM10 043/214",
+      "before_contains_target": false,
+      "before_total": 0
+    },
+    {
+      "card_id": "en:SM11:058/236:standard",
+      "query": "コイル en SM11 058/236",
+      "before_contains_target": false,
+      "before_total": 0
+    }
+  ],
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/M/M3/019.ts": {
+      "git_blob": "f08e939016ef384435a03513721bc2a3d90cff2d",
+      "sha256": "4ef80cc2604241c3ee842b2fb3e84794783eb90a60ba350b5ab0baac86b73ed6",
+      "bytes": 1023
+    },
+    "data-asia/M/M3/020.ts": {
+      "git_blob": "0684ad821fa8b2dbf6c7f8939fe3176b416952d5",
+      "sha256": "03ea5633c653cfb98b9d39fd641533419ce95b169ee55f47ed325a93e4af8e32",
+      "bytes": 711
+    },
+    "data-asia/M/M3/029.ts": {
+      "git_blob": "938c5120007b2b6eca8277befbb3aab073061f99",
+      "sha256": "1e5c5a868b22ff35853488a5004e483c850c85452d7b464f0b3e66d1c53ef071",
+      "bytes": 896
+    },
+    "data-asia/M/M3/047.ts": {
+      "git_blob": "a1756002f574a51510ba850f3c19ec87c4adb706",
+      "sha256": "378cbf57b302e7f2187cd53ec4696124d20cc68437a2bec6d12f5824c6d86d5f",
+      "bytes": 817
+    },
+    "data-asia/M/M3/048.ts": {
+      "git_blob": "2c34fd14eb792bf600a8fc004dd5e0a0631df866",
+      "sha256": "2feea500a4c55290dbb66bd8a294962acfb843abdf0b4f256c59396bbf6c4331",
+      "bytes": 846
+    },
+    "data-asia/M/M3/049.ts": {
+      "git_blob": "b830afeb59ba008b7ce05ea2e8e2f127f48315d5",
+      "sha256": "fc9190711e39620c15a4fa112882af12a55061b3adbfd001e1343b169397d873",
+      "bytes": 1204
+    },
+    "data-asia/M/M3/059.ts": {
+      "git_blob": "29db5fe0556bacdf7bd9b0f143c4507e9bd0835f",
+      "sha256": "ba708fc6df5ed1a1027c34a7efb45bdc0533ad387aee31e449ce7c31f0c2fd2d",
+      "bytes": 805
+    },
+    "data-asia/M/M3/060.ts": {
+      "git_blob": "16f0646f1e47f3568907c2ff74614789d7f41c8a",
+      "sha256": "b70f1cabff13ba585f0417137db63c713e657fcd408d736acaf06336144dfc26",
+      "bytes": 1138
+    },
+    "data-asia/M/M3/062.ts": {
+      "git_blob": "4079e730ee7291fde29b5f53039de3b18a44602e",
+      "sha256": "185b0314ec3243c1d8cb7cc8a14353d8e8d1a65536a89fcc3d14fa14b0dbcbe1",
+      "bytes": 1097
+    },
+    "data-asia/M/M3/086.ts": {
+      "git_blob": "05c98e37b59c512b7a14e18f5bd8e90910cdbb0f",
+      "sha256": "05a98fa6b3ed4ce9094eaaf9557938c1e58040dfd012e612e38dd7150060b344",
+      "bytes": 902
+    },
+    "data-asia/M/M3/092.ts": {
+      "git_blob": "694d93207be71411cd75456b5e0e272eaeedd8db",
+      "sha256": "f5f6727e8842298d60aa0f497c10d07e20ea7510d39234c30eb35fed68a7cd1f",
+      "bytes": 1147
+    },
+    "data-asia/M/M6/011.ts": {
+      "git_blob": "cec64ea7c610a87f7d584df70db96b423f577d11",
+      "sha256": "2df26c69b0534f4c1e312e8fbb7a3fded7ba02f21f9617bd09205c9bdfd8fae5",
+      "bytes": 1125
+    },
+    "data-asia/M/M6/012.ts": {
+      "git_blob": "5afadedecdb5516275201b8f848f8f8e59a523be",
+      "sha256": "bee939289b76796772f12ef2ead1b52d70c0a5c618ff67ca5fe88ff85887057b",
+      "bytes": 972
+    },
+    "data-asia/M/M6/022.ts": {
+      "git_blob": "fcf7450a18a5e93e264bd88002d5215926722869",
+      "sha256": "67c9aa547884725de1a5819b5491593a9f64dbe46350d92e98b384b0d9638990",
+      "bytes": 992
+    },
+    "data-asia/M/M6/029.ts": {
+      "git_blob": "fdb81ec39b94615b47ef0d91d2220b54f903f848",
+      "sha256": "07d21f37921b63ad80cddda62ec190ae7ea545198ac7a033587fd6840fc8c0c2",
+      "bytes": 801
+    },
+    "data-asia/M/M6/030.ts": {
+      "git_blob": "4b84351c010dafdc27485f77fc103dcb731da803",
+      "sha256": "0fab1c67ecf993e287f5205a2a5f294a61165e7f0e9a8179150e7d60ccac9929",
+      "bytes": 1136
+    },
+    "data-asia/M/M6/035.ts": {
+      "git_blob": "8f800138b9970db392134bbd53997bdf5cfc04c1",
+      "sha256": "19a6e2944fe47915937010cbafe8f8d207e005dc59337880162785023831ac63",
+      "bytes": 919
+    },
+    "data-asia/M/M6/036.ts": {
+      "git_blob": "a4ea9363f0351eac93bc48f42bbaee9dc3484ce9",
+      "sha256": "5ba2652a13bbe0e93580b83e1b469a94b560b490521e7a3a5b00bbbded175f6a",
+      "bytes": 1183
+    },
+    "data-asia/M/M6/037.ts": {
+      "git_blob": "d21d872e03c6f4d77d458692ec280a87b87ca9dd",
+      "sha256": "d8b4885d88c728c05a53e337e62d8fc5dbd7de0cbe548f236c6309d31e14f408",
+      "bytes": 925
+    },
+    "data-asia/M/M6/041.ts": {
+      "git_blob": "c9bb47629c22446c825bc86673bb717cdfa4a4df",
+      "sha256": "b11fa17c331adcff166749f754b8455adc5a5f7893d142d14f83ab6c1e08f1e9",
+      "bytes": 978
+    },
+    "data-asia/M/M6/042.ts": {
+      "git_blob": "8eb8f9e898b4d425162a3bd86de2d667ae11017e",
+      "sha256": "004ca6997f751cb7f791ee9aadd8a01096856d0d488e7d1a89deb1903e5c0345",
+      "bytes": 831
+    },
+    "data-asia/M/M6/043.ts": {
+      "git_blob": "6e510c114842746c1137808ffeee10caf0e484cc",
+      "sha256": "f797604b8c026f057afe387a7633460ecef2789d4c9f230cf07f73d6ceda0e6c",
+      "bytes": 1228
+    },
+    "data-asia/M/M6/078.ts": {
+      "git_blob": "fb0999150cf539e8e1d0c81824e69d351286fd4a",
+      "sha256": "b9596de26380bd84bf54da441ac7cf7020962dfe117c9468b7b9bdbf6b671424",
+      "bytes": 875
+    },
+    "data-asia/S/S11a/012.ts": {
+      "git_blob": "63500767f0e0b320b62f8091e17b25274db18d45",
+      "sha256": "2c37487fe8ae013c208110835615ec3563fadb3176a2a8d08c555a49b87fff96",
+      "bytes": 1113
+    },
+    "data-asia/S/S11a/013.ts": {
+      "git_blob": "e53ee9048fc7f21890ea85030c32c391c2ca2020",
+      "sha256": "a36874b649ce0f618d5767a512b2d4e4665ad662134b516839144b15457f9e69",
+      "bytes": 1659
+    },
+    "data-asia/S/S11a/024.ts": {
+      "git_blob": "6f5dd8984fb6b39904526cb2b94bfa9ae4648149",
+      "sha256": "b160837a22f4490ef0fdd7fb7a10d9eafa789c810d98d980eba09e21071784f5",
+      "bytes": 1291
+    },
+    "data-asia/S/S11a/032.ts": {
+      "git_blob": "49f1efe5d3d383c000b04127f95a1ba2c4dcf62b",
+      "sha256": "ce0208c384576154705c295f63ffbc29ac53cbb5a5c478e3dbb98990fff657fb",
+      "bytes": 1301
+    },
+    "data-asia/S/S11a/033.ts": {
+      "git_blob": "c39c741987738fa005e38a65ee633bda1f18488b",
+      "sha256": "8ab9fb791ec962b9eb12d85d6a5fee58a8f0c0f35cd44dbba97a5e29f31c637d",
+      "bytes": 1446
+    },
+    "data-asia/S/S11a/034.ts": {
+      "git_blob": "74422eabace4e89f208d4927159b8a1bd22d6009",
+      "sha256": "a6a8108fcb0c91adc8af65cc47ff407e632de3f427c98e1a6cfca0a91aee5f7c",
+      "bytes": 1753
+    },
+    "data-asia/S/S11a/035.ts": {
+      "git_blob": "24514b607f73aed291a5a6404c2bd01e6be29c3e",
+      "sha256": "8f0bd08ad8a93da0b977251817d2959aa666ca99efb720013d0615c93fdb4a57",
+      "bytes": 1566
+    },
+    "data-asia/S/S11a/071.ts": {
+      "git_blob": "40798c1793270d2bcdaef7d7cd982fe4d8f6e7d7",
+      "sha256": "b4ced67b4cc65a9f8c1025fa39218a026ae071d3f420e79c6290c95573409d11",
+      "bytes": 1214
+    },
+    "data-asia/S/S9/002.ts": {
+      "git_blob": "9fd657c2855a8ded953603053978389c5a558039",
+      "sha256": "c8d358e61262b809099293b3d494d4994a5a0d2e3f7c15f257436b8c5c90f245",
+      "bytes": 1189
+    },
+    "data-asia/S/S9/016.ts": {
+      "git_blob": "b98b72312f0364638e2f7d84e4aa2811cb70e364",
+      "sha256": "cb69ff5a942bb4b4b97423d121ed4da759d0008b5de33afef7467b8691a3ac2a",
+      "bytes": 1019
+    },
+    "data-asia/S/S9/018.ts": {
+      "git_blob": "8402342180f1fff04e0eb102df6a13a5e4cefc7a",
+      "sha256": "407638a2953234aab4fac7c72f6de6c91571587a9047053d615bf760ff586e31",
+      "bytes": 1187
+    },
+    "data-asia/S/S9/022.ts": {
+      "git_blob": "941b6965c3980381d42d48769f8209bc737d4d92",
+      "sha256": "9c800dd71654e7d7bce91523fbb7df2a478905cb2dd601f44b92c5939c197104",
+      "bytes": 1276
+    },
+    "data-asia/S/S9/035.ts": {
+      "git_blob": "2b0f5e92c5438e4cbcb999709a889d59844b7f7e",
+      "sha256": "056e2c53457acf65107bc04c86ca35c9e1c80250c56b61f207798079891005c2",
+      "bytes": 1210
+    },
+    "data-asia/S/S9/041.ts": {
+      "git_blob": "813f480fcb6e9cd63f38f6b957a67dfc76dea961",
+      "sha256": "7acfe4a952285981f68143f8b7c9353d0472ab886d3d8cf6b97a40c5f19b6ce3",
+      "bytes": 1021
+    },
+    "data-asia/S/S9/042.ts": {
+      "git_blob": "b00d4fbe697151738a1599969b652b9d2709a989",
+      "sha256": "e71f5cb088f0f3dbdccc200ca9c110f77053c9d026f14c4c430837fc471c630e",
+      "bytes": 1561
+    },
+    "data-asia/S/S9/060.ts": {
+      "git_blob": "620100f13f60e7f610681bc080775be4f1623f1d",
+      "sha256": "97f8856e4111b44fb36e89159baa92bca98dc99b4d7ab04b76343c1a929e5864",
+      "bytes": 1018
+    },
+    "data-asia/S/S9/061.ts": {
+      "git_blob": "c3a2d45d0497dfa8468ef77c991637590c0a31cc",
+      "sha256": "231e6583c4577ed2cb8d83747da1ff78f7c6658b0d2e74a5078629e1920521c7",
+      "bytes": 1482
+    },
+    "data-asia/S/S9/076.ts": {
+      "git_blob": "d5314d20c0bae559a36399832b8197ee1d0e7610",
+      "sha256": "b567c3daf192b5ad423c365afcc1d7037f10619ef9a9a0d726fa2962752c3718",
+      "bytes": 1221
+    },
+    "data-asia/SM/SM11b/002.ts": {
+      "git_blob": "6637031b031bff23488028e9c6546e292af3614a",
+      "sha256": "d0fbac8d1d6c5e98ada57fe98b4d040b3758744844ae4886bfec444714bea222",
+      "bytes": 860
+    },
+    "data-asia/SM/SM11b/016.ts": {
+      "git_blob": "e802ea3e6bca76d48a82b2ab25c79bc4a0ac7bbc",
+      "sha256": "e4091ddc130a4cbc03835b04cafb716886c4de9576c0e9dae05220187910b8c3",
+      "bytes": 1074
+    },
+    "data-asia/SM/SM11b/017.ts": {
+      "git_blob": "00d4b44dae3a53e18d0b029f7b540fa5f44a0e8c",
+      "sha256": "fca243f534b8f2f6223ceabeb0660f2421f97d72dae9b3337e03e92f59158fb7",
+      "bytes": 1167
+    },
+    "data-asia/SM/SM11b/018.ts": {
+      "git_blob": "c6b82e12f87a1b52df534e4d4da4db5c6bf9aa8a",
+      "sha256": "ccf5f02ec4d9609cd84dc283dc877f435b46ac2405b95e0b3b01b787e322745e",
+      "bytes": 969
+    },
+    "data-asia/SM/SM11b/019.ts": {
+      "git_blob": "6183b08d99dd19221aa61ce8052f0f2ad19ea875",
+      "sha256": "038e588cc60c32f2bd59368ef339ea366d24c7c428244563ff5f706b1a830181",
+      "bytes": 1207
+    },
+    "data-asia/SM/SM11b/021.ts": {
+      "git_blob": "6dde786d67f4d7e97967d9b2906b47f58039f746",
+      "sha256": "44b7ee09dd2047134c557fb4db33911ae906493c09cf20bba507755411e89149",
+      "bytes": 1204
+    },
+    "data-asia/SM/SM11b/022.ts": {
+      "git_blob": "de2a36cfe8d4f724332b83a2a5cbb708ae95a97c",
+      "sha256": "4eb2317c1d05d234cdf2a7add4d96ed83de800a2d2405162bce15607b7bd7e23",
+      "bytes": 1330
+    },
+    "data-asia/SM/SM11b/029.ts": {
+      "git_blob": "003f7620f1e3db34e9da62a55b2bc8757481c5d1",
+      "sha256": "30fc81f485fe189dbfe594e8c8143c47193849b60b8a3e6b8870a975776e36a6",
+      "bytes": 1079
+    },
+    "data-asia/SM/SM11b/035.ts": {
+      "git_blob": "5eac56c46d49b18a29a2da124704c3543bfdb8be",
+      "sha256": "328e565bafa0f6c1ff1534d12ff05f69cc6be71b754efd2722dbf5bf33ad7a20",
+      "bytes": 1040
+    },
+    "data-asia/SM/SM11b/054.ts": {
+      "git_blob": "6ba7961f67e41e55b76d4afc00cd51e5b2d6374d",
+      "sha256": "7bcd67e241302ec0497c158834373016437f94b72269184f4228777a75d6ad40",
+      "bytes": 1081
+    },
+    "data-asia/SM/SM11b/055.ts": {
+      "git_blob": "26ce255d67be44815fbcde7619ca44e7f390c97e",
+      "sha256": "aff007749dddd1e30346554f529a3064966d26b12a35c17920eb08456529e422",
+      "bytes": 975
+    },
+    "data-asia/SM/SM11b/056.ts": {
+      "git_blob": "1911b7dba7c9a7f5ac35b7a753eabdf53c62a7d0",
+      "sha256": "5c9136ae4a5f2c28521203f67cfded653c6767570cb3a9cb605694deb6e33ea5",
+      "bytes": 1209
+    },
+    "data-asia/SM/SM1S/044.ts": {
+      "git_blob": "52e84f3958fd5413679ef1df107f156a9e347891",
+      "sha256": "fd623b498c6175871bc549b035c8b7a94b0ec4514e74623f95710c2e3c23ffe2",
+      "bytes": 1265
+    },
+    "data-asia/SV/SV1V/019.ts": {
+      "git_blob": "55f956f92ba7868ed6a62858cd44522f61cfc376",
+      "sha256": "6e311dceb2f93ecc8346f42ddd92f831418639630881efe95766c7b8254066fd",
+      "bytes": 1944
+    },
+    "data-asia/SV/SV1V/020.ts": {
+      "git_blob": "7fab32fce95a612f4818fd24ed54ee5a29340340",
+      "sha256": "a0a1ca0b0fda1a4698060ac53fead6e9bfc0ab4909f83409a96e12a2ca33c264",
+      "bytes": 2710
+    },
+    "data-asia/SV/SV1V/026.ts": {
+      "git_blob": "d12b045023e840a90d2944ee9a993a2d63d4f039",
+      "sha256": "3f865c869f3b5ca7172529e1bf6060c48191847bbc619c5429374a7eb6bdf83f",
+      "bytes": 1865
+    },
+    "data-asia/SV/SV1V/027.ts": {
+      "git_blob": "1e6de4f66ee6092eeb054024ac6f525c8c9ec850",
+      "sha256": "b73252b7096300a5f22533bd34eaa0a0d56952a8f3c845c294313f14307fc749",
+      "bytes": 1995
+    },
+    "data-asia/SV/SV1V/038.ts": {
+      "git_blob": "ad59f8174f0d371e8b0b21733a08204f41dc7be0",
+      "sha256": "6d386dabd9d1e31a14d3373adfda1026dc5dcd6617c6db7b14515a8a2f63fa01",
+      "bytes": 2614
+    },
+    "data-asia/SV/SV1V/039.ts": {
+      "git_blob": "8d6fa2b27b36d36c4a55a19d859bc3022b71ea4f",
+      "sha256": "fd4e495f7a37e3bb9b519629a530cc5fefe7c711f08fb3320b7526924cc3f22b",
+      "bytes": 2530
+    },
+    "data-asia/SV/SV1V/049.ts": {
+      "git_blob": "bb518988d21af690d3a6101522a16c4af7ab860e",
+      "sha256": "ece9ee9429f6e036b6b44c8af93df0363d0c559d351456cfbe2e7393efa3d364",
+      "bytes": 1659
+    },
+    "data-asia/SV/SV1V/050.ts": {
+      "git_blob": "4559e7ec2c632368b6dd5e0a19ff7990e780d7ad",
+      "sha256": "9be632f610cbc3d4ee38c7bfe4990c044944f20582d8691f5bde1622e27dc244",
+      "bytes": 1764
+    },
+    "data-asia/SV/SV1V/059.ts": {
+      "git_blob": "1f0e60bef9ad65dc59428f047d1c6bc8e40c8b26",
+      "sha256": "5cb8c4c306b713c0adbca907cb3cf382aed77883c384b6b53fe8f3562ad66875",
+      "bytes": 2070
+    },
+    "data-asia/SV/SV1V/082.ts": {
+      "git_blob": "e6c18d849a21bddc9ab598b8f22135a36254887a",
+      "sha256": "eb51bb6581b5af35ee01dbcbeb5958dd4748b04487981b3de3201e305cbd6437",
+      "bytes": 969
+    },
+    "data-asia/SV/SV1V/086.ts": {
+      "git_blob": "8e36a7a748465bccd6d34a10c7fc3723928482b9",
+      "sha256": "ddb413b158de7ca0250015eaba6d8db9d69a0718915d16690872b76d256f6d80",
+      "bytes": 1151
+    },
+    "data-asia/SV/SV6/024.ts": {
+      "git_blob": "442fbf8322fb52cdd537ee1ffe5f36339d86b0e1",
+      "sha256": "ed0fc75a8dc241742b417b477ea04f6cddbd1301579303711bc99f5755d3cba7",
+      "bytes": 2059
+    },
+    "data-asia/SV/SV6/025.ts": {
+      "git_blob": "a644a60b97ba06218a3bceb5f7d499ce2d09a315",
+      "sha256": "863bd0a06eb79a8915bcc846b4357fbef8deff5e8774c77000abb122cc15bf92",
+      "bytes": 2458
+    },
+    "data-asia/SV/SV6/026.ts": {
+      "git_blob": "d86ed42f1e0eb899bfae8810950ce0ac008c46a1",
+      "sha256": "701350ed42a12ea350abf1f5baba2abe425b491e1c57b3505624dbb72f6a7c60",
+      "bytes": 3229
+    },
+    "data-asia/SV/SV6/027.ts": {
+      "git_blob": "9459ca5adfe5108c55a63b9483a76238998d1ba0",
+      "sha256": "a09dd3ccfc809b978579ae211dd53b40d6e1e9ac2536619827089cf516a57487",
+      "bytes": 2101
+    },
+    "data-asia/SV/SV6/028.ts": {
+      "git_blob": "499fa23ba99b322c48858fd526abb06f6c7af965",
+      "sha256": "d686248762724587664faf1a3a5f87108be750775590979f99a5b85c7e667953",
+      "bytes": 2323
+    },
+    "data-asia/SV/SV6/045.ts": {
+      "git_blob": "4fae9ff6a53b3d0b9b0c78dfa87669f050b394b1",
+      "sha256": "2b2552acd703cc72e0e06aeddb4ffcce8900efb6019aefca882c8426c62f5377",
+      "bytes": 1331
+    },
+    "data-asia/SV/SV6/046.ts": {
+      "git_blob": "385f3c2481f5563a5e8e7d00151d41998e2869a5",
+      "sha256": "7221735ecb253a458de6b0923e7f865401a3777b2f4ab7ab66e69aa7cd21a785",
+      "bytes": 1994
+    },
+    "data-asia/SV/SV6/047.ts": {
+      "git_blob": "36e2e3e422a94df04db1da7dd8dc39a10e1843fa",
+      "sha256": "c36850884c4fcf6255d2d86f90b818344a7c662867de1e57775a025139fdf0fd",
+      "bytes": 2141
+    },
+    "data-asia/SV/SV6/048.ts": {
+      "git_blob": "6599d939b3c06adde29ee032cb15c334eb98b22e",
+      "sha256": "418e124f77e7210e3a3abecf05499b1c490238eecf3bc6686650a1425c3dc545",
+      "bytes": 1769
+    },
+    "data-asia/SV/SV6/049.ts": {
+      "git_blob": "4e907420dd715c28ab1c8cd5c15769d27bcdb156",
+      "sha256": "628ffecf09e055fb9421d457648b7b58ff529986c21c52b8bc98ad0ecd395cb0",
+      "bytes": 2864
+    },
+    "data-asia/SV/SV6/057.ts": {
+      "git_blob": "a24828911fa590844a7e8401b85172afeed9db95",
+      "sha256": "e294d6d5fb8f668f2a069887807a366d1ac2e079ebd60c49e20499c8fa9576f9",
+      "bytes": 1725
+    },
+    "data-asia/SV/SV6/058.ts": {
+      "git_blob": "5ccc460896570681f88fea8802ac2e341bf796ee",
+      "sha256": "0df3d1bd4b3cfd1a603c89413192f42367f113d7f160962e7422f8b90802b37f",
+      "bytes": 2044
+    },
+    "data-asia/SV/SV6/083.ts": {
+      "git_blob": "6089a984f5ab8e54fe50302469406f6faca8b5ee",
+      "sha256": "ad8e3f472325f5789ea783fa39c04d70e8948f26a3bf5d23fa7335d93a56092c",
+      "bytes": 2987
+    },
+    "data-asia/SV/SV6/084.ts": {
+      "git_blob": "c977adccfd55504e0b6285fd6fe3212fe4ae8301",
+      "sha256": "0716d800e4d3103b7d0a7f76b7af976eba8d4d811dd22153e8d76fa10d8cdb67",
+      "bytes": 2129
+    },
+    "data-asia/SV/SV6/113.ts": {
+      "git_blob": "e5cfdba8367af7cc68fe9d76fce9cf815dd09449",
+      "sha256": "8e56a7a3d1fa0b5bdbc8574ed8005ecf077b7273ef21f9761e28d46e5b46e22a",
+      "bytes": 1484
+    },
+    "data/Scarlet & Violet/151/019.ts": {
+      "git_blob": "c1aaea41f31b4f0f9dd7eb71dd547ac1db08894d",
+      "sha256": "458cfef1e89fedb0aee298aa62566ecf18745651750963f8fcfc596d9c7b2801",
+      "bytes": 1985
+    },
+    "data/Scarlet & Violet/151/020.ts": {
+      "git_blob": "6a38fd19012d13113f029e4501e70ec87222cb1c",
+      "sha256": "58178a28de1b8f11461e6d0c655cae936fa0a13438c56ccc332a6e62a7935309",
+      "bytes": 2145
+    },
+    "data/Scarlet & Violet/151/025.ts": {
+      "git_blob": "aaeef21bbd96db551a572853815c262ef0361e12",
+      "sha256": "74aa26eed26771e48cbff7056a98ad32586558dff389855653a32015900102e7",
+      "bytes": 2434
+    },
+    "data/Scarlet & Violet/151/026.ts": {
+      "git_blob": "60ae4a00dffb07477e34d9606c0c1984cff6b573",
+      "sha256": "71dfa78673e923666b688010da93e7f3686cc99803c47b3cc7de7242b004721f",
+      "bytes": 3131
+    },
+    "data/Scarlet & Violet/151/027.ts": {
+      "git_blob": "663123bf1bff260ba61cf032d83a2bfab303ede4",
+      "sha256": "40db5568c63d5c40ff6c55eca377c053b9d23388a6b4f5a3dfcaba909fcaedc7",
+      "bytes": 2508
+    },
+    "data/Scarlet & Violet/151/028.ts": {
+      "git_blob": "502685dc6434173078f77739ec4833fb6a5cee23",
+      "sha256": "9e225f63e63a92d44ea1779d8438ce0a932d237eb751f668a55ffc550973a059",
+      "bytes": 3019
+    },
+    "data/Scarlet & Violet/151/029.ts": {
+      "git_blob": "8a3a7115949cb5b0551091647b72eea1aed016cb",
+      "sha256": "e0b82fdc53b3887fa536e54228a11d5de7e0411862bcfd234f3313ee5ffecb8d",
+      "bytes": 1716
+    },
+    "data/Scarlet & Violet/151/030.ts": {
+      "git_blob": "7b85ec3b2b680bc95e03880a5a9a8688f113170f",
+      "sha256": "4312b1bcc0382b0ca73f3c0a6d5facefa5cc8180a65aa6f98a1deeadbdaeaf43",
+      "bytes": 2398
+    },
+    "data/Scarlet & Violet/151/031.ts": {
+      "git_blob": "c77391d4309b28d3b84fc57556f2843274dff4bd",
+      "sha256": "d701c95bdb074fbd03a8e5215cdac28ad4f530c6d3b0f9bd07a213a34f79407f",
+      "bytes": 2479
+    },
+    "data/Scarlet & Violet/151/035.ts": {
+      "git_blob": "50c672a0dcab9977fe02280fe83dfe635bd94a4c",
+      "sha256": "c6d53eee014cf7fb5b9deb4754f11cf761add42a9aa953cfeafeaa5df454a77b",
+      "bytes": 2129
+    },
+    "data/Scarlet & Violet/151/036.ts": {
+      "git_blob": "f94287e8721e4fc659e6139abcc38a571d6ed8fb",
+      "sha256": "f0cac72c010f2126fe25b8777bd1589b0beb4e7297d2d5bd2bfcdf9693afed8a",
+      "bytes": 2806
+    },
+    "data/Scarlet & Violet/151/044.ts": {
+      "git_blob": "8b22e90c14793cfbedd51fa77d2bd83173d99fe0",
+      "sha256": "076d34627e6340f898e92265a453f3df997dfb7bda5e88bc24a7940dd6f31cd8",
+      "bytes": 3495
+    },
+    "data/Scarlet & Violet/151/056.ts": {
+      "git_blob": "dddba8d733f37f2bd10ef7c25e7a873423cd6e0b",
+      "sha256": "a0d9383891c6a7da76910515d95d09e1ae8e7daa8e439b8575133b6b95956b20",
+      "bytes": 2081
+    },
+    "data/Scarlet & Violet/151/057.ts": {
+      "git_blob": "b2cc60ec3527b81d3bf51a4b4c0bf6bbfc2b0674",
+      "sha256": "b799ed06a20dffb83d8aa4e2d6dd85775324b02a72dc851297f02e2e71af2a1b",
+      "bytes": 2347
+    },
+    "data/Scarlet & Violet/151/058.ts": {
+      "git_blob": "d9de21e63ddc5996ee52fe914db92922654bf79d",
+      "sha256": "0196a57c621db29722b557a9319cc1676d3f48869c80baf70e552aca84126b76",
+      "bytes": 1665
+    },
+    "data/Scarlet & Violet/151/059.ts": {
+      "git_blob": "dd436d7640348abc4ae6924113906186dd936da6",
+      "sha256": "9934800ad25eab6d590aebf403bf743b80def861fec3901556c55e7b1a756f01",
+      "bytes": 2521
+    },
+    "data/Scarlet & Violet/151/061.ts": {
+      "git_blob": "d31dea1754d4306b30f18caf5ffa8ebd3fc68133",
+      "sha256": "4e68774f5ae339fb14af1bbd74c6120fba07fb477a99bd41b8e5117866c4efcb",
+      "bytes": 2065
+    },
+    "data/Scarlet & Violet/151/062.ts": {
+      "git_blob": "5b2fd9122e838e001aee412007b57937d210f64a",
+      "sha256": "c26285593862647324f558b8e6b481d6007785a027db2f3595128600383fe366",
+      "bytes": 2719
+    },
+    "data/Scarlet & Violet/151/063.ts": {
+      "git_blob": "344be4b7b5a5236fc445fb259253fb92399c9f88",
+      "sha256": "3151f860b6c379447504014e7816f4c5762794bbc0450cdbb83ec63440fa9231",
+      "bytes": 1267
+    },
+    "data/Scarlet & Violet/151/064.ts": {
+      "git_blob": "a34cceb466f6b5dcd8cd49ee37c05590d96c76d8",
+      "sha256": "479a502a37dae4e5fa334cb726df27961675c57d163a602ea2ad671acc48aa6c",
+      "bytes": 1914
+    },
+    "data/Scarlet & Violet/151/079.ts": {
+      "git_blob": "9839564cd550c67d5b8009ef564f5f469a6abdd7",
+      "sha256": "e1cef21c43aafd6143945b5765b438f078561809b7790778be8cdf7135f37bfb",
+      "bytes": 2069
+    },
+    "data/Scarlet & Violet/151/080.ts": {
+      "git_blob": "210d53343bd8475c0b94d309c810170c4186e35b",
+      "sha256": "facc74a0b5103b6078112fba20a158b1ec35ffe1dd90e5ddd275324b0deefb16",
+      "bytes": 2529
+    },
+    "data/Scarlet & Violet/151/081.ts": {
+      "git_blob": "ab1a4286c052269245c8501a1d9abac68de4fb3a",
+      "sha256": "971bacaf672a83d7e59d1f454269e1c59c580150ec8ae57380e88c737b652f8f",
+      "bytes": 1876
+    },
+    "data/Scarlet & Violet/151/082.ts": {
+      "git_blob": "07cca424d82aa8db3fb7b0bde2ab1f02444dfdc0",
+      "sha256": "fcfd6214e9c1168336c60e20ed588e4f9c02063092f919c351d263dcebd31843",
+      "bytes": 2061
+    },
+    "data/Scarlet & Violet/151/083.ts": {
+      "git_blob": "d1ece25b54ee2538aa13b00253738d7f251a9d41",
+      "sha256": "0b76af2e4ca421b3631e276ff4432924dcbab8b65fa3ec38732318c52ff6bcdf",
+      "bytes": 1713
+    },
+    "data/Scarlet & Violet/151/087.ts": {
+      "git_blob": "cc2062be6c32b9ecde8eb1787cad3a4cfc25bd0f",
+      "sha256": "0c12185cfd531fd70e4ad1d337ec1301c2617e849386466d100f90374a8b0515",
+      "bytes": 2402
+    },
+    "data/Scarlet & Violet/151/088.ts": {
+      "git_blob": "fc097c6b5c387d48717fe6aa5fca66389150cb9f",
+      "sha256": "d7a4ec5349df89dd9d7e7e68a2c6721e668b6ba5c01bf226b979cbae7b551029",
+      "bytes": 1920
+    },
+    "data/Scarlet & Violet/151/089.ts": {
+      "git_blob": "639e8c02ea32d9ef4cf548ade0b4a61b16bed083",
+      "sha256": "71294171eddf20043570fd54c4503bde41a790d64f65a2d7e900560a9af949cf",
+      "bytes": 2535
+    },
+    "data/Scarlet & Violet/151/092.ts": {
+      "git_blob": "fd86b420369e29692c17042e8d8534a0ba642680",
+      "sha256": "a6533e451209b40070de3dfed2730ee7908ba6359d1e221200ae949e6fea0c63",
+      "bytes": 1281
+    },
+    "data/Scarlet & Violet/151/093.ts": {
+      "git_blob": "e213920895048664a9198065f6ee2c10b651f22f",
+      "sha256": "4bc483a6382a32fdfdc9f4db83003a40d2b0d80ba15fa60c1256f53aa94e34aa",
+      "bytes": 2866
+    },
+    "data/Scarlet & Violet/151/094.ts": {
+      "git_blob": "43a94066ef4d81014963940c07ce1b7b70a8edbb",
+      "sha256": "d0fc90bc3707ed99c3d721bef66575db90092c9a552cf97e26d8c890b00c91bb",
+      "bytes": 3101
+    },
+    "data/Scarlet & Violet/151/095.ts": {
+      "git_blob": "4eea2b864ce5dca4aa00930f445e091556c524ea",
+      "sha256": "9b6b3317ab94539d4ce9c557562f97e60fd9ce6661fd31b666fc6a84c07893d1",
+      "bytes": 2587
+    },
+    "data/Scarlet & Violet/151/096.ts": {
+      "git_blob": "af8217d0381e9c6407f51b9b707176e1a8a2a4b2",
+      "sha256": "43ccc909da58d0bb3131da45a8ec61899b27293eb8f8f3c1a4e2cf257f104dbe",
+      "bytes": 1313
+    },
+    "data/Scarlet & Violet/151/097.ts": {
+      "git_blob": "661000c3e5e6ad76fc3e9bff253f19cbd14ccfd9",
+      "sha256": "b6a156c431fad5574dad65dc9d7ec8f2dbff5dab314e8e710d06f49f69dd200a",
+      "bytes": 2692
+    },
+    "data/Scarlet & Violet/151/102.ts": {
+      "git_blob": "4724b393c76558f7afd897aaeb937144ebe5437c",
+      "sha256": "bc8e4aeb097d9395c7a5ee4aa466eb07bfba6b8495d027421f57ec97e02e2b32",
+      "bytes": 1914
+    },
+    "data/Scarlet & Violet/151/103.ts": {
+      "git_blob": "596f754fd7fd638de13ab636251b8bf55584b839",
+      "sha256": "27f2f2635711bee04f3035f1073c6de972ed769bb1e2d8b67fc778a893ced15e",
+      "bytes": 2308
+    },
+    "data/Scarlet & Violet/151/109.ts": {
+      "git_blob": "8c51aefce8cda24ccc389bfdcb583da11e1ae64c",
+      "sha256": "1c0aa6ef18c3ad3c0849483e55af9a6caf1106099351c6efbd14d44cf8384577",
+      "bytes": 1651
+    },
+    "data/Scarlet & Violet/151/110.ts": {
+      "git_blob": "2ba13a4403c3a5c1da3367c6b9a42d1979b467e9",
+      "sha256": "29c21e6de7c08fcc241280f5b59f3c5cba7484d90b71e474d2edf99e02fabccc",
+      "bytes": 3789
+    },
+    "data/Scarlet & Violet/151/113.ts": {
+      "git_blob": "b109009c929f83d339614cc04a168595c432acb2",
+      "sha256": "48f9eaf8c8b88cb6151b16e676ab35699e5828c6858d5dcbdb7d32db815cd4db",
+      "bytes": 3364
+    },
+    "data/Scarlet & Violet/151/118.ts": {
+      "git_blob": "a210d477ec519ad6b8f1308879726a2a1213604e",
+      "sha256": "629bee11fcac74e27e9485bf8ea45f94c2cd1be41ec0799344c51fbe5fc49f0b",
+      "bytes": 1954
+    },
+    "data/Scarlet & Violet/151/119.ts": {
+      "git_blob": "8d4e475feaf41948a1d616335bde52d20a4c53f0",
+      "sha256": "0a4d716cd84cacc3f54675b7e78a8ce2b379251bbce8fbb8b5d98bc39c3a3e8a",
+      "bytes": 3182
+    },
+    "data/Scarlet & Violet/151/120.ts": {
+      "git_blob": "f57e15853562745b000eb61c0aecfb6f727515a0",
+      "sha256": "f263a0d7a1057f725318699da3b098401cecd89309b71f0cf6fb3b604b9e5ea0",
+      "bytes": 2100
+    },
+    "data/Scarlet & Violet/151/125.ts": {
+      "git_blob": "934e217af05436476884b2ff160cc6caf8e6d2e1",
+      "sha256": "ca06d84ed1a38036b515d8219f909aa8e26be62b466f620b682c39475eb012bc",
+      "bytes": 1989
+    },
+    "data/Scarlet & Violet/151/126.ts": {
+      "git_blob": "ce193bbfcc820dca10b1c6a8a06037380de1bc16",
+      "sha256": "308cdc743e31a909e159f6666b8f0ae49e4c740da38e5128e8b4b4937962ac7c",
+      "bytes": 1959
+    },
+    "data/Scarlet & Violet/151/131.ts": {
+      "git_blob": "c7cc1c8df2aa73e7c6f6e224596ce57a69074e03",
+      "sha256": "5a91763ce414f1548db355f1f2103b9658e5f38f74afbeda75d6de19a01f034e",
+      "bytes": 2214
+    },
+    "data/Scarlet & Violet/151/133.ts": {
+      "git_blob": "50d6c8ac71d0bc461a89d3d12e018890e845a195",
+      "sha256": "80432e16cbae0160af62f9dbc2a064bb65c5fabb2519fb1848d6f47d309362c9",
+      "bytes": 2479
+    },
+    "data/Scarlet & Violet/151/143.ts": {
+      "git_blob": "f37731e04c4f3792fc4f5f79ef7348199e19a40a",
+      "sha256": "e8dbd300b91266c05bc924d7445d36e348af413fa532f4a79d9d8b582c5f333a",
+      "bytes": 2571
+    },
+    "data/Scarlet & Violet/151/144.ts": {
+      "git_blob": "76fb9706601c033a6a940dd636db3dc6cc0ef5f1",
+      "sha256": "7ceee93874ff7b1f51b81723df2a81a889616b502ffd3a19beb0f2097bf386f6",
+      "bytes": 3045
+    },
+    "data/Scarlet & Violet/151/146.ts": {
+      "git_blob": "b5bcc30b9f76c1051ee193697f22ddcd495e01ab",
+      "sha256": "54e4083be82860fb55aeed50611eadf93cf89c12f69c78267999f227eb9c99a9",
+      "bytes": 3339
+    },
+    "data/Scarlet & Violet/151/150.ts": {
+      "git_blob": "8fb363763dd449d54db5765ec5836202b679f8f9",
+      "sha256": "847165c0e8959f183d54dcf0b61488f762587cac6a2260b2ef911587e66fe5f1",
+      "bytes": 3272
+    },
+    "data/Scarlet & Violet/151/173.ts": {
+      "git_blob": "f9dbc8f2461dc251e1e850f5af4963e3653c9609",
+      "sha256": "95d52b36e9d0c49e16e7b673e0487df2ddcab5393201322fe8e833c4bcbf2a29",
+      "bytes": 2104
+    },
+    "data/Scarlet & Violet/151/176.ts": {
+      "git_blob": "0207d66c220c06a46cd4c8087234b71245a3012a",
+      "sha256": "01fa01b23fc10a3476943c2144680fbdbdd1e1f7f915d0893043082c168f5839",
+      "bytes": 1948
+    },
+    "data/Scarlet & Violet/Destined Rivals/027.ts": {
+      "git_blob": "2386a454a4adf1aadef5c437d613d6c05cf6dbc8",
+      "sha256": "da1c5a166daddc16b8e1d7e0babe48a7d7b2b32a7863fd8619f8f7db72a77cb6",
+      "bytes": 1209
+    },
+    "data/Scarlet & Violet/Destined Rivals/028.ts": {
+      "git_blob": "eb03c002b649087035950f8bd1246311a4f3202c",
+      "sha256": "7d7729a4b728c0a74081d65e42e10a1827d632538a7d8e74cd46222132ddca2f",
+      "bytes": 2169
+    },
+    "data/Scarlet & Violet/Destined Rivals/068.ts": {
+      "git_blob": "ccdbfef029096f1cb9bb10d3eeb56153ca94f799",
+      "sha256": "70b7a991ec6da12cad2e7c0e20cfc53fa39a4ebd703e469ac6ffef5b3da3456c",
+      "bytes": 1000
+    },
+    "data/Scarlet & Violet/Destined Rivals/090.ts": {
+      "git_blob": "cf543a4b034523fd1855c523778e0832dd2c0a3d",
+      "sha256": "4c15190a23ea5930bc61f67859f0eb83ef67538aef64cbc91f26d41ab8113feb",
+      "bytes": 1475
+    },
+    "data/Scarlet & Violet/Destined Rivals/091.ts": {
+      "git_blob": "727485f7e707bac8f9460225bfccbc487675662d",
+      "sha256": "e26f0ec41cdb6b8638b051f1394291ea01a37b2fb71198a19e1250d6f03541b3",
+      "bytes": 2166
+    },
+    "data/Scarlet & Violet/Journey Together/020.ts": {
+      "git_blob": "e3768ff29e75b0ac3a920371cd79a297b04fe602",
+      "sha256": "0fe5b3576e0c08c1942124fbe284fde167c8d449842c51e4a49cfc3d0059e04d",
+      "bytes": 1663
+    },
+    "data/Scarlet & Violet/Journey Together/032.ts": {
+      "git_blob": "a405e8201828f3e3b5127c29ec578964072eedd4",
+      "sha256": "6adc8272a7372b813955dfc0467b0f6bfb6edf18ef21290e768afafc2f3ad6e5",
+      "bytes": 2359
+    },
+    "data/Scarlet & Violet/Journey Together/091.ts": {
+      "git_blob": "4ddb8c6ba5df929d43bbd4073650c0822efcd086",
+      "sha256": "8c02e3749b4b490bccdaebc7a2816b8782435d23dca5047600ccddca3b1caf34",
+      "bytes": 1156
+    },
+    "data/Scarlet & Violet/Journey Together/092.ts": {
+      "git_blob": "6da4708619608c89418db129a520f1af90e66d39",
+      "sha256": "833bd5e5845d3ea3dc7339cd222adf34e524a8c0f367b43dc8a4fbfa8233cddd",
+      "bytes": 2745
+    },
+    "data/Scarlet & Violet/Journey Together/161.ts": {
+      "git_blob": "7b19bb45ef36f7b8b7fa5204c70f78ffcc757971",
+      "sha256": "58342509087bb14db6a4527fd400916cff784a2ffc62aaa7e7ef0ae9b83ce554",
+      "bytes": 2170
+    },
+    "data/Scarlet & Violet/Obsidian Flames/002.ts": {
+      "git_blob": "5e4682a2cf375e95b00c61f0a4e9a661b88a758a",
+      "sha256": "5c94af224f5d8bd16ebee654d16f1beb94e39bc10e79c242f48c6d9a646bc60b",
+      "bytes": 2093
+    },
+    "data/Scarlet & Violet/Obsidian Flames/045.ts": {
+      "git_blob": "16b099e66ed137a7d1041e6c8129164b569e5a2f",
+      "sha256": "82b76db40e9a0dcc53f278a43014bf08dca39e7e7d304c4e8226e1bb9ec6305e",
+      "bytes": 2334
+    },
+    "data/Scarlet & Violet/Obsidian Flames/063.ts": {
+      "git_blob": "91c57c2b3b7035eb5a356126bd73f3cb8cb8b8ca",
+      "sha256": "c781e06c6bd429a2297298e363ad9fef34ce03b22684e3f5f06e85136d8b8ca8",
+      "bytes": 1422
+    },
+    "data/Scarlet & Violet/Obsidian Flames/064.ts": {
+      "git_blob": "9ab53fbb1ff79ae16f753dfde920a33fde67337f",
+      "sha256": "99abafbe5172bf0ccd338603a17d064781698ab12de9296a90adac0addaec4a1",
+      "bytes": 1520
+    },
+    "data/Scarlet & Violet/Obsidian Flames/081.ts": {
+      "git_blob": "d638706a20dc855c892052307a3e02c149a42bec",
+      "sha256": "c6e17f78dc4bd27246790dd1067965bc94e4bc4d4848b153990f37bf9345bf19",
+      "bytes": 1750
+    },
+    "data/Scarlet & Violet/Obsidian Flames/166.ts": {
+      "git_blob": "3361d66646a3c0ce8143ebd52030494ee76bc211",
+      "sha256": "28f2e4943bca32735464f76ae0fa6d3be1d6efd7f241a576c7bca2d2ec87e857",
+      "bytes": 1793
+    },
+    "data/Scarlet & Violet/Obsidian Flames/198.ts": {
+      "git_blob": "2a9193777181afcbc060af280bf203b44d973259",
+      "sha256": "2f787cdbd834e1da69084cfa1be15d18c8dee3893231c4dd846f5d5184de8d2f",
+      "bytes": 2001
+    },
+    "data/Scarlet & Violet/Paldea Evolved/062.ts": {
+      "git_blob": "6aa8d947a67a4587ed7b1b24bf6327d4a5aa7216",
+      "sha256": "46b39e453eac1ab043400b6e13a41604e47b8201142074b53ddbda2ac370fc8a",
+      "bytes": 2480
+    },
+    "data/Scarlet & Violet/Paldea Evolved/064.ts": {
+      "git_blob": "f6e7c1e5c94087af063928b208d543b5ea04aaf2",
+      "sha256": "6069969cbcb57f2a20988c68350ef8c39e84126d13b766601eac8412db630f70",
+      "bytes": 2730
+    },
+    "data/Scarlet & Violet/Paldea Evolved/065.ts": {
+      "git_blob": "9765626838ea0e199c4b104093d9ba684c86994a",
+      "sha256": "728e3b91d1739dea115e91364e5d350157cb1f3cd84d08a2c967bb3c1cc9e7fa",
+      "bytes": 2140
+    },
+    "data/Scarlet & Violet/Paldea Evolved/085.ts": {
+      "git_blob": "7a2aac252d9b0976d488ca265fc17f362908a475",
+      "sha256": "56ceaab2fbc373e3ad7165ca766e43c21c984bc5bc8ef7139042367ce644165e",
+      "bytes": 2584
+    },
+    "data/Scarlet & Violet/Paldea Evolved/106.ts": {
+      "git_blob": "ad0a097466716bb962a40fbd047907a87da91a27",
+      "sha256": "e25cd08b749a3fdfaee302ea2951bbdd26eef38919ca0505a5b0c04bf9e75c8b",
+      "bytes": 1381
+    },
+    "data/Scarlet & Violet/Paldea Evolved/107.ts": {
+      "git_blob": "113e8653d3478648d1091fd4e2c0f82f9fc2e2a0",
+      "sha256": "ffa680bd7d8acebaa259c257d904cdd6b0ac22a0259c8b5457003a83c7aec934",
+      "bytes": 2030
+    },
+    "data/Scarlet & Violet/Paldea Evolved/211.ts": {
+      "git_blob": "da59b65fc21f4eccf902674dc588f6f41e8230e7",
+      "sha256": "df8012b366bb24b00c760b2b49a86e11b1523884d347d2438e15bd459d2044d0",
+      "bytes": 2622
+    },
+    "data/Scarlet & Violet/Paldean Fates/009.ts": {
+      "git_blob": "04f11da99bf45d64a777dcb731b06bf0f9f13aa4",
+      "sha256": "6f1bf70940696a8f39eae9079c58e792540a955b4fa6f8cfd2ba341ac2984ca5",
+      "bytes": 1569
+    },
+    "data/Scarlet & Violet/Paldean Fates/016.ts": {
+      "git_blob": "8849709cf6ec5c8fe696ef53b43ec015b2c6a7d3",
+      "sha256": "acb5580e11b4d00a2d0160bfc74ea27f83e0f4608be2f3d1e316b265991923d4",
+      "bytes": 2582
+    },
+    "data/Scarlet & Violet/Paldean Fates/018.ts": {
+      "git_blob": "eae00c0ff76bf022ed78f9d390cc97032e74819c",
+      "sha256": "36f5914340f50db5789e62ee1e1661bbc1844b21ae125f9c5ad4ea05857ebe35",
+      "bytes": 2457
+    },
+    "data/Scarlet & Violet/Paldean Fates/019.ts": {
+      "git_blob": "6a7c479dd619d88ccbe3c4e5415953ba73d3f126",
+      "sha256": "343e34315da729304756b721332e9b5a261448fa9026850632e099708b83d3ca",
+      "bytes": 3049
+    },
+    "data/Scarlet & Violet/Paldean Fates/023.ts": {
+      "git_blob": "ef1d3f8adacaf084f59bcfea0765f137498a6014",
+      "sha256": "b9f772b8fb41ae89eb239fc30d2185982b67cb0f6dc56a860a20d5cf23fd45d5",
+      "bytes": 1926
+    },
+    "data/Scarlet & Violet/Paldean Fates/024.ts": {
+      "git_blob": "f825a059399b99bc4ad0a39772f73af56a8933a5",
+      "sha256": "c0bff8daf35e23e22805aa1f9a00e10d211c17c2f4f143a7d3f2c2eb3d0787e7",
+      "bytes": 2568
+    },
+    "data/Scarlet & Violet/Paldean Fates/045.ts": {
+      "git_blob": "4acc9d7f3d3d4f5042dbe12267abda1a9c7f4298",
+      "sha256": "6997b01b5ab2297a0d309e8265a65c10b0b0d8f7beff56f8a4bcb48d27cf8443",
+      "bytes": 1616
+    },
+    "data/Scarlet & Violet/Paldean Fates/046.ts": {
+      "git_blob": "0afff02a0efa35ee5c4f3d998f59ecf8e22fce89",
+      "sha256": "3f661db4c2a0630e4f25e4db4d4bebb598797c7699bff8a7dcecd0cacae4e44d",
+      "bytes": 1702
+    },
+    "data/Scarlet & Violet/Paldean Fates/055.ts": {
+      "git_blob": "e865596acbb39cb778e7c6081d052a41790d7398",
+      "sha256": "499f73a770fa69b223e36ff0df968fc410197215e929b6d67c196a0d3b5963c3",
+      "bytes": 1553
+    },
+    "data/Scarlet & Violet/Paldean Fates/056.ts": {
+      "git_blob": "a7c4df7f23157e53029a9a014c7f8a426d919e4b",
+      "sha256": "014f4f2b4060e7deaad0ec2c40694cc1d850650309b38bc94bcd88abb78723d6",
+      "bytes": 1771
+    },
+    "data/Scarlet & Violet/Paldean Fates/057.ts": {
+      "git_blob": "57e91d433fb6d9c29a2ba8114a26ac8890fd14ec",
+      "sha256": "7b52e4b56a24e608f6dd916cd3bff2ce20393aca8dd95b1bce90b006f5bad550",
+      "bytes": 2606
+    },
+    "data/Scarlet & Violet/Paldean Fates/093.ts": {
+      "git_blob": "4f4c46162730d864253891efc099ea20d8a5c3bd",
+      "sha256": "ef630a95a6ff36a088247c3e4e0e3099cbb4c7082ef845aa7676113d1ccfc89b",
+      "bytes": 3385
+    },
+    "data/Scarlet & Violet/Paldean Fates/116.ts": {
+      "git_blob": "048ac7c51c758c25370619862b84372c51562506",
+      "sha256": "420b2729f24d6fd870ab4dd1696f5b7e07df3731c780ce0eb371490e264244cf",
+      "bytes": 1735
+    },
+    "data/Scarlet & Violet/Paldean Fates/117.ts": {
+      "git_blob": "2afb8868c84309c23e9f2bbc221485449d4e5000",
+      "sha256": "fdc7dd81e3d404125276d127f0841c760ce154dbf94fc7b2d1bb63d749634212",
+      "bytes": 2628
+    },
+    "data/Scarlet & Violet/Paldean Fates/118.ts": {
+      "git_blob": "2e87eb825339ed6d88811951023c2d417b5d495c",
+      "sha256": "b54f0a326cea83866c9bee8dfbe9c16f24af15f7607b050772afa83bbda234fa",
+      "bytes": 1989
+    },
+    "data/Scarlet & Violet/Paldean Fates/131.ts": {
+      "git_blob": "008412fe16c8a6dcbd31d71d6c6f6811c9f7caac",
+      "sha256": "32028b365acac6a65f050eb9bb5d6739ce6f68b1fd0bf6c767326b3d8e193e88",
+      "bytes": 2248
+    },
+    "data/Scarlet & Violet/Paldean Fates/132.ts": {
+      "git_blob": "eaebabf0c265e0f43584c6368353eadfb18bc424",
+      "sha256": "c2911a5348033db0428bd5a7aa8a8022ae8db4b90184cdfe2c72f8ae711c6e8c",
+      "bytes": 2937
+    },
+    "data/Scarlet & Violet/Paldean Fates/148.ts": {
+      "git_blob": "8226252d90c58fe9a67afad907e306d219225da7",
+      "sha256": "6266aa7e9930e1cc40f8f883ea39155989849c637304526b5d46298a06ad4608",
+      "bytes": 1153
+    },
+    "data/Scarlet & Violet/Paldean Fates/149.ts": {
+      "git_blob": "ab8b46c9580d638f7ee14f70286c93b0dc8ab483",
+      "sha256": "3318af370c6b9d68b1bb3e34735c60880967a9b41ead71d49ff8e363bf45d12d",
+      "bytes": 1804
+    },
+    "data/Scarlet & Violet/Paldean Fates/169.ts": {
+      "git_blob": "bfa27a6cd5a0b913778b3dbde26ddbf6248f1c78",
+      "sha256": "5a5151426378a27bbb26bd5750f96a085032064623a18ae84829fcd5c41f0bd0",
+      "bytes": 1497
+    },
+    "data/Scarlet & Violet/Paldean Fates/170.ts": {
+      "git_blob": "02845a5cec3ccb8232c24b2cb73ac94caba088fa",
+      "sha256": "4255fb508f38161dfff1ab956a2f9b36accc04231c3522c7d8188172ade7ba33",
+      "bytes": 1575
+    },
+    "data/Scarlet & Violet/Paldean Fates/202.ts": {
+      "git_blob": "9042e8fb73a226685aae3681d01a7254c7581b22",
+      "sha256": "6102c4deb09dc69339f756ecc2238fe4014486b28266e3852e7ce6b39850c6ba",
+      "bytes": 2464
+    },
+    "data/Scarlet & Violet/Paradox Rift/090.ts": {
+      "git_blob": "de39be52229f4e51aa9f8c2972b4ee6ff16bd17c",
+      "sha256": "9b3b3bda3dbff138d1a0083347d5d14718f465f96eed329672b110b369f778ba",
+      "bytes": 2404
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/001.ts": {
+      "git_blob": "dd93de9d71ca359989a7a6f7ed37a948ae80d00e",
+      "sha256": "501a0c86dcfbecb585c8c907f05016d79805c97b079123d5e8f630c112fcf8b0",
+      "bytes": 1125
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/002.ts": {
+      "git_blob": "5d33cbf7341c40a77459b526d09af319692439a5",
+      "sha256": "f327b0ee4a0d041ada855b4d631fe2d313e1619333ca25dcd96fdf63555ed7ad",
+      "bytes": 1785
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/018.ts": {
+      "git_blob": "386799d10368daa74586f91fe39b237e0c843a16",
+      "sha256": "f7283a6221e0abfa2d30dc64b586b457258e427bf4b2e6c88b2065f4b6772ea8",
+      "bytes": 1355
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/020.ts": {
+      "git_blob": "1fb5bf10c8633257af4fad272bcb1aa9f0c6c1df",
+      "sha256": "c3049f57883bc5b5386d4d2151d9c094b4d46cad33f5a3705c361341f537bf29",
+      "bytes": 3575
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/021.ts": {
+      "git_blob": "8ac65a19a67387831e6bbf4e66201f9a7ee0c642",
+      "sha256": "8137e495d87264c3b7a46549a2625f8c3f2957d7416eb4892d2a27cee37abd32",
+      "bytes": 3262
+    },
+    "data/Scarlet & Violet/Prismatic Evolutions/074.ts": {
+      "git_blob": "5bbe2179857ff6b2fb5460f4a60b8cf1170a18d9",
+      "sha256": "ec7e47917ab100ae8f806290671643d8b85b1fecdcb2afe5a3ac9be7dadd84dc",
+      "bytes": 2787
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/011.ts": {
+      "git_blob": "211d5b9b86d186fece69ba533fd69159364d3260",
+      "sha256": "d7e44938acf8a214a0867058c5d0dd04beb3b65d31df36bff01ccf8db172035c",
+      "bytes": 1914
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/024.ts": {
+      "git_blob": "ddf58a202f8d78982dbe7f1adf9afb6acf549d31",
+      "sha256": "7cf81d2bd83bafc6e36c8ce595371cc4609c69728e3cce777b617e8e1b5516b8",
+      "bytes": 1954
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/027.ts": {
+      "git_blob": "ee279e3a2e5c9a76c97cb2f5c0795bfb4a78515b",
+      "sha256": "d6c5c15233c6a1aa685955e2eef28ed3342c7bc9c6cf29c4864f2f9e0c2e1a44",
+      "bytes": 1780
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/043.ts": {
+      "git_blob": "1c85b805c43ab4f6a923e0326dfe24f656c0ce87",
+      "sha256": "f741e72eab73bc2429f2be4cd597f4fe8db71ff1897c0d6340ebfe8d283ddcfc",
+      "bytes": 1843
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/051.ts": {
+      "git_blob": "49ac012a93f48ee06e72197b73c76ee78c8b3606",
+      "sha256": "b1ee2d41da3c093ecaa39622057c822b827a9f432b1854f1967d82715e19d4d7",
+      "bytes": 2467
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/052.ts": {
+      "git_blob": "b4471a0b7c4548dd2aaa5cabe32308b6f729b380",
+      "sha256": "e49dade0c88ff38769dc70e355ac4f09d5610955a22ddf5c4b7420367d042347",
+      "bytes": 3032
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/088.ts": {
+      "git_blob": "4e123dbd7ca5da97d027edbf9576dc94ef5ee72c",
+      "sha256": "1b48a0e07aa3eaa2ab5d2acb2b6ffff96d293423172c79fcfcc5ddee6294cc2f",
+      "bytes": 2141
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/101.ts": {
+      "git_blob": "8d1092170faf715962f6c121c579cea69d488ed4",
+      "sha256": "3e618413549157483b409df40c9408c1c0eafaa219d370353945408c5484f94a",
+      "bytes": 1854
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/122.ts": {
+      "git_blob": "fd80e9320f0874af606122b5c61d68d9084cf1d3",
+      "sha256": "8a3772caf76df68e3a6844e677642e17775d80df68a65b45cfe844cb7ceca65a",
+      "bytes": 1042
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/153.ts": {
+      "git_blob": "98686d1369bb0596f0df72c8047664d603e020e7",
+      "sha256": "94c6031bf325ed88a92c2e87f079c4981d4fff13d5d8302c0a353cd21e5ddf70",
+      "bytes": 2670
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/159.ts": {
+      "git_blob": "8a40f70a1bd1d0a1ca67ee5e60258f8343779b8b",
+      "sha256": "4d5cfaec127910c97c8b23790c6699da025dff49a18b4185ed8648b1dd398394",
+      "bytes": 2642
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/173.ts": {
+      "git_blob": "0824ba01a6d52a9b442418daabd13db13ef22e08",
+      "sha256": "f5c82a105abb80859f5525533dec2610e7f5645a93ae2c2c1ff539353db2c9e0",
+      "bytes": 2462
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/190.ts": {
+      "git_blob": "6387d3e305429fb4f11199570bce6e3231f0f692",
+      "sha256": "537c802d534b5fcdbb2493063229bb820a64db0b5cb7c29a76f03eb0d7e264da",
+      "bytes": 1175
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/200.ts": {
+      "git_blob": "02c01f59a293314bd6f0107be80ebe5fb2f9bc85",
+      "sha256": "728e744d9dcfa1f357b16292b600b181e85064657ce2c558fa5101961bbc8b03",
+      "bytes": 1679
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/214.ts": {
+      "git_blob": "a523ab028b169b8bace8a6a47495fde6c8c99e48",
+      "sha256": "35c798cee6b648ef160e3af4a8e9fc18af54a57f73acb1188842ddef5565f67f",
+      "bytes": 712
+    },
+    "data/Scarlet & Violet/SVP Black Star Promos/225.ts": {
+      "git_blob": "c945cbb655d613c24ff0efb60e0e345542923853",
+      "sha256": "a972de57855cb420d8b375b6004fbd1bd834ab73f136e9e3fd57d65b79d6c95b",
+      "bytes": 1081
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/030.ts": {
+      "git_blob": "703302e8009d3eeea7ed9e108bfac213a86af161",
+      "sha256": "cdcd3efab530f7ba884260c3843e6b6281247b2188a1b14a352beff7a43b219c",
+      "bytes": 1735
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/031.ts": {
+      "git_blob": "260efa6d7623e57f176a6c49c1d021d873d8663e",
+      "sha256": "652f92d97989c1bc905208543564ebc935407e4b183177729c8cfbd6d71c1e72",
+      "bytes": 2081
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/042.ts": {
+      "git_blob": "729ca403cdea25d9cbc9fecc8bc312d25d441cb4",
+      "sha256": "d8c1f077d1bd424f3dcfeca74af7d6b192a185e60ee00d3cab2279bfd4da9583",
+      "bytes": 1743
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/043.ts": {
+      "git_blob": "945a6814abd40f680651f4a4199e6263fb71ecb5",
+      "sha256": "536763e982da40feecf25a9ed5eabd98b76ab2b687b94bafe08d81ac6e506abb",
+      "bytes": 2576
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/063.ts": {
+      "git_blob": "e928242f90affd41482b9e652375775e5f0bd909",
+      "sha256": "b9e7cc1fc3ffcb9cfbdae1070ecbb1299d4a42d6462dcbc640f611a8b011e50c",
+      "bytes": 1735
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/064.ts": {
+      "git_blob": "b5a42db8c2268e12d3abbf8c40d3f9ae7fddfbf0",
+      "sha256": "22544013b22cbf5f9c13ae644115f6dee7a327a895b0013fa618165baa21b02b",
+      "bytes": 1802
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/082.ts": {
+      "git_blob": "a145c7ff94ccdad4cb9008d05bdfef9d37b40809",
+      "sha256": "4876b02572214f160176861c8cb2f1a685c41ae915f43cd81f8e2f1c301da8f7",
+      "bytes": 2269
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/083.ts": {
+      "git_blob": "30f741052989a88ca5a7e2b8aa5b7debdae2ef42",
+      "sha256": "d01bdaf7ba3a1ec197a87ff7aefacd42473397a3e6ff8f4982dc5d1706bfbdf6",
+      "bytes": 2323
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/107.ts": {
+      "git_blob": "fe6093ee7150376ad8973f7f9f0dc2ac1805b03c",
+      "sha256": "2b8d2ea0c358e6d8e56ebfe6a3c6f96c0c39d60184df618545a6f9c89127c314",
+      "bytes": 1496
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/108.ts": {
+      "git_blob": "e5e443af727b9227fed1f942b2f9c7dadb93be82",
+      "sha256": "22b1b7b3affbb1316390deef4ec1c66f70aab21eaa4aa46fbe7867f33f286c3d",
+      "bytes": 1534
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/126.ts": {
+      "git_blob": "005e9f76bd22c42804a99c3c544c6f4d15472cc4",
+      "sha256": "39cb46e302782b68ac07a646297e8f04350b7e32c8027ce782f4ae900ef4e1b3",
+      "bytes": 1586
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/127.ts": {
+      "git_blob": "89b7574514305432110215e2e16e558932854585",
+      "sha256": "7c3b475ee79e3050253e0f14d070b1d79473a03a145fd8ce41b8a76ec96132bb",
+      "bytes": 2657
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/144.ts": {
+      "git_blob": "ba61711b44958ece7cc37a3dd6d9f4bf4bca13b7",
+      "sha256": "cf0e4ae4ab804608bf6dd593734fe5ff601a5a2515dc90fb1605927595cc34e4",
+      "bytes": 1922
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/204.ts": {
+      "git_blob": "1a2faa2af42c19b38d1772f60ef990913cdf6de5",
+      "sha256": "ae9d81f52c4039f5b7f8352a0a086d9406aceca77bbf08ff006268c00cb3a3a2",
+      "bytes": 1726
+    },
+    "data/Scarlet & Violet/Scarlet & Violet/210.ts": {
+      "git_blob": "bae5e94424838892a66b6d5afd38b555f646a1be",
+      "sha256": "6ba52d61e40707412b175cea63f0a79a553847bb21da56f5fd14830e4ea8efc5",
+      "bytes": 2257
+    },
+    "data/Scarlet & Violet/Shrouded Fable/016.ts": {
+      "git_blob": "c56ee0dc9c03f14c75397dd44f56906c233556eb",
+      "sha256": "882be1cf71c3e21abdcc8b5da452d44004aba5d979944e35aedae67b8009aed1",
+      "bytes": 1303
+    },
+    "data/Scarlet & Violet/Shrouded Fable/017.ts": {
+      "git_blob": "4917cf18cf549d00c6fc2e0168dc986935bc4648",
+      "sha256": "3be269cf66ddd7b7e9384983a9e0898a2b37d120aa8a1e7d6c3d2b5ceb43ffff",
+      "bytes": 1963
+    },
+    "data/Scarlet & Violet/Shrouded Fable/050.ts": {
+      "git_blob": "13aa1d793ec37b23a61aadecde167b0c0c63594d",
+      "sha256": "166806890290909a5a791300313817d2948655e769d51c78b389cff6fdb7b0a9",
+      "bytes": 2095
+    },
+    "data/Scarlet & Violet/Stellar Crown/031.ts": {
+      "git_blob": "eb6c04e3e3f7dc0b69cae7970d7364123821cad3",
+      "sha256": "0001a4805551929142349d7c2a0eea93ca4fe486d1c0da2ce4b1f045804c373a",
+      "bytes": 1067
+    },
+    "data/Scarlet & Violet/Stellar Crown/046.ts": {
+      "git_blob": "8eee98ed53666811b526e240b67743f430a673d3",
+      "sha256": "a53c5ae41b8c231d13cbaf7cc594fb8e0397b931b51b6c03a6280e09fab2d93f",
+      "bytes": 1260
+    },
+    "data/Scarlet & Violet/Stellar Crown/057.ts": {
+      "git_blob": "af3a76448af838b48eb2b08dd9ca1baf18ca1fd6",
+      "sha256": "37081c3a7d39d2d06c6e5b8bb5f66e2ddf0d83c80a8e360dd23c950402b55449",
+      "bytes": 1590
+    },
+    "data/Scarlet & Violet/Stellar Crown/059.ts": {
+      "git_blob": "6073e8b7073c6c3e7f4f4fb1e2278a5795c69ee2",
+      "sha256": "c1e8dc816b26707243273ca44a2e223092d7144d7e8dd45d07b7775616dd1442",
+      "bytes": 997
+    },
+    "data/Scarlet & Violet/Stellar Crown/113.ts": {
+      "git_blob": "7f50900124e63bcd63923ebef21f148aa5532df5",
+      "sha256": "57f41d3ffeebb2d7af186a8d092a49fbbe06a20e20a9e7d47565a9e78ea02bf3",
+      "bytes": 1773
+    },
+    "data/Scarlet & Violet/Surging Sparks/001.ts": {
+      "git_blob": "3d454d6f5495cd0babbe527d162c6451be7f3d5d",
+      "sha256": "1a7dfd6d9b6287cfb1b2548bbffc1b9d3c9d49ded9d0a62b9492f45f29ebdb10",
+      "bytes": 2381
+    },
+    "data/Scarlet & Violet/Surging Sparks/002.ts": {
+      "git_blob": "3f52c30a1e152974a773fb03708ca0d7130835d6",
+      "sha256": "5fcebaa8ddc1b1517534c342995bf6779c9a5c1c0724b3c602af23df8d5d14ed",
+      "bytes": 1190
+    },
+    "data/Scarlet & Violet/Surging Sparks/003.ts": {
+      "git_blob": "53f04237f2a710f79f70c04142860cafd4fae2a6",
+      "sha256": "284105246870a2ba88bbfcdfb1e7ab84992e8e6c70304f27a00a05ee9b5322d3",
+      "bytes": 1887
+    },
+    "data/Scarlet & Violet/Surging Sparks/058.ts": {
+      "git_blob": "5f5da347f850aebb9d4f0c37bd1796b0643361aa",
+      "sha256": "766125641655b5f385a560ecf7c673d8ca81500b34fb114bb04673251b556f67",
+      "bytes": 925
+    },
+    "data/Scarlet & Violet/Surging Sparks/059.ts": {
+      "git_blob": "83c0313354161bf9c078ff8b269cb96bdac25c31",
+      "sha256": "2157fb72ba3bba38b66950f9a9314d36cc7817532e6619ee3c36588dee89f8d5",
+      "bytes": 2738
+    },
+    "data/Scarlet & Violet/Surging Sparks/098.ts": {
+      "git_blob": "39f8d4ca3aea92c4b054f806844dbc97b8a663a8",
+      "sha256": "aee98306206a84e3e03193ccd149b675ff9089a700d1e44c7911190e90119183",
+      "bytes": 1396
+    },
+    "data/Scarlet & Violet/Surging Sparks/099.ts": {
+      "git_blob": "6b46c823541ba70360948806a1f62b55906cb3be",
+      "sha256": "9a8328dc0a94f8942e258d693808d51726b3c6522299af2159f732d2538c3c87",
+      "bytes": 1838
+    },
+    "data/Scarlet & Violet/Surging Sparks/143.ts": {
+      "git_blob": "7aaab03bf8e3c1339fe97a2b31cafe4f31675781",
+      "sha256": "cbd2219c6e8bc3f222df3abdbc86762edc9dd224e2b0b35ac3c55b501df1b182",
+      "bytes": 2451
+    },
+    "data/Scarlet & Violet/Surging Sparks/144.ts": {
+      "git_blob": "14c13d7c0c46009f938c7094cf7bc138cbf8a757",
+      "sha256": "c3f5eb28ec3f5b13831bca057bc980b8fa8791353602b8d184b83e1288e667b3",
+      "bytes": 1282
+    },
+    "data/Scarlet & Violet/Surging Sparks/192.ts": {
+      "git_blob": "bd1ba7166155d0db7acfd57ae95c5734961d65d1",
+      "sha256": "2d412f825a4778c8e4cefcf1f920780120ff1078fada52cb0b1b6008c9bc76a1",
+      "bytes": 2292
+    },
+    "data/Scarlet & Violet/Temporal Forces/051.ts": {
+      "git_blob": "d041a0dba6af3b3b4c7eae0132d3780d235c741b",
+      "sha256": "0cdc0a8188f287a5e582632477b5c8f9387ab8609b351d36e16cc53d60f228fa",
+      "bytes": 2108
+    },
+    "data/Scarlet & Violet/Temporal Forces/052.ts": {
+      "git_blob": "25694ae8daa93e0c5ce7da8e35ecf65ad011441f",
+      "sha256": "9316f165cfd39e80c6609e56cf719ed8c2f068ef3e290c0edf788d16023eb485",
+      "bytes": 2781
+    },
+    "data/Scarlet & Violet/Temporal Forces/053.ts": {
+      "git_blob": "9f2f0c210302aed5bdc8f626a5889ead8644085c",
+      "sha256": "ab9288059547ca92c3e0959d4f73f4ea7f12a493c7856969b3d53550c911dee6",
+      "bytes": 1270
+    },
+    "data/Scarlet & Violet/Temporal Forces/102.ts": {
+      "git_blob": "f720a633347feeaca841df13ff6e1f0c2046d8bd",
+      "sha256": "91b80022e52785640bd26f974b3f3dfcecccdb4bfe92f5176ded1cc2bbbfb14d",
+      "bytes": 1874
+    },
+    "data/Scarlet & Violet/Temporal Forces/103.ts": {
+      "git_blob": "878218b7985594f94bcec9ff10f48cbff487a068",
+      "sha256": "17da2171973ac23dc11e7a01d08998a31e5dd82ab0f045216c5a5c111340bc97",
+      "bytes": 1633
+    },
+    "data/Scarlet & Violet/Temporal Forces/177.ts": {
+      "git_blob": "35b4c7581ebc6f18b6ca73ff835952cd28f5eeac",
+      "sha256": "8958c0609b17cc6a46078c7ad3f97971070ed19c9b0e611041014a96ab0f7188",
+      "bytes": 1807
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/042.ts": {
+      "git_blob": "0f00a16e59a0f685f58e72c66ef4c8788f625fb6",
+      "sha256": "38738f29803525863dc9d2c3e17ddef3baa06d09136de1982688ef007010f66e",
+      "bytes": 2337
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/043.ts": {
+      "git_blob": "c258d652395cfd95850fc38872cb162e1bb31814",
+      "sha256": "d9cb685922b625423dc478ad43068630cdacf630765e03f53c913a686a20e0ba",
+      "bytes": 2726
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/044.ts": {
+      "git_blob": "184a95131d576ed608bd41b58adb509a705a5091",
+      "sha256": "97ca060c96dfc919b0eed86a3f8711050e3242400a9d757c637b3c7fa9af4af2",
+      "bytes": 3589
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/045.ts": {
+      "git_blob": "6660a53b1a42ced28b5029b502467dd25577ce88",
+      "sha256": "770e85c51707eda73a47192f3f229bb40bc98888bc20d2d03121b96b34bc75f2",
+      "bytes": 2166
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/046.ts": {
+      "git_blob": "27ebff948d215dfb5795be2a1593b75a595f365d",
+      "sha256": "ae7c9495373a22385562024eec0352b78df97ee3a5c72f07a326b945c0c7b629",
+      "bytes": 2778
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/078.ts": {
+      "git_blob": "984e1608139f996570e2bcd2e93ef6042f636b9a",
+      "sha256": "4913c05c1363b421cae4775174e54329638cc3c1d6dec0079b180557d5954e48",
+      "bytes": 1239
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/079.ts": {
+      "git_blob": "6885a5ed849b7e8ec7f8b834033eb72e48ae670c",
+      "sha256": "ce037ec98275f37903874daa009217416066082c25fa3aafef15e2ab7a95d7dc",
+      "bytes": 2111
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/080.ts": {
+      "git_blob": "ed09c96b6eb76c4e7ea9d9b07fa5698246e98128",
+      "sha256": "2d62e2ac14bd40109f3f6e0a40c14c8d3f00f6239553e7cf9be1d8a708fe17dd",
+      "bytes": 2379
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/081.ts": {
+      "git_blob": "3eac55a9ed3b576192199aa32897e485119b386d",
+      "sha256": "fe6877220771bfacc6c8c399c8f309e718e8758f76bd37489bf1a6b5ca5f6669",
+      "bytes": 2031
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/082.ts": {
+      "git_blob": "9731dfbf9a7edbc4f4f7d93a6746ed806c54d82d",
+      "sha256": "d85802b54eea473bc4a50e1150f6019e0e94a5c81331259db47bb02e7c8ddf06",
+      "bytes": 3588
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/097.ts": {
+      "git_blob": "39dd217e5af3194f34a78133877f4b513106babd",
+      "sha256": "26d6e6407efa0cdc14a18802aa30c42b3f4ab080f64df35db3c0613fdac70e05",
+      "bytes": 1894
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/098.ts": {
+      "git_blob": "3776a3ece7d35116f21c00a3924a4d1b7152a436",
+      "sha256": "8da09e13bc73c04bfa89e137bde55292a76949276e416f6a25d564acaf403a62",
+      "bytes": 2424
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/132.ts": {
+      "git_blob": "529f04412ad722cca56edb5cf8416d9b466141b1",
+      "sha256": "b896bf035657833e4eda20a84ba5980771210460baa96702cab1d2014ce95429",
+      "bytes": 3357
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/133.ts": {
+      "git_blob": "39b4e692ec754ae7873db5f13d6aad7fa00991ac",
+      "sha256": "beb8fab5cb05f65094ef4c7c91e1ea0e80dcdcc62277a9155dcac02c1afb349d",
+      "bytes": 2367
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/135.ts": {
+      "git_blob": "36b624c4afad327c776bf329bcd3402f5be83438",
+      "sha256": "d959a5afb2d557d500bc6d22097d7b895e064f84994ae7c90f019cfe42675731",
+      "bytes": 2800
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/136.ts": {
+      "git_blob": "530e429723c7461bbb4cceedc72cb87d3c81f102",
+      "sha256": "ed34bf764c5ed1581c5dbd3985e08b03052ef4efe62fab4a98bdef40266c0b39",
+      "bytes": 2188
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/187.ts": {
+      "git_blob": "eee93cd70e99d9c4dd498d7040ae37d09454d312",
+      "sha256": "cec242fc0d7e3b3f3bc717abf90fda469eaf2b840f43d3a1d0a5031b91bc8a1b",
+      "bytes": 2320
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/188.ts": {
+      "git_blob": "33d072e3bbe0e7f649190aec0950f7d5ce40b25a",
+      "sha256": "b20d54aa49929c29e163b1ddf9fe6637bbd5b969b2df0f5ea2dd5a7d2640ee4c",
+      "bytes": 2738
+    },
+    "data/Sun & Moon/Burning Shadows/40.ts": {
+      "git_blob": "317787d1f2b3f5b2420e57d6df8aea25f430797d",
+      "sha256": "53254a89669263fc7ae99360db88fba84d42f4f10fadce9a02efe057db1135c1",
+      "bytes": 1985
+    },
+    "data/Sun & Moon/Burning Shadows/41.ts": {
+      "git_blob": "f2ccb5ef353693b757a87b5981aa10266223abd5",
+      "sha256": "00d78e2558fc21e2178ed735869359ec2c4adcd4e5e88ee22ccd2ddf37c1bd15",
+      "bytes": 2953
+    },
+    "data/Sun & Moon/Burning Shadows/42.ts": {
+      "git_blob": "4a7263893ea5d5ba461ade2c97533c41e3c5aa95",
+      "sha256": "e7c9ba287d70c2d7751b6ca174673c9e3e38ae12a21e0c707fd6b305ec031721",
+      "bytes": 2051
+    },
+    "data/Sun & Moon/Burning Shadows/5.ts": {
+      "git_blob": "fcafc6f99209bceb205ce064fd3b462e1bcf56f8",
+      "sha256": "83cee9b00d42dedb102a5e227217d1d20d6fd4330efcb19c16767be9cb6a5d87",
+      "bytes": 1782
+    },
+    "data/Sun & Moon/Celestial Storm/71.ts": {
+      "git_blob": "9f4f88647a55b85b06abec9f53bc6c4ca7e7cb48",
+      "sha256": "1b047477f439a9f48bde78b099641d6b0ba85dbcb7941ed1834ad4654e3fd6bb",
+      "bytes": 2788
+    },
+    "data/Sun & Moon/Cosmic Eclipse/105.ts": {
+      "git_blob": "b27a97a8f20d56858da4d93fe06935ed8d8bf1df",
+      "sha256": "bc946ed1685ec2c6a15e0e2cdb201db466334015ef1b7d00e59b030dd0a479de",
+      "bytes": 2150
+    },
+    "data/Sun & Moon/Cosmic Eclipse/144.ts": {
+      "git_blob": "baa69bc861d8f18b1c16ea6aa8585166464bb630",
+      "sha256": "29935bed160d11abc589acb80f61f068e71143aae4599dfb932a3e96b59bfca0",
+      "bytes": 2238
+    },
+    "data/Sun & Moon/Cosmic Eclipse/166.ts": {
+      "git_blob": "189476521d48a015f083b9ac6858238e5bee084f",
+      "sha256": "44df3d43d599abb6064e3497fc05bce5c1346f99bc4e6d1775ef78f56989e3c4",
+      "bytes": 1957
+    },
+    "data/Sun & Moon/Cosmic Eclipse/167.ts": {
+      "git_blob": "17ba3cf6fc627d7cd67075163aec4a561ed9c922",
+      "sha256": "772ffbb03da86f172f532b3e64a05010ba0578c744927c483e5af6b055617533",
+      "bytes": 2006
+    },
+    "data/Sun & Moon/Cosmic Eclipse/241.ts": {
+      "git_blob": "be1302dca04e0efb450f9a1da0fa613d5c5af75a",
+      "sha256": "f53a16684d4ad751bb4efb97c3a7e2cacae04a72ab32124d6a0b83387aa566fb",
+      "bytes": 2376
+    },
+    "data/Sun & Moon/Cosmic Eclipse/242.ts": {
+      "git_blob": "5d6b35b15400fbd6eebf95eea3b63829d646a28e",
+      "sha256": "c4f3c8e55d7c903d058d4c4e48c243628a642b2100319dc7aa617a441c891404",
+      "bytes": 2207
+    },
+    "data/Sun & Moon/Cosmic Eclipse/243.ts": {
+      "git_blob": "6d0f1be6c057b131b9ce2e3d449984193076c3e2",
+      "sha256": "3603d34b665e3f35394cb166af6358873c3842d3970b5060b931a438dd106eec",
+      "bytes": 3149
+    },
+    "data/Sun & Moon/Cosmic Eclipse/3.ts": {
+      "git_blob": "f936513a14b1347bff3661a80a4114c641f1bd58",
+      "sha256": "50756720d92c68bdff53c955fef372e8f6a1762b9edd20884d63b645446ce92d",
+      "bytes": 1470
+    },
+    "data/Sun & Moon/Cosmic Eclipse/66.ts": {
+      "git_blob": "e015ac3c24efc5c8569c9402b9d11c9d8b916e35",
+      "sha256": "3d842cd5b42606723fdd9833679602ce01ac0be5e53c9ed582704fd66d9ae99f",
+      "bytes": 2370
+    },
+    "data/Sun & Moon/Cosmic Eclipse/67.ts": {
+      "git_blob": "4220b8b3f9edb215829974e6416081ea68ebd670",
+      "sha256": "f0a1527a3758fb099755508e1f1f41c8c268acad16193e81bbc7ea04b1e28718",
+      "bytes": 2735
+    },
+    "data/Sun & Moon/Cosmic Eclipse/68.ts": {
+      "git_blob": "d851e831aa4c0120e284204c2628038211ec7946",
+      "sha256": "5d399df9c1385ebba20372e6199fd66da8239c36a2c10b37836260fd53712bd6",
+      "bytes": 2202
+    },
+    "data/Sun & Moon/Cosmic Eclipse/69.ts": {
+      "git_blob": "493bb4bd16247db4fbb3e8553b5f887bcbaba699",
+      "sha256": "6f04cf857497e8173512aee728803e536d95a3e76396d7fe71452bb05c767274",
+      "bytes": 3157
+    },
+    "data/Sun & Moon/Cosmic Eclipse/76.ts": {
+      "git_blob": "1b7d6343001661e60a8246d416abe4fdffff6956",
+      "sha256": "608e372954adc29f0aa94759300ded721385e202f531663aa72ee559889f0e65",
+      "bytes": 3145
+    },
+    "data/Sun & Moon/Cosmic Eclipse/77.ts": {
+      "git_blob": "b55067f5e0eb9b01d36f4bf54de3764053c59e9f",
+      "sha256": "4b09a3e578ca229adbef0f9d7f7ddab20c1998d5d0728e81c19594ee0a02a6eb",
+      "bytes": 3252
+    },
+    "data/Sun & Moon/Crimson Invasion/15.ts": {
+      "git_blob": "5a42ba206fce81f0dc2a66b680d14a0bed9631d3",
+      "sha256": "a97634ae58406a75320bd39521810888df7435bc20e627d91234d7aa5dc24aac",
+      "bytes": 1070
+    },
+    "data/Sun & Moon/Crimson Invasion/30.ts": {
+      "git_blob": "d944c2b92d129548d108e35879c4280a93d8cf34",
+      "sha256": "ab8c3a93c0d750cf5f59262db116c7464d2e178d61379651e3613e243f430a23",
+      "bytes": 1999
+    },
+    "data/Sun & Moon/Crimson Invasion/36.ts": {
+      "git_blob": "eaaa687e94721b8250f14a448cb3c3e5ccef11e5",
+      "sha256": "cb3e1e0cdc8ec879dbf293b719723eed57e16f26794352d310a678410777a548",
+      "bytes": 1549
+    },
+    "data/Sun & Moon/Crimson Invasion/37.ts": {
+      "git_blob": "a5730093a6bc45ff0c0d32ee047bf2ae5da59a87",
+      "sha256": "7a3d9b694f82df946f86e5061031c102e6611a845c2d5cae5ab66cc98de42145",
+      "bytes": 1952
+    },
+    "data/Sun & Moon/Crimson Invasion/38.ts": {
+      "git_blob": "7b890ecda487743d32e63a7e61e5e4cb3f11fdc2",
+      "sha256": "421a987f43666eb861fecbbf3d720b1e51fcfaba395b8f450e7ce3dcfe34f67f",
+      "bytes": 2798
+    },
+    "data/Sun & Moon/Crimson Invasion/4.ts": {
+      "git_blob": "789cd7e7cf22f5649f5dd1829f64ec6547ab9b12",
+      "sha256": "dc8256a4b16519c8abc939b878a9b65f16836c7dcbc296e13e9015c9942e1286",
+      "bytes": 1654
+    },
+    "data/Sun & Moon/Crimson Invasion/50.ts": {
+      "git_blob": "40e16df8bd6ee5f0783e6fa96d3cbb88bb00a29e",
+      "sha256": "bf24fdfbbff25dd695e40fb27a535bc1d099f1d7420220e0d407b28ee7e83833",
+      "bytes": 1654
+    },
+    "data/Sun & Moon/Crimson Invasion/51.ts": {
+      "git_blob": "1cf31b8c108ebb6fc16f3fce11b33b0a18e556d3",
+      "sha256": "c00fd436d1e14b76bce9a2258cd4b691e9487ccee486bd2c5fce6fc2de469761",
+      "bytes": 2383
+    },
+    "data/Sun & Moon/Dragon Majesty/21.ts": {
+      "git_blob": "d1bf6980f08b7c8764a8f7d919fa212e74ed3a91",
+      "sha256": "302ef8a574ddeab795d6b0d8c15bb3b2b9619a4cecb7a03deb34281f50192657",
+      "bytes": 2979
+    },
+    "data/Sun & Moon/Forbidden Light/1.ts": {
+      "git_blob": "9c6fcc656febc31c2f99e27a87de6543f4f2173d",
+      "sha256": "20e88ebde4ff9ae550aca1d82cf29a144e4e50033d1d73e06a8fec620579a00e",
+      "bytes": 1848
+    },
+    "data/Sun & Moon/Forbidden Light/34.ts": {
+      "git_blob": "60f48244289be95d65ee227d87f13cbe56cae355",
+      "sha256": "26a980d2c8c61e873a85ce698b90137a263f8786d6ed870a652281acd76863a0",
+      "bytes": 2251
+    },
+    "data/Sun & Moon/Forbidden Light/35.ts": {
+      "git_blob": "cbfb5169419b19ea6ac165733e4d87f80d7632c8",
+      "sha256": "0ace3e8a565511e6a04cf71b3c934b6aaa06d51ae5b803e8af3c20cb1e7f89e9",
+      "bytes": 1974
+    },
+    "data/Sun & Moon/Guardians Rising/101.ts": {
+      "git_blob": "ebf1d1f19fb12573bec136b6913092c795cce04e",
+      "sha256": "818b7839f23462fa2bbe042531eb9f4821b2f3ab1edb23121ea88f6cc70007ca",
+      "bytes": 1791
+    },
+    "data/Sun & Moon/Guardians Rising/48.ts": {
+      "git_blob": "2d99af2f6b231f7af0d73b3e20096d7f566b73b4",
+      "sha256": "4db17770a1afdecc1f1a9847206c5056c768a7801bb54ee709705e55e681dd47",
+      "bytes": 1798
+    },
+    "data/Sun & Moon/Guardians Rising/49.ts": {
+      "git_blob": "9efbdc1de452a07155d0afe63fa9a06012d971a2",
+      "sha256": "31b65835281ecae54b341c563792f841e9ccf4f2da9a4c4bb8877ea55fdabbf9",
+      "bytes": 2938
+    },
+    "data/Sun & Moon/Guardians Rising/88.ts": {
+      "git_blob": "0ab2d8674ef97caeb5a45ec6259c0ca45f4cd3aa",
+      "sha256": "e2337ac53efbbcce355ccd181cf4a18a1e46096a96beed6bd0464acd689b3a68",
+      "bytes": 1841
+    },
+    "data/Sun & Moon/Guardians Rising/89.ts": {
+      "git_blob": "c2e547e67f1bd23f7ea00241950fef8982ffddc0",
+      "sha256": "51bbc99159d5af93c507c821a5ef07fe9f30353280d79764a4c1064534fa6135",
+      "bytes": 2814
+    },
+    "data/Sun & Moon/Hidden Fates/10.ts": {
+      "git_blob": "5c184df9cde5612bba5fd0e03eeef546528c73b2",
+      "sha256": "a756cc3fe09d84250d4ffb657485e1e453f94872c100d1759016f03daa935789",
+      "bytes": 908
+    },
+    "data/Sun & Moon/Hidden Fates/12.ts": {
+      "git_blob": "b32200a7ab6fec8a61c532b2d84f50508a035d35",
+      "sha256": "5932202b5d4b076b019f7a1cba7d82ac1d63a1bc08987c69d2404b951de1111a",
+      "bytes": 1077
+    },
+    "data/Sun & Moon/Hidden Fates/13.ts": {
+      "git_blob": "152fa77e00db3a7d3ed742b5e2d6baf1c96aa3f6",
+      "sha256": "1ed2a111912d2d0fa0cc3704e9cf3602da1c867c6126016652b32ffb553d2031",
+      "bytes": 1201
+    },
+    "data/Sun & Moon/Hidden Fates/17.ts": {
+      "git_blob": "c392c35c0e4df7234729e7798d25400e016181ed",
+      "sha256": "b44d148d888c723b8d5144339f19cfbd9bfc9fc1b1efc0b22c759fb3673a5899",
+      "bytes": 940
+    },
+    "data/Sun & Moon/Hidden Fates/19.ts": {
+      "git_blob": "36d5de931ecf3c36b676f2fa6ea222c2655b742c",
+      "sha256": "86ef4cab1aae8931cdc3769e6eb194db60e6151b3330a7cb7396728275f2f848",
+      "bytes": 1224
+    },
+    "data/Sun & Moon/Hidden Fates/28.ts": {
+      "git_blob": "df77e6bca652ab37251c182c5a27276d1f2ade07",
+      "sha256": "f4e8d2780f0fb757598aca3a8eac994270303e1eefbfa9f450a356971bf66d8f",
+      "bytes": 901
+    },
+    "data/Sun & Moon/Hidden Fates/29.ts": {
+      "git_blob": "05817473484a8d26cdafc452336ea4bf6dfaf8cf",
+      "sha256": "83587ad6ae3adbde0dbb70e318da440c430927b8a68f5e14182c56505a4229d3",
+      "bytes": 1907
+    },
+    "data/Sun & Moon/Hidden Fates/30.ts": {
+      "git_blob": "f008eaf8fc8752ca16ee57aaf5493bbf955b7032",
+      "sha256": "47f19b5d32f7c0311c2c792215890902badf42f7787f7dd504216e9d718c8f8a",
+      "bytes": 1059
+    },
+    "data/Sun & Moon/Hidden Fates/38.ts": {
+      "git_blob": "61c5283d4eaf0dcb143bc6b12b37ac246cb61dc6",
+      "sha256": "24be5eed65a228253cfa00a3f935744374e1c635f587e5885c04afc0e2c68baa",
+      "bytes": 1571
+    },
+    "data/Sun & Moon/Hidden Fates/39.ts": {
+      "git_blob": "a6c4c1b4315b2ce31f64ce46d800c23c52a70807",
+      "sha256": "561428f1833940ab65c4885c86192d52c492f016be8f1d907af5de1dee32d39f",
+      "bytes": 1125
+    },
+    "data/Sun & Moon/Hidden Fates/40.ts": {
+      "git_blob": "78ecfd02f9c871f133681c9d2ec29383bb2780fd",
+      "sha256": "0f0873becd42a003a67e7318446ad884a6690bb4e501f28818c5406ef19c630f",
+      "bytes": 1268
+    },
+    "data/Sun & Moon/Hidden Fates/46.ts": {
+      "git_blob": "4af762468c9cb4da2c886f6d1ff17f9f06d6b9b7",
+      "sha256": "34590aa1a0c80e9fcd65bfb3892e12ec8187417b82599d2d1009427c0f11ad5a",
+      "bytes": 1184
+    },
+    "data/Sun & Moon/Hidden Fates/48.ts": {
+      "git_blob": "3d213d7f11ae6ee9a8cca1fca871688b249660d3",
+      "sha256": "b9aeae161ddc649a8249f7615493ffc4397a8a13fc4637acc993bfb4468130fc",
+      "bytes": 1486
+    },
+    "data/Sun & Moon/Hidden Fates/49.ts": {
+      "git_blob": "cbe3363cf82007d6ee039215d3d0e7e40a7c86f3",
+      "sha256": "9549ef47edda7e1f52210f4a5e3ced25cc0b8e458dd3375869aa3b812dd156cf",
+      "bytes": 846
+    },
+    "data/Sun & Moon/Hidden Fates/50.ts": {
+      "git_blob": "d64f0aee94a8fbd040e657d6bc5788f39a8ba039",
+      "sha256": "9c7e4962ccc34964f39b6768834a36ba711d99a80419576f668847f5b8b45df2",
+      "bytes": 996
+    },
+    "data/Sun & Moon/Lost Thunder/109.ts": {
+      "git_blob": "6a7ee9b5cd0e3970622b7dc8820b624e2595c3fe",
+      "sha256": "cae1261958c751dba854f79aa98e0e5e919b95235e4db3b5b18fd60d00f84ab7",
+      "bytes": 1098
+    },
+    "data/Sun & Moon/Lost Thunder/152.ts": {
+      "git_blob": "80f52292080a1e41a7046cf86a1278a6133110bb",
+      "sha256": "4aa5cd44d6c7dec154673d940efadbc56b6d9ae3e598c1718bb811017d8565f8",
+      "bytes": 2683
+    },
+    "data/Sun & Moon/Lost Thunder/155.ts": {
+      "git_blob": "748256c7a227138adab5b05a03f020b5366e15bb",
+      "sha256": "93f7824825f637955b73327f08306eabe246b342f6426c050eb001a4f1787fc5",
+      "bytes": 943
+    },
+    "data/Sun & Moon/Lost Thunder/38.ts": {
+      "git_blob": "94e5d0e5c179a35a58398cffdbecf24e3892a0c2",
+      "sha256": "ef76ca257ff3a19e2f1840652bee1850c671a45ec5654c9f85e2204231edc164",
+      "bytes": 1827
+    },
+    "data/Sun & Moon/Lost Thunder/54.ts": {
+      "git_blob": "520dd6bbf63050c72dd6cbe89930fdb5b3f5d84c",
+      "sha256": "2c9e395d29fd8ea3e102203996ba48b9a088470355e915f7cc2dee524f02bc2c",
+      "bytes": 1393
+    },
+    "data/Sun & Moon/Lost Thunder/56.ts": {
+      "git_blob": "0beb9f05f156008767214ffc3f44db5665350f44",
+      "sha256": "5991a4d4f7d112898f3edd7979e5ecf81e3f1601f1b8dd3de16edb493789c60f",
+      "bytes": 2878
+    },
+    "data/Sun & Moon/Lost Thunder/71.ts": {
+      "git_blob": "4e2a7e1512ac8ba8c81e3404d7bd03385316032f",
+      "sha256": "ad94035e6d9c954934ba4ca2bff25ed6136caac4e30439a6ebc08ddbd2d9ae31",
+      "bytes": 1733
+    },
+    "data/Sun & Moon/Shining Legends/28.ts": {
+      "git_blob": "277ffd18f26f8819fcda3bffc601a4018242d130",
+      "sha256": "3f1d545fbc10e49f88af849309d769f102cd5b01d30d051af89c2ddf4a4ebe0a",
+      "bytes": 1779
+    },
+    "data/Sun & Moon/Shining Legends/38.ts": {
+      "git_blob": "1826faf96ebe2768b73dd5772f29c1f15a2364a3",
+      "sha256": "51f5e0905a3a1579514364cdb2b8f53ee3e439a5be1a390be5b81797cae607b5",
+      "bytes": 2426
+    },
+    "data/Sun & Moon/Sun & Moon/101.ts": {
+      "git_blob": "8d0edc1fd93e66987a6074ccf38472d9fd6497fd",
+      "sha256": "594eaa3f29064b15f657caeebec8cdd370d3e656573ff7946578150f84d944aa",
+      "bytes": 3516
+    },
+    "data/Sun & Moon/Sun & Moon/21.ts": {
+      "git_blob": "105f1517c31a2b2f8903a3259714adaa463b8f3b",
+      "sha256": "768696128d62ba4aa481d5a131437935e1ef4067749694e607e1d5667a5e6538",
+      "bytes": 1387
+    },
+    "data/Sun & Moon/Sun & Moon/22.ts": {
+      "git_blob": "84fa486bef5cc816153369c9261a8ffef81816d8",
+      "sha256": "c6d02fa07a4c927950427fab34c3727a3787e1ac459a45a96bb86c40c744938a",
+      "bytes": 2216
+    },
+    "data/Sun & Moon/Sun & Moon/31.ts": {
+      "git_blob": "e0cca49e9b430159e8dd043164d640062fed5aae",
+      "sha256": "b0ae993f32fb252ce57286ba261d8a65a2e1fca17f0aee68d980a41a85afc8d1",
+      "bytes": 1958
+    },
+    "data/Sun & Moon/Sun & Moon/32.ts": {
+      "git_blob": "4212d556afef2b4b24d0b46cdde62061179a0fca",
+      "sha256": "7ef00cb5ac8cad406094af0a01e8928e3d84581dcc2e33117f2c96299bc3b94a",
+      "bytes": 3098
+    },
+    "data/Sun & Moon/Sun & Moon/59.ts": {
+      "git_blob": "760db31742a2435de9e9ea7d2e86af908aa0df67",
+      "sha256": "371ceb9ead4e85af4ae283aa1aa39084855bd596b0916908570a62783fb0498d",
+      "bytes": 2031
+    },
+    "data/Sun & Moon/Sun & Moon/60.ts": {
+      "git_blob": "35f0883f388e6f97c344bf75b9a813e981ee2660",
+      "sha256": "967cf635bd7da895db6addfcbbd04c4a2187a92415ecd6c4d903c3730da40f2d",
+      "bytes": 2558
+    },
+    "data/Sun & Moon/Team Up/19.ts": {
+      "git_blob": "dded04ab8ab2485e29155ceb5a9e65efd9c3ea8a",
+      "sha256": "6550edbdd35022fbcf8bde3b478e02419760c3b082d8d10c0d33ed498bf6031a",
+      "bytes": 2768
+    },
+    "data/Sun & Moon/Team Up/28.ts": {
+      "git_blob": "494f9ad5f4131128fc7c463a49e87416d1d560a2",
+      "sha256": "6999bfdf2cde34ff1367fac204dd22e7e0ea952e65492554f8f252b2629a302f",
+      "bytes": 1624
+    },
+    "data/Sun & Moon/Team Up/31.ts": {
+      "git_blob": "577206aa438032f32d0baad09900b71d60792582",
+      "sha256": "6943b22440ae4252ed1ac10a934ae6198db278880ce7067bf9b10c69e2017ab1",
+      "bytes": 2347
+    },
+    "data/Sun & Moon/Team Up/32.ts": {
+      "git_blob": "87989fbba89890ca624b06b0ee65a038f16a4dfb",
+      "sha256": "192b2a043ff07eab984a3b8751200e7b544d33eee450468a956ffd5f2ad07a9d",
+      "bytes": 3095
+    },
+    "data/Sun & Moon/Team Up/55.ts": {
+      "git_blob": "425a35136f1ff828385b03dc263ad8b1dca4bab0",
+      "sha256": "f9df58276ec82ab637587a189c7fbd7ea329bc907462d351149758d94d2ea798",
+      "bytes": 1843
+    },
+    "data/Sun & Moon/Team Up/56.ts": {
+      "git_blob": "ac17c75c19e23303ab86e45fa70d8d0805b6faa2",
+      "sha256": "208dd437fdb8051f9336c2b46808100caa40e2828c5769702df4d825bd0b36fa",
+      "bytes": 3382
+    },
+    "data/Sun & Moon/Team Up/62.ts": {
+      "git_blob": "0a767b5019ea0c993bd8ebfd62397d00aa3eebad",
+      "sha256": "bdea49cb36d27a588ef09de274c9ea9a881d6799a163ac9fa181cefd9dc2c83f",
+      "bytes": 1025
+    },
+    "data/Sun & Moon/Team Up/63.ts": {
+      "git_blob": "c09143351ec7cc0cf9820ad2491c6a0c708b02c0",
+      "sha256": "5ea8beee18e5c1f08f501ef1a4e647d6004265937715691dd50421d816f8c7fd",
+      "bytes": 3097
+    },
+    "data/Sun & Moon/Team Up/68.ts": {
+      "git_blob": "4ee8bd03536bd52502839ec5bed8009f7e565a09",
+      "sha256": "9a6e0fb712a3097b155aed49512c3e0f77afd4734455a8ff30466af51d871868",
+      "bytes": 2531
+    },
+    "data/Sun & Moon/Team Up/71.ts": {
+      "git_blob": "1ff42a58a33a37dcc4758a2535ce6540456c1bd6",
+      "sha256": "4f79496d6fb9e062cd95462a3ebfc5a71463e89f59e53d1b221ca53049dbdc3c",
+      "bytes": 1566
+    },
+    "data/Sun & Moon/Team Up/72.ts": {
+      "git_blob": "7313ce7f05506fae0b8c40b6a5f6beca78824ab3",
+      "sha256": "bb826faa16b105a2aeaf9e43252945c49d6a1cb2a65d5aaa8917e5339ca0e817",
+      "bytes": 2195
+    },
+    "data/Sun & Moon/Team Up/8.ts": {
+      "git_blob": "ed188390d568cfdac16086206de973bdce5344f9",
+      "sha256": "7a331ba4d1ad0bbefec120336538a65bdf6bcf62c083092e9364bd73408f2271",
+      "bytes": 1571
+    },
+    "data/Sun & Moon/Ultra Prism/1.ts": {
+      "git_blob": "5f7c9d63cea34f898fe7931acc917d167f771433",
+      "sha256": "c58a679ac55c987226e0f9399c4d82e49551bdcc88976a9038dd0b3479ac58d1",
+      "bytes": 1821
+    },
+    "data/Sun & Moon/Ultra Prism/104.ts": {
+      "git_blob": "d66248020bba15f153f54be387392209b14cd836",
+      "sha256": "464e3799db07d3bada450f648039c1f340cbbc0885657fce68d9f254fee07a6c",
+      "bytes": 951
+    },
+    "data/Sun & Moon/Ultra Prism/105.ts": {
+      "git_blob": "8265abe6d1f76c1f142fe1835a8f35213d2a5451",
+      "sha256": "076f48b2819c303f6863aed728948546dead2949c706e97c9d5f3d192a50a449",
+      "bytes": 1653
+    },
+    "data/Sun & Moon/Ultra Prism/18.ts": {
+      "git_blob": "3cf0ea67961478a0dcbf255e4a3d3ef9d5bfd092",
+      "sha256": "b060e2dcb80caec410df673d5ae4f3b90451f984797c9765f46dd672c7410880",
+      "bytes": 2050
+    },
+    "data/Sun & Moon/Ultra Prism/43.ts": {
+      "git_blob": "f5115278c0af0e99f35dfff8a37706d69dbe5a81",
+      "sha256": "0e26c1bac5bae0a2c08990c1dd6b981f7af01668f1e06ed68a07d11f8dc33e08",
+      "bytes": 1708
+    },
+    "data/Sun & Moon/Ultra Prism/80.ts": {
+      "git_blob": "f0ba7646e21bbf26550cb37fcc43923e8755c827",
+      "sha256": "eef6bc7a0280446e2f303db20df4b6e5f2346c94b12b6f3e1f4e845de699b7af",
+      "bytes": 2217
+    },
+    "data/Sun & Moon/Ultra Prism/81.ts": {
+      "git_blob": "ff72160912d832e940df18f0d6fd09615bcc24d9",
+      "sha256": "6c7df1b4e41bd6cfb98ea664eb085fc695de963741f510282c7e64a17fcde216",
+      "bytes": 2309
+    },
+    "data/Sun & Moon/Ultra Prism/82.ts": {
+      "git_blob": "4a9f9d0147e0ce6eafd2713f41d64c02fb0e40a8",
+      "sha256": "738c7961809bab7488596ad98eb4fa7c1645e4268395a55d89a55a5bc577c047",
+      "bytes": 1952
+    },
+    "data/Sun & Moon/Unbroken Bonds/132.ts": {
+      "git_blob": "d8b37982527f55018da6a00b0fef94ccf183459d",
+      "sha256": "f3e06df0d411a469569984d280cd7d91865df7fff1b1a1e9b3ffa2b3a67464de",
+      "bytes": 1616
+    },
+    "data/Sun & Moon/Unbroken Bonds/133.ts": {
+      "git_blob": "d406911cb8113a5afce25105566e96a10b82a4df",
+      "sha256": "0d64f24c67527ed244bb95941c41051f97eec6c825e38c9c751f587c007f7214",
+      "bytes": 2041
+    },
+    "data/Sun & Moon/Unbroken Bonds/143.ts": {
+      "git_blob": "e0d1453cb590207c81b1b41877562d4fff2ebca1",
+      "sha256": "67a3a69c52a10e355274e97984a90c12de69800ef38395afe70d5ef8a9a87e71",
+      "bytes": 1048
+    },
+    "data/Sun & Moon/Unbroken Bonds/144.ts": {
+      "git_blob": "3661e8defe6b9ce080828fb75b6167be4768cb1d",
+      "sha256": "3692c4b0c50b0002b61ffb6aba08834cacd89a0044ba1695b0b7342b77d93c39",
+      "bytes": 2004
+    },
+    "data/Sun & Moon/Unbroken Bonds/158.ts": {
+      "git_blob": "6fa1362b8cc060ed1500e8fd1159acb5d5b431ee",
+      "sha256": "3405bdc2b0cd23b036e2655b5066ce2c04572bb132b567bf01fde20d6118c9ba",
+      "bytes": 2492
+    },
+    "data/Sun & Moon/Unbroken Bonds/21.ts": {
+      "git_blob": "0aaef75d50b2cf0f0f4eb0044f4b4aff4e71c30e",
+      "sha256": "e8379fd842fabbb45f1631123da477e25def5952bdfdd40a760426751d32afcd",
+      "bytes": 1328
+    },
+    "data/Sun & Moon/Unbroken Bonds/22.ts": {
+      "git_blob": "0937f9b723fc08960e885c54e51a81a7b02005d9",
+      "sha256": "6b11ed9031dc2cc88289dad6b2e1ea8d2ff470d5cf478901e1179a6c8365baee",
+      "bytes": 2385
+    },
+    "data/Sun & Moon/Unbroken Bonds/38.ts": {
+      "git_blob": "1910e456fc592d7633bdfd398d7dd106d4d5ce32",
+      "sha256": "d8b253bda90addc0f2f49320bd6f39b5de1815939766db9880974457c9c7185d",
+      "bytes": 1962
+    },
+    "data/Sun & Moon/Unbroken Bonds/39.ts": {
+      "git_blob": "4486af4dfba780b723cb725e3b206a857754e8b0",
+      "sha256": "8c87e80c9b9c133b7d9cd519cfb9383d37225ab16e19582757da8e7b4268b72a",
+      "bytes": 2045
+    },
+    "data/Sun & Moon/Unbroken Bonds/42.ts": {
+      "git_blob": "138cffe93d087fc4ef2c1080886d41e2d250f7f5",
+      "sha256": "398b9ccf93a5b3b3ea222c42456f6021e2150f2475264906b22cc1d4373c14e8",
+      "bytes": 2269
+    },
+    "data/Sun & Moon/Unbroken Bonds/43.ts": {
+      "git_blob": "468675f8eb5fa349988f69f155aee956293e0098",
+      "sha256": "44860583ba4e73b27e493dc3a11b473a226b4762544e7a682c32cf4fb9e71892",
+      "bytes": 2579
+    },
+    "data/Sun & Moon/Unbroken Bonds/45.ts": {
+      "git_blob": "f3757f4abc78beb011b6f841c948c95c1e9b8b5e",
+      "sha256": "5b2cebec79b1868b5a0fb8e68fe7649f2778160f446d6f8710b607d93f3bccd4",
+      "bytes": 2552
+    },
+    "data/Sun & Moon/Unbroken Bonds/48.ts": {
+      "git_blob": "d4172e5663f11e81ba049ccfdf94063e39408bee",
+      "sha256": "f4fbfec65b859caa8db081eb6f76162c974a67c4da2aa1cde29ab95bd7ed617b",
+      "bytes": 2131
+    },
+    "data/Sun & Moon/Unbroken Bonds/49.ts": {
+      "git_blob": "d63a57501a88f4ec3ca6e0b30cd796d081e7e4ac",
+      "sha256": "43213301d6e26323f178b37106529dd20661a0a34806701b946ff7e4d16a9732",
+      "bytes": 2212
+    },
+    "data/Sun & Moon/Unbroken Bonds/54.ts": {
+      "git_blob": "9dd0f1b3372f8ebd06aa475fec63d251918c23bd",
+      "sha256": "06ea9e0f38aa9e266fe91b470c1ecd02061b174daca4a34c6c39a20b2e110076",
+      "bytes": 1163
+    },
+    "data/Sun & Moon/Unbroken Bonds/55.ts": {
+      "git_blob": "0f81c902ea5327d19836cd781fb93ce734d0e481",
+      "sha256": "3ba0a5f086f4631bc0e4e05c1abc3f9a4190e85ce2b100971e48ff108a9176d2",
+      "bytes": 2789
+    },
+    "data/Sun & Moon/Unbroken Bonds/67.ts": {
+      "git_blob": "9d00e034daa028e33d6e4a70f7cfbde10441e977",
+      "sha256": "dee1cd1c64a544d21736cb2eacdcdf95441f6f75bfbf4569f7643e963ae29b1c",
+      "bytes": 2293
+    },
+    "data/Sun & Moon/Unbroken Bonds/68.ts": {
+      "git_blob": "acac7ef23d422c1b275d46fa2c14fa9b987e999d",
+      "sha256": "3e2cfb3db1aec6dd0cf365edd7454c3bfce5ccb360429db451f2100caff1c716",
+      "bytes": 1509
+    },
+    "data/Sun & Moon/Unbroken Bonds/69.ts": {
+      "git_blob": "89cb8d734ca02e513240d6e17aec7cbfa64da88f",
+      "sha256": "4699b88fffbf5778821ddc06404123851c5fe59c4c14008bcee3267a17a59c7a",
+      "bytes": 2074
+    },
+    "data/Sun & Moon/Unbroken Bonds/7.ts": {
+      "git_blob": "6a38082954e861acc1c72cbb7336282910711e87",
+      "sha256": "3f7689e275612cd000532b5b3904d5966b7d8e7d7e8f73552aee0db3e675d2e2",
+      "bytes": 2827
+    },
+    "data/Sun & Moon/Unbroken Bonds/70.ts": {
+      "git_blob": "102c21a133604091d8b29e7091e9de2d1c5f9860",
+      "sha256": "c636db87079bda2ee16f366f6189bd9592e79f1ee7f712063720d15244c94239",
+      "bytes": 3241
+    },
+    "data/Sun & Moon/Unbroken Bonds/71.ts": {
+      "git_blob": "ce6c83cd7d77090a0c12dca3ac3fd49414217242",
+      "sha256": "322b5fcf2d7812f072e89b3aade50ed70793d89361881c88232f375a6bd8b7d2",
+      "bytes": 1691
+    },
+    "data/Sun & Moon/Unbroken Bonds/72.ts": {
+      "git_blob": "fb0d01e5a02a1ed82cecea652d051548bba7cbea",
+      "sha256": "8d5f7bdba4ccb772ecd02142597a44f077b70ec1a0df343c548539407d2dc6a9",
+      "bytes": 3091
+    },
+    "data/Sun & Moon/Unbroken Bonds/73.ts": {
+      "git_blob": "9f3f5f0d6ac237db4e2901f97e3954d60b63bb79",
+      "sha256": "2e89d2d7c3dcac44a08c0fc12ac1fa2a3364a7912f80fa38555cd4b5025815c2",
+      "bytes": 1372
+    },
+    "data/Sun & Moon/Unbroken Bonds/74.ts": {
+      "git_blob": "4002117f224dd06c6192dfe550b149739bed2c5a",
+      "sha256": "9de96d3bc9054b9e761aa3d4601db1ef5c41b570c8feb772c43a7199feb0a3ac",
+      "bytes": 3503
+    },
+    "data/Sun & Moon/Unbroken Bonds/75.ts": {
+      "git_blob": "c3225558419a10d7e9ce6ca62faea72e53ca27df",
+      "sha256": "17f92f30d08cbe4fcede0c6c1abdbd59fac87c0f8aa7027d6e743e4fa0338168",
+      "bytes": 3051
+    },
+    "data/Sun & Moon/Unbroken Bonds/83.ts": {
+      "git_blob": "f105460f8d13a64dd051a04775c5b5f9dd477d96",
+      "sha256": "2859327f4455c5d6d1aea6e3d15e653adb1fa6eea889d5e95c69691c0ef3faa3",
+      "bytes": 1466
+    },
+    "data/Sun & Moon/Unbroken Bonds/84.ts": {
+      "git_blob": "9f883170f05bd40220ee4f77ecdcd2d63123fda9",
+      "sha256": "46a2b84840dbfcae74240401ac7ac90d2d16f4487508c95b2a58952eee0c84ce",
+      "bytes": 2529
+    },
+    "data/Sun & Moon/Unified Minds/103.ts": {
+      "git_blob": "4821630c6315555580c7155caf1a2f68332e7fce",
+      "sha256": "b3572cb8899e073e1c236109f5b4b67fb52978566c0a441d414d5bb154bcb7d8",
+      "bytes": 2018
+    },
+    "data/Sun & Moon/Unified Minds/21.ts": {
+      "git_blob": "38e3ac6157b867c77c52cbc28c638e54ae4ccb38",
+      "sha256": "6d4a50310c9678d9621479391629aa68eb95b1d674c305f658431a2edd69b965",
+      "bytes": 2066
+    },
+    "data/Sun & Moon/Unified Minds/36.ts": {
+      "git_blob": "59d7da18b086e66f2424f96cf48502ccc41565ea",
+      "sha256": "42c52e75f87e23008206dd73c953b723058e1c6504aa67f408fd47e0672bb289",
+      "bytes": 2191
+    },
+    "data/Sun & Moon/Unified Minds/55.ts": {
+      "git_blob": "b5f217843c748c34465df129c9162c7decd8709e",
+      "sha256": "22308e06e6c4e23045f23d90b48758ba96dff7e694e05b5a9599cd1b25ac5321",
+      "bytes": 1921
+    },
+    "data/Sun & Moon/Unified Minds/56.ts": {
+      "git_blob": "fe674979e685327d6c7d2b23fbdd135177af8da2",
+      "sha256": "609db203dd6e3c193c83ca3a4cfc9ae22f93939a4c1659410d066720c5025fce",
+      "bytes": 1427
+    },
+    "data/Sun & Moon/Unified Minds/58.ts": {
+      "git_blob": "e32b602be502b593ba6168b1f98d31de370c4e2f",
+      "sha256": "df9302c0baf3e307b45de61b99819a149cbe4d2c2f26dcb83b7b8f4545ef728f",
+      "bytes": 1538
+    },
+    "data/Sun & Moon/Unified Minds/59.ts": {
+      "git_blob": "142be26c54532dffc7fe6cee19b55f35333d8ecd",
+      "sha256": "3e0b3aabdaef105e54bee5e3baac092a55700cd7daaff583a760e2c3ac9b7d3e",
+      "bytes": 1935
+    },
+    "data/Sun & Moon/Unified Minds/73.ts": {
+      "git_blob": "a63c7e7c8fd73a3e8cb4f72fbc926f71270fb2d9",
+      "sha256": "4305231b04ddb6c1b9d391482ce399e69b13f41e77f59df006d04b292595c270",
+      "bytes": 1373
+    },
+    "data/Sun & Moon/Unified Minds/74.ts": {
+      "git_blob": "cf984210f971893214e2907f69b46db9a3e756e3",
+      "sha256": "e901faafd290b96ec3af4fd9fc5bc2ec08d49de8d620db36d557885eb49e3322",
+      "bytes": 2104
+    },
+    "data/Sun & Moon/Unified Minds/76.ts": {
+      "git_blob": "40d8a976faf811b2a3098f4150fffbe75cb916ab",
+      "sha256": "2d08e764002e7687663c6c1d664c828e305b318d1c1de1fe5a433bede752dd8a",
+      "bytes": 2794
+    },
+    "data/Sword & Shield/Astral Radiance/105.ts": {
+      "git_blob": "21d875e8664050fb6bcbf33809e9b70d86354a9c",
+      "sha256": "db48132f78326798a29d7242ad4787edbaaa5ae53915c8e347bf0e3676975b7a",
+      "bytes": 2158
+    },
+    "data/Sword & Shield/Astral Radiance/106.ts": {
+      "git_blob": "949afd72fe77f786005ce72527b94b34636d5c4c",
+      "sha256": "d6adac7bc81505bc4cd184eb90ffbe9082fbd9e63d88269cb96e0e66edbe54c2",
+      "bytes": 1974
+    },
+    "data/Sword & Shield/Astral Radiance/119.ts": {
+      "git_blob": "4009b79beae19386b54ab21de164f7f1a89c279b",
+      "sha256": "8f02e1e7e8e0f750b4547225870b8eef8635840a9db6800d9c7454cdb934a827",
+      "bytes": 3024
+    },
+    "data/Sword & Shield/Battle Styles/44.ts": {
+      "git_blob": "14825fbf1383e897857774fdf29af4bc24463ddc",
+      "sha256": "7bacd6c47c92c9a53766fb4f066192f1ed3535d11eea173cddee9aa774cd4bb6",
+      "bytes": 1744
+    },
+    "data/Sword & Shield/Battle Styles/66.ts": {
+      "git_blob": "b1c7d9cfecb5a29e323fca2d9626137b644eb2e3",
+      "sha256": "8387bb270053c1a427b92fcd9b122afa548e7eb99dcef5346fe52066aa807f50",
+      "bytes": 1607
+    },
+    "data/Sword & Shield/Battle Styles/67.ts": {
+      "git_blob": "aaaf2e190b39b9731e899683f0795417b93f3c79",
+      "sha256": "df18098d5c406bf15ad5b407f0391b5778ed25b3692541352a84f7a78dbfa75c",
+      "bytes": 2775
+    },
+    "data/Sword & Shield/Battle Styles/68.ts": {
+      "git_blob": "c102aebe542ee5e36c7bf608656e61c4cad91cb5",
+      "sha256": "890b3b08eeacff448c483accf68c469e2a1950d8eae5d408792e2ec6a43ce2e7",
+      "bytes": 1804
+    },
+    "data/Sword & Shield/Brilliant Stars/001.ts": {
+      "git_blob": "b82041d40d6f891ff4b81bdc099e16e26c615894",
+      "sha256": "55460c86b09410dbda3bc872e553770dd8f9ca3b8608cc03a9d7479a45300a9d",
+      "bytes": 1399
+    },
+    "data/Sword & Shield/Brilliant Stars/002.ts": {
+      "git_blob": "4d1e5247818a96932fe13e9747a19a85beacd4af",
+      "sha256": "8a695557fc76f5d1fd2f06c0a5b5b8192ba29da1e0368b4fdd145a2474b1ef4c",
+      "bytes": 1862
+    },
+    "data/Sword & Shield/Brilliant Stars/019.ts": {
+      "git_blob": "2df1451fed98622ba290ec892a6a415e959a5ca4",
+      "sha256": "788d60841a21b28baa9b815381765a0b8a6449b39cf21ce43635998d8e901113",
+      "bytes": 1406
+    },
+    "data/Sword & Shield/Brilliant Stars/021.ts": {
+      "git_blob": "40e9314137486d4cf58d1628cdec9c6f2c0f3bfd",
+      "sha256": "c9e671369805f92d0f047b4978fa31921d30c4d636a9a0faabeb5fb603a7c424",
+      "bytes": 2309
+    },
+    "data/Sword & Shield/Brilliant Stars/030.ts": {
+      "git_blob": "a41f152583ca7115a634d2a1e8f97f65154bf203",
+      "sha256": "cf0b1af97c0957140d86a39d1be67a0da73d497ec7266392c6ada70482fe9db0",
+      "bytes": 1679
+    },
+    "data/Sword & Shield/Brilliant Stars/031.ts": {
+      "git_blob": "56eb505895200f7873366a010177db9bdd66dee6",
+      "sha256": "8aa35a3121a41b1e99173cf50ddcf3639e366f8cee8caae4d4ef2ca8f3adb869",
+      "bytes": 2459
+    },
+    "data/Sword & Shield/Brilliant Stars/046.ts": {
+      "git_blob": "3d4ce568dbc8e0b56c4df6118ac68ff157b9a166",
+      "sha256": "e2e8be4bf416dbacd10b513e44f7f8cf4b4571094c6f8570ae2ea8f4e24ef099",
+      "bytes": 1985
+    },
+    "data/Sword & Shield/Brilliant Stars/053.ts": {
+      "git_blob": "badd9916f20adc43281b6443b100d2f380eb08be",
+      "sha256": "73cc35cba82871080ebb2f0a9ee89709289e66b955cad472c7f60980e4be4296",
+      "bytes": 1327
+    },
+    "data/Sword & Shield/Brilliant Stars/054.ts": {
+      "git_blob": "503b3fd18a7b1a4ab0dca157dea8530fe37fc889",
+      "sha256": "9a67242565c2c3faa5cfafcafd50e7f9eafa4ca85d43da181b6d010b726b7222",
+      "bytes": 3280
+    },
+    "data/Sword & Shield/Brilliant Stars/056.ts": {
+      "git_blob": "0c5c03e39477840cfe558cae6125bafe3e263ce8",
+      "sha256": "78d9b98088a23b0a3ae5afd48b34da261f16632f4a51f5c1c36111d9b15ffce6",
+      "bytes": 1836
+    },
+    "data/Sword & Shield/Brilliant Stars/084.ts": {
+      "git_blob": "f5b4fc61acadb853a9d76750c8c79a81ec0e300b",
+      "sha256": "96603cf27d0e6bd6c80076d05277946add78c3beb7be47399ea4c8fea0b7ec5b",
+      "bytes": 1609
+    },
+    "data/Sword & Shield/Brilliant Stars/085.ts": {
+      "git_blob": "1a4fb22ec32a80caf7ec2e5527fd36ad2052ac14",
+      "sha256": "fcd0a2786cf423ec4ed4588179c1c8ef673ecb2f3e66f94a23f0804729b37588",
+      "bytes": 2587
+    },
+    "data/Sword & Shield/Brilliant Stars/115.ts": {
+      "git_blob": "9c357b300a224f043a5ae7f522fbd7289bf0a07b",
+      "sha256": "dd88e2b6372fb1b20eed10814cbd941c5dd02060eee354d41c7c3bf79e454455",
+      "bytes": 2066
+    },
+    "data/Sword & Shield/Chilling Reign/224.ts": {
+      "git_blob": "3333cb2b29bd03fc74aa360415ad96f23a662928",
+      "sha256": "a44775fd8cb3eeeeac349f70dfc3b52c6d9f0ea213a94a874457f11467e258f8",
+      "bytes": 3052
+    },
+    "data/Sword & Shield/Chilling Reign/29.ts": {
+      "git_blob": "ea56e4a8f33867ec7f2c93c646910cd8ca4e9518",
+      "sha256": "82d658921a6c7b95b3a3764079e07c5ce73951cfbe8509a142a468098faefbc9",
+      "bytes": 2589
+    },
+    "data/Sword & Shield/Chilling Reign/55.ts": {
+      "git_blob": "eefcaced00f10e1c22de0b95b1485d094493fccc",
+      "sha256": "d752b7cf9ef82fa8054beb8805e1706389da97c2ea4bb875b9c9ade739def63d",
+      "bytes": 1788
+    },
+    "data/Sword & Shield/Chilling Reign/56.ts": {
+      "git_blob": "64b3050b0e1aa26dd891adf45009429e85242779",
+      "sha256": "70a0fc2c5326fdd427179f044846ed7d49f76577a9d6ef606c85f5832fc2b605",
+      "bytes": 1311
+    },
+    "data/Sword & Shield/Chilling Reign/57.ts": {
+      "git_blob": "e14397a146f6d91c07f7e1e8028015f4179c9caf",
+      "sha256": "0f12a47d4f36b49b1972ab7c33e48950be634c9825fb98eb97d57e3bc4a0fb38",
+      "bytes": 3548
+    },
+    "data/Sword & Shield/Chilling Reign/94.ts": {
+      "git_blob": "6a26583cc89f1625f416fe0c8b0ac69b2a25d478",
+      "sha256": "1b1709fca40fa9b903164bea3bba549b4f0dc1339dd196c244335844f166fbe4",
+      "bytes": 1584
+    },
+    "data/Sword & Shield/Chilling Reign/95.ts": {
+      "git_blob": "f0b0d88c2cbc656bace6da8e5b13af900c27d52f",
+      "sha256": "c9e485d17083f10df61ed2ab4bd6ed47c824d3fa9d6fc75248ea2a4996276a2c",
+      "bytes": 3033
+    },
+    "data/Sword & Shield/Crown Zenith/002.ts": {
+      "git_blob": "47fd7af71504d87646c6eb5d74d0e9474156c647",
+      "sha256": "a7eb81daca25d5a9e58c392509f96bb46bff657a35eae88f52a2520564a8c08f",
+      "bytes": 1840
+    },
+    "data/Sword & Shield/Crown Zenith/057.ts": {
+      "git_blob": "ab946e9c4bd28237a03fbc9a91947c45b3cd4d25",
+      "sha256": "6655a8ada780fc538fc6a9f06c567fff1c03f1779b6c143e1b1769cd1a8b9c0b",
+      "bytes": 1892
+    },
+    "data/Sword & Shield/Crown Zenith/058.ts": {
+      "git_blob": "4b9fa608c8c9045365973a37bdf6260126b97ec2",
+      "sha256": "431aa7b1f8c32090f9481c15fbc870f0b06d6918d62fde4698fb4ebf09d04452",
+      "bytes": 2161
+    },
+    "data/Sword & Shield/Crown Zenith/059.ts": {
+      "git_blob": "0c575ceed9c9b766074d8045e9cb6369e84faa8a",
+      "sha256": "85c5f7b453ced0292b79cc12e998281034fa5a58270341cf0a14a080fd6ce1a8",
+      "bytes": 2707
+    },
+    "data/Sword & Shield/Crown Zenith/075.ts": {
+      "git_blob": "121858cf1566f304f1d352b0c31276381ce4d3d9",
+      "sha256": "cba8aef28165945467640fcb412483448392fbf0acbd9bfabeafceb8832355a6",
+      "bytes": 1593
+    },
+    "data/Sword & Shield/Crown Zenith/109.ts": {
+      "git_blob": "30f34788e55345049e3700fe6d645b5421603f3d",
+      "sha256": "c124f6e0adc197581ee0a3d6f63c4fa4eefddb7e40584c80979babdc02b2f4cb",
+      "bytes": 1174
+    },
+    "data/Sword & Shield/Crown Zenith/160.ts": {
+      "git_blob": "da5081afcb7230b5ae903d6a6bfc3d76d2adee8a",
+      "sha256": "2327a873564a7583adeab5f0a5df634450f6a98eb928dc5a87cc284c5f432263",
+      "bytes": 1542
+    },
+    "data/Sword & Shield/Darkness Ablaze/100.ts": {
+      "git_blob": "6702a5cf26933bd199f84dbc8f7901e82983ba75",
+      "sha256": "8aa45c77512cb1c646644cd0a6364bdea9f29094e759a2bbdb672ff3c78b8666",
+      "bytes": 1777
+    },
+    "data/Sword & Shield/Darkness Ablaze/101.ts": {
+      "git_blob": "1bc8fd5f2ea6614939e13235c2a606248117f60d",
+      "sha256": "0fae40e79472dfe979c7ea29b4ca61add1a6f9a2f3112b3c0eceeeb5efc3a558",
+      "bytes": 2446
+    },
+    "data/Sword & Shield/Evolving Skies/125.ts": {
+      "git_blob": "a67395312daa3411d048572f881964fd7a359b32",
+      "sha256": "941f7e9dfae3a5683a21dff4f95c901aca20abe3b7453f81922e581d2ea4c203",
+      "bytes": 2144
+    },
+    "data/Sword & Shield/Evolving Skies/49.ts": {
+      "git_blob": "1afada3592fbbb304a6e3e08a263d71456d1bdca",
+      "sha256": "872c4ec95d37d4a6f6b297c8744ba99b912f52d8fde4af606a382f0b222794fd",
+      "bytes": 1885
+    },
+    "data/Sword & Shield/Evolving Skies/50.ts": {
+      "git_blob": "89cc40e47ba6381024fb728716bb2b7284b8cf83",
+      "sha256": "d953e32aec6cdc1ef54ab1f1ba0f8834933cd25bbcdee934eb230723f773fa26",
+      "bytes": 2944
+    },
+    "data/Sword & Shield/Evolving Skies/61.ts": {
+      "git_blob": "92854ec5e7b9971ee3e663fad48990bffd770ae5",
+      "sha256": "ab7f9760af3766a04407006329446abef77fe7e55be568eb0c365aa20ec7678c",
+      "bytes": 1241
+    },
+    "data/Sword & Shield/Evolving Skies/62.ts": {
+      "git_blob": "3badbf61e92e1d5bf802e31f1c61c93516b72f8b",
+      "sha256": "a53891ebfd8ef1db1ba1a670804fc30450e77eefc27996fd9c6d88935c7974e1",
+      "bytes": 3035
+    },
+    "data/Sword & Shield/Fusion Strike/112.ts": {
+      "git_blob": "1f54150a30ae4975e7302fb94d0755b0fd29ab17",
+      "sha256": "29d5290cf2076918e42b6c8b762414cd156f4aaed097b6d2be6076974e4c857d",
+      "bytes": 2044
+    },
+    "data/Sword & Shield/Fusion Strike/131.ts": {
+      "git_blob": "1fa57dbdb29e7a750883901dc0c6136fcdfdba59",
+      "sha256": "9b140fe0d718d022b86995296716a79b8f6cc7ebb9e4f0e413320f2e7dbf43bf",
+      "bytes": 2690
+    },
+    "data/Sword & Shield/Fusion Strike/132.ts": {
+      "git_blob": "5d0ec1d8be65162d5b1914e9bdab5d52c8dbbf23",
+      "sha256": "ffc6fabff92e05894b6f47c287a08ed897d02548e10dd94b3ff5078f7e872817",
+      "bytes": 1790
+    },
+    "data/Sword & Shield/Fusion Strike/133.ts": {
+      "git_blob": "05dced98a3231216c86eafe7244334b26018242a",
+      "sha256": "174497d4d07ac09526348892edd98a6bc23696b72772b6add33bd585da790dca",
+      "bytes": 1127
+    },
+    "data/Sword & Shield/Fusion Strike/134.ts": {
+      "git_blob": "4b884b439d6d2c9014a71d23f0ba9815f4fc41a8",
+      "sha256": "9e41261ae4af0afdfa04c203f2fb77c6c7180fbc57540a7b2130566f06508f4d",
+      "bytes": 2011
+    },
+    "data/Sword & Shield/Fusion Strike/138.ts": {
+      "git_blob": "430a1fa23b1f3d09f742a4fb8863e49d2336eb9f",
+      "sha256": "79c4111f4a1198e1bddb4da7f351f768cfbb1269f21eed07ca1304f7de27f130",
+      "bytes": 2347
+    },
+    "data/Sword & Shield/Fusion Strike/202.ts": {
+      "git_blob": "1f8054639fae3438f465f971e728d34366c15364",
+      "sha256": "e31224f228cf2ea9a4b7f0cfe1ff6b476196d2ef32ab98d0451596b2411ddc47",
+      "bytes": 1760
+    },
+    "data/Sword & Shield/Fusion Strike/205.ts": {
+      "git_blob": "05b9f1cc8eadf2032704b637bf4bce5d43c05cba",
+      "sha256": "6557b3033f894d1b3ea77832d3cce8b9a7b327411e24ca5bdc8a20cf3ad7bdef",
+      "bytes": 1843
+    },
+    "data/Sword & Shield/Fusion Strike/206.ts": {
+      "git_blob": "b07cf10d236507155d67c6fc871ba7ce567162a2",
+      "sha256": "82ac526f4188ff6fc9f04b5f37d334743d987df43c36002d32e884c5ed0bc366",
+      "bytes": 1176
+    },
+    "data/Sword & Shield/Fusion Strike/32.ts": {
+      "git_blob": "10b1a5c9fbfc8eea05612e6ce00281ef0aa67043",
+      "sha256": "7fb23732747620baacdc5b098b294a1679c2702aab4a7be3fffb5067dbcc1ed3",
+      "bytes": 2076
+    },
+    "data/Sword & Shield/Fusion Strike/33.ts": {
+      "git_blob": "5a6c29fa19be9d4e91031a2407465d9831ba43f6",
+      "sha256": "762fe2145013e9d3fbf61983b8c532154dbe9c5da1a2f633b46913486be0e1e8",
+      "bytes": 1917
+    },
+    "data/Sword & Shield/Fusion Strike/52.ts": {
+      "git_blob": "708f9d52d4821dce38f5c25ca6700671e0275ba8",
+      "sha256": "0f5bcb505204fbfd54d38cd022de6efaa01ed057f541fd0089afdf4d07a8aea1",
+      "bytes": 1833
+    },
+    "data/Sword & Shield/Fusion Strike/54.ts": {
+      "git_blob": "c1be4574f4eab531bae5752c6ad3a5cf27b0115a",
+      "sha256": "9abd723192c82f8970dd5ee2e8b40bbfad14e5ec478b5123e0157d995ef35066",
+      "bytes": 3130
+    },
+    "data/Sword & Shield/Lost Origin/002.ts": {
+      "git_blob": "5972057d8813a0d71ad5407ec04eb3425c9a97db",
+      "sha256": "d3b96aa93e1da2cdcaa03615186f08f7b5385b32950d0a55416e008e5f5967d4",
+      "bytes": 1247
+    },
+    "data/Sword & Shield/Lost Origin/031.ts": {
+      "git_blob": "fbf36cc68333d60ba60d391e0c521603b77c3fb8",
+      "sha256": "a44e34052dcba7ec72bdc1ac7a217d9ab7db084dae946f7e6c7ddcc66d5a7715",
+      "bytes": 1700
+    },
+    "data/Sword & Shield/Lost Origin/034.ts": {
+      "git_blob": "ce968752cd05e9ce1492ac379d88bfe38ebea652",
+      "sha256": "5acd70c6c76bfe643ee5352f571931dc6280eb1673fc9089ece15643bd84a7c2",
+      "bytes": 3254
+    },
+    "data/Sword & Shield/Lost Origin/052.ts": {
+      "git_blob": "31c1cf828915b0691ac684bae9462cad614ca26d",
+      "sha256": "1419b5c04e0c69517bdf003bb3a557d8d8ab05d0b2a35098ca1518e99b091354",
+      "bytes": 2058
+    },
+    "data/Sword & Shield/Lost Origin/053.ts": {
+      "git_blob": "151ee3cd7c49713037935d76cce64f85237e099a",
+      "sha256": "6bde38da0c0ad732ef27686d4fa9430e8c3b2095c24184a6abb9eb198f1b3ebe",
+      "bytes": 2342
+    },
+    "data/Sword & Shield/Lost Origin/062.ts": {
+      "git_blob": "5b287f461b56ea5467769d2cdd3c233d406cd502",
+      "sha256": "b8133b08de96072780ffeadab69f6d18cfaafc3d608a92dbf59e3ff5feb5cae7",
+      "bytes": 3207
+    },
+    "data/Sword & Shield/Lost Origin/063.ts": {
+      "git_blob": "a8b349f1d7b9dba282b785c52b1729389fc8a761",
+      "sha256": "c47581edcfc840a709a509cdcc4ff8d7e811e3f5601a6f2504fb424701acfe5a",
+      "bytes": 2587
+    },
+    "data/Sword & Shield/Lost Origin/064.ts": {
+      "git_blob": "4795ea321eafc94ad3cc093c2009ab4730fb6e4d",
+      "sha256": "35cd30cfda8b202c703ba09cf7c4ecca6d4d870ed859dc228d51a357c8bda2e8",
+      "bytes": 1308
+    },
+    "data/Sword & Shield/Lost Origin/065.ts": {
+      "git_blob": "6037878a9b3210a38051cd33b7cb4f1dec9b1a24",
+      "sha256": "50deb0e25a24b12758b8f38e53d9db12f789a2ed317b37d6e5ae7506e258ae7a",
+      "bytes": 1497
+    },
+    "data/Sword & Shield/Lost Origin/066.ts": {
+      "git_blob": "05943ece368efdd43030d355176e4a64ba8ff460",
+      "sha256": "7070ea7a2a5e98530158669d4a2d01b867176e0983d80ae96e306395ef449e43",
+      "bytes": 3038
+    },
+    "data/Sword & Shield/Lost Origin/068.ts": {
+      "git_blob": "2414904731e559be1c427c9a121e22c9cef530fd",
+      "sha256": "8ec4b7c8ebcf82e05cb317fa7f76f3f7d4003c5d6589b7cd12ddd3989abe5276",
+      "bytes": 1895
+    },
+    "data/Sword & Shield/Lost Origin/085.ts": {
+      "git_blob": "bba3042c4f065e11314b3b3475f81c86b8446bc2",
+      "sha256": "36cc5c5383adf87dbf855b6c6f81ff6d0d0b51406de659a7a92993beebce0d1c",
+      "bytes": 2119
+    },
+    "data/Sword & Shield/Lost Origin/143.ts": {
+      "git_blob": "b9b1be7638dd03d75fca283e44405aafddc71e4b",
+      "sha256": "68784d5708b09dbd2b52c5b5869f40f1ad83f8e006e3e8036e2b447b16d5243f",
+      "bytes": 2978
+    },
+    "data/Sword & Shield/Pokémon GO/012.ts": {
+      "git_blob": "68f08ffacf53c8c05fde9c855396a75e1c8e0a13",
+      "sha256": "b42863a9794ed83b9a63102dc3954fdebbabb938647b4ad5939a88892a2eb091",
+      "bytes": 2585
+    },
+    "data/Sword & Shield/Pokémon GO/019.ts": {
+      "git_blob": "a14e59df87d5fe7913dafb24c6e015e488906e2c",
+      "sha256": "6118f3d2265bef1360c76cf25cd5c1e316b45d2b95a03e467328ad5bcdf14629",
+      "bytes": 2214
+    },
+    "data/Sword & Shield/Pokémon GO/020.ts": {
+      "git_blob": "12196dc51769fafe15813b42933ae8c76f605fc5",
+      "sha256": "1ef8c586a217c347c7879bd0443bbec8070ca34d6183e3f17731d36061fd6d63",
+      "bytes": 2765
+    },
+    "data/Sword & Shield/Pokémon GO/023.ts": {
+      "git_blob": "d8e2556b7ebd86cfd78d2f9c9920a1675e8dab1c",
+      "sha256": "7e2669d2ef67dff19be4782dd0d80ae32f25b4c9a23f0a877d6622fdc6b770c9",
+      "bytes": 1933
+    },
+    "data/Sword & Shield/Pokémon GO/024.ts": {
+      "git_blob": "bfb8a3a8f4491b847af56bf019eb865f422b666d",
+      "sha256": "49f0d2c092cab0b3841e19819f7daafbc06bdb585cf75818837a339919740238",
+      "bytes": 2645
+    },
+    "data/Sword & Shield/Pokémon GO/027.ts": {
+      "git_blob": "89b507669053e8a9bfcb5437db2cbe8ee9ef921d",
+      "sha256": "c777f6f75b3191e19c755dfc1e7bc80296dbf794f4a0c446c264c10097096ad2",
+      "bytes": 2072
+    },
+    "data/Sword & Shield/Pokémon GO/028.ts": {
+      "git_blob": "b3d7977f4c0b0be517674468b38e137e42c26151",
+      "sha256": "b79798ac389718485d96f3dced9eb46aa7b3f6b88e024a6a4f60587591e67963",
+      "bytes": 1587
+    },
+    "data/Sword & Shield/Pokémon GO/036.ts": {
+      "git_blob": "9d19412dc0098da42dc8ffe837d6ab510f56b8e4",
+      "sha256": "a002dbd5f32bd23af30b92c4a9bc7e89a16de60fc4b45efa8f509c2ffb90f2b6",
+      "bytes": 2563
+    },
+    "data/Sword & Shield/Pokémon GO/051.ts": {
+      "git_blob": "2fed724dbc255bc110ec1ec3d178ab8138f3d55b",
+      "sha256": "aa0b6751e1ee604a773fde8b34e144d61421aa35f5519756e6af134e1e144b57",
+      "bytes": 1779
+    },
+    "data/Sword & Shield/Pokémon GO/054.ts": {
+      "git_blob": "599312ca95034a1538020dc2094b71a264c26c0a",
+      "sha256": "ea1ab4b6ee2e0aaf816c8ea5ef48100422409cf06808192a85ad34afc0f9a596",
+      "bytes": 2064
+    },
+    "data/Sword & Shield/Pokémon GO/055.ts": {
+      "git_blob": "e0baa5fb996e78f0532ed121574221d0e282a5a3",
+      "sha256": "e4ba4e3e1f007ef3ce3c66c056207b32ceadb1b12a07628ae5782e4c45149620",
+      "bytes": 2373
+    },
+    "data/Sword & Shield/Rebel Clash/112.ts": {
+      "git_blob": "63c0c025803031f3af22d94a728e5ea2874da079",
+      "sha256": "3a8c0d7c187ccb61175339582bf2e04dc8db2b5757c06140d221f092b3b47cfd",
+      "bytes": 1220
+    },
+    "data/Sword & Shield/Rebel Clash/141.ts": {
+      "git_blob": "da67922145cf25ef15c97c8ddf493230140f0707",
+      "sha256": "fdb4850c53aacd88559a79273bd0055541b2585ae9bac1c724dfe131154bdf39",
+      "bytes": 1868
+    },
+    "data/Sword & Shield/Rebel Clash/27.ts": {
+      "git_blob": "c9b1775403518c28b80b07971748cdc9e4f7386d",
+      "sha256": "139e56af07ba0d4d634d3a07af1aa2732f20c6c6862266abaa09cb08ed726ed1",
+      "bytes": 2032
+    },
+    "data/Sword & Shield/Rebel Clash/28.ts": {
+      "git_blob": "892cd04c4d659ec900d13354c47b1cb9d47a715e",
+      "sha256": "d5b60c11ab684d497b1eb1eb18706ec5298fe8586b072c6c5f56b31fd61e2ccf",
+      "bytes": 2067
+    },
+    "data/Sword & Shield/Rebel Clash/29.ts": {
+      "git_blob": "1aab6f9e9ed00d116bc71fbcfcb275b1d6d00da6",
+      "sha256": "369af118fe9db495e368c47b5f5d199355e894dee0ea0e8ae6da286c3b139d79",
+      "bytes": 1908
+    },
+    "data/Sword & Shield/Rebel Clash/58.ts": {
+      "git_blob": "aec4e7040ac342c09ecc013084bd573440bcafa9",
+      "sha256": "52283284e6c73d223e20e9bd3dccbcda27293ecb2c53ca003b399356c59721a4",
+      "bytes": 1531
+    },
+    "data/Sword & Shield/Rebel Clash/74.ts": {
+      "git_blob": "f297250a382dee4a9f664935846cb56dac1e4e30",
+      "sha256": "04406e2837273194ee4ae45fb166f74f4d4edfe1e99913b39188a688c4872170",
+      "bytes": 1787
+    },
+    "data/Sword & Shield/Rebel Clash/75.ts": {
+      "git_blob": "da7a33f18a6be9bcc184736348de8b9410b532c6",
+      "sha256": "3ed5a5c2e8f72a55781533b245607a52d20fd426a420d3717eb2ca26123e1c1b",
+      "bytes": 2809
+    },
+    "data/Sword & Shield/Shining Fates/41.ts": {
+      "git_blob": "8d32897914bac6a07e924b2698936439aa5d2041",
+      "sha256": "9ff3591ac2ea9be15f12b0e0653cd012ad757cb86cb1c3e6f7e2bdde605a6715",
+      "bytes": 2104
+    },
+    "data/Sword & Shield/Shining Fates/52.ts": {
+      "git_blob": "67ff73529f39156edc8699a4859d8950a651dcd8",
+      "sha256": "b5bd15518fb17645f6eb0014e8dea802fbb5ed891e6ef707c0e978e04b6ca316",
+      "bytes": 2665
+    },
+    "data/Sword & Shield/Silver Tempest/019.ts": {
+      "git_blob": "66c4267ce8127cb981e559b769fcdf5d893d58ba",
+      "sha256": "05c852856ae068ec7cd9e8fef5de2804876632db343733a8fe715f83c3180e9d",
+      "bytes": 1311
+    },
+    "data/Sword & Shield/Silver Tempest/020.ts": {
+      "git_blob": "ab3797fd408c0f45e6392896101ca839086e15c7",
+      "sha256": "775a145f50ba47500d541c6f663eede3a3f237730a1a7a7149875e9f454fa595",
+      "bytes": 2709
+    },
+    "data/Sword & Shield/Silver Tempest/036.ts": {
+      "git_blob": "dea8863585ceb3c03fb8b829d459092550dd53bc",
+      "sha256": "71f004ec0496daead80a7f9473801a9d8d5bf4ec5d3bb29eb2aed0a32b2ed713",
+      "bytes": 2278
+    },
+    "data/Sword & Shield/Silver Tempest/049.ts": {
+      "git_blob": "e4671a9259f8cfb7ad16923e578770d0551604c1",
+      "sha256": "ed25343d2c7e92789f728ec2dedf9a49e31b0236fdfe19c40ebc0a816520c3cc",
+      "bytes": 2079
+    },
+    "data/Sword & Shield/Silver Tempest/050.ts": {
+      "git_blob": "0021db64157e43d890b6be82817227c55d64fddd",
+      "sha256": "b0e6859da1b49124083b7ce79989509e356cc13124b415e9c1a9b292184e54e7",
+      "bytes": 2291
+    },
+    "data/Sword & Shield/Silver Tempest/060.ts": {
+      "git_blob": "6e8413159ccee94696ef921bb52cb007080c419a",
+      "sha256": "ccbe1f1a683cf4e89e073757d3ceb96342d9440d6ae36c251e2a93f7e1c17adc",
+      "bytes": 1918
+    },
+    "data/Sword & Shield/Silver Tempest/061.ts": {
+      "git_blob": "86d8bc67209f0b7757b5cc9712e65a5a1151d2d7",
+      "sha256": "c4c7a2faa0b84cc984a3679bb5150988a5cea22029bb42eb67d5d3de498803b6",
+      "bytes": 2288
+    },
+    "data/Sword & Shield/Silver Tempest/062.ts": {
+      "git_blob": "6ee0e4a7c6469f7200556d693d56845796a86af0",
+      "sha256": "4a9d7e359512b724c89620bd46cca9ed3163be0ab0e1bd063a1e3c5314eefa63",
+      "bytes": 3201
+    },
+    "data/Sword & Shield/Sword & Shield/140.ts": {
+      "git_blob": "59801755b1212f4ee65a43df15b125f3ee5fb1b5",
+      "sha256": "b01daf523c6ddff6ddebeb62f2204c4cda827467db01845af2cc3adc295ea52e",
+      "bytes": 1479
+    },
+    "data/Sword & Shield/Sword & Shield/45.ts": {
+      "git_blob": "e9242213f946c657fed1fd432e65517f262140b5",
+      "sha256": "7d55955f8bd6d70cd1a31f8aebbacddabd1b24a2711e9516d52ee382a87af49d",
+      "bytes": 1162
+    },
+    "data/Sword & Shield/Sword & Shield/46.ts": {
+      "git_blob": "62d3bf3dcffac110d240e08a1fccd1fade02d499",
+      "sha256": "957b02cd18a2067d9fa52b83436038456b8084ff820104ead350487094f9b871",
+      "bytes": 1484
+    },
+    "data/Sword & Shield/Sword & Shield/47.ts": {
+      "git_blob": "75c813390cca07621ede772352f9b123790d4606",
+      "sha256": "68b46535a0b75a08bb76162d0b30204cf5c9a1b1d0a0ed76e4cb3ae252b422f1",
+      "bytes": 2179
+    },
+    "data/Sword & Shield/Sword & Shield/48.ts": {
+      "git_blob": "c1c786d13bdb2e6341ad0dee794b9d5ab1df80fe",
+      "sha256": "7618fb00a46230166c804053a89fb5c1d7cf439aed46b7c387ecb4a28b4c1d37",
+      "bytes": 1844
+    },
+    "data/Sword & Shield/Sword & Shield/65.ts": {
+      "git_blob": "9623b96f797b43854f7ddc38e7f04b211598e1fe",
+      "sha256": "04ffaff4b5706ba3fccfd4564a4d31b1a8628fe906c9e8aa2a18c81106d83145",
+      "bytes": 2099
+    },
+    "data/Sword & Shield/Sword & Shield/66.ts": {
+      "git_blob": "f04add4c60c3bbf36bd590f03fb11310091ff1d3",
+      "sha256": "f04797e2d0ba0dda14c8deac6062e7073fcee0143d5e5414d071c38a5919ccd9",
+      "bytes": 1501
+    },
+    "data/Sword & Shield/Sword & Shield/83.ts": {
+      "git_blob": "1d756a42e22f259f28e450ddd8e1664a1e743b97",
+      "sha256": "8b15ec592ccad900043a1d02746a7eaf4aa59cd79ec93d6c39e0d00108b4e3b1",
+      "bytes": 1643
+    },
+    "data/Sword & Shield/Sword & Shield/84.ts": {
+      "git_blob": "82495cceefcfd4e8673623134ad93c62bf9c052f",
+      "sha256": "dc95c835d3b9e13ca063a051ac35cdfaf6d00d78e50f510d61c6d3435b83fd7a",
+      "bytes": 1964
+    },
+    "data/Sword & Shield/Sword & Shield/85.ts": {
+      "git_blob": "72fa7da17f582f3f41d63cf59bc23404545ffdca",
+      "sha256": "f29546262d86716bfb965a95ec28f65b9a59be9b90b7a967fe48aaef4a2b7d36",
+      "bytes": 2909
+    },
+    "data/Sword & Shield/Vivid Voltage/130.ts": {
+      "git_blob": "5a65cb021121e651dfffb1b209664eb9ea254317",
+      "sha256": "db79980b2af2140893f83de5717bf001db1ba7e2d5091f4c70029dfade085de5",
+      "bytes": 1256
+    },
+    "data/Sword & Shield/Vivid Voltage/131.ts": {
+      "git_blob": "27550f3fa67efe274452f17ea209e4382be455a4",
+      "sha256": "f4d056dda37d7e865fe0c34989d36423e23710069ad6da07b46e0120b8d5eb20",
+      "bytes": 3178
+    },
+    "data/Sword & Shield/Vivid Voltage/4.ts": {
+      "git_blob": "29dc977c57c4831304a3887f9c5d45d445d36235",
+      "sha256": "7207a5a4ce71e8c56cfd4c77a8d08b747193de49bba0625ac8eeaf4f521540e6",
+      "bytes": 1073
+    },
+    "data/Sword & Shield/Vivid Voltage/5.ts": {
+      "git_blob": "1c136536890bc94af57ecae91e4eba9be959c40f",
+      "sha256": "41cf177399fc1e3ef0e722e9015c3ea22a3a4b3d6f2de92b88c619ede93930ed",
+      "bytes": 2417
+    },
+    "data/Sword & Shield/Vivid Voltage/63.ts": {
+      "git_blob": "3217a614c61d4d2ca89751bcb54af072046ad22c",
+      "sha256": "b70120cf70346753cdbf53b0179c18868c5fd8b5c400629ef6c74cc9c677a42f",
+      "bytes": 2072
+    },
+    "data/Sword & Shield/Vivid Voltage/64.ts": {
+      "git_blob": "51c0da6f9a040b0c9b405c59f8b5265b77318d06",
+      "sha256": "e7cdf792d9acbc8213610673b3f4edcf7982b075032767b4aa7d721e45537755",
+      "bytes": 2598
+    }
+  },
+  "new_card_identities": 0,
+  "new_concepts": 0,
+  "new_review_events": 0,
+  "new_counterpart_relationships": 0,
+  "physical_distribution_region": null,
+  "historical_retrieval_time": null,
+  "selection_reason": "Exact frozen remaining85 Japanese records;complete eligible groups;25 distinct existing reviewed-name English comparisons. No new translation or counterpart assertions.",
+  "demand": "Japan-to-US discovery objective;set-level demand unmeasured",
+  "authorized_supply": "metadata only;live Buy&Ship availability unknown"
+}

@@ -6,7 +6,7 @@ import re
 from . import collector_discovery as discovery, collector_inventory as inventory
 
 SCHEMA = 'pokemon.collector-recommendation.v1'
-RANKING = 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
+RANKING = 'explicit_axes_then_liked_axes_then_source_scan_tiebreak_then_coordinate_round_robin.v2'
 FIELDS = {'mode', 'preferred_dex_ids', 'excluded_dex_ids', 'preferred_illustrators',
           'preferred_releases', 'subjective_notes'}
 NEXT = r'what (?:should|can|do) i collect next|what to collect next|次に何を集め|次.*集める.*おすすめ|接下来.*(?:收藏|收集)|下一步.*(?:收藏|收集)'
@@ -76,7 +76,7 @@ def supported_goal(text):
 
 def is_goal(text):
     t=discovery._norm(text)
-    return supported_goal(text) and bool(re.search(NEXT+'|'+RECOMMEND,t)) and not re.search(MARKET,t)
+    return supported_goal(text) and bool(re.search(NEXT+'|'+RECOMMEND+r'|\b(?:help me )?(?:find|show)(?: me)? some\b.{0,160}\bcards?\b',t)) and not re.search(MARKET,t)
 
 
 def parse_taste(db, text, *, next_goal=False):
@@ -206,6 +206,9 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         inv=inventory.partition_owned(db,owned,list(by_id))
         excluded_ids=inv.pop('excluded_card_ids')
         by_id={cid:r for cid,r in by_id.items() if cid not in excluded_ids}
+    from . import catalog_media
+    scan_tiebreak=not any(k in scope for k in ('set_code','collector_number','variant')) and not re.search(r'\b(?:ja|en):',question)
+    scanned=catalog_media.current_ids(db) if scan_tiebreak else set()
     scores={};tiers=defaultdict(lambda:defaultdict(deque))
     for cid,row in by_id.items():
         facets=_facets(db,cid);explicit=[];examples=[];reasons=[]
@@ -221,9 +224,11 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
             explicit.append('release');reasons.append(dict(field='language_set_coordinate',
                 value=dict(language=row['language'],set_code=row['set_code']),basis='catalog_coordinate',source_ref=row['provenance']))
         scores[cid]=dict(card_id=cid,explicit_match_axes=explicit,liked_example_match_axes=examples,reasons=reasons,
-            tradeoffs=['Aesthetic fit, affordability, grade availability and physical printing are not established'])
+            tradeoffs=['Aesthetic fit, affordability, grade availability and physical printing are not established',
+                      'Current exact source-scan evidence breaks equal relevance ties only; live fetch and display rights remain unverified'] if scan_tiebreak else
+                     ['Aesthetic fit, affordability, grade availability and physical printing are not established'])
         group=(row['language'],row['set_code'],row['collector_number'])
-        tiers[(-len(explicit),-len(examples))][group].append(cid)
+        tiers[(-len(explicit),-len(examples),-int(cid in scanned))][group].append(cid)
     # Diversify equal-score coordinates only. Every source version retains its exact ID.
     ordered=[]
     for tier in sorted(tiers):

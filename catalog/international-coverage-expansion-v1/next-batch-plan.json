@@ -1,0 +1,642 @@
+{
+  "schema": "pokemon.international-next-batch-plan.v1",
+  "status": "proposed_offline_retrieval_only_not_imported",
+  "input_database_sha256": "aef2f80100489c31451e2726d548071f8e7c7e811c5da4aad9ac53b9db52afb7",
+  "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "by_set": {
+    "ja:SV1A": 5,
+    "ja:SV5A": 7,
+    "ja:SV6": 4,
+    "ja:SV7": 4,
+    "ja:SV9": 5,
+    "en:SM1": 1,
+    "en:SV02": 7,
+    "en:SV05": 3,
+    "en:SV06": 7,
+    "en:SV07": 2,
+    "en:SV09": 4,
+    "en:SM3.5": 1
+  },
+  "japanese": 25,
+  "english": 25,
+  "inspected_at": "2026-10-11T13:52:06Z",
+  "physical_distribution_region": null,
+  "authorized_offer_supply": "unknown",
+  "measured_demand": "unknown; planned for Japan-to-US discovery",
+  "selection_reason": "Remaining measured exact-ID translation gaps in five contemporary physical Japanese set scopes with existing approved names and checked pinned source tuples; no broad import.",
+  "gaps": [
+    {
+      "card_id": "ja:SV1A:065/073:normal",
+      "query": "Great Ball ja SV1A 065/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV1A:069/073:holo",
+      "query": "Boss's Orders ja SV1A 069/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV1A:073/073:normal",
+      "query": "Luminous Energy ja SV1A 073/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV1A:095/073:holo",
+      "query": "Boss's Orders ja SV1A 095/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV1A:100/073:holo",
+      "query": "Boss's Orders ja SV1A 100/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:058/066:normal",
+      "query": "Love Ball ja SV5A 058/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:059/066:holo",
+      "query": "Survival Brace ja SV5A 059/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:064/066:normal",
+      "query": "Lana's Aid ja SV5A 064/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:066/066:normal",
+      "query": "Boomerang Energy ja SV5A 066/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:088/066:holo",
+      "query": "Lana's Aid ja SV5A 088/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:093/066:holo",
+      "query": "Lana's Aid ja SV5A 093/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV5A:096/066:holo",
+      "query": "Luminous Energy ja SV5A 096/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV6:094/101:normal",
+      "query": "Bug Catching Set ja SV6 094/101",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV6:095/101:normal",
+      "query": "Handheld Fan ja SV6 095/101",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV6:101/101:holo",
+      "query": "Legacy Energy ja SV6 101/101",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV6:133/101:holo",
+      "query": "Buddy-Buddy Poffin ja SV6 133/101",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV7:096/102:normal",
+      "query": "Deluxe Bomb ja SV7 096/102",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV7:100/102:normal",
+      "query": "Briar ja SV7 100/102",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV7:126/102:normal",
+      "query": "Briar ja SV7 126/102",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV7:132/102:normal",
+      "query": "Briar ja SV7 132/102",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9:091/100:normal",
+      "query": "Hop's Bag ja SV9 091/100",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9:092/100:normal",
+      "query": "Hop's Choice Band ja SV9 092/100",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9:096/100:normal",
+      "query": "Brock's Scouting ja SV9 096/100",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9:099/100:normal",
+      "query": "Postwick ja SV9 099/100",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV9:123/100:normal",
+      "query": "Brock's Scouting ja SV9 123/100",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM1:119/149:standard",
+      "query": "スーパーボール en SM1 119/149",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:172/193:holo",
+      "query": "ボスの指令（ゲーチス） en SV02 172/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:144/162:normal",
+      "query": "なかよしポフィン en SV05 144/162",
+      "before_total": 1,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:143/167:normal",
+      "query": "むしとりセット en SV06 143/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:150/167:normal",
+      "query": "ハンディサーキュレーター en SV06 150/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:155/167:normal",
+      "query": "スイレンのお世話 en SV06 155/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:156/167:normal",
+      "query": "ラブラブボール en SV06 156/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:164/167:holo",
+      "query": "サバイブギプス en SV06 164/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:166/167:normal",
+      "query": "ブーメランエネルギー en SV06 166/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV06:167/167:holo",
+      "query": "レガシーエネルギー en SV06 167/167",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV07:132/142:normal",
+      "query": "ブライア en SV07 132/142",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV07:134/142:holo",
+      "query": "デラックスボム en SV07 134/142",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV09:146/159:normal",
+      "query": "タケシのスカウト en SV09 146/159",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV09:147/159:normal",
+      "query": "ホップのバッグ en SV09 147/159",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV09:148/159:holo_cosmos_player_rewards_program",
+      "query": "ホップのこだわりハチマキ en SV09 148/159",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV09:154/159:holo_cosmos_player_rewards_program",
+      "query": "ハロンタウン en SV09 154/159",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3.5:060/073:standard",
+      "query": "スーパーボール en SM3.5 060/073",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:172/193:holo_asia_promo",
+      "query": "ボスの指令（ゲーチス） en SV02 172/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:172/193:reverse",
+      "query": "ボスの指令（ゲーチス） en SV02 172/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:183/193:normal",
+      "query": "スーパーボール en SV02 183/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:183/193:reverse",
+      "query": "スーパーボール en SV02 183/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:248/193:holo",
+      "query": "ボスの指令（ゲーチス） en SV02 248/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:265/193:holo",
+      "query": "ボスの指令（ゲーチス） en SV02 265/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:144/162:normal_gym_challenge",
+      "query": "なかよしポフィン en SV05 144/162",
+      "before_total": 1,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:144/162:normal_international_championship_europe",
+      "query": "なかよしポフィン en SV05 144/162",
+      "before_total": 1,
+      "before_contains_target": false
+    }
+  ],
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/SV/SV1a/065.ts": {
+      "git_blob": "30aef0cad2a95f8933b668ab5c491eacbf68c5c8",
+      "sha256": "29beb579a526b444697c31e2d473340a90f42f434906a05a2b8f415a9da8ff7c",
+      "bytes": 1440
+    },
+    "data-asia/SV/SV1a/069.ts": {
+      "git_blob": "768de90e5bcd20239a274aabdf67f72a016ec7c4",
+      "sha256": "6453e8df07ea68403ba4b179e8138a2732d0b81d98e534afcb3b0e8ced77a082",
+      "bytes": 1008
+    },
+    "data-asia/SV/SV1a/073.ts": {
+      "git_blob": "2bfd481730495d7f5b12379373758350475d51df",
+      "sha256": "87bba43b4e0a81d5a3e6ff23aa11333a38f47802b1a45364174b6ada69bf20e5",
+      "bytes": 1797
+    },
+    "data-asia/SV/SV1a/095.ts": {
+      "git_blob": "76a56cf29745aeec4f4d754cbafe35a8939f4e89",
+      "sha256": "1f4f18e7d9ed43275eca4df3b5503e761d1ad9ba85468d86228430062d3b9068",
+      "bytes": 490
+    },
+    "data-asia/SV/SV1a/100.ts": {
+      "git_blob": "9851213411fadb7cdded8d48512996d4ca3f3df8",
+      "sha256": "30acfd147f7266bca5a9573a0d82895ba223211d088e98624b7ea62f503124cb",
+      "bytes": 479
+    },
+    "data-asia/SV/SV5a/058.ts": {
+      "git_blob": "365794870f0de6048b8aa3f4238c3236746b8d0b",
+      "sha256": "c9f23d9247825fae91b844ace47831247e41c5a90880e9fa6ada5fb68d11244d",
+      "bytes": 1210
+    },
+    "data-asia/SV/SV5a/059.ts": {
+      "git_blob": "dd03960ab0304f997b715b121324158b270b8340",
+      "sha256": "4c0f1e1f2d90625792c4a149d194e52809dcf62063996993ad72020fd802ec27",
+      "bytes": 1672
+    },
+    "data-asia/SV/SV5a/064.ts": {
+      "git_blob": "f8a4059d2bae69ac0a40d97f014dce2955a22a59",
+      "sha256": "1cf0178dcd298c5b0c5fdd3b8b844248c6f03a2d48e59d55b5b27b8fab935674",
+      "bytes": 1304
+    },
+    "data-asia/SV/SV5a/066.ts": {
+      "git_blob": "bcce496191e798310239fd0af06f4ef442946d56",
+      "sha256": "d784401ef5b94aadf3e6ca4ac101f7ed40478ab587d7d4702ff886190cd4168f",
+      "bytes": 1835
+    },
+    "data-asia/SV/SV5a/088.ts": {
+      "git_blob": "7ca5f2324d678a88a38bf330d3dbdad7adb00da4",
+      "sha256": "da30746aba80ef913dcf214ef9c79de8b33ad16aecfc5172210426f6dde87392",
+      "bytes": 584
+    },
+    "data-asia/SV/SV5a/093.ts": {
+      "git_blob": "51a3f7f6129d14c31c9612858fee3eff927f90d3",
+      "sha256": "5b43c73edbb379bf329c4ac2ca65d694def20d0fe65ab5179e92925b1808380f",
+      "bytes": 581
+    },
+    "data-asia/SV/SV5a/096.ts": {
+      "git_blob": "fd63c5e35cd6a7f148a4d838b8c7a60ba7991ffe",
+      "sha256": "a45f2513a254df4a9fef9df43b84f679bd7eb3bb6a4558b652f3d4196a8166a8",
+      "bytes": 703
+    },
+    "data-asia/SV/SV6/094.ts": {
+      "git_blob": "faf6d54c0f089b41296d935342588d55cabfc82d",
+      "sha256": "0ef7d78c2f7f5d88f533d8480b900c3dfe92e2390b01151f3e660e337ad66b06",
+      "bytes": 1497
+    },
+    "data-asia/SV/SV6/095.ts": {
+      "git_blob": "5cc8520cb65f5b07b8bbdddce2ff3da8a439f6d4",
+      "sha256": "b50a391d68ba08b1f3289e9f3e7a53373969e36aecc2423efd63f0b46d88652a",
+      "bytes": 1565
+    },
+    "data-asia/SV/SV6/101.ts": {
+      "git_blob": "7b7ab0a933871c8f20a01f299d866c000975af11",
+      "sha256": "1d4b8cfc719fbd021e7153c03573b4c7e57305c2313f005d9e90c756a60ea918",
+      "bytes": 2039
+    },
+    "data-asia/SV/SV6/133.ts": {
+      "git_blob": "f0a1a599acdf9e0323c991c1c087683ac502bb57",
+      "sha256": "406952c5210e617f2a9c82515647daaec59d5d52caeed1d0843a79f4fa196bda",
+      "bytes": 577
+    },
+    "data-asia/SV/SV7/096.ts": {
+      "git_blob": "e11a111b834435959b3656004517a2851afdc9db",
+      "sha256": "f17cc6e958c784ad8c164f7af3c5dc0475ff7a2285c58d9cd434e7c6a828b0ef",
+      "bytes": 1111
+    },
+    "data-asia/SV/SV7/100.ts": {
+      "git_blob": "dbedd52ab73793ca06a087113feab79206b39b47",
+      "sha256": "86a715f7451b736b00494d11c99bf20bae1b2b33adb897aaac4dff87dd4ab39b",
+      "bytes": 1228
+    },
+    "data-asia/SV/SV7/126.ts": {
+      "git_blob": "29e429b6f650462bedbe256d70b184ed965d2cf2",
+      "sha256": "427af82f62a1e60ccf9a45c60f164b4dd1d95fa38b63a76405a05e0030510c4e",
+      "bytes": 1224
+    },
+    "data-asia/SV/SV7/132.ts": {
+      "git_blob": "81b6e005424b7d1e9a8d92f2e2d63400f3ccf7eb",
+      "sha256": "a3ee5bb0a0aba7975f9b099fa1b2900c668c616e803d1f0966b1bfb25b1fc9fe",
+      "bytes": 1216
+    },
+    "data-asia/SV/SV9/091.ts": {
+      "git_blob": "c1cf2f342c07ef443b68e57d9820cd4dd16e3cc1",
+      "sha256": "5bf13babe2c48d9952f1f588b82db62bd76790ff2249a0139ed65c9d7e4d1ea2",
+      "bytes": 914
+    },
+    "data-asia/SV/SV9/092.ts": {
+      "git_blob": "625c35636d37ef5a54bafb0a37fa45cddccced87",
+      "sha256": "ed5a81250a0f8a5d0ec4e1f6551dc818997a04524566469a4a48543fd5e03b1c",
+      "bytes": 1188
+    },
+    "data-asia/SV/SV9/096.ts": {
+      "git_blob": "3a915b7754e9cfa73fee08324e584d41003e9736",
+      "sha256": "3a7865bd2c51d6bfc9903b4948569876496cff4396c4e1f1c05867ab5244a3e7",
+      "bytes": 984
+    },
+    "data-asia/SV/SV9/099.ts": {
+      "git_blob": "e92c987e03d57be2b77a551567d9d20320e7ef0b",
+      "sha256": "29146cda0682c0144ac67ba09d6697aa7b449a2670ba6e44166e0be1e6947d03",
+      "bytes": 860
+    },
+    "data-asia/SV/SV9/123.ts": {
+      "git_blob": "2466feb361c7fdbceab709c736998ce08eb74da4",
+      "sha256": "9d6f2b661b345f069ac0e47d9e9adc3a0b81237dc574ede14d9113990678ace6",
+      "bytes": 570
+    },
+    "data/Scarlet & Violet/Journey Together/146.ts": {
+      "git_blob": "d4cc2b82292cbdd748ae0ccb9c6baf779026a2a8",
+      "sha256": "15faf73ecfc5223f1bdbfcba9f741ea7dc5e65af1ee7316a896698dc711f9c6c",
+      "bytes": 1946
+    },
+    "data/Scarlet & Violet/Journey Together/147.ts": {
+      "git_blob": "6059300036acf84c11b08905bebd4fda0ef1efcd",
+      "sha256": "4c4dcf79b058240c49fc7a83069a8beaf48310e5357601ee6b3529ef326866c9",
+      "bytes": 1674
+    },
+    "data/Scarlet & Violet/Journey Together/148.ts": {
+      "git_blob": "024008c9b385ab1ab6c7ec2ddd618eb42b01fe1e",
+      "sha256": "af1de9168bcec80bfbc88e40c4dc05352c1d95fdb7b6268d59e8f7218dd25019",
+      "bytes": 2528
+    },
+    "data/Scarlet & Violet/Journey Together/154.ts": {
+      "git_blob": "eddb3884f6de47c1deacfa48d9db6dd850554290",
+      "sha256": "0ae2e14acb14c0c0d54cca6551a30ae235df87efdc63c9bc0b11ae175d759ede",
+      "bytes": 2332
+    },
+    "data/Scarlet & Violet/Paldea Evolved/172.ts": {
+      "git_blob": "5b2f16267d89b1228181350ef55813589be963db",
+      "sha256": "d2df9e116cc94767b71679f8ea390c15db60ef8067cc709f11c6f13d3735250a",
+      "bytes": 1387
+    },
+    "data/Scarlet & Violet/Paldea Evolved/183.ts": {
+      "git_blob": "d99cb6aec32c572e927cf2feb12a9691505780fa",
+      "sha256": "8d7378be8e4680be95943f023d495919d22d257a40570bbddba9baed40cfcde1",
+      "bytes": 1827
+    },
+    "data/Scarlet & Violet/Paldea Evolved/248.ts": {
+      "git_blob": "c6ac630733913ed44105f2fbc290eca50f49ce52",
+      "sha256": "e688c36cb0e4303119a2bb673f7ec524ccfc4109c59cb1b4bffdabc24ee8e240",
+      "bytes": 1181
+    },
+    "data/Scarlet & Violet/Paldea Evolved/265.ts": {
+      "git_blob": "46d6efb786448cb0d15be668ea9b2c9f3f42db8d",
+      "sha256": "40e93f77ab20f801c86e4afffe20fc67b465ad34e286dff83505202085d7e2b6",
+      "bytes": 1185
+    },
+    "data/Scarlet & Violet/Stellar Crown/132.ts": {
+      "git_blob": "4931fcfdd7221d41f479e0a750193fc9ec9f2e3e",
+      "sha256": "0cc8cd0532e214a99f78add3bc3e473699ab3f703a1c9a291849f924ae15461a",
+      "bytes": 2294
+    },
+    "data/Scarlet & Violet/Stellar Crown/134.ts": {
+      "git_blob": "c155753fab7fc838596efbc775d592128e2adbc9",
+      "sha256": "39da3eb085fcd6c4e4f17439818e4f72b76464ae24c735e63520ad268994b357",
+      "bytes": 2586
+    },
+    "data/Scarlet & Violet/Temporal Forces/144.ts": {
+      "git_blob": "ea02eba18009f75a423d1b7f1b92ed9f1696d9ba",
+      "sha256": "2f25bb9359e73fb7f755851eb040086acd8ca8777470a6807c39e96116de4e8b",
+      "bytes": 2952
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/143.ts": {
+      "git_blob": "e15feb7cfc2f267b8494f39eb26e58a9e20c520e",
+      "sha256": "bbd56f2d19dc893f0a0aa6f8dcafd7e736074446e1f7532183d442b4bcbe60be",
+      "bytes": 2225
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/150.ts": {
+      "git_blob": "d747eccdf02aac0737721b2ea62a2181c9270216",
+      "sha256": "b022b507bb5b10813cc72eebc67645f505ea20fac71868e0853400242e7b5f2f",
+      "bytes": 2492
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/155.ts": {
+      "git_blob": "d9c79416105f51a48436b9432c83f8bf4dce7d6c",
+      "sha256": "2798fc6cf838598e22ad9668f0cb81bf86d5d1fd43592109ec9bd0c6e4d39a1b",
+      "bytes": 2013
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/156.ts": {
+      "git_blob": "31018f048de5f450a7c4d7319d01624e8c39cdc3",
+      "sha256": "263d21eadd52827842a96c2d5655001e6b34ff8f6bbcc0d1079ea6d8909359f3",
+      "bytes": 1785
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/164.ts": {
+      "git_blob": "a3d8ddd2871e6749fedc8e0c48d330b926133514",
+      "sha256": "6993d9caf26486404a9c5a455cf57f190aa34fc6acf1fd187ebed77afb881cde",
+      "bytes": 2341
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/166.ts": {
+      "git_blob": "576502b937ffbffe71db73501501a8c515a3ed7e",
+      "sha256": "39017c31340b54f180139a62fb089e385f4114124555d9be72ca8ba4ed673caa",
+      "bytes": 2306
+    },
+    "data/Scarlet & Violet/Twilight Masquerade/167.ts": {
+      "git_blob": "95acbb8285cac5ba037405eec554ab17c3f623b1",
+      "sha256": "96428a3c65bf437f46a4da8f1ad426b5fa36007aedb000a93b7eec3a9af5b3f1",
+      "bytes": 2899
+    },
+    "data/Sun & Moon/Shining Legends/60.ts": {
+      "git_blob": "74fae23eed735c2db90cf51b53ba399a5edffd3c",
+      "sha256": "9157e911d873af040e3326266b2f7688c272888adefb0e64d4ed716e4c5af82b",
+      "bytes": 1616
+    },
+    "data/Sun & Moon/Sun & Moon/119.ts": {
+      "git_blob": "9a2b1b307746247b586a0c959080b03e4e47c9f8",
+      "sha256": "5d8b568058d71515d44999b06275c28f8f2f6bdf36043fa91cedbd4084e37eb5",
+      "bytes": 1610
+    }
+  },
+  "release_snapshots": [
+    {
+      "language": "ja",
+      "set_code": "SV1A",
+      "name": "トリプレットビート",
+      "release_date": "2023-03-10",
+      "official_card_count": 73,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV1a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV5A",
+      "name": "クリムゾンヘイズ",
+      "release_date": "2024-03-22",
+      "official_card_count": 66,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV5a.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV6",
+      "name": "変幻の仮面",
+      "release_date": "2024-04-26",
+      "official_card_count": 101,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV6.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV7",
+      "name": "ステラミラクル",
+      "release_date": "2024-07-19",
+      "official_card_count": 102,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV7.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    },
+    {
+      "language": "ja",
+      "set_code": "SV9",
+      "name": "バトルパートナーズ",
+      "release_date": "2025-01-24",
+      "official_card_count": 100,
+      "provenance": "tcgdex:a211f11f3ba57d56c65c5ac33be35b77d3280757:data-asia/SV/SV9.ts",
+      "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+      "display_allowed": 0
+    }
+  ],
+  "new_identities": 0,
+  "flags": {
+    "display_allowed": false,
+    "image_display_allowed": false,
+    "purchase_allowed": false,
+    "automatic_offer_join_allowed": false,
+    "physical_printing_verified": false,
+    "price_comparable": false
+  },
+  "next_real_language": {
+    "candidate": "ko",
+    "status": "conditional_not_admitted",
+    "reason": "Existing reviewed provider headers contain Korean names, so inspect source completeness next. Demand and authorized Buy&Ship supply must be demonstrated before a real batch; row count and header names alone do not qualify cards."
+  },
+  "rights_status": "metadata_internal_reviewed",
+  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+  "retrieved_at": null,
+  "retrieval_status": "historical_snapshot_time_not_recorded",
+  "confidence": {
+    "pinned_bytes_existing_source_tuples_current_reviewed_text": 1.0,
+    "physical_printing_verification": null,
+    "demand_and_offer_supply": null
+  },
+  "unresolved_conflicts": [
+    "physical_distribution_region_unknown",
+    "authorized_offer_supply_unknown",
+    "set_level_demand_unmeasured",
+    "no_cross_language_counterpart_assertion"
+  ]
+}

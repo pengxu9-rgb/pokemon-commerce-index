@@ -158,9 +158,11 @@ def validate(row):
 
 
 def import_evidence(db, rows):
+    from . import variant_dimension_hold
     prepared = []
     for row in rows:
         validate(row)
+        if variant_dimension_hold.held(db,row['card_id']):raise ValueError('number evidence cannot bind a variant-dimension-held identity')
         if snapshot(db, row['card_id']) != row['endpoint_snapshot']:
             raise ValueError('number evidence endpoint is stale')
         prepared.append(row)

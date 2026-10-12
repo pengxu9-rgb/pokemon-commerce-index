@@ -1,0 +1,923 @@
+{
+  "schema": "pokemon.international-coverage-selection.v1",
+  "inspected_at": "2026-10-11T13:43:00Z",
+  "by_set": {
+    "ja:S8B": 14,
+    "ja:SM12A": 10,
+    "ja:SM6B": 10,
+    "ja:SM8B": 7,
+    "ja:SV8A": 21,
+    "en:SM10": 3,
+    "en:SM11": 1,
+    "en:SM1": 1,
+    "en:SM3": 2,
+    "en:SM4": 1,
+    "en:SM6": 1,
+    "en:SM7.5": 1,
+    "en:SM7": 6,
+    "en:SM8": 3,
+    "en:SV02": 1,
+    "en:SV04": 2,
+    "en:SV05": 3
+  },
+  "japanese": 62,
+  "english": 25,
+  "new_card_rows": 0,
+  "source_inventory": {
+    "LICENSE": {
+      "git_blob": "c67ded0d5f0abc77b4fbdbfd37312f2a88de1b55",
+      "sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+      "bytes": 1063
+    },
+    "data-asia/S/S8b/135.ts": {
+      "git_blob": "0b06bbfaeb0f1b5d492813849edd7e59541889dd",
+      "sha256": "484918e8fb7dbfea2d61a09926315f429632d9474d346385f526d8d7910a8aea",
+      "bytes": 855
+    },
+    "data-asia/S/S8b/147.ts": {
+      "git_blob": "8b49019a8cf415a45ab64ac812b28bd72f105759",
+      "sha256": "41378b69fa6cccd549179ae9ca79893b4e5744af9b298987a4cf898a32c4f41d",
+      "bytes": 842
+    },
+    "data-asia/S/S8b/164.ts": {
+      "git_blob": "fc5f9da58c8a4189fa0357cafe64675400da66eb",
+      "sha256": "bab95abaddc8c3cc1275d8bb0b1f8ef3417fc4323d7d553a3d7807fb6c514f56",
+      "bytes": 792
+    },
+    "data-asia/S/S8b/169.ts": {
+      "git_blob": "a5050a11564c3f9cbdea9da28b1fe41e128e75c9",
+      "sha256": "7472cfc8dd77c9034ac9544390ee947254a7259fe881085d9b5fc5c889716438",
+      "bytes": 951
+    },
+    "data-asia/S/S8b/170.ts": {
+      "git_blob": "2bd1a67f50c12af59f250ca13d5ec723036945d6",
+      "sha256": "20074d974b0c1bda42f35977015122b45cc3c76035f1fc9073a69a4fd0149ea9",
+      "bytes": 753
+    },
+    "data-asia/S/S8b/256.ts": {
+      "git_blob": "f4116480bbdbd7240f9ed714fa2b8f6ab686265f",
+      "sha256": "00ff801cb3a235e604133aa5665feabf1252ca7bc741f1addb69cdc9d7b4df10",
+      "bytes": 575
+    },
+    "data-asia/S/S8b/263.ts": {
+      "git_blob": "a6a7a84fc3eb9b34018c59f48aca8f716a854ae3",
+      "sha256": "cb1f34376017cee3c9ed37af265e8235c61d300aa586c844b8ee1c2ece022586",
+      "bytes": 745
+    },
+    "data-asia/S/S8b/273.ts": {
+      "git_blob": "fcd232d3d5554f02b04616578721ff467d13f9ec",
+      "sha256": "1bb15d8a6f864e44d913af91a0c98561494adcb0d064b91252c40b66613feab6",
+      "bytes": 699
+    },
+    "data-asia/S/S8b/277.ts": {
+      "git_blob": "d32e710493da0b319eb19eeb4ef128516f24d564",
+      "sha256": "91a0911151f5b0070a8f03507a180c12c26fa2f1567c85bce1c183ee672f2fbf",
+      "bytes": 566
+    },
+    "data-asia/SM/SM12a/123.ts": {
+      "git_blob": "16e9a60ce65aa88ad90a60731902cf44c93cb98c",
+      "sha256": "d750fc52a2ac1ad917a92bbe2bf35238894e6e168a40e99bf9a8c74cdf4438e6",
+      "bytes": 653
+    },
+    "data-asia/SM/SM12a/124.ts": {
+      "git_blob": "d6140d416c3d8287111e6fbcd23a2da2353a81b9",
+      "sha256": "9ae0e07506f226e178eb25e901e752459ddb8de0260e824ccb051fb2d993e138",
+      "bytes": 644
+    },
+    "data-asia/SM/SM12a/126.ts": {
+      "git_blob": "6312f5fc4b3d1c397120da68160d6efccf877a22",
+      "sha256": "619017f31aebfc7d7a0af68bc23bdb375d3d347e2a58b7306e02f410bb525110",
+      "bytes": 661
+    },
+    "data-asia/SM/SM12a/128.ts": {
+      "git_blob": "bdf923e278ec454882ecdedd2c779bd6fb5d30b3",
+      "sha256": "c0b4bcf78f227a78cdb9bcfe675e64cd212a6fedd3a7f4630509abf96c5bbf10",
+      "bytes": 559
+    },
+    "data-asia/SM/SM12a/143.ts": {
+      "git_blob": "49f03dcd1e5e04c7c31e7928239052aae1f8cdd8",
+      "sha256": "92b7cf751750f0eb203568217ec44ce4ed9ba93846ed0aa82f453b0f4cf5b61c",
+      "bytes": 624
+    },
+    "data-asia/SM/SM12a/150.ts": {
+      "git_blob": "acb7e8f882773cc3dfda3729222c9c730bbe523a",
+      "sha256": "00ebea2b6d57a998ed3ccd0ad3c7ecf3fbf1a84be8d0180283c3d618c4623800",
+      "bytes": 589
+    },
+    "data-asia/SM/SM12a/157.ts": {
+      "git_blob": "1be46bd8364d81e6b6f12191526120542a1815c8",
+      "sha256": "ac463fb257818431b51a7734e65383b4bfe4057e6e7c8ccdbd5710eb5e7a6a54",
+      "bytes": 545
+    },
+    "data-asia/SM/SM12a/171.ts": {
+      "git_blob": "cd0facd7895a1fcbf76f6d8f2a8cd17bbc07242c",
+      "sha256": "7d9cac14ece136145be5eab8ccae914c0f01639030060803038ec8663f08eb46",
+      "bytes": 736
+    },
+    "data-asia/SM/SM12a/197.ts": {
+      "git_blob": "eb53019294f64e73af3d3487ffc638d70afb23fa",
+      "sha256": "8417755134a3df32aae0d0c51fd141e7609805ed1205091d7384093c327d8e44",
+      "bytes": 551
+    },
+    "data-asia/SM/SM12a/200.ts": {
+      "git_blob": "214c736521d6d8dc5cbd333cfdf452c30c6d7834",
+      "sha256": "d8cdf188bffdc4235d113415b34e6d191a1647e9d203d286f44477c4a886f8e1",
+      "bytes": 549
+    },
+    "data-asia/SM/SM6b/052.ts": {
+      "git_blob": "c71f487f752a9603f957fa97964bc35ad0fad21a",
+      "sha256": "0895462dd7b5f608813bc6026850597af17782d22d6752354fb33af805cfb039",
+      "bytes": 631
+    },
+    "data-asia/SM/SM6b/053.ts": {
+      "git_blob": "eebc6c3d98588028217d43a4526cdbde88ab8231",
+      "sha256": "61d06a46d5307ff7f188a59b2a03a389354532eb7bc84b2d144d0bff1afcd9ed",
+      "bytes": 510
+    },
+    "data-asia/SM/SM6b/057.ts": {
+      "git_blob": "28f92e460326d68e7c644afa5084b47524ef1fb3",
+      "sha256": "556a82c2c6ebb0908491a8d860532ab2b9c532abd8867b7c1ffd065d60ab6c78",
+      "bytes": 561
+    },
+    "data-asia/SM/SM6b/058.ts": {
+      "git_blob": "a150746be7beae149e8a0f4cd6476bfa152973de",
+      "sha256": "daa3bfd1d7c0da763ee9c2a4e158d7e02180c0c5e956f56a9f10d3b239f022d0",
+      "bytes": 627
+    },
+    "data-asia/SM/SM6b/060.ts": {
+      "git_blob": "26fd0dd3537c053431217aab3d7f52e86c1f1409",
+      "sha256": "fb5117b0a406815e8fa3946f007d9951c2f8e5c2b5352f5d7612da4eb3b5edbf",
+      "bytes": 542
+    },
+    "data-asia/SM/SM6b/061.ts": {
+      "git_blob": "069f3fc9c586211154f2bab447a2cec91bd2b3d2",
+      "sha256": "a670092a19f31fa35cd5b80f9b8d5ec8765e489d16c756624f3574ccf2da88a4",
+      "bytes": 582
+    },
+    "data-asia/SM/SM6b/063.ts": {
+      "git_blob": "a4c268989c431966bfcc49fd92d6da701e045e67",
+      "sha256": "7fbc864306277107bd36eb565bd3bce013d3e17a9035f19a5e1fafcd7113907e",
+      "bytes": 554
+    },
+    "data-asia/SM/SM6b/073.ts": {
+      "git_blob": "cbe8f0745110fc722d219112ffca6d6fb47ff51a",
+      "sha256": "9e21a1096a59d9e73b89b5c023e53d3f569108b256028553b2ee46ab713d089d",
+      "bytes": 582
+    },
+    "data-asia/SM/SM6b/075.ts": {
+      "git_blob": "084e1a7864be6adfc6800c6a24ac4c48c73f4eed",
+      "sha256": "4d8be23d00ab9042d7a980e2a005616b049e9c04c58bdda7f7b46a64681ffb69",
+      "bytes": 554
+    },
+    "data-asia/SM/SM6b/085.ts": {
+      "git_blob": "c560ddc8a2bf31ff3e354c924f7c2c99a2c6dfdf",
+      "sha256": "c04831cac229d941751d3aa8a9a75222a8347bfe758c859ebb248a7560631d6c",
+      "bytes": 614
+    },
+    "data-asia/SM/SM8b/115.ts": {
+      "git_blob": "608d9624a8ff1cde8f1d56ce5dad00447557dd78",
+      "sha256": "363386dac498a6ab291b64784008ef268e4799b1bd0cc5639961aa78b2e70f19",
+      "bytes": 638
+    },
+    "data-asia/SM/SM8b/116.ts": {
+      "git_blob": "e6f818e3936c6abf0ee00c06267c121ba0fd4890",
+      "sha256": "c8448c3c5dab093ea1f97b1189c11ace015d350bef03e5a1a11f96794a16aaff",
+      "bytes": 597
+    },
+    "data-asia/SM/SM8b/127.ts": {
+      "git_blob": "86df4417ef55f0df041c4ebd5f9c3020f9087498",
+      "sha256": "542df4d23e3e8c20bd6a746108c08023133d2494f01ebf599fce4957c964a09c",
+      "bytes": 481
+    },
+    "data-asia/SM/SM8b/130.ts": {
+      "git_blob": "12cd64abe9b77f13d4995c0fb42e6e85c229c5a7",
+      "sha256": "ed80fb22e23704d0a4cccd90ee999c8356e44cae46ff42801040495b80b80efc",
+      "bytes": 553
+    },
+    "data-asia/SM/SM8b/131.ts": {
+      "git_blob": "64c42d7058cab3f1eb3ef044087321c72a8bbc5b",
+      "sha256": "495762327ef34770de2b3a9c2d97135aded9c52c49e86946567674187c7e9e10",
+      "bytes": 679
+    },
+    "data-asia/SM/SM8b/151.ts": {
+      "git_blob": "52940c3e311b0b1ac5aca6eab9cfb5039ab8431f",
+      "sha256": "b8273a6329e8b2c0b462ba57de9e118533cb06dadcc3934765a8a0bf68fa58b4",
+      "bytes": 531
+    },
+    "data-asia/SM/SM8b/152.ts": {
+      "git_blob": "05382071ecc68c97817b41fbc60d8d899e217569",
+      "sha256": "1377b238ffcdb91e5d02f1d25a5ef4bbf7bfac0818e2dad30d843fa505f33ed6",
+      "bytes": 558
+    },
+    "data-asia/SV/SV8a/147.ts": {
+      "git_blob": "d7c818577483ca2fc47f5fc489c49b6046cbfb36",
+      "sha256": "0b0003b58929a6ef9d43fb3c2dc6b7dbd1ae3aaf49c13e2a2eede9543713e1c6",
+      "bytes": 1539
+    },
+    "data-asia/SV/SV8a/150.ts": {
+      "git_blob": "94e2dfdfe9e458dee1e55c7799eef60695d62d8f",
+      "sha256": "20658afb3c9a3e713837e8967ea92cd1cedacf3b4a68f07d08b5fef7f944ca16",
+      "bytes": 2053
+    },
+    "data-asia/SV/SV8a/167.ts": {
+      "git_blob": "0fa78e13e7cab1fd522304c8bff958a346597d00",
+      "sha256": "4f1b0ee23dd0046d88bc3a7525d22223bd34b5d409d98981f4cb518a9e067e83",
+      "bytes": 1799
+    },
+    "data-asia/SV/SV8a/168.ts": {
+      "git_blob": "696e29bb98a308097a5176d1427449d3bbd89770",
+      "sha256": "89c5069ab88e70ca5d8f9fbc5b0b15a41a07335a05e991ddd9ed48d11604a206",
+      "bytes": 1786
+    },
+    "data-asia/SV/SV8a/175.ts": {
+      "git_blob": "8a2960ccc9fc0a8e08c746b4dcfb625625d60c10",
+      "sha256": "d8705b0ebb4fede180edcaea4ce44d3d5c4e06aac5efd73d8027ff5dab89b7f1",
+      "bytes": 1474
+    },
+    "data-asia/SV/SV8a/176.ts": {
+      "git_blob": "85a3473d48dedf317990bc9873f513891fae5c46",
+      "sha256": "cac6d42bec88cd7f5c7343ba44ce62e2126db8c42063fb8e8bdd362551dbe39e",
+      "bytes": 2201
+    },
+    "data-asia/SV/SV8a/177.ts": {
+      "git_blob": "88d3b44d26e2ca9b32eb06016b358f63dfedf975",
+      "sha256": "e7db9f10df83b762bedbfea65013d483eaf47112098262e9b868de7ab8841d6c",
+      "bytes": 1209
+    },
+    "data-asia/SV/SV8a/184.ts": {
+      "git_blob": "9b7feaa936cdcb88a11408834e51a4397c1016fc",
+      "sha256": "4f5e08cc5686adcacb07061ae27c47cc83dc5cb64d099548d9d11b8a28fa499d",
+      "bytes": 2181
+    },
+    "data-asia/SV/SV8a/186.ts": {
+      "git_blob": "f9530cd8e1420f32db8f3f2433202845abd1e032",
+      "sha256": "ac568483fda8d295242b7066df52f35448def1fd96b855bdc758f6dea78493ec",
+      "bytes": 2232
+    },
+    "data-asia/SV/SV8a/187.ts": {
+      "git_blob": "45fc1f7e56fb30633e634cbd4a2493d742b7ffbe",
+      "sha256": "3a9debec0fba7e54ee454d5ff7bdb413cfddaa8f3920271b8bf4a12bd47903f6",
+      "bytes": 2774
+    },
+    "data-asia/SV/SV8a/196.ts": {
+      "git_blob": "5034d24637a0d78bf04146395365fb173b4ae7a7",
+      "sha256": "8bb3672104993ae2d2de114fbb0272297c487ae1ce07d3761dd0933a5c8fc5ae",
+      "bytes": 909
+    },
+    "data/Scarlet & Violet/Paldea Evolved/182.ts": {
+      "git_blob": "7e266ae6cc7b19bfd7639e82d2bde97cc8dc7cd9",
+      "sha256": "3ad2d6549f181851b538e2da88f9b3ccdffa901b37184df7ce34599772a2fc3f",
+      "bytes": 1205
+    },
+    "data/Scarlet & Violet/Paradox Rift/170.ts": {
+      "git_blob": "1ba3976169b1caae14f73646aa9b1d8e67df1018",
+      "sha256": "69479f2f3bd5943af27df4753996a8880401b16014ab5ae31d8e2a95b51039ac",
+      "bytes": 2051
+    },
+    "data/Scarlet & Violet/Paradox Rift/171.ts": {
+      "git_blob": "56d8833e064638c824e89dc14567fffb75c9242a",
+      "sha256": "177a9face15914683f7aad1a1f1203f958b1296c8aad7661816275e38459ec30",
+      "bytes": 1487
+    },
+    "data/Scarlet & Violet/Temporal Forces/142.ts": {
+      "git_blob": "1958992c8f57daccbbd47ab852f8a331cab2b2c3",
+      "sha256": "ed3ed1183d5f606e10a9407316eddaaefae06ac1d1b8000236beff9e8c7a3f1e",
+      "bytes": 1341
+    },
+    "data/Scarlet & Violet/Temporal Forces/144.ts": {
+      "git_blob": "ea02eba18009f75a423d1b7f1b92ed9f1696d9ba",
+      "sha256": "2f25bb9359e73fb7f755851eb040086acd8ca8777470a6807c39e96116de4e8b",
+      "bytes": 2952
+    },
+    "data/Scarlet & Violet/Temporal Forces/161.ts": {
+      "git_blob": "fa9283297073e807a20c235babbf9a7d381f65d0",
+      "sha256": "988215490dec6f86b620c976bb65d18c1e1eeb94278619cd46481452c07a06dc",
+      "bytes": 2503
+    },
+    "data/Sun & Moon/Burning Shadows/113.ts": {
+      "git_blob": "d530b59c0055615e8d2f7ff2dc267964e1e44b9d",
+      "sha256": "1025de0872f96631f3a5e386a2a4a22983b34a50c6bccc6c2bf8523bb675fa05",
+      "bytes": 1311
+    },
+    "data/Sun & Moon/Burning Shadows/115.ts": {
+      "git_blob": "8b8b2f9a13f16d1504136c6251f7e43f0689df8a",
+      "sha256": "79cbb4b0f98388f3bed719a038f9857b8eec56e2a0b7a36a5b8e31901459df77",
+      "bytes": 1575
+    },
+    "data/Sun & Moon/Celestial Storm/124.ts": {
+      "git_blob": "d13c2e080db49e502f49772eea43259040cef3a6",
+      "sha256": "09ada438b397b05c64c61bdf901f52487301651e9b84ea5971674af1d3fa93d2",
+      "bytes": 1641
+    },
+    "data/Sun & Moon/Celestial Storm/128.ts": {
+      "git_blob": "e1f30688f0e00f1ce31dc039150d1bf493a7f420",
+      "sha256": "e455dc99cd66dbcdff2a3a744d8d7cf70597fc0b93f911040692dcf2f4c14976",
+      "bytes": 1665
+    },
+    "data/Sun & Moon/Celestial Storm/131.ts": {
+      "git_blob": "aa8a309b0a4cdec59c6fadb53f75abf31518ddd3",
+      "sha256": "c3e367a7b67ba103c2014e20ed822e761d655aa9c2998b779983515e89bb73e8",
+      "bytes": 1633
+    },
+    "data/Sun & Moon/Celestial Storm/138.ts": {
+      "git_blob": "7f265e39f7675f8289b3ddb62367415d83f33763",
+      "sha256": "9c0305ef1fde4ad65bc6f56f7490313a7c08c612c07fdf9c880764d8a114f038",
+      "bytes": 1239
+    },
+    "data/Sun & Moon/Celestial Storm/140.ts": {
+      "git_blob": "5c10f7c8ec8195e2755eec979fb7989e2a68f97f",
+      "sha256": "a3d580b6a9fe6fcc3f0f0aa2109efaa1dc186bebb3d97e8e6aa414e2d0e12c63",
+      "bytes": 1797
+    },
+    "data/Sun & Moon/Celestial Storm/150.ts": {
+      "git_blob": "7f2ad63e408405dcca333117d4875b21746117d3",
+      "sha256": "a01d3a0fa711fa3c90d48565941d2e7a994b4903bceee565a7ceab11b0e1b5d2",
+      "bytes": 1646
+    },
+    "data/Sun & Moon/Crimson Invasion/95.ts": {
+      "git_blob": "a79dc2b6cd8a5b54f2c8cff68a4eb511adbe2219",
+      "sha256": "133b3fe33e3f5ab229bfd436d89c494bf9cbc7889f2996110e2a4a4d20d3926b",
+      "bytes": 2107
+    },
+    "data/Sun & Moon/Dragon Majesty/60.ts": {
+      "git_blob": "04576a029bef427374279455cf650862a70a41aa",
+      "sha256": "1b31847595cb065cea628023e2046718a2377ba84f1ce6d0b005480ce6887ed4",
+      "bytes": 1889
+    },
+    "data/Sun & Moon/Forbidden Light/102.ts": {
+      "git_blob": "67152c7a4d3646a4369f958b7204827ac2a9ec40",
+      "sha256": "1cd38c5a586fb957454d080a9bc9d0b6a1d3415c1b27fe6484140651e0c24035",
+      "bytes": 1992
+    },
+    "data/Sun & Moon/Lost Thunder/167.ts": {
+      "git_blob": "2783849e3af255f7f3a5248e7be75b126e3cb2e1",
+      "sha256": "274bc3db69507b11e00edc0a3aeedd3a25c38f7542255b98f9d9a388ee76785e",
+      "bytes": 1422
+    },
+    "data/Sun & Moon/Lost Thunder/168.ts": {
+      "git_blob": "f65fb3bae94fcad5ea556a38729e50b7ecea62f3",
+      "sha256": "86673fc4c5cd64c8689a2fbfa2e93a3a840d4b90a0dd62705e344463033f9826",
+      "bytes": 1273
+    },
+    "data/Sun & Moon/Lost Thunder/173.ts": {
+      "git_blob": "93a315bdc075e01313fa8acf1ac8e61cd2afa5a3",
+      "sha256": "e8bec545df3d33172ac401e681ac66846daf6a7de250d7b799cf3b4e5602a78d",
+      "bytes": 1556
+    },
+    "data/Sun & Moon/Sun & Moon/117.ts": {
+      "git_blob": "3854041398466a3cccef19062a5e02c7605af6f4",
+      "sha256": "2006372eceeb620b40a542ed9e5af7617220c51f5579c3807fa1f572d565958d",
+      "bytes": 1076
+    },
+    "data/Sun & Moon/Unbroken Bonds/169.ts": {
+      "git_blob": "cbdaa09855d45b1be169e4687756c663b5549729",
+      "sha256": "8eb4734edb6f816eddaa718cf7f787fd539c7ec13a3eb50942df62669c3c99b4",
+      "bytes": 2237
+    },
+    "data/Sun & Moon/Unbroken Bonds/189.ts": {
+      "git_blob": "65da2499528a3436e73a5a2f21e018f154c0778e",
+      "sha256": "ba580f90170025d0a465e2919bc29361a83a0594f7368e47fccc0d0a165b122b",
+      "bytes": 1207
+    },
+    "data/Sun & Moon/Unbroken Bonds/190.ts": {
+      "git_blob": "30c30e97c6f380282a63cc3880f32a8a2f642003",
+      "sha256": "d0e798f3b30797001791e66504f92492a91365ac4a4453b4e973e25471f95b82",
+      "bytes": 2772
+    },
+    "data/Sun & Moon/Unified Minds/211.ts": {
+      "git_blob": "1fec8fb5f1eeb89250e23c931a0e4c71e3ed2f8c",
+      "sha256": "047e36e6f79562ec4e580649410050f2a4b99422e07f5d88f2f56cf66397ab00",
+      "bytes": 1883
+    }
+  },
+  "gaps": [
+    {
+      "card_id": "ja:S8B:135/184:normal",
+      "query": "Fog Crystal ja S8B 135/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:135/184:reverse",
+      "query": "Fog Crystal ja S8B 135/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:147/184:normal",
+      "query": "Memory Capsule ja S8B 147/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:147/184:reverse",
+      "query": "Memory Capsule ja S8B 147/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:164/184:normal",
+      "query": "Nessa ja S8B 164/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:164/184:reverse",
+      "query": "Nessa ja S8B 164/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:169/184:normal",
+      "query": "Turffield Stadium ja S8B 169/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:169/184:reverse",
+      "query": "Turffield Stadium ja S8B 169/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:170/184:normal",
+      "query": "Tower of Waters ja S8B 170/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:170/184:reverse",
+      "query": "Tower of Waters ja S8B 170/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:256/184:holo",
+      "query": "Allister ja S8B 256/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:263/184:holo",
+      "query": "Sordward & Shielbert ja S8B 263/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:273/184:holo",
+      "query": "Rapid Strike Style Mustard ja S8B 273/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:S8B:277/184:holo",
+      "query": "Nessa ja S8B 277/184",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:123/173:normal",
+      "query": "Electromagnetic Radar ja SM12A 123/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:124/173:normal",
+      "query": "Electromagnetic Radar ja SM12A 124/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:126/173:normal",
+      "query": "Beast Ring ja SM12A 126/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:128/173:normal",
+      "query": "Adventure Bag ja SM12A 128/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:143/173:normal",
+      "query": "U-Turn Board ja SM12A 143/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:150/173:normal",
+      "query": "Faba ja SM12A 150/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:157/173:normal",
+      "query": "Welder ja SM12A 157/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:171/173:normal",
+      "query": "Triple Acceleration Energy ja SM12A 171/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:197/173:holo",
+      "query": "Roxie's Performance ja SM12A 197/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM12A:200/173:holo",
+      "query": "Welder ja SM12A 200/173",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:052/066:normal",
+      "query": "Energy Recycle System ja SM6B 052/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:053/066:normal",
+      "query": "Energy Switch ja SM6B 053/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:057/066:normal",
+      "query": "Friend Ball ja SM6B 057/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:058/066:normal",
+      "query": "PokéNav ja SM6B 058/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:060/066:normal",
+      "query": "Lure Ball ja SM6B 060/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:061/066:normal",
+      "query": "Underground Expedition ja SM6B 061/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:063/066:normal",
+      "query": "Apricorn Maker ja SM6B 063/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:073/066:holo",
+      "query": "Underground Expedition ja SM6B 073/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:075/066:holo",
+      "query": "Apricorn Maker ja SM6B 075/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM6B:085/066:holo",
+      "query": "PokéNav ja SM6B 085/066",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:115/150:normal",
+      "query": "Beast Ring ja SM8B 115/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:116/150:normal",
+      "query": "Fiery Flint ja SM8B 116/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:127/150:normal",
+      "query": "Bodybuilding Dumbbells ja SM8B 127/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:130/150:normal",
+      "query": "Guzma ja SM8B 130/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:131/150:normal",
+      "query": "Gladion ja SM8B 131/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:151/150:holo",
+      "query": "Aether Foundation Employee ja SM8B 151/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SM8B:152/150:holo",
+      "query": "Guzma ja SM8B 152/150",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:147/187:normal",
+      "query": "Buddy-Buddy Poffin ja SV8A 147/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:147/187:reverse",
+      "query": "Buddy-Buddy Poffin ja SV8A 147/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:150/187:normal",
+      "query": "Bug Catching Set ja SV8A 150/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:150/187:reverse",
+      "query": "Bug Catching Set ja SV8A 150/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:167/187:normal",
+      "query": "Professor Sada's Vitality ja SV8A 167/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:167/187:reverse",
+      "query": "Professor Sada's Vitality ja SV8A 167/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:168/187:normal",
+      "query": "Lana's Aid ja SV8A 168/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:168/187:reverse",
+      "query": "Lana's Aid ja SV8A 168/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:175/187:normal",
+      "query": "Professor Turo's Scenario ja SV8A 175/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:175/187:reverse",
+      "query": "Professor Turo's Scenario ja SV8A 175/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:176/187:normal",
+      "query": "Briar ja SV8A 176/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:176/187:reverse",
+      "query": "Briar ja SV8A 176/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:177/187:normal",
+      "query": "Bianca's Devotion ja SV8A 177/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:177/187:reverse",
+      "query": "Bianca's Devotion ja SV8A 177/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:184/187:normal",
+      "query": "Neutralization Zone ja SV8A 184/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:186/187:normal",
+      "query": "Mist Energy ja SV8A 186/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:186/187:reverse",
+      "query": "Mist Energy ja SV8A 186/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:186/187:reverse_masterball",
+      "query": "Mist Energy ja SV8A 186/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:187/187:normal",
+      "query": "Legacy Energy ja SV8A 187/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:187/187:reverse_masterball",
+      "query": "Legacy Energy ja SV8A 187/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "ja:SV8A:196/187:normal",
+      "query": "Giacomo ja SV8A 196/187",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:169/214:standard",
+      "query": "電磁レーダー en SM10 169/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:189/214:standard",
+      "query": "溶接工 en SM10 189/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM10:190/214:standard",
+      "query": "トリプル加速エネルギー en SM10 190/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM11:211/236:standard",
+      "query": "Uターンボード en SM11 211/236",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM1:117/149:standard",
+      "query": "エネルギーつけかえ en SM1 117/149",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3:113/147:normal",
+      "query": "ムキムキダンベル en SM3 113/147",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM3:115/147:normal",
+      "query": "グズマ en SM3 115/147",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM4:095/111:standard",
+      "query": "グラジオ en SM4 095/111",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM6:102/131:standard",
+      "query": "ビーストリング en SM6 102/131",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7.5:060/070:standard",
+      "query": "火打石 en SM7.5 060/070",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:124/168:standard",
+      "query": "ぼんぐり職人 en SM7 124/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:128/168:standard",
+      "query": "エネルギー循環装置 en SM7 128/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:131/168:standard",
+      "query": "フレンドボール en SM7 131/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:138/168:standard",
+      "query": "ルアーボール en SM7 138/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:140/168:standard",
+      "query": "ポケナビ en SM7 140/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM7:150/168:standard",
+      "query": "地底探険隊 en SM7 150/168",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM8:167/214:standard",
+      "query": "ぼうけんのカバン en SM8 167/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM8:168/214:standard",
+      "query": "エーテル財団職員 en SM8 168/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SM8:173/214:standard",
+      "query": "ザオボー en SM8 173/214",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV02:182/193:normal",
+      "query": "ピーニャ en SV02 182/193",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV04:170/182:normal",
+      "query": "オーリム博士の気迫 en SV04 170/182",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV04:171/182:normal",
+      "query": "フトゥー博士のシナリオ en SV04 171/182",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:142/162:holo_cosmos_player_rewards_program",
+      "query": "ベルのまごころ en SV05 142/162",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:144/162:holo_cosmos_player_rewards_program",
+      "query": "なかよしポフィン en SV05 144/162",
+      "before_total": 0,
+      "before_contains_target": false
+    },
+    {
+      "card_id": "en:SV05:161/162:normal",
+      "query": "ミストエネルギー en SV05 161/162",
+      "before_total": 0,
+      "before_contains_target": false
+    }
+  ],
+  "selection_reason": "Five fixed Japanese physical set scopes with measured exact-ID translated-query gaps and existing reviewed names. English comparisons span distinct concepts where available; no counterpart assertions.",
+  "demand": "Japan-to-US discovery use case; no measured set-level demand",
+  "authorized_supply": "Metadata only; live Buy&Ship offer availability unmeasured",
+  "physical_distribution_region": null,
+  "historical_retrieval_time": null,
+  "input_database_sha256": "43efee62091ce157ea7d14182262c5c3a68f2e5e86058dbc5287da29b6cc1b82"
+}

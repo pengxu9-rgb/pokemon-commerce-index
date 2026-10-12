@@ -88,6 +88,10 @@ def _card_result(db, row) -> dict:
     if printing:card['printing_source_evidence']=printing
     artist=source_corrections.printed_artist(db,row['card_id'])
     if artist:card['printed_artist_credit']=artist
+    from . import catalog_media,variant_dimension_hold
+    card['media_availability']=catalog_media.availability(db,row['card_id'])
+    hold=variant_dimension_hold.context(db,row['card_id'])
+    if hold:card['variant_dimension_hold']=hold
     return card
 
 
@@ -155,8 +159,15 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int) -> dic
             result.update(status='no_match', next_question='No catalog record satisfies that source-declared finish; inspect the printed version evidence.')
         elif result['task']=='exact_coordinates':
             result['status'] = 'target_candidate' if len(rows)==1 else 'printing_clarification_needed'
+    from . import catalog_media
+    before_scan_filter=len(rows)
+    if result.get('with_source_scans'):
+        scanned=catalog_media.current_ids(db)
+        rows=[r for r in rows if r['card_id'] in scanned]
+        if not rows:result.update(status='no_match',next_question='No exact current source-scan evidence satisfies this scope; no sibling substitution was made.')
     result.update(cards=[_card_result(db, r) for r in rows[offset:offset+limit]],
                   coverage={"matched_catalog_records":len(rows),
+                            "total_before_source_scan_filter":before_scan_filter,
                             "returned":len(rows[offset:offset+limit]), "offset":offset,
                             "limit":limit, "has_more":offset+limit<len(rows),
                             "undated_records":sum(not r["release_date"] for r in rows),
@@ -263,7 +274,8 @@ def _character_ids(db, text: str) -> list[int]:
 
 
 def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
-            offset: int = 0, scope: dict | None = None) -> dict:
+            offset: int = 0, scope: dict | None = None,with_source_scans: bool = False) -> dict:
+    if type(with_source_scans) is not bool:raise ValueError('source scan filter must be boolean')
     if not isinstance(question, str) or not 1 <= len(question.strip()) <= 2000:
         raise ValueError("question must contain 1–2000 characters")
     if type(limit) is not int or not 1 <= limit <= 100 or type(offset) is not int or offset < 0:
@@ -278,6 +290,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     result = {"schema":"pokemon.collector-discovery.v1", "question":question,
               "languages":languages, "task":None, "status":"clarification_needed",
               "cards":[], "next_question":None,
+              "with_source_scans":with_source_scans,
               "market_status":"no_live_market_evidence", "live_offers":[],
               "prices":[], "public_display_allowed":False,
               "unfulfilled_constraints":[], "complete_answer_established":False,
@@ -373,8 +386,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result,task='collection_scope_needed',status='clarification_needed',
                     required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
                     next_question='Should we first list official physical Pokémon TCG cards? Custom and other product lines need their own sources; share your inventory to check omissions.')
-    edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',text))
-    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|grading|鑑定|评级',text))
+    edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',language_text))
+    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|grading|鑑定|评级',language_text))
     if graded or (edition and len(artists)!=1):
         return dict(result, task='copy_evidence_needed', status='blocked',
                     required_evidence=['exact_base_printing','edition_or_grading_copy_evidence'],
@@ -440,7 +453,9 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         elif re.search(r"counterpart|对应|対応|(?:english|japanese) (?:version|equivalent)\b", text):
             task, kinds = "counterpart", {"localization_counterpart"}
         else:
-            ids = [card_id] + [r["card_id"] for r in neighborhood["variants_at_number"]]
+            ids = ([card_id] + [r["card_id"] for r in neighborhood["variants_at_number"]]
+                   if re.search(r'variants?|versions?|printings?|同编号|同番号|バリエーション',text) else [card_id])
+            result['requested_exact_card_id']=card_id
             rows = _rows(db, "c.card_id IN (" + ",".join("?" for _ in ids) + ") AND c.language IN (" + ",".join("?" for _ in languages) + ")", (*ids,*languages))
             return _finish_result(db, dict(result, task="printing_variants", status="results" if rows else "no_match",
                    claim_basis="same language, set and number; physical finish remains source-declared"), rows, limit, offset)

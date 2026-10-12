@@ -1,0 +1,9 @@
+# Exact-anchor field evidence verification
+
+- Full final Python suite: `python3 -m unittest discover -s tests` — 724 run, 722 passed, two existing skips; 38.426 seconds. Existing localhost-only API regressions ran with approved local test execution.
+- Focused suite: `python3 -m unittest tests.test_anchor_qualification_fields tests.test_product_document_qualification -v` — 39 passed, including 17 new cases; independently repeated by GPT-6.1 Sol high.
+- New cases cover Unicode/literal fields, idempotent evidence IDs and unchanged inputs, missing values, unrecognized rarity semantics, credit/dex conflicts, wrong sets and repeated numbers, multi-coordinate promos and missing denominators, native-ID/source collisions, foreign languages and foil/stamp variants, forged permissions, duplicate/unsupported JSON fields, caption conflicts, pinned Git revision handling and offline flags, output hashes/overwrite refusal, late source mutation and stale prior qualification.
+- Three actual compiled files rebuild byte-identically. Both output hashes and preserved stage5 artifact bytes match. The input database SHA remains 43efee62091ce157ea7d14182262c5c3a68f2e5e86058dbc5287da29b6cc1b82; before/after inventory is equal. Original65 ordered inputs and68-step manifest remain exact.
+- Compilation and staged/unstaged Git whitespace checks pass. Stage 3's 15 passing Node results carry forward because this supplement changes no Node/runtime behavior; no new Node run is claimed.
+
+Review identified that supplement signatures needed rechecking after final prior-stage validation. The check now runs afterward, and the new builder regression rejects a mutation during that final validation. Field evidence remains dependent literal correspondence; all four release/physical bindings and 65 qualification holds remain held. No identities, dates, aliases, source mappings, runtime contracts or permissions are added.

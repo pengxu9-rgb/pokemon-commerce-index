@@ -1,0 +1,12 @@
+{
+  "schema": "pokemon.independent-name-review.v1",
+  "reviewer": "GPT-6.1 Sol high",
+  "proposal_sha256": "fb113bb1822efa1b9db0ad662cf8149867f3f2c4b0d456bc0366e966ffd06b7f",
+  "decision": "approve_all_exact_pairs",
+  "approved_pairs": 163,
+  "rejected_pairs": [],
+  "uncertain_pairs": [],
+  "identity_scope": "pinned metadata name/category/singleton-Dex tuples only",
+  "evidence_note": "All151 Kanto species IDs align;12 lowercase ex pairs retain the suffix on both sides;Nidoran sex symbols and Farfetch'd/Mr.Mime punctuation remain correct.12 bare-name supplements have distinct literal witnesses. All326 local witness files match declared SHA256,literal names,Pokemon category and singleton matching Dex IDs. No counterpart,physical-printing,artwork,region,owner/form/mechanic inheritance,date,price,offer or permission claim.",
+  "pin_validation_scope": "Compiler must additionally verify exact Git blobs and licence before import"
+}

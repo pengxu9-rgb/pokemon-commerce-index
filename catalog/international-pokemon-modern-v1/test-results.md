@@ -1,0 +1,18 @@
+# Stage11 verification
+
+- Full Python suite: 800 run, 798 passed, two existing skips; 48.625 seconds.
+- Focused compiler/audit coverage suites: 76 passed; 10.378 seconds. Includes nine new stage11 cases. Modern plus legacy followup profiles: 24 passed; 5.916 seconds.
+- Node backend caller tests: 15 passed; 263.77275 milliseconds.
+- All 125 exact target-ID gaps close through 119 distinct translated queries. Native/fullwidth/decomposed Unicode, wrong-language and ten unfiltered checks pass; all 125 structured requests resolve within exact current record-name scope.
+- All 51 historical tables/columns preserved; only 125 locale and 125 provider mappings append. Installed SQL evidence IDs/card IDs/canonical JSON and six-field source witnesses match exactly. No new card, reference, relationship, concept or review event.
+- Re-import: inserted 0 / unchanged 125 / quarantined 0; every table unchanged.
+- Independent 74-input rebuild matches all content outside four named legacy generated timestamp columns: identity-exception applied_at 19, number-rule applied_at 2, rarity-correction applied_at 532 and relationship asserted_at 657. Incremental history preserves these too. Three snapshots pass SQLite integrity and foreign-key checks.
+- Independent modern and legacy default compilation reproduce all four artifacts byte-for-byte. Modern evidence qualifies 603 inventory entries including LICENSE and 857 English comparison candidates. The 74-input manifest preserves prior 73/original 65 inputs and expected inventory; Docker remains on the original manifest.
+- Earlier Alakazam broad-holo native resolution still yields separate holo/Cosmos IDs; translation remains not_attempted/reviewed_name_record_binding_required. Cosmos receives no locale binding. Catalogue holds/quarantine stay 65/65.
+- Read-only next plan: 620 of 634 Japanese candidates qualify, 14 singleton-Dex holds retained. Proposed 100 complete-group records across 12 further scopes remain unapplied, with a future 25-English target. All input database/source/licence hashes repeat after held-record enrichment.
+
+New synthetic cases cover immutable bounded profiles and safe paths/hashes, exact proposal schema/counts/language/Dex, false rights flags, frozen alias revision/review and source/blob/licence witnesses, compiler/audit agreement, disjoint selection, immutable input, exclusive outputs and unchanged legacy defaults. Existing suites retain source collisions, Unicode, shared artwork, promos, foil/stamp siblings, repeated numbers, missing fields, cross-language negatives, idempotence and trading boundaries. French is synthetic test-only.
+
+Initial modern fixtures could not delete synthetic cards because dependent number-context rows were retained. Explicit dependent cleanup fixed setup with foreign keys enabled; no production data changed. A full run inside the sandbox passed the other tests but nine existing HTTP cases could not bind temporary localhost sockets; the authorized full run with the local test exception passed. The first next-plan attempt abstained when ten further scopes provided fewer than 100 complete records; selection now uses 12 scopes, without padding unsupported identities. Failed logs are retained. Only final successful runs are claimed; existing ResourceWarnings are non-fatal. Independent review required a final database hash check after enriching held identities; that check and repeated source/licence checks now precede plan publication.
+
+Engineering/source-qualification checks do not measure real-user demand, physical-copy accuracy, live stock or transaction accuracy. Final independent GPT-6.1 Sol high review and patch application/reversal proof are archived separately.

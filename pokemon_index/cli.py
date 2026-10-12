@@ -15,6 +15,11 @@ from . import buyship_mercari, buyship_partner, buyer_questions, calibration, ca
 from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence,collector_journey,card_comparison
 
 
+def source_scan_filter(value):
+    if value not in {'true','false'}:raise ValueError('with_source_scans must be true or false')
+    return value=='true'
+
+
 def read_jsonl(path: str):
     source = Path(path)
     opener = gzip.open if source.suffix == ".gz" else Path.open
@@ -93,14 +98,17 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                         result=collector_evidence.card_context(db,value('card_id'))
                     elif internal_catalog_api and parsed.path == "/collector-discovery":
                         result = collector_discovery.execute(db,value("q"),
-                                   limit=int(value("limit","50")),offset=int(value("offset","0")))
+                                   limit=int(value("limit","50")),offset=int(value("offset","0")),
+                                   with_source_scans=source_scan_filter(value('with_source_scans','false')))
                     elif internal_catalog_api and parsed.path == "/catalog-search":
                         result = core.catalog_search_internal(
                             db, value("q"), set_code=value("set_code") or None,
                             variant=value("variant") or None,
+                            language=value("language") or None,
                             dex_id=int(value("dex_id")) if value("dex_id") else None,
                             illustrator=value("illustrator") or None,
                             limit=int(value("limit", "20")), offset=int(value("offset", "0")),
+                            with_source_scans=source_scan_filter(value('with_source_scans','false')),
                         )
                     elif internal_catalog_api and parsed.path == "/catalog-card":
                         result = core.catalog_card_internal(db, value("card_id"))
@@ -204,9 +212,11 @@ def main() -> None:
     catalog_search.add_argument("query", nargs="?", default="")
     catalog_search.add_argument("--set-code")
     catalog_search.add_argument("--variant")
+    catalog_search.add_argument("--language")
     catalog_search.add_argument("--printing-type", choices=("prism_star",))
     catalog_search.add_argument("--dex-id", type=int)
     catalog_search.add_argument("--illustrator")
+    catalog_search.add_argument("--with-source-scans",action='store_true')
     catalog_search.add_argument("--limit", type=int, default=20)
     catalog_search.add_argument("--offset", type=int, default=0)
     catalog_card = sub.add_parser("catalog-card", help="internal card identity and known units")
@@ -517,11 +527,11 @@ def main() -> None:
             output = collector_discovery.execute(db,args.question,limit=args.limit,offset=args.offset)
         elif args.command == "catalog-search":
             output = core.catalog_search_internal(db, args.query, set_code=args.set_code,
-                                                  variant=args.variant,
+                                                  variant=args.variant, language=args.language,
                                                   printing_type=args.printing_type,
                                                   dex_id=args.dex_id,
                                                   illustrator=args.illustrator, limit=args.limit,
-                                                  offset=args.offset)
+                                                  offset=args.offset,with_source_scans=args.with_source_scans)
         elif args.command == "catalog-card":
             output = core.catalog_card_internal(db, args.card_id)
         elif args.command == "listing-candidates":

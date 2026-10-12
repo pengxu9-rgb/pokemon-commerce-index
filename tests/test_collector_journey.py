@@ -113,6 +113,19 @@ class CollectorJourneyTests(JourneyFixture,unittest.TestCase):
         with closing(core.connect(self.path)) as writer:
             writer.execute("UPDATE card_rarity_correction SET official_page_sha256=?",('b'*64,));writer.commit()
         self.assertNotEqual(collector_journey.catalog_revision(self.db),before)
+    def test_localization_and_name_review_changes_reject_prior_resume_revision(self):
+        turns=[dict(type='ask',question='Japanese Pikachu cards')]
+        changes=[
+            ('INSERT INTO catalog_locale_evidence VALUES (?,?,?)',('synthetic-locale',self.cid,json.dumps(dict(test_only=True,scope='synthetic revision guard')))),
+            ('INSERT INTO catalog_source_mapping VALUES (?,?,?,?,?,?,?)',('synthetic','ja','ZZ','FIX','synthetic-card','normal',self.cid)),
+            ('INSERT INTO bilingual_concept_revision VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',('synthetic-name',1,'Pokemon','合成','Synthetic name','synthetic:ja','synthetic:en','synthetic:test-only','synthetic:test-only','2026-10-01T00:00:00Z','withdrawn',None)),
+            ('INSERT INTO concept_review_event VALUES (?,?,?,?,?,?,?,?)',('synthetic-review','synthetic-proposal',1,'a'*64,'uncertain','synthetic:test-only','2026-10-01T00:00:00Z',json.dumps(dict(test_only=True,decision='uncertain')))),
+        ]
+        for statement,values in changes:
+            previous=collector_journey.catalog_revision(self.db)
+            with closing(core.connect(self.path)) as writer:writer.execute(statement,values);writer.commit()
+            self.assertNotEqual(collector_journey.catalog_revision(self.db),previous)
+            with self.assertRaisesRegex(ValueError,'policy changed'):self.run_turns(turns,expected_revision=previous)
     def test_relationship_evidence_changes_invalidate_journey_but_import_time_does_not(self):
         before=collector_journey.catalog_revision(self.db)
         with closing(core.connect(self.path)) as writer:

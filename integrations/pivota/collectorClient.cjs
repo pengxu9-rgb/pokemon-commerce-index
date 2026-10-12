@@ -105,7 +105,7 @@ function validateResult(result, request) {
   if (recommendation !== null) {
     if (!exactKeys(recommendation, ['schema', 'ranking_policy', 'preference_evidence', 'candidate_pool_complete', 'coverage_basis', 'global_catalog_completeness_established', 'unapplied_preferences', 'budget_fit', 'grade_availability', 'items', 'coordinate_groups'])
         || recommendation.schema !== 'pokemon.collector-recommendation.v1'
-        || recommendation.ranking_policy !== 'explicit_axes_then_liked_axes_then_coordinate_round_robin.v1'
+        || !['explicit_axes_then_liked_axes_then_coordinate_round_robin.v1', 'explicit_axes_then_liked_axes_then_source_scan_tiebreak_then_coordinate_round_robin.v2'].includes(recommendation.ranking_policy)
         || recommendation.preference_evidence !== 'user_assertion_only'
         || typeof recommendation.candidate_pool_complete !== 'boolean'
         || recommendation.global_catalog_completeness_established !== false

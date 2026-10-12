@@ -1,0 +1,26 @@
+{
+  "schema": "pokemon.coverage-qualification-build.v1",
+  "candidates": 65,
+  "by_scope": {
+    "SMH": 17,
+    "DS": 16,
+    "SC": 16,
+    "LL": 16
+  },
+  "hold_reasons": {
+    "release_metadata_not_qualified": 65,
+    "official_card_page_has_no_product_link": 4,
+    "provider_product_text_is_not_verified_release_binding": 65,
+    "physical_printing_family_unresolved": 65,
+    "official_card_page_not_in_cached_evidence": 61
+  },
+  "cached_exact_card_pages": 4,
+  "release_metadata_admitted": 0,
+  "new_identities": 0,
+  "new_images": 0,
+  "new_prices": 0,
+  "queue_sha256": "efd816df4de613ffab68306c47904255a21022e96d52f1e5e1a771332f429a7c",
+  "selection": "Existing SMH/DS/SC/LL gap audit; evenly bounded first coordinates; no measured demand claim",
+  "source_rights": "Reviewed pinned MIT metadata only; official cached evidence has no display grant",
+  "scope": "Held qualification records, not verified printings or product release declarations"
+}

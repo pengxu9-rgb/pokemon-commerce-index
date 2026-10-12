@@ -1,0 +1,38 @@
+# Stage11 independent review — 2026-10-12
+
+Reviewer: GPT-6.1 Sol high, independent delegated reviewer. Final conclusion: **no remaining actionable findings within the reviewed offline scope**. Two findings were reported and fixed before this conclusion.
+
+## Scope and method
+
+Reviewed the stage11 changes relative to stage10 tree `d33531ed9c29d541fe3684b8823dfc11d0285f97`: immutable follow-up compiler/audit profiles, the modern wrappers and new tests, the 74-input manifest, four compiled modern artifacts, completed coverage report, snapshot proof, final implementation/backend prose and test summary, and the proposed next-batch plan and its operator qualifier. Source checks used only the existing authorized TCGdex revision `a211f11f3ba57d56c65c5ac33be35b77d3280757` and reviewed metadata licence. Git checks disabled lazy fetch and used the helper's offline origin override. No network, artwork inspection, database mutation, deployment, push, frontend or commerce action was performed. The only review output written is this report.
+
+## Findings and fixes
+
+1. **P2 — new tests stopped in fixture setup.** All nine modern tests initially raised SQLite foreign-key errors when deleting synthetic cards at `tests/test_pokemon_name_modern.py:30`; their assertions did not execute. The fixture now removes dependent `card_number_context` rows before cards, with foreign-key enforcement retained. An independent rerun passed all **24 modern plus legacy follow-up tests** in 5.260 seconds (nine new tests and 15 existing tests). Production data was unaffected.
+
+2. **P2 — proposed-plan late database drift guard.** `work/stage11-plan-next.py` originally checked the input database hash before reopening it to enrich held-record identities/provenance. A late change could therefore have mixed held snapshots into a plan labeled with the earlier hash. The qualifier now repeats the database hash check after that enrichment and repeats pinned source tree, source-byte and licence checks immediately before output. The final code and compiled proposal were independently inspected; the gap is closed.
+
+## Independent verification
+
+- Recompiled the modern batch in memory from the unchanged stage10 snapshot and existing pinned source bytes. All four files (`locales.jsonl`, `selection.json`, `basis-plan.json`, `TCGDEX-LICENSE`) reproduce byte-for-byte. Recompiled the historical default 85-Japanese follow-up similarly; all four legacy files also reproduce byte-for-byte. No second full query audit was run.
+- Confirmed **100 Japanese variant IDs across ten fixed scopes**, **94 Japanese coordinate groups**, **64 retained Japanese full-name concepts**, and **25 disjoint English comparison IDs/concepts**. The English pool contains 857 preliminary and qualified candidates with no new holds. Modern compilation checks 603 inventory entries including LICENSE. Exact identities, current alias revisions/review events, singleton-Dex metadata and frozen source witnesses are revalidated. No new concept, review event or card is created.
+- Confirmed the **74-input manifest** preserves all 73 previous steps and expected counts exactly; the original 65-input prefix is retained. The proposed next plan is absent from the manifest.
+- Independently validated all 125 installed SQL evidence IDs/card IDs/canonical JSON and exact six-field provider mappings in both incremental and rebuilt snapshots. All **51 tables preserve every historical column** incrementally. All 51 rebuild tables match outside the four explicitly named legacy generated timestamp columns, with differences 19 identity-exception `applied_at`, 2 number-rule `applied_at`, 532 rarity-correction `applied_at`, and 657 relationship `asserted_at`.
+- Checked the completed audit's exact target-ID set, all reported input/manifest/database hashes and its byte-identical repository copy. It records **125 target-ID gaps through 119 distinct translated query strings**, all 125 translated/native/Unicode/wrong-language checks, ten unfiltered checks, 125 unique structured outcomes, and reimport inserted 0 / unchanged 125 / quarantined 0. Total locale/provider bindings become 1,532. The report retains 65 qualification holds and 65 quarantine rows. These are bounded engineering results, not measured real-user accuracy or physical-printing verification.
+- Independently reproduced the snapshot proof on the stage10, incremental stage11 and rebuilt stage11 databases: SQLite integrity and foreign-key checks pass; translated Alakazam remains `not_attempted / reviewed_name_record_binding_required`; its native broad-holo request retains the two separate `en:SV06:082/167:holo` and `holo_cosmos` candidates; the Cosmos sibling has zero locale bindings. This resolver hold is separate from the 65 catalogue qualification/quarantine entries.
+- Independently verified all **525 next-plan inventory entries** against pinned Git blobs, SHA-256 and byte lengths, including the reviewed licence. Checked all **100 proposed Japanese IDs** against current snapshots/approved aliases, source metadata and singleton-Dex; all are disjoint from installed bindings and form complete eligible groups. They occupy **100 number groups, 76 existing full-name concepts and 12 further scopes**. Reparsed all 14 held records and confirmed their source qualification failures. The input database hash remains unchanged. The final plan is unapplied; 25 English comparisons remain a future qualification target. Its SHA-256 is `f38f454fa008a832a9b587f122d91b868480bd4fb92f073c7368c3992c7db692`.
+- Final implementation prose, backend note and test summary correctly distinguish the current ten-scope import from the twelve-scope future plan, 125 target gains from 119 queries, and source-derived confidence from physical/region/demand/supply evidence. Both imported records and proposed rows retain false display, artwork, physical-printing, price-comparability, automatic-offer and purchase claims; physical distribution and historical retrieval time remain unknown.
+
+## Validation records and limitations
+
+Inspected final successful root logs: **800 Python cases, 798 passed, two existing skips, 48.625 seconds**; **76 focused passes, 10.378 seconds**; **15 Node passes, 263.77275 milliseconds**. The independent reviewer reran the 24 compiler/profile tests, not the full suite or complete 125-query sweep. Earlier failing fixture and sandbox-localhost runs remain retained and are not treated as successful validation.
+
+Reproduction checks ran in memory and returned tool output; no separate reviewer compiler artifacts were retained. Useful existing delivery records are:
+
+- `work/stage11-coverage-report.json` and its identical repository copy `work/pokemon-commerce-index/catalog/international-pokemon-modern-v1/coverage-report.json`.
+- `work/stage11-snapshot-proof.json`.
+- `work/stage11-python-tests-complete.log`, `work/stage11-focused-tests-passing.log`, `work/stage11-profile-tests-passing.log`, and `work/stage11-node-tests.log`.
+- `work/stage11-plan-next.py` and `work/pokemon-commerce-index/catalog/international-pokemon-modern-v1/next-batch-plan.json`.
+- `work/stage11-next-plan-recompiled.json`, independently checked byte-identical to the final proposed plan, with the SHA-256 above.
+
+This review covers local code, pinned metadata, installed evidence, sampled legacy resolution and final report consistency. It does not authorize or verify live sources, artwork rights, stock, prices, payment behavior, physical distribution/finish, new counterpart relationships, third-language ingestion, deployment, or patch packaging/application/reversal; those remain outside this review's performed checks.

@@ -1,0 +1,17 @@
+# Stage12 verification
+
+- Full Python suite: 808 run, 806 passed, two existing skips; 51.250 seconds.
+- Focused coverage/compiler/audit suites: 84 passed; 13.342 seconds. Eight new extended-profile cases passed separately in 2.386 seconds.
+- Node backend caller tests: 15 passed; 280.043958 milliseconds. The first command used an incorrect .mjs extension and did not run tests; corrected existing .cjs paths produced the successful final log.
+- All 125 target-ID retrieval gains across 125 distinct translated queries, native/fullwidth/decomposed Unicode and wrong-language checks pass; ten unfiltered queries pass. Structured outcomes: 124 unique and one correctly held Bulbasaur normal/set-logo case. The earlier Alakazam holo/Cosmos hold is preserved.
+- Only 125 locale and 125 exact source mappings append. All historical columns in 51 tables are preserved; exact installed IDs/canonical JSON/source witnesses match. Reimport inserted 0 / unchanged 125 / quarantined 0 preserves every table.
+- The 75-input rebuild matches all content outside four disclosed legacy timestamp columns: identity-exception applied_at 19, number-rule applied_at 2, rarity-correction applied_at 532 and relationship asserted_at 657. Incremental history preserves these too; all three snapshots pass integrity and foreign-key checks.
+- Independent reproduction matches the four extended artifacts and both prior four-file modern/default compilations. Compiler source inventory: 704 including LICENSE, 1,004 qualified English candidates. Prior 74/original 65 inputs and expected inventory are unchanged; Docker still uses the original manifest.
+- Read-only image inventory validates 1,449 source-image events / 1,141 current subjects and five held cached candidates. All five lack current image/number evidence. Three Japanese provider documents have no image; no-rarity requires its own source; the English first-edition scan is incompatible with the requested normal printing. Zero images/bindings are imported or promoted; no connected UI/media success is claimed.
+- Remaining source/name qualification: 520 of 534 Japanese candidates qualify in complete groups; 14 singleton-Dex holds and 425 inventory entries retained, unapplied. Database/source/licence checks repeat after held-record enrichment.
+
+New tests cover all 12 scopes, immutable profiles and unchanged defaults, hash-rebound underfill/duplicate/outside-scope/rights claims, current alias/source witnesses, omitted stamped siblings, exclusive wrapper output, input drift, exact audit profile agreement, all-table preservation and idempotence. Existing suites retain shared artwork, promos, foil/stamps, Unicode, source collisions, repeated numbers, missing fields, source-image missing/held/stale behavior, cross-language negatives and trading gates. French remains synthetic test-only.
+
+Independent review clarified that the held-image JSON must separate pinned endpoint metadata revisions from unversioned API document caches. The corrected handoff names metadata_source_revision separately, with unknown provider_document_revision and historical retrieval time. No source or permission is promoted by that clarification.
+
+Independent GPT-6.1 Sol high review and patch application/reversal proof are archived separately. The read-only image operator validates real retained evidence and hashes; it performs no network or UI verification. Engineering test counts, image-review agreement and metadata confidence do not measure physical-copy accuracy, real-user relevance, stock, price or connected-media availability.

@@ -12,7 +12,7 @@ from pathlib import Path
 
 from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata,coordinate_family,printing_evidence,source_corrections,number_evidence,source_image_facts
 from pokemon_index.cli import read_jsonl
-from pokemon_index import source_mechanic
+from pokemon_index import source_mechanic, catalog_locale, coverage_qualification, product_text,variant_dimension_hold
 
 def import_ai_artwork_proposals(db, rows) -> int:
     proposals = list(rows)
@@ -25,6 +25,10 @@ def import_ai_artwork_proposals(db, rows) -> int:
 
 
 OPERATIONS = {
+    "import-variant-dimension-holds": variant_dimension_hold.import_manifest_evidence,
+    "import-publisher-product-text": product_text.import_manifest_evidence,
+    "import-coverage-candidates": coverage_qualification.import_manifest_candidates,
+    "import-catalog-locales": catalog_locale.import_manifest_evidence,
     "import-sets": core.import_sets,
     "import-cards": core.import_cards,
     "import-card-identity-exceptions": core.apply_card_identity_exceptions,
@@ -91,6 +95,7 @@ def build(manifest_path: Path, output: Path) -> dict:
                 else:
                     OPERATIONS[operation](db, read_jsonl(str(path)))
             status = core.catalog_status(db)
+            hold_status=variant_dimension_hold.status(db)
             actual = {"printings": status["printings"], "sets": status["sets"],
                       "match_eligible": status["match_eligible"],
                       "display_approved": status["display_approved"],
@@ -125,6 +130,12 @@ def build(manifest_path: Path, output: Path) -> dict:
             for key,value in source_image_facts.status(db).items():
                 if key in manifest.get('expected',{}):actual[key]=value
             for key,value in source_mechanic.status(db).items():
+                if key in manifest.get('expected',{}):actual[key]=value
+            for key,value in coverage_qualification.status(db).items():
+                if key in manifest.get('expected',{}):actual[key]=value
+            for key,value in {'variant_dimension_hold_events':hold_status['events'],'variant_dimension_held_ids':hold_status['held_legacy_ids']}.items():
+                if key in manifest.get('expected',{}):actual[key]=value
+            for key,value in product_text.status(db).items():
                 if key in manifest.get('expected',{}):actual[key]=value
             for key in ("current_supported_targets", "bilingual_alias_revisions", "concept_review_events",
                         "release_evidence_records", "vocabulary_records", "character_families"):
