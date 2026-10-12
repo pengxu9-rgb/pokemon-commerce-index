@@ -287,9 +287,14 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
     for _,start,end,_ in names:residual[start:end]=' '*(end-start)
     residual=''.join(residual)
     codes={code for code,_,_,_ in names}
-    codes.update(r[0] for r in collector_runtime.vocabulary(db,'release_codes',collector_runtime.VOCABULARY_SQL['release_codes']) if _mentioned(residual,r[0]))
+    def code_mentioned(value):
+        value=_norm(value)
+        # Dots/hyphens followed by identifier characters continue a release
+        # code; punctuation at the end of a sentence still terminates it.
+        return value in residual and bool(re.search(r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',residual))
+    codes.update(r[0] for r in collector_runtime.vocabulary(db,'release_codes',collector_runtime.VOCABULARY_SQL['release_codes']) if code_mentioned(r[0]))
     for row in db.execute('SELECT * FROM catalog_vocabulary'):
-        if row['language'] in languages and row['alias_kind']=='printed_code' and _mentioned(residual,row['alias']):codes.add(row['set_code'])
+        if row['language'] in languages and row['alias_kind']=='printed_code' and code_mentioned(row['alias']):codes.add(row['set_code'])
         # Numeric product titles are shorthand only in explicit release context.
         short=re.fullmatch(r'ポケモンカード(\d+)',row['alias'])
         if (short and row['language'] in languages and
