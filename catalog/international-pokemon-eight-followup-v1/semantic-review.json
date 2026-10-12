@@ -1,0 +1,89 @@
+{
+  "schema": "pokemon.independent-name-review.v1",
+  "reviewer": "GPT-6.1 Sol high",
+  "proposal_sha256": "54202d23c429681fc879a42d0fea57c4522a268f90583e9f9a0a9afb322e9583",
+  "decision": "approve_all_exact_pairs",
+  "approved_pairs": 8,
+  "rejected_pairs": [],
+  "uncertain_pairs": [],
+  "approved_exact_pairs": [
+    {
+      "dex_id": 173,
+      "name_ja": "ピィ",
+      "name_en": "Cleffa"
+    },
+    {
+      "dex_id": 187,
+      "name_ja": "ハネッコ",
+      "name_en": "Hoppip"
+    },
+    {
+      "dex_id": 188,
+      "name_ja": "ポポッコ",
+      "name_en": "Skiploom"
+    },
+    {
+      "dex_id": 189,
+      "name_ja": "ワタッコ",
+      "name_en": "Jumpluff"
+    },
+    {
+      "dex_id": 213,
+      "name_ja": "ツボツボ",
+      "name_en": "Shuckle"
+    },
+    {
+      "dex_id": 218,
+      "name_ja": "マグマッグ",
+      "name_en": "Slugma"
+    },
+    {
+      "dex_id": 219,
+      "name_ja": "マグカルゴ",
+      "name_en": "Magcargo"
+    },
+    {
+      "dex_id": 236,
+      "name_ja": "バルキー",
+      "name_en": "Tyrogue"
+    }
+  ],
+  "review_completed_at": "2026-10-12T14:00:24Z",
+  "review_completed_at_status": "attested_by_UTC_clock_after_independent_review",
+  "scope": "Exact eight canonical bare Japanese/English full-name translations and correct singleton Dex only. No inheritance across owner, regional, sex/form or mechanic names; no SKU, counterpart, coordinate/variant import, release/date, region, artwork, physical, display, purchase or price approval.",
+  "validation": {
+    "source_revision": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+    "pinned_inventory_files": 70,
+    "card_source_files": 50,
+    "release_header_files": 19,
+    "license_files": 1,
+    "paired_source_witnesses": 16,
+    "unique_card_sources_total": 16,
+    "unique_japanese_card_sources": 8,
+    "unique_english_card_sources": 8,
+    "raw_literal_Pokemon_category_checked": true,
+    "exact_native_full_names_checked": true,
+    "exact_singleton_Dex_checked": true,
+    "selected_literal_variant_source_projection_checked": true,
+    "known_missing_literal_variant_candidates_not_approved": 12,
+    "git_lazy_fetch_disabled": true,
+    "origin_overridden_to_dev_null": true,
+    "promisor_disabled": true,
+    "license_checked": true,
+    "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+    "source_bytes_and_git_tree_rechecked_after_review": true,
+    "proposal_bytes_rechecked_unchanged": true,
+    "no_database_writes": true
+  },
+  "qualification_inspected_at": "2026-10-12T13:54:57.553309+00:00",
+  "qualification_inspection_time_scope": "Earlier packet compiler offline metadata inspection; distinct from this semantic-review completion time and original source acquisition.",
+  "historical_retrieved_at": null,
+  "historical_retrieval_status": "historical_snapshot_time_not_recorded",
+  "approved_into_catalog": false,
+  "sources_fetched": false,
+  "database_used": false,
+  "repository_files_changed": false,
+  "source_files_changed": false,
+  "network_used": false,
+  "output_scope": "Only this exclusive independent semantic-review record is written; proposal, repository, database and cache remain unchanged."
+}
