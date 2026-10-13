@@ -1,0 +1,25 @@
+{
+  "schema": "pokemon.independent-name-review.v1",
+  "reviewer": "GPT-6.1 Sol high",
+  "proposal_sha256": "79a243ce9e9f1115a9d82affef7ff9364f33f689ba6bb3d271c2b78f42d97085",
+  "decision": "approve_all_exact_pairs",
+  "approved_pairs": 25,
+  "rejected_pairs": [],
+  "uncertain_pairs": [],
+  "scope": "Exact bare Johto full-name translations with correct singleton Dex only; no printing/counterpart/coordinate/variant/release/date/artwork/region/physical/display/purchase/price approval.",
+  "validation": {
+    "pinned_inventory_files": 153,
+    "paired_source_witnesses": 50,
+    "potential_japanese_binding_name_category_dex_fields": 72,
+    "git_lazy_fetch_disabled": true,
+    "license_checked": true,
+    "source_bytes_rechecked_after_review": true,
+    "unique_card_sources_total": 68,
+    "unique_japanese_card_sources": 43,
+    "unique_english_card_sources": 25
+  },
+  "database_used": false,
+  "files_changed": false,
+  "sources_fetched": false,
+  "approved_into_catalog": false
+}

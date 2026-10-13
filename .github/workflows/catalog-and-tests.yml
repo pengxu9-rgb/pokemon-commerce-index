@@ -143,3 +143,42 @@ jobs:
             /tmp/independent-collector-baseline-report.summary.json
             /tmp/review-catalog-build-report.json
           if-no-files-found: ignore
+
+  international_scale:
+    name: Reviewed international scale image
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependencies
+        run: python -m pip install -e '.[test]'
+      - name: Rebuild and audit the exact 83 to 86 input expansion
+        run: python -m scripts.rehearse_international_scale_release --output /tmp/scale-release-report.json
+      - name: Build the pinned scale image reference
+        run: python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-international-pokemon-scale-v1.json --db /tmp/scale-catalog.sqlite3 > /tmp/scale-build-report.json
+      - name: Bind the entire independently rebuilt scale database
+        run: python -m scripts.check_international_scale_image --db /tmp/scale-catalog.sqlite3 > /tmp/scale-logical-binding.json
+      - name: Build the explicit reviewed scale image
+        run: docker build --build-arg CATALOG_BUILD_MANIFEST=catalog-build-manifest-international-pokemon-scale-v1.json --build-arg SOURCE_COMMIT="$GITHUB_SHA" -t pokemon-commerce-index:scale .
+      - name: Verify all logical tables in the read-only scale image
+        run: |
+          DIGEST="$(python -c 'import json;print(json.load(open("/tmp/scale-logical-binding.json"))["logical_sha256"])')"
+          docker run --pull=never --rm -i pokemon-commerce-index:scale python - --expected-logical-sha "$DIGEST" --runtime-smoke < scripts/check_international_scale_image.py > /tmp/scale-image-check.json
+          cat /tmp/scale-image-check.json
+      - name: Preserve scale release checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: international-scale-release-checks
+          path: |
+            /tmp/scale-release-report.json
+            /tmp/scale-build-report.json
+            /tmp/scale-logical-binding.json
+            /tmp/scale-image-check.json
+          if-no-files-found: ignore

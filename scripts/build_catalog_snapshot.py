@@ -12,7 +12,7 @@ from pathlib import Path
 
 from pokemon_index import core, discovery_graph, number_conflicts, supported_catalog,collector_evidence,card_metadata,coordinate_family,printing_evidence,source_corrections,number_evidence,source_image_facts
 from pokemon_index.cli import read_jsonl
-from pokemon_index import source_mechanic, catalog_locale, coverage_qualification, product_text,variant_dimension_hold
+from pokemon_index import source_mechanic, catalog_locale, coverage_qualification, product_text,variant_dimension_hold,catalog_locale_indexes
 
 def import_ai_artwork_proposals(db, rows) -> int:
     proposals = list(rows)
@@ -25,6 +25,7 @@ def import_ai_artwork_proposals(db, rows) -> int:
 
 
 OPERATIONS = {
+    "import-catalog-locale-lookup-indexes": catalog_locale_indexes.import_manifest_evidence,
     "import-variant-dimension-holds": variant_dimension_hold.import_manifest_evidence,
     "import-publisher-product-text": product_text.import_manifest_evidence,
     "import-coverage-candidates": coverage_qualification.import_manifest_candidates,
