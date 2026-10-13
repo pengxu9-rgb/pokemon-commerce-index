@@ -673,6 +673,14 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="need_character_or_coordinates",required_evidence=['explicit_character_artist_or_release_scope'],
                     next_question="Which character, illustrator or printed set/number should I search? Multiple characters or an unnamed checklist need a clear collection scope.")
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
-    rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
-                 (*languages, *ids))
+    narrowed=collector_runtime.snapshot_cast_dex_card_ids(db,ids)
+    if narrowed is not None:
+        if narrowed:
+            candidates=tuple(narrowed)
+            rows=_rows(db,f"c.language IN ({lmarks}) AND c.card_id IN ("+
+                       ','.join('?' for _ in candidates)+')',(*languages,*candidates))
+        else:rows=[]
+    else:
+        rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
+                     (*languages, *ids))
     return _finish_result(db, result, rows, limit, offset,_row_capture=_row_capture)
