@@ -151,6 +151,7 @@ def _trusted_snapshot_model(db):
     snapshot=_snapshot_scope.get()
     if snapshot is None or snapshot['db'] is not db:
         return None
+    db._catalog_check_clone_guard(snapshot['clone_guard'])
     snapshot['model']._check_snapshot(db)
     version=_static_snapshot_version(db)
     if version is None or version!=snapshot['static_version']:
@@ -448,16 +449,29 @@ class CatalogReadModel:
         version=_static_snapshot_version(db)
         if version is None:
             raise CatalogSnapshotChanged()
-        token=_snapshot_scope.set({'db':db,'model':self,'static_version':version})
+        guard=db._catalog_protect_clone(self.SCHEMA)
+        token=_snapshot_scope.set({'db':db,'model':self,'static_version':version,'clone_guard':guard})
         try:
             yield
+            db._catalog_check_clone_guard(guard)
             checkpoint();self._check_snapshot(db)
             if _static_snapshot_version(db)!=version:
                 raise CatalogSnapshotChanged()
             if hasattr(self, '_artifact_guard'):
                 self._artifact_guard()
+        except BaseException as exc:
+            # A caller cannot catch the SQL/driver error and restore a replaced
+            # namespace before success. Any forbidden attempt poisons this scope.
+            try:
+                db._catalog_check_clone_guard(guard)
+            except CatalogSnapshotChanged as changed:
+                raise changed from exc
+            raise
         finally:
-            _snapshot_scope.reset(token)
+            try:
+                db._catalog_release_clone_guard(guard)
+            finally:
+                _snapshot_scope.reset(token)
 
 
 class CatalogBusy(Exception):

@@ -56,18 +56,20 @@ class CatalogReadModelTests(unittest.TestCase):
     def test_snapshot_and_fresh_clone_are_readonly(self):
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
             self.assertEqual(db.execute('PRAGMA query_only').fetchone()[0],1)
-            for sql in ["UPDATE main.card SET name='changed'",'DELETE FROM collector_snapshot.facets',
-                        'CREATE TEMP TABLE forbidden(value)']:
+            for sql in ["UPDATE main.card SET name='changed'",'CREATE TEMP TABLE forbidden(value)']:
                 with self.assertRaises(sqlite3.OperationalError):db.execute(sql)
                 db.rollback()
+        with closing(core.connect(self.path,readonly=True)) as db,self.assertRaises(
+                runtime.CatalogSnapshotChanged),self.model.request(db):
+            with self.assertRaises(runtime.CatalogSnapshotChanged):
+                db.execute('DELETE FROM collector_snapshot.facets')
+            self.assertGreater(db.execute('SELECT count(*) FROM collector_snapshot.facets').fetchone()[0],0)
 
     def test_mutating_expendable_clone_cannot_change_next_request_or_image(self):
         original=hashlib.sha256(self.model._image).hexdigest()
         with closing(core.connect(self.path,readonly=True)) as db,self.assertRaises(
                 runtime.CatalogSnapshotChanged),self.model.request(db):
             db.execute('PRAGMA query_only=OFF');db.execute('DELETE FROM collector_snapshot.facets');db.commit()
-            self.assertEqual(db.execute('SELECT count(*) FROM collector_snapshot.facets').fetchone()[0],0)
-            self.assertGreater(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
         with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
             self.assertGreater(db.execute('SELECT count(*) FROM discovery_card_facet').fetchone()[0],0)
             self.assertEqual(self.rows(db,'main.discovery_card_facet'),self.rows(db,'collector_snapshot.facets'))

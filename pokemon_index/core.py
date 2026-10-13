@@ -51,8 +51,128 @@ def parse_time(value: str) -> datetime:
     return parsed.astimezone(timezone.utc)
 
 
+class _CatalogCursor(sqlite3.Cursor):
+    """Translate a rejected admitted-scope namespace change into its typed error."""
+
+    def execute(self, sql, parameters=()):
+        try:
+            return super().execute(sql, parameters)
+        except sqlite3.Error as exc:
+            self.connection._catalog_guard_error(exc)
+            raise
+
+    def executemany(self, sql, parameters):
+        try:
+            return super().executemany(sql, parameters)
+        except sqlite3.Error as exc:
+            self.connection._catalog_guard_error(exc)
+            raise
+
+    def executescript(self, script):
+        try:
+            return super().executescript(script)
+        except sqlite3.Error as exc:
+            self.connection._catalog_guard_error(exc)
+            raise
+
+
 class _CatalogConnection(sqlite3.Connection):
-    """Record the opened main file, rather than trusting its later pathname."""
+    """Track the main handle and protect only an active immutable clone scope.
+
+    Reviewed request code uses this connection's bound APIs. Deliberately calling
+    base-class setters or rewriting Python guard attributes is outside this API
+    boundary; this is not a sandbox for hostile in-process Python extensions.
+    """
+
+    def cursor(self, factory=_CatalogCursor):
+        return super().cursor(factory)
+
+    def _catalog_guard_error(self, exc=None):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard['invalid']:
+            from .collector_runtime import CatalogSnapshotChanged
+            raise CatalogSnapshotChanged() from exc
+
+    def execute(self, sql, parameters=()):
+        try:
+            return super().execute(sql, parameters)
+        except sqlite3.Error as exc:
+            self._catalog_guard_error(exc)
+            raise
+
+    def executemany(self, sql, parameters):
+        try:
+            return super().executemany(sql, parameters)
+        except sqlite3.Error as exc:
+            self._catalog_guard_error(exc)
+            raise
+
+    def executescript(self, script):
+        try:
+            return super().executescript(script)
+        except sqlite3.Error as exc:
+            self._catalog_guard_error(exc)
+            raise
+
+    def deserialize(self, data, *, name='main'):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None:
+            guard['invalid']=True
+            self._catalog_guard_error()
+        return super().deserialize(data, name=name)
+
+    def set_authorizer(self, authorizer_callback):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None:
+            guard['invalid']=True
+            self._catalog_guard_error()
+        result=super().set_authorizer(authorizer_callback)
+        self._catalog_authorizer=authorizer_callback
+        return result
+
+    def _catalog_protect_clone(self, schema):
+        if getattr(self, '_catalog_clone_guard', None) is not None:
+            from .collector_runtime import CatalogSnapshotChanged
+            raise CatalogSnapshotChanged()
+        prior=getattr(self, '_catalog_authorizer', None)
+        guard={'invalid':False, 'prior_authorizer':prior, 'schema':schema}
+        def authorize(action, first, second, database, source):
+            # SQLite deserialize prepares an internal ATTACH as well. Protect
+            # every attachment identity, including memory clones and main, and
+            # mark the scope before SQLite reports its authorization failure.
+            forbidden=action in (sqlite3.SQLITE_ATTACH, sqlite3.SQLITE_DETACH)
+            if database == schema:
+                readonly={sqlite3.SQLITE_READ, sqlite3.SQLITE_SELECT, sqlite3.SQLITE_FUNCTION,
+                    sqlite3.SQLITE_RECURSIVE, sqlite3.SQLITE_PRAGMA}
+                forbidden=forbidden or action not in readonly
+                if action == sqlite3.SQLITE_PRAGMA and second is not None:
+                    forbidden=forbidden or first.lower() not in {
+                        'table_info','table_xinfo','index_info','index_xinfo','index_list',
+                        'foreign_key_list','integrity_check','quick_check'}
+            if forbidden:
+                guard['invalid']=True
+                return sqlite3.SQLITE_DENY
+            if prior is not None:
+                return prior(action, first, second, database, source)
+            return sqlite3.SQLITE_OK
+        self._catalog_clone_guard=guard
+        try:
+            sqlite3.Connection.set_authorizer(self, authorize)
+        except BaseException:
+            self._catalog_clone_guard=None
+            raise
+        return guard
+
+    def _catalog_check_clone_guard(self, guard):
+        if getattr(self, '_catalog_clone_guard', None) is not guard or guard['invalid']:
+            from .collector_runtime import CatalogSnapshotChanged
+            raise CatalogSnapshotChanged()
+
+    def _catalog_release_clone_guard(self, guard):
+        try:
+            sqlite3.Connection.set_authorizer(self, guard['prior_authorizer'])
+        finally:
+            self._catalog_clone_guard=None
 
 
 def _open_catalog_database(path, readonly, timeout):
