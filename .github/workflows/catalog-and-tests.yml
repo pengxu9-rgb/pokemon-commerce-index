@@ -193,3 +193,42 @@ jobs:
             /tmp/scale-logical-binding.json
             /tmp/scale-image-check.json
           if-no-files-found: ignore
+
+  international_next3000:
+    name: Reviewed next 3000 metadata bindings
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependencies
+        run: python -m pip install -e '.[test]'
+      - name: Rebuild and audit the exact 86 to 87 input append
+        run: python -m scripts.rehearse_international_next3000_release --output /tmp/next3000-release-report.json
+      - name: Build the pinned next 3000 image reference
+        run: python -m scripts.build_catalog_snapshot --manifest catalog-build-manifest-international-pokemon-next3000-v1.json --db /tmp/next3000-catalog.sqlite3 > /tmp/next3000-build-report.json
+      - name: Bind the entire independently rebuilt database
+        run: python -m scripts.check_international_next3000_image --db /tmp/next3000-catalog.sqlite3 > /tmp/next3000-logical-binding.json
+      - name: Build the explicit reviewed image
+        run: docker build --build-arg CATALOG_BUILD_MANIFEST=catalog-build-manifest-international-pokemon-next3000-v1.json --build-arg SOURCE_COMMIT="$GITHUB_SHA" -t pokemon-commerce-index:next3000 .
+      - name: Verify every logical table and packaged model in the image
+        run: |
+          DIGEST="$(python -c 'import json;print(json.load(open("/tmp/next3000-logical-binding.json"))["logical_sha256"])')"
+          docker run --pull=never --rm -i pokemon-commerce-index:next3000 python - --expected-logical-sha "$DIGEST" --runtime-smoke < scripts/check_international_next3000_image.py > /tmp/next3000-image-check.json
+          cat /tmp/next3000-image-check.json
+      - name: Preserve next 3000 release checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: international-next3000-release-checks
+          path: |
+            /tmp/next3000-release-report.json
+            /tmp/next3000-build-report.json
+            /tmp/next3000-logical-binding.json
+            /tmp/next3000-image-check.json
+          if-no-files-found: ignore
