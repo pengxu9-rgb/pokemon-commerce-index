@@ -7,7 +7,7 @@ import hashlib
 import json
 import re
 
-from . import core
+from . import core, collector_runtime
 from .languages import normalize_language
 
 FALSE_CLAIMS = ('display_allowed', 'image_display_allowed', 'purchase_allowed',
@@ -162,14 +162,18 @@ def search_aliases(db, *, set_code=None):
     # Old read-only snapshots predate this additive schema; preserve their API.
     if not db.execute("SELECT 1 FROM sqlite_master WHERE name='catalog_locale_evidence'").fetchone():
         return {}
-    aliases = {}
-    for record in db.execute('''SELECT e.record_json FROM catalog_locale_evidence e JOIN card c USING(card_id)
-            WHERE (? IS NULL OR c.set_code=?)''', (set_code.upper() if set_code else None, set_code.upper() if set_code else None)):
-        row = json.loads(record[0])
-        if current(db, row):
-            aliases.setdefault(row['identity']['card_id'], []).extend(
-                a['name_en' if row['identity']['language'] == 'ja' else 'name_ja'] for a in row['name_aliases'])
-    return aliases
+    code = set_code.upper() if set_code else None
+    def build():
+        aliases = {}
+        for record in db.execute('''SELECT e.record_json FROM catalog_locale_evidence e JOIN card c USING(card_id)
+                WHERE (? IS NULL OR c.set_code=?)''', (code, code)):
+            row = json.loads(record[0])
+            if current(db, row):
+                aliases.setdefault(row['identity']['card_id'], []).extend(
+                    a['name_en' if row['identity']['language'] == 'ja' else 'name_ja'] for a in row['name_aliases'])
+        return tuple((cid, tuple(names)) for cid, names in aliases.items())
+    frozen = collector_runtime.request_mentions(db, ('catalog_locale_aliases', code), build)
+    return {cid: list(names) for cid, names in frozen}
 
 
 def has_current_alias(db, cid, aliases):

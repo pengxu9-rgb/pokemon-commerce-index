@@ -1,0 +1,2068 @@
+{
+  "approval_limits": [
+    "Approval is restricted to the 400 explicit dex_id/name_ja/name_en triples in approved_exact_pairs and the exact frozen proposal digest.",
+    "Existing 196 full-name concepts, including 12 exact lowercase-ex names, are not widened or reapproved by this decision.",
+    "No approval transfers to owner, regional, form, gender, mechanic, EX/ex or other full-name variants. A bare printed species name can be approved without asserting that the two witness cards depict the same form or sex.",
+    "Dex659 native-name conflicts, Rotom/Kyurem/Necrozma ambiguities, Porygon width cases and all other held evidence remain held. The review does not normalize or guess them into approval.",
+    "The 44 installed identity holds and five priority IDs across four groups remain excluded; no identity or image approval is granted.",
+    "Pinned provider release facts are metadata declarations; this is not approval of physical distribution, initial/copy release equivalence or a cross-language counterpart.",
+    "Clock time is semantic inspection completion, not historical acquisition/retrieval time.",
+    "Source tuple reconstruction validates the frozen selected metadata basis; it does not install locale bindings, approve a compiler/auditor, authorize import or grant rights beyond existing internal metadata review.",
+    "No source network acquisition, artwork inspection, repository/cache/database edit, frontend/deployment/push or market transaction was performed. Only the two assigned review files were written."
+  ],
+  "approved_exact_pairs": [
+    {
+      "dex_id": 166,
+      "name_en": "Ledian",
+      "name_ja": "レディアン"
+    },
+    {
+      "dex_id": 169,
+      "name_en": "Crobat",
+      "name_ja": "クロバット"
+    },
+    {
+      "dex_id": 170,
+      "name_en": "Chinchou",
+      "name_ja": "チョンチー"
+    },
+    {
+      "dex_id": 171,
+      "name_en": "Lanturn",
+      "name_ja": "ランターン"
+    },
+    {
+      "dex_id": 175,
+      "name_en": "Togepi",
+      "name_ja": "トゲピー"
+    },
+    {
+      "dex_id": 176,
+      "name_en": "Togetic",
+      "name_ja": "トゲチック"
+    },
+    {
+      "dex_id": 183,
+      "name_en": "Marill",
+      "name_ja": "マリル"
+    },
+    {
+      "dex_id": 184,
+      "name_en": "Azumarill",
+      "name_ja": "マリルリ"
+    },
+    {
+      "dex_id": 190,
+      "name_en": "Aipom",
+      "name_ja": "エイパム"
+    },
+    {
+      "dex_id": 192,
+      "name_en": "Sunflora",
+      "name_ja": "キマワリ"
+    },
+    {
+      "dex_id": 193,
+      "name_en": "Yanma",
+      "name_ja": "ヤンヤンマ"
+    },
+    {
+      "dex_id": 198,
+      "name_en": "Murkrow",
+      "name_ja": "ヤミカラス"
+    },
+    {
+      "dex_id": 200,
+      "name_en": "Misdreavus",
+      "name_ja": "ムウマ"
+    },
+    {
+      "dex_id": 202,
+      "name_en": "Wobbuffet",
+      "name_ja": "ソーナンス"
+    },
+    {
+      "dex_id": 203,
+      "name_en": "Girafarig",
+      "name_ja": "キリンリキ"
+    },
+    {
+      "dex_id": 204,
+      "name_en": "Pineco",
+      "name_ja": "クヌギダマ"
+    },
+    {
+      "dex_id": 205,
+      "name_en": "Forretress",
+      "name_ja": "フォレトス"
+    },
+    {
+      "dex_id": 207,
+      "name_en": "Gligar",
+      "name_ja": "グライガー"
+    },
+    {
+      "dex_id": 208,
+      "name_en": "Steelix",
+      "name_ja": "ハガネール"
+    },
+    {
+      "dex_id": 214,
+      "name_en": "Heracross",
+      "name_ja": "ヘラクロス"
+    },
+    {
+      "dex_id": 220,
+      "name_en": "Swinub",
+      "name_ja": "ウリムー"
+    },
+    {
+      "dex_id": 227,
+      "name_en": "Skarmory",
+      "name_ja": "エアームド"
+    },
+    {
+      "dex_id": 231,
+      "name_en": "Phanpy",
+      "name_ja": "ゴマゾウ"
+    },
+    {
+      "dex_id": 232,
+      "name_en": "Donphan",
+      "name_ja": "ドンファン"
+    },
+    {
+      "dex_id": 235,
+      "name_en": "Smeargle",
+      "name_ja": "ドーブル"
+    },
+    {
+      "dex_id": 242,
+      "name_en": "Blissey",
+      "name_ja": "ハピナス"
+    },
+    {
+      "dex_id": 244,
+      "name_en": "Entei",
+      "name_ja": "エンテイ"
+    },
+    {
+      "dex_id": 246,
+      "name_en": "Larvitar",
+      "name_ja": "ヨーギラス"
+    },
+    {
+      "dex_id": 247,
+      "name_en": "Pupitar",
+      "name_ja": "サナギラス"
+    },
+    {
+      "dex_id": 248,
+      "name_en": "Tyranitar",
+      "name_ja": "バンギラス"
+    },
+    {
+      "dex_id": 255,
+      "name_en": "Torchic",
+      "name_ja": "アチャモ"
+    },
+    {
+      "dex_id": 256,
+      "name_en": "Combusken",
+      "name_ja": "ワカシャモ"
+    },
+    {
+      "dex_id": 257,
+      "name_en": "Blaziken",
+      "name_ja": "バシャーモ"
+    },
+    {
+      "dex_id": 261,
+      "name_en": "Poochyena",
+      "name_ja": "ポチエナ"
+    },
+    {
+      "dex_id": 262,
+      "name_en": "Mightyena",
+      "name_ja": "グラエナ"
+    },
+    {
+      "dex_id": 273,
+      "name_en": "Seedot",
+      "name_ja": "タネボー"
+    },
+    {
+      "dex_id": 274,
+      "name_en": "Nuzleaf",
+      "name_ja": "コノハナ"
+    },
+    {
+      "dex_id": 275,
+      "name_en": "Shiftry",
+      "name_ja": "ダーテング"
+    },
+    {
+      "dex_id": 280,
+      "name_en": "Ralts",
+      "name_ja": "ラルトス"
+    },
+    {
+      "dex_id": 281,
+      "name_en": "Kirlia",
+      "name_ja": "キルリア"
+    },
+    {
+      "dex_id": 282,
+      "name_en": "Gardevoir",
+      "name_ja": "サーナイト"
+    },
+    {
+      "dex_id": 283,
+      "name_en": "Surskit",
+      "name_ja": "アメタマ"
+    },
+    {
+      "dex_id": 284,
+      "name_en": "Masquerain",
+      "name_ja": "アメモース"
+    },
+    {
+      "dex_id": 285,
+      "name_en": "Shroomish",
+      "name_ja": "キノココ"
+    },
+    {
+      "dex_id": 286,
+      "name_en": "Breloom",
+      "name_ja": "キノガッサ"
+    },
+    {
+      "dex_id": 287,
+      "name_en": "Slakoth",
+      "name_ja": "ナマケロ"
+    },
+    {
+      "dex_id": 288,
+      "name_en": "Vigoroth",
+      "name_ja": "ヤルキモノ"
+    },
+    {
+      "dex_id": 289,
+      "name_en": "Slaking",
+      "name_ja": "ケッキング"
+    },
+    {
+      "dex_id": 296,
+      "name_en": "Makuhita",
+      "name_ja": "マクノシタ"
+    },
+    {
+      "dex_id": 297,
+      "name_en": "Hariyama",
+      "name_ja": "ハリテヤマ"
+    },
+    {
+      "dex_id": 299,
+      "name_en": "Nosepass",
+      "name_ja": "ノズパス"
+    },
+    {
+      "dex_id": 302,
+      "name_en": "Sableye",
+      "name_ja": "ヤミラミ"
+    },
+    {
+      "dex_id": 303,
+      "name_en": "Mawile",
+      "name_ja": "クチート"
+    },
+    {
+      "dex_id": 304,
+      "name_en": "Aron",
+      "name_ja": "ココドラ"
+    },
+    {
+      "dex_id": 305,
+      "name_en": "Lairon",
+      "name_ja": "コドラ"
+    },
+    {
+      "dex_id": 306,
+      "name_en": "Aggron",
+      "name_ja": "ボスゴドラ"
+    },
+    {
+      "dex_id": 307,
+      "name_en": "Meditite",
+      "name_ja": "アサナン"
+    },
+    {
+      "dex_id": 308,
+      "name_en": "Medicham",
+      "name_ja": "チャーレム"
+    },
+    {
+      "dex_id": 318,
+      "name_en": "Carvanha",
+      "name_ja": "キバニア"
+    },
+    {
+      "dex_id": 319,
+      "name_en": "Sharpedo",
+      "name_ja": "サメハダー"
+    },
+    {
+      "dex_id": 320,
+      "name_en": "Wailmer",
+      "name_ja": "ホエルコ"
+    },
+    {
+      "dex_id": 321,
+      "name_en": "Wailord",
+      "name_ja": "ホエルオー"
+    },
+    {
+      "dex_id": 324,
+      "name_en": "Torkoal",
+      "name_ja": "コータス"
+    },
+    {
+      "dex_id": 325,
+      "name_en": "Spoink",
+      "name_ja": "バネブー"
+    },
+    {
+      "dex_id": 326,
+      "name_en": "Grumpig",
+      "name_ja": "ブーピッグ"
+    },
+    {
+      "dex_id": 328,
+      "name_en": "Trapinch",
+      "name_ja": "ナックラー"
+    },
+    {
+      "dex_id": 329,
+      "name_en": "Vibrava",
+      "name_ja": "ビブラーバ"
+    },
+    {
+      "dex_id": 331,
+      "name_en": "Cacnea",
+      "name_ja": "サボネア"
+    },
+    {
+      "dex_id": 332,
+      "name_en": "Cacturne",
+      "name_ja": "ノクタス"
+    },
+    {
+      "dex_id": 333,
+      "name_en": "Swablu",
+      "name_ja": "チルット"
+    },
+    {
+      "dex_id": 334,
+      "name_en": "Altaria",
+      "name_ja": "チルタリス"
+    },
+    {
+      "dex_id": 336,
+      "name_en": "Seviper",
+      "name_ja": "ハブネーク"
+    },
+    {
+      "dex_id": 337,
+      "name_en": "Lunatone",
+      "name_ja": "ルナトーン"
+    },
+    {
+      "dex_id": 338,
+      "name_en": "Solrock",
+      "name_ja": "ソルロック"
+    },
+    {
+      "dex_id": 339,
+      "name_en": "Barboach",
+      "name_ja": "ドジョッチ"
+    },
+    {
+      "dex_id": 343,
+      "name_en": "Baltoy",
+      "name_ja": "ヤジロン"
+    },
+    {
+      "dex_id": 344,
+      "name_en": "Claydol",
+      "name_ja": "ネンドール"
+    },
+    {
+      "dex_id": 349,
+      "name_en": "Feebas",
+      "name_ja": "ヒンバス"
+    },
+    {
+      "dex_id": 350,
+      "name_en": "Milotic",
+      "name_ja": "ミロカロス"
+    },
+    {
+      "dex_id": 351,
+      "name_en": "Castform",
+      "name_ja": "ポワルン"
+    },
+    {
+      "dex_id": 352,
+      "name_en": "Kecleon",
+      "name_ja": "カクレオン"
+    },
+    {
+      "dex_id": 353,
+      "name_en": "Shuppet",
+      "name_ja": "カゲボウズ"
+    },
+    {
+      "dex_id": 354,
+      "name_en": "Banette",
+      "name_ja": "ジュペッタ"
+    },
+    {
+      "dex_id": 355,
+      "name_en": "Duskull",
+      "name_ja": "ヨマワル"
+    },
+    {
+      "dex_id": 356,
+      "name_en": "Dusclops",
+      "name_ja": "サマヨール"
+    },
+    {
+      "dex_id": 357,
+      "name_en": "Tropius",
+      "name_ja": "トロピウス"
+    },
+    {
+      "dex_id": 358,
+      "name_en": "Chimecho",
+      "name_ja": "チリーン"
+    },
+    {
+      "dex_id": 359,
+      "name_en": "Absol",
+      "name_ja": "アブソル"
+    },
+    {
+      "dex_id": 361,
+      "name_en": "Snorunt",
+      "name_ja": "ユキワラシ"
+    },
+    {
+      "dex_id": 362,
+      "name_en": "Glalie",
+      "name_ja": "オニゴーリ"
+    },
+    {
+      "dex_id": 363,
+      "name_en": "Spheal",
+      "name_ja": "タマザラシ"
+    },
+    {
+      "dex_id": 366,
+      "name_en": "Clamperl",
+      "name_ja": "パールル"
+    },
+    {
+      "dex_id": 369,
+      "name_en": "Relicanth",
+      "name_ja": "ジーランス"
+    },
+    {
+      "dex_id": 370,
+      "name_en": "Luvdisc",
+      "name_ja": "ラブカス"
+    },
+    {
+      "dex_id": 371,
+      "name_en": "Bagon",
+      "name_ja": "タツベイ"
+    },
+    {
+      "dex_id": 374,
+      "name_en": "Beldum",
+      "name_ja": "ダンバル"
+    },
+    {
+      "dex_id": 375,
+      "name_en": "Metang",
+      "name_ja": "メタング"
+    },
+    {
+      "dex_id": 376,
+      "name_en": "Metagross",
+      "name_ja": "メタグロス"
+    },
+    {
+      "dex_id": 377,
+      "name_en": "Regirock",
+      "name_ja": "レジロック"
+    },
+    {
+      "dex_id": 378,
+      "name_en": "Regice",
+      "name_ja": "レジアイス"
+    },
+    {
+      "dex_id": 379,
+      "name_en": "Registeel",
+      "name_ja": "レジスチル"
+    },
+    {
+      "dex_id": 380,
+      "name_en": "Latias",
+      "name_ja": "ラティアス"
+    },
+    {
+      "dex_id": 381,
+      "name_en": "Latios",
+      "name_ja": "ラティオス"
+    },
+    {
+      "dex_id": 383,
+      "name_en": "Groudon",
+      "name_ja": "グラードン"
+    },
+    {
+      "dex_id": 385,
+      "name_en": "Jirachi",
+      "name_ja": "ジラーチ"
+    },
+    {
+      "dex_id": 386,
+      "name_en": "Deoxys",
+      "name_ja": "デオキシス"
+    },
+    {
+      "dex_id": 387,
+      "name_en": "Turtwig",
+      "name_ja": "ナエトル"
+    },
+    {
+      "dex_id": 388,
+      "name_en": "Grotle",
+      "name_ja": "ハヤシガメ"
+    },
+    {
+      "dex_id": 389,
+      "name_en": "Torterra",
+      "name_ja": "ドダイトス"
+    },
+    {
+      "dex_id": 390,
+      "name_en": "Chimchar",
+      "name_ja": "ヒコザル"
+    },
+    {
+      "dex_id": 391,
+      "name_en": "Monferno",
+      "name_ja": "モウカザル"
+    },
+    {
+      "dex_id": 392,
+      "name_en": "Infernape",
+      "name_ja": "ゴウカザル"
+    },
+    {
+      "dex_id": 393,
+      "name_en": "Piplup",
+      "name_ja": "ポッチャマ"
+    },
+    {
+      "dex_id": 394,
+      "name_en": "Prinplup",
+      "name_ja": "ポッタイシ"
+    },
+    {
+      "dex_id": 399,
+      "name_en": "Bidoof",
+      "name_ja": "ビッパ"
+    },
+    {
+      "dex_id": 402,
+      "name_en": "Kricketune",
+      "name_ja": "コロトック"
+    },
+    {
+      "dex_id": 403,
+      "name_en": "Shinx",
+      "name_ja": "コリンク"
+    },
+    {
+      "dex_id": 404,
+      "name_en": "Luxio",
+      "name_ja": "ルクシオ"
+    },
+    {
+      "dex_id": 415,
+      "name_en": "Combee",
+      "name_ja": "ミツハニー"
+    },
+    {
+      "dex_id": 417,
+      "name_en": "Pachirisu",
+      "name_ja": "パチリス"
+    },
+    {
+      "dex_id": 418,
+      "name_en": "Buizel",
+      "name_ja": "ブイゼル"
+    },
+    {
+      "dex_id": 419,
+      "name_en": "Floatzel",
+      "name_ja": "フローゼル"
+    },
+    {
+      "dex_id": 424,
+      "name_en": "Ambipom",
+      "name_ja": "エテボース"
+    },
+    {
+      "dex_id": 425,
+      "name_en": "Drifloon",
+      "name_ja": "フワンテ"
+    },
+    {
+      "dex_id": 426,
+      "name_en": "Drifblim",
+      "name_ja": "フワライド"
+    },
+    {
+      "dex_id": 429,
+      "name_en": "Mismagius",
+      "name_ja": "ムウマージ"
+    },
+    {
+      "dex_id": 430,
+      "name_en": "Honchkrow",
+      "name_ja": "ドンカラス"
+    },
+    {
+      "dex_id": 431,
+      "name_en": "Glameow",
+      "name_ja": "ニャルマー"
+    },
+    {
+      "dex_id": 432,
+      "name_en": "Purugly",
+      "name_ja": "ブニャット"
+    },
+    {
+      "dex_id": 436,
+      "name_en": "Bronzor",
+      "name_ja": "ドーミラー"
+    },
+    {
+      "dex_id": 437,
+      "name_en": "Bronzong",
+      "name_ja": "ドータクン"
+    },
+    {
+      "dex_id": 441,
+      "name_en": "Chatot",
+      "name_ja": "ペラップ"
+    },
+    {
+      "dex_id": 442,
+      "name_en": "Spiritomb",
+      "name_ja": "ミカルゲ"
+    },
+    {
+      "dex_id": 443,
+      "name_en": "Gible",
+      "name_ja": "フカマル"
+    },
+    {
+      "dex_id": 444,
+      "name_en": "Gabite",
+      "name_ja": "ガバイト"
+    },
+    {
+      "dex_id": 445,
+      "name_en": "Garchomp",
+      "name_ja": "ガブリアス"
+    },
+    {
+      "dex_id": 447,
+      "name_en": "Riolu",
+      "name_ja": "リオル"
+    },
+    {
+      "dex_id": 448,
+      "name_en": "Lucario",
+      "name_ja": "ルカリオ"
+    },
+    {
+      "dex_id": 449,
+      "name_en": "Hippopotas",
+      "name_ja": "ヒポポタス"
+    },
+    {
+      "dex_id": 450,
+      "name_en": "Hippowdon",
+      "name_ja": "カバルドン"
+    },
+    {
+      "dex_id": 453,
+      "name_en": "Croagunk",
+      "name_ja": "グレッグル"
+    },
+    {
+      "dex_id": 454,
+      "name_en": "Toxicroak",
+      "name_ja": "ドクロッグ"
+    },
+    {
+      "dex_id": 455,
+      "name_en": "Carnivine",
+      "name_ja": "マスキッパ"
+    },
+    {
+      "dex_id": 459,
+      "name_en": "Snover",
+      "name_ja": "ユキカブリ"
+    },
+    {
+      "dex_id": 460,
+      "name_en": "Abomasnow",
+      "name_ja": "ユキノオー"
+    },
+    {
+      "dex_id": 461,
+      "name_en": "Weavile",
+      "name_ja": "マニューラ"
+    },
+    {
+      "dex_id": 462,
+      "name_en": "Magnezone",
+      "name_ja": "ジバコイル"
+    },
+    {
+      "dex_id": 463,
+      "name_en": "Lickilicky",
+      "name_ja": "ベロベルト"
+    },
+    {
+      "dex_id": 464,
+      "name_en": "Rhyperior",
+      "name_ja": "ドサイドン"
+    },
+    {
+      "dex_id": 465,
+      "name_en": "Tangrowth",
+      "name_ja": "モジャンボ"
+    },
+    {
+      "dex_id": 466,
+      "name_en": "Electivire",
+      "name_ja": "エレキブル"
+    },
+    {
+      "dex_id": 467,
+      "name_en": "Magmortar",
+      "name_ja": "ブーバーン"
+    },
+    {
+      "dex_id": 469,
+      "name_en": "Yanmega",
+      "name_ja": "メガヤンマ"
+    },
+    {
+      "dex_id": 470,
+      "name_en": "Leafeon",
+      "name_ja": "リーフィア"
+    },
+    {
+      "dex_id": 471,
+      "name_en": "Glaceon",
+      "name_ja": "グレイシア"
+    },
+    {
+      "dex_id": 472,
+      "name_en": "Gliscor",
+      "name_ja": "グライオン"
+    },
+    {
+      "dex_id": 475,
+      "name_en": "Gallade",
+      "name_ja": "エルレイド"
+    },
+    {
+      "dex_id": 476,
+      "name_en": "Probopass",
+      "name_ja": "ダイノーズ"
+    },
+    {
+      "dex_id": 477,
+      "name_en": "Dusknoir",
+      "name_ja": "ヨノワール"
+    },
+    {
+      "dex_id": 478,
+      "name_en": "Froslass",
+      "name_ja": "ユキメノコ"
+    },
+    {
+      "dex_id": 485,
+      "name_en": "Heatran",
+      "name_ja": "ヒードラン"
+    },
+    {
+      "dex_id": 486,
+      "name_en": "Regigigas",
+      "name_ja": "レジギガス"
+    },
+    {
+      "dex_id": 488,
+      "name_en": "Cresselia",
+      "name_ja": "クレセリア"
+    },
+    {
+      "dex_id": 490,
+      "name_en": "Manaphy",
+      "name_ja": "マナフィ"
+    },
+    {
+      "dex_id": 492,
+      "name_en": "Shaymin",
+      "name_ja": "シェイミ"
+    },
+    {
+      "dex_id": 494,
+      "name_en": "Victini",
+      "name_ja": "ビクティニ"
+    },
+    {
+      "dex_id": 498,
+      "name_en": "Tepig",
+      "name_ja": "ポカブ"
+    },
+    {
+      "dex_id": 499,
+      "name_en": "Pignite",
+      "name_ja": "チャオブー"
+    },
+    {
+      "dex_id": 500,
+      "name_en": "Emboar",
+      "name_ja": "エンブオー"
+    },
+    {
+      "dex_id": 504,
+      "name_en": "Patrat",
+      "name_ja": "ミネズミ"
+    },
+    {
+      "dex_id": 505,
+      "name_en": "Watchog",
+      "name_ja": "ミルホッグ"
+    },
+    {
+      "dex_id": 506,
+      "name_en": "Lillipup",
+      "name_ja": "ヨーテリー"
+    },
+    {
+      "dex_id": 507,
+      "name_en": "Herdier",
+      "name_ja": "ハーデリア"
+    },
+    {
+      "dex_id": 508,
+      "name_en": "Stoutland",
+      "name_ja": "ムーランド"
+    },
+    {
+      "dex_id": 509,
+      "name_en": "Purrloin",
+      "name_ja": "チョロネコ"
+    },
+    {
+      "dex_id": 510,
+      "name_en": "Liepard",
+      "name_ja": "レパルダス"
+    },
+    {
+      "dex_id": 513,
+      "name_en": "Pansear",
+      "name_ja": "バオップ"
+    },
+    {
+      "dex_id": 514,
+      "name_en": "Simisear",
+      "name_ja": "バオッキー"
+    },
+    {
+      "dex_id": 522,
+      "name_en": "Blitzle",
+      "name_ja": "シママ"
+    },
+    {
+      "dex_id": 523,
+      "name_en": "Zebstrika",
+      "name_ja": "ゼブライカ"
+    },
+    {
+      "dex_id": 524,
+      "name_en": "Roggenrola",
+      "name_ja": "ダンゴロ"
+    },
+    {
+      "dex_id": 525,
+      "name_en": "Boldore",
+      "name_ja": "ガントル"
+    },
+    {
+      "dex_id": 526,
+      "name_en": "Gigalith",
+      "name_ja": "ギガイアス"
+    },
+    {
+      "dex_id": 527,
+      "name_en": "Woobat",
+      "name_ja": "コロモリ"
+    },
+    {
+      "dex_id": 528,
+      "name_en": "Swoobat",
+      "name_ja": "ココロモリ"
+    },
+    {
+      "dex_id": 529,
+      "name_en": "Drilbur",
+      "name_ja": "モグリュー"
+    },
+    {
+      "dex_id": 530,
+      "name_en": "Excadrill",
+      "name_ja": "ドリュウズ"
+    },
+    {
+      "dex_id": 539,
+      "name_en": "Sawk",
+      "name_ja": "ダゲキ"
+    },
+    {
+      "dex_id": 540,
+      "name_en": "Sewaddle",
+      "name_ja": "クルミル"
+    },
+    {
+      "dex_id": 541,
+      "name_en": "Swadloon",
+      "name_ja": "クルマユ"
+    },
+    {
+      "dex_id": 542,
+      "name_en": "Leavanny",
+      "name_ja": "ハハコモリ"
+    },
+    {
+      "dex_id": 546,
+      "name_en": "Cottonee",
+      "name_ja": "モンメン"
+    },
+    {
+      "dex_id": 547,
+      "name_en": "Whimsicott",
+      "name_ja": "エルフーン"
+    },
+    {
+      "dex_id": 550,
+      "name_en": "Basculin",
+      "name_ja": "バスラオ"
+    },
+    {
+      "dex_id": 551,
+      "name_en": "Sandile",
+      "name_ja": "メグロコ"
+    },
+    {
+      "dex_id": 559,
+      "name_en": "Scraggy",
+      "name_ja": "ズルッグ"
+    },
+    {
+      "dex_id": 560,
+      "name_en": "Scrafty",
+      "name_ja": "ズルズキン"
+    },
+    {
+      "dex_id": 561,
+      "name_en": "Sigilyph",
+      "name_ja": "シンボラー"
+    },
+    {
+      "dex_id": 562,
+      "name_en": "Yamask",
+      "name_ja": "デスマス"
+    },
+    {
+      "dex_id": 563,
+      "name_en": "Cofagrigus",
+      "name_ja": "デスカーン"
+    },
+    {
+      "dex_id": 566,
+      "name_en": "Archen",
+      "name_ja": "アーケン"
+    },
+    {
+      "dex_id": 567,
+      "name_en": "Archeops",
+      "name_ja": "アーケオス"
+    },
+    {
+      "dex_id": 568,
+      "name_en": "Trubbish",
+      "name_ja": "ヤブクロン"
+    },
+    {
+      "dex_id": 569,
+      "name_en": "Garbodor",
+      "name_ja": "ダストダス"
+    },
+    {
+      "dex_id": 570,
+      "name_en": "Zorua",
+      "name_ja": "ゾロア"
+    },
+    {
+      "dex_id": 571,
+      "name_en": "Zoroark",
+      "name_ja": "ゾロアーク"
+    },
+    {
+      "dex_id": 574,
+      "name_en": "Gothita",
+      "name_ja": "ゴチム"
+    },
+    {
+      "dex_id": 575,
+      "name_en": "Gothorita",
+      "name_ja": "ゴチミル"
+    },
+    {
+      "dex_id": 576,
+      "name_en": "Gothitelle",
+      "name_ja": "ゴチルゼル"
+    },
+    {
+      "dex_id": 580,
+      "name_en": "Ducklett",
+      "name_ja": "コアルヒー"
+    },
+    {
+      "dex_id": 581,
+      "name_en": "Swanna",
+      "name_ja": "スワンナ"
+    },
+    {
+      "dex_id": 582,
+      "name_en": "Vanillite",
+      "name_ja": "バニプッチ"
+    },
+    {
+      "dex_id": 583,
+      "name_en": "Vanillish",
+      "name_ja": "バニリッチ"
+    },
+    {
+      "dex_id": 584,
+      "name_en": "Vanilluxe",
+      "name_ja": "バイバニラ"
+    },
+    {
+      "dex_id": 585,
+      "name_en": "Deerling",
+      "name_ja": "シキジカ"
+    },
+    {
+      "dex_id": 586,
+      "name_en": "Sawsbuck",
+      "name_ja": "メブキジカ"
+    },
+    {
+      "dex_id": 587,
+      "name_en": "Emolga",
+      "name_ja": "エモンガ"
+    },
+    {
+      "dex_id": 595,
+      "name_en": "Joltik",
+      "name_ja": "バチュル"
+    },
+    {
+      "dex_id": 596,
+      "name_en": "Galvantula",
+      "name_ja": "デンチュラ"
+    },
+    {
+      "dex_id": 597,
+      "name_en": "Ferroseed",
+      "name_ja": "テッシード"
+    },
+    {
+      "dex_id": 598,
+      "name_en": "Ferrothorn",
+      "name_ja": "ナットレイ"
+    },
+    {
+      "dex_id": 599,
+      "name_en": "Klink",
+      "name_ja": "ギアル"
+    },
+    {
+      "dex_id": 600,
+      "name_en": "Klang",
+      "name_ja": "ギギアル"
+    },
+    {
+      "dex_id": 601,
+      "name_en": "Klinklang",
+      "name_ja": "ギギギアル"
+    },
+    {
+      "dex_id": 602,
+      "name_en": "Tynamo",
+      "name_ja": "シビシラス"
+    },
+    {
+      "dex_id": 607,
+      "name_en": "Litwick",
+      "name_ja": "ヒトモシ"
+    },
+    {
+      "dex_id": 608,
+      "name_en": "Lampent",
+      "name_ja": "ランプラー"
+    },
+    {
+      "dex_id": 609,
+      "name_en": "Chandelure",
+      "name_ja": "シャンデラ"
+    },
+    {
+      "dex_id": 616,
+      "name_en": "Shelmet",
+      "name_ja": "チョボマキ"
+    },
+    {
+      "dex_id": 617,
+      "name_en": "Accelgor",
+      "name_ja": "アギルダー"
+    },
+    {
+      "dex_id": 618,
+      "name_en": "Stunfisk",
+      "name_ja": "マッギョ"
+    },
+    {
+      "dex_id": 619,
+      "name_en": "Mienfoo",
+      "name_ja": "コジョフー"
+    },
+    {
+      "dex_id": 620,
+      "name_en": "Mienshao",
+      "name_ja": "コジョンド"
+    },
+    {
+      "dex_id": 621,
+      "name_en": "Druddigon",
+      "name_ja": "クリムガン"
+    },
+    {
+      "dex_id": 622,
+      "name_en": "Golett",
+      "name_ja": "ゴビット"
+    },
+    {
+      "dex_id": 623,
+      "name_en": "Golurk",
+      "name_ja": "ゴルーグ"
+    },
+    {
+      "dex_id": 624,
+      "name_en": "Pawniard",
+      "name_ja": "コマタナ"
+    },
+    {
+      "dex_id": 625,
+      "name_en": "Bisharp",
+      "name_ja": "キリキザン"
+    },
+    {
+      "dex_id": 626,
+      "name_en": "Bouffalant",
+      "name_ja": "バッフロン"
+    },
+    {
+      "dex_id": 627,
+      "name_en": "Rufflet",
+      "name_ja": "ワシボン"
+    },
+    {
+      "dex_id": 628,
+      "name_en": "Braviary",
+      "name_ja": "ウォーグル"
+    },
+    {
+      "dex_id": 631,
+      "name_en": "Heatmor",
+      "name_ja": "クイタラン"
+    },
+    {
+      "dex_id": 632,
+      "name_en": "Durant",
+      "name_ja": "アイアント"
+    },
+    {
+      "dex_id": 633,
+      "name_en": "Deino",
+      "name_ja": "モノズ"
+    },
+    {
+      "dex_id": 634,
+      "name_en": "Zweilous",
+      "name_ja": "ジヘッド"
+    },
+    {
+      "dex_id": 636,
+      "name_en": "Larvesta",
+      "name_ja": "メラルバ"
+    },
+    {
+      "dex_id": 639,
+      "name_en": "Terrakion",
+      "name_ja": "テラキオン"
+    },
+    {
+      "dex_id": 640,
+      "name_en": "Virizion",
+      "name_ja": "ビリジオン"
+    },
+    {
+      "dex_id": 641,
+      "name_en": "Tornadus",
+      "name_ja": "トルネロス"
+    },
+    {
+      "dex_id": 644,
+      "name_en": "Zekrom",
+      "name_ja": "ゼクロム"
+    },
+    {
+      "dex_id": 647,
+      "name_en": "Keldeo",
+      "name_ja": "ケルディオ"
+    },
+    {
+      "dex_id": 653,
+      "name_en": "Fennekin",
+      "name_ja": "フォッコ"
+    },
+    {
+      "dex_id": 654,
+      "name_en": "Braixen",
+      "name_ja": "テールナー"
+    },
+    {
+      "dex_id": 656,
+      "name_en": "Froakie",
+      "name_ja": "ケロマツ"
+    },
+    {
+      "dex_id": 657,
+      "name_en": "Frogadier",
+      "name_ja": "ゲコガシラ"
+    },
+    {
+      "dex_id": 661,
+      "name_en": "Fletchling",
+      "name_ja": "ヤヤコマ"
+    },
+    {
+      "dex_id": 662,
+      "name_en": "Fletchinder",
+      "name_ja": "ヒノヤコマ"
+    },
+    {
+      "dex_id": 663,
+      "name_en": "Talonflame",
+      "name_ja": "ファイアロー"
+    },
+    {
+      "dex_id": 664,
+      "name_en": "Scatterbug",
+      "name_ja": "コフキムシ"
+    },
+    {
+      "dex_id": 666,
+      "name_en": "Vivillon",
+      "name_ja": "ビビヨン"
+    },
+    {
+      "dex_id": 667,
+      "name_en": "Litleo",
+      "name_ja": "シシコ"
+    },
+    {
+      "dex_id": 668,
+      "name_en": "Pyroar",
+      "name_ja": "カエンジシ"
+    },
+    {
+      "dex_id": 669,
+      "name_en": "Flabébé",
+      "name_ja": "フラベベ"
+    },
+    {
+      "dex_id": 674,
+      "name_en": "Pancham",
+      "name_ja": "ヤンチャム"
+    },
+    {
+      "dex_id": 675,
+      "name_en": "Pangoro",
+      "name_ja": "ゴロンダ"
+    },
+    {
+      "dex_id": 677,
+      "name_en": "Espurr",
+      "name_ja": "ニャスパー"
+    },
+    {
+      "dex_id": 678,
+      "name_en": "Meowstic",
+      "name_ja": "ニャオニクス"
+    },
+    {
+      "dex_id": 679,
+      "name_en": "Honedge",
+      "name_ja": "ヒトツキ"
+    },
+    {
+      "dex_id": 680,
+      "name_en": "Doublade",
+      "name_ja": "ニダンギル"
+    },
+    {
+      "dex_id": 681,
+      "name_en": "Aegislash",
+      "name_ja": "ギルガルド"
+    },
+    {
+      "dex_id": 684,
+      "name_en": "Swirlix",
+      "name_ja": "ペロッパフ"
+    },
+    {
+      "dex_id": 686,
+      "name_en": "Inkay",
+      "name_ja": "マーイーカ"
+    },
+    {
+      "dex_id": 687,
+      "name_en": "Malamar",
+      "name_ja": "カラマネロ"
+    },
+    {
+      "dex_id": 694,
+      "name_en": "Helioptile",
+      "name_ja": "エリキテル"
+    },
+    {
+      "dex_id": 695,
+      "name_en": "Heliolisk",
+      "name_ja": "エレザード"
+    },
+    {
+      "dex_id": 700,
+      "name_en": "Sylveon",
+      "name_ja": "ニンフィア"
+    },
+    {
+      "dex_id": 701,
+      "name_en": "Hawlucha",
+      "name_ja": "ルチャブル"
+    },
+    {
+      "dex_id": 702,
+      "name_en": "Dedenne",
+      "name_ja": "デデンネ"
+    },
+    {
+      "dex_id": 704,
+      "name_en": "Goomy",
+      "name_ja": "ヌメラ"
+    },
+    {
+      "dex_id": 707,
+      "name_en": "Klefki",
+      "name_ja": "クレッフィ"
+    },
+    {
+      "dex_id": 708,
+      "name_en": "Phantump",
+      "name_ja": "ボクレー"
+    },
+    {
+      "dex_id": 709,
+      "name_en": "Trevenant",
+      "name_ja": "オーロット"
+    },
+    {
+      "dex_id": 710,
+      "name_en": "Pumpkaboo",
+      "name_ja": "バケッチャ"
+    },
+    {
+      "dex_id": 711,
+      "name_en": "Gourgeist",
+      "name_ja": "パンプジン"
+    },
+    {
+      "dex_id": 714,
+      "name_en": "Noibat",
+      "name_ja": "オンバット"
+    },
+    {
+      "dex_id": 717,
+      "name_en": "Yveltal",
+      "name_ja": "イベルタル"
+    },
+    {
+      "dex_id": 718,
+      "name_en": "Zygarde",
+      "name_ja": "ジガルデ"
+    },
+    {
+      "dex_id": 719,
+      "name_en": "Diancie",
+      "name_ja": "ディアンシー"
+    },
+    {
+      "dex_id": 720,
+      "name_en": "Hoopa",
+      "name_ja": "フーパ"
+    },
+    {
+      "dex_id": 722,
+      "name_en": "Rowlet",
+      "name_ja": "モクロー"
+    },
+    {
+      "dex_id": 723,
+      "name_en": "Dartrix",
+      "name_ja": "フクスロー"
+    },
+    {
+      "dex_id": 725,
+      "name_en": "Litten",
+      "name_ja": "ニャビー"
+    },
+    {
+      "dex_id": 726,
+      "name_en": "Torracat",
+      "name_ja": "ニャヒート"
+    },
+    {
+      "dex_id": 734,
+      "name_en": "Yungoos",
+      "name_ja": "ヤングース"
+    },
+    {
+      "dex_id": 736,
+      "name_en": "Grubbin",
+      "name_ja": "アゴジムシ"
+    },
+    {
+      "dex_id": 737,
+      "name_en": "Charjabug",
+      "name_ja": "デンヂムシ"
+    },
+    {
+      "dex_id": 738,
+      "name_en": "Vikavolt",
+      "name_ja": "クワガノン"
+    },
+    {
+      "dex_id": 739,
+      "name_en": "Crabrawler",
+      "name_ja": "マケンカニ"
+    },
+    {
+      "dex_id": 740,
+      "name_en": "Crabominable",
+      "name_ja": "ケケンカニ"
+    },
+    {
+      "dex_id": 741,
+      "name_en": "Oricorio",
+      "name_ja": "オドリドリ"
+    },
+    {
+      "dex_id": 742,
+      "name_en": "Cutiefly",
+      "name_ja": "アブリー"
+    },
+    {
+      "dex_id": 743,
+      "name_en": "Ribombee",
+      "name_ja": "アブリボン"
+    },
+    {
+      "dex_id": 744,
+      "name_en": "Rockruff",
+      "name_ja": "イワンコ"
+    },
+    {
+      "dex_id": 745,
+      "name_en": "Lycanroc",
+      "name_ja": "ルガルガン"
+    },
+    {
+      "dex_id": 746,
+      "name_en": "Wishiwashi",
+      "name_ja": "ヨワシ"
+    },
+    {
+      "dex_id": 751,
+      "name_en": "Dewpider",
+      "name_ja": "シズクモ"
+    },
+    {
+      "dex_id": 752,
+      "name_en": "Araquanid",
+      "name_ja": "オニシズクモ"
+    },
+    {
+      "dex_id": 755,
+      "name_en": "Morelull",
+      "name_ja": "ネマシュ"
+    },
+    {
+      "dex_id": 756,
+      "name_en": "Shiinotic",
+      "name_ja": "マシェード"
+    },
+    {
+      "dex_id": 757,
+      "name_en": "Salandit",
+      "name_ja": "ヤトウモリ"
+    },
+    {
+      "dex_id": 758,
+      "name_en": "Salazzle",
+      "name_ja": "エンニュート"
+    },
+    {
+      "dex_id": 759,
+      "name_en": "Stufful",
+      "name_ja": "ヌイコグマ"
+    },
+    {
+      "dex_id": 760,
+      "name_en": "Bewear",
+      "name_ja": "キテルグマ"
+    },
+    {
+      "dex_id": 761,
+      "name_en": "Bounsweet",
+      "name_ja": "アマカジ"
+    },
+    {
+      "dex_id": 762,
+      "name_en": "Steenee",
+      "name_ja": "アママイコ"
+    },
+    {
+      "dex_id": 763,
+      "name_en": "Tsareena",
+      "name_ja": "アマージョ"
+    },
+    {
+      "dex_id": 764,
+      "name_en": "Comfey",
+      "name_ja": "キュワワー"
+    },
+    {
+      "dex_id": 765,
+      "name_en": "Oranguru",
+      "name_ja": "ヤレユータン"
+    },
+    {
+      "dex_id": 766,
+      "name_en": "Passimian",
+      "name_ja": "ナゲツケサル"
+    },
+    {
+      "dex_id": 767,
+      "name_en": "Wimpod",
+      "name_ja": "コソクムシ"
+    },
+    {
+      "dex_id": 769,
+      "name_en": "Sandygast",
+      "name_ja": "スナバァ"
+    },
+    {
+      "dex_id": 770,
+      "name_en": "Palossand",
+      "name_ja": "シロデスナ"
+    },
+    {
+      "dex_id": 771,
+      "name_en": "Pyukumuku",
+      "name_ja": "ナマコブシ"
+    },
+    {
+      "dex_id": 772,
+      "name_en": "Type: Null",
+      "name_ja": "タイプ：ヌル"
+    },
+    {
+      "dex_id": 775,
+      "name_en": "Komala",
+      "name_ja": "ネッコアラ"
+    },
+    {
+      "dex_id": 776,
+      "name_en": "Turtonator",
+      "name_ja": "バクガメス"
+    },
+    {
+      "dex_id": 777,
+      "name_en": "Togedemaru",
+      "name_ja": "トゲデマル"
+    },
+    {
+      "dex_id": 778,
+      "name_en": "Mimikyu",
+      "name_ja": "ミミッキュ"
+    },
+    {
+      "dex_id": 779,
+      "name_en": "Bruxish",
+      "name_ja": "ハギギシリ"
+    },
+    {
+      "dex_id": 780,
+      "name_en": "Drampa",
+      "name_ja": "ジジーロン"
+    },
+    {
+      "dex_id": 781,
+      "name_en": "Dhelmise",
+      "name_ja": "ダダリン"
+    },
+    {
+      "dex_id": 785,
+      "name_en": "Tapu Koko",
+      "name_ja": "カプ・コケコ"
+    },
+    {
+      "dex_id": 786,
+      "name_en": "Tapu Lele",
+      "name_ja": "カプ・テテフ"
+    },
+    {
+      "dex_id": 787,
+      "name_en": "Tapu Bulu",
+      "name_ja": "カプ・ブルル"
+    },
+    {
+      "dex_id": 789,
+      "name_en": "Cosmog",
+      "name_ja": "コスモッグ"
+    },
+    {
+      "dex_id": 790,
+      "name_en": "Cosmoem",
+      "name_ja": "コスモウム"
+    },
+    {
+      "dex_id": 801,
+      "name_en": "Magearna",
+      "name_ja": "マギアナ"
+    },
+    {
+      "dex_id": 802,
+      "name_en": "Marshadow",
+      "name_ja": "マーシャドー"
+    },
+    {
+      "dex_id": 807,
+      "name_en": "Zeraora",
+      "name_ja": "ゼラオラ"
+    },
+    {
+      "dex_id": 808,
+      "name_en": "Meltan",
+      "name_ja": "メルタン"
+    },
+    {
+      "dex_id": 809,
+      "name_en": "Melmetal",
+      "name_ja": "メルメタル"
+    },
+    {
+      "dex_id": 810,
+      "name_en": "Grookey",
+      "name_ja": "サルノリ"
+    },
+    {
+      "dex_id": 811,
+      "name_en": "Thwackey",
+      "name_ja": "バチンキー"
+    },
+    {
+      "dex_id": 828,
+      "name_en": "Thievul",
+      "name_ja": "フォクスライ"
+    },
+    {
+      "dex_id": 840,
+      "name_en": "Applin",
+      "name_ja": "カジッチュ"
+    },
+    {
+      "dex_id": 848,
+      "name_en": "Toxel",
+      "name_ja": "エレズン"
+    },
+    {
+      "dex_id": 849,
+      "name_en": "Toxtricity",
+      "name_ja": "ストリンダー"
+    },
+    {
+      "dex_id": 870,
+      "name_en": "Falinks",
+      "name_ja": "タイレーツ"
+    },
+    {
+      "dex_id": 872,
+      "name_en": "Snom",
+      "name_ja": "ユキハミ"
+    },
+    {
+      "dex_id": 874,
+      "name_en": "Stonjourner",
+      "name_ja": "イシヘンジン"
+    },
+    {
+      "dex_id": 877,
+      "name_en": "Morpeko",
+      "name_ja": "モルペコ"
+    },
+    {
+      "dex_id": 884,
+      "name_en": "Duraludon",
+      "name_ja": "ジュラルドン"
+    },
+    {
+      "dex_id": 885,
+      "name_en": "Dreepy",
+      "name_ja": "ドラメシヤ"
+    },
+    {
+      "dex_id": 886,
+      "name_en": "Drakloak",
+      "name_ja": "ドロンチ"
+    },
+    {
+      "dex_id": 893,
+      "name_en": "Zarude",
+      "name_ja": "ザルード"
+    },
+    {
+      "dex_id": 917,
+      "name_en": "Tarountula",
+      "name_ja": "タマンチュラ"
+    },
+    {
+      "dex_id": 924,
+      "name_en": "Tandemaus",
+      "name_ja": "ワッカネズミ"
+    },
+    {
+      "dex_id": 935,
+      "name_en": "Charcadet",
+      "name_ja": "カルボウ"
+    },
+    {
+      "dex_id": 937,
+      "name_en": "Ceruledge",
+      "name_ja": "ソウブレイズ"
+    },
+    {
+      "dex_id": 938,
+      "name_en": "Tadbulb",
+      "name_ja": "ズピカ"
+    },
+    {
+      "dex_id": 940,
+      "name_en": "Wattrel",
+      "name_ja": "カイデン"
+    },
+    {
+      "dex_id": 946,
+      "name_en": "Bramblin",
+      "name_ja": "アノクサ"
+    },
+    {
+      "dex_id": 947,
+      "name_en": "Brambleghast",
+      "name_ja": "アノホラグサ"
+    },
+    {
+      "dex_id": 948,
+      "name_en": "Toedscool",
+      "name_ja": "ノノクラゲ"
+    },
+    {
+      "dex_id": 951,
+      "name_en": "Capsakid",
+      "name_ja": "カプサイジ"
+    },
+    {
+      "dex_id": 953,
+      "name_en": "Rellor",
+      "name_ja": "シガロコ"
+    },
+    {
+      "dex_id": 954,
+      "name_en": "Rabsca",
+      "name_ja": "ベラカス"
+    },
+    {
+      "dex_id": 955,
+      "name_en": "Flittle",
+      "name_ja": "ヒラヒナ"
+    },
+    {
+      "dex_id": 957,
+      "name_en": "Tinkatink",
+      "name_ja": "カヌチャン"
+    },
+    {
+      "dex_id": 960,
+      "name_en": "Wiglett",
+      "name_ja": "ウミディグダ"
+    },
+    {
+      "dex_id": 961,
+      "name_en": "Wugtrio",
+      "name_ja": "ウミトリオ"
+    },
+    {
+      "dex_id": 963,
+      "name_en": "Finizen",
+      "name_ja": "ナミイルカ"
+    },
+    {
+      "dex_id": 964,
+      "name_en": "Palafin",
+      "name_ja": "イルカマン"
+    },
+    {
+      "dex_id": 965,
+      "name_en": "Varoom",
+      "name_ja": "ブロロン"
+    },
+    {
+      "dex_id": 966,
+      "name_en": "Revavroom",
+      "name_ja": "ブロロローム"
+    },
+    {
+      "dex_id": 969,
+      "name_en": "Glimmet",
+      "name_ja": "キラーメ"
+    },
+    {
+      "dex_id": 971,
+      "name_en": "Greavard",
+      "name_ja": "ボチ"
+    },
+    {
+      "dex_id": 974,
+      "name_en": "Cetoddle",
+      "name_ja": "アルクジラ"
+    },
+    {
+      "dex_id": 975,
+      "name_en": "Cetitan",
+      "name_ja": "ハルクジラ"
+    },
+    {
+      "dex_id": 978,
+      "name_en": "Tatsugiri",
+      "name_ja": "シャリタツ"
+    },
+    {
+      "dex_id": 982,
+      "name_en": "Dudunsparce",
+      "name_ja": "ノココッチ"
+    },
+    {
+      "dex_id": 986,
+      "name_en": "Brute Bonnet",
+      "name_ja": "アラブルタケ"
+    },
+    {
+      "dex_id": 987,
+      "name_en": "Flutter Mane",
+      "name_ja": "ハバタクカミ"
+    },
+    {
+      "dex_id": 988,
+      "name_en": "Slither Wing",
+      "name_ja": "チヲハウハネ"
+    },
+    {
+      "dex_id": 991,
+      "name_en": "Iron Bundle",
+      "name_ja": "テツノツツミ"
+    },
+    {
+      "dex_id": 994,
+      "name_en": "Iron Moth",
+      "name_ja": "テツノドクガ"
+    },
+    {
+      "dex_id": 995,
+      "name_en": "Iron Thorns",
+      "name_ja": "テツノイバラ"
+    },
+    {
+      "dex_id": 999,
+      "name_en": "Gimmighoul",
+      "name_ja": "コレクレー"
+    },
+    {
+      "dex_id": 1001,
+      "name_en": "Wo-Chien",
+      "name_ja": "チオンジェン"
+    },
+    {
+      "dex_id": 1002,
+      "name_en": "Chien-Pao",
+      "name_ja": "パオジアン"
+    },
+    {
+      "dex_id": 1003,
+      "name_en": "Ting-Lu",
+      "name_ja": "ディンルー"
+    },
+    {
+      "dex_id": 1004,
+      "name_en": "Chi-Yu",
+      "name_ja": "イーユイ"
+    },
+    {
+      "dex_id": 1007,
+      "name_en": "Koraidon",
+      "name_ja": "コライドン"
+    },
+    {
+      "dex_id": 1008,
+      "name_en": "Miraidon",
+      "name_ja": "ミライドン"
+    },
+    {
+      "dex_id": 1011,
+      "name_en": "Dipplin",
+      "name_ja": "カミッチュ"
+    },
+    {
+      "dex_id": 1012,
+      "name_en": "Poltchageist",
+      "name_ja": "チャデス"
+    },
+    {
+      "dex_id": 1014,
+      "name_en": "Okidogi",
+      "name_ja": "イイネイヌ"
+    },
+    {
+      "dex_id": 1015,
+      "name_en": "Munkidori",
+      "name_ja": "マシマシラ"
+    },
+    {
+      "dex_id": 1016,
+      "name_en": "Fezandipiti",
+      "name_ja": "キチキギス"
+    },
+    {
+      "dex_id": 1018,
+      "name_en": "Archaludon",
+      "name_ja": "ブリジュラス"
+    }
+  ],
+  "approved_into_catalog": false,
+  "approved_pairs": 400,
+  "decision": "approve_all_exact_pairs",
+  "historical_retrieval_status": "unknown",
+  "historical_retrieved_at": null,
+  "license_sha256": "12e7dd2d018848b9997d0226c4632f01da86ec4bf6ebe0c8b19953d5e5eeb6ff",
+  "proposal_sha256": "71e793ddf1f62fc1d6b0ddae6b16070e259415c9bfda0303a7dacb68882515ad",
+  "rejected_pairs": [],
+  "review_completed_at": "2026-10-13T00:06:34Z",
+  "review_completed_at_status": "attested_by_UTC_clock_after_independent_review",
+  "review_scope": "Independent exact full printed Japanese/English Pokemon name semantics and singleton-Dex metadata review only; no physical printing, form, sex, artwork, release equivalence, region, SKU counterpart, display, purchase, price or trading approval.",
+  "reviewer": "GPT-6.1 Sol high",
+  "rights_reference": "https://github.com/tcgdex/cards-database/blob/a211f11f3ba57d56c65c5ac33be35b77d3280757/LICENSE",
+  "schema": "pokemon.independent-name-review.v1",
+  "source_pin": "a211f11f3ba57d56c65c5ac33be35b77d3280757",
+  "sources_fetched": false,
+  "uncertain_pairs": [],
+  "validation": {
+    "additional_git_remotes_rejected": true,
+    "all_source_witness_permission_flags_false": true,
+    "baseline_database_sha256_rechecked": "4ea456e8163d7c8b0d562daacdf1f160ac28c469ede2fabac1da2fda578d0790",
+    "exact_singleton_dex_checked": true,
+    "exact_source_tuples_and_rarity_reconstructed": true,
+    "git_blobs_verified_against_exact_existing_pin": true,
+    "git_lazy_fetch_disabled": true,
+    "git_origin_overridden_to_dev_null": true,
+    "literal_card_metadata_paths_checked": 3014,
+    "literal_native_full_names_checked": true,
+    "literal_pokemon_category_checked": true,
+    "literal_release_headers_dates_counts_checked": true,
+    "literal_release_language_scopes_checked": 119,
+    "new_name_english_records_checked": 877,
+    "new_name_japanese_binding_records_checked": 2708,
+    "new_pairs_disjoint_from_current_exact_name_concepts": true,
+    "new_pairs_semantically_reviewed": 400,
+    "no_database_writes": true,
+    "nonempty_literal_variants_checked": true,
+    "omitted_variant_dimensions_rejected": true,
+    "packet_bytes_unchanged": true,
+    "paired_ja_en_witness_records_checked": 800,
+    "parser_module_hashes_rechecked": 5,
+    "raw_hashes_rechecked": true,
+    "raw_inventory_reread_at_completion": true,
+    "retained_review_english_records_checked": 123,
+    "retained_review_japanese_records_checked": 244,
+    "reviewed_license_bytes_verified": true,
+    "selected_english_records": 1000,
+    "selected_japanese_records": 2952,
+    "selected_source_inventory_files_pinned_hash_verified_and_reread": 3301,
+    "selected_source_tuple_records_reconstructed": 3952,
+    "unique_new_dex_ids": 400,
+    "unknown_variant_properties_rejected": true
+  }
+}
