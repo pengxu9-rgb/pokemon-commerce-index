@@ -10,7 +10,7 @@ from pathlib import Path
 MANIFEST = 'catalog-build-manifest-international-pokemon-scale-v1.json'
 PRIOR = 'catalog-build-manifest-international-pokemon-eight-followup-v1.json'
 MANIFEST_SHA = '1541fa71a1e0cfaf8d4398fb0b10d188f09f14faaa246a8298f821dc20c5f3ac'
-REVISION = 'dc02200d9510a2989cc712954e1cb1e11deeda2a368a3d7635ef644523bd2497'
+REVISION = 'f23dc5891cf8a82d5f6c04aca5745cab148da8a738f9ad04c987030ad51342cf'
 LOGICAL_SNAPSHOT_SHA = '989693744fbbb5a46aae03a76d3364ecc43437bcd44bb60143ee7c6ffdc1dacf'
 DIRECTORY = 'catalog/international-pokemon-scale-v1'
 
@@ -173,9 +173,10 @@ def verify_snapshot(db,root):
 
     The caller supplies the frozen checkout separately from the runtime image.
     """
-    from pokemon_index import core,collector_runtime,collector_journey
+    from pokemon_index import core,collector_runtime,collector_journey,catalog_read_model_artifact
     from scripts.audit_pokemon_name_eight_followup import installed_bundle
     root=Path(root).resolve();initial=_input_hashes(root);manifest,packet,bundle,rows=_inputs(root)
+    policy_before=collector_journey.runtime_source_hashes()
     main=next(row[2] for row in db.execute('PRAGMA database_list') if row[1]=='main')
     _require(main and not db.in_transaction,'committed file snapshot required')
     path=Path(main).resolve();before_sha=hashlib.sha256(path.read_bytes()).hexdigest();db.execute('PRAGMA query_only=ON')
@@ -183,16 +184,33 @@ def verify_snapshot(db,root):
     logical_sha=_verify_reviewed_logical_snapshot(db)
     revision=collector_journey.catalog_revision(db);_require(revision==REVISION,'canonical reviewed runtime/snapshot revision differs')
     native=_queries(db,rows)
+    _require(collector_journey.runtime_source_hashes()==policy_before,'runtime policy changed during native proof')
     with closing(core.connect(path,readonly=True)) as model_db:model=collector_runtime.CatalogReadModel(model_db)
     with closing(core.connect(path,readonly=True)) as accelerated_db,model.request(accelerated_db):
         accelerated=_queries(accelerated_db,rows)
         _require(accelerated_db.execute('PRAGMA query_only').fetchone()[0]==1,'accelerated main snapshot is not query-only')
     _require(native==accelerated,'native and accelerated full scale responses differ')
+    _require(collector_journey.runtime_source_hashes()==policy_before,'runtime policy changed during accelerated proof')
+    with tempfile.TemporaryDirectory(prefix='scale-native-read-model-') as directory:
+        artifact_dir=Path(directory)/'read-model'
+        with closing(core.connect(path,readonly=True)) as build_db:
+            artifact=catalog_read_model_artifact.write(build_db,root/MANIFEST,artifact_dir)
+        with closing(core.connect(path,readonly=True)) as load_db:
+            loaded,loaded_revision,_loaded_evidence=catalog_read_model_artifact.load(
+                load_db,artifact_dir,root/MANIFEST,expected_seal_sha256=artifact['seal_sha256'])
+        _require(loaded_revision==revision and catalog_read_model_artifact.model_state(model)==
+                 catalog_read_model_artifact.model_state(loaded),'full packaged facts or native revision differ')
+        with closing(core.connect(path,readonly=True)) as packaged_db,loaded.request(packaged_db):
+            packaged_queries=_queries(packaged_db,rows)
+        _require(packaged_queries==native,'native and packaged full scale responses differ')
+    _require(collector_journey.runtime_source_hashes()==policy_before,'runtime policy changed during packaged proof')
     _require(initial==_input_hashes(root) and hashlib.sha256(path.read_bytes()).hexdigest()==before_sha,'snapshot/verification artifact bytes changed')
     _require(logical_sha==_verify_reviewed_logical_snapshot(db),'full51 logical snapshot changed during verification')
     return dict(profile=profile,catalog_revision=revision,logical_snapshot_sha256=logical_sha,
         database_sha256=before_sha,manifest_sha256=MANIFEST_SHA,native_queries=native,native_accelerated_equal=True,
-        immutable_readonly_snapshot=True,exact_frozen_artifact_bindings=True)
+        immutable_readonly_snapshot=True,exact_frozen_artifact_bindings=True,
+        packaged_native_state_equal=True,packaged_native_queries=packaged_queries,
+        packaged_artifact=artifact)
 
 
 def rehearse(root):

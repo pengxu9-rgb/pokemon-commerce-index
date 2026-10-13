@@ -53,7 +53,10 @@ def read_jsonl(path: str):
 
 
 def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False, *,
-                  catalog_workers=1, catalog_queue_size=4, catalog_queue_wait=0.25, catalog_deadline=8.0):
+                  catalog_workers=1, catalog_queue_size=4, catalog_queue_wait=0.25, catalog_deadline=8.0,
+                  require_catalog_read_model=False):
+    if require_catalog_read_model and not internal_catalog_api:
+        raise ValueError('packaged read model requires the internal catalog API')
     snapshot=collector_runtime.snapshot_identity(db_path) if internal_catalog_api else None
     def check_snapshot():
         if snapshot is None:return
@@ -79,14 +82,20 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                             check_snapshot()
         finally:
             handler.timings['compute' if entered is not None else 'queue']=time.monotonic()-(entered or queued)
-    journey_revision=None;read_model=None
+    journey_revision=None;read_model=None;packaged=None
     if internal_catalog_api:
+        from . import catalog_read_model_artifact
         with closing(core.connect(db_path,readonly=True)) as db:
-            journey_revision=collector_journey.catalog_revision(db)
-            check_snapshot()
             with collector_runtime.sqlite_deadline(db,time.monotonic()+catalog_deadline):
-                try:read_model=collector_runtime.CatalogReadModel(db)
-                except collector_runtime.CatalogReadModelUnsupported:pass
+                packaged=catalog_read_model_artifact.load_packaged(db,required=require_catalog_read_model)
+            if packaged is not None:
+                read_model,journey_revision,_artifact_evidence=packaged
+            else:
+                journey_revision=collector_journey.catalog_revision(db)
+                check_snapshot()
+                with collector_runtime.sqlite_deadline(db,time.monotonic()+catalog_deadline):
+                    try:read_model=collector_runtime.CatalogReadModel(db)
+                    except collector_runtime.CatalogReadModelUnsupported:pass
         check_snapshot()
     class Handler(BaseHTTPRequestHandler):
         def setup(self):
@@ -279,11 +288,17 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
         # The default backlog of five obscures a 16-client application burst as
         # TCP connection timeouts before admission can return an explicit 503.
         request_queue_size=64
-    return Server((host,port),Handler)
+    server=Server((host,port),Handler)
+    server.catalog_bootstrap='packaged' if packaged is not None else 'native'
+    return server
 
 
-def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False) -> None:
-    with create_server(db_path,host,port,internal_catalog_api) as server:
+def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False, *,
+          require_catalog_read_model=False) -> None:
+    with create_server(db_path,host,port,internal_catalog_api,
+                       require_catalog_read_model=require_catalog_read_model) as server:
+        if internal_catalog_api:
+            print(json.dumps({'event':'collector_bootstrap','bootstrap':server.catalog_bootstrap},sort_keys=True),flush=True)
         print(f"Serving http://{host}:{server.server_address[1]}")
         server.serve_forever()
 
@@ -439,6 +454,8 @@ def main() -> None:
     server.add_argument("--port", type=int, default=int(os.getenv("PORT", "8765")))
     server.add_argument("--internal-catalog-api", action="store_true",
                         help="enable internal catalog HTTP routes; deploy only behind authentication")
+    server.add_argument("--require-catalog-read-model", action="store_true",
+                        help="require the fixed image's verified static read model before listening")
     override = sub.add_parser("override-resolution")
     override.add_argument("source")
     override.add_argument("native_id")
@@ -484,7 +501,8 @@ def main() -> None:
     catalog.add_argument("--output", required=True, help="new output JSONL file; never overwritten")
     args = parser.parse_args()
     if args.command == "serve":
-        serve(args.db, args.host, args.port, args.internal_catalog_api)
+        serve(args.db, args.host, args.port, args.internal_catalog_api,
+              require_catalog_read_model=args.require_catalog_read_model)
         return
     if args.command in {'collector-inventory','collector-journey','card-comparison'}:
         with closing(core.connect(args.db,readonly=True)) as db:

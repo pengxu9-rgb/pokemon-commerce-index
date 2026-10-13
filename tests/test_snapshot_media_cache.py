@@ -91,7 +91,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
         for column,value in [('name','Changed ピィ'),('provenance','other-source'),
                              ('rights_reference','other-rights'),('collector_number','038/225'),
                              ('variant','synthetic_finish'),('language','fr')]:
-            with self.subTest(column=column),closing(core.connect(self.path)) as db,self.model.request(db):
+            with self.subTest(column=column),closing(core.connect(self.path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
                 self.assertEqual(catalog_media.current_ids(db),{self.cid})
                 db.execute('PRAGMA query_only=OFF')
                 db.execute(f'UPDATE card SET {column}=? WHERE card_id=?',(value,self.cid))
@@ -103,7 +103,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
                 self.assertEqual(catalog_media.current_ids(db),{self.cid})
 
     def test_same_connection_deleted_fact_and_policy_edit_do_not_serve_old_membership(self):
-        with closing(core.connect(self.path)) as db,self.model.request(db):
+        with closing(core.connect(self.path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
             db.execute('PRAGMA query_only=OFF');db.execute('DELETE FROM source_image_fact_evidence')
             self.assertEqual(catalog_media.current_ids(db),set())
             db.rollback()
@@ -120,7 +120,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
 
     def test_corrupt_review_or_hash_raises_and_never_reuses_cached_positive(self):
         for mutation in ('review','hash','permission'):
-            with self.subTest(mutation=mutation),closing(core.connect(self.path)) as db,self.model.request(db):
+            with self.subTest(mutation=mutation),closing(core.connect(self.path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
                 row=copy.deepcopy(self.fact)
                 if mutation=='review':row['reviews'][0]['image_sha256']='e'*64
                 if mutation=='hash':row['source_file_sha256']='e'*64
@@ -145,7 +145,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
         path=self.copy_path('empty.sqlite3')
         with closing(core.connect(path)) as db:db.execute('DELETE FROM source_image_fact_evidence');db.commit()
         model=self.build(path)
-        with closing(core.connect(path)) as db,model.request(db):
+        with closing(core.connect(path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),model.request(db):
             self.assertEqual(catalog_media.current_ids(db),set())
             db.execute('PRAGMA query_only=OFF')
             db.execute('INSERT INTO source_image_fact_evidence VALUES (?,?,?,?)',
@@ -188,7 +188,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
             self.assertIsNone(runtime._snapshot_scope.get())
 
     def test_temp_shadow_after_warm_request_uses_native_current_namespace(self):
-        with closing(core.connect(self.path,readonly=True)) as db,self.model.request(db):
+        with closing(core.connect(self.path,readonly=True)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
             self.assertEqual(catalog_media.current_ids(db),{self.cid})
             db.execute('PRAGMA query_only=OFF')
             db.execute('CREATE TEMP TABLE source_image_fact_evidence AS SELECT * FROM main.source_image_fact_evidence WHERE 0')
@@ -198,7 +198,7 @@ class SnapshotMediaCacheTests(unittest.TestCase):
             db.execute('PRAGMA query_only=OFF');db.execute('DROP TABLE temp.source_image_fact_evidence')
 
     def test_new_uncommitted_identity_hold_abstains_without_cache_override(self):
-        with closing(core.connect(self.path)) as db,self.model.request(db):
+        with closing(core.connect(self.path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
             db.execute('PRAGMA query_only=OFF')
             # A deliberately unqualified synthetic hold is conservatively held
             # by native semantics; it is not an identity approval or real source.

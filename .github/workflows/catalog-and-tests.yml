@@ -86,7 +86,7 @@ jobs:
               assert result['prices'] == [] and result['live_offers'] == []
               # Exercise the actual image's SQLite serializer/affinities as well as
           # direct replay. Unsupported acceleration is not silently accepted here.
-          from pokemon_index import collector_runtime
+          from pokemon_index import collector_runtime, catalog_read_model_artifact
           with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
               model = collector_runtime.CatalogReadModel(db)
           with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db, model.request(db):
@@ -95,8 +95,19 @@ jobs:
                   {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50})
               assert accelerated == result
               assert db.execute('PRAGMA query_only').fetchone()[0] == 1
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db:
+              loaded, revision, artifact = catalog_read_model_artifact.load_packaged(db, required=True)
+          assert catalog_read_model_artifact.model_state(loaded) == catalog_read_model_artifact.model_state(model)
+          with closing(core.connect('/app/catalog.sqlite3', readonly=True)) as db, loaded.request(db):
+              packaged = collector_journey.replay(db, {'turns': [
+                  {'type': 'ask', 'question': 'Recommend Japanese Mew cards'},
+                  {'type': 'refine', 'scope': {'set_code': 'SV4A'}}], 'limit': 50}, revision=revision)
+              assert packaged == result
           print(json.dumps({'container_catalog_smoke': 'passed',
               'snapshot_read_model_smoke': 'passed',
+              'packaged_native_state_equal': True,
+              'packaged_native_json_equal': True,
+              'packaged_artifact': artifact,
               'python_version': __import__('sys').version.split()[0],
               'sqlite_version': __import__('sqlite3').sqlite_version,
               'candidate_ids': sorted(ids)}))

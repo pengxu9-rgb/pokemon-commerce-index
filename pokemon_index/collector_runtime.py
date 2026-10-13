@@ -128,7 +128,8 @@ def _static_snapshot_version(db):
         return None
     return (db.total_changes, db.execute('PRAGMA main.data_version').fetchone()[0],
             db.execute('PRAGMA main.schema_version').fetchone()[0],
-            db.execute('PRAGMA temp.schema_version').fetchone()[0])
+            db.execute('PRAGMA temp.schema_version').fetchone()[0],
+            db.execute('PRAGMA collector_snapshot.schema_version').fetchone()[0])
 
 
 def snapshot_media_ids(db):
@@ -178,6 +179,52 @@ def snapshot_cast_dex_card_ids(db, dex_ids):
     return frozenset(result)
 
 
+def snapshot_text_dex_card_ids(db, values):
+    """Exact positive string-IN membership, separately derived from CAST facts."""
+    model = _trusted_snapshot_model(db)
+    if model is None:
+        return None
+    operands = tuple(values)
+    if (not operands or len(operands) > model.MAX_DEX_OPERANDS or
+            any(type(value) is not str for value in operands)):
+        return None
+    result = set()
+    for value in operands:
+        checkpoint()
+        result.update(model._text_dex_card_ids.get(value, ()))
+        if len(result) > model.MAX_DEX_QUERY_IDS:
+            return None
+    return frozenset(result)
+
+
+def card_scan(db, *, narrow_ids=False):
+    """Use the canonical primary key only for an audited bounded ID predicate."""
+    if narrow_ids and _trusted_snapshot_model(db) is not None:
+        return 'main.card AS c INDEXED BY sqlite_autoindex_card_1'
+    return 'card c'
+
+
+def snapshot_character_names(db, current_only):
+    model = _trusted_snapshot_model(db)
+    return None if model is None else model._character_names[current_only]
+
+
+def snapshot_release_names(db, languages):
+    model = _trusted_snapshot_model(db)
+    if model is None:
+        return None
+    return frozenset((code, term) for language, code, term in model._release_names
+                     if language in languages)
+
+
+def snapshot_release_aliases(db, languages):
+    model = _trusted_snapshot_model(db)
+    if model is None:
+        return None
+    return [row for row in json.loads(model._release_aliases_json)
+            if row['language'] in languages]
+
+
 def facet_lookup_relation(db):
     """Audited string equality/IN or explicit CAST lookups only.
 
@@ -207,19 +254,30 @@ class CatalogReadModel:
     MAX_DEX_KEYS=4096
     MAX_DEX_OPERANDS=32
     MAX_DEX_QUERY_IDS=512
+    MAX_CHARACTER_NAME_ROWS=100000
+    MAX_CHARACTER_NAME_BYTES=8*1024*1024
+    MAX_RELEASE_NAME_ROWS=100000
+    MAX_RELEASE_NAME_BYTES=8*1024*1024
+    MAX_RELEASE_ALIAS_BYTES=1024*1024
     COLUMNS=('card_id','facet_type','value','provenance','rights_reference')
     SCHEMA='collector_snapshot'
 
-    def __init__(self,db):
+    @classmethod
+    def _validate_database(cls, db):
         from pathlib import Path
         main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
         if not main:raise ValueError('catalog read model requires a file snapshot')
-        self._path=Path(main).resolve(strict=True)
-        self._identity=snapshot_identity(self._path)
+        path=Path(main).resolve(strict=True)
+        identity=snapshot_identity(path)
+        opened=getattr(db,'_catalog_open_file_identity',None)
+        if opened is None:
+            raise CatalogReadModelUnsupported()
+        if opened!=(str(path),*identity[0][:2]):
+            raise CatalogSnapshotChanged()
         # Keep affinities as well as storage values. The effective view has no
         # declared affinity except TEXT provenance; do not coerce numeric artist
         # names, card IDs, or dex strings during materialization.
-        expected=[(name,'TEXT' if name=='provenance' else 'BLOB') for name in self.COLUMNS]
+        expected=[(name,'TEXT' if name=='provenance' else 'BLOB') for name in cls.COLUMNS]
         actual=[(r[1],r[2] or 'BLOB') for r in db.execute('PRAGMA main.table_info(discovery_card_facet)')]
         if actual!=expected or not callable(getattr(db,'serialize',None)) or not callable(getattr(db,'deserialize',None)):
             raise CatalogReadModelUnsupported()
@@ -253,6 +311,11 @@ class CatalogReadModel:
                 "SELECT 1 FROM main.catalog_identity_quarantine WHERE quarantine_id GLOB 'variant-dimension-hold:*' LIMIT 1").fetchone()):
             raise CatalogReadModelUnsupported()
         checkpoint()
+        return path, identity
+
+    def __init__(self,db):
+        self._path, self._identity = self._validate_database(db)
+        checkpoint()
         db.execute("ATTACH DATABASE ':memory:' AS collector_snapshot")
         db.execute('PRAGMA collector_snapshot.page_size=4096')
         db.execute('PRAGMA collector_snapshot.max_page_count='+str(self.MAX_IMAGE_BYTES//4096))
@@ -283,6 +346,32 @@ class CatalogReadModel:
             raise ValueError('catalog source-scan IDs exceed read model bound')
         self._media_ids = frozenset(media_ids)
         self._cast_dex_card_ids=self._build_cast_dex_card_ids(db)
+        self._text_dex_card_ids = self._build_text_dex_card_ids(db)
+        from . import collector_discovery, collector_release_alias
+        self._release_alias_path = collector_release_alias.BINDINGS_PATH.resolve(strict=True)
+        self._release_alias_identity = snapshot_identity(self._release_alias_path)
+        self._character_names = MappingProxyType({current: tuple(
+            collector_discovery._character_name_facts(db, current_only=current,
+                aliases=self._vocabularies['character_aliases'])) for current in (False, True)})
+        self._release_names = tuple(collector_discovery._release_name_facts(db))
+        languages = {row[0] for row in self._release_names}
+        # The native proof reader validates the exact localized release and its
+        # evidence. Only those proofs are retained; every response gets a copy.
+        payload = json.loads(collector_release_alias.BINDINGS_PATH.read_text())
+        languages.update(row['language'] for row in payload['records'])
+        release_aliases = collector_release_alias.aliases(db, languages)
+        self._release_aliases_json = json.dumps(release_aliases, ensure_ascii=False,
+                                               separators=(',', ':'))
+        self._release_names += tuple((row['language'], row['set_code'],
+            collector_discovery._norm(row['alias'])) for row in release_aliases)
+        if (len(self._release_names) > self.MAX_RELEASE_NAME_ROWS or
+                sum(sum(len(value.encode('utf-8')) for value in row)
+                    for row in self._release_names) > self.MAX_RELEASE_NAME_BYTES or
+                len(self._release_aliases_json.encode('utf-8')) > self.MAX_RELEASE_ALIAS_BYTES or
+                any(len(rows) > self.MAX_CHARACTER_NAME_ROWS or
+                    sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
+                    for rows in self._character_names.values())):
+            raise ValueError('catalog matching facts exceed read model bound')
         self._image=db.serialize(name=self.SCHEMA)
         if len(self._image)>self.MAX_IMAGE_BYTES:
             raise ValueError('catalog read model exceeds memory bound')
@@ -308,11 +397,36 @@ class CatalogReadModel:
                 raise ValueError('catalog CAST dex IDs exceed read model bound')
         return MappingProxyType({key:frozenset(ids) for key,ids in cast_ids.items()})
 
+    @classmethod
+    def _build_text_dex_card_ids(cls, db):
+        # The materialized value column has BLOB affinity. A string IN operand
+        # matches only TEXT storage, using the canonical BINARY collation. The
+        # SQL join applies main.card's exact ID affinity, rather than Python
+        # conversions or parameter-equality semantics.
+        pairs = db.execute("""SELECT DISTINCT c.card_id,f.value
+            FROM main.card c JOIN collector_snapshot.facets f ON f.card_id=c.card_id
+            WHERE f.facet_type='dex_id' AND typeof(f.value)='text'""").fetchmany(cls.MAX_DEX_BINDINGS+1)
+        if len(pairs) > cls.MAX_DEX_BINDINGS:
+            raise ValueError('catalog TEXT dex bindings exceed read model bound')
+        text_ids = {}; total_bytes = 0
+        for cid, value in pairs:
+            checkpoint()
+            total_bytes += len(cid.encode('utf-8') if isinstance(cid, str) else cid)
+            text_ids.setdefault(value, set()).add(cid)
+            if len(text_ids) > cls.MAX_DEX_KEYS or total_bytes > cls.MAX_DEX_ID_BYTES:
+                raise ValueError('catalog TEXT dex IDs exceed read model bound')
+        return MappingProxyType({key: frozenset(ids) for key, ids in text_ids.items()})
+
     def _check_snapshot(self,db):
         from pathlib import Path
         try:
             main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
             if not main or Path(main).resolve(strict=True)!=self._path or snapshot_identity(self._path)!=self._identity:
+                raise CatalogSnapshotChanged()
+            if getattr(db,'_catalog_open_file_identity',None)!=(str(self._path),*self._identity[0][:2]):
+                raise CatalogSnapshotChanged()
+            if (hasattr(self, '_release_alias_path') and
+                    snapshot_identity(self._release_alias_path) != self._release_alias_identity):
                 raise CatalogSnapshotChanged()
         except OSError as exc:
             raise CatalogSnapshotChanged() from exc
@@ -325,12 +439,23 @@ class CatalogReadModel:
     @contextmanager
     def request(self,db):
         checkpoint();self._check_snapshot(db)
+        if db.in_transaction or db.execute('SELECT 1 FROM temp.sqlite_master LIMIT 1').fetchone():
+            raise CatalogSnapshotChanged()
+        if hasattr(self, '_artifact_guard'):
+            self._artifact_guard()
         self._attach(db)
         checkpoint()
-        token=_snapshot_scope.set({'db':db,'model':self,'static_version':_static_snapshot_version(db)})
+        version=_static_snapshot_version(db)
+        if version is None:
+            raise CatalogSnapshotChanged()
+        token=_snapshot_scope.set({'db':db,'model':self,'static_version':version})
         try:
             yield
             checkpoint();self._check_snapshot(db)
+            if _static_snapshot_version(db)!=version:
+                raise CatalogSnapshotChanged()
+            if hasattr(self, '_artifact_guard'):
+                self._artifact_guard()
         finally:
             _snapshot_scope.reset(token)
 
