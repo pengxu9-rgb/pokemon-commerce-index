@@ -19,7 +19,7 @@ GENERATED = {'card_identity_exception':'applied_at', 'card_number_conflict_rule'
              'card_rarity_correction':'applied_at', 'card_relationship_assertion':'asserted_at'}
 # Independently audited stage19 scale.sqlite3 and its equivalent rebuild.
 REVIEWED_LOGICAL_SHA = 'b73076d0e7fd718c68544df3088741359949b1daed6ea97c64be059855225f7a'
-REVIEWED_RUNTIME_REVISION = 'dc02200d9510a2989cc712954e1cb1e11deeda2a368a3d7635ef644523bd2497'
+REVIEWED_RUNTIME_REVISION = 'f23dc5891cf8a82d5f6c04aca5745cab148da8a738f9ad04c987030ad51342cf'
 
 
 def quoted(value):
@@ -61,7 +61,7 @@ def check(db,expected):
 
 
 def runtime_smoke(path):
-    from pokemon_index import core,collector_journey,collector_runtime,variant_dimension_hold
+    from pokemon_index import core,collector_journey,collector_runtime,variant_dimension_hold,catalog_read_model_artifact
     from pokemon_index import catalog_question_resolver_v2 as resolver
     def exercise(db):
         results=[]
@@ -90,7 +90,20 @@ def runtime_smoke(path):
     with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8):model=collector_runtime.CatalogReadModel(db)
     with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8),model.request(db):accelerated=exercise(db)
     if native!=accelerated:raise ValueError('container native and accelerated runtime differ')
-    return dict(catalog_revision=revision,representative_targets=4,native_accelerated_equal=True,held_target_blocked=True,existing_eight_second_budget_unchanged=True)
+    native_state=catalog_read_model_artifact.model_state(model)
+    with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8):
+        loaded,loaded_revision,artifact=catalog_read_model_artifact.load_packaged(db,required=True)
+    if loaded_revision!=revision or catalog_read_model_artifact.model_state(loaded)!=native_state:
+        raise ValueError('complete packaged model differs from independent native facts or revision')
+    if len(loaded._media_ids)!=1171:
+        raise ValueError('packaged model source-evidence membership differs')
+    with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8),loaded.request(db):
+        packaged=exercise(db)
+    if packaged!=native:raise ValueError('packaged runtime JSON differs from native responses')
+    return dict(catalog_revision=revision,representative_targets=4,native_accelerated_equal=True,
+                packaged_native_state_equal=True,packaged_native_json_equal=True,
+                packaged_current_source_evidence_ids=1171,packaged_artifact=artifact,
+                held_target_blocked=True,existing_eight_second_budget_unchanged=True)
 
 
 def main():

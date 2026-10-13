@@ -10,16 +10,26 @@ from . import core,collector_discovery,collector_inventory,collector_recommendat
 
 MAX_TURNS=20
 POLICY='pokemon.collector-journey.v1'
+RUNTIME_SOURCES=(
+    'collector_journey.py','collector_runtime.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
+    'collector_character_affiliation.py','collector-character-affiliations-v1.json',
+    'collector_release_alias.py','collector-release-name-aliases-v1.json',
+    'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
+    'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','catalog_locale_indexes.py','languages.py','core.py','cli.py','schema.sql',
+    'catalog_read_model_artifact.py',
+)
+
+
+def runtime_source_hashes():
+    """Exact package policy files used to authenticate an immutable read model."""
+    return {name:hashlib.sha256((Path(__file__).parent/name).read_bytes()).hexdigest()
+            for name in RUNTIME_SOURCES}
 
 
 def catalog_revision(db):
     """Portable evidence and runtime binding; excludes conversations/market state."""
     h=hashlib.sha256(POLICY.encode())
-    for name in ['collector_journey.py','collector_runtime.py','collector_discovery.py','collector_inventory.py','collector_recommendation.py',
-                 'collector_character_affiliation.py','collector-character-affiliations-v1.json',
-                 'collector_release_alias.py','collector-release-name-aliases-v1.json',
-                 'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','catalog_locale_indexes.py','languages.py','core.py','cli.py']:
+    for name in RUNTIME_SOURCES:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet','base_discovery_card_facet','active_source_correction_evidence','effective_card_reference'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()

@@ -100,9 +100,10 @@ def _card_result(db, row) -> dict:
     return card
 
 
-def _rows(db, where: str, params: tuple) -> list:
+def _rows(db, where: str, params: tuple, *, narrow_ids=False) -> list:
+    source = collector_runtime.card_scan(db, narrow_ids=narrow_ids)
     return db.execute(f"""SELECT c.*,s.name AS set_name,s.release_date,
-              s.provenance AS release_provenance FROM card c
+              s.provenance AS release_provenance FROM {source}
         LEFT JOIN catalog_set_localized s ON c.language=s.language AND c.set_code=s.set_code
         WHERE {where} ORDER BY s.release_date IS NULL OR s.release_date='',
         s.release_date,c.language,c.set_code,c.collector_number,c.variant""", params).fetchall()
@@ -241,15 +242,31 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
     return result
 
 
+def _release_name_facts(db):
+    """Source names only; normalization does not add translations or matches."""
+    names = {(r['language'], r['set_code'], r['alias']) for r in db.execute(
+        "SELECT * FROM catalog_vocabulary WHERE alias_kind='set_name'")}
+    names.update((r['language'], r['set_code'], r['name']) for r in db.execute(
+        'SELECT language,set_code,name FROM catalog_set_localized') if r['name'])
+    return tuple((language, code, _norm(name)) for language, code, name in names)
+
+
+def _reviewed_release_aliases(db, languages):
+    rows = collector_runtime.snapshot_release_aliases(db, languages)
+    return collector_release_alias.aliases(db, languages) if rows is None else rows
+
+
 def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
     """Prefer full release titles over nested titles or code-shaped words."""
-    names={(r['set_code'],r['alias']) for r in db.execute("SELECT * FROM catalog_vocabulary WHERE alias_kind='set_name'") if r['language'] in languages}
-    names.update((r['set_code'],r['name']) for r in db.execute('SELECT language,set_code,name FROM catalog_set_localized') if r['language'] in languages and r['name'])
-    names.update((r['set_code'],r['alias']) for r in collector_release_alias.aliases(db,languages))
+    names = collector_runtime.snapshot_release_names(db, languages)
+    if names is None:
+        names = {(code, name) for language, code, name in _release_name_facts(db)
+                 if language in languages}
+        names.update((r['set_code'], _norm(r['alias'])) for r in
+                     collector_release_alias.aliases(db, languages))
     candidates=[]
-    for code,name in names:
+    for code,term in names:
         collector_runtime.checkpoint()
-        term=_norm(name)
         if len(term)<3 or not _mentioned(text,term):continue
         if term.isdigit() and not re.search(r'\bset\b|\bcards?\b|拡張|カード',text):continue
         pattern=(r'(?<![a-z0-9/])'+re.escape(term)+r'(?![a-z0-9/])') if term.isdigit() else ((r'(?<![a-z0-9])'+re.escape(term)+r'(?![a-z0-9])') if re.fullmatch(r"[a-z0-9 '\-\.]+",term) else re.escape(term))
@@ -258,7 +275,7 @@ def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
 
 
 def reviewed_release_interpretations(db, text, languages):
-    return [row for row in collector_release_alias.aliases(db,languages) if _mentioned(_norm(text),row['alias'])]
+    return [row for row in _reviewed_release_aliases(db,languages) if _mentioned(_norm(text),row['alias'])]
 
 
 def requested_name_suffix(db, question, languages):
@@ -342,9 +359,10 @@ def _character_mentions(db, text: str, *, maximal=True, current_only=False) -> l
         lambda:tuple(_compute_character_mentions(db,text,maximal=maximal,current_only=current_only))))
 
 
-def _compute_character_mentions(db, text: str, *, maximal=True, current_only=False) -> list[tuple]:
+def _character_name_facts(db, *, current_only=False, aliases=None):
     # One character facet only: a team card name cannot name a single species.
-    aliases = collector_runtime.vocabulary(db, 'character_aliases', collector_runtime.VOCABULARY_SQL['character_aliases'])
+    if aliases is None:
+        aliases = collector_runtime.vocabulary(db, 'character_aliases', collector_runtime.VOCABULARY_SQL['character_aliases'])
     names={}
     for index,row in enumerate(aliases):
         if index%128==0:collector_runtime.checkpoint()
@@ -354,8 +372,15 @@ def _compute_character_mentions(db, text: str, *, maximal=True, current_only=Fal
     if not current_only:
         for row in db.execute("SELECT * FROM character_family_member"):
             for key in ['name_en','name_ja']:names.setdefault((_norm(row[key]),row['dex_id']),False)
+    return tuple((name, dex, current) for (name, dex), current in names.items())
+
+
+def _compute_character_mentions(db, text: str, *, maximal=True, current_only=False) -> list[tuple]:
+    names = collector_runtime.snapshot_character_names(db, current_only)
+    if names is None:
+        names = _character_name_facts(db, current_only=current_only)
     matches=set();current_matches=set()
-    for index,((name,dex),current) in enumerate(names.items()):
+    for index,(name,dex,current) in enumerate(names):
         if index%128==0:collector_runtime.checkpoint()
         if not name or name not in text:continue
         pattern=(r'(?<![a-z0-9])'+re.escape(name)+r'(?![a-z0-9])'
@@ -678,7 +703,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         if narrowed:
             candidates=tuple(narrowed)
             rows=_rows(db,f"c.language IN ({lmarks}) AND c.card_id IN ("+
-                       ','.join('?' for _ in candidates)+')',(*languages,*candidates))
+                       ','.join('?' for _ in candidates)+')',(*languages,*candidates), narrow_ids=True)
         else:rows=[]
     else:
         rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",

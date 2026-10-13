@@ -336,23 +336,37 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if numbers and 'collector_number' not in scope:
         result.update(status='clarification_needed',next_question='Clarify one printed number or supply an exact catalog ID; unsupported or multiple number assertions are not applied.',unfulfilled_constraints=['recommendation_number_scope_confirmation'])
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
-    positive=[];params=[]
+    positive=[];params=[];bounded_positive=set();narrow_positive=True
     for kind in desired:
         values=sorted(desired[kind]|liked[kind])
         if values:
-            positive.append(f"c.card_id IN (SELECT f.card_id FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
-            params.extend([kind,*values])
+            ids = collector_runtime.snapshot_text_dex_card_ids(db, values) if kind=='dex_id' else None
+            if ids is not None:
+                bounded_positive.update(ids)
+                if ids:
+                    positive.append('c.card_id IN ('+','.join('?' for _ in ids)+')')
+                    params.extend(ids)
+                else:
+                    positive.append('0')
+            else:
+                narrow_positive=False
+                positive.append(f"c.card_id IN (SELECT f.card_id FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.facet_type=? AND f.value IN ("+','.join('?' for _ in values)+'))')
+                params.extend([kind,*values])
     derived_ids=sorted(cid for cid,a in affiliations.items()
                        if str(a['dex_id']) in desired['dex_id']|liked['dex_id'])
     if derived_ids:
+        bounded_positive.update(derived_ids)
         positive.append('c.card_id IN ('+','.join('?' for _ in derived_ids)+')');params.extend(derived_ids)
     for release in releases:
+        narrow_positive=False
         positive.append('(c.language=? AND c.set_code=?)');params.extend([release['language'],release['set_code']])
     if not positive:
         result['task']='collection_preferences_needed'
         if profile.get('subjective_notes'):
             result['next_question']=PROMPT+' The requested visual style remains unverified; an artist or character can provide a source-backed starting point.'
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
+    narrow_positive = narrow_positive and len(bounded_positive)<=collector_runtime.CatalogReadModel.MAX_DEX_QUERY_IDS
+    card_source = collector_runtime.card_scan(db, narrow_ids=narrow_positive)
     where=['('+' OR '.join(positive)+')','c.language IN ('+','.join('?' for _ in languages)+')'];params.extend(languages)
     for key,val in scope.items():
         where.append('c.'+key+'=?');params.append(val)
@@ -425,15 +439,15 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if cached is None and pool_cache is not None:
         pool_cache.pop('pool',None);pool_cache.pop('key',None)
     withheld=(cached.get('unknown_membership_withheld',0) if cached is not None else
-              db.execute('SELECT count(*) FROM card c WHERE '+unknown_membership_where,params).fetchone()[0]
+              db.execute('SELECT count(*) FROM '+card_source+' WHERE '+unknown_membership_where,params).fetchone()[0]
               if unknown_membership_where is not None else 0)
-    count=cached['count'] if cached is not None else db.execute('SELECT count(*) FROM card c WHERE '+where,params).fetchone()[0]
+    count=cached['count'] if cached is not None else db.execute('SELECT count(*) FROM '+card_source+' WHERE '+where,params).fetchone()[0]
     result['coverage']['matched_catalog_records']=count
     if count>inventory.MAX_SCOPE:
         result.update(status='scope_too_broad',next_question='Narrow the language, release or character scope; the pool exceeds 10,000 records.',unfulfilled_constraints=['recommendation_scope_too_broad'])
         return dict(scope=result,inventory=None,cards=[],recommendation=meta)
     if cached is None:
-        by_id={r['card_id']:r for r in discovery._rows(db,where,tuple(params))}
+        by_id={r['card_id']:r for r in discovery._rows(db,where,tuple(params),narrow_ids=narrow_positive)}
         inv=None
         if owned is not None:
             inv=inventory.partition_owned(db,owned,list(by_id))

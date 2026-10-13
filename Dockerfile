@@ -13,7 +13,12 @@ RUN case "$CATALOG_BUILD_MANIFEST" in \
       *) echo 'Unsupported catalog manifest' >&2; exit 1 ;; esac \
     && python -m scripts.build_catalog_snapshot \
     --manifest "/app/$CATALOG_BUILD_MANIFEST" --db /app/catalog.sqlite3 \
-    && chmod 0444 /app/catalog.sqlite3
+    && chmod 0444 /app/catalog.sqlite3 \
+    && python -m pokemon_index.catalog_read_model_artifact \
+    --db /app/catalog.sqlite3 --manifest "/app/$CATALOG_BUILD_MANIFEST" \
+    --output /app/catalog-read-model \
+    && chmod 0444 /app/catalog-read-model/* \
+    && chmod 0555 /app/catalog-read-model
 
 FROM python:3.12-slim
 ARG CATALOG_BUILD_MANIFEST
@@ -25,6 +30,8 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 COPY pokemon_index /app/pokemon_index
 COPY --from=catalog-build /app/catalog.sqlite3 /app/catalog.sqlite3
+COPY --from=catalog-build /app/catalog-read-model /app/catalog-read-model
+COPY --from=catalog-build /app/$CATALOG_BUILD_MANIFEST /app/catalog-build-manifest.json
 USER 65532:65532
 EXPOSE 8080
-CMD ["python", "-m", "pokemon_index", "--db", "/app/catalog.sqlite3", "serve", "--host", "0.0.0.0", "--internal-catalog-api"]
+CMD ["python", "-m", "pokemon_index", "--db", "/app/catalog.sqlite3", "serve", "--host", "0.0.0.0", "--internal-catalog-api", "--require-catalog-read-model"]

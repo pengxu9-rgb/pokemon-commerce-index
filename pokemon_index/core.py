@@ -51,11 +51,37 @@ def parse_time(value: str) -> datetime:
     return parsed.astimezone(timezone.utc)
 
 
-def connect(path: str | Path, *, readonly: bool = False, timeout: float = 5.0) -> sqlite3.Connection:
+class _CatalogConnection(sqlite3.Connection):
+    """Record the opened main file, rather than trusting its later pathname."""
+
+
+def _open_catalog_database(path, readonly, timeout):
+    main_path=None if str(path)==':memory:' else Path(path).resolve(strict=readonly)
+    def inode():
+        info=main_path.stat()
+        return (str(main_path),info.st_dev,info.st_ino)
+    before=inode() if main_path is not None and main_path.exists() else None
     if readonly:
-        db = sqlite3.connect(f"{Path(path).resolve(strict=True).as_uri()}?mode=ro", uri=True, timeout=timeout)
+        db=sqlite3.connect(f"{main_path.as_uri()}?mode=ro",uri=True,timeout=timeout,factory=_CatalogConnection)
     else:
-        db = sqlite3.connect(path, timeout=timeout)
+        db=sqlite3.connect(path,timeout=timeout,factory=_CatalogConnection)
+    try:
+        # Force the actual main handle to open before comparing the pathname.
+        db.execute('PRAGMA main.schema_version').fetchone()
+        after=inode() if main_path is not None else None
+        if before is not None and before!=after:
+            raise ValueError('catalog file replaced while opening')
+        # A newly created file had no pre-open inode witness. Mutable imports
+        # remain supported, but acceleration requires reopening the final file.
+        db._catalog_open_file_identity=after if before is not None else None
+        return db
+    except BaseException:
+        db.close()
+        raise
+
+
+def connect(path: str | Path, *, readonly: bool = False, timeout: float = 5.0) -> sqlite3.Connection:
+    db=_open_catalog_database(path,readonly,timeout)
     db.row_factory = sqlite3.Row
     db.execute("PRAGMA foreign_keys = ON")
     if readonly and not db.execute("SELECT 1 FROM sqlite_master WHERE name='discovery_card_facet'").fetchone():

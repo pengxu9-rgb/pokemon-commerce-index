@@ -129,7 +129,7 @@ class SnapshotCastDexTests(unittest.TestCase):
                  lambda db:runtime.vocabulary(db,'artists',runtime.VOCABULARY_SQL['artists'])]
         for mutation in ('query_only','transaction','temp_table','temp_view','rollback'):
             for reader in readers:
-                with self.subTest(mutation=mutation,reader=reader),closing(core.connect(self.path)) as db,self.model.request(db):
+                with self.subTest(mutation=mutation,reader=reader),closing(core.connect(self.path)) as db,self.assertRaises(runtime.CatalogSnapshotChanged),self.model.request(db):
                     db.execute('PRAGMA query_only=OFF')
                     if mutation in ('transaction','rollback'):
                         db.execute("UPDATE card_facet SET provenance='changed'")
