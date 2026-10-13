@@ -45,6 +45,12 @@ def subjects(db):
 
 
 def current_ids(db):
+    frozen=collector_runtime.snapshot_media_ids(db)
+    if frozen is not None:
+        # A caller cannot poison another request by changing its returned set.
+        ids=set(frozen)
+        collector_runtime.checkpoint()
+        return ids
     ids=set()
     for cid in subjects(db):
         collector_runtime.checkpoint()

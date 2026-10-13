@@ -84,7 +84,7 @@ def vocabulary(db, key, sql):
         raise ValueError('unsupported catalog vocabulary')
     snapshot=_snapshot_scope.get()
     if snapshot is not None and snapshot['db'] is db and sql==VOCABULARY_SQL[key]:
-        return snapshot['model']._vocabularies[key]
+        return _trusted_snapshot_model(db)._vocabularies[key]
     active=_request_cache(db)
     if active is None:return tuple(db.execute(sql))
     cache_key=(key,sql)
@@ -113,7 +113,69 @@ def snapshot_affiliations(db):
     checkpoint()
     # A fresh object prevents recommendation/response mutation from poisoning
     # the shared source proofs or a later session.
-    return json.loads(snapshot['model']._affiliations_json)
+    return json.loads(_trusted_snapshot_model(db)._affiliations_json)
+
+
+def _static_snapshot_version(db):
+    """Static facts require the unchanged committed main/temp namespace.
+
+    Native and mutable callers keep validating their current rows. Temporary
+    shadows, transactions or disabled query-only mode cannot use shared facts.
+    """
+    checkpoint()
+    if (db.in_transaction or db.execute('PRAGMA query_only').fetchone()[0] != 1
+            or db.execute('SELECT 1 FROM temp.sqlite_master LIMIT 1').fetchone()):
+        return None
+    return (db.total_changes, db.execute('PRAGMA main.data_version').fetchone()[0],
+            db.execute('PRAGMA main.schema_version').fetchone()[0],
+            db.execute('PRAGMA temp.schema_version').fetchone()[0])
+
+
+def snapshot_media_ids(db):
+    """Only exact already-validated static source-scan IDs, never permissions."""
+    checkpoint()
+    snapshot = _snapshot_scope.get()
+    if snapshot is None or snapshot['db'] is not db:
+        return None
+    snapshot['model']._check_snapshot(db)
+    version = _static_snapshot_version(db)
+    if version is None or version != snapshot['static_version']:
+        return None
+    return snapshot['model']._media_ids
+
+
+def _trusted_snapshot_model(db):
+    """An active image never replaces native facts in a mutable namespace."""
+    checkpoint()
+    snapshot=_snapshot_scope.get()
+    if snapshot is None or snapshot['db'] is not db:
+        return None
+    snapshot['model']._check_snapshot(db)
+    version=_static_snapshot_version(db)
+    if version is None or version!=snapshot['static_version']:
+        raise CatalogSnapshotChanged()
+    return snapshot['model']
+
+
+def snapshot_cast_dex_card_ids(db, dex_ids):
+    """Exact SQLite CAST membership for the audited explicit-CAST callers.
+
+    This relation does not apply to string equality/IN, generic SQL or concept
+    expansion. The native SQL join determined every typed card-ID membership;
+    only a small union of those immutable catalog facts can narrow the main scan.
+    """
+    model=_trusted_snapshot_model(db)
+    if model is None:return None
+    operands=tuple(dex_ids)
+    if (not operands or len(operands)>model.MAX_DEX_OPERANDS or
+            any(type(value) is not int or not -(2**63)<=value<2**63 for value in operands)):
+        return None
+    result=set()
+    for value in operands:
+        checkpoint();result.update(model._cast_dex_card_ids.get(value,()))
+        if len(result)>model.MAX_DEX_QUERY_IDS:return None
+    checkpoint()
+    return frozenset(result)
 
 
 def facet_lookup_relation(db):
@@ -123,8 +185,7 @@ def facet_lookup_relation(db):
     compound effective view. Generic consumers retain the original view and its
     branch-specific comparison affinities/collations.
     """
-    snapshot=_snapshot_scope.get()
-    return 'collector_snapshot.facets' if snapshot is not None and snapshot['db'] is db else 'discovery_card_facet'
+    return 'collector_snapshot.facets' if _trusted_snapshot_model(db) is not None else 'discovery_card_facet'
 
 
 class CatalogReadModelUnsupported(Exception):
@@ -139,6 +200,13 @@ class CatalogReadModel:
     session, ranking, result, or new catalog assertion is retained.
     """
     MAX_IMAGE_BYTES=64*1024*1024
+    MAX_MEDIA_IDS=100000
+    MAX_MEDIA_ID_BYTES=4*1024*1024
+    MAX_DEX_BINDINGS=100000
+    MAX_DEX_ID_BYTES=8*1024*1024
+    MAX_DEX_KEYS=4096
+    MAX_DEX_OPERANDS=32
+    MAX_DEX_QUERY_IDS=512
     COLUMNS=('card_id','facet_type','value','provenance','rights_reference')
     SCHEMA='collector_snapshot'
 
@@ -156,6 +224,9 @@ class CatalogReadModel:
         if actual!=expected or not callable(getattr(db,'serialize',None)) or not callable(getattr(db,'deserialize',None)):
             raise CatalogReadModelUnsupported()
         if db.in_transaction:raise ValueError('read model needs a committed snapshot')
+        if (any(row[1]=='temp' for row in db.execute('PRAGMA database_list'))
+                and db.execute('SELECT 1 FROM temp.sqlite_master LIMIT 1').fetchone()):
+            raise CatalogReadModelUnsupported()
         # Affinity labels alone do not capture collations, intermediate views or
         # compound-view comparison rules. Only the package's exact schema can
         # use the audited lookup optimization; other catalogs retain native SQL.
@@ -202,11 +273,40 @@ class CatalogReadModel:
         self._affiliations_json=json.dumps(affiliations,ensure_ascii=False,separators=(',',':'))
         if len(self._affiliations_json.encode())>1024*1024:
             raise ValueError('catalog affiliation proofs exceed read model bound')
+        from . import catalog_media
+        # Execute the same complete source/identity/hold validation as native
+        # requests once. Membership is an exact static metadata fact; response
+        # contexts and all display/physical/trading authority remain native.
+        media_ids = catalog_media.current_ids(db)
+        if (len(media_ids)>self.MAX_MEDIA_IDS or
+                sum(len(cid.encode('utf-8')) for cid in media_ids)>self.MAX_MEDIA_ID_BYTES):
+            raise ValueError('catalog source-scan IDs exceed read model bound')
+        self._media_ids = frozenset(media_ids)
+        self._cast_dex_card_ids=self._build_cast_dex_card_ids(db)
         self._image=db.serialize(name=self.SCHEMA)
         if len(self._image)>self.MAX_IMAGE_BYTES:
             raise ValueError('catalog read model exceeds memory bound')
         checkpoint()
         self._check_snapshot(db)
+
+    @classmethod
+    def _build_cast_dex_card_ids(cls,db):
+        # Preserve SQLite's JOIN affinity, storage classes and CAST behavior.
+        # Python string/int coercion would silently change malformed, numeric,
+        # zero-padded or BLOB operands. NULL CASTs cannot satisfy native IN.
+        pairs=db.execute("""SELECT DISTINCT c.card_id,CAST(f.value AS INTEGER) AS dex_id
+            FROM main.card c JOIN collector_snapshot.facets f ON f.card_id=c.card_id
+            WHERE f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IS NOT NULL""").fetchmany(cls.MAX_DEX_BINDINGS+1)
+        if len(pairs)>cls.MAX_DEX_BINDINGS:
+            raise ValueError('catalog CAST dex bindings exceed read model bound')
+        cast_ids={};total_bytes=0
+        for cid,dex_id in pairs:
+            checkpoint()
+            total_bytes+=len(cid.encode('utf-8') if isinstance(cid,str) else cid)
+            cast_ids.setdefault(dex_id,set()).add(cid)
+            if len(cast_ids)>cls.MAX_DEX_KEYS or total_bytes>cls.MAX_DEX_ID_BYTES:
+                raise ValueError('catalog CAST dex IDs exceed read model bound')
+        return MappingProxyType({key:frozenset(ids) for key,ids in cast_ids.items()})
 
     def _check_snapshot(self,db):
         from pathlib import Path
@@ -227,7 +327,7 @@ class CatalogReadModel:
         checkpoint();self._check_snapshot(db)
         self._attach(db)
         checkpoint()
-        token=_snapshot_scope.set({'db':db,'model':self})
+        token=_snapshot_scope.set({'db':db,'model':self,'static_version':_static_snapshot_version(db)})
         try:
             yield
             checkpoint();self._check_snapshot(db)

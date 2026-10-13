@@ -19,7 +19,7 @@ def catalog_revision(db):
                  'collector_character_affiliation.py','collector-character-affiliations-v1.json',
                  'collector_release_alias.py','collector-release-name-aliases-v1.json',
                  'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
-                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','languages.py','core.py','cli.py']:
+                 'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','catalog_locale_indexes.py','languages.py','core.py','cli.py']:
         h.update(name.encode());h.update((Path(__file__).parent/name).read_bytes())
     for name in ('active_card_metadata_evidence','discovery_card_facet','base_discovery_card_facet','active_source_correction_evidence','effective_card_reference'):
         definition=db.execute("SELECT sql FROM sqlite_master WHERE type='view' AND name=?",(name,)).fetchone()
