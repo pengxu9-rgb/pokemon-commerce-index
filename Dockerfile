@@ -9,7 +9,7 @@ COPY scripts/__init__.py scripts/build_catalog_snapshot.py /app/scripts/
 COPY catalog-build-manifest*.json /app/
 COPY catalog /app/catalog
 RUN case "$CATALOG_BUILD_MANIFEST" in \
-      catalog-build-manifest-source-binding-v1.json|catalog-build-manifest-international-pokemon-scale-v1.json) ;; \
+      catalog-build-manifest-source-binding-v1.json|catalog-build-manifest-international-pokemon-scale-v1.json|catalog-build-manifest-international-pokemon-next3000-v1.json) ;; \
       *) echo 'Unsupported catalog manifest' >&2; exit 1 ;; esac \
     && python -m scripts.build_catalog_snapshot \
     --manifest "/app/$CATALOG_BUILD_MANIFEST" --db /app/catalog.sqlite3 \
