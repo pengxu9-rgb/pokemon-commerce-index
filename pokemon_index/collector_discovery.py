@@ -73,31 +73,51 @@ def _card_result(db, row) -> dict:
                                "variant", "name", "rarity", "provenance")}
     card.update(set_name=row["set_name"], release_date=row["release_date"],
                 release_provenance=row["release_provenance"],
-                structural_match_eligible=bool(row["match_eligible"]),
-                support_status=supported_catalog.support_for_card(db, row["card_id"])["status"],
+                structural_match_eligible=bool(row["match_eligible"]))
+    context = collector_runtime.snapshot_card_context(db, row['card_id'])
+    if context is None:
+        context = _card_context(db, row['card_id'])
+    card.update(support_status=context['support_status'],
                 price_comparable=False, automatic_offer_join_allowed=False)
-    context=collector_evidence.card_context(db,row['card_id'])
-    if context['findings'] or context['stale_findings']:card['collector_evidence']=context
-    metadata = card_metadata.context(db, row['card_id'])
-    if metadata:
-        card['official_metadata'] = metadata
-        if metadata['status'] == 'official_coordinate_metadata_supported' and metadata['official']['rarity']:
-            card['source_rarity'] = card['rarity']
-            card['rarity'] = metadata['official']['rarity']
-    from . import coordinate_family,printing_evidence,source_corrections
-    corrected=source_corrections.context(db,row['card_id'])
-    if corrected:card['source_corrections']=corrected
-    family=coordinate_family.context(db,row['card_id'])
-    if family:card['official_coordinate_family']=family
-    printing=printing_evidence.context(db,row['card_id'])
-    if printing:card['printing_source_evidence']=printing
-    artist=source_corrections.printed_artist(db,row['card_id'])
-    if artist:card['printed_artist_credit']=artist
-    from . import catalog_media,variant_dimension_hold
-    card['media_availability']=catalog_media.availability(db,row['card_id'])
-    hold=variant_dimension_hold.context(db,row['card_id'])
-    if hold:card['variant_dimension_hold']=hold
+    for field, value in context.items():
+        if field == 'support_status':
+            continue
+        card[field] = value
+        if field == 'official_metadata':
+            if value['status'] == 'official_coordinate_metadata_supported' and value['official']['rarity']:
+                card['source_rarity'] = card['rarity']
+                card['rarity'] = value['official']['rarity']
     return card
+
+
+def _card_context(db, cid) -> dict:
+    """Native source evidence only; raw row fields and rarity stay with callers."""
+    context = {'support_status': supported_catalog.support_for_card(db, cid)["status"]}
+    evidence = collector_evidence.card_context(db, cid)
+    if evidence['findings'] or evidence['stale_findings']:
+        context['collector_evidence'] = evidence
+    metadata = card_metadata.context(db, cid)
+    if metadata:
+        context['official_metadata'] = metadata
+    from . import coordinate_family, printing_evidence, source_corrections
+    corrected = source_corrections.context(db, cid)
+    if corrected:
+        context['source_corrections'] = corrected
+    family = coordinate_family.context(db, cid)
+    if family:
+        context['official_coordinate_family'] = family
+    printing = printing_evidence.context(db, cid)
+    if printing:
+        context['printing_source_evidence'] = printing
+    artist = source_corrections.printed_artist(db, cid)
+    if artist:
+        context['printed_artist_credit'] = artist
+    from . import catalog_media, variant_dimension_hold
+    context['media_availability'] = catalog_media.availability(db, cid)
+    hold = variant_dimension_hold.context(db, cid)
+    if hold:
+        context['variant_dimension_hold'] = hold
+    return context
 
 
 def _rows(db, where: str, params: tuple, *, narrow_ids=False) -> list:
@@ -260,7 +280,8 @@ def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
     """Prefer full release titles over nested titles or code-shaped words."""
     return list(collector_runtime.request_parser_result(db,
         ('release_name_mentions', text, tuple(languages)),
-        lambda: tuple(_compute_release_name_mentions(db, text, languages))))
+        lambda: tuple(_compute_release_name_mentions(db, text, languages)),
+        immutable_parser='release_name_mentions'))
 
 
 def _compute_release_name_mentions(db, text, languages):
@@ -270,6 +291,10 @@ def _compute_release_name_mentions(db, text, languages):
                  if language in languages}
         names.update((r['set_code'], _norm(r['alias'])) for r in
                      collector_release_alias.aliases(db, languages))
+    return _release_mentions_from_facts(text, names)
+
+
+def _release_mentions_from_facts(text, names):
     candidates=[]
     for code,term in names:
         collector_runtime.checkpoint()
@@ -335,12 +360,17 @@ def _compute_release_codes(db, text, languages):
 
 def _artists(db, text: str) -> list[str]:
     return list(collector_runtime.request_parser_result(db,
-        ('artists', text), lambda: tuple(_compute_artists(db, text))))
+        ('artists', text), lambda: tuple(_compute_artists(db, text)),
+        immutable_parser='artists'))
 
 
 def _compute_artists(db, text):
+    return _artists_from_facts(text, collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists']))
+
+
+def _artists_from_facts(text, rows):
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
-    return [r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists'])
+    return [r[0] for r in rows
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
 
 

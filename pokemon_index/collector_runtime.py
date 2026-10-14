@@ -50,7 +50,7 @@ def catalog_request(function):
             result = function(db, *args, **kwargs)
             checkpoint()
             return result
-        token = _catalog_scope.set({'db': db, 'version': None, 'rows': {}, 'mentions': {}})
+        token = _catalog_scope.set({'db': db, 'version': None, 'rows': {}, 'mentions': {}, 'immutable_parsers': {}})
         try:
             result = function(db, *args, **kwargs)
             checkpoint()
@@ -67,13 +67,13 @@ def _request_cache(db):
     # Transactions can roll back without reducing total_changes. Never retain
     # transaction-local results, including rollback-to-savepoint results.
     if db.in_transaction:
-        active['rows'].clear();active['mentions'].clear();active['version']=None
+        active['rows'].clear();active['mentions'].clear();active['immutable_parsers'].clear();active['version']=None
         return None
     version=(db.total_changes,db.execute('PRAGMA data_version').fetchone()[0],
              db.execute('PRAGMA schema_version').fetchone()[0],
              db.execute('PRAGMA temp.schema_version').fetchone()[0])
     if active['version']!=version:
-        active['rows'].clear();active['mentions'].clear();active['version']=version
+        active['rows'].clear();active['mentions'].clear();active['immutable_parsers'].clear();active['version']=version
     return active
 
 
@@ -102,35 +102,78 @@ def request_mentions(db, key, build):
     if active is None:return build()
     if key not in active['mentions']:
         result=build();checkpoint()
-        if len(active['mentions'])<64:active['mentions'][key]=result
+        if _parser_cache_size(active)<64:active['mentions'][key]=result
         return result
     return active['mentions'][key]
 
 
-def request_parser_result(db, key, build):
+def request_parser_result(db, key, build, *, immutable_parser=None):
     """Memoize immutable parser work only in an active guarded snapshot.
 
     Native callers still read their live SQL and file-backed vocabularies. A
     cache hit rechecks the same snapshot/clone binding before returning facts;
     it cannot hide a changed file, namespace, transaction or query-only mode.
     """
+    if immutable_parser is not None:
+        _validate_immutable_parser(key, immutable_parser)
     checkpoint()
     snapshot = _snapshot_scope.get()
     if snapshot is None or snapshot['db'] is not db:
         return build()
     # Validate before every guarded build or cache hit. A transaction/TEMP
     # shadow must not fall through to native SQL and disappear on rollback.
-    _trusted_snapshot_model(db)
+    model = _trusted_snapshot_model(db)
     active = _catalog_scope.get()
     if active is None or active['db'] is not db:
-        return build()
-    if key in active['mentions']:
-        return active['mentions'][key]
-    result = build()
+        return _immutable_parser_result(model, key, immutable_parser) if immutable_parser is not None else build()
+    cache = active['mentions'] if immutable_parser is None else active['immutable_parsers']
+    if key in cache:
+        return cache[key]
+    result = _immutable_parser_result(model, key, immutable_parser) if immutable_parser is not None else build()
     checkpoint()
-    if len(active['mentions']) < 64:
-        active['mentions'][key] = result
+    if _parser_cache_size(active) < 64:
+        cache[key] = result
     return result
+
+
+def _parser_cache_size(active):
+    return len(active['mentions']) + len(active['immutable_parsers'])
+
+
+def _validate_immutable_parser(key, kind):
+    valid = type(key) is tuple and (
+        kind == 'artists' and len(key) == 2 and key[0] == kind and type(key[1]) is str
+        or kind == 'release_name_mentions' and len(key) == 3 and key[0] == kind
+        and type(key[1]) is str and type(key[2]) is tuple
+        and all(type(value) is str for value in key[2]))
+    if not valid:
+        raise ValueError('unsupported immutable parser')
+
+
+def _immutable_parser_result(model, key, kind):
+    """Fixed pure readers after the caller's fresh trust check; no SQL callback.
+
+    The generic/native builder remains separate. These two readers receive
+    immutable catalog facts only and cannot consult a TEMP or transaction
+    namespace between the trust check and parsing.
+    """
+    from . import collector_discovery
+    if kind == 'artists' and len(key) == 2 and key[0] == 'artists' and type(key[1]) is str:
+        return tuple(collector_discovery._artists_from_facts(key[1], model._vocabularies['artists']))
+    if (kind == 'release_name_mentions' and len(key) == 3 and key[0] == kind
+            and type(key[1]) is str and type(key[2]) is tuple
+            and all(type(value) is str for value in key[2])):
+        names = frozenset((code, term) for language, code, term in model._release_names if language in key[2])
+        return tuple(collector_discovery._release_mentions_from_facts(key[1], names))
+    raise ValueError('unsupported immutable parser')
+
+
+def snapshot_card_context(db, cid):
+    """Freshly guarded source facts; every card DTO remains a separate copy."""
+    model = _trusted_snapshot_model(db)
+    if model is None:
+        return None
+    return model._card_source_context_index.lookup(cid)
 
 
 def snapshot_affiliations(db):
@@ -271,7 +314,9 @@ class CatalogReadModel:
 
     Built only by the immutable HTTP server after calculating its catalog
     revision. Main remains mode=ro. No shared SQLite connection, user text,
-    session, ranking, result, or new catalog assertion is retained.
+    session, ranking, raw card row, or new catalog assertion is retained.
+    Source contexts are bounded native facts with explicit known-card absence;
+    raw identity, eligibility and rarity remain in each request.
     """
     MAX_IMAGE_BYTES=64*1024*1024
     MAX_MEDIA_IDS=100000
@@ -399,6 +444,8 @@ class CatalogReadModel:
                     sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
                     for rows in self._character_names.values())):
             raise ValueError('catalog matching facts exceed read model bound')
+        from . import card_source_context_index
+        self._card_source_context_index = card_source_context_index.compile_index(db)
         self._image=db.serialize(name=self.SCHEMA)
         if len(self._image)>self.MAX_IMAGE_BYTES:
             raise ValueError('catalog read model exceeds memory bound')

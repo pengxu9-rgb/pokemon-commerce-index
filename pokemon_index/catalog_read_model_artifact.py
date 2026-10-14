@@ -17,13 +17,15 @@ import sqlite3
 import stat
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
+from contextvars import copy_context
 from types import MappingProxyType
 import unicodedata
 
 from . import collector_runtime as runtime
 
 FORMAT = 'pokemon.catalog-read-model-artifact.v1'
-STATE_FORMAT = 'pokemon.catalog-read-model-state.v1'
+STATE_FORMAT = 'pokemon.catalog-read-model-state.v2'
 FILES = ('metadata.json', 'facet-image.sqlite3', 'seal.json')
 MAX_METADATA_BYTES = 32 * 1024 * 1024
 MAX_SEAL_BYTES = 64 * 1024
@@ -96,8 +98,8 @@ def _json(raw, limit):
 
 
 def _file_identity(path):
-    _require(not path.is_symlink(), 'symlink artifact or input')
-    st = path.stat()
+    st = os.lstat(path)
+    _require(not stat.S_ISLNK(st.st_mode), 'symlink artifact or input')
     _require(stat.S_ISREG(st.st_mode), 'nonregular artifact or input')
     return st.st_dev, st.st_ino, st.st_size, st.st_mtime_ns, st.st_ctime_ns
 
@@ -209,7 +211,8 @@ def model_state(model):
         character_names={str(current).lower(): _typed_rows(sorted(rows, key=lambda row: _json_bytes(_typed_rows([row]))))
                          for current, rows in model._character_names.items()},
         release_names=_typed_rows(sorted(model._release_names)),
-        release_aliases_json=model._release_aliases_json)
+        release_aliases_json=model._release_aliases_json,
+        card_source_context_index=model._card_source_context_index.to_state())
     return state
 
 
@@ -227,12 +230,15 @@ def _engine_profile(db):
 
 
 def _counts(model):
-    return dict(vocabulary_rows={key:len(rows) for key,rows in model._vocabularies.items()},
+    counts = dict(vocabulary_rows={key:len(rows) for key,rows in model._vocabularies.items()},
         media_ids=len(model._media_ids), affiliations=len(_json(model._affiliations_json.encode(), 1024*1024)),
         cast_dex_keys=len(model._cast_dex_card_ids), cast_dex_bindings=sum(map(len,model._cast_dex_card_ids.values())),
         text_dex_keys=len(model._text_dex_card_ids), text_dex_bindings=sum(map(len,model._text_dex_card_ids.values())),
         character_name_rows={str(key).lower():len(rows) for key,rows in model._character_names.items()},
         release_name_rows=len(model._release_names), release_aliases=len(_json(model._release_aliases_json.encode(), 1024*1024)))
+
+    counts.update(model._card_source_context_index.counts())
+    return counts
 
 
 def _source_identities():
@@ -358,7 +364,7 @@ def _proof_json(raw, *, release=False):
 
 def _restore(state, image):
     cls = runtime.CatalogReadModel
-    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','character_names','release_names','release_aliases_json'}
+    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','character_names','release_names','release_aliases_json','card_source_context_index'}
     _exact(state, keys, 'model state'); _require(state['schema'] == STATE_FORMAT and state['facet_image_sha256'] == _sha(image), 'model format or image hash')
     model = object.__new__(cls)
     _exact(state['vocabularies'], runtime.VOCABULARY_SQL, 'vocabulary')
@@ -407,6 +413,8 @@ def _restore(state, image):
     # tuple multiplicity; query-time membership uses its original set semantics.
     model._release_names = tuple(releases)
     model._release_aliases_json = _proof_json(state['release_aliases_json'], release=True)
+    from . import card_source_context_index
+    model._card_source_context_index = card_source_context_index.restore_index(state['card_source_context_index'])
     model._image = image
     return model
 
@@ -438,6 +446,46 @@ def _deep_size(value, seen=None):
         elif isinstance(item, sequences):
             extend(item)
     return size
+
+
+def _read_bootstrap_files(path, artifact_dir, seal):
+    """Overlap bounded file reads with one checksum task before restoration.
+
+    The worker inherits the original cooperative deadline and only hashes the
+    source database. SQLite, JSON decoding and model restoration stay on the
+    caller and wait for accepted checksum/byte evidence. The context manager
+    joins on every exit, including read failure and interruption.
+    """
+    def hash_task():
+        started = time.monotonic()
+        result = _database_hash(path)
+        return result, time.monotonic() - started
+
+    context = copy_context()
+    with ThreadPoolExecutor(max_workers=1, thread_name_prefix='catalog-bootstrap-hash') as executor:
+        task = executor.submit(context.run, hash_task)
+        started = time.monotonic()
+        read_error = None
+        try:
+            metadata, metadata_identity = _read(artifact_dir/'metadata.json', MAX_METADATA_BYTES)
+            image, image_identity = _read(artifact_dir/'facet-image.sqlite3', runtime.CatalogReadModel.MAX_IMAGE_BYTES)
+        except Exception as exc:
+            read_error = exc
+        read_seconds = time.monotonic() - started
+        (database_sha256, database_bytes), hash_seconds = task.result()
+        _require((database_sha256, database_bytes) ==
+                 (seal['database_sha256'], seal['database_bytes']), 'database byte mismatch')
+        if read_error is not None:
+            raise read_error
+        started = time.monotonic()
+        metadata_sha256 = _sha(metadata)
+        _require((len(metadata), metadata_sha256) ==
+                 (seal['metadata_bytes'], seal['metadata_sha256']) and
+                 metadata_sha256 == seal['model_state_sha256'], 'metadata hash mismatch')
+        _require((len(image), _sha(image)) ==
+                 (seal['facet_image_bytes'], seal['facet_image_sha256']), 'image hash mismatch')
+        read_seconds += time.monotonic() - started
+    return metadata, metadata_identity, image, image_identity, hash_seconds, read_seconds
 
 
 def _load(db, artifact_dir, manifest_path, expected_seal_sha256, bootstrap_timings=None):
@@ -473,17 +521,16 @@ def _load(db, artifact_dir, manifest_path, expected_seal_sha256, bootstrap_timin
     manifest, manifest_identity = _read(manifest_path, MAX_SEAL_BYTES)
     _require(seal['manifest_sha256'] == _sha(manifest), 'manifest mismatch')
     measured('source_schema_and_seal_validation')
-    database_sha256, database_bytes = _database_hash(path)
-    _require((database_sha256,database_bytes) == (seal['database_sha256'],seal['database_bytes']), 'database byte mismatch')
-    measured('database_hash')
-    metadata, metadata_identity = _read(artifact_dir/'metadata.json', MAX_METADATA_BYTES)
-    image, image_identity = _read(artifact_dir/'facet-image.sqlite3', cls.MAX_IMAGE_BYTES)
-    _require((len(metadata),_sha(metadata)) == (seal['metadata_bytes'],seal['metadata_sha256']) and _sha(metadata) == seal['model_state_sha256'], 'metadata hash mismatch')
-    _require((len(image),_sha(image)) == (seal['facet_image_bytes'],seal['facet_image_sha256']), 'image hash mismatch')
-    measured('artifact_read_and_hash')
+    metadata, metadata_identity, image, image_identity, hash_seconds, read_seconds = _read_bootstrap_files(path, artifact_dir, seal)
+    # These operation timers overlap; they are not sequential phase totals.
+    phases['database_hash'] = hash_seconds
+    phases['artifact_read_and_hash'] = read_seconds
+    phase_started = time.monotonic()
     _validate_image(image)
     measured('facet_integrity')
     state = _json(metadata, MAX_METADATA_BYTES)
+    from . import card_source_context_index
+    card_source_context_index.validate_aggregate_json_members(state, metadata)
     measured('bounded_json_decode')
     model = _restore(state, image)
     measured('typed_state_restore')
