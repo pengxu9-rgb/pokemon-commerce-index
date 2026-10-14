@@ -155,6 +155,11 @@ def _typed_id(value):
 
 def dependency_population(db):
     """Conservative historical union; membership is never inferred from names."""
+    ids,union,_,_ = _dependency_population(db)
+    return ids,union
+
+
+def _dependency_population(db):
     needed = {'card', *DIRECT_DEPENDENCIES, *SUBJECT_DEPENDENCIES,
               'coordinate_family_evidence', 'source_correction_evidence',
               'catalog_identity_quarantine'}
@@ -214,7 +219,7 @@ def dependency_population(db):
         found.add(_typed_id(identity['card_id'])[1])
     populations['variant_dimension_hold'] = found
     union = frozenset().union(*populations.values()) & known
-    return tuple(ids), union
+    return tuple(ids), union, frozenset(populations['source_correction_evidence']), frozenset(found)
 
 
 from typing import NamedTuple
@@ -353,6 +358,118 @@ def compile_index(db):
                             MappingProxyType(dict(assignments)), DEFAULT_ABSENT_JSON, True)
     except ContextIndexUnsupported:
         return disabled_index()
+
+
+def _constructor_stamp(db):
+    """Same opened database and source policies across the whole transient phase."""
+    _unsupported(runtime._snapshot_scope.get() is None and runtime._catalog_scope.get() is None
+        and not db.in_transaction, 'constructor source facts need an unscoped committed DB')
+    _unsupported(db.execute('PRAGMA query_only').fetchone()[0] == 1,
+                 'constructor source facts need query-only mode')
+    try:
+        path,identity=runtime.CatalogReadModel._validate_database(db)
+    except runtime.CatalogReadModelUnsupported:
+        raise ContextIndexUnsupported('unsupported constructor schema') from None
+    _unsupported(identity[1] is None, 'constructor source facts do not reuse a WAL')
+    version=runtime._static_snapshot_version(db)
+    _unsupported(version is not None, 'constructor source namespace changed')
+    return (id(db),str(path),identity,version,artifact._source_identities())
+
+
+def _assert_constructor_stamp(db,before):
+    try:
+        current=_constructor_stamp(db)
+    except (ContextIndexUnsupported,OSError):
+        # Initial unsupported inputs can fall back. An unsupported namespace
+        # AFTER reuse began must never publish native membership as a fallback.
+        raise runtime.CatalogSnapshotChanged() from None
+    if current != before:raise runtime.CatalogSnapshotChanged()
+
+
+def compile_constructor_facts(db):
+    """Fixed constructor entry point; transient media/hold facts never escape.
+
+    All historical source subjects and holds are read once with the ordinary
+    native validators. Correction absence follows the complete historical
+    snapshot/new-card union, including superseded records. Standalone imports
+    and compile_index keep their original native validation. No supplied map,
+    callback, request/query result or authority is accepted.
+    """
+    from . import catalog_media,variant_dimension_hold,source_corrections
+    media_strings={};hold_strings={};before=None
+    try:
+        before=_constructor_stamp(db)
+        ids,union,correction_ids,hold_ids=_dependency_population(db)
+        known=frozenset(ids)
+        subjects=catalog_media.subjects(db)
+        _unsupported(all(type(cid) is str for cid in subjects), 'non-TEXT media subject')
+        complete=subjects | hold_ids
+        _unsupported(len(complete) <= MAX_HISTORY_ROWS, 'constructor media subject bound')
+        bytes_used=0
+        for cid in sorted(hold_ids):
+            runtime.checkpoint()
+            hold=variant_dimension_hold.context(db,cid)
+            _validate_native_json(hold)
+            raw=artifact._json_bytes(hold).decode('utf-8')
+            hold_strings[cid]=raw;bytes_used+=len(_utf8(raw))
+            _unsupported(bytes_used <= artifact.MAX_METADATA_BYTES, 'constructor transient byte bound')
+            del hold,raw
+        current_ids=set()
+        for cid in sorted(complete):
+            runtime.checkpoint()
+            hold=json.loads(hold_strings[cid]) if cid in hold_strings else None
+            basis,evidence=catalog_media.evidence(db,cid)
+            media=catalog_media._availability_from_evidence(basis,evidence,hold)
+            _validate_native_json(media)
+            raw=artifact._json_bytes(media).decode('utf-8')
+            media_strings[cid]=raw;bytes_used+=len(_utf8(raw))
+            _unsupported(bytes_used <= artifact.MAX_METADATA_BYTES, 'constructor transient byte bound')
+            if cid in subjects and media['with_source_scans_eligible']:current_ids.add(cid)
+            del basis,evidence,media,hold,raw
+        transient=(media_strings,hold_strings,known,ids,union,correction_ids,
+                   hold_ids,subjects,complete,current_ids)
+        _unsupported(artifact._deep_size(transient) <= artifact.MAX_METADATA_BYTES,
+                     'constructor transient decoded bound')
+        _assert_constructor_stamp(db,before)
+        strings=[];interned={};assignments={};byte_count=len(_utf8(DEFAULT_ABSENT_JSON))
+        for cid in ids:
+            runtime.checkpoint()
+            if cid not in union:continue
+            correction=source_corrections.context(db,cid) if cid in correction_ids else None
+            context=discovery._constructor_card_context(db,cid,correction)
+            context['media_availability']=(json.loads(media_strings[cid]) if cid in media_strings
+                else json.loads(DEFAULT_ABSENT_JSON)['media_availability'])
+            hold=json.loads(hold_strings[cid]) if cid in hold_strings else None
+            if hold:context['variant_dimension_hold']=hold
+            raw=_context_json(context)
+            if raw not in interned:
+                _unsupported(len(strings) < MAX_TEMPLATES, 'context template bound')
+                byte_count+=len(_utf8(raw))
+                _unsupported(byte_count <= MAX_CONTEXT_BYTES, 'context string byte bound')
+                interned[raw]=len(strings);strings.append(raw)
+            assignments[cid]=interned[raw]
+        outside=next((cid for cid in ids if cid not in union),None)
+        if outside is not None:
+            _require(_context_json(discovery._card_context(db,outside)) == DEFAULT_ABSENT_JSON,
+                     'native absence branch contract changed')
+        # Shared objects are counted once across all live fact sets, native
+        # contexts, templates, assignment/interner maps and the CID universe.
+        # Nothing from the transient facts remains during model serialization.
+        _unsupported(artifact._deep_size((transient,strings,interned,assignments,
+            context if assignments else None,correction if assignments else None,
+            raw if assignments else None)) <= artifact.MAX_DECODED_BYTES,
+            'constructor aggregate decoded bound')
+        _assert_constructor_stamp(db,before)
+        return (ContextIndex(known,tuple(strings),MappingProxyType(dict(assignments)),
+                             DEFAULT_ABSENT_JSON,True),frozenset(current_ids))
+    except ContextIndexUnsupported:
+        # No partially compiled index or membership escapes an unsupported case.
+        if before is not None:_assert_constructor_stamp(db,before)
+        current_ids=frozenset(catalog_media.current_ids(db))
+        if before is not None:_assert_constructor_stamp(db,before)
+        return disabled_index(),current_ids
+    finally:
+        media_strings.clear();hold_strings.clear()
 
 
 def _member_count(raw):

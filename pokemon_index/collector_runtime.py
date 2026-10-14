@@ -408,11 +408,11 @@ class CatalogReadModel:
         self._affiliations_json=json.dumps(affiliations,ensure_ascii=False,separators=(',',':'))
         if len(self._affiliations_json.encode())>1024*1024:
             raise ValueError('catalog affiliation proofs exceed read model bound')
-        from . import catalog_media
-        # Execute the same complete source/identity/hold validation as native
-        # requests once. Membership is an exact static metadata fact; response
-        # contexts and all display/physical/trading authority remain native.
-        media_ids = catalog_media.current_ids(db)
+        from . import card_source_context_index
+        # Constructor-only proof reuse covers ALL historical media subjects and
+        # holds. The transient maps are discarded inside the fixed compiler;
+        # native imports/requests keep validating their current source records.
+        self._card_source_context_index,media_ids = card_source_context_index.compile_constructor_facts(db)
         if (len(media_ids)>self.MAX_MEDIA_IDS or
                 sum(len(cid.encode('utf-8')) for cid in media_ids)>self.MAX_MEDIA_ID_BYTES):
             raise ValueError('catalog source-scan IDs exceed read model bound')
@@ -444,8 +444,6 @@ class CatalogReadModel:
                     sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
                     for rows in self._character_names.values())):
             raise ValueError('catalog matching facts exceed read model bound')
-        from . import card_source_context_index
-        self._card_source_context_index = card_source_context_index.compile_index(db)
         self._image=db.serialize(name=self.SCHEMA)
         if len(self._image)>self.MAX_IMAGE_BYTES:
             raise ValueError('catalog read model exceeds memory bound')

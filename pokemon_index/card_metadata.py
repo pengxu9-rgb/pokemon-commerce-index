@@ -89,6 +89,18 @@ def import_evidence(db, rows):
 
 
 def context(db, cid):
+    return _context(db,cid)
+
+
+_NATIVE_CORRECTION = object()
+
+
+def _context_with_source_correction(db,cid,correction):
+    """Private constructor path; an exact native correction or proved absence."""
+    return _context(db,cid,correction)
+
+
+def _context(db,cid,correction=_NATIVE_CORRECTION):
     if not available(db):
         return None
     row = db.execute('SELECT record_json FROM active_card_metadata_evidence WHERE card_id=?', (cid,)).fetchone()
@@ -103,7 +115,8 @@ def context(db, cid):
         facet_status[kind]=('page_level_only' if evidence['official']['page_kind']=='numbered_parts'
             else 'not_declared' if not values else 'source_conflict' if source-set(values) else 'source_supported')
     from . import source_corrections
-    correction=source_corrections.context(db,cid)
+    if correction is _NATIVE_CORRECTION:
+        correction=source_corrections.context(db,cid)
     printed=[f for f in correction['findings'] if f['kind']=='printed_artist' and f['status']=='source_corrected'] if correction else []
     if printed:facet_status['illustrator']='printed_source_corrected_html_or_seed_conflict_preserved'
     return dict(status='official_coordinate_metadata_supported', evidence_id=evidence['evidence_id'],

@@ -120,6 +120,30 @@ def _card_context(db, cid) -> dict:
     return context
 
 
+def _constructor_card_context(db,cid,corrected):
+    """Fixed native non-media assembler for a guarded constructor only.
+
+    The caller derives correction presence from ALL historical snapshots and
+    new-card records. Other evidence readers and printing artist validation
+    remain native. This is neither a request cache nor a callback interface.
+    """
+    from . import coordinate_family,printing_evidence,source_corrections
+    context={'support_status':supported_catalog.support_for_card(db,cid)['status']}
+    evidence=collector_evidence.card_context(db,cid)
+    if evidence['findings'] or evidence['stale_findings']:
+        context['collector_evidence']=evidence
+    metadata=card_metadata._context_with_source_correction(db,cid,corrected)
+    if metadata:context['official_metadata']=metadata
+    if corrected:context['source_corrections']=corrected
+    family=coordinate_family.context(db,cid)
+    if family:context['official_coordinate_family']=family
+    printing=printing_evidence.context(db,cid)
+    if printing:context['printing_source_evidence']=printing
+    artist=source_corrections._printed_artist_from_source_correction(db,cid,corrected)
+    if artist:context['printed_artist_credit']=artist
+    return context
+
+
 def _rows(db, where: str, params: tuple, *, narrow_ids=False) -> list:
     source = collector_runtime.card_scan(db, narrow_ids=narrow_ids)
     return db.execute(f"""SELECT c.*,s.name AS set_name,s.release_date,
