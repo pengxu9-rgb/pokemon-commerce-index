@@ -36,7 +36,7 @@ MAX_JSON_DEPTH = 32
 _PACKAGED_DIR = Path('/app/catalog-read-model')
 _PACKAGED_MANIFEST = Path('/app/catalog-build-manifest.json')
 HEX = re.compile(r'[0-9a-f]{64}\Z')
-_JSON_STRINGS = re.compile(rb'"(?:[^"\\]|\\.)*"')
+_JSON_STRINGS = re.compile(rb'"(?:[^"\\]++|\\.)*+"')
 _NON_JSON_TOKENS = bytes(value for value in range(256) if value not in b'{}[],')
 _IMAGE_SQL = (
     ('index', 'card_lookup', 'facets', 'CREATE INDEX card_lookup ON facets(card_id,facet_type,value)'),
