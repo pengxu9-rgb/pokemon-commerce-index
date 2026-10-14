@@ -16,6 +16,11 @@ def evidence(db,cid):
 
 def availability(db,cid):
     hold=variant_dimension_hold.context(db,cid);basis,ctx=evidence(db,cid)
+    return _availability_from_evidence(basis,ctx,hold)
+
+
+def _availability_from_evidence(basis,ctx,hold):
+    """Fixed formatter; constructor inputs come from the native proof readers."""
     status=('identity_hold' if hold else 'missing_source_scan_evidence' if ctx is None else
             'stale_source_scan_evidence' if not ctx['current_endpoint'] else
             'held_source_scan_evidence' if basis=='number_reading' and (not ctx['visible_text_agreement'] or ctx['source_coordinate_conflict']) else

@@ -16,7 +16,7 @@ RUNTIME_SOURCES=(
     'collector_release_alias.py','collector-release-name-aliases-v1.json',
     'collector_evidence.py','supported_catalog.py','card_metadata.py','metadata_views.sql',
     'discovery_graph.py','number_graph.py','number_evidence.py','source_image_facts.py','source_mechanic.py','card_comparison.py','offer_comparison.py','card_rarity.py','coordinate_family.py','printing_evidence.py','source_corrections.py','variant_dimension_hold.py','catalog_media.py','catalog_locale.py','catalog_locale_indexes.py','languages.py','core.py','cli.py','schema.sql',
-    'catalog_read_model_artifact.py',
+    'catalog_read_model_artifact.py','card_source_context_index.py',
 )
 
 

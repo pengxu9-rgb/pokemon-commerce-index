@@ -45,7 +45,7 @@ class RequestParserRuntimeTests(unittest.TestCase):
             artists = discovery._artists(db, 'cards by alpha'); artists.append('poison')
             self.assertEqual(discovery._artists(db, 'cards by alpha'), ['Alpha'])
         with closing(core.connect(self.path, readonly=True)) as db, self.model.request(db):
-            with patch.object(discovery, '_compute_release_name_mentions', wraps=discovery._compute_release_name_mentions) as names:
+            with patch.object(discovery, '_release_mentions_from_facts', wraps=discovery._release_mentions_from_facts) as names:
                 probe(db); self.assertEqual(names.call_count, 2)
 
     def test_nested_qualifier_values_cannot_poison_cached_result(self):
@@ -63,7 +63,7 @@ class RequestParserRuntimeTests(unittest.TestCase):
         @runtime.catalog_request
         def probe(db):
             discovery._artists(db, 'cards by alpha'); discovery._artists(db, 'cards by alpha')
-        with patch.object(discovery, '_compute_artists', wraps=discovery._compute_artists) as build:
+        with patch.object(discovery, '_artists_from_facts', wraps=discovery._artists_from_facts) as build:
             for unused in range(2):
                 with closing(core.connect(self.path, readonly=True)) as db, self.model.request(db): probe(db)
             self.assertEqual(build.call_count, 2)
@@ -85,7 +85,7 @@ class RequestParserRuntimeTests(unittest.TestCase):
             self.assertLessEqual(len(runtime._catalog_scope.get()['mentions']), 64)
             self.assertEqual(discovery._artists(db, 'cards by alpha 64'), ['Alpha'])
         with closing(core.connect(self.path, readonly=True)) as db, self.model.request(db):
-            with patch.object(discovery, '_compute_artists', wraps=discovery._compute_artists) as build:
+            with patch.object(discovery, '_artists_from_facts', wraps=discovery._artists_from_facts) as build:
                 probe(db); self.assertEqual(build.call_count, 66)
 
     def test_cache_hit_rechecks_source_alias_file_identity(self):

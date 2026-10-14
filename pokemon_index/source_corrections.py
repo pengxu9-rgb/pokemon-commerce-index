@@ -112,6 +112,11 @@ def status(db):
 
 def printed_artist(db,cid):
     ctx=context(db,cid)
+    return _printed_artist_from_source_correction(db,cid,ctx)
+
+
+def _printed_artist_from_source_correction(db,cid,ctx):
+    """Private fixed formatter; ordinary calls still validate native context."""
     if ctx:
         findings=[f for f in ctx['findings'] if f['kind']=='printed_artist']
         if findings:

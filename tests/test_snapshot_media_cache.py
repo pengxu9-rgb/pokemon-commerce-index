@@ -238,8 +238,11 @@ class SnapshotMediaCacheTests(unittest.TestCase):
                 with runtime.sqlite_deadline(db,time.monotonic()-1):catalog_media.current_ids(db)
         with closing(core.connect(self.path,readonly=True)) as db:
             with patch.object(runtime.time,'monotonic',return_value=0) as clock:
-                def slow(*args):clock.return_value=2;return {self.cid}
-                with patch.object(catalog_media,'current_ids',side_effect=slow):
+                native_evidence=catalog_media.evidence
+                def slow(*args):
+                    clock.return_value=2
+                    return native_evidence(*args)
+                with patch.object(catalog_media,'evidence',side_effect=slow):
                     with self.assertRaises(runtime.CatalogDeadline):
                         with runtime.sqlite_deadline(db,1):runtime.CatalogReadModel(db)
         self.assertIsNone(runtime._snapshot_scope.get())

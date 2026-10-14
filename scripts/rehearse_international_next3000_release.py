@@ -18,7 +18,7 @@ from scripts.rehearse_international_scale_release import logical_snapshot_digest
 MANIFEST = audit.MANIFEST
 PRIOR = audit.PRIOR
 MANIFEST_SHA = '31d1484b579b2d760cc6a2f55dddbeb9cf392c6dfca0cdac3c4878b672dfe7f1'
-REVISION = '472217007cc4d69a674eca6a7764128e56afbc1ca0dd0e05434acd7892d7e0db'
+REVISION = '8c6185a781b2b9bc8c0f8989acc7c82db9b7d0400371589fb1f060948eaea2be'
 LOGICAL_SNAPSHOT_SHA = 'd09a072183e6cd31297ee84758839caaff2835459918723762500b1673114d5d'
 NATIVE_SEMANTIC_SHA = 'dea1dbe5caf7f3e10ce45b735b20b4bcae1b591b71afa25f2433d9ed3ebeb349'
 
