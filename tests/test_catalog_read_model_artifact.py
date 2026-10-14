@@ -72,6 +72,31 @@ class ReadModelArtifactTests(unittest.TestCase):
             with self.assertRaisesRegex(artifact.ArtifactInvalid,'pin required'):
                 artifact.load(db,self.directory,self.manifest,expected_seal_sha256=None)
 
+    def test_bootstrap_diagnostics_preserve_exact_receipt_and_model_contract(self):
+        plain_model, revision, original = self.load()
+        timings = {}
+        with closing(core.connect(self.db_path, readonly=True)) as db:
+            measured_model, measured_revision, measured = artifact.load(
+                db, self.directory, self.manifest,
+                expected_seal_sha256=self.receipt['seal_sha256'],
+                bootstrap_timings=timings)
+        self.assertEqual(measured.keys(), original.keys())
+        # Python may shrink a subsequent instance's shared-key __dict__ by a
+        # few bytes. The allocation observation is not part of the sealed facts.
+        for key in original.keys() - {'decoded_state_bytes'}:
+            self.assertEqual(measured[key], original[key], key)
+        for receipt in (original, measured):
+            self.assertIs(type(receipt['decoded_state_bytes']), int)
+            self.assertTrue(0 < receipt['decoded_state_bytes'] <= artifact.MAX_DECODED_BYTES)
+        self.assertEqual(measured_revision, revision)
+        self.assertEqual(artifact.model_state(measured_model), artifact.model_state(plain_model))
+        self.assertEqual(len(timings), 8)
+        self.assertTrue(all(type(value) is float and 0 <= value < 8 for value in timings.values()))
+        with closing(core.connect(self.db_path, readonly=True)) as db:
+            with self.assertRaisesRegex(artifact.ArtifactInvalid, 'plain dictionary'):
+                artifact.load(db, self.directory, self.manifest,
+                    expected_seal_sha256=self.receipt['seal_sha256'], bootstrap_timings=[])
+
     def test_full_native_gate_detects_self_consistent_same_count_fact_rewrite(self):
         # Adjacent self hashes cannot authenticate a producer. This demonstrates
         # why the independent immutable-image full-native-state gate is required.

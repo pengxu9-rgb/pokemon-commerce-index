@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import time
+_IMPORT_STARTED = time.monotonic()
+
 import argparse
 import gzip
 import json
 import os
 import sqlite3
 import sys
-import time
 import uuid
 from dataclasses import asdict
 from contextlib import closing, contextmanager, nullcontext
@@ -16,6 +18,8 @@ from urllib.parse import parse_qs, urlparse
 
 from . import buyship_mercari, buyship_partner, buyer_questions, calibration, catalog_question_resolver, catalog_question_resolver_v2, core, discovery_graph, ebay_browse, listing_candidates, multi_record_scans, number_aliases, number_conflicts, number_graph, offer_comparison, pivota, question_routing, question_routing_v2, question_routing_v3, question_routing_v4, question_routing_v5, question_routing_v6, question_routing_v7, tcgdex
 from . import collector_discovery, collector_inventory, supported_catalog,collector_evidence,collector_journey,card_comparison,collector_runtime
+
+_IMPORT_SECONDS = time.monotonic() - _IMPORT_STARTED
 
 
 def source_scan_filter(value):
@@ -55,6 +59,8 @@ def read_jsonl(path: str):
 def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool = False, *,
                   catalog_workers=1, catalog_queue_size=4, catalog_queue_wait=0.25, catalog_deadline=8.0,
                   require_catalog_read_model=False):
+    prepare_started = time.monotonic()
+    bootstrap_timings = {'module_import': _IMPORT_SECONDS}
     if require_catalog_read_model and not internal_catalog_api:
         raise ValueError('packaged read model requires the internal catalog API')
     snapshot=collector_runtime.snapshot_identity(db_path) if internal_catalog_api else None
@@ -87,7 +93,8 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
         from . import catalog_read_model_artifact
         with closing(core.connect(db_path,readonly=True)) as db:
             with collector_runtime.sqlite_deadline(db,time.monotonic()+catalog_deadline):
-                packaged=catalog_read_model_artifact.load_packaged(db,required=require_catalog_read_model)
+                packaged=catalog_read_model_artifact.load_packaged(db,
+                    required=require_catalog_read_model, bootstrap_timings=bootstrap_timings)
             if packaged is not None:
                 read_model,journey_revision,_artifact_evidence=packaged
             else:
@@ -290,6 +297,8 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
         request_queue_size=64
     server=Server((host,port),Handler)
     server.catalog_bootstrap='packaged' if packaged is not None else 'native'
+    bootstrap_timings['server_prepare_total'] = time.monotonic() - prepare_started
+    server.catalog_bootstrap_timings = bootstrap_timings
     return server
 
 
@@ -298,7 +307,8 @@ def serve(db_path: str, host: str, port: int, internal_catalog_api: bool = False
     with create_server(db_path,host,port,internal_catalog_api,
                        require_catalog_read_model=require_catalog_read_model) as server:
         if internal_catalog_api:
-            print(json.dumps({'event':'collector_bootstrap','bootstrap':server.catalog_bootstrap},sort_keys=True),flush=True)
+            print(json.dumps({'event':'collector_bootstrap','bootstrap':server.catalog_bootstrap,
+                'timings_seconds':server.catalog_bootstrap_timings},sort_keys=True),flush=True)
         print(f"Serving http://{host}:{server.server_address[1]}")
         server.serve_forever()
 

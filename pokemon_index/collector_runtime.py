@@ -107,6 +107,32 @@ def request_mentions(db, key, build):
     return active['mentions'][key]
 
 
+def request_parser_result(db, key, build):
+    """Memoize immutable parser work only in an active guarded snapshot.
+
+    Native callers still read their live SQL and file-backed vocabularies. A
+    cache hit rechecks the same snapshot/clone binding before returning facts;
+    it cannot hide a changed file, namespace, transaction or query-only mode.
+    """
+    checkpoint()
+    snapshot = _snapshot_scope.get()
+    if snapshot is None or snapshot['db'] is not db:
+        return build()
+    # Validate before every guarded build or cache hit. A transaction/TEMP
+    # shadow must not fall through to native SQL and disappear on rollback.
+    _trusted_snapshot_model(db)
+    active = _catalog_scope.get()
+    if active is None or active['db'] is not db:
+        return build()
+    if key in active['mentions']:
+        return active['mentions'][key]
+    result = build()
+    checkpoint()
+    if len(active['mentions']) < 64:
+        active['mentions'][key] = result
+    return result
+
+
 def snapshot_affiliations(db):
     snapshot=_snapshot_scope.get()
     if snapshot is None or snapshot['db'] is not db:return None
@@ -422,7 +448,7 @@ class CatalogReadModel:
         from pathlib import Path
         try:
             main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
-            if not main or Path(main).resolve(strict=True)!=self._path or snapshot_identity(self._path)!=self._identity:
+            if not main or Path(main).resolve(strict=True)!=self._path or _identity_at_path(self._path)!=self._identity:
                 raise CatalogSnapshotChanged()
             if getattr(db,'_catalog_open_file_identity',None)!=(str(self._path),*self._identity[0][:2]):
                 raise CatalogSnapshotChanged()
@@ -494,6 +520,16 @@ def snapshot_identity(path):
     """
     from pathlib import Path
     path = Path(path).resolve(strict=True)
+    return _identity_at_path(path)
+
+
+def _identity_at_path(path):
+    """Stat a path already resolved by the caller, including its exact WAL path.
+
+    The model caller first resolves main afresh and checks canonical equality;
+    removing its second resolve does not defer any ordinary path/link guard.
+    """
+    from pathlib import Path
     result = []
     for file in (path, Path(str(path) + '-wal')):
         try:
