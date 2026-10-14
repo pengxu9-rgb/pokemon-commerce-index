@@ -9,7 +9,7 @@ import tempfile
 import threading
 import time
 import unittest
-from contextlib import closing, contextmanager, redirect_stderr
+from contextlib import closing, contextmanager, nullcontext, redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
 
@@ -195,8 +195,15 @@ class RuntimeHTTPTests(unittest.TestCase):
     def tearDown(self):self.tmp.cleanup()
 
     @contextmanager
-    def server(self,internal_catalog_api=True,**kwargs):
-        with create_server(str(self.path),'127.0.0.1',0,internal_catalog_api,**kwargs) as server:
+    def server(self,internal_catalog_api=True,native_read_model=False,**kwargs):
+        # Request-timeout cases use the supported native fallback so their tiny
+        # request budget does not also benchmark read-model construction.
+        bootstrap = (patch.object(runtime,'CatalogReadModel',
+            side_effect=runtime.CatalogReadModelUnsupported) if native_read_model else nullcontext())
+        with bootstrap as constructor:
+            server=create_server(str(self.path),'127.0.0.1',0,internal_catalog_api,**kwargs)
+            if native_read_model:constructor.assert_called_once()
+        with server:
             thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
             try:yield server
             finally:server.shutdown();thread.join(timeout=5)
@@ -230,7 +237,7 @@ class RuntimeHTTPTests(unittest.TestCase):
     def test_sql_deadline_is_explicit_and_connection_and_slot_are_released(self):
         def expensive(db,*args,**kwargs):
             db.execute('WITH RECURSIVE n(x) AS (VALUES(0) UNION ALL SELECT x+1 FROM n WHERE x<100000000) SELECT sum(x) FROM n').fetchone()
-        with self.server(catalog_deadline=.03) as server:
+        with self.server(catalog_deadline=.03,native_read_model=True) as server:
             with patch.object(collector_journey,'replay',side_effect=expensive):
                 status,headers,body=self.call(server)
             self.assertEqual((status,body),(504,{'error':'catalog_work_budget_exceeded'}))

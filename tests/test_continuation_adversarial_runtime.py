@@ -1,6 +1,6 @@
 """Independent admission, cancellation, and parser-cache failure cases."""
 from concurrent.futures import ThreadPoolExecutor
-from contextlib import closing, contextmanager
+from contextlib import closing, contextmanager, nullcontext
 import http.client
 import json
 from pathlib import Path
@@ -117,8 +117,15 @@ class ContinuationHttpReview(unittest.TestCase):
         self.temp.cleanup()
 
     @contextmanager
-    def server(self, **options):
-        with create_server(str(self.path), '127.0.0.1', 0, True, **options) as server:
+    def server(self, native_read_model=False, **options):
+        # Keep deliberate request deadlines separate from startup timing.
+        bootstrap = (patch.object(runtime, 'CatalogReadModel',
+            side_effect=runtime.CatalogReadModelUnsupported) if native_read_model else nullcontext())
+        with bootstrap as constructor:
+            server = create_server(str(self.path), '127.0.0.1', 0, True, **options)
+            if native_read_model:
+                constructor.assert_called_once()
+        with server:
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start()
             try:
@@ -167,7 +174,7 @@ class ContinuationHttpReview(unittest.TestCase):
         def expensive(db, *args, **kwargs):
             db.execute('WITH RECURSIVE n(x) AS (VALUES(1) UNION ALL '
                        'SELECT x+1 FROM n WHERE x<100000000) SELECT sum(x) FROM n').fetchone()
-        with self.server(catalog_deadline=.025) as server:
+        with self.server(catalog_deadline=.025,native_read_model=True) as server:
             with patch.object(collector_journey, 'replay', side_effect=expensive):
                 status, headers, body = self.request(server)
                 self.assertEqual(status, 504)
@@ -271,7 +278,7 @@ turns:out.session.turns,target:out.target_intent}))).catch(e=>{process.stderr.wr
 const client=createCollectorClient({baseUrl:process.argv[2],allowLoopback:true,retryDelayMs:0});
 client.start({question:'Japanese cards'}).then(()=>process.stdout.write('accepted'))
 .catch(e=>process.stdout.write(JSON.stringify({code:e.code,retryable:e.retryable})));'''
-        with self.server(catalog_deadline=.025) as server:
+        with self.server(catalog_deadline=.025,native_read_model=True) as server:
             with patch.object(collector_journey, 'replay', side_effect=expensive) as replay:
                 result = subprocess.check_output(['node', '-e', program,
                     str(Path('integrations/pivota/collectorClient.cjs').resolve()),
