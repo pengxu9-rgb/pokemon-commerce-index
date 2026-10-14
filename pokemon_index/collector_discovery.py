@@ -258,6 +258,12 @@ def _reviewed_release_aliases(db, languages):
 
 def _release_name_mentions(db, text: str, languages: list[str]) -> list[tuple]:
     """Prefer full release titles over nested titles or code-shaped words."""
+    return list(collector_runtime.request_parser_result(db,
+        ('release_name_mentions', text, tuple(languages)),
+        lambda: tuple(_compute_release_name_mentions(db, text, languages))))
+
+
+def _compute_release_name_mentions(db, text, languages):
     names = collector_runtime.snapshot_release_names(db, languages)
     if names is None:
         names = {(code, name) for language, code, name in _release_name_facts(db)
@@ -299,6 +305,12 @@ def _without_release_names(db, text: str, languages: list[str]) -> str:
 
 
 def _release_codes(db, text: str, languages: list[str]) -> set[str]:
+    return set(collector_runtime.request_parser_result(db,
+        ('release_codes', text, tuple(languages)),
+        lambda: frozenset(_compute_release_codes(db, text, languages))))
+
+
+def _compute_release_codes(db, text, languages):
     names=_release_name_mentions(db,text,languages)
     residual=list(text)
     for _,start,end,_ in names:residual[start:end]=' '*(end-start)
@@ -322,6 +334,11 @@ def _release_codes(db, text: str, languages: list[str]) -> set[str]:
 
 
 def _artists(db, text: str) -> list[str]:
+    return list(collector_runtime.request_parser_result(db,
+        ('artists', text), lambda: tuple(_compute_artists(db, text))))
+
+
+def _compute_artists(db, text):
     intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
     return [r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists'])
             if (intent or len(r[0].split())>=2) and _mentioned(text,r[0])]
@@ -332,6 +349,14 @@ def explicit_artist_clause(text):
 
 
 def _qualifier_findings(db,text,languages):
+    # Keep the nested card-ID lists private; callers receive a fresh object.
+    return json.loads(collector_runtime.request_parser_result(db,
+        ('qualifier_findings', text, tuple(languages)),
+        lambda: json.dumps(_compute_qualifier_findings(db, text, languages),
+                           ensure_ascii=False, separators=(',', ':'))))
+
+
+def _compute_qualifier_findings(db, text, languages):
     from . import source_corrections
     if not source_corrections.available(db):return []
     result=[]

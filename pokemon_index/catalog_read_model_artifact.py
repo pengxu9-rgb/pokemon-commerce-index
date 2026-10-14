@@ -16,6 +16,7 @@ import re
 import sqlite3
 import stat
 import sys
+import time
 from types import MappingProxyType
 import unicodedata
 
@@ -33,7 +34,8 @@ MAX_JSON_DEPTH = 32
 _PACKAGED_DIR = Path('/app/catalog-read-model')
 _PACKAGED_MANIFEST = Path('/app/catalog-build-manifest.json')
 HEX = re.compile(r'[0-9a-f]{64}\Z')
-_JSON_TOKENS = re.compile(rb'"(?:[^"\\]|\\.)*"|[{}\[\],]')
+_JSON_STRINGS = re.compile(rb'"(?:[^"\\]|\\.)*"')
+_NON_JSON_TOKENS = bytes(value for value in range(256) if value not in b'{}[],')
 _IMAGE_SQL = (
     ('index', 'card_lookup', 'facets', 'CREATE INDEX card_lookup ON facets(card_id,facet_type,value)'),
     ('index', 'facet_lookup', 'facets', 'CREATE INDEX facet_lookup ON facets(facet_type,value,card_id)'),
@@ -72,16 +74,16 @@ def _pairs(pairs):
 
 def _json(raw, limit):
     _require(len(raw) <= limit, 'JSON byte bound')
-    depth = 0; count = 0
-    for match in _JSON_TOKENS.finditer(raw):
-        token = match[0]
-        if token[:1] == b'"':
-            continue
-        count += 1
-        if count % 1024 == 0: runtime.checkpoint()
-        _require(count <= MAX_JSON_MEMBERS, 'JSON member bound')
-        if token in (b'{', b'['): depth += 1
-        elif token in (b'}', b']'): depth -= 1
+    # Strip exactly the same escaped JSON string tokens before counting raw
+    # punctuation. The decoder below still rejects malformed syntax and names.
+    # C-level byte operations avoid a Python regex Match for every scalar.
+    tokens = _JSON_STRINGS.sub(b'', raw).translate(None, _NON_JSON_TOKENS)
+    _require(len(tokens) <= MAX_JSON_MEMBERS, 'JSON member bound')
+    depth = 0
+    for index, token in enumerate(tokens):
+        if index % 1024 == 0: runtime.checkpoint()
+        if token == 44: continue  # comma still counts toward the member bound
+        depth += 1 if token in (123, 91) else -1
         _require(0 <= depth <= MAX_JSON_DEPTH, 'JSON nesting bound')
     _require(depth == 0, 'JSON nesting')
     try:
@@ -422,16 +424,32 @@ def _validate_image(image):
 
 def _deep_size(value, seen=None):
     if seen is None: seen = set()
-    if id(value) in seen: return 0
-    seen.add(id(value)); size = sys.getsizeof(value)
-    if isinstance(value, dict) or isinstance(value, MappingProxyType):
-        size += sum(_deep_size(key, seen) + _deep_size(item, seen) for key,item in value.items())
-    elif isinstance(value, (tuple,list,set,frozenset,sqlite3.Row)):
-        size += sum(_deep_size(item, seen) for item in value)
+    pending = [value]; size = 0
+    getsizeof = sys.getsizeof; visited = seen.add
+    extend = pending.extend; pop = pending.pop
+    mappings = (dict, MappingProxyType)
+    sequences = (tuple, list, set, frozenset, sqlite3.Row)
+    while pending:
+        item = pop(); identity = id(item)
+        if identity in seen: continue
+        visited(identity); size += getsizeof(item)
+        if isinstance(item, mappings):
+            extend(item.keys()); extend(item.values())
+        elif isinstance(item, sequences):
+            extend(item)
     return size
 
 
-def _load(db, artifact_dir, manifest_path, expected_seal_sha256):
+def _load(db, artifact_dir, manifest_path, expected_seal_sha256, bootstrap_timings=None):
+    _require(bootstrap_timings is None or type(bootstrap_timings) is dict,
+             'bootstrap diagnostics must be a plain dictionary')
+    phases = {}
+    phase_started = time.monotonic()
+    def measured(name):
+        nonlocal phase_started
+        current = time.monotonic()
+        phases[name] = current - phase_started
+        phase_started = current
     from . import collector_journey, collector_release_alias
     cls = runtime.CatalogReadModel
     artifact_dir = Path(artifact_dir); manifest_path = Path(manifest_path)
@@ -454,17 +472,25 @@ def _load(db, artifact_dir, manifest_path, expected_seal_sha256):
     _require(seal['runtime_source_sha256'] == roster and seal['schema_sha256'] == _sha(_json_bytes(_schema(db))), 'source roster or schema mismatch')
     manifest, manifest_identity = _read(manifest_path, MAX_SEAL_BYTES)
     _require(seal['manifest_sha256'] == _sha(manifest), 'manifest mismatch')
+    measured('source_schema_and_seal_validation')
     database_sha256, database_bytes = _database_hash(path)
     _require((database_sha256,database_bytes) == (seal['database_sha256'],seal['database_bytes']), 'database byte mismatch')
+    measured('database_hash')
     metadata, metadata_identity = _read(artifact_dir/'metadata.json', MAX_METADATA_BYTES)
     image, image_identity = _read(artifact_dir/'facet-image.sqlite3', cls.MAX_IMAGE_BYTES)
     _require((len(metadata),_sha(metadata)) == (seal['metadata_bytes'],seal['metadata_sha256']) and _sha(metadata) == seal['model_state_sha256'], 'metadata hash mismatch')
     _require((len(image),_sha(image)) == (seal['facet_image_bytes'],seal['facet_image_sha256']), 'image hash mismatch')
+    measured('artifact_read_and_hash')
     _validate_image(image)
-    state = _json(metadata, MAX_METADATA_BYTES); model = _restore(state, image)
+    measured('facet_integrity')
+    state = _json(metadata, MAX_METADATA_BYTES)
+    measured('bounded_json_decode')
+    model = _restore(state, image)
+    measured('typed_state_restore')
     decoded_bytes = _deep_size(state) + _deep_size(model.__dict__) + len(metadata) + len(image)
     _require(decoded_bytes <= MAX_DECODED_BYTES, 'decoded-state allocation bound')
     _require(_json_bytes(_counts(model)) == _json_bytes(seal['fact_counts']), 'fact counts mismatch')
+    measured('allocation_and_count_validation')
     model._path = path; model._identity = identity
     model._release_alias_path = collector_release_alias.BINDINGS_PATH.resolve(strict=True)
     model._release_alias_identity = runtime.snapshot_identity(model._release_alias_path)
@@ -474,22 +500,26 @@ def _load(db, artifact_dir, manifest_path, expected_seal_sha256):
     model._check_snapshot(db); _guard(model); _no_wal(path)
     _require(runtime.snapshot_identity(path) == identity, 'database changed during load')
     runtime.checkpoint()
-    return model, seal['canonical_revision'], dict(seal, seal_sha256=_sha(seal_raw), decoded_state_bytes=decoded_bytes)
+    measured('final_identity_guards')
+    if bootstrap_timings is not None:
+        bootstrap_timings.update(phases)
+    return model, seal['canonical_revision'], dict(seal, seal_sha256=_sha(seal_raw),
+        decoded_state_bytes=decoded_bytes)
 
 
-def load(db, artifact_dir, manifest_path, *, expected_seal_sha256):
+def load(db, artifact_dir, manifest_path, *, expected_seal_sha256, bootstrap_timings=None):
     """Custom paths require a separately trusted original seal digest."""
     _require(type(expected_seal_sha256) is str and HEX.fullmatch(expected_seal_sha256), 'external seal pin required')
-    return _load(db, artifact_dir, manifest_path, expected_seal_sha256)
+    return _load(db, artifact_dir, manifest_path, expected_seal_sha256, bootstrap_timings)
 
 
-def load_packaged(db, required=False):
+def load_packaged(db, required=False, *, bootstrap_timings=None):
     """Private image bootstrap: literal packaged paths, never HTTP selections."""
     _require(type(required) is bool, 'required flag type')
     if not _PACKAGED_DIR.exists() and not _PACKAGED_DIR.is_symlink():
         if required: raise ArtifactInvalid('required packaged read model is absent')
         return None
-    return _load(db, _PACKAGED_DIR, _PACKAGED_MANIFEST, None)
+    return _load(db, _PACKAGED_DIR, _PACKAGED_MANIFEST, None, bootstrap_timings)
 
 
 def main():
