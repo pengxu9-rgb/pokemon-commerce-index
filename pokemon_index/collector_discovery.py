@@ -10,6 +10,7 @@ import re
 import sqlite3
 import unicodedata
 from collections import deque
+from typing import NamedTuple
 from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime, collector_release_alias
 
 
@@ -178,9 +179,10 @@ def _set_browse_order(rows: list) -> list:
 
 def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _row_capture=None) -> dict:
     text = _norm(result['question'])
+    _plan=collector_runtime.snapshot_question_plan(db,text,tuple(result['languages']))
     explicit=result.get('requested_scope',{})
     rows=[r for r in rows if all(r[k]==v for k,v in explicit.items())]
-    suffix=requested_name_suffix(db,result['question'],result['languages'])
+    suffix=(_plan.suffix if _plan is not None else requested_name_suffix(db,result['question'],result['languages']))
     if suffix:
         rows=[r for r in rows if name_has_suffix(r['name'],r['language'],suffix)]
         result.update(requested_source_name_suffix=suffix,
@@ -188,7 +190,7 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
         if not rows:
             result.update(status='no_match',
                 next_question='No current catalog title in this scope has the requested '+suffix+' suffix. Explicitly relax the title or coordinate constraint to broaden the search.')
-    requested_artists=_artists(db,text)
+    requested_artists=(list(_plan.artists) if _plan is not None else _artists(db,text))
     artist_inquiry=bool(re.search(r'who (?:is|was) (?:credited as )?(?:the )?(?:illustrator|artist)|who (?:illustrated|drew)|which (?:artist|illustrator) (?:is|was)|イラストレーターは誰|誰.*(?:描|イラスト)',text))
     if (requested_artists or (not artist_inquiry and re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\s+(?!\d|set\b|number\b|date\b)',text))):
         artist_ids={r[0] for r in db.execute(f"SELECT card_id FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='illustrator' AND value=?",(requested_artists[0],))} if len(requested_artists)==1 else set()
@@ -198,15 +200,15 @@ def _finish_result(db, result: dict, rows: list, limit: int, offset: int, *, _ro
                 'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint or start a new collection question.'
                 if result['task']=='artist_cards' else
                 'That exact coordinate does not have the requested current source-backed illustrator credit.'))
-    qualifiers=_qualifier_findings(db,text,result['languages'])
-    unsupported_professors=_unsupported_professors(db,text)
+    qualifiers=(json.loads(_plan.qualifiers_json) if _plan is not None else _qualifier_findings(db,text,result['languages']))
+    unsupported_professors=(list(_plan.professors) if _plan is not None else _unsupported_professors(db,text))
     if qualifiers or unsupported_professors:
         allowed={cid for f in qualifiers if f['active'] for cid in f['card_ids']} if len(qualifiers)==1 and not unsupported_professors else set()
         rows=[r for r in rows if r['card_id'] in allowed]
         result['requested_printed_qualifiers']=sorted({f['value'] for f in qualifiers})
         result['unfulfilled_constraints'].append('publisher_qualifier_not_seller_copy_verified')
         if not rows:result.update(status='no_match',next_question='The scoped printing does not satisfy the current source-backed professor subtitle; inspect the exact printed number and copy photos.')
-    codes={explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,result['languages'])
+    codes={explicit['set_code']} if 'set_code' in explicit else (set(_plan.codes) if _plan is not None else _release_codes(db,text,result['languages']))
     # Incidental/omitted releases in an external checklist are not affirmative
     # release filters. Explicit follow-up scope remains authoritative.
     exclusions=re.search(r'except|exclud|(?:does not|not|doesn.t) (?:yet )?include|omit|除外|未収録',text)
@@ -458,6 +460,10 @@ def _compute_character_mentions(db, text: str, *, maximal=True, current_only=Fal
     names = collector_runtime.snapshot_character_names(db, current_only)
     if names is None:
         names = _character_name_facts(db, current_only=current_only)
+    return _character_mentions_from_names(text,names,maximal=maximal)
+
+
+def _character_mentions_from_names(text,names,*,maximal=True):
     matches=set();current_matches=set()
     for index,(name,dex,current) in enumerate(names):
         if index%128==0:collector_runtime.checkpoint()
@@ -491,9 +497,10 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     text = _norm(question)
     language_text=re.sub(r'\b(?:ja|en):[a-z0-9.\-]+:[^\s:]+:[a-z0-9_\-]+',' ',text)
     languages = [explicit['language']] if 'language' in explicit else _languages(language_text)
-    release_codes=lambda: {explicit['set_code']} if 'set_code' in explicit else _release_codes(db,text,languages)
+    _plan=collector_runtime.snapshot_question_plan(db,text,tuple(languages))
+    release_codes=lambda: {explicit['set_code']} if 'set_code' in explicit else (set(_plan.codes) if _plan is not None else _release_codes(db,text,languages))
     release_context=bool(re.search(r'\bcards?\s+from\b|\b(?:set|release|checklist)\b|拡張パック|収録|のカード|カード一覧|カードリスト',text))
-    identity_text=_without_release_names(db,text,languages) if release_context else text
+    identity_text=(_plan.without if _plan is not None else _without_release_names(db,text,languages)) if release_context else text
     result = {"schema":"pokemon.collector-discovery.v1", "question":question,
               "languages":languages, "task":None, "status":"clarification_needed",
               "cards":[], "next_question":None,
@@ -502,7 +509,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
               "prices":[], "public_display_allowed":False,
               "unfulfilled_constraints":[], "complete_answer_established":False,
               "scope":"Internal catalog results; printing/character membership is not physical-copy, availability or price evidence"}
-    interpretations=reviewed_release_interpretations(db,question,languages)
+    interpretations=(json.loads(_plan.interpretations_json) if _plan is not None else reviewed_release_interpretations(db,question,languages))
     if interpretations:result['release_name_interpretations']=interpretations
     if explicit:result['requested_scope']=explicit
     non_card_text=re.sub(r'(?:anything|everything)?\s*(?:other than|except|excluding)\s+(?:pokemon\s+)?cards?', '', text)
@@ -573,7 +580,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
             or re.search(r"how (?:do|can|should) (?:i|we) (?:play|build|use)|how to (?:play|build)|\bcompetitive\b|\bgameplay\b|\bstrategy\b|\brules?\b|デッキ構築|使い方|遊び方|対戦|環境で|大会",text)):
         return dict(result, task="gameplay_evidence_needed", status="blocked",
                     next_question="Which game format and deck goal should be checked against a rules/card-text source?")
-    artists=_artists(db,text)
+    artists=(list(_plan.artists) if _plan is not None else _artists(db,text))
     inventory=bool(re.search(r"check off|ones i (?:have|still)|what i (?:have|own)|my inventory|collected.*still need|missing (?:any|cards|some)|missing from|check my.*list|check.*linked|my current.*checklist|不足|持って|\bi (?:don['’]t|do not) already own\b",text))
     if inventory:
         result['unfulfilled_constraints'].append('owned_inventory')
@@ -710,7 +717,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         marks = ",".join("?" for _ in languages)
         where=f"c.language IN ({marks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='illustrator' AND f.value=?)"
         params=[*languages,artists[0]]
-        named_ids=_character_ids(db,identity_text)
+        named_ids=(list(_plan.without_ids if release_context else _plan.ids) if _plan is not None else _character_ids(db,identity_text))
         if named_ids and re.search(r"\b(?:not|except|without|excluding)\b|以外|除外|不要|不是",text):
             return dict(result,task='collection_scope_needed',status='clarification_needed',
                 unfulfilled_constraints=['negative_collection_scope_confirmation'],
@@ -731,8 +738,8 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                         claim_basis="pinned source illustrator credits" if not named_ids else 'source character and illustrator intersection',
                         next_question=result.get('next_question') if rows else 'No current catalog record satisfies the requested character and illustrator together. Explicitly relax either constraint to broaden the search.'), rows, limit, offset,_row_capture=_row_capture)
 
-    qualifiers=_qualifier_findings(db,text,languages)
-    if _unsupported_professors(db,text):
+    qualifiers=(json.loads(_plan.qualifiers_json) if _plan is not None else _qualifier_findings(db,text,languages))
+    if (list(_plan.professors) if _plan is not None else _unsupported_professors(db,text)):
         return dict(result,task='printed_qualifier_evidence_needed',status='blocked',required_evidence=['source_bound_requested_professor_subtitle'],next_question='That named professor subtitle is not supported in the requested scope. Confirm the printed release and number before selecting a target.')
     if qualifiers:
         if len(qualifiers)!=1 or not qualifiers[0]['active']:
@@ -743,11 +750,11 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
     if _mentioned(text,'博士の研究'):
         return dict(result,task='printed_qualifier_scope_needed',status='clarification_needed',required_evidence=['printed_professor_subtitle_and_language_set_number'],next_question='Which printed professor subtitle and release number do you mean? The generic main title does not identify one professor or printing.')
 
-    ids = _character_ids(db, identity_text)
+    ids = list(_plan.without_ids if release_context else _plan.ids) if _plan is not None else _character_ids(db,identity_text)
     sets=release_codes()
     if (sets and ids and not explicit_family and not release_context
             and not re.search(r'\bcharacter\b|\bspecies\b',text)
-            and not _character_ids(db,_without_release_names(db,text,languages))):
+            and not (list(_plan.without_ids) if _plan is not None else _character_ids(db,(_plan.without if _plan is not None else _without_release_names(db,text,languages))))):
         return dict(result,task='need_release_scope',next_question='Do you mean that release title or a character? State the printed release code or ask for cards from the named set.')
     if sets and not ids and not explicit_family:
         if len(sets)!=1:
@@ -788,3 +795,181 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         rows = _rows(db, f"c.language IN ({lmarks}) AND EXISTS(SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} f WHERE f.card_id=c.card_id AND f.facet_type='dex_id' AND CAST(f.value AS INTEGER) IN ({marks}))",
                      (*languages, *ids))
     return _finish_result(db, result, rows, limit, offset,_row_capture=_row_capture)
+
+
+
+class _UnsupportedParserFacts(ValueError):
+    """A bounded static projection cannot represent this native namespace."""
+
+
+class _ParserFacts(NamedTuple):
+    vocabulary: tuple
+    qualifiers: tuple
+    known_qualifiers: tuple
+    artists: tuple
+    release_codes: tuple
+    release_names: tuple
+    character_names: tuple
+    release_aliases_json: str
+
+    def to_state(self):
+        return {'schema':'pokemon.fixed-parser-facts.v1',
+            'vocabulary':[list(row) for row in self.vocabulary],
+            'qualifiers':[{'value':value,'active':active,'card_ids':list(ids),
+                'event_id':event_id,'language':language}
+                for value,active,ids,event_id,language in self.qualifiers],
+            'known_qualifiers':list(self.known_qualifiers)}
+
+
+class _QuestionPlan(NamedTuple):
+    artists: tuple
+    exact_artists: tuple
+    names: tuple
+    codes: frozenset
+    without: str
+    ids: tuple
+    without_ids: tuple
+    qualifiers_json: str
+    professors: tuple
+    suffix: str | None
+    interpretations_json: str
+
+
+def _parser_fact_require(ok):
+    if not ok:raise _UnsupportedParserFacts('unsupported bounded native parser facts')
+
+
+def _parser_string(value, maximum=8192):
+    if type(value) is not str:return False
+    try:return len(value.encode('utf-8'))<=maximum
+    except UnicodeEncodeError:return False
+
+
+def _parser_facts_from_state(state,model):
+    _parser_fact_require(type(state) is dict and set(state)=={'schema','vocabulary','qualifiers','known_qualifiers'}
+        and state['schema']=='pokemon.fixed-parser-facts.v1')
+    rows=state['vocabulary'];heads=state['qualifiers'];known=state['known_qualifiers']
+    _parser_fact_require(type(rows) is list and len(rows)<=4096
+        and type(heads) is list and len(heads)<=4096
+        and type(known) is list and len(known)<=4096)
+    vocabulary=[]
+    for row in rows:
+        collector_runtime.checkpoint()
+        _parser_fact_require(type(row) is list and len(row)==4
+            and all(_parser_string(value) for value in row))
+        vocabulary.append(tuple(row))
+    qualifiers=[];card_count=0
+    for head in heads:
+        collector_runtime.checkpoint()
+        _parser_fact_require(type(head) is dict and set(head)=={'value','active','card_ids','event_id','language'}
+            and _parser_string(head['value']) and type(head['active']) is bool
+            and _parser_string(head['event_id'],512) and _parser_string(head['language'],32)
+            and type(head['card_ids']) is list and len(head['card_ids'])<=100000
+            and all(_parser_string(cid,512) for cid in head['card_ids']))
+        card_count+=len(head['card_ids']);_parser_fact_require(card_count<=100000)
+        qualifiers.append((head['value'],head['active'],tuple(head['card_ids']),head['event_id'],head['language']))
+    _parser_fact_require(all(_parser_string(value) for value in known))
+    artists=tuple(tuple(row) for row in model._vocabularies['artists'])
+    codes=tuple(tuple(row) for row in model._vocabularies['release_codes'])
+    _parser_fact_require(all(len(row)==1 and _parser_string(row[0]) for row in artists+codes)
+        and all(type(row) is tuple and len(row)==3 and all(_parser_string(v) for v in row) for row in model._release_names)
+        and type(model._release_aliases_json) is str)
+    # These existing typed model fields are immutable and independently restored.
+    return _ParserFacts(tuple(vocabulary),tuple(qualifiers),tuple(known),artists,codes,
+        model._release_names,model._character_names[False],model._release_aliases_json)
+
+
+def _compile_parser_facts(db,model):
+    """Project every relevant native row; unsupported inputs use native parsing."""
+    from . import source_corrections,catalog_read_model_artifact
+    try:
+        vocabulary_size=db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(language AS BLOB))+length(CAST(set_code AS BLOB))+length(CAST(alias_kind AS BLOB))+length(CAST(alias AS BLOB))),0) FROM main.catalog_vocabulary").fetchone()
+        _parser_fact_require(vocabulary_size[0]<=4096 and vocabulary_size[1]<=1024*1024)
+        vocabulary=[list(row) for row in db.execute(
+            'SELECT language,set_code,alias_kind,alias FROM main.catalog_vocabulary').fetchmany(4097)]
+        heads=[];known=[]
+        if source_corrections.available(db):
+            correction_size=db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(record_json AS BLOB))),0) FROM main.source_correction_evidence WHERE kind='printed_qualifier'").fetchone()
+            _parser_fact_require(correction_size[0]<=4096 and correction_size[1]<=1024*1024)
+            raw_heads=db.execute("SELECT e.*,a.event_id active_id FROM source_correction_evidence e LEFT JOIN active_source_correction_evidence a ON a.event_id=e.event_id WHERE e.kind='printed_qualifier' AND NOT EXISTS(SELECT 1 FROM source_correction_evidence later WHERE later.correction_key=e.correction_key AND later.revision>e.revision)").fetchmany(4097)
+            _parser_fact_require(len(raw_heads)<=4096)
+            for row in raw_heads:
+                collector_runtime.checkpoint()
+                _parser_fact_require(_parser_string(row['record_json'],1024*1024))
+                try:record=catalog_read_model_artifact._json(row['record_json'].encode(),1024*1024)
+                except catalog_read_model_artifact.ArtifactInvalid as exc:
+                    raise _UnsupportedParserFacts('native qualifier JSON outside static grammar') from exc
+                _parser_fact_require(type(record) is dict and 'value' in record
+                    and type(record.get('snapshot')) is dict and type(record['snapshot'].get('cards')) is list)
+                cards=record['snapshot']['cards']
+                _parser_fact_require(len(cards)<=100000 and all(type(card) is dict and 'card_id' in card for card in cards))
+                heads.append({'value':record['value'],'active':bool(row['active_id']),
+                    'card_ids':[card['card_id'] for card in cards],
+                    'event_id':row['event_id'],'language':row['language']})
+            known=[row[0] for row in db.execute("SELECT DISTINCT json_extract(record_json,'$.value') FROM source_correction_evidence WHERE kind='printed_qualifier'").fetchmany(4097)]
+        return _parser_facts_from_state({'schema':'pokemon.fixed-parser-facts.v1',
+            'vocabulary':vocabulary,'qualifiers':heads,'known_qualifiers':known},model)
+    except _UnsupportedParserFacts:
+        # No fact, source error, permission or absent evidence is guessed. The
+        # original concrete readers retain their ordinary errors and semantics.
+        return None
+
+
+def _restore_parser_facts(state,model):
+    if state is None:return None
+    from . import catalog_read_model_artifact
+    try:return _parser_facts_from_state(state,model)
+    except _UnsupportedParserFacts as exc:
+        raise catalog_read_model_artifact.ArtifactInvalid('static parser fact grammar') from exc
+
+
+def _question_plan_from_facts(text,languages,facts):
+    """One fixed eager pure computation; it receives no DB or user callbacks."""
+    names=frozenset((code,term) for language,code,term in facts.release_names if language in languages)
+    matched=tuple(_release_mentions_from_facts(text,names));residual=list(text)
+    for _,start,end,_ in matched:residual[start:end]=' '*(end-start)
+    without=''.join(residual);codes={code for code,_,_,_ in matched}
+    for index,row in enumerate(facts.release_codes):
+        if index%128==0:collector_runtime.checkpoint()
+        value=_norm(row[0])
+        if value in without and re.search(r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',without):codes.add(row[0])
+    for language,code,kind,alias in facts.vocabulary:
+        collector_runtime.checkpoint();value=_norm(alias)
+        if language in languages and kind=='printed_code' and value in without and re.search(
+                r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',without):codes.add(code)
+        short=re.fullmatch(r'ポケモンカード(\d+)',alias)
+        if (short and language in languages and re.search(r'(?<![a-z0-9/])'+re.escape(short[1])+r'(?![a-z0-9/])',text)
+                and re.search(r'japanese|日本語|日版|ポケモンカード',text)):codes.add(code)
+    qualifiers=[]
+    for value,active,ids,event_id,language in facts.qualifiers:
+        collector_runtime.checkpoint()
+        if _mentioned(text,value):qualifiers.append(dict(value=value,active=active and language in languages,
+            card_ids=list(ids),evidence_id=event_id))
+    ja=re.findall(r'[一-龯ぁ-んァ-ヶー・]{2,30}博士',text.replace('博士の研究',' '))
+    en=re.findall(r"\bprofessor\s+([a-z][a-z\-']{1,40})",text)
+    inquiry={'research','is','was','are','were','appears','appear','printed','shown','depicted','does','do','has','have','on','in'}
+    en=[name for name in en if name not in inquiry]
+    professors=tuple([name for name in ja if not any(name.endswith(_norm(value)) for value in facts.known_qualifiers)]
+        +['professor '+name for name in en])
+    ids=tuple(sorted({m[0] for m in _character_mentions_from_names(text,facts.character_names)}))
+    without_ids=ids if without==text else tuple(sorted({m[0] for m in _character_mentions_from_names(without,facts.character_names)}))
+    artists=tuple(_artists_from_facts(text,facts.artists))
+    exact_artists=tuple(row[0] for row in facts.artists if _norm(row[0])==text.strip(' .。!！'))
+    interpretations=[row for row in json.loads(facts.release_aliases_json)
+        if row['language'] in languages and _mentioned(text,row['alias'])]
+    collector_runtime.checkpoint()
+    return _QuestionPlan(artists,exact_artists,matched,frozenset(codes),without,ids,without_ids,
+        json.dumps(qualifiers,ensure_ascii=False,separators=(',',':')),professors,
+        'ex' if re.search(r'(?<![a-z0-9])ex(?![a-z0-9])',without) and len(without_ids)==1 else None,
+        json.dumps(interpretations,ensure_ascii=False,separators=(',',':')))
+
+
+def _redundant_language_constraint_projection(result,scope):
+    """Only constraints from an already-identical inferred language are reused.
+
+    The initial task has already passed routing. An explicit language suppresses
+    all-language disclosure, so that case stays on the original concrete path.
+    No requested-scope, card, ranking, ownership or other result is reused.
+    """
+    return (set(scope)=={'language'} and result.get('languages')==[scope['language']]
+        and 'all_language_coverage' not in result['unfulfilled_constraints'])

@@ -25,7 +25,7 @@ import unicodedata
 from . import collector_runtime as runtime
 
 FORMAT = 'pokemon.catalog-read-model-artifact.v1'
-STATE_FORMAT = 'pokemon.catalog-read-model-state.v2'
+STATE_FORMAT = 'pokemon.catalog-read-model-state.v3'
 FILES = ('metadata.json', 'facet-image.sqlite3', 'seal.json')
 MAX_METADATA_BYTES = 32 * 1024 * 1024
 MAX_SEAL_BYTES = 64 * 1024
@@ -212,7 +212,8 @@ def model_state(model):
                          for current, rows in model._character_names.items()},
         release_names=_typed_rows(sorted(model._release_names)),
         release_aliases_json=model._release_aliases_json,
-        card_source_context_index=model._card_source_context_index.to_state())
+        card_source_context_index=model._card_source_context_index.to_state(),
+        parser_facts=model._parser_facts.to_state() if model._parser_facts is not None else None)
     return state
 
 
@@ -237,6 +238,11 @@ def _counts(model):
         character_name_rows={str(key).lower():len(rows) for key,rows in model._character_names.items()},
         release_name_rows=len(model._release_names), release_aliases=len(_json(model._release_aliases_json.encode(), 1024*1024)))
 
+    facts=model._parser_facts
+    counts.update(parser_plan_enabled=facts is not None,
+        parser_vocabulary_rows=len(facts.vocabulary) if facts is not None else 0,
+        parser_qualifier_heads=len(facts.qualifiers) if facts is not None else 0,
+        parser_known_qualifiers=len(facts.known_qualifiers) if facts is not None else 0)
     counts.update(model._card_source_context_index.counts())
     return counts
 
@@ -364,7 +370,7 @@ def _proof_json(raw, *, release=False):
 
 def _restore(state, image):
     cls = runtime.CatalogReadModel
-    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','character_names','release_names','release_aliases_json','card_source_context_index'}
+    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','character_names','release_names','release_aliases_json','card_source_context_index','parser_facts'}
     _exact(state, keys, 'model state'); _require(state['schema'] == STATE_FORMAT and state['facet_image_sha256'] == _sha(image), 'model format or image hash')
     model = object.__new__(cls)
     _exact(state['vocabularies'], runtime.VOCABULARY_SQL, 'vocabulary')
@@ -415,6 +421,8 @@ def _restore(state, image):
     model._release_aliases_json = _proof_json(state['release_aliases_json'], release=True)
     from . import card_source_context_index
     model._card_source_context_index = card_source_context_index.restore_index(state['card_source_context_index'])
+    from . import collector_discovery
+    model._parser_facts=collector_discovery._restore_parser_facts(state['parser_facts'],model)
     model._image = image
     return model
 

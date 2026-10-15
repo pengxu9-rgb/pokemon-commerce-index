@@ -10,6 +10,7 @@ from contextlib import closing, contextmanager
 from contextvars import ContextVar
 from functools import wraps
 import json
+import os
 import sqlite3
 from types import MappingProxyType
 import threading
@@ -20,6 +21,8 @@ _catalog_scope = ContextVar('collector_catalog_scope', default=None)
 _work_deadline = ContextVar('collector_work_deadline', default=None)
 _sql_scopes = ContextVar('collector_sql_scopes', default=())
 _snapshot_scope = ContextVar('collector_snapshot_scope', default=None)
+_parser_plan_scope = ContextVar('collector_parser_plan_scope',default=None)
+MAX_PARSER_PLAN_CACHE_BYTES = 1024 * 1024
 VOCABULARY_SQL = {
     'artists': "SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'",
     'release_codes': 'SELECT DISTINCT set_code FROM card',
@@ -137,7 +140,9 @@ def request_parser_result(db, key, build, *, immutable_parser=None):
 
 
 def _parser_cache_size(active):
-    return len(active['mentions']) + len(active['immutable_parsers'])
+    plans=_parser_plan_scope.get()
+    return (len(active['mentions'])+len(active['immutable_parsers'])
+        +(len(plans['rows']) if plans is not None and plans['db'] is active['db'] else 0))
 
 
 def _validate_immutable_parser(key, kind):
@@ -444,6 +449,7 @@ class CatalogReadModel:
                     sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
                     for rows in self._character_names.values())):
             raise ValueError('catalog matching facts exceed read model bound')
+        self._parser_facts=collector_discovery._compile_parser_facts(db,self)
         self._image=db.serialize(name=self.SCHEMA)
         if len(self._image)>self.MAX_IMAGE_BYTES:
             raise ValueError('catalog read model exceeds memory bound')
@@ -490,10 +496,9 @@ class CatalogReadModel:
         return MappingProxyType({key: frozenset(ids) for key, ids in text_ids.items()})
 
     def _check_snapshot(self,db):
-        from pathlib import Path
         try:
             main=next(r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main')
-            if not main or Path(main).resolve(strict=True)!=self._path or _identity_at_path(self._path)!=self._identity:
+            if not main or os.path.realpath(main,strict=True)!=os.fspath(self._path) or _identity_at_path(self._path)!=self._identity:
                 raise CatalogSnapshotChanged()
             if getattr(db,'_catalog_open_file_identity',None)!=(str(self._path),*self._identity[0][:2]):
                 raise CatalogSnapshotChanged()
@@ -563,9 +568,7 @@ def snapshot_identity(path):
     The service serves an immutable built snapshot and needs a restart after a
     catalog change. This metadata guard is not adversarial file attestation.
     """
-    from pathlib import Path
-    path = Path(path).resolve(strict=True)
-    return _identity_at_path(path)
+    return _identity_at_path(os.path.realpath(path,strict=True))
 
 
 def _identity_at_path(path):
@@ -574,17 +577,17 @@ def _identity_at_path(path):
     The model caller first resolves main afresh and checks canonical equality;
     removing its second resolve does not defer any ordinary path/link guard.
     """
-    from pathlib import Path
+    path=os.fspath(path)
     result = []
-    for file in (path, Path(str(path) + '-wal')):
+    for index,file in enumerate((path,path+'-wal')):
         try:
-            stat = file.stat()
+            stat = os.stat(file)
         except FileNotFoundError:
             result.append(None)
         else:
             # A read-only WAL open may create/remove an empty sidecar. It has
             # no transactions and is equivalent to an absent WAL file.
-            result.append(None if file != path and stat.st_size == 0 else
+            result.append(None if index and stat.st_size == 0 else
                           (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns))
     return tuple(result)
 
@@ -676,3 +679,62 @@ def sqlite_deadline(db, expires):
         finally:
             _sql_scopes.reset(scope_token)
             _work_deadline.reset(token)
+
+
+
+def parser_plan_request(function):
+    """Owned bounded pure-plan memo lives for exactly one replay invocation."""
+    @wraps(function)
+    def wrapped(db,*args,**kwargs):
+        scope={'db':db,'snapshot':None,'rows':{},'bytes':0}
+        token=_parser_plan_scope.set(scope)
+        try:return function(db,*args,**kwargs)
+        finally:
+            scope['rows'].clear();scope['bytes']=0
+            _parser_plan_scope.reset(token)
+    return wrapped
+
+
+def snapshot_question_plan(db,text,languages):
+    """One fixed eager pure parse between fresh original trust checks.
+
+    Unsupported/native inputs use the original concrete readers. No model/DB
+    token, callback, lazy generator or raw source object escapes the bracket.
+    """
+    if (type(text) is not str or len(text)>8192 or type(languages) is not tuple
+            or len(languages)>8 or not all(type(value) is str and len(value)<=32 for value in languages)):
+        return None
+    model=_trusted_snapshot_model(db)
+    if model is None or model._parser_facts is None:return None
+    snapshot=_snapshot_scope.get();scope=_parser_plan_scope.get()
+    if scope is not None:
+        if scope['db'] is not db:scope=None
+        elif scope['snapshot'] is None:scope['snapshot']=snapshot
+        elif scope['snapshot'] is not snapshot:raise CatalogSnapshotChanged()
+    key=(text,languages)
+    try:
+        result=scope['rows'].get(key) if scope is not None else None
+        cache_bytes=0
+        if result is None:
+            from . import collector_discovery
+            result=collector_discovery._question_plan_from_facts(text,languages,model._parser_facts)
+            if scope is not None:
+                from . import catalog_read_model_artifact
+                # Each entry owns its accounting root. Cross-entry aliases are
+                # intentionally charged again, never a global dedup discount.
+                cache_bytes=catalog_read_model_artifact._deep_size((key,result))
+    except BaseException as error:
+        try:
+            if _trusted_snapshot_model(db) is not model or _snapshot_scope.get() is not snapshot:
+                raise CatalogSnapshotChanged()
+        except CatalogSnapshotChanged as changed:
+            raise changed from error
+        raise
+    if _trusted_snapshot_model(db) is not model or _snapshot_scope.get() is not snapshot:
+        raise CatalogSnapshotChanged()
+    active=_catalog_scope.get()
+    if scope is not None and key not in scope['rows']:
+        size=_parser_cache_size(active) if active is not None and active['db'] is db else len(scope['rows'])
+        if size<64 and scope['bytes']+cache_bytes<=MAX_PARSER_PLAN_CACHE_BYTES:
+            scope['rows'][key]=result;scope['bytes']+=cache_bytes
+    return result
