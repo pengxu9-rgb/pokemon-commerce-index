@@ -12,6 +12,7 @@ from functools import wraps
 import json
 import os
 import sqlite3
+import stat
 from types import MappingProxyType
 import threading
 import time
@@ -265,6 +266,8 @@ def snapshot_media_ids(db):
     snapshot = _snapshot_scope.get()
     if snapshot is None or snapshot['db'] is not db:
         return None
+    if snapshot.get('strict_readonly') is True:
+        return _trusted_snapshot_model(db)._media_ids
     snapshot['model']._check_snapshot(db)
     version = _static_snapshot_version(db)
     if version is None or version != snapshot['static_version']:
@@ -279,10 +282,26 @@ def _trusted_snapshot_model(db):
     if snapshot is None or snapshot['db'] is not db:
         return None
     db._catalog_check_clone_guard(snapshot['clone_guard'])
-    snapshot['model']._check_snapshot(db)
-    version=_static_snapshot_version(db)
-    if version is None or version!=snapshot['static_version']:
-        raise CatalogSnapshotChanged()
+    if snapshot.get('strict_readonly') is True:
+        snapshot['model']._check_sealed_snapshot(db,snapshot['path_ancestors'])
+        # The stronger authorizer rejects every namespace write, transaction,
+        # attachment and PRAGMA setter, even if a caller catches the error.
+        # Main/WAL/path/alias changes still receive the fresh file check above
+        # and SQLite's current data_version below, including commits whose
+        # filesystem timestamps coincide. Full SQL stamps bracket the request.
+        if (snapshot['clone_guard'].get('read_only_all_namespaces') is not True
+                or db.in_transaction or db.total_changes!=snapshot['static_version'][0]
+                or db.execute('PRAGMA main.data_version').fetchone()[0]!=snapshot['static_version'][1]):
+            raise CatalogSnapshotChanged()
+    else:
+        snapshot['model']._check_snapshot(db)
+        version=_static_snapshot_version(db)
+        if version is None or version!=snapshot['static_version']:
+            raise CatalogSnapshotChanged()
+    # Allowed SQL may invoke a prior authorizer that catches its own denied
+    # mutation. Recheck sticky policy after every callback, before sharing facts.
+    if snapshot.get('strict_readonly') is True:
+        db._catalog_check_clone_guard(snapshot['clone_guard'])
     return snapshot['model']
 
 
@@ -567,8 +586,58 @@ class CatalogReadModel:
         db.deserialize(self._image,name=self.SCHEMA)
         db.execute('PRAGMA query_only=ON')
 
+    def _capture_path_ancestors(self):
+        """Request-owned directory witnesses for already canonical fixed paths.
+
+        Every ancestor is freshly checked at each fact lookup. Deduplication is
+        within a lookup only; this is the same sampled namespace guarantee as
+        realpath, not protection against a swap restored between observations.
+        """
+        paths=[self._path]
+        if hasattr(self,'_release_alias_path'):paths.append(self._release_alias_path)
+        parents={os.fspath(parent) for path in paths for parent in path.parents}
+        try:
+            result=[]
+            for path in sorted(parents):
+                info=os.lstat(path)
+                if not stat.S_ISDIR(info.st_mode):raise CatalogSnapshotChanged()
+                result.append((path,(info.st_dev,info.st_ino,stat.S_IFMT(info.st_mode))))
+            return tuple(result)
+        except OSError as exc:
+            raise CatalogSnapshotChanged() from exc
+
+    def _check_sealed_snapshot(self,db,ancestors):
+        """Fresh path, handle, ancestor and file checks without repeat realpath.
+
+        All lexical ancestors must remain the same real directories. Final
+        symlinks/nonregular files are rejected before empty-WAL equivalence.
+        SQLite data_version is separately checked by the calling trust guard.
+        """
+        try:
+            main=next((r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main'),None)
+            if (main!=os.fspath(self._path) or
+                    getattr(db,'_catalog_open_file_identity',None)!=(str(self._path),*self._identity[0][:2])):
+                raise CatalogSnapshotChanged()
+            for path,identity in ancestors:
+                info=os.lstat(path)
+                if ((info.st_dev,info.st_ino,stat.S_IFMT(info.st_mode))!=identity
+                        or not stat.S_ISDIR(info.st_mode)):
+                    raise CatalogSnapshotChanged()
+            if _regular_identity_at_path(self._path)!=self._identity:
+                raise CatalogSnapshotChanged()
+            if (hasattr(self,'_release_alias_path') and
+                    _regular_identity_at_path(self._release_alias_path)!=self._release_alias_identity):
+                raise CatalogSnapshotChanged()
+        except OSError as exc:
+            raise CatalogSnapshotChanged() from exc
+
     @contextmanager
-    def request(self,db):
+    def request(self,db,*,strict_readonly=False):
+        if type(strict_readonly) is not bool:
+            raise ValueError('strict read-only mode must be an explicit boolean')
+        # Capture before any entry SQL: a prior callback can clear itself while
+        # attachment is still unguarded. Fresh HTTP connections have no callback.
+        validate_clone=strict_readonly and getattr(db,'_catalog_authorizer',None) is not None
         checkpoint();self._check_snapshot(db)
         if db.in_transaction or db.execute('SELECT 1 FROM temp.sqlite_master LIMIT 1').fetchone():
             raise CatalogSnapshotChanged()
@@ -576,12 +645,32 @@ class CatalogReadModel:
             self._artifact_guard()
         self._attach(db)
         checkpoint()
-        version=_static_snapshot_version(db)
-        if version is None:
-            raise CatalogSnapshotChanged()
-        guard=db._catalog_protect_clone(self.SCHEMA)
-        token=_snapshot_scope.set({'db':db,'model':self,'static_version':version,'clone_guard':guard})
+        guard=None;token=None
         try:
+            # Install the all-namespace policy before the entry stamp, so a
+            # prior authorizer callback cannot change state while it is read.
+            if strict_readonly:
+                guard=db._catalog_protect_clone(self.SCHEMA,constructor=True)
+                if validate_clone or guard['prior_authorizer'] is not None:
+                    db._catalog_check_clone_guard(guard);checkpoint()
+                    # A callback during setup cannot make modified clone rows
+                    # the accepted baseline. This bounded copy is transient.
+                    if db.serialize(name=self.SCHEMA)!=self._image:
+                        raise CatalogSnapshotChanged()
+                    db._catalog_check_clone_guard(guard);checkpoint()
+            version=_static_snapshot_version(db)
+            if version is None:raise CatalogSnapshotChanged()
+            if guard is None:guard=db._catalog_protect_clone(self.SCHEMA)
+            ancestors=None
+            if strict_readonly:
+                ancestors=self._capture_path_ancestors()
+                # The initial full check predates capture. Bracket capture with
+                # the original checks so setup cannot adopt a changed baseline.
+                self._check_snapshot(db)
+                self._check_sealed_snapshot(db,ancestors)
+            db._catalog_check_clone_guard(guard)
+            token=_snapshot_scope.set({'db':db,'model':self,'static_version':version,
+                'clone_guard':guard,'strict_readonly':strict_readonly,'path_ancestors':ancestors})
             yield
             db._catalog_check_clone_guard(guard)
             checkpoint();self._check_snapshot(db)
@@ -589,19 +678,19 @@ class CatalogReadModel:
                 raise CatalogSnapshotChanged()
             if hasattr(self, '_artifact_guard'):
                 self._artifact_guard()
+            if strict_readonly:db._catalog_check_clone_guard(guard)
         except BaseException as exc:
             # A caller cannot catch the SQL/driver error and restore a replaced
             # namespace before success. Any forbidden attempt poisons this scope.
-            try:
-                db._catalog_check_clone_guard(guard)
-            except CatalogSnapshotChanged as changed:
-                raise changed from exc
+            if guard is not None:
+                try:db._catalog_check_clone_guard(guard)
+                except CatalogSnapshotChanged as changed:raise changed from exc
             raise
         finally:
             try:
-                db._catalog_release_clone_guard(guard)
+                if guard is not None:db._catalog_release_clone_guard(guard)
             finally:
-                _snapshot_scope.reset(token)
+                if token is not None:_snapshot_scope.reset(token)
 
 
 class CatalogBusy(Exception):
@@ -643,6 +732,21 @@ def _identity_at_path(path):
             # no transactions and is equivalent to an absent WAL file.
             result.append(None if index and stat.st_size == 0 else
                           (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns))
+    return tuple(result)
+
+
+def _regular_identity_at_path(path):
+    """Fresh final-file lstat for a request's fully sealed ancestor chain."""
+    path=os.fspath(path)
+    result=[]
+    for index,file in enumerate((path,path+'-wal')):
+        try:info=os.lstat(file)
+        except FileNotFoundError:
+            result.append(None)
+        else:
+            if not stat.S_ISREG(info.st_mode):raise CatalogSnapshotChanged()
+            result.append(None if index and info.st_size==0 else
+                (info.st_dev,info.st_ino,info.st_size,info.st_mtime_ns,info.st_ctime_ns))
     return tuple(result)
 
 

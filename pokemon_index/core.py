@@ -135,7 +135,8 @@ class _CatalogConnection(sqlite3.Connection):
             from .collector_runtime import CatalogSnapshotChanged
             raise CatalogSnapshotChanged()
         prior=getattr(self, '_catalog_authorizer', None)
-        guard={'invalid':False, 'prior_authorizer':prior, 'schema':schema}
+        guard={'invalid':False, 'prior_authorizer':prior, 'schema':schema,
+               'read_only_all_namespaces':bool(constructor)}
         def authorize(action, first, second, database, source):
             # SQLite deserialize prepares an internal ATTACH as well. Protect
             # every attachment identity, including memory clones and main, and

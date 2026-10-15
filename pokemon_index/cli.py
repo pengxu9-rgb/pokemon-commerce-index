@@ -83,7 +83,7 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 # connection setup queries; keep their lock wait short as well.
                 with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
                     with collector_runtime.sqlite_deadline(db,expires):
-                        with read_model.request(db) if read_model is not None else nullcontext():
+                        with read_model.request(db,strict_readonly=True) if read_model is not None else nullcontext():
                             yield db
                             check_snapshot()
         finally:
