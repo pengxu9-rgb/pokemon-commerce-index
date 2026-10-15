@@ -158,20 +158,21 @@ def parse_taste(db, text, *, next_goal=False):
         patch={'subjective_notes':notes} if notes else {}
         if negative and negative['excluded_dex_ids']:patch['excluded_dex_ids']=negative['excluded_dex_ids']
         return patch
-    ids=discovery._character_ids(db,t)
+    _plan=collector_runtime.snapshot_question_plan(db,t,('ja','en'))
+    ids=(list(_plan.ids) if _plan is not None else discovery._character_ids(db,t))
     # Explicit bilingual species aliases, accepted only if current facets contain them.
     for aliases,dex in [(('皮卡丘',),25),(('梦幻','夢幻'),151)]:
         if any(alias in t for alias in aliases) and db.execute(
                 f"SELECT 1 FROM {collector_runtime.facet_lookup_relation(db)} WHERE facet_type='dex_id' AND value=? LIMIT 1",(str(dex),)).fetchone():
             ids.append(dex)
     ids=sorted(set(ids))
-    artists=discovery._artists(db,t)
+    artists=(list(_plan.artists) if _plan is not None else discovery._artists(db,t))
     if not artists:
-        artists=[r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists']) if discovery._norm(r[0])==t.strip(' .。!！')]
+        artists=(list(_plan.exact_artists) if _plan is not None else [r[0] for r in collector_runtime.vocabulary(db,'artists',collector_runtime.VOCABULARY_SQL['artists']) if discovery._norm(r[0])==t.strip(' .。!！')])
     patch={'excluded_dex_ids':negative['excluded_dex_ids']} if negative and negative['excluded_dex_ids'] else {}
     if len(ids)==1:patch['preferred_dex_ids']=ids
     if len(artists)==1:patch['preferred_illustrators']=artists
-    codes=discovery._release_codes(db,t,['ja','en'])
+    codes=(set(_plan.codes) if _plan is not None else discovery._release_codes(db,t,['ja','en']))
     if len(codes)==1:
         languages=discovery._languages(t)
         patch['preferred_releases']=[dict(language=r[0],set_code=r[1]) for r in db.execute(
@@ -213,11 +214,16 @@ def _facets(db, cid):
 
 def _facet_batches(db, card_ids, size=400):
     """Bound SQLite variables and transient facet memory, without per-card queries."""
-    for start in range(0,len(card_ids),size):
+    for start in range(0, len(card_ids), size):
         collector_runtime.checkpoint()
-        ids=card_ids[start:start+size];found={cid:[] for cid in ids}
-        for row in db.execute(f'SELECT * FROM {collector_runtime.facet_lookup_relation(db)} WHERE card_id IN ('+
-                ','.join('?' for _ in ids)+') ORDER BY card_id,facet_type,value,provenance',ids):
+        ids = card_ids[start:start + size]
+        found = {cid: [] for cid in ids}
+        relation=collector_runtime.facet_lookup_relation(db)
+        # The protected clone has fixed BINARY comparison semantics. Native/TEMP
+        # relations may carry caller-defined collations, so retain their exact
+        # original predicate and let the unchanged Python scorer select kinds.
+        kinds="facet_type IN ('dex_id','illustrator') AND " if relation=='collector_snapshot.facets' else ''
+        for row in db.execute(f"SELECT * FROM {relation} WHERE {kinds}card_id IN (" + ','.join(('?' for _ in ids)) + ') ORDER BY card_id,facet_type,value,provenance', ids):
             found[row['card_id']].append(dict(row))
         yield found
 
@@ -286,6 +292,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if type(limit) is not int or not 1<=limit<=50 or type(offset) is not int or not 0<=offset<inventory.MAX_SCOPE:
         raise ValueError('invalid recommendation pagination')
     languages=[scope['language']] if 'language' in scope else discovery._languages(discovery._norm(question))
+    _plan=collector_runtime.snapshot_question_plan(db,discovery._norm(question),tuple(languages))
     # A separate typed, exact-source derivation layer; never insert or masquerade as
     # a target-source dex facet. Current support/anchor evidence is revalidated.
     # An empty positive profile cannot produce a candidate, even with species
@@ -315,7 +322,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     if 'collector_number' not in scope and len(numbers)==1 and re.fullmatch(r'\d{1,3}/[a-z0-9\-]{1,32}',next(iter(numbers))):
         scope.update(discovery.validate_scope({'collector_number':next(iter(numbers))}))
     if 'collector_number' in scope and 'set_code' not in scope:
-        codes=discovery._release_codes(db,discovery._norm(question),languages)
+        codes=(set(_plan.codes) if _plan is not None else discovery._release_codes(db,discovery._norm(question),languages))
         if len(codes)==1:scope['set_code']=next(iter(codes))
     result=dict(schema='pokemon.collector-discovery.v1',question=raw_question,languages=languages,
         task='collector_recommendations',status='clarification_needed',cards=[],next_question=PROMPT,
@@ -323,7 +330,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         complete_answer_established=False,unfulfilled_constraints=[],requested_scope=scope,
         coverage=dict(matched_catalog_records=0,returned=0,offset=offset,limit=limit,has_more=False),
         scope='Internal preference matches; physical printing, taste, ownership and market claims remain separate.')
-    interpretations=discovery.reviewed_release_interpretations(db,question,languages)
+    interpretations=(json.loads(_plan.interpretations_json) if _plan is not None else discovery.reviewed_release_interpretations(db,question,languages))
     if interpretations:result['release_name_interpretations']=interpretations
     if (discovery.explicit_artist_clause(question)
             and len(discovery._artists(db,discovery._norm(question)))!=1 and resolved_illustrator is None):
@@ -370,7 +377,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     where=['('+' OR '.join(positive)+')','c.language IN ('+','.join('?' for _ in languages)+')'];params.extend(languages)
     for key,val in scope.items():
         where.append('c.'+key+'=?');params.append(val)
-    suffix=discovery.requested_name_suffix(db,question,languages)
+    suffix=(_plan.suffix if _plan is not None else discovery.requested_name_suffix(db,question,languages))
     if suffix:
         where.append('lower(substr(c.name,-?))=?');params.extend([len(suffix),suffix])
         where.append("(c.language='ja' OR substr(c.name,-?,1) IN (' ','-'))");params.append(len(suffix)+1)
@@ -379,8 +386,8 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     # A textual "only" conjunction is a hard request, distinct from optional
     # profile axes, which retain their documented soft-union semantics.
     hard_text=discovery._norm(question)
-    hard_ids=discovery._character_ids(db,discovery._without_release_names(db,hard_text,languages))
-    hard_artists=[resolved_illustrator] if resolved_illustrator is not None else discovery._artists(db,hard_text)
+    hard_ids=(list(_plan.without_ids) if _plan is not None else discovery._character_ids(db,discovery._without_release_names(db,hard_text,languages)))
+    hard_artists=[resolved_illustrator] if resolved_illustrator is not None else (list(_plan.artists) if _plan is not None else discovery._artists(db,hard_text))
     explicit_artist_binding=(len(hard_artists)==1 and bool(re.search(
         r'\bby\s+'+re.escape(discovery._norm(hard_artists[0]))+r'(?![a-z0-9])',hard_text)))
     if resolved_illustrator is not None or re.search(r'\bonly\b',hard_text) or explicit_artist_binding:

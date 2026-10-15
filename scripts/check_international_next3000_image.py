@@ -19,7 +19,7 @@ GENERATED = {'card_identity_exception':'applied_at', 'card_number_conflict_rule'
              'card_rarity_correction':'applied_at', 'card_relationship_assertion':'asserted_at'}
 # Pins are populated only after the new incremental/rebuilt snapshot audit.
 REVIEWED_LOGICAL_SHA = '6189c64c87e796ac9469cff7c283982b9e1a82741ed649d7bc1e45218a16060c'
-REVIEWED_RUNTIME_REVISION = 'cfed8a06950d6723c5379a04cb49937544f8aa1d268a4186c0639d22e49fea82'
+REVIEWED_RUNTIME_REVISION = '01d9d5bb313539f457682660c0bf65ee0f3fa7518dec2092331b1147eed47480'
 
 
 def quoted(value):

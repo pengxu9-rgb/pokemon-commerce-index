@@ -113,6 +113,7 @@ def _preferences(value,db=None):
 
 
 @collector_runtime.catalog_request
+@collector_runtime.parser_plan_request
 def replay(db,request,*,revision=None):
     if not isinstance(request,dict) or set(request)-{'turns','limit','expected_revision'}:raise ValueError('unsupported journey request')
     turns=request.get('turns');limit=request.get('limit',5)
@@ -242,6 +243,11 @@ def replay(db,request,*,revision=None):
                 recommendation_baseline_cache.clear()
                 recommendation_baseline_cache.update(key=baseline_key,
                     result=collector_discovery.execute(db,baseline_query,scope=filters,limit=1))
+            initial= recommendation_baseline_cache.get('initial_snapshot')
+            if initial is not None:
+                if (collector_runtime._snapshot_scope.get() is not initial
+                        or collector_runtime._trusted_snapshot_model(db) is not initial['model']):
+                    raise collector_runtime.CatalogSnapshotChanged()
             baseline=recommendation_baseline_cache['result']
             scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+baseline['unfulfilled_constraints']))
         elif owned is None:
@@ -344,6 +350,15 @@ def replay(db,request,*,revision=None):
             if recommendation_mode:
                 scope_patch,money=collector_recommendation.question_constraints(question,db)
                 filters.update(scope_patch)
+                if collector_discovery._redundant_language_constraint_projection(baseline,filters):
+                    active=collector_runtime._snapshot_scope.get()
+                    if (active is not None and active['db'] is db
+                            and collector_runtime._trusted_snapshot_model(db) is active['model']):
+                        recommendation_baseline_cache.clear()
+                        recommendation_baseline_cache.update(
+                            key=json.dumps([baseline_query,filters],sort_keys=True),
+                            result={'unfulfilled_constraints':list(baseline['unfulfilled_constraints'])},
+                            initial_snapshot=active)
                 taste=natural_taste(question,collector_recommendation.parse_taste(db,question))
                 if taste:money['collecting']=taste
                 if money:patch_preferences(money)
