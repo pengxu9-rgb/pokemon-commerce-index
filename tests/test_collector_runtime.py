@@ -274,7 +274,7 @@ class RuntimeHTTPTests(unittest.TestCase):
             self.assertEqual(self.call(server,'/discover?q=unknown')[0],200)
 
     def test_slow_body_uses_original_budget_and_cannot_start_late_work(self):
-        with self.server(catalog_deadline=.05) as server:
+        with self.server(catalog_deadline=.05,native_read_model=True) as server:
             with patch.object(collector_journey,'replay',wraps=collector_journey.replay) as replay:
                 peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
                 try:
@@ -288,7 +288,7 @@ class RuntimeHTTPTests(unittest.TestCase):
             self.assertEqual(self.call(server)[0],200)
 
     def test_idle_connection_does_not_spend_a_future_requests_compute_budget(self):
-        with self.server(catalog_deadline=.05) as server:
+        with self.server(catalog_deadline=.05,native_read_model=True) as server:
             peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
             try:
                 time.sleep(.08)
@@ -306,7 +306,7 @@ class RuntimeHTTPTests(unittest.TestCase):
             try:
                 while True:runtime.checkpoint()
             finally:finished.set()
-        with self.server(catalog_deadline=.05,catalog_queue_size=0) as server:
+        with self.server(catalog_deadline=.05,catalog_queue_size=0,native_read_model=True) as server:
             with patch.object(collector_journey,'replay',side_effect=expensive):
                 peer=socket.create_connection(('127.0.0.1',server.server_port),timeout=2)
                 raw=json.dumps(self.payload).encode()
