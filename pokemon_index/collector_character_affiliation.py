@@ -52,6 +52,36 @@ def _anchor_groups(db, base_names):
         JOIN card_classification k ON k.card_id=c.card_id AND k.category='Pokemon'
         WHERE c.language='ja' AND c.name IN (""" + placeholders + """)
         ORDER BY c.card_id,f.value,f.provenance""", base_names).fetchall()
+    return _group_anchor_rows(base_names, rows)
+
+
+def _constructor_anchor_groups(db, base_names):
+    """Read all requested exact names in one effective-facet query.
+
+    The effective view contains materialized correction evidence. Repeating it
+    per name scans that evidence repeatedly even when only a few anchors match.
+    Grouping after one ordered query changes no currentness or unanimity rule.
+    """
+    base_names = sorted(set(base_names))
+    if not base_names:
+        return {}
+    placeholders = ",".join("?" for _ in base_names)
+    rows = db.execute("""SELECT c.card_id,c.name,c.provenance card_provenance,
+            c.rights_reference card_rights_reference,
+            f.value,f.provenance,f.rights_reference,k.provenance classification_provenance,
+            k.rights_reference classification_rights_reference,
+            CASE WHEN f.provenance=c.provenance THEN 1 ELSE EXISTS (
+                SELECT 1 FROM active_card_metadata_evidence e
+                WHERE e.card_id=c.card_id AND e.evidence_id=f.provenance)
+            END metadata_current
+        FROM card c JOIN collector_snapshot.facets f ON f.card_id=c.card_id AND f.facet_type='dex_id'
+        JOIN card_classification k ON k.card_id=c.card_id AND k.category='Pokemon'
+        WHERE c.language='ja' AND c.name IN (""" + placeholders + """)
+        ORDER BY c.card_id,f.value,f.provenance""", base_names).fetchall()
+    return _group_anchor_rows(base_names, rows)
+
+
+def _group_anchor_rows(base_names, rows):
     groups = {name: [] for name in base_names}
     for row in rows:
         if (row["classification_provenance"] != row["card_provenance"] or
@@ -92,7 +122,34 @@ def affiliations(db):
     cached = collector_runtime.snapshot_affiliations(db)
     if cached is not None:
         return cached
-    result = {}
+    qualified = _qualified_bindings(db)
+    if not qualified:
+        return {}
+    placeholders = ",".join("?" for _ in qualified)
+    direct = {row[0] for row in db.execute(
+        "SELECT DISTINCT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND card_id IN ("
+        + placeholders + ")", [binding["card_id"] for binding in qualified])}
+    qualified = [binding for binding in qualified if binding["card_id"] not in direct]
+    anchors = _anchor_groups(db, [binding["base_name_ja"] for binding in qualified])
+    return _render_affiliations(qualified, anchors)
+
+
+def _constructor_affiliations(db):
+    """Fixed constructor-only queries; no caller-selected relation or callback."""
+    qualified = _qualified_bindings(db)
+    if not qualified:
+        return {}
+    placeholders = ",".join("?" for _ in qualified)
+    # The original consumer is a set: SQL row order is deliberately irrelevant.
+    direct = {row[0] for row in db.execute(
+        "SELECT DISTINCT card_id FROM collector_snapshot.facets WHERE facet_type='dex_id' AND card_id IN ("
+        + placeholders + ")", [binding["card_id"] for binding in qualified])}
+    qualified = [binding for binding in qualified if binding["card_id"] not in direct]
+    anchors = _constructor_anchor_groups(db, [binding["base_name_ja"] for binding in qualified])
+    return _render_affiliations(qualified, anchors)
+
+
+def _qualified_bindings(db):
     qualified = []
     for binding in _bindings():
         identity = binding.get("identity", {})
@@ -124,16 +181,11 @@ def affiliations(db):
         if not classification or tuple(classification) != ("Pokemon", source_ref, binding["target_rights_reference"]):
             continue
         qualified.append(binding)
-    if not qualified:
-        return result
-    # Batch direct/current assertions through the same effective view. No raw
-    # facet shortcut: metadata conflicts or numbered-part suppression still win.
-    placeholders = ",".join("?" for _ in qualified)
-    direct = {row[0] for row in db.execute(
-        "SELECT DISTINCT card_id FROM discovery_card_facet WHERE facet_type='dex_id' AND card_id IN ("
-        + placeholders + ")", [binding["card_id"] for binding in qualified])}
-    qualified = [binding for binding in qualified if binding["card_id"] not in direct]
-    anchors = _anchor_groups(db, [binding["base_name_ja"] for binding in qualified])
+    return qualified
+
+
+def _render_affiliations(qualified, anchors):
+    result = {}
     for binding in qualified:
         cid = binding["card_id"]
         identity = binding["identity"]

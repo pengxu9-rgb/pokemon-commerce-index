@@ -22,7 +22,7 @@ def state_with_template():
     return dict(schema=index.SCHEMA,enabled=True,
         known_card_ids=dict(type='str',values=['1','en:FIX:001/100:normal','ja:FIX:001/100:normal']),
         context_strings=[artifact._json_bytes(context).decode()],
-        assignments={'ja:FIX:001/100:normal':0},default_string=index.DEFAULT_ABSENT_JSON)
+        assignments={'ja:FIX:001/100:normal':0},default_string=index.DEFAULT_ABSENT_JSON,identity_flags={})
 
 
 class CardSourceContextIndexTests(unittest.TestCase):

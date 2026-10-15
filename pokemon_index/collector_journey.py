@@ -194,6 +194,8 @@ def replay(db,request,*,revision=None):
         clear('illustrator_requirement_confirmed');offset=0;reset_context()
     def identity_blockers(card):
         cid=card['card_id']
+        inputs=collector_runtime.snapshot_identity_inputs(db,cid)
+        if inputs is not None:return _identity_blockers_from_snapshot(card,inputs)
         blocks=discovery_graph.endpoint_identity_blockers(db,cid)
         if blocks:blocks.append('catalog_identity_review_needed')
         if card.get('official_coordinate_family',{}).get('copy_evidence_needed'):
@@ -520,3 +522,28 @@ def replay(db,request,*,revision=None):
         physical_copy_verified=False,ready_for_offer_tracking=False,purchase_ready=False,
         complete_collection_established=False,public_display_allowed=False,prices=[],live_offers=[],
         interpretation='Caller-owned bounded action replay; catalog selection and user inventory assertions only. AI leads, copy evidence, market preferences and transaction approval remain separate.')
+
+
+
+def _identity_blockers_from_snapshot(card,inputs):
+    """Format already guarded advisories; raw eligibility/family fields are fresh.
+
+    This private formatter is not an acceptance point for caller-provided facts;
+    replay invokes it only with the fixed runtime accessor's request-local row.
+    """
+    from . import card_source_context_index
+    flags,raw=inputs;status,conflict,number_hold,image_warning,family_fallback=flags
+    blocks=[]
+    if not raw['match_eligible']:blocks.append('match_disabled_identity')
+    if status:blocks.append(status)
+    if conflict:blocks.append('source_image_number_coordinate_conflict')
+    if blocks:blocks.append('catalog_identity_review_needed')
+    if card.get('official_coordinate_family',{}).get('copy_evidence_needed'):
+        blocks.append('coordinate_family_copy_evidence')
+    if card.get('official_metadata',{}).get('official',{}).get('page_kind')=='numbered_parts':
+        blocks.append('numbered_part_copy_evidence')
+    if card_source_context_index._raw_family_scope_only(raw) or family_fallback:
+        blocks.append('source_family_copy_evidence')
+    if number_hold:blocks.append('catalog_identity_review_needed')
+    if image_warning:blocks.append('source_image_metadata_resolution')
+    return sorted(set(blocks))

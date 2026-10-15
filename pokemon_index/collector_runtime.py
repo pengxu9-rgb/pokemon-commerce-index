@@ -22,12 +22,65 @@ _work_deadline = ContextVar('collector_work_deadline', default=None)
 _sql_scopes = ContextVar('collector_sql_scopes', default=())
 _snapshot_scope = ContextVar('collector_snapshot_scope', default=None)
 _parser_plan_scope = ContextVar('collector_parser_plan_scope',default=None)
+_constructor_scope = ContextVar('collector_constructor_scope',default=None)
 MAX_PARSER_PLAN_CACHE_BYTES = 1024 * 1024
 VOCABULARY_SQL = {
     'artists': "SELECT DISTINCT value FROM discovery_card_facet WHERE facet_type='illustrator'",
     'release_codes': 'SELECT DISTINCT set_code FROM card',
     'character_aliases': "SELECT DISTINCT name,dex_id,current_evidence FROM (SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id,\n        MAX(CASE WHEN (f.provenance=c.provenance AND f.rights_reference=c.rights_reference)\n            OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata\n                      WHERE metadata.card_id=c.card_id AND metadata.evidence_id=f.provenance)\n            THEN 1 ELSE 0 END) AS current_evidence\n        FROM card c JOIN discovery_card_facet f ON f.card_id=c.card_id AND f.facet_type='dex_id'\n        GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)",
 }
+# Fixed constructor query over the exact native-built facet image. Artists keep
+# their native unordered DISTINCT path; public/native vocabulary SQL is unchanged.
+_CONSTRUCTOR_CHARACTER_ALIAS_SQL = """SELECT DISTINCT name,dex_id,current_evidence FROM (
+    SELECT c.name,CAST(MIN(f.value) AS INTEGER) AS dex_id,
+        MAX(CASE WHEN (f.provenance=c.provenance AND f.rights_reference=c.rights_reference)
+            OR EXISTS(SELECT 1 FROM active_card_metadata_evidence metadata
+                WHERE metadata.card_id=c.card_id AND metadata.evidence_id=f.provenance)
+            THEN 1 ELSE 0 END) AS current_evidence
+    FROM card c JOIN collector_snapshot.facets f ON f.card_id=c.card_id AND f.facet_type='dex_id'
+    GROUP BY c.card_id HAVING COUNT(DISTINCT f.value)=1)"""
+
+
+@contextmanager
+def _constructor_snapshot(db):
+    """Sticky write denial and original identities span every reused fact.
+
+    This scope starts only after the native facet image is committed/query-only.
+    No transaction, namespace/PRAGMA write, attachment or authorizer replacement
+    can be reverted and adopted as a new baseline. Prior policy is restored even
+    on constructor errors; the original request guard keeps its narrower mode.
+    """
+    from . import card_source_context_index
+    guard=db._catalog_protect_clone(CatalogReadModel.SCHEMA,constructor=True)
+    token=None;unsupported=False
+    try:
+        try:
+            before=card_source_context_index._constructor_stamp(db)
+        except card_source_context_index.ContextIndexUnsupported:
+            # Initial unsupported scope/WAL keeps the original native path.
+            # The probe itself is protected: a caught denied write cannot be
+            # reclassified as unsupported and adopted by fallback.
+            db._catalog_check_clone_guard(guard)
+            unsupported=True
+        if not unsupported:
+            token=_constructor_scope.set((db,guard,before))
+            try:
+                yield True
+            except BaseException:
+                db._catalog_check_clone_guard(guard)
+                card_source_context_index._assert_constructor_stamp(db,before)
+                raise
+            db._catalog_check_clone_guard(guard)
+            card_source_context_index._assert_constructor_stamp(db,before)
+    finally:
+        if token is not None:_constructor_scope.reset(token)
+        db._catalog_release_clone_guard(guard)
+    if unsupported:
+        # No optimized query/fact was read. Policy is restored before entering
+        # the original native constructor/disabled context-index fallback.
+        yield False
+
+
 _VOCABULARY_KEYS = frozenset(VOCABULARY_SQL)
 
 
@@ -402,60 +455,61 @@ class CatalogReadModel:
         db.execute('CREATE INDEX collector_snapshot.card_lookup ON facets(card_id,facet_type,value)')
         db.commit()
         db.execute('PRAGMA query_only=ON')
-        self._vocabularies=MappingProxyType({key:tuple(db.execute(sql).fetchmany(100001))
-            for key,sql in VOCABULARY_SQL.items()})
-        if any(len(rows)>100000 for rows in self._vocabularies.values()):
-            raise ValueError('catalog vocabulary exceeds read model bound')
-        from . import collector_character_affiliation
-        affiliations=collector_character_affiliation.affiliations(db)
-        if len(affiliations)>collector_character_affiliation.MAX_BINDINGS:
-            raise ValueError('catalog affiliations exceed read model bound')
-        self._affiliations_json=json.dumps(affiliations,ensure_ascii=False,separators=(',',':'))
-        if len(self._affiliations_json.encode())>1024*1024:
-            raise ValueError('catalog affiliation proofs exceed read model bound')
-        from . import card_source_context_index
-        # Constructor-only proof reuse covers ALL historical media subjects and
-        # holds. The transient maps are discarded inside the fixed compiler;
-        # native imports/requests keep validating their current source records.
-        self._card_source_context_index,media_ids = card_source_context_index.compile_constructor_facts(db)
-        if (len(media_ids)>self.MAX_MEDIA_IDS or
-                sum(len(cid.encode('utf-8')) for cid in media_ids)>self.MAX_MEDIA_ID_BYTES):
-            raise ValueError('catalog source-scan IDs exceed read model bound')
-        self._media_ids = frozenset(media_ids)
-        self._cast_dex_card_ids=self._build_cast_dex_card_ids(db)
-        self._text_dex_card_ids = self._build_text_dex_card_ids(db)
-        from . import collector_discovery, collector_release_alias
-        self._release_alias_path = collector_release_alias.BINDINGS_PATH.resolve(strict=True)
-        self._release_alias_identity = snapshot_identity(self._release_alias_path)
-        self._character_names = MappingProxyType({current: tuple(
-            collector_discovery._character_name_facts(db, current_only=current,
-                aliases=self._vocabularies['character_aliases'])) for current in (False, True)})
-        self._release_names = tuple(collector_discovery._release_name_facts(db))
-        languages = {row[0] for row in self._release_names}
-        # The native proof reader validates the exact localized release and its
-        # evidence. Only those proofs are retained; every response gets a copy.
-        payload = json.loads(collector_release_alias.BINDINGS_PATH.read_text())
-        languages.update(row['language'] for row in payload['records'])
-        release_aliases = collector_release_alias.aliases(db, languages)
-        self._release_aliases_json = json.dumps(release_aliases, ensure_ascii=False,
-                                               separators=(',', ':'))
-        self._release_names += tuple((row['language'], row['set_code'],
-            collector_discovery._norm(row['alias'])) for row in release_aliases)
-        if (len(self._release_names) > self.MAX_RELEASE_NAME_ROWS or
-                sum(sum(len(value.encode('utf-8')) for value in row)
-                    for row in self._release_names) > self.MAX_RELEASE_NAME_BYTES or
-                len(self._release_aliases_json.encode('utf-8')) > self.MAX_RELEASE_ALIAS_BYTES or
-                any(len(rows) > self.MAX_CHARACTER_NAME_ROWS or
-                    sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
-                    for rows in self._character_names.values())):
-            raise ValueError('catalog matching facts exceed read model bound')
-        self._parser_facts=collector_discovery._compile_parser_facts(db,self)
-        self._image=db.serialize(name=self.SCHEMA)
-        if len(self._image)>self.MAX_IMAGE_BYTES:
-            raise ValueError('catalog read model exceeds memory bound')
-        checkpoint()
-        self._check_snapshot(db)
-
+        with _constructor_snapshot(db) as reusable:
+            self._vocabularies=MappingProxyType({key:tuple(db.execute(_CONSTRUCTOR_CHARACTER_ALIAS_SQL if reusable and key=='character_aliases' else sql).fetchmany(100001))
+                for key,sql in VOCABULARY_SQL.items()})
+            if any(len(rows)>100000 for rows in self._vocabularies.values()):
+                raise ValueError('catalog vocabulary exceeds read model bound')
+            from . import collector_character_affiliation
+            affiliations=(collector_character_affiliation._constructor_affiliations(db) if reusable
+                else collector_character_affiliation.affiliations(db))
+            if len(affiliations)>collector_character_affiliation.MAX_BINDINGS:
+                raise ValueError('catalog affiliations exceed read model bound')
+            self._affiliations_json=json.dumps(affiliations,ensure_ascii=False,separators=(',',':'))
+            if len(self._affiliations_json.encode())>1024*1024:
+                raise ValueError('catalog affiliation proofs exceed read model bound')
+            from . import card_source_context_index
+            # Constructor-only proof reuse covers ALL historical media subjects and
+            # holds. The transient maps are discarded inside the fixed compiler;
+            # native imports/requests keep validating their current source records.
+            self._card_source_context_index,media_ids = card_source_context_index.compile_constructor_facts(db)
+            if (len(media_ids)>self.MAX_MEDIA_IDS or
+                    sum(len(cid.encode('utf-8')) for cid in media_ids)>self.MAX_MEDIA_ID_BYTES):
+                raise ValueError('catalog source-scan IDs exceed read model bound')
+            self._media_ids = frozenset(media_ids)
+            self._cast_dex_card_ids=self._build_cast_dex_card_ids(db)
+            self._text_dex_card_ids = self._build_text_dex_card_ids(db)
+            from . import collector_discovery, collector_release_alias
+            self._release_alias_path = collector_release_alias.BINDINGS_PATH.resolve(strict=True)
+            self._release_alias_identity = snapshot_identity(self._release_alias_path)
+            self._character_names = MappingProxyType({current: tuple(
+                collector_discovery._character_name_facts(db, current_only=current,
+                    aliases=self._vocabularies['character_aliases'])) for current in (False, True)})
+            self._release_names = tuple(collector_discovery._release_name_facts(db))
+            languages = {row[0] for row in self._release_names}
+            # The native proof reader validates the exact localized release and its
+            # evidence. Only those proofs are retained; every response gets a copy.
+            payload = json.loads(collector_release_alias.BINDINGS_PATH.read_text())
+            languages.update(row['language'] for row in payload['records'])
+            release_aliases = collector_release_alias.aliases(db, languages)
+            self._release_aliases_json = json.dumps(release_aliases, ensure_ascii=False,
+                                                   separators=(',', ':'))
+            self._release_names += tuple((row['language'], row['set_code'],
+                collector_discovery._norm(row['alias'])) for row in release_aliases)
+            if (len(self._release_names) > self.MAX_RELEASE_NAME_ROWS or
+                    sum(sum(len(value.encode('utf-8')) for value in row)
+                        for row in self._release_names) > self.MAX_RELEASE_NAME_BYTES or
+                    len(self._release_aliases_json.encode('utf-8')) > self.MAX_RELEASE_ALIAS_BYTES or
+                    any(len(rows) > self.MAX_CHARACTER_NAME_ROWS or
+                        sum(len(name.encode('utf-8')) for name, _, _ in rows) > self.MAX_CHARACTER_NAME_BYTES
+                        for rows in self._character_names.values())):
+                raise ValueError('catalog matching facts exceed read model bound')
+            self._parser_facts=collector_discovery._compile_parser_facts(db,self)
+            self._image=db.serialize(name=self.SCHEMA)
+            if len(self._image)>self.MAX_IMAGE_BYTES:
+                raise ValueError('catalog read model exceeds memory bound')
+            checkpoint()
+            self._check_snapshot(db)
     @classmethod
     def _build_cast_dex_card_ids(cls,db):
         # Preserve SQLite's JOIN affinity, storage classes and CAST behavior.
@@ -737,4 +791,29 @@ def snapshot_question_plan(db,text,languages):
         size=_parser_cache_size(active) if active is not None and active['db'] is db else len(scope['rows'])
         if size<64 and scope['bytes']+cache_bytes<=MAX_PARSER_PLAN_CACHE_BYTES:
             scope['rows'][key]=result;scope['bytes']+=cache_bytes
+    return result
+
+
+
+def snapshot_identity_inputs(db,cid):
+    """Fixed sparse advisories and a fresh native row in one guarded bracket.
+
+    Unknown, differently typed, disabled and native inputs use the original
+    identity readers. No raw row is retained in the shared model or a memo.
+    """
+    model=_trusted_snapshot_model(db);snapshot=_snapshot_scope.get()
+    try:
+        flags=model._card_source_context_index.lookup_identity_flags(cid) if model is not None else None
+        if flags is None:result=None
+        else:
+            from . import discovery_graph
+            result=(flags,discovery_graph._card(db,cid))
+    except BaseException as error:
+        try:
+            if _trusted_snapshot_model(db) is not model or _snapshot_scope.get() is not snapshot:
+                raise CatalogSnapshotChanged()
+        except CatalogSnapshotChanged as changed:raise changed from error
+        raise
+    if _trusted_snapshot_model(db) is not model or _snapshot_scope.get() is not snapshot:
+        raise CatalogSnapshotChanged()
     return result
