@@ -130,7 +130,7 @@ class _CatalogConnection(sqlite3.Connection):
         self._catalog_authorizer=authorizer_callback
         return result
 
-    def _catalog_protect_clone(self, schema):
+    def _catalog_protect_clone(self, schema, *, constructor=False):
         if getattr(self, '_catalog_clone_guard', None) is not None:
             from .collector_runtime import CatalogSnapshotChanged
             raise CatalogSnapshotChanged()
@@ -141,7 +141,7 @@ class _CatalogConnection(sqlite3.Connection):
             # every attachment identity, including memory clones and main, and
             # mark the scope before SQLite reports its authorization failure.
             forbidden=action in (sqlite3.SQLITE_ATTACH, sqlite3.SQLITE_DETACH)
-            if database == schema:
+            if constructor or database == schema:
                 readonly={sqlite3.SQLITE_READ, sqlite3.SQLITE_SELECT, sqlite3.SQLITE_FUNCTION,
                     sqlite3.SQLITE_RECURSIVE, sqlite3.SQLITE_PRAGMA}
                 forbidden=forbidden or action not in readonly
@@ -149,6 +149,11 @@ class _CatalogConnection(sqlite3.Connection):
                     forbidden=forbidden or first.lower() not in {
                         'table_info','table_xinfo','index_info','index_xinfo','index_list',
                         'foreign_key_list','integrity_check','quick_check'}
+            if constructor and action == sqlite3.SQLITE_PRAGMA:
+                reads={'query_only','data_version','schema_version','database_list','encoding',
+                    'application_id','user_version','compile_options','page_count','table_info','table_xinfo',
+                    'index_info','index_xinfo','index_list','foreign_key_list','integrity_check','quick_check'}
+                forbidden=forbidden or first.lower() not in reads
             if forbidden:
                 guard['invalid']=True
                 return sqlite3.SQLITE_DENY

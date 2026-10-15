@@ -25,7 +25,7 @@ import unicodedata
 from . import collector_runtime as runtime
 
 FORMAT = 'pokemon.catalog-read-model-artifact.v1'
-STATE_FORMAT = 'pokemon.catalog-read-model-state.v3'
+STATE_FORMAT = 'pokemon.catalog-read-model-state.v4'
 FILES = ('metadata.json', 'facet-image.sqlite3', 'seal.json')
 MAX_METADATA_BYTES = 32 * 1024 * 1024
 MAX_SEAL_BYTES = 64 * 1024

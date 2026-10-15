@@ -19,7 +19,7 @@ from . import collector_runtime as runtime
 from . import collector_discovery as discovery
 from . import catalog_read_model_artifact as artifact
 
-SCHEMA = 'pokemon.complete-card-context-index.v1'
+SCHEMA = 'pokemon.complete-card-context-index.v2'
 STATE_KEY = 'card_source_context_index'
 MAX_CARD_IDS = 100000
 MAX_HISTORY_ROWS = 100000
@@ -159,7 +159,7 @@ def dependency_population(db):
     return ids,union
 
 
-def _dependency_population(db):
+def _dependency_population(db, *, include_advisories=False):
     needed = {'card', *DIRECT_DEPENDENCIES, *SUBJECT_DEPENDENCIES,
               'coordinate_family_evidence', 'source_correction_evidence',
               'catalog_identity_quarantine'}
@@ -219,7 +219,18 @@ def _dependency_population(db):
         found.add(_typed_id(identity['card_id'])[1])
     populations['variant_dimension_hold'] = found
     union = frozenset().union(*populations.values()) & known
-    return tuple(ids), union, frozenset(populations['source_correction_evidence']), frozenset(found)
+    result=(tuple(ids), union, frozenset(populations['source_correction_evidence']), frozenset(found))
+    if not include_advisories:return result
+    # Native readers select image/number by the TABLE card_id, not the JSON
+    # endpoint identity. Family contexts select all variants at the exact
+    # historical coordinate; correction fallback may name any historical new
+    # card. These complete populations prove only historical advisory absence.
+    advisory=(populations['source_image_fact_evidence'] | populations['card_number_reading_evidence'] |
+              populations['coordinate_family_evidence'] | populations['source_correction_evidence']) & known
+    _unsupported(advisory <= union and len(advisory) <= MAX_CARD_IDS and
+                 sum(len(_utf8(cid)) for cid in advisory) <= MAX_CID_BYTES,
+                 'identity advisory dependency bound')
+    return (*result,frozenset(advisory))
 
 
 from typing import NamedTuple
@@ -254,13 +265,16 @@ class ContextIndex(NamedTuple):
     assignments: MappingProxyType
     default_string: str | None
     enabled: bool
+    identity_flags: MappingProxyType | None
 
     def to_state(self):
         return dict(schema=SCHEMA, enabled=self.enabled,
             known_card_ids=dict(type='str', values=sorted(self.known_card_ids)),
             context_strings=list(self.context_strings),
             assignments=dict(sorted(self.assignments.items())),
-            default_string=self.default_string)
+            default_string=self.default_string,
+            identity_flags=(None if self.identity_flags is None else
+                {cid:list(flags) for cid,flags in sorted(self.identity_flags.items())}))
 
     def lookup(self, cid):
         if not self.enabled or type(cid) is not str or cid not in self.known_card_ids:
@@ -269,19 +283,27 @@ class ContextIndex(NamedTuple):
         # Fresh nested containers: response mutation cannot poison later calls.
         return json.loads(raw)
 
+    def lookup_identity_flags(self,cid):
+        if (not self.enabled or self.identity_flags is None or
+                type(cid) is not str or cid not in self.known_card_ids):
+            return None
+        return self.identity_flags.get(cid,EMPTY_IDENTITY_FLAGS)
+
     def counts(self):
         return dict(source_context_cards=len(self.known_card_ids),
             source_context_templates=len(self.context_strings),
-            source_context_assignments=len(self.assignments))
+            source_context_assignments=len(self.assignments),
+            identity_advisory_flag_subjects=(0 if self.identity_flags is None else len(self.identity_flags)),
+            identity_advisory_available=self.identity_flags is not None)
 
 
 def disabled_index():
-    return ContextIndex(frozenset(), (), MappingProxyType({}), None, False)
+    return ContextIndex(frozenset(), (), MappingProxyType({}), None, False, None)
 
 
 def restore_index(state):
     """Validate the whole compact codec or reject; no partial/guessed template."""
-    fields = {'schema', 'enabled', 'known_card_ids', 'context_strings', 'assignments', 'default_string'}
+    fields = {'schema', 'enabled', 'known_card_ids', 'context_strings', 'assignments', 'default_string','identity_flags'}
     _require(type(state) is dict and set(state) == fields and state['schema'] == SCHEMA,
              'context index schema')
     _require(type(state['enabled']) is bool, 'context index enabled type')
@@ -302,8 +324,9 @@ def restore_index(state):
     _require(all(type(cid) is str and cid in known and type(index) is int and
                  0 <= index < len(strings) for cid, index in assignments.items()),
              'context assignment key/type/range')
+    flags=_restore_identity_flags(state['identity_flags'],known,assignments)
     if not state['enabled']:
-        _require(not values and not strings and not assignments and default is None,
+        _require(not values and not strings and not assignments and flags is None and default is None,
                  'disabled index cannot retain partial facts')
         return disabled_index()
     _require(type(default) is str and default == DEFAULT_ABSENT_JSON,
@@ -318,7 +341,7 @@ def restore_index(state):
     for value in strings:
         runtime.checkpoint(); _validate_context_string(value)
     _validate_context_string(default)
-    return ContextIndex(known, tuple(strings), MappingProxyType(dict(assignments)), default, True)
+    return ContextIndex(known, tuple(strings), MappingProxyType(dict(assignments)), default, True, flags)
 
 
 def compile_index(db):
@@ -334,8 +357,8 @@ def compile_index(db):
                  and not db.in_transaction, 'context compile needs unscoped committed native DB')
         helper = getattr(discovery, '_card_context', None)
         _unsupported(callable(helper), 'native card context helper not integrated')
-        ids, union = dependency_population(db)
-        strings = []; interned = {}; assignments = {}; byte_count = len(DEFAULT_ABSENT_JSON.encode('utf-8'))
+        ids,union,_,_,advisory_ids = _dependency_population(db,include_advisories=True)
+        strings = []; interned = {}; assignments = {}; flags = {}; byte_count = len(DEFAULT_ABSENT_JSON.encode('utf-8'))
         for cid in ids:
             runtime.checkpoint()
             if cid not in union: continue
@@ -346,6 +369,15 @@ def compile_index(db):
                 _unsupported(byte_count <= MAX_CONTEXT_BYTES, 'context string byte bound')
                 interned[raw] = len(strings); strings.append(raw)
             assignments[cid] = interned[raw]
+            if flags is not None and cid in advisory_ids:
+                advisory=_native_identity_flags(db,cid)
+                if advisory is None:
+                    # A valid native primary makes corrupt secondary number data
+                    # invisible to the original constructor. Defer the unchanged
+                    # native endpoint error; never publish guessed empty bits.
+                    _check_constructor_guard(db)
+                    flags.clear();flags=None
+                elif advisory!=EMPTY_IDENTITY_FLAGS:flags[cid]=advisory
         outside = next((cid for cid in ids if cid not in union), None)
         if outside is not None:
             # Branch regression sanity check supplements the exhaustive dependency
@@ -355,7 +387,7 @@ def compile_index(db):
         # The native loop already guarantees exact IDs, first-use dedup/index
         # ordering, fields and bounds. Strict untrusted restore stays separate.
         return ContextIndex(frozenset(ids), tuple(strings),
-                            MappingProxyType(dict(assignments)), DEFAULT_ABSENT_JSON, True)
+                            MappingProxyType(dict(assignments)), DEFAULT_ABSENT_JSON, True, None if flags is None else MappingProxyType(dict(flags)))
     except ContextIndexUnsupported:
         return disabled_index()
 
@@ -374,6 +406,14 @@ def _constructor_stamp(db):
     version=runtime._static_snapshot_version(db)
     _unsupported(version is not None, 'constructor source namespace changed')
     return (id(db),str(path),identity,version,artifact._source_identities())
+
+
+def _check_constructor_guard(db):
+    active=runtime._constructor_scope.get()
+    if active is not None:
+        if active[0] is not db:raise runtime.CatalogSnapshotChanged()
+        db._catalog_check_clone_guard(active[1])
+        _assert_constructor_stamp(db,active[2])
 
 
 def _assert_constructor_stamp(db,before):
@@ -399,7 +439,7 @@ def compile_constructor_facts(db):
     media_strings={};hold_strings={};before=None
     try:
         before=_constructor_stamp(db)
-        ids,union,correction_ids,hold_ids=_dependency_population(db)
+        ids,union,correction_ids,hold_ids,advisory_ids=_dependency_population(db,include_advisories=True)
         known=frozenset(ids)
         subjects=catalog_media.subjects(db)
         _unsupported(all(type(cid) is str for cid in subjects), 'non-TEXT media subject')
@@ -427,11 +467,11 @@ def compile_constructor_facts(db):
             if cid in subjects and media['with_source_scans_eligible']:current_ids.add(cid)
             del basis,evidence,media,hold,raw
         transient=(media_strings,hold_strings,known,ids,union,correction_ids,
-                   hold_ids,subjects,complete,current_ids)
+                   hold_ids,subjects,complete,current_ids,advisory_ids)
         _unsupported(artifact._deep_size(transient) <= artifact.MAX_METADATA_BYTES,
                      'constructor transient decoded bound')
         _assert_constructor_stamp(db,before)
-        strings=[];interned={};assignments={};byte_count=len(_utf8(DEFAULT_ABSENT_JSON))
+        strings=[];interned={};assignments={};flags={};byte_count=len(_utf8(DEFAULT_ABSENT_JSON))
         for cid in ids:
             runtime.checkpoint()
             if cid not in union:continue
@@ -448,6 +488,15 @@ def compile_constructor_facts(db):
                 _unsupported(byte_count <= MAX_CONTEXT_BYTES, 'context string byte bound')
                 interned[raw]=len(strings);strings.append(raw)
             assignments[cid]=interned[raw]
+            if flags is not None and cid in advisory_ids:
+                advisory=_native_identity_flags(db,cid)
+                if advisory is None:
+                    # A valid native primary makes corrupt secondary number data
+                    # invisible to the original constructor. Defer the unchanged
+                    # native endpoint error; never publish guessed empty bits.
+                    _check_constructor_guard(db)
+                    flags.clear();flags=None
+                elif advisory!=EMPTY_IDENTITY_FLAGS:flags[cid]=advisory
         outside=next((cid for cid in ids if cid not in union),None)
         if outside is not None:
             _require(_context_json(discovery._card_context(db,outside)) == DEFAULT_ABSENT_JSON,
@@ -455,13 +504,13 @@ def compile_constructor_facts(db):
         # Shared objects are counted once across all live fact sets, native
         # contexts, templates, assignment/interner maps and the CID universe.
         # Nothing from the transient facts remains during model serialization.
-        _unsupported(artifact._deep_size((transient,strings,interned,assignments,
+        _unsupported(artifact._deep_size((transient,strings,interned,assignments,flags,
             context if assignments else None,correction if assignments else None,
             raw if assignments else None)) <= artifact.MAX_DECODED_BYTES,
             'constructor aggregate decoded bound')
         _assert_constructor_stamp(db,before)
         return (ContextIndex(known,tuple(strings),MappingProxyType(dict(assignments)),
-                             DEFAULT_ABSENT_JSON,True),frozenset(current_ids))
+                             DEFAULT_ABSENT_JSON,True,None if flags is None else MappingProxyType(dict(flags))),frozenset(current_ids))
     except ContextIndexUnsupported:
         # No partially compiled index or membership escapes an unsupported case.
         if before is not None:_assert_constructor_stamp(db,before)
@@ -504,3 +553,93 @@ def validate_aggregate_json_members(state, outer_raw):
         runtime.checkpoint(); raw = _utf8(value)
         total += _member_count(raw)
         _require(total <= artifact.MAX_JSON_MEMBERS, 'aggregate nested JSON member bound')
+
+
+EMPTY_IDENTITY_FLAGS=(None,False,False,False,False)
+IDENTITY_FAMILY_STATUSES=frozenset({'coordinate_family_evidence_hold','stale_coordinate_family_evidence'})
+
+
+def _validate_identity_flags(flags):
+    _require(type(flags) in (list,tuple) and len(flags)==5,
+             'identity advisory flag shape')
+    _require((flags[0] is None or type(flags[0]) is str and flags[0] in IDENTITY_FAMILY_STATUSES)
+             and all(type(value) is bool for value in flags[1:]),
+             'identity advisory flag types/status')
+    return tuple(flags)
+
+
+def _restore_identity_flags(state,known,assignments):
+    if state is None:return None
+    _require(type(state) is dict and len(state)<=len(assignments),
+             'identity advisory sparse shape/count')
+    restored={}
+    for cid,value in state.items():
+        runtime.checkpoint()
+        _require(type(cid) is str and cid in known and cid in assignments,
+                 'identity advisory key outside complete dependency union')
+        _require(type(value) is list,'identity advisory JSON array')
+        flags=_validate_identity_flags(value)
+        _require(flags!=EMPTY_IDENTITY_FLAGS,'identity advisory empty sparse entry')
+        restored[cid]=flags
+    return MappingProxyType(restored)
+
+
+def _native_identity_flags(db,cid):
+    """Original native validators over the whole historical context union.
+
+    The fifth bit is only the native historical fallback when the native raw
+    shortcut is false. Raw attributes/variant/provenance are freshly evaluated
+    again for every request, including known IDs outside the historical union.
+    This function accepts no caller-supplied row, callback or cached context.
+    """
+    from . import coordinate_family,number_evidence,source_image_facts,source_corrections
+    raw=db.execute('SELECT variant,provenance,attributes_json FROM card WHERE card_id=?',(cid,)).fetchone()
+    _require(raw is not None,'identity advisory native endpoint missing')
+    _unsupported(type(raw['variant']) is str and type(raw['provenance']) is str,
+        'unsupported native raw family fields')
+    family=coordinate_family.context(db,cid)
+    try:
+        reading=number_evidence.context(db,cid)
+    except ValueError:
+        from . import catalog_media
+        # Only this independent secondary validator is optional after a native
+        # primary has already validated. With no valid primary, evidence() runs
+        # its original secondary validator and preserves that constructor error.
+        basis,evidence=catalog_media.evidence(db,cid)
+        if basis != 'source_image_facts' or evidence is None:raise
+        _check_constructor_guard(db)
+        return None
+    facts=source_image_facts.context(db,cid)  # includes source_mechanic validation
+    family_scope=source_corrections.family_scope_only(db,cid)
+    raw_family=_raw_family_scope_only(raw)
+    if family is not None:
+        _unsupported(type(family) is dict and type(family.get('status')) is str
+            and family['status'] in IDENTITY_FAMILY_STATUSES|{'official_coordinate_family_supported'},
+            'unsupported native family advisory')
+    if reading is not None:
+        _unsupported(type(reading) is dict and type(reading.get('source_coordinate_conflict')) is bool
+            and type(reading.get('current_endpoint')) is bool and type(reading.get('status')) is str,
+            'unsupported native number advisory')
+    if facts is not None:
+        _unsupported(type(facts) is dict and type(facts.get('warnings')) is list
+            and all(type(value) is str for value in facts['warnings']),
+            'unsupported native image advisory')
+    _unsupported(type(family_scope) is bool and type(raw_family) is bool,'unsupported native family shortcut')
+    flags=(family['status'] if family and family['status'] in IDENTITY_FAMILY_STATUSES else None,
+        bool(reading and reading['source_coordinate_conflict']),
+        bool(reading and (not reading['current_endpoint'] or reading['status']=='reading_hold')),
+        bool(facts and facts['warnings']),family_scope and not raw_family)
+    return _validate_identity_flags(flags)
+
+
+def _raw_family_scope_only(card):
+    """Exact original native raw short circuit; never read historical evidence.
+
+    This predicate is evaluated again on the fresh SQL row for every request.
+    Its JSON exceptions, short-circuit order and .startswith errors mirror the
+    unchanged source_corrections.family_scope_only reader.
+    """
+    try:flag=json.loads(card['attributes_json']).get('family_scope_only') is True
+    except (ValueError,TypeError,AttributeError):flag=False
+    return (flag or card['variant'].startswith('official_coordinate_family_only_')
+            or card['provenance'].startswith('official-printed-coordinate:'))
