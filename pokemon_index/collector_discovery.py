@@ -10,6 +10,7 @@ import re
 import sqlite3
 import unicodedata
 from collections import deque
+from types import MappingProxyType
 from typing import NamedTuple
 from . import core, discovery_graph, supported_catalog, collector_evidence, card_metadata, collector_runtime, collector_release_alias
 
@@ -802,6 +803,20 @@ class _UnsupportedParserFacts(ValueError):
     """A bounded static projection cannot represent this native namespace."""
 
 
+class _NormalizedParserFacts(NamedTuple):
+    """Derived catalog literals only; rebuilt from the validated raw facts.
+
+    These tuples contain no query, result, session, price or permission. They
+    are included in the existing decoded-model memory bound and source binding.
+    """
+    artists: tuple
+    release_codes: tuple
+    vocabulary: tuple
+    qualifiers: tuple
+    known_qualifiers: tuple
+    character_names: MappingProxyType
+
+
 class _ParserFacts(NamedTuple):
     vocabulary: tuple
     qualifiers: tuple
@@ -811,6 +826,7 @@ class _ParserFacts(NamedTuple):
     release_names: tuple
     character_names: tuple
     release_aliases_json: str
+    normalized: _NormalizedParserFacts
 
     def to_state(self):
         return {'schema':'pokemon.fixed-parser-facts.v1',
@@ -874,9 +890,33 @@ def _parser_facts_from_state(state,model):
     _parser_fact_require(all(len(row)==1 and _parser_string(row[0]) for row in artists+codes)
         and all(type(row) is tuple and len(row)==3 and all(_parser_string(v) for v in row) for row in model._release_names)
         and type(model._release_aliases_json) is str)
+    # Normalize each static literal once, with the exact native NFKC/casefold
+    # function. Keep original values, multiplicity and order for the DTOs.
+    normalized_artists=[];normalized_codes=[];normalized_vocabulary=[];normalized_qualifiers=[];normalized_known=[]
+    for name, in artists:
+        collector_runtime.checkpoint()
+        normalized_artists.append((name,_norm(name),len(name.split())>=2))
+    for code, in codes:
+        collector_runtime.checkpoint();normalized_codes.append((code,_norm(code)))
+    for language,code,kind,alias in vocabulary:
+        collector_runtime.checkpoint()
+        short=re.fullmatch(r'ポケモンカード(\d+)',alias)
+        normalized_vocabulary.append((language,code,kind,_norm(alias),short[1] if short else None))
+    for value,active,ids,event_id,language in qualifiers:
+        collector_runtime.checkpoint()
+        normalized_qualifiers.append((value,active,ids,event_id,language,_norm(value)))
+    for value in known:
+        collector_runtime.checkpoint();normalized_known.append(_norm(value))
+    character_names={}
+    for ordinal,row in enumerate(model._character_names[False]):
+        collector_runtime.checkpoint()
+        if row[0]:character_names.setdefault(row[0][:2],[]).append((ordinal,row))
+    normalized=_NormalizedParserFacts(tuple(normalized_artists),tuple(normalized_codes),
+        tuple(normalized_vocabulary),tuple(normalized_qualifiers),tuple(normalized_known),
+        MappingProxyType({key:tuple(rows) for key,rows in character_names.items()}))
     # These existing typed model fields are immutable and independently restored.
     return _ParserFacts(tuple(vocabulary),tuple(qualifiers),tuple(known),artists,codes,
-        model._release_names,model._character_names[False],model._release_aliases_json)
+        model._release_names,model._character_names[False],model._release_aliases_json,normalized)
 
 
 def _compile_parser_facts(db,model):
@@ -929,32 +969,34 @@ def _question_plan_from_facts(text,languages,facts):
     matched=tuple(_release_mentions_from_facts(text,names));residual=list(text)
     for _,start,end,_ in matched:residual[start:end]=' '*(end-start)
     without=''.join(residual);codes={code for code,_,_,_ in matched}
-    for index,row in enumerate(facts.release_codes):
+    for index,(code,value) in enumerate(facts.normalized.release_codes):
         if index%128==0:collector_runtime.checkpoint()
-        value=_norm(row[0])
-        if value in without and re.search(r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',without):codes.add(row[0])
-    for language,code,kind,alias in facts.vocabulary:
-        collector_runtime.checkpoint();value=_norm(alias)
+        if value in without and re.search(r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',without):codes.add(code)
+    for language,code,kind,value,short in facts.normalized.vocabulary:
+        collector_runtime.checkpoint()
         if language in languages and kind=='printed_code' and value in without and re.search(
                 r'(?<![a-z0-9])'+re.escape(value)+r'(?![a-z0-9]|[.\-][a-z0-9])',without):codes.add(code)
-        short=re.fullmatch(r'ポケモンカード(\d+)',alias)
-        if (short and language in languages and re.search(r'(?<![a-z0-9/])'+re.escape(short[1])+r'(?![a-z0-9/])',text)
+        if (short is not None and language in languages and re.search(r'(?<![a-z0-9/])'+re.escape(short)+r'(?![a-z0-9/])',text)
                 and re.search(r'japanese|日本語|日版|ポケモンカード',text)):codes.add(code)
     qualifiers=[]
-    for value,active,ids,event_id,language in facts.qualifiers:
+    for value,active,ids,event_id,language,normalized in facts.normalized.qualifiers:
         collector_runtime.checkpoint()
-        if _mentioned(text,value):qualifiers.append(dict(value=value,active=active and language in languages,
+        if _normalized_mentioned(text,normalized):qualifiers.append(dict(value=value,active=active and language in languages,
             card_ids=list(ids),evidence_id=event_id))
     ja=re.findall(r'[一-龯ぁ-んァ-ヶー・]{2,30}博士',text.replace('博士の研究',' '))
     en=re.findall(r"\bprofessor\s+([a-z][a-z\-']{1,40})",text)
     inquiry={'research','is','was','are','were','appears','appear','printed','shown','depicted','does','do','has','have','on','in'}
     en=[name for name in en if name not in inquiry]
-    professors=tuple([name for name in ja if not any(name.endswith(_norm(value)) for value in facts.known_qualifiers)]
+    professors=tuple([name for name in ja if not any(name.endswith(value) for value in facts.normalized.known_qualifiers)]
         +['professor '+name for name in en])
-    ids=tuple(sorted({m[0] for m in _character_mentions_from_names(text,facts.character_names)}))
-    without_ids=ids if without==text else tuple(sorted({m[0] for m in _character_mentions_from_names(without,facts.character_names)}))
-    artists=tuple(_artists_from_facts(text,facts.artists))
-    exact_artists=tuple(row[0] for row in facts.artists if _norm(row[0])==text.strip(' .。!！'))
+    ids=tuple(sorted({m[0] for m in _character_mentions_from_names(text,
+        _candidate_character_names(text,facts.normalized.character_names))}))
+    without_ids=ids if without==text else tuple(sorted({m[0] for m in _character_mentions_from_names(without,
+        _candidate_character_names(without,facts.normalized.character_names))}))
+    intent=bool(re.search(r'\bartist\b|illustrat|イラストレーター|画師|绘师|插画师|\bby\b',text))
+    artists=tuple(name for name,term,multiword in facts.normalized.artists
+        if (intent or multiword) and _normalized_mentioned(text,term))
+    exact_artists=tuple(name for name,term,_ in facts.normalized.artists if term==text.strip(' .。!！'))
     interpretations=[row for row in json.loads(facts.release_aliases_json)
         if row['language'] in languages and _mentioned(text,row['alias'])]
     collector_runtime.checkpoint()
@@ -962,6 +1004,33 @@ def _question_plan_from_facts(text,languages,facts):
         json.dumps(qualifiers,ensure_ascii=False,separators=(',',':')),professors,
         'ex' if re.search(r'(?<![a-z0-9])ex(?![a-z0-9])',without) and len(without_ids)==1 else None,
         json.dumps(interpretations,ensure_ascii=False,separators=(',',':')))
+
+
+def _normalized_mentioned(text,term):
+    """The native literal/boundary predicate, after identical static normalization."""
+    if term not in text:return False
+    if re.fullmatch(r"[a-z0-9 '\-\.]+",term):
+        return bool(re.search(r'(?<![a-z0-9])'+re.escape(term)+r'(?![a-z0-9])',text))
+    return term in text
+
+
+def _candidate_character_names(text,index):
+    """Necessary literal-prefix filter before the unchanged native matcher.
+
+    Every nonempty name occurring in text has its first one/two characters in
+    this set. The original matcher still determines boundaries, occurrences,
+    current-evidence containment and ambiguity, and sorts the resulting set.
+    """
+    keys=set(text)
+    for offset in range(len(text)-1):
+        if offset%128==0:collector_runtime.checkpoint()
+        keys.add(text[offset:offset+2])
+    candidates=[]
+    for key in keys:
+        collector_runtime.checkpoint();candidates.extend(index.get(key,()))
+    # Preserve native traversal as well, including unusual typed-error order.
+    candidates.sort(key=lambda entry:entry[0])
+    return tuple(row for _,row in candidates)
 
 
 def _redundant_language_constraint_projection(result,scope):
