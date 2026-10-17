@@ -25,7 +25,7 @@ import unicodedata
 from . import collector_runtime as runtime
 
 FORMAT = 'pokemon.catalog-read-model-artifact.v1'
-STATE_FORMAT = 'pokemon.catalog-read-model-state.v4'
+STATE_FORMAT = 'pokemon.catalog-read-model-state.v5'
 FILES = ('metadata.json', 'facet-image.sqlite3', 'seal.json')
 MAX_METADATA_BYTES = 32 * 1024 * 1024
 MAX_SEAL_BYTES = 64 * 1024
@@ -208,6 +208,7 @@ def model_state(model):
         media_ids=[_encode(cid) for cid in sorted(model._media_ids, key=_sort_key)],
         cast_dex_card_ids=_id_map(model._cast_dex_card_ids),
         text_dex_card_ids=_id_map(model._text_dex_card_ids),
+        dex_language_prefix_exact=model._dex_language_prefix_exact,
         character_names={str(current).lower(): _typed_rows(sorted(rows, key=lambda row: _json_bytes(_typed_rows([row]))))
                          for current, rows in model._character_names.items()},
         release_names=_typed_rows(sorted(model._release_names)),
@@ -235,6 +236,7 @@ def _counts(model):
         media_ids=len(model._media_ids), affiliations=len(_json(model._affiliations_json.encode(), 1024*1024)),
         cast_dex_keys=len(model._cast_dex_card_ids), cast_dex_bindings=sum(map(len,model._cast_dex_card_ids.values())),
         text_dex_keys=len(model._text_dex_card_ids), text_dex_bindings=sum(map(len,model._text_dex_card_ids.values())),
+        dex_language_prefix_exact=model._dex_language_prefix_exact,
         character_name_rows={str(key).lower():len(rows) for key,rows in model._character_names.items()},
         release_name_rows=len(model._release_names), release_aliases=len(_json(model._release_aliases_json.encode(), 1024*1024)))
 
@@ -370,9 +372,11 @@ def _proof_json(raw, *, release=False):
 
 def _restore(state, image):
     cls = runtime.CatalogReadModel
-    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','character_names','release_names','release_aliases_json','card_source_context_index','parser_facts'}
+    keys = {'schema','facet_image_sha256','vocabularies','affiliations_json','media_ids','cast_dex_card_ids','text_dex_card_ids','dex_language_prefix_exact','character_names','release_names','release_aliases_json','card_source_context_index','parser_facts'}
     _exact(state, keys, 'model state'); _require(state['schema'] == STATE_FORMAT and state['facet_image_sha256'] == _sha(image), 'model format or image hash')
     model = object.__new__(cls)
+    _require(type(state['dex_language_prefix_exact']) is bool, 'language prefix proof type')
+    model._dex_language_prefix_exact=state['dex_language_prefix_exact']
     _exact(state['vocabularies'], runtime.VOCABULARY_SQL, 'vocabulary')
     expected_columns = {'artists':['value'], 'release_codes':['set_code'], 'character_aliases':['name','dex_id','current_evidence']}
     vocabularies = {}

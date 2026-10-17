@@ -305,7 +305,28 @@ def _trusted_snapshot_model(db):
     return snapshot['model']
 
 
-def snapshot_cast_dex_card_ids(db, dex_ids):
+def _language_bound_dex_ids(model, ids, languages):
+    """Use an audited necessary condition; the original SQL filter remains.
+
+    Custom IDs disable this shortcut for the entire model. A language prefix
+    never establishes a counterpart, printing identity, display or commerce
+    permission. The proof comes from exact stored language values, not a naming
+    convention assumed by the importer.
+    """
+    if languages is None:return frozenset(ids)
+    if (type(languages) is not tuple or not 1<=len(languages)<=model.MAX_DEX_OPERANDS
+            or any(type(value) is not str or not 1<=len(value)<=64
+                   or ':' in value or '\x00' in value for value in languages)):
+        return None
+    if not model._dex_language_prefix_exact:return frozenset(ids)
+    wanted=frozenset(languages);result=set()
+    for cid in ids:
+        checkpoint()
+        if cid.partition(':')[0] in wanted:result.add(cid)
+    return frozenset(result)
+
+
+def snapshot_cast_dex_card_ids(db, dex_ids, *, languages=None):
     """Exact SQLite CAST membership for the audited explicit-CAST callers.
 
     This relation does not apply to string equality/IN, generic SQL or concept
@@ -323,10 +344,10 @@ def snapshot_cast_dex_card_ids(db, dex_ids):
         checkpoint();result.update(model._cast_dex_card_ids.get(value,()))
         if len(result)>model.MAX_DEX_QUERY_IDS:return None
     checkpoint()
-    return frozenset(result)
+    return _language_bound_dex_ids(model,result,languages)
 
 
-def snapshot_text_dex_card_ids(db, values):
+def snapshot_text_dex_card_ids(db, values, *, languages=None):
     """Exact positive string-IN membership, separately derived from CAST facts."""
     model = _trusted_snapshot_model(db)
     if model is None:
@@ -341,7 +362,7 @@ def snapshot_text_dex_card_ids(db, values):
         result.update(model._text_dex_card_ids.get(value, ()))
         if len(result) > model.MAX_DEX_QUERY_IDS:
             return None
-    return frozenset(result)
+    return _language_bound_dex_ids(model,result,languages)
 
 
 def card_scan(db, *, narrow_ids=False):
@@ -498,6 +519,7 @@ class CatalogReadModel:
             self._media_ids = frozenset(media_ids)
             self._cast_dex_card_ids=self._build_cast_dex_card_ids(db)
             self._text_dex_card_ids = self._build_text_dex_card_ids(db)
+            self._dex_language_prefix_exact=self._build_dex_language_prefix_proof(db)
             from . import collector_discovery, collector_release_alias
             self._release_alias_path = collector_release_alias.BINDINGS_PATH.resolve(strict=True)
             self._release_alias_identity = snapshot_identity(self._release_alias_path)
@@ -567,6 +589,21 @@ class CatalogReadModel:
             if len(text_ids) > cls.MAX_DEX_KEYS or total_bytes > cls.MAX_DEX_ID_BYTES:
                 raise ValueError('catalog TEXT dex IDs exceed read model bound')
         return MappingProxyType({key: frozenset(ids) for key, ids in text_ids.items()})
+
+    @staticmethod
+    def _build_dex_language_prefix_proof(db):
+        # _validate_database already requires the exact canonical schema with
+        # BINARY ID/language semantics. Reject NUL explicitly: SQLite text
+        # substr/length and Python strings differ at embedded NUL boundaries.
+        checkpoint()
+        mismatch=db.execute("""SELECT 1 FROM main.card
+            WHERE typeof(card_id)!='text' OR typeof(language)!='text'
+                OR instr(card_id,char(0))>0 OR instr(language,char(0))>0
+                OR language='' OR instr(language,':')>0 OR instr(card_id,':')<2
+                OR substr(card_id,1,instr(card_id,':')-1) COLLATE BINARY
+                    != language COLLATE BINARY LIMIT 1""").fetchone()
+        checkpoint()
+        return mismatch is None
 
     def _check_snapshot(self,db):
         try:

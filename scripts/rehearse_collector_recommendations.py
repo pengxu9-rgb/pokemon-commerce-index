@@ -1,12 +1,24 @@
 """Frozen synthetic recommendation conversations through real Python HTTP and Node."""
 from __future__ import annotations
-import argparse,hashlib,json,subprocess,tempfile,threading
+import argparse,hashlib,json,os,subprocess,tempfile,threading
 from contextlib import closing
 from pathlib import Path
 from pokemon_index import core,collector_journey
 from pokemon_index.cli import create_server
 
 SUITE=Path('sandbox/collector_journeys/recommendation-v1/reviewed-suite.json')
+
+
+def _synthetic_node_env():
+    """Bypass inherited proxies only for this runner's fixed loopback server."""
+    env=os.environ.copy()
+    # Node may prefer lowercase no_proxy, so preserve and extend either spelling.
+    for key in ('NO_PROXY','no_proxy'):
+        if key=='NO_PROXY' or key in env:
+            value=env.get(key,'')
+            if '127.0.0.1' not in {entry.strip() for entry in value.split(',')}:
+                env[key]=value+(',' if value else '')+'127.0.0.1'
+    return env
 
 
 def create_fixture(path,suite):
@@ -56,7 +68,7 @@ def run(suite_path,output):
             thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
             try:
                 config=dict(baseUrl='http://127.0.0.1:'+str(server.server_address[1]),allowLoopback=True,journeys=[dict(j,limit=suite['limit']) for j in suite['journeys']])
-                returned=json.loads(subprocess.check_output(['node','integrations/pivota/replay.cjs'],input=json.dumps(config),text=True,timeout=120))
+                returned=json.loads(subprocess.check_output(['node','integrations/pivota/replay.cjs'],input=json.dumps(config),text=True,timeout=120,env=_synthetic_node_env()))
             finally:server.shutdown();thread.join(timeout=5)
         returned={r['id']:r for r in returned};results=[]
         with closing(core.connect(db_path,readonly=True)) as db:
