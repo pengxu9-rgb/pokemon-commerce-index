@@ -10,7 +10,7 @@ from pathlib import Path
 MANIFEST = 'catalog-build-manifest-international-pokemon-scale-v1.json'
 PRIOR = 'catalog-build-manifest-international-pokemon-eight-followup-v1.json'
 MANIFEST_SHA = '1541fa71a1e0cfaf8d4398fb0b10d188f09f14faaa246a8298f821dc20c5f3ac'
-REVISION = 'd5cc40f00702b436b961d098d9b5384a5e8c1f41e94cfd5e1f9f77e6aa959e04'
+REVISION = '33a480e64f3218f08858196298328618a6027c505a2db9e5f1cec412ad0e2f7c'
 LOGICAL_SNAPSHOT_SHA = '989693744fbbb5a46aae03a76d3364ecc43437bcd44bb60143ee7c6ffdc1dacf'
 DIRECTORY = 'catalog/international-pokemon-scale-v1'
 

@@ -58,6 +58,23 @@ class DexLanguageBoundTests(unittest.TestCase):
                 self.assertIn(wrong,helper(db,operands,languages=('en',)))
                 self.assertEqual(db.execute('SELECT language FROM card WHERE card_id=?',(wrong,)).fetchone()[0],'en')
 
+    def test_custom_text_factory_keeps_original_bytes_ids_without_prefix_pruning(self):
+        needle=self.extra.encode('utf-8')
+        with closing(core.connect(self.path,readonly=True)) as db:
+            db.text_factory=lambda raw:raw if raw==needle else raw.decode('utf-8')
+            model=runtime.CatalogReadModel(db)
+            self.assertTrue(model._dex_language_prefix_exact)  # Stored SQL TEXT.
+        with closing(core.connect(self.path,readonly=True)) as db:
+            db.text_factory=lambda raw:raw if raw==needle else raw.decode('utf-8')
+            with model.request(db,strict_readonly=True):
+                for helper,operands in [(runtime.snapshot_cast_dex_card_ids,[25]),
+                                        (runtime.snapshot_text_dex_card_ids,['25'])]:
+                    original=helper(db,operands)
+                    self.assertIn(needle,original)
+                    self.assertTrue(any(type(cid) is str for cid in original))
+                    for languages in [('ja',),('en',),('ko',)]:
+                        self.assertEqual(helper(db,operands,languages=languages),original)
+
     def test_prefix_proof_rejects_type_nul_empty_colon_and_case_counterexamples(self):
         with closing(sqlite3.connect(':memory:')) as db:
             db.execute('CREATE TABLE card(card_id,language)')

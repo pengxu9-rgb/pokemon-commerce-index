@@ -318,7 +318,11 @@ def _language_bound_dex_ids(model, ids, languages):
             or any(type(value) is not str or not 1<=len(value)<=64
                    or ':' in value or '\x00' in value for value in languages)):
         return None
-    if not model._dex_language_prefix_exact:return frozenset(ids)
+    # A custom SQLite text_factory may expose a stored TEXT ID as bytes. The
+    # SQL proof concerns stored values; preserve the original typed ID set when
+    # Python representations cannot use the exact string-prefix predicate.
+    if not model._dex_language_prefix_exact or any(type(cid) is not str for cid in ids):
+        return frozenset(ids)
     wanted=frozenset(languages);result=set()
     for cid in ids:
         checkpoint()

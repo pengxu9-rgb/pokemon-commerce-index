@@ -19,7 +19,7 @@ GENERATED = {'card_identity_exception':'applied_at', 'card_number_conflict_rule'
              'card_rarity_correction':'applied_at', 'card_relationship_assertion':'asserted_at'}
 # Independently audited stage19 scale.sqlite3 and its equivalent rebuild.
 REVIEWED_LOGICAL_SHA = 'b73076d0e7fd718c68544df3088741359949b1daed6ea97c64be059855225f7a'
-REVIEWED_RUNTIME_REVISION = 'd5cc40f00702b436b961d098d9b5384a5e8c1f41e94cfd5e1f9f77e6aa959e04'
+REVIEWED_RUNTIME_REVISION = '33a480e64f3218f08858196298328618a6027c505a2db9e5f1cec412ad0e2f7c'
 
 
 def quoted(value):
