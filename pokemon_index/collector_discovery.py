@@ -785,7 +785,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result, task="need_character_or_coordinates",required_evidence=['explicit_character_artist_or_release_scope'],
                     next_question="Which character, illustrator or printed set/number should I search? Multiple characters or an unnamed checklist need a clear collection scope.")
     marks, lmarks = ",".join("?" for _ in ids), ",".join("?" for _ in languages)
-    narrowed=collector_runtime.snapshot_cast_dex_card_ids(db,ids)
+    narrowed=collector_runtime.snapshot_cast_dex_card_ids(db,ids,languages=tuple(languages))
     if narrowed is not None:
         if narrowed:
             candidates=tuple(narrowed)

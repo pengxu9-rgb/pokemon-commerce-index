@@ -224,7 +224,10 @@ def _facet_batches(db, card_ids, size=400):
         # original predicate and let the unchanged Python scorer select kinds.
         kinds="facet_type IN ('dex_id','illustrator') AND " if relation=='collector_snapshot.facets' else ''
         for row in db.execute(f"SELECT * FROM {relation} WHERE {kinds}card_id IN (" + ','.join(('?' for _ in ids)) + ') ORDER BY card_id,facet_type,value,provenance', ids):
-            found[row['card_id']].append(dict(row))
+            # Snapshot rows are immutable request-local SQLite values. The
+            # scorer only reads them; copying every facet into a dict adds no
+            # isolation. Keep the existing native/mutable helper representation.
+            found[row['card_id']].append(row if relation=='collector_snapshot.facets' else dict(row))
         yield found
 
 
@@ -272,6 +275,30 @@ def _score(row, facets, desired, liked, releases, affiliations=None, liked_affil
             value=dict(language=row['language'],set_code=row['set_code']),basis='catalog_coordinate',source_ref=row['provenance']))
     return dict(card_id=row['card_id'],explicit_match_axes=explicit,liked_example_match_axes=examples,reasons=reasons,
         tradeoffs=['Aesthetic fit, affordability, grade availability and physical printing are not established'])
+
+
+def _ranking_axes(row, facets, desired, liked, releases, affiliations):
+    """Count the same matching axes without constructing discarded evidence.
+
+    The pool needs only these two counts to place a card in its existing tier.
+    Full source reasons are still built by the unchanged scorer for every shown
+    card, preserving their order, duplicates and exact provenance.
+    """
+    values={'dex_id':set(),'illustrator':set()}
+    for facet in facets:
+        kind=facet['facet_type']
+        if kind in values:values[kind].add(facet['value'])
+    affiliation=affiliations.get(row['card_id'])
+    affiliated_dex=str(affiliation['dex_id']) if affiliation is not None else None
+    counts=[]
+    for bucket in (desired,liked):
+        character=(not values['dex_id'].isdisjoint(bucket['dex_id'])
+            or affiliation is not None and affiliated_dex in bucket['dex_id'])
+        artist=not values['illustrator'].isdisjoint(bucket['illustrator'])
+        counts.append(int(character)+int(artist))
+    if any(row['language']==r['language'] and row['set_code']==r['set_code'] for r in releases):
+        counts[0]+=1
+    return tuple(counts)
 
 
 def validate_feedback(card_id, reaction, shown_ids):
@@ -347,7 +374,7 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
     for kind in desired:
         values=sorted(desired[kind]|liked[kind])
         if values:
-            ids = collector_runtime.snapshot_text_dex_card_ids(db, values) if kind=='dex_id' else None
+            ids = collector_runtime.snapshot_text_dex_card_ids(db, values,languages=tuple(languages)) if kind=='dex_id' else None
             if ids is not None:
                 bounded_positive.update(ids)
                 if ids:
@@ -466,9 +493,10 @@ def recommend(db, question, profile, feedback, *, scope=None, owned=None, limit=
         tiers=defaultdict(lambda:defaultdict(deque))
         for batch in _facet_batches(db,list(by_id)):
             for cid,facets in batch.items():
-                row=by_id[cid];score=_score(row,facets,desired,liked,releases,affiliations,liked_affiliations)
+                row=by_id[cid]
+                explicit_axes,liked_axes=_ranking_axes(row,facets,desired,liked,releases,affiliations)
                 group=(row['language'],row['set_code'],row['collector_number'])
-                tiers[(-len(score['explicit_match_axes']),-len(score['liked_example_match_axes']),-int(cid in scanned))][group].append(cid)
+                tiers[(-explicit_axes,-liked_axes,-int(cid in scanned))][group].append(cid)
         # Diversify equal-score coordinates only. Every source version retains its exact ID.
         ordered=[]
         for tier in sorted(tiers):
