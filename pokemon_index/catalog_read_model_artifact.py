@@ -578,7 +578,17 @@ def load_packaged(db, required=False, *, bootstrap_timings=None):
     if not _PACKAGED_DIR.exists() and not _PACKAGED_DIR.is_symlink():
         if required: raise ArtifactInvalid('required packaged read model is absent')
         return None
-    return _load(db, _PACKAGED_DIR, _PACKAGED_MANIFEST, None, bootstrap_timings)
+    model,revision,evidence=_load(db, _PACKAGED_DIR, _PACKAGED_MANIFEST, None, bootstrap_timings)
+    before_dictionary_bytes=sys.getsizeof(model.__dict__)
+    model._bind_packaged_facet_file(_PACKAGED_DIR/'facet-image.sqlite3')
+    # The new witness is process-local, not a portable model_state field. Charge
+    # its retained objects explicitly because _load measured the model earlier.
+    charge=(_deep_size(model._packaged_facet_file)+sys.getsizeof('_packaged_facet_file')
+        +max(0,sys.getsizeof(model.__dict__)-before_dictionary_bytes))
+    _require(evidence['decoded_state_bytes']+charge<=MAX_DECODED_BYTES,
+             'decoded-state allocation bound including packaged file witness')
+    evidence=dict(evidence,decoded_state_bytes=evidence['decoded_state_bytes']+charge)
+    return model,revision,evidence
 
 
 def main():

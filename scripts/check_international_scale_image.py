@@ -19,7 +19,7 @@ GENERATED = {'card_identity_exception':'applied_at', 'card_number_conflict_rule'
              'card_rarity_correction':'applied_at', 'card_relationship_assertion':'asserted_at'}
 # Independently audited stage19 scale.sqlite3 and its equivalent rebuild.
 REVIEWED_LOGICAL_SHA = 'b73076d0e7fd718c68544df3088741359949b1daed6ea97c64be059855225f7a'
-REVIEWED_RUNTIME_REVISION = '33a480e64f3218f08858196298328618a6027c505a2db9e5f1cec412ad0e2f7c'
+REVIEWED_RUNTIME_REVISION = 'b129a616f7b253fbd8fd6a17a431f025a4a45064e42c4c9abdc1c99a5a21210a'
 
 
 def quoted(value):
@@ -100,8 +100,16 @@ def runtime_smoke(path):
     with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8),loaded.request(db):
         packaged=exercise(db)
     if packaged!=native:raise ValueError('packaged runtime JSON differs from native responses')
+    with loaded.owned_http_request(expires=time.monotonic()+8) as db:
+        namespace={row[1]:row[2] for row in db.execute('PRAGMA database_list')}
+        if (namespace.get('collector_snapshot')!=str((catalog_read_model_artifact._PACKAGED_DIR/'facet-image.sqlite3').resolve(strict=True))
+                or db.execute('PRAGMA query_only').fetchone()[0]!=1):
+            raise ValueError('owned HTTP request did not bind the fixed read-only facet file')
+        owned=exercise(db)
+    if owned!=native:raise ValueError('owned HTTP runtime JSON differs from native responses')
     return dict(catalog_revision=revision,representative_targets=4,native_accelerated_equal=True,
                 packaged_native_state_equal=True,packaged_native_json_equal=True,
+                owned_http_native_json_equal=True,owned_http_fixed_file_readonly=True,
                 packaged_current_source_evidence_ids=1171,packaged_artifact=artifact,
                 held_target_blocked=True,existing_eight_second_budget_unchanged=True)
 

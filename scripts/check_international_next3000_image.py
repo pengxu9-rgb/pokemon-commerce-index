@@ -19,7 +19,7 @@ GENERATED = {'card_identity_exception':'applied_at', 'card_number_conflict_rule'
              'card_rarity_correction':'applied_at', 'card_relationship_assertion':'asserted_at'}
 # Pins are populated only after the new incremental/rebuilt snapshot audit.
 REVIEWED_LOGICAL_SHA = '6189c64c87e796ac9469cff7c283982b9e1a82741ed649d7bc1e45218a16060c'
-REVIEWED_RUNTIME_REVISION = 'bbb62d6a89533ac1a9ef0df76d3dbb3ea9100812bf31f7dce4ae574fab92b030'
+REVIEWED_RUNTIME_REVISION = '86bd0badc7fe8932464edf5f6514f2ac27f54666944379053f36846fb42b08e5'
 
 
 def quoted(value):
@@ -103,8 +103,16 @@ def runtime_smoke(path):
     with closing(core.connect(path,readonly=True)) as db,collector_runtime.sqlite_deadline(db,time.monotonic()+8),loaded.request(db):
         packaged=exercise(db)
     if packaged!=native:raise ValueError('packaged runtime JSON differs from native responses')
+    with loaded.owned_http_request(expires=time.monotonic()+8) as db:
+        namespace={row[1]:row[2] for row in db.execute('PRAGMA database_list')}
+        if (namespace.get('collector_snapshot')!=str((catalog_read_model_artifact._PACKAGED_DIR/'facet-image.sqlite3').resolve(strict=True))
+                or db.execute('PRAGMA query_only').fetchone()[0]!=1):
+            raise ValueError('owned HTTP request did not bind the fixed read-only facet file')
+        owned=exercise(db)
+    if owned!=native:raise ValueError('owned HTTP runtime JSON differs from native responses')
     return dict(catalog_revision=revision,representative_targets=4,native_accelerated_equal=True,
                 packaged_native_state_equal=True,packaged_native_json_equal=True,
+                owned_http_native_json_equal=True,owned_http_fixed_file_readonly=True,
                 packaged_current_source_evidence_ids=1171,packaged_artifact=artifact,
                 held_target_blocked=True,existing_eight_second_budget_unchanged=True)
 

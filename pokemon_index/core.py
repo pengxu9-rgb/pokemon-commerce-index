@@ -5,7 +5,7 @@ import hashlib
 import re
 import sqlite3
 import unicodedata
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from statistics import median
 from typing import Any, Iterable
@@ -13,6 +13,8 @@ from typing import Any, Iterable
 from . import number_conflicts, number_graph
 from .languages import normalize_language, is_query_language_tag
 from .card_rarity import OFFICIAL_ICON_RARITIES
+
+_SQLITE_ADAPTER_REGISTRY = sqlite3.adapters
 
 STATUSES = {"on_sale", "trading", "sold_out", "gone"}
 COMPONENTS = {"item", "domestic", "service", "international", "tax", "insurance", "fx_spread", "other"}
@@ -54,7 +56,13 @@ def parse_time(value: str) -> datetime:
 class _CatalogCursor(sqlite3.Cursor):
     """Translate a rejected admitted-scope namespace change into its typed error."""
 
+    def __setattr__(self, name, value):
+        if name == 'row_factory':
+            self.connection._catalog_private_configuration_change()
+        return super().__setattr__(name, value)
+
     def execute(self, sql, parameters=()):
+        self.connection._catalog_private_statement(sql, parameters)
         try:
             return super().execute(sql, parameters)
         except sqlite3.Error as exc:
@@ -62,6 +70,7 @@ class _CatalogCursor(sqlite3.Cursor):
             raise
 
     def executemany(self, sql, parameters):
+        self.connection._catalog_private_statement(sql, (), many=parameters)
         try:
             return super().executemany(sql, parameters)
         except sqlite3.Error as exc:
@@ -69,6 +78,7 @@ class _CatalogCursor(sqlite3.Cursor):
             raise
 
     def executescript(self, script):
+        self.connection._catalog_private_statement(script, ())
         try:
             return super().executescript(script)
         except sqlite3.Error as exc:
@@ -84,7 +94,93 @@ class _CatalogConnection(sqlite3.Connection):
     boundary; this is not a sandbox for hostile in-process Python extensions.
     """
 
+    def __setattr__(self, name, value):
+        if name in ('row_factory', 'text_factory'):
+            self._catalog_private_configuration_change()
+            super().__setattr__('_catalog_factory_registrations',
+                getattr(self, '_catalog_factory_registrations', 0) + 1)
+        return super().__setattr__(name, value)
+
+    def _catalog_private_configuration_change(self):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard.get('private_reader') is True:
+            guard['invalid']=True
+            self._catalog_guard_error()
+
+    def _catalog_callback_registration(self):
+        self._catalog_private_configuration_change()
+        self._catalog_callback_registrations=getattr(self, '_catalog_callback_registrations', 0)+1
+
+    def set_trace_callback(self, trace_callback):
+        self._catalog_callback_registration()
+        return super().set_trace_callback(trace_callback)
+
+    def set_progress_handler(self, progress_handler, n):
+        self._catalog_callback_registration()
+        self._catalog_progress_handler=(progress_handler, n)
+        return super().set_progress_handler(progress_handler, n)
+
+    def create_function(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().create_function(*args, **kwargs)
+
+    def create_aggregate(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().create_aggregate(*args, **kwargs)
+
+    def create_window_function(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().create_window_function(*args, **kwargs)
+
+    def create_collation(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().create_collation(*args, **kwargs)
+
+    def enable_load_extension(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().enable_load_extension(*args, **kwargs)
+
+    def load_extension(self, *args, **kwargs):
+        self._catalog_callback_registration()
+        return super().load_extension(*args, **kwargs)
+
+    @staticmethod
+    def _catalog_adapter_witness():
+        # detect_types=0 disables converters. Only fixed builtin scalars may be
+        # bound in the private reader; no adapter for any such type may run.
+        # Stock date/datetime adapters are irrelevant to these parameter types.
+        if sqlite3.adapters is not _SQLITE_ADAPTER_REGISTRY or type(_SQLITE_ADAPTER_REGISTRY) is not dict:
+            raise ValueError('unsupported SQLite adapter registry')
+        result=[]
+        for key, adapter in _SQLITE_ADAPTER_REGISTRY.items():
+            if (type(key) is not tuple or len(key)!=2 or key[1] is not sqlite3.PrepareProtocol
+                    or (key[0] is not date and key[0] is not datetime)):
+                raise ValueError('custom SQLite adapter in private reader')
+            result.append((id(key), id(adapter)))
+        return id(_SQLITE_ADAPTER_REGISTRY), tuple(sorted(result))
+
+    def _catalog_private_statement(self, sql, parameters, *, many=None):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is None or guard.get('private_reader') is not True:return
+        self._catalog_check_clone_guard(guard)
+        def scalar(value):return value is None or type(value) in (str, bytes, int, float, bool)
+        def binding(value):
+            if type(value) in (tuple, list):return all(scalar(item) for item in value)
+            return (type(value) is dict and all(type(key) is str and scalar(item)
+                    for key, item in value.items()))
+        if (type(sql) is not str or not binding(parameters)
+                or (many is not None and (type(many) not in (tuple, list)
+                    or not all(binding(row) for row in many)))):
+            guard['invalid']=True
+            self._catalog_guard_error()
+
     def cursor(self, factory=_CatalogCursor):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard.get('private_reader') is True:
+            self._catalog_check_clone_guard(guard)
+            if factory is not _CatalogCursor:
+                guard['invalid']=True
+                self._catalog_guard_error()
         return super().cursor(factory)
 
     def _catalog_guard_error(self, exc=None):
@@ -94,6 +190,9 @@ class _CatalogConnection(sqlite3.Connection):
             raise CatalogSnapshotChanged() from exc
 
     def execute(self, sql, parameters=()):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard.get('private_reader') is True:
+            return self.cursor().execute(sql, parameters)
         try:
             return super().execute(sql, parameters)
         except sqlite3.Error as exc:
@@ -101,6 +200,9 @@ class _CatalogConnection(sqlite3.Connection):
             raise
 
     def executemany(self, sql, parameters):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard.get('private_reader') is True:
+            return self.cursor().executemany(sql, parameters)
         try:
             return super().executemany(sql, parameters)
         except sqlite3.Error as exc:
@@ -108,6 +210,9 @@ class _CatalogConnection(sqlite3.Connection):
             raise
 
     def executescript(self, script):
+        guard=getattr(self, '_catalog_clone_guard', None)
+        if guard is not None and guard.get('private_reader') is True:
+            return self.cursor().executescript(script)
         try:
             return super().executescript(script)
         except sqlite3.Error as exc:
@@ -126,6 +231,7 @@ class _CatalogConnection(sqlite3.Connection):
         if guard is not None:
             guard['invalid']=True
             self._catalog_guard_error()
+        self._catalog_callback_registration()
         result=super().set_authorizer(authorizer_callback)
         self._catalog_authorizer=authorizer_callback
         return result
@@ -142,6 +248,9 @@ class _CatalogConnection(sqlite3.Connection):
             # every attachment identity, including memory clones and main, and
             # mark the scope before SQLite reports its authorization failure.
             forbidden=action in (sqlite3.SQLITE_ATTACH, sqlite3.SQLITE_DETACH)
+            if (guard.get('private_reader') is True and action==sqlite3.SQLITE_FUNCTION
+                    and second is not None and second.lower()=='load_extension'):
+                forbidden=True
             if constructor or database == schema:
                 readonly={sqlite3.SQLITE_READ, sqlite3.SQLITE_SELECT, sqlite3.SQLITE_FUNCTION,
                     sqlite3.SQLITE_RECURSIVE, sqlite3.SQLITE_PRAGMA}
@@ -169,10 +278,35 @@ class _CatalogConnection(sqlite3.Connection):
             raise
         return guard
 
+    def _catalog_protect_private_reader(self, schema):
+        # Only the model-owned context creates this fresh connection, installs
+        # its exact deadline callback, then invokes this stronger policy.
+        if (type(self) is not _CatalogConnection or self.row_factory is not sqlite3.Row
+                or self.text_factory is not str or getattr(self, '_catalog_authorizer', None) is not None
+                or getattr(self, '_catalog_factory_registrations', 0)!=1
+                or getattr(self, '_catalog_callback_registrations', 0)!=1):
+            from .collector_runtime import CatalogSnapshotChanged
+            raise CatalogSnapshotChanged()
+        try:adapters=self._catalog_adapter_witness()
+        except ValueError as exc:
+            from .collector_runtime import CatalogSnapshotChanged
+            raise CatalogSnapshotChanged() from exc
+        guard=self._catalog_protect_clone(schema, constructor=True)
+        guard.update(private_reader=True, adapters=adapters)
+        return guard
+
     def _catalog_check_clone_guard(self, guard):
         if getattr(self, '_catalog_clone_guard', None) is not guard or guard['invalid']:
             from .collector_runtime import CatalogSnapshotChanged
             raise CatalogSnapshotChanged()
+        if guard.get('private_reader') is True:
+            try:
+                valid=(self.row_factory is sqlite3.Row and self.text_factory is str
+                    and self._catalog_adapter_witness()==guard['adapters'])
+            except ValueError:valid=False
+            if not valid:
+                guard['invalid']=True
+                self._catalog_guard_error()
 
     def _catalog_release_clone_guard(self, guard):
         try:
@@ -188,7 +322,8 @@ def _open_catalog_database(path, readonly, timeout):
         return (str(main_path),info.st_dev,info.st_ino)
     before=inode() if main_path is not None and main_path.exists() else None
     if readonly:
-        db=sqlite3.connect(f"{main_path.as_uri()}?mode=ro",uri=True,timeout=timeout,factory=_CatalogConnection)
+        db=sqlite3.connect(f"{main_path.as_uri()}?mode=ro",uri=True,timeout=timeout,
+                           detect_types=0,factory=_CatalogConnection)
     else:
         db=sqlite3.connect(path,timeout=timeout,factory=_CatalogConnection)
     try:
