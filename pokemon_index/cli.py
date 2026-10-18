@@ -81,11 +81,16 @@ def create_server(db_path: str, host: str, port: int, internal_catalog_api: bool
                 check_snapshot()
                 # A progress callback cannot interrupt SQLite busy waits or the
                 # connection setup queries; keep their lock wait short as well.
-                with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
-                    with collector_runtime.sqlite_deadline(db,expires):
-                        with read_model.request(db,strict_readonly=True) if read_model is not None else nullcontext():
-                            yield db
-                            check_snapshot()
+                if packaged is not None:
+                    with read_model.owned_http_request(expires=expires) as db:
+                        yield db
+                        check_snapshot()
+                else:
+                    with closing(core.connect(db_path,readonly=True,timeout=0.1)) as db:
+                        with collector_runtime.sqlite_deadline(db,expires):
+                            with read_model.request(db,strict_readonly=True) if read_model is not None else nullcontext():
+                                yield db
+                                check_snapshot()
         finally:
             handler.timings['compute' if entered is not None else 'queue']=time.monotonic()-(entered or queued)
     journey_revision=None;read_model=None;packaged=None

@@ -10,10 +10,13 @@ from contextlib import closing, contextmanager
 from contextvars import ContextVar
 from functools import wraps
 import json
+import math
 import os
+from pathlib import Path
 import sqlite3
 import stat
 from types import MappingProxyType
+from typing import NamedTuple
 import threading
 import time
 
@@ -283,7 +286,7 @@ def _trusted_snapshot_model(db):
         return None
     db._catalog_check_clone_guard(snapshot['clone_guard'])
     if snapshot.get('strict_readonly') is True:
-        snapshot['model']._check_sealed_snapshot(db,snapshot['path_ancestors'])
+        fresh=snapshot['model']._check_sealed_snapshot(db,snapshot['path_ancestors'])
         # The stronger authorizer rejects every namespace write, transaction,
         # attachment and PRAGMA setter, even if a caller catches the error.
         # Main/WAL/path/alias changes still receive the fresh file check above
@@ -291,7 +294,8 @@ def _trusted_snapshot_model(db):
         # filesystem timestamps coincide. Full SQL stamps bracket the request.
         if (snapshot['clone_guard'].get('read_only_all_namespaces') is not True
                 or db.in_transaction or db.total_changes!=snapshot['static_version'][0]
-                or db.execute('PRAGMA main.data_version').fetchone()[0]!=snapshot['static_version'][1]):
+                or (fresh[0] if snapshot.get('file_backed') is True else
+                    db.execute('PRAGMA main.data_version').fetchone()[0])!=snapshot['static_version'][1]):
             raise CatalogSnapshotChanged()
     else:
         snapshot['model']._check_snapshot(db)
@@ -409,6 +413,12 @@ def facet_lookup_relation(db):
 
 class CatalogReadModelUnsupported(Exception):
     pass
+
+
+class _PackagedFacetFile(NamedTuple):
+    """Process-local witness added only after the fixed packaged load validates."""
+    path: str
+    identity: tuple
 
 
 class CatalogReadModel:
@@ -627,14 +637,148 @@ class CatalogReadModel:
         db.deserialize(self._image,name=self.SCHEMA)
         db.execute('PRAGMA query_only=ON')
 
-    def _capture_path_ancestors(self):
+    def _bind_packaged_facet_file(self,path):
+        # This is not a portable state field. load_packaged supplies its fixed
+        # path after the complete original byte/source/schema/seal validation.
+        if not hasattr(self,'_artifact_guard'):
+            raise CatalogSnapshotChanged()
+        self._artifact_guard()
+        path=Path(path)
+        expected=next((value for member,value in self._artifact_identities if member==path),None)
+        try:
+            if (not path.is_absolute() or expected is None
+                    or _regular_identity_at_path(path,require_single_link=True)!=(expected,None)):
+                raise CatalogSnapshotChanged()
+            # Match core's main-handle opening: a trusted fixed path may use a
+            # system alias (for example /var on macOS). The actual attached path
+            # is canonical and must bind the SAME already validated file.
+            path=path.resolve(strict=True)
+            if _regular_identity_at_path(path,require_single_link=True)!=(expected,None):
+                raise CatalogSnapshotChanged()
+            self._check_facet_sidecars(path)
+        except OSError as exc:raise CatalogSnapshotChanged() from exc
+        # Retain builtin strings/tuples only: the existing allocation walker
+        # counts every field without hidden pathlib parts or cached URI state.
+        self._packaged_facet_file=_PackagedFacetFile(os.fspath(path),(expected,None))
+        self._artifact_guard()
+
+    @staticmethod
+    def _check_facet_sidecars(path):
+        # A sealed rollback-mode image has no journal/SHM. Nonempty WAL is
+        # rejected by its exact image witness; empty WAL retains native rules.
+        for suffix in ('-journal','-shm'):
+            try:os.lstat(os.fspath(path)+suffix)
+            except FileNotFoundError:continue
+            raise CatalogSnapshotChanged()
+
+    def _facet_file_identity(self,frame):
+        identity=_regular_identity_at_path(frame.path,require_single_link=True)
+        if identity!=frame.identity:
+            raise CatalogSnapshotChanged()
+        self._check_facet_sidecars(frame.path)
+        return identity
+
+    @contextmanager
+    def owned_http_request(self,*,expires):
+        """Fresh private HTTP connection; generic request() keeps memory clones.
+
+        No caller supplies a connection or callbacks. The exact cooperative
+        deadline is installed before the private driver policy and restored
+        only after policy release. File-backed facts never become a fallback
+        for a missing, changed or malformed packaged artifact.
+        """
+        from . import core
+        if (type(expires) not in (int,float) or not math.isfinite(expires)
+                or expires>time.monotonic()+8):
+            raise ValueError('owned catalog request requires its original bounded expiry')
+        frame=getattr(self,'_packaged_facet_file',None)
+        if type(frame) is not _PackagedFacetFile:
+            raise CatalogSnapshotChanged()
+        with closing(core.connect(self._path,readonly=True,timeout=0.1)) as db:
+            if (type(db) is not core._CatalogConnection or db.row_factory is not sqlite3.Row
+                    or db.text_factory is not str or getattr(db,'_catalog_callback_registrations',0)!=0):
+                raise CatalogSnapshotChanged()
+            with sqlite_deadline(db,expires):
+                guard=None;token=None;file_scope=None;ancestors=None;version=None
+                try:
+                    checkpoint();self._check_snapshot(db);self._artifact_guard()
+                    self._facet_file_identity(frame)
+                    if (db.in_transaction or db.execute('SELECT 1 FROM temp.sqlite_master LIMIT 1').fetchone()
+                            or getattr(db,'_catalog_authorizer',None) is not None):
+                        raise CatalogSnapshotChanged()
+                    main_version_before=db.execute('PRAGMA main.data_version').fetchone()[0]
+                    descriptor=os.open(frame.path,os.O_RDONLY|os.O_NOFOLLOW)
+                    try:
+                        info=os.fstat(descriptor)
+                        before=(info.st_dev,info.st_ino,info.st_size,info.st_mtime_ns,info.st_ctime_ns)
+                        if before!=frame.identity[0]:raise CatalogSnapshotChanged()
+                        # No parameter adapter can run during attachment. as_uri
+                        # escapes ?, #, %, Unicode and separators; quote SQL too.
+                        uri=Path(frame.path).as_uri()+'?mode=ro'
+                        db.execute("ATTACH DATABASE '"+uri.replace("'","''")+"' AS collector_snapshot")
+                        facet_version=db.execute('PRAGMA collector_snapshot.data_version').fetchone()[0]
+                        schema=db.execute('PRAGMA collector_snapshot.schema_version').fetchone()[0]
+                        info=os.fstat(descriptor)
+                        after=(info.st_dev,info.st_ino,info.st_size,info.st_mtime_ns,info.st_ctime_ns)
+                        if after!=before or self._facet_file_identity(frame)!=frame.identity:
+                            raise CatalogSnapshotChanged()
+                        if (db.execute('PRAGMA main.data_version').fetchone()[0]!=main_version_before
+                                or db.execute('PRAGMA collector_snapshot.data_version').fetchone()[0]!=facet_version):
+                            raise CatalogSnapshotChanged()
+                        opened=(str(frame.path),*before[:2])
+                    finally:os.close(descriptor)
+                    db.execute('PRAGMA query_only=ON')
+                    # Only this owned connection has exactly one registration:
+                    # the expired callback installed by sqlite_deadline above.
+                    deadline=next((callback for connection,callback in reversed(_sql_scopes.get()) if connection is db),None)
+                    if getattr(db,'_catalog_progress_handler',None)!=(deadline,1000) or deadline is None:
+                        raise CatalogSnapshotChanged()
+                    guard=db._catalog_protect_private_reader(self.SCHEMA)
+                    version=_static_snapshot_version(db)
+                    if version is None or version[1]!=main_version_before or version[-1]!=schema:
+                        raise CatalogSnapshotChanged()
+                    ancestors=self._capture_path_ancestors(extra_paths=(Path(frame.path),))
+                    file_scope=(frame,opened,facet_version,schema)
+                    # Capture cannot adopt a changed artifact: metadata is still
+                    # compared with the immutable bootstrap witness throughout.
+                    self._check_snapshot(db)
+                    self._check_sealed_snapshot(db,ancestors,file_scope=file_scope)
+                    db._catalog_check_clone_guard(guard)
+                    token=_snapshot_scope.set({'db':db,'model':self,'static_version':version,
+                        'clone_guard':guard,'strict_readonly':True,'path_ancestors':ancestors,
+                        'file_backed':True,'file_scope':file_scope})
+                    yield db
+                    db._catalog_check_clone_guard(guard);checkpoint();self._check_snapshot(db)
+                    self._check_sealed_snapshot(db,ancestors,file_scope=file_scope)
+                    if _static_snapshot_version(db)!=version:raise CatalogSnapshotChanged()
+                    self._artifact_guard();db._catalog_check_clone_guard(guard)
+                except OSError as exc:
+                    raise CatalogSnapshotChanged() from exc
+                except BaseException as exc:
+                    if guard is not None:
+                        try:
+                            db._catalog_check_clone_guard(guard)
+                            if file_scope is not None:
+                                self._check_snapshot(db)
+                                self._check_sealed_snapshot(db,ancestors,file_scope=file_scope)
+                                if _static_snapshot_version(db)!=version:raise CatalogSnapshotChanged()
+                                self._artifact_guard();db._catalog_check_clone_guard(guard)
+                        except CatalogSnapshotChanged as changed:raise changed from exc
+                    raise
+                finally:
+                    try:
+                        if guard is not None:db._catalog_release_clone_guard(guard)
+                    finally:
+                        if token is not None:_snapshot_scope.reset(token)
+
+    def _capture_path_ancestors(self,*,extra_paths=()):
         """Request-owned directory witnesses for already canonical fixed paths.
 
         Every ancestor is freshly checked at each fact lookup. Deduplication is
         within a lookup only; this is the same sampled namespace guarantee as
         realpath, not protection against a swap restored between observations.
         """
-        paths=[self._path]
+        paths=[self._path,*extra_paths]
         if hasattr(self,'_release_alias_path'):paths.append(self._release_alias_path)
         parents={os.fspath(parent) for path in paths for parent in path.parents}
         try:
@@ -647,7 +791,7 @@ class CatalogReadModel:
         except OSError as exc:
             raise CatalogSnapshotChanged() from exc
 
-    def _check_sealed_snapshot(self,db,ancestors):
+    def _check_sealed_snapshot(self,db,ancestors,*,file_scope=None):
         """Fresh path, handle, ancestor and file checks without repeat realpath.
 
         All lexical ancestors must remain the same real directories. Final
@@ -655,7 +799,11 @@ class CatalogReadModel:
         SQLite data_version is separately checked by the calling trust guard.
         """
         try:
-            main=next((r[2] for r in db.execute('PRAGMA database_list') if r[1]=='main'),None)
+            active=_snapshot_scope.get()
+            if file_scope is None and active is not None and active['db'] is db:
+                file_scope=active.get('file_scope')
+            databases={r[1]:r[2] for r in db.execute('PRAGMA database_list')}
+            main=databases.get('main')
             if (main!=os.fspath(self._path) or
                     getattr(db,'_catalog_open_file_identity',None)!=(str(self._path),*self._identity[0][:2])):
                 raise CatalogSnapshotChanged()
@@ -669,6 +817,19 @@ class CatalogReadModel:
             if (hasattr(self,'_release_alias_path') and
                     _regular_identity_at_path(self._release_alias_path)!=self._release_alias_identity):
                 raise CatalogSnapshotChanged()
+            if file_scope is not None:
+                frame,opened,version,schema=file_scope
+                if databases.get(self.SCHEMA)!=str(frame.path) or opened!=(str(frame.path),*frame.identity[0][:2]):
+                    raise CatalogSnapshotChanged()
+                # Fresh attached data_version detects commits even when ordinary
+                # metadata samples coincide. Main's value is reused only by this
+                # contiguous trust call, never cached between lookups.
+                main_version=db.execute('PRAGMA main.data_version').fetchone()[0]
+                if (db.execute('PRAGMA collector_snapshot.data_version').fetchone()[0]!=version
+                        or db.execute('PRAGMA collector_snapshot.schema_version').fetchone()[0]!=schema):
+                    raise CatalogSnapshotChanged()
+                self._facet_file_identity(frame)
+                return (main_version,)
         except OSError as exc:
             raise CatalogSnapshotChanged() from exc
 
@@ -776,7 +937,7 @@ def _identity_at_path(path):
     return tuple(result)
 
 
-def _regular_identity_at_path(path):
+def _regular_identity_at_path(path,*,require_single_link=False):
     """Fresh final-file lstat for a request's fully sealed ancestor chain."""
     path=os.fspath(path)
     result=[]
@@ -785,7 +946,8 @@ def _regular_identity_at_path(path):
         except FileNotFoundError:
             result.append(None)
         else:
-            if not stat.S_ISREG(info.st_mode):raise CatalogSnapshotChanged()
+            if not stat.S_ISREG(info.st_mode) or (require_single_link and info.st_nlink!=1):
+                raise CatalogSnapshotChanged()
             result.append(None if index and info.st_size==0 else
                 (info.st_dev,info.st_ino,info.st_size,info.st_mtime_ns,info.st_ctime_ns))
     return tuple(result)
