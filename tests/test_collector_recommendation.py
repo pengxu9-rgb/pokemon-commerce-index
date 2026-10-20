@@ -167,6 +167,30 @@ class RecommendationTests(unittest.TestCase):
                     self.assertEqual(held['discovery']['task'],'copy_evidence_needed')
                     self.assertFalse(held['selection_allowed']);self.assertIsNone(held['target_intent'])
                     self.assertEqual(held['prices'],[]);self.assertEqual(held['live_offers'],[])
+    def test_grader_tokens_written_against_japanese_or_chinese_text_are_held(self):
+        shown=self.replay(self.start())['candidate_cards'][0]['card_id']
+        for question in ['PSA10のピカチュウをおすすめして','ピカチュウPSA10がほしい','推荐PSA10的皮卡丘',
+                         '皮卡丘BGS9.5','スラブ入りのピカチュウ','推荐鉴定的皮卡丘']:
+            with self.subTest(question=question):
+                turns=[dict(type='ask',question=question)]
+                result=self.replay(turns)
+                self.assertEqual(result['discovery']['task'],'copy_evidence_needed')
+                self.assertEqual(result['candidate_cards'],[])
+                self.assertFalse(result['selection_allowed']);self.assertIsNone(result['target_intent'])
+                with self.assertRaisesRegex(ValueError,'blockers'):
+                    self.replay(turns+[dict(type='select',card_id=shown)])
+        for reply in ['PSA10がいい','PSA10のやつ','要PSA10的','スラブで']:
+            with self.subTest(reply=reply):
+                turns=self.start()+[dict(type='reply',text=reply)]
+                result=self.replay(turns)
+                self.assertIn('grading_copy_evidence',result['selection_blockers'])
+                self.assertFalse(result['selection_allowed'])
+                with self.assertRaisesRegex(ValueError,'blockers'):
+                    self.replay(turns+[dict(type='select',card_id=result['candidate_cards'][0]['card_id'])])
+        for ordinary in ['Recommend Japanese Pikachu stars','ungraded Pikachu cards']:
+            with self.subTest(ordinary=ordinary):
+                self.assertNotEqual(self.replay([dict(type='ask',question=ordinary)])['discovery']['task'],
+                                    'copy_evidence_needed')
     def test_initial_collection_upgrades_are_not_grading_requests(self):
         cases=[('I upgraded my binder and now prefer Pikachu','Pikachu cards'),
                ('I am upgrading my Pikachu collection','Pikachu cards'),

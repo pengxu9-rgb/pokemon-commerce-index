@@ -19,6 +19,14 @@ def _norm(text: str) -> str:
     return unicodedata.normalize("NFKC", text).casefold()
 
 
+# A grading or slab request on _norm()-ed text. Latin-letter lookarounds
+# instead of \b, because \b sees no boundary in "psa10のピカチュウ" or
+# "推荐psa10的皮卡丘"; "ungraded" and "stars" still do not match.
+GRADING_REQUEST_RE = re.compile(
+    r"(?<![a-z])(?:psa|bgs|cgc|ars|pgc)(?:\s*\d{1,2}(?:\.\d)?)?(?![a-z0-9])|"
+    r"(?<![a-z])(?:graded|grading|slabs?)(?![a-z])|鑑定|鉴定|评级|評級|スラブ")
+
+
 def validate_scope(value: dict | None) -> dict:
     """Explicit follow-up choices override language/release/number/finish text.
 
@@ -604,7 +612,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                     required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
                     next_question='Should we first list official physical Pokémon TCG cards? Custom and other product lines need their own sources; share your inventory to check omissions.')
     edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',language_text))
-    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)(?:\s*\d{1,2}(?:\.\d)?)?\b|\b(?:graded|grading)\b|鑑定|评级',language_text))
+    graded=bool(GRADING_REQUEST_RE.search(language_text))
     if graded or (edition and len(artists)!=1):
         return dict(result, task='copy_evidence_needed', status='blocked',
                     required_evidence=['exact_base_printing','edition_or_grading_copy_evidence'],

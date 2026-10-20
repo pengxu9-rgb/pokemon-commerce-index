@@ -388,8 +388,7 @@ def replay(db,request,*,revision=None):
                 if len(previous['cards'])==1 and not previous['selection_blockers']:
                     select(previous['cards'][0]['card_id'],previous);unparsed=None
                 else:unparsed='Which exact shown card do you mean? A yes reply cannot select multiple or evidence-blocked candidates.'
-            elif recommendation_mode and re.search(r'\b(?:psa|bgs|cgc|ars|pgc)(?:\s*\d{1,2}(?:\.\d)?)?\b|\b(?:graded|grading)\b|鑑定|评级',
-                                                    collector_discovery._norm(text)):
+            elif recommendation_mode and collector_discovery.GRADING_REQUEST_RE.search(collector_discovery._norm(text)):
                 # A copy-evidence question is not a new character preference.
                 # Retain base-printing exploration, but never select it as a graded copy.
                 grading_copy_evidence_needed=True;unparsed=None
