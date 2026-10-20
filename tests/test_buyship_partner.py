@@ -1,4 +1,5 @@
 import copy
+from contextlib import closing
 import json
 import sqlite3
 import tempfile
@@ -505,6 +506,100 @@ class PartnerPreviewTests(unittest.TestCase):
                         writer.close()
                     reader.close()
 
+    def test_ranking_uses_fresh_reader_while_caller_keeps_an_open_cursor(self):
+        preview, _ = self.preview()
+        for change, message in (("revocation", "not approved"), ("withdrawal", "no current")):
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "synthetic ?#%カタログ.sqlite3"
+                reader = sqlite3.connect(path)
+                reader.row_factory = sqlite3.Row
+                writer = None
+                cursor = None
+                try:
+                    self.db.backup(reader)
+                    reader.execute("PRAGMA journal_mode=WAL").fetchall()
+                    writer = sqlite3.connect(path)
+                    writer.row_factory = sqlite3.Row
+                    cursor = reader.execute("SELECT * FROM source_policy")
+                    self.assertFalse(reader.in_transaction)
+                    self.assertEqual(buyship_partner.rank_quote_previews(
+                        [preview], now=NOW, db=reader)["best"], preview)
+                    if change == "revocation":
+                        writer.execute("UPDATE source_policy SET partner_handoff_allowed=0")
+                        writer.commit()
+                        query = "SELECT partner_handoff_allowed FROM source_policy"
+                        old, new = 1, 0
+                    else:
+                        observation = dict(writer.execute("SELECT * FROM observation").fetchone())
+                        observation.update(language="ja", condition_bucket="A", status="gone",
+                                           observed_at="2026-09-22T09:04:00Z")
+                        core.import_observations(writer, [observation])
+                        query = "SELECT current_status FROM listing"
+                        old, new = "on_sale", "gone"
+                    self.assertEqual(reader.execute(query).fetchone()[0], old)
+                    self.assertEqual(writer.execute(query).fetchone()[0], new)
+                    self.assertFalse(reader.in_transaction)
+                    with self.assertRaisesRegex(ValueError, message):
+                        buyship_partner.rank_quote_previews([preview], now=NOW, db=reader)
+                    # Validation must neither close the caller cursor nor refresh its snapshot.
+                    self.assertEqual(reader.execute(query).fetchone()[0], old)
+                    self.assertEqual(cursor.fetchone()["partner_handoff_allowed"], 1)
+                finally:
+                    if cursor is not None:
+                        cursor.close()
+                    if writer is not None:
+                        writer.close()
+                    reader.close()
+
+    def test_database_ranking_requires_a_reopenable_file(self):
+        preview, _ = self.preview()
+        with self.assertRaisesRegex(ValueError, "file-backed"):
+            buyship_partner.rank_quote_previews([preview], now=NOW, db=self.db)
+        self.assertEqual(buyship_partner.rank_quote_previews([preview], now=NOW)["best"], preview)
+
+    def test_preview_with_open_cursor_rechecks_rights_before_and_after_partner_steps(self):
+        original_db = self.db
+        for phase, expected_calls in (("before", 0), ("resolve", 1), ("quote", 2)):
+            with self.subTest(phase=phase), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "synthetic.sqlite3"
+                reader = sqlite3.connect(path)
+                reader.row_factory = sqlite3.Row
+                writer = None
+                cursor = None
+                try:
+                    original_db.backup(reader)
+                    reader.execute("PRAGMA journal_mode=WAL").fetchall()
+                    writer = sqlite3.connect(path)
+                    cursor = reader.execute("SELECT * FROM source_policy")
+                    self.db = reader
+                    client = buyship_partner.FixturePartnerClient(FIXTURE)
+                    def revoke():
+                        writer.execute("UPDATE source_policy SET partner_handoff_allowed=0")
+                        writer.commit()
+                    if phase == "before":
+                        revoke()
+                        with self.assertRaisesRegex(ValueError, "not approved"):
+                            self.preview(client=client)
+                    else:
+                        original = getattr(client, phase)
+                        def changed(*args):
+                            response = original(*args)
+                            revoke()
+                            return response
+                        with patch.object(client, phase, side_effect=changed):
+                            with self.assertRaisesRegex(ValueError, "not approved"):
+                                self.preview(client=client)
+                    self.assertEqual(len(client.calls), expected_calls)
+                    self.assertFalse(reader.in_transaction)
+                    self.assertEqual(cursor.fetchone()["partner_handoff_allowed"], 1)
+                finally:
+                    self.db = original_db
+                    if cursor is not None:
+                        cursor.close()
+                    if writer is not None:
+                        writer.close()
+                    reader.close()
+
     def test_persisted_quote_reaches_existing_recommendation_and_expires(self):
         self.register_source(handoff=True, store=True)
         payload = copy.deepcopy(FIXTURE)
@@ -589,8 +684,11 @@ class PartnerPreviewTests(unittest.TestCase):
         second_fixture = json.loads((Path(__file__).parents[1] / "examples" /
                                      "buyship_partner_preview_2.json").read_text(encoding="utf-8"))
         second, _ = self.preview(second_fixture, source="second_fixture", native_id="demo-3")
-        with self.assertRaisesRegex(ValueError, "cross-source"):
-            buyship_partner.rank_quote_previews([first, second], now=NOW, db=self.db)
+        with tempfile.TemporaryDirectory() as directory:
+            with closing(sqlite3.connect(Path(directory) / "synthetic.sqlite3")) as db:
+                self.db.backup(db)
+                with self.assertRaisesRegex(ValueError, "cross-source"):
+                    buyship_partner.rank_quote_previews([first, second], now=NOW, db=db)
 
 
 class PartnerClientTests(unittest.TestCase):

@@ -7,9 +7,11 @@ order-creation method: payment and buyer-confirmation semantics are unspecified.
 from __future__ import annotations
 
 import base64
+from contextlib import closing, contextmanager
 import copy
 import hashlib
 import json
+from pathlib import Path
 import re
 import sqlite3
 import time
@@ -192,6 +194,29 @@ def _require_fixture_database(db: sqlite3.Connection) -> None:
             raise ValueError("fixture quotes require an isolated synthetic .invalid listing database")
 
 
+@contextmanager
+def _fresh_validation_connection(db: sqlite3.Connection, *, fixture_memory: bool = False):
+    """Own each file-backed read snapshot; never inherit the caller's active cursor."""
+    if db.in_transaction:
+        raise ValueError("quote validation requires a connection without an active transaction")
+    main_path = next((row[2] for row in db.execute("PRAGMA database_list").fetchall()
+                      if row[1] == "main"), "")
+    if not main_path:
+        # Only the disposable synthetic preview supports non-reopenable databases.
+        # Database-backed ranking must never validate a copy of the caller's snapshot.
+        if not fixture_memory:
+            raise ValueError("fresh quote validation requires a file-backed database")
+        _require_fixture_database(db)
+        yield db
+        return
+    uri = Path(main_path).as_uri() + "?mode=ro"
+    with closing(sqlite3.connect(uri, uri=True, isolation_level=None)) as validation:
+        validation.row_factory = sqlite3.Row
+        validation.execute("PRAGMA query_only=ON")
+        validation.execute("BEGIN")
+        yield validation
+
+
 def _buyer_labels(offer: dict[str, Any]) -> dict[str, Any]:
     title = unicodedata.normalize("NFKC", offer["title"])
     claims = list(core.GRADE_RE.finditer(title))
@@ -255,10 +280,13 @@ def _offer_snapshot(db: sqlite3.Connection, *, card_id: str, unit_id: str,
 
 
 def _assert_snapshot(db: sqlite3.Connection, expected: dict[str, Any], *,
-                     country: str, now: str) -> None:
-    _, current = _offer_snapshot(db, card_id=expected["card_id"], unit_id=expected["unit_id"],
-                                source=expected["listing"]["source"],
-                                native_id=expected["listing"]["native_id"], country=country, now=now)
+                     country: str, now: str, fixture: bool = False) -> None:
+    with _fresh_validation_connection(db, fixture_memory=fixture) as validation:
+        _, current = _offer_snapshot(validation, card_id=expected["card_id"], unit_id=expected["unit_id"],
+                                    source=expected["listing"]["source"],
+                                    native_id=expected["listing"]["native_id"], country=country, now=now)
+        if fixture:
+            _require_fixture_database(validation)
     if _digest(current) != _digest(expected):
         raise ValueError("indexed offer snapshot or source permission changed during quote")
 
@@ -318,15 +346,15 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
     if isinstance(client, PartnerClient) and now is not None:
         raise ValueError("live Buy&Ship quotes must use the current clock")
     now = core.parse_time(now or core.utcnow())
-    offer, snapshot = _offer_snapshot(db, card_id=card_id, unit_id=unit_id, source=source,
-                                      native_id=native_id, country=country, now=now.isoformat())
-    if isinstance(client, FixturePartnerClient):
-        _require_fixture_database(db)
+    fixture = isinstance(client, FixturePartnerClient)
+    with _fresh_validation_connection(db, fixture_memory=fixture) as validation:
+        offer, snapshot = _offer_snapshot(validation, card_id=card_id, unit_id=unit_id, source=source,
+                                          native_id=native_id, country=country, now=now.isoformat())
+        if fixture:
+            _require_fixture_database(validation)
     resolved = client.resolve(offer["url"])
     checked_at = core.utcnow() if isinstance(client, PartnerClient) else now.isoformat()
-    _assert_snapshot(db, snapshot, country=country, now=checked_at)
-    if isinstance(client, FixturePartnerClient):
-        _require_fixture_database(db)
+    _assert_snapshot(db, snapshot, country=country, now=checked_at, fixture=fixture)
     if not isinstance(resolved, dict) or not _same_product_url(offer["url"], resolved.get("url", "")):
         raise ValueError("Buy&Ship resolved a different product URL")
     _check_partner_identity(snapshot, offer, resolved.get("product"))
@@ -355,9 +383,7 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
     resolved_price = _money(selected.get("price"))
     quoted = client.quote(reference_id, key, destination, currency)
     received_at = core.parse_time(core.utcnow()) if isinstance(client, PartnerClient) else now
-    _assert_snapshot(db, snapshot, country=country, now=received_at.isoformat())
-    if isinstance(client, FixturePartnerClient):
-        _require_fixture_database(db)
+    _assert_snapshot(db, snapshot, country=country, now=received_at.isoformat(), fixture=fixture)
     if not isinstance(quoted, dict) or quoted.get("status") != "OPEN":
         raise ValueError("Buy&Ship quote is not open")
     quote_id, expires_at = quoted.get("quote_id"), quoted.get("expires_at")
@@ -459,10 +485,8 @@ def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = Non
     identity = (first["card_id"], first["unit_id"],
                 first["buyship"]["destination"], first["buyship"]["currency"])
     sources = {preview["listing"]["source"] for preview in previews}
-    if len(sources) > 1:
-        if db is None or any(not core._policy(db, source, display=True)["cross_source_use_allowed"]
-                             for source in sources):
-            raise ValueError("cross-source quote ranking lacks permission")
+    if len(sources) > 1 and db is None:
+        raise ValueError("cross-source quote ranking lacks permission")
     seen: set[tuple[str, str]] = set()
     for preview in previews:
         if (preview.get("status") != "quote_ready_for_review"
@@ -483,9 +507,14 @@ def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = Non
         seen.add(listing_key)
         _money(preview["buyship"]["grand_total"], identity[3])
         _require_preview_binding(preview)
-        if db is not None:
-            # Ranking a retained preview must not make an obsolete quote current.
-            _current_preview_snapshot(db, preview, checked_at.isoformat())
+    if db is not None:
+        with _fresh_validation_connection(db) as validation:
+            if len(sources) > 1 and any(
+                    not core._policy(validation, source, display=True)["cross_source_use_allowed"]
+                    for source in sources):
+                raise ValueError("cross-source quote ranking lacks permission")
+            for preview in previews:
+                _current_preview_snapshot(validation, preview, checked_at.isoformat())
     ordered = sorted(previews, key=lambda item: (
         item["buyship"]["grand_total"]["subunit_amount"],
         item["listing"]["source"], item["listing"]["native_id"]))

@@ -83,5 +83,14 @@ validates freshness, permissions, evidence and labels under an atomic SQLite
 write lock. Database-backed ranking revalidates the current snapshot; stateless
 ranking alone is not a current-inventory check.
 
+File-backed previews and database-backed ranking use separately owned read-only
+validation connections. Each preview phase reopens its reader after the partner
+response; ranking validates all source permissions and snapshots in one fresh
+read transaction. An open SELECT cursor on the caller connection cannot hide a
+committed revocation or withdrawal, and validation leaves that cursor untouched.
+Database-backed ranking requires a reopenable file-backed database. In-memory
+previews remain available only to isolated synthetic fixtures; their previews
+can be ranked statelessly. Quote storage retains its own atomic write lock.
+
 No scheduler, source connector, PSA patch, order, payment, inspection or returns
 implementation was added. All real source/handoff permissions remain pending.
