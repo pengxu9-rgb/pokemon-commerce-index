@@ -31,3 +31,10 @@ The expected 87-input backend runtime revision is `bbb62d6a89533ac1a9ef0df76d3db
 The packaged HTTP path opens a fresh read-only connection per admitted request and attaches the already validated, source-bound facet file. Direct callers and custom artifact loads retain their existing memory-clone path. Fresh database, file, WAL, directory, schema and source checks remain; callback, factory, extension and custom binding changes fail closed in the owned HTTP scope. The portable artifact remains state v5, with an additional process-local witness charged against the existing allocation bound.
 
 The expected 87-input source/data revision is `86bd0badc7fe8932464edf5f6514f2ac27f54666944379053f36846fb42b08e5`; the 86-input comparison revision is `b129a616f7b253fbd8fd6a17a431f025a4a45064e42c4c9abdc1c99a5a21210a`. These are local source checkpoints. M14 failed sustained four-client acceptance and was not promoted. M15 must pass the unchanged CI, independent review, first-request cold-start, memory and four-client gates before deployment. No frontend change, additional catalogue record, display permission or trading authority is introduced. The one-worker, 250 ms admission, eight-second work and ten-second/two-attempt caller limits remain. Buy&Ship remains the intended MoR; Pivota holds no customer funds.
+
+
+## Grade integrity (PR #16)
+
+Listings whose newest title no longer supports, or disputes, their graded unit stop pricing; a slab or grader named without a readable grade stays unresolved instead of resolving as raw; grading requests written against Japanese or Chinese text are held; and listing text follows the same timestamp guard as status and price. No catalogue data, frontend, admission or caller limit changes.
+
+The expected 87-input source/data revision is `67628ea5a7bcd15ec9a457a9c442b6abfce2a954074bd58abd3f61476d24c0a5`; the 86-input comparison revision is `cad823fc89c934262af1aaa1942c2afb7120c840005e151e985d687102169151`. These are local source checkpoints, re-pinned after owner review of the PR #16 runtime changes, not a deployment claim.
