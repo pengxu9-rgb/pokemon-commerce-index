@@ -1,0 +1,14 @@
+{
+  "schema": "pokemon.marketplace-capture.v1",
+  "source": "ebay_us_fixture",
+  "observed_at": "2026-10-20T12:00:00Z",
+  "request": {"kind": "search", "query": "Pikachu SV2a 173/165", "page": 1},
+  "payload_schema": "ebay.browse.search.v1",
+  "payload": {
+    "total": 2,
+    "itemSummaries": [
+      {"itemId": "v1|1001|0", "title": "ピカチュウ SV2a 173/165", "itemWebUrl": "https://ebay.example.invalid/itm/1001", "listingMarketplaceId": "EBAY_US", "buyingOptions": ["FIXED_PRICE"], "price": {"value": "29.95", "currency": "USD"}, "seller": {"username": "synthetic-seller-5"}, "condition": "Ungraded"},
+      {"itemId": "v1|1002|0", "title": "ピカチュウ SV2a 173/165 PSA10 鑑定品", "itemWebUrl": "https://ebay.example.invalid/itm/1002", "listingMarketplaceId": "EBAY_US", "buyingOptions": ["FIXED_PRICE"], "price": {"value": "99.50", "currency": "USD"}, "seller": {"username": "synthetic-seller-6"}, "condition": "Graded", "localizedAspects": [{"name": "Professional Grader", "value": "Professional Sports Authenticator (PSA)"}, {"name": "Grade", "value": "10"}, {"name": "Certification Number", "value": "SYNTHETIC-0003"}]}
+    ]
+  }
+}

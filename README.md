@@ -1,5 +1,7 @@
 # Pokémon Commerce Index — clean-room vertical slice
 
+**Independent market tracking:** [Mercari, eBay and SNKRDUNK capture adapters and per-card tracker](MARKET_TRACKING.md) provide offline native-ask history and unverified grade/condition evidence without BNS. Live collection remains disabled; release pins and the collector runtime are unchanged.
+
 **当前产品进展：** [收藏推荐闭环](COLLECTOR_RECOMMENDATION_IMPLEMENTATION_20261003.md)已在本地实现：偏好推荐、喜欢／排除反馈、同分编号分散展示、双卡比较后聚焦与独立确认。预算和审美匹配未知；身份与库存限制保留。该更新未部署，私有云端仍为此前版本。下一步由实际发现任务驱动补证。
 
 **最新交付：** [官方缺图恢复与棱镜星机制补证](SOURCE_BINDING_20261003.md)完成 51 项固定队列的结果登记：17 张 M6A 官方卡图由 OpenAI 主 agent 与 Gemini 分别读图，对应编号、名称和 HP；主 agent 的目录上下文已披露。16 项棱镜星机制新增准确官方坐标证据，旧编号判定完整保留。优先补证剩余 18 项，历史编号待确认仍为 32 项。私有云端 `00043-2x6` 已更新，601 项 Python、12 项 Node 测试及 115 项云端检查通过。目录和关系图数量未增加。

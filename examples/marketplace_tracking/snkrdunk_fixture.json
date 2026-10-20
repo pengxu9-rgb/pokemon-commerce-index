@@ -1,0 +1,14 @@
+{
+  "schema": "pokemon.marketplace-capture.v1",
+  "source": "snkrdunk_fixture",
+  "observed_at": "2026-10-20T12:00:00Z",
+  "request": {"kind": "export", "page": 1, "target_card_ids": ["ja:SV2A:173/165:standard"]},
+  "payload_schema": "pokemon.snkrdunk-authorized-export.v1",
+  "payload": {
+    "page_complete": true,
+    "listings": [
+      {"record_type": "listing", "sale_type": "fixed_price", "listing_id": "synthetic-offer-1001", "title": "ピカチュウ SV2a 173/165", "language": "ja", "url": "https://snkrdunk.example.invalid/listings/synthetic-offer-1001", "status": "on_sale", "price": {"amount_minor": 4200, "currency": "JPY"}, "seller_id": "synthetic-seller-3", "seller_condition": "seller tier A; not independently assessed", "grade_company": "RAW"},
+      {"record_type": "listing", "sale_type": "fixed_price", "listing_id": "synthetic-offer-1002", "title": "ピカチュウ SV2a 173/165 PSA10 鑑定品", "language": "ja", "url": "https://snkrdunk.example.invalid/listings/synthetic-offer-1002", "status": "on_sale", "price": {"amount_minor": 13500, "currency": "JPY"}, "seller_id": "synthetic-seller-4", "seller_condition": "seller says graded", "grade_company": "PSA", "grade_value": "10", "certificate_number_claim": "SYNTHETIC-0002"}
+    ]
+  }
+}
