@@ -448,6 +448,8 @@ def preview_quote(db: sqlite3.Connection, *, card_id: str, unit_id: str,
 def rank_quote_previews(previews: list[dict[str, Any]], *, now: str | None = None,
                         db: sqlite3.Connection | None = None) -> dict[str, Any]:
     """Price-only shortlist for the same exact unit; no seller-quality claim."""
+    if db is not None and db.in_transaction:
+        raise ValueError("quote ranking requires a connection without an active transaction")
     if not previews:
         raise ValueError("at least one quote preview is required")
     if now is not None and any(p.get("evidence", {}).get("mode") != "synthetic_fixture" for p in previews):

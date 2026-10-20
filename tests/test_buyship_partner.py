@@ -461,6 +461,50 @@ class PartnerPreviewTests(unittest.TestCase):
             buyship_partner.persist_quote_preview(self.db, preview, now=NOW)
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM landed_quote").fetchone()[0], 0)
 
+    def test_ranking_refuses_transaction_hiding_concurrent_revocation_or_withdrawal(self):
+        preview, _ = self.preview()
+        checked_at = "2026-09-22T09:07:00Z"
+        for change, message in (("revocation", "not approved"), ("withdrawal", "no current")):
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "synthetic.sqlite3"
+                reader = sqlite3.connect(path)
+                reader.row_factory = sqlite3.Row
+                writer = None
+                try:
+                    self.db.backup(reader)
+                    self.assertEqual(reader.execute("PRAGMA journal_mode=WAL").fetchone()[0], "wal")
+                    writer = sqlite3.connect(path)
+                    writer.row_factory = sqlite3.Row
+                    self.assertEqual(buyship_partner.rank_quote_previews(
+                        [preview], now=checked_at, db=reader)["best"], preview)
+                    reader.execute("BEGIN")
+                    reader.execute("SELECT * FROM source_policy").fetchall()
+                    if change == "revocation":
+                        writer.execute("UPDATE source_policy SET partner_handoff_allowed=0")
+                        writer.commit()
+                        query = "SELECT partner_handoff_allowed FROM source_policy"
+                        expected_before, expected_after = 1, 0
+                    else:
+                        observation = dict(writer.execute("SELECT * FROM observation").fetchone())
+                        observation.update(language="ja", condition_bucket="A", status="gone",
+                                           observed_at="2026-09-22T09:06:00Z")
+                        core.import_observations(writer, [observation])
+                        query = "SELECT current_status FROM listing"
+                        expected_before, expected_after = "on_sale", "gone"
+                    self.assertEqual(reader.execute(query).fetchone()[0], expected_before)
+                    self.assertEqual(writer.execute(query).fetchone()[0], expected_after)
+                    with self.assertRaisesRegex(ValueError, "without an active transaction"):
+                        buyship_partner.rank_quote_previews([preview], now=checked_at, db=reader)
+                    # Refusal must leave the caller's transaction under its control.
+                    self.assertTrue(reader.in_transaction)
+                    reader.rollback()
+                    with self.assertRaisesRegex(ValueError, message):
+                        buyship_partner.rank_quote_previews([preview], now=checked_at, db=reader)
+                finally:
+                    if writer is not None:
+                        writer.close()
+                    reader.close()
+
     def test_persisted_quote_reaches_existing_recommendation_and_expires(self):
         self.register_source(handoff=True, store=True)
         payload = copy.deepcopy(FIXTURE)
