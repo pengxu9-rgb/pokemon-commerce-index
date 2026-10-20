@@ -38,3 +38,28 @@ The expected 87-input source/data revision is `86bd0badc7fe8932464edf5f6514f2ac2
 Listings whose newest title no longer supports, or disputes, their graded unit stop pricing; a slab or grader named without a readable grade stays unresolved instead of resolving as raw; grading requests written against Japanese or Chinese text are held; and listing text follows the same timestamp guard as status and price. No catalogue data, frontend, admission or caller limit changes.
 
 The expected 87-input source/data revision is `67628ea5a7bcd15ec9a457a9c442b6abfce2a954074bd58abd3f61476d24c0a5`; the 86-input comparison revision is `cad823fc89c934262af1aaa1942c2afb7120c840005e151e985d687102169151`. These are local source checkpoints, re-pinned after owner review of the PR #16 runtime changes, not a deployment claim.
+
+
+## 20 October C2C → BNS offline quote checkpoint
+
+Based on PR #16 (`6399f790f3eca97cbff208faf6bb687ac40ac58c`), preserving its
+grade integrity rules and owner-reviewed release pins. Independent local
+rebuilds from the frozen manifests produce the same source/data revisions:
+
+- 87-input next3000: `67628ea5a7bcd15ec9a457a9c442b6abfce2a954074bd58abd3f61476d24c0a5`.
+- 86-input scale: `cad823fc89c934262af1aaa1942c2afb7120c840005e151e985d687102169151`.
+
+All files in `collector_journey.RUNTIME_SOURCES` and the four reviewed
+rehearsal/image pin scripts remain byte-for-byte unchanged from `6399f79`.
+This quote patch does not re-pin or weaken a release gate. Its rebased head
+must pass the existing release and image checks; these source/data bindings
+are not deployment claims.
+
+This patch hardens only the operator quote adapter and adds an isolated offline
+rehearsal. `buyship_partner.py` is outside the existing collector runtime source
+hash list. Any future served quote integration must explicitly review its
+runtime binding; the collector revision alone does not authenticate this adapter.
+No collector HTTP route or frontend contract was changed. No source collection,
+live BNS/PSA calls, order, payment, inspection or returns flow is enabled. BNS
+remains the intended MoR and Pivota holds no customer funds. See
+`LIVE_C2C_BNS_QUOTE_AUDIT.md` for source-rights gaps and validation evidence.

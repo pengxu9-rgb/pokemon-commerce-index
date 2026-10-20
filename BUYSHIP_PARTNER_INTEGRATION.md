@@ -42,3 +42,46 @@ Disabling quote storage permission removes stored Buy&Ship partner quotes for th
 5. Provide a separate listing search/catalog/feed or current legacy gateway contract with per-source data rights. Without that, our product can quote only URLs obtained elsewhere.
 
 Until these are answered, the adapter stays an internal preview. Real order creation and a buyer-facing `purchase_action` remain disabled.
+
+## 20 October offline handoff hardening
+
+The source/access audit and ranked gaps are in [LIVE_C2C_BNS_QUOTE_AUDIT.md](LIVE_C2C_BNS_QUOTE_AUDIT.md).
+The preview now fingerprints the current listing, exact observation, catalog
+identity and source policy, and rechecks that binding after resolve and quote.
+It refuses an active caller transaction, which could otherwise hide concurrent
+updates, and refuses a historical clock that hides a newer observation. Explicit
+card-number/grade contradictions in partner names are rejected; generic partner
+names still do not prove card identity or authenticity.
+
+Returned `evidence` includes observation, source snapshot, resolve-response,
+quote-response and combined binding SHA-256 values. These are reproducibility
+identifiers, not signed provider attestations. Source `listing.ask` remains
+separate from `buyship.resolve_price` and the destination-currency quote.
+`buyer_labels` says `raw, condition not assessed` or, for example,
+`seller says PSA 10, certificate not verified`. Physical inspection, certificate
+and authenticity verification remain false; real verified PSA inventory is 0.
+
+`PartnerClient` defaults to denying its network transport; a future explicitly
+authorized operator must set `live_authorized=True` in addition to satisfying
+all source policies and access requirements. No live CLI was added. Injected
+test senders are labelled as test transport. TLS verification remains enabled.
+
+`FixturePartnerClient` accepts only a database whose listings use synthetic
+fixture source names and `.invalid` hosts, including checks after each response.
+Use a disposable fixture database. The safest new demonstration opens only an
+in-memory database, denies socket connections and stores no quotes:
+
+```bash
+python3 -m scripts.rehearse_c2c_bns_quote --output /tmp/c2c-bns-offline.json
+```
+
+The historical CLI examples above remain preview-only. Old `--store` examples
+now correctly refuse already expired quotes using the current clock. Unit
+tests may supply `now=` directly to persistence/ranking only for isolated
+synthetic fixtures; no live quote can be revived with a fixture clock. Storage
+validates freshness, permissions, evidence and labels under an atomic SQLite
+write lock. Database-backed ranking revalidates the current snapshot; stateless
+ranking alone is not a current-inventory check.
+
+No scheduler, source connector, PSA patch, order, payment, inspection or returns
+implementation was added. All real source/handoff permissions remain pending.
