@@ -374,6 +374,15 @@ class IndexTests(unittest.TestCase):
             self.observation("a", "元PSA10 ケースから出しました ピカチュウ SV2a 173/165", "2026-09-22T08:00:00Z")])
         self.assertEqual(tuple(self.listing("a")), ("ja:SV2A:173/165:standard|PSA|10|graded", "exact"))
 
+    def test_older_out_of_order_observation_cannot_overwrite_listing_text(self):
+        core.import_observations(self.db, [dict(self.observation(
+            "a", "PSA10 鑑定品 ピカチュウ SV2a 173/165 NEW", "2026-09-22T12:00:00Z"), seller_native_id="s-new")])
+        core.import_observations(self.db, [dict(self.observation(
+            "a", "PSA10 鑑定品 ピカチュウ SV2a 173/165 OLD", "2026-09-22T08:00:00Z"), seller_native_id="s-old")])
+        row = self.db.execute("SELECT title, seller_native_id, last_seen FROM listing WHERE native_id='a'").fetchone()
+        self.assertEqual(tuple(row), ("PSA10 鑑定品 ピカチュウ SV2a 173/165 NEW", "s-new", "2026-09-22T12:00:00+00:00"))
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM observation WHERE native_id='a'").fetchone()[0], 2)
+
     def test_reviewed_binding_is_demoted_only_when_the_newest_title_disputes_its_grade(self):
         card = "ja:SV2A:173/165:standard"
         graded = core._unit(self.db, card, "PSA", "10", "graded")

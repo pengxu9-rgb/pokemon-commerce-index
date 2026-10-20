@@ -1405,7 +1405,9 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], 
         db.execute(
             """INSERT INTO listing VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(source, native_id) DO UPDATE SET
-              title=excluded.title, url=excluded.url, seller_native_id=excluded.seller_native_id,
+              title=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.title ELSE listing.title END,
+              url=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.url ELSE listing.url END,
+              seller_native_id=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.seller_native_id ELSE listing.seller_native_id END,
               unit_id=COALESCE(excluded.unit_id, listing.unit_id),
               resolution_method=CASE WHEN excluded.unit_id IS NULL THEN listing.resolution_method ELSE excluded.resolution_method END,
               last_seen=CASE WHEN excluded.last_seen > listing.last_seen THEN excluded.last_seen ELSE listing.last_seen END,
