@@ -337,6 +337,76 @@ class IndexTests(unittest.TestCase):
         self.assertEqual((current["unit_id"], current["resolution_method"]), (raw, "human"))
         self.assertEqual(self.db.execute("SELECT COUNT(*) FROM resolution_record WHERE native_id='a'").fetchone()[0], 2)
 
+    def test_slab_or_grader_without_readable_grade_is_not_a_raw_card(self):
+        base = "ピカチュウ SV2a 173/165"
+        for prefix in ("鑑定品", "Graded card", "スラブ", "ケース入り", "PSA", "PSA鑑定品", "BGS"):
+            with self.subTest(prefix=prefix):
+                self.assertIsNone(core.resolve(self.db, {"title": prefix + " " + base})[0])
+        self.assertEqual(core.resolve(self.db, {"title": base})[0].split("|")[1:3], ["RAW", "raw"])
+        self.assertEqual(core.resolve(self.db, {"title": "PSA10 鑑定品 " + base})[0].split("|")[1:3], ["PSA", "10"])
+
+    def listing(self, native_id):
+        return self.db.execute("SELECT unit_id, resolution_method FROM listing WHERE native_id=?",
+                               (native_id,)).fetchone()
+
+    def test_newest_title_that_no_longer_supports_a_graded_unit_stops_pricing(self):
+        graded = "ja:SV2A:173/165:standard|PSA|10|graded"
+        core.import_observations(self.db, [
+            self.observation("a", "PSA10 鑑定品 ピカチュウ SV2a 173/165", "2026-09-22T09:00:00Z")])
+        self.assertEqual(self.listing("a")["unit_id"], graded)
+        core.import_observations(self.db, [
+            self.observation("a", "元PSA10 ケースから出しました ピカチュウ SV2a 173/165", "2026-09-22T10:00:00Z")])
+        self.assertEqual(tuple(self.listing("a")), (None, "unresolved"))
+        self.assertEqual(core.recommend(self.db, graded, "HK", "2026-09-22T10:30:00Z")["offers"], [])
+        record = self.db.execute("""SELECT unit_id, method, reason FROM resolution_record
+            WHERE native_id='a' ORDER BY id DESC LIMIT 1""").fetchone()
+        self.assertEqual(record[:2], (None, "unresolved"))
+        self.assertIn(graded, record["reason"])
+        # Restoring the original title resolves the listing again.
+        core.import_observations(self.db, [
+            self.observation("a", "PSA10 鑑定品 ピカチュウ SV2a 173/165", "2026-09-22T11:00:00Z")])
+        self.assertEqual(tuple(self.listing("a")), (graded, "exact"))
+
+    def test_older_out_of_order_title_cannot_demote_a_unit(self):
+        core.import_observations(self.db, [
+            self.observation("a", "PSA10 鑑定品 ピカチュウ SV2a 173/165", "2026-09-22T10:00:00Z")])
+        core.import_observations(self.db, [
+            self.observation("a", "元PSA10 ケースから出しました ピカチュウ SV2a 173/165", "2026-09-22T08:00:00Z")])
+        self.assertEqual(tuple(self.listing("a")), ("ja:SV2A:173/165:standard|PSA|10|graded", "exact"))
+
+    def test_older_out_of_order_observation_cannot_overwrite_listing_text(self):
+        core.import_observations(self.db, [dict(self.observation(
+            "a", "PSA10 鑑定品 ピカチュウ SV2a 173/165 NEW", "2026-09-22T12:00:00Z"), seller_native_id="s-new")])
+        core.import_observations(self.db, [dict(self.observation(
+            "a", "PSA10 鑑定品 ピカチュウ SV2a 173/165 OLD", "2026-09-22T08:00:00Z"), seller_native_id="s-old")])
+        row = self.db.execute("SELECT title, seller_native_id, last_seen FROM listing WHERE native_id='a'").fetchone()
+        self.assertEqual(tuple(row), ("PSA10 鑑定品 ピカチュウ SV2a 173/165 NEW", "s-new", "2026-09-22T12:00:00+00:00"))
+        self.assertEqual(self.db.execute("SELECT COUNT(*) FROM observation WHERE native_id='a'").fetchone()[0], 2)
+
+    def test_reviewed_binding_is_demoted_only_when_the_newest_title_disputes_its_grade(self):
+        card = "ja:SV2A:173/165:standard"
+        graded = core._unit(self.db, card, "PSA", "10", "graded")
+        core.import_observations(self.db, [
+            self.observation("h", "ピカチュウ SV2a 173/165 まとめ 2枚", "2026-09-22T09:00:00Z")])
+        core.override_resolution(self.db, "fixture", "h", graded, "reviewer-1", "photo shows PSA 10 slab")
+        core.import_observations(self.db, [
+            self.observation("h", "ピカチュウ SV2a 173/165 まとめ 3枚", "2026-09-22T10:00:00Z")])
+        self.assertEqual(tuple(self.listing("h")), (graded, "human"))
+        core.import_observations(self.db, [
+            self.observation("h", "PSA9 鑑定品 ピカチュウ SV2a 173/165 2枚", "2026-09-22T11:00:00Z")])
+        self.assertEqual(tuple(self.listing("h")), (None, "unresolved"))
+
+        core.import_observations(self.db, [dict(self.observation("r", "ピカチュウ", "2026-09-22T09:00:00Z"),
+                                                card_id=card)])
+        raw = self.listing("r")["unit_id"]
+        self.assertEqual((raw.split("|")[1], self.listing("r")["resolution_method"]), ("RAW", "explicit"))
+        core.import_observations(self.db, [dict(self.observation("r", "PSA10狙える ピカチュウ", "2026-09-22T10:00:00Z"),
+                                                card_id=card)])
+        self.assertEqual(tuple(self.listing("r")), (raw, "explicit"))
+        core.import_observations(self.db, [dict(self.observation("r", "鑑定品 ピカチュウ", "2026-09-22T11:00:00Z"),
+                                                card_id=card)])
+        self.assertEqual(tuple(self.listing("r")), (None, "unresolved"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -56,6 +56,209 @@ class RecommendationTests(unittest.TestCase):
             self.assertEqual(r['discovery']['task'],'collector_recommendations')
             self.assertTrue(r['candidate_cards']);self.assertEqual(r['goal_question'],'What should I collect next?')
             self.assertEqual(r['next_step']['field'],'recommendation_feedback_or_choice')
+    def test_psa_reply_preserves_base_printings_but_requires_copy_evidence(self):
+        start=self.start();baseline=self.replay(start)
+        turns=start+[dict(type='reply',text='Are any of these Pikachu cards PSA graded?')]
+        result=self.replay(turns)
+        self.assertEqual(result['candidate_cards'],baseline['candidate_cards'])
+        self.assertEqual(result['goal_question'],baseline['goal_question'])
+        self.assertEqual(result['status'],'evidence_or_scope_needed')
+        self.assertEqual(result['discovery']['status'],'blocked')
+        self.assertIn('base-printing catalog records only',result['discovery']['scope'])
+        self.assertIn('cannot verify',result['next_step']['prompt'])
+        self.assertIn('grading_copy_evidence',result['selection_blockers'])
+        self.assertEqual(result['next_step']['required_evidence'],
+                         ['exact_base_printing','edition_or_grading_copy_evidence'])
+        self.assertEqual(result['recommendation']['grade_availability'],'unknown_no_copy_offers')
+        self.assertFalse(result['selection_allowed']);self.assertIsNone(result['target_intent'])
+        self.assertNotIn('grade_company',result['preferences'])
+        for field in ['physical_copy_verified','ready_for_offer_tracking','purchase_ready',
+                      'public_display_allowed','preferences_applied_to_market']:
+            self.assertFalse(result[field])
+        self.assertEqual(result['prices'],[]);self.assertEqual(result['live_offers'],[])
+        for card in result['candidate_cards']:
+            self.assertFalse(card['automatic_offer_join_allowed']);self.assertFalse(card['price_comparable'])
+        with self.assertRaisesRegex(ValueError,'blockers'):
+            self.replay(turns+[dict(type='select',card_id=result['candidate_cards'][0]['card_id'])])
+    def test_grading_reply_hold_survives_other_actions_and_resets_only_with_new_goal(self):
+        baseline=self.replay(self.start())
+        for text in ['PSA10?','PSA 10','Are these BGS graded?','Are these graded?',
+                     'What grading applies to these Pikachu cards?','鑑定済みのピカチュウですか？','这些卡有评级吗？']:
+            with self.subTest(reply=text):
+                turns=self.start()+[dict(type='select',card_id=baseline['candidate_cards'][0]['card_id']),
+                                   dict(type='reply',text=text)]
+                result=self.replay(turns)
+                self.assertIsNone(result['selected_catalog_target'])
+                self.assertEqual(result['status'],'evidence_or_scope_needed')
+                for action in [dict(type='reply',text='Pikachu'),
+                               self.profile(preferred_dex_ids=[151]),
+                               dict(type='refine',scope={'language':'ja'}),
+                               dict(type='preferences',preferences={'grade_company':'PSA','grade_value':'10'}),
+                               dict(type='page',offset=0)]:
+                    held=self.replay(turns+[action])
+                    self.assertIn('grading_copy_evidence',held['selection_blockers'])
+                    self.assertFalse(held['selection_allowed'])
+                    self.assertEqual(held['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                    with self.assertRaisesRegex(ValueError,'blockers'):
+                        self.replay(turns+[action,dict(type='select',card_id=held['candidate_cards'][0]['card_id'])])
+                base=self.replay(turns+[dict(type='ask',question='Recommend Japanese Pikachu base-printing catalog records only')])
+                self.assertTrue(base['candidate_cards']);self.assertTrue(base['selection_allowed'])
+                self.assertNotIn('grading_copy_evidence',base['selection_blockers'])
+                self.assertEqual(base['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                self.assertNotIn('grade_company',base['preferences'])
+                self.assertEqual(base['prices'],[]);self.assertEqual(base['live_offers'],[])
+                self.assertFalse(base['physical_copy_verified']);self.assertFalse(base['purchase_ready'])
+                reset=self.replay(turns+[dict(type='ask',question='Recommend Japanese Mew cards')])
+                self.assertNotIn('grading_copy_evidence',reset['selection_blockers'])
+                self.assertTrue(reset['selection_allowed'])
+        ordinary=self.replay(self.start()+[dict(type='reply',text='Pikachu')])
+        self.assertEqual(ordinary['candidate_cards'],baseline['candidate_cards'])
+        self.assertEqual(ordinary['status'],baseline['status'])
+        self.assertEqual(ordinary['next_step'],baseline['next_step'])
+        self.assertEqual(ordinary['selection_blockers'],baseline['selection_blockers'])
+        self.assertEqual(ordinary['selection_allowed'],baseline['selection_allowed'])
+    def test_collection_upgrades_are_ordinary_replies_not_grading_requests(self):
+        ordinary=self.replay(self.start()+[dict(type='reply',text='Pikachu')])
+        for text in ['I upgraded my binder and now prefer Pikachu',
+                     'I am upgrading my Pikachu collection']:
+            with self.subTest(reply=text):
+                turns=self.start()+[dict(type='reply',text=text)]
+                result=self.replay(turns)
+                self.assertEqual(result['candidate_cards'],ordinary['candidate_cards'])
+                self.assertEqual(result['preferences'],ordinary['preferences'])
+                self.assertEqual(result['status'],ordinary['status'])
+                self.assertEqual(result['next_step'],ordinary['next_step'])
+                self.assertEqual(result['selection_blockers'],ordinary['selection_blockers'])
+                self.assertTrue(result['selection_allowed'])
+                self.assertEqual(result['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                self.assertEqual(result['prices'],[]);self.assertEqual(result['live_offers'],[])
+                self.assertFalse(result['physical_copy_verified']);self.assertFalse(result['purchase_ready'])
+                selected=self.replay(turns+[dict(type='select',card_id=result['candidate_cards'][0]['card_id'])])
+                self.assertEqual(selected['status'],'catalog_target_selected')
+                self.assertFalse(selected['target_intent']['transaction_ready'])
+                self.assertFalse(selected['target_intent']['physical_printing_verified'])
+    def test_initial_grading_requests_block_compact_and_spaced_grader_tokens(self):
+        shown=self.replay(self.start())['candidate_cards'][0]['card_id']
+        for token in ['PSA10','PSA 10','BGS9.5','BGS 9.5','CGC10','CGC 10','ARS10','PGC10',
+                      'graded','grading','鑑定','评级']:
+            with self.subTest(token=token):
+                turns=[dict(type='ask',question='Recommend '+token+' Pikachu cards')]
+                result=self.replay(turns)
+                self.assertEqual(result['status'],'evidence_or_scope_needed')
+                self.assertEqual(result['discovery']['task'],'copy_evidence_needed')
+                self.assertEqual(result['discovery']['status'],'blocked')
+                self.assertEqual(result['candidate_cards'],[])
+                self.assertFalse(result['selection_allowed']);self.assertIsNone(result['target_intent'])
+                self.assertEqual(result['next_step']['required_evidence'],
+                                 ['exact_base_printing','edition_or_grading_copy_evidence'])
+                self.assertIsNone(result['recommendation'])
+                self.assertNotIn('grade_company',result['preferences'])
+                self.assertNotIn('grade_value',result['preferences'])
+                for field in ['physical_copy_verified','ready_for_offer_tracking','purchase_ready',
+                              'public_display_allowed','preferences_applied_to_market']:
+                    self.assertFalse(result[field])
+                self.assertEqual(result['prices'],[]);self.assertEqual(result['live_offers'],[])
+                with self.assertRaisesRegex(ValueError,'blockers'):
+                    self.replay(turns+[dict(type='select',card_id=shown)])
+                for action in [dict(type='reply',text='Pikachu'),
+                               self.profile(preferred_dex_ids=[151]),
+                               dict(type='refine',scope={'language':'ja'})]:
+                    held=self.replay(turns+[action])
+                    self.assertEqual(held['discovery']['task'],'copy_evidence_needed')
+                    self.assertFalse(held['selection_allowed']);self.assertIsNone(held['target_intent'])
+                    self.assertEqual(held['prices'],[]);self.assertEqual(held['live_offers'],[])
+    def test_grader_tokens_written_against_japanese_or_chinese_text_are_held(self):
+        shown=self.replay(self.start())['candidate_cards'][0]['card_id']
+        for question in ['PSA10のピカチュウをおすすめして','ピカチュウPSA10がほしい','推荐PSA10的皮卡丘',
+                         '皮卡丘BGS9.5','スラブ入りのピカチュウ','推荐鉴定的皮卡丘']:
+            with self.subTest(question=question):
+                turns=[dict(type='ask',question=question)]
+                result=self.replay(turns)
+                self.assertEqual(result['discovery']['task'],'copy_evidence_needed')
+                self.assertEqual(result['candidate_cards'],[])
+                self.assertFalse(result['selection_allowed']);self.assertIsNone(result['target_intent'])
+                with self.assertRaisesRegex(ValueError,'blockers'):
+                    self.replay(turns+[dict(type='select',card_id=shown)])
+        for reply in ['PSA10がいい','PSA10のやつ','要PSA10的','スラブで']:
+            with self.subTest(reply=reply):
+                turns=self.start()+[dict(type='reply',text=reply)]
+                result=self.replay(turns)
+                self.assertIn('grading_copy_evidence',result['selection_blockers'])
+                self.assertFalse(result['selection_allowed'])
+                with self.assertRaisesRegex(ValueError,'blockers'):
+                    self.replay(turns+[dict(type='select',card_id=result['candidate_cards'][0]['card_id'])])
+        for ordinary in ['Recommend Japanese Pikachu stars','ungraded Pikachu cards']:
+            with self.subTest(ordinary=ordinary):
+                self.assertNotEqual(self.replay([dict(type='ask',question=ordinary)])['discovery']['task'],
+                                    'copy_evidence_needed')
+    def test_initial_collection_upgrades_are_not_grading_requests(self):
+        cases=[('I upgraded my binder and now prefer Pikachu','Pikachu cards'),
+               ('I am upgrading my Pikachu collection','Pikachu cards'),
+               ('Recommend Japanese Pikachu cards; I upgraded my binder','Recommend Japanese Pikachu cards'),
+               ('Recommend Japanese Pikachu cards; I am upgrading my collection','Recommend Japanese Pikachu cards'),
+               ('Recommend Japanese Pikachu cards while I am upgrading my submission storage','Recommend Japanese Pikachu cards')]
+        for question,control in cases:
+            with self.subTest(question=question):
+                baseline=self.replay([dict(type='ask',question=control)])
+                result=self.replay([dict(type='ask',question=question)])
+                self.assertEqual(result['candidate_cards'],baseline['candidate_cards'])
+                self.assertEqual(result['discovery']['task'],baseline['discovery']['task'])
+                self.assertEqual(result['status'],baseline['status'])
+                self.assertEqual(result['selection_blockers'],baseline['selection_blockers'])
+                self.assertEqual(result['next_step'],baseline['next_step'])
+                self.assertTrue(result['selection_allowed'])
+                if result['recommendation'] is not None:
+                    self.assertEqual(result['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                self.assertEqual(result['prices'],[]);self.assertEqual(result['live_offers'],[])
+                self.assertFalse(result['physical_copy_verified']);self.assertFalse(result['purchase_ready'])
+    def test_explicit_grading_submission_policy_still_requires_official_evidence(self):
+        for question in ['PSA submission for Pikachu','grading submission for Pikachu',
+                         'PSAのアイテム検索でピカチュウを入力しても出てきません']:
+            with self.subTest(question=question):
+                result=collector_discovery.execute(self.db,question)
+                self.assertEqual(result['task'],'grading_policy_evidence_needed')
+                self.assertEqual(result['status'],'blocked')
+                self.assertIn('official_grader_submission_search_instructions',result['required_evidence'])
+                self.assertEqual(result['cards'],[])
+    def test_combined_scope_and_grading_replies_retain_copy_evidence_hold(self):
+        for question in ['Recommend Pikachu cards','Recommend Japanese Pikachu cards']:
+            initial=self.replay([dict(type='ask',question=question)])
+            for text in ['Japanese PSA10 Pikachu cards','PSA 10 Japanese cards']:
+                with self.subTest(question=question,reply=text):
+                    turns=[dict(type='ask',question=question),dict(type='reply',text=text)]
+                    result=self.replay(turns)
+                    self.assertEqual(result['status'],'evidence_or_scope_needed')
+                    self.assertEqual(result['scope_filters'],initial['scope_filters'])
+                    self.assertIn('grading_copy_evidence',result['selection_blockers'])
+                    self.assertFalse(result['selection_allowed'])
+                    self.assertEqual(result['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                    self.assertIn('edition_or_grading_copy_evidence',result['next_step']['required_evidence'])
+                    self.assertIsNone(result['target_intent'])
+                    self.assertEqual(result['prices'],[]);self.assertEqual(result['live_offers'],[])
+                    self.assertFalse(result['physical_copy_verified']);self.assertFalse(result['purchase_ready'])
+                    refined=turns+[dict(type='reply',text='Japanese'),dict(type='reply',text='FIX')]
+                    held=self.replay(refined)
+                    self.assertEqual(held['scope_filters'],{'language':'ja','set_code':'FIX'})
+                    self.assertIn('grading_copy_evidence',held['selection_blockers'])
+                    self.assertFalse(held['selection_allowed'])
+                    self.assertEqual(held['recommendation']['grade_availability'],'unknown_no_copy_offers')
+                    for current in [turns,refined]:
+                        shown=self.replay(current)['candidate_cards'][0]['card_id']
+                        with self.assertRaisesRegex(ValueError,'blockers'):
+                            self.replay(current+[dict(type='select',card_id=shown)])
+    def test_ordinary_exact_language_and_release_replies_still_refine_scope(self):
+        turns=[dict(type='ask',question='Recommend Pikachu cards'),dict(type='reply',text='Japanese')]
+        japanese=self.replay(turns)
+        self.assertEqual(japanese['scope_filters'],{'language':'ja'})
+        self.assertTrue(japanese['candidate_cards']);self.assertTrue(japanese['selection_allowed'])
+        self.assertNotIn('grading_copy_evidence',japanese['selection_blockers'])
+        release=self.replay(turns+[dict(type='reply',text='FIX')])
+        self.assertEqual(release['scope_filters'],{'language':'ja','set_code':'FIX'})
+        self.assertTrue(release['selection_allowed'])
+        self.assertNotIn('grading_copy_evidence',release['selection_blockers'])
+        self.assertEqual(release['recommendation']['grade_availability'],'unknown_no_copy_offers')
+        self.assertEqual(release['prices'],[]);self.assertEqual(release['live_offers'],[])
+        self.assertFalse(release['physical_copy_verified']);self.assertFalse(release['purchase_ready'])
     def test_profile_patch_clear_remove_and_conflict(self):
         old=dict(preferred_dex_ids=[25],preferred_illustrators=['Alpha'],mode='explore')
         new=rec.merge_profile(self.db,old,dict(preferred_dex_ids=[151],preferred_illustrators=[],mode=None))

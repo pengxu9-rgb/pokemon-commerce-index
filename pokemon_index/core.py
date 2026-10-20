@@ -28,6 +28,7 @@ GRADE_UNSAFE_RE = re.compile(
 SLAB_EVIDENCE_RE = re.compile(
     r"鑑定品|鑑定済|スラブ|ケース入り|ケース付き|graded\s*card|sealed\s*slab|"
     r"(?:cert(?:ificate)?|認証番号)\s*(?:no\.?|number|#|番号)?\s*\d{6,}", re.I)
+GRADER_RE = re.compile(r"(?<![A-Za-z])(?:PSA|BGS|CGC|ARS|PGC)(?![A-Za-z])", re.I)
 FIRST_EDITION_RE = re.compile(r"(?:1st\s*(?:edition|ed\.?|刷)|初版|初回版)", re.I)
 UNLIMITED_RE = re.compile(r"(?:unlimited|無制限版|無制限)", re.I)
 SHADOWLESS_RE = re.compile(r"(?:shadowless|シャドーレス)", re.I)
@@ -1348,12 +1349,27 @@ def resolve(db: sqlite3.Connection, row: dict[str, Any]) -> tuple[str | None, st
     grade_match = grade_mentions[0] if grade_mentions else None
     if grade_match and not SLAB_EVIDENCE_RE.search(title):
         return None, "unresolved"
+    # A slab or grader named without a readable grade is not a raw card.
+    if not grade_match and (SLAB_EVIDENCE_RE.search(title) or GRADER_RE.search(title)):
+        return None, "unresolved"
     company = grade_match.group(1).upper() if grade_match else "RAW"
     grade = grade_match.group(2) if grade_match else "raw"
     condition = str(row.get("condition_bucket") or ("graded" if grade_match else "unknown")).lower()
     if company == "RAW" and condition == "graded":
         raise ValueError("raw listing cannot have graded condition")
     return _unit(db, cid, company, grade, condition), method
+
+
+def _title_contradicts_unit(title: str, unit_id: str) -> bool:
+    """Whether newer listing text disputes the grade a reviewed binding asserted."""
+    title = unicodedata.normalize("NFKC", str(title))
+    company, grade = unit_id.split("|")[1:3]
+    if company == "RAW":
+        return bool(SLAB_EVIDENCE_RE.search(title)) and not GRADE_UNSAFE_RE.search(title)
+    if GRADE_UNSAFE_RE.search(title):
+        return True
+    claims = {(m.group(1).upper(), m.group(2)) for m in GRADE_RE.finditer(title)}
+    return bool(claims) and claims != {(company, grade)}
 
 
 def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], *,
@@ -1372,18 +1388,26 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], 
         if price is not None and (type(price) is not int or not 0 <= price < 2**63):
             raise ValueError("price must be nonnegative integer minor currency units")
         unit_id, method = resolve(db, row)
-        existing = db.execute("SELECT unit_id, resolution_method FROM listing WHERE source=? AND native_id=?",
+        existing = db.execute("SELECT unit_id, resolution_method, last_seen FROM listing WHERE source=? AND native_id=?",
                               (row["source"], row["native_id"])).fetchone()
-        if existing and existing['unit_id']:
+        # The newest title is the current claim. A title-derived unit it no
+        # longer supports, or a reviewed unit it disputes, must stop pricing.
+        demote = bool(existing and existing["unit_id"] and unit_id is None
+                      and observed_at >= existing["last_seen"]
+                      and (existing["resolution_method"] == "exact"
+                           or _title_contradicts_unit(row["title"], existing["unit_id"])))
+        if existing and existing['unit_id'] and not demote:
             _reject_held_unit(db,existing['unit_id'])
-        if existing and existing["resolution_method"] == "human":
+        if existing and existing["resolution_method"] == "human" and not demote:
             unit_id, method = existing["unit_id"], "human"
         if existing and existing["unit_id"] and unit_id and existing["unit_id"] != unit_id:
             raise ValueError(f"listing {row['source']}:{row['native_id']} changed priceable unit; review required")
         db.execute(
             """INSERT INTO listing VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(source, native_id) DO UPDATE SET
-              title=excluded.title, url=excluded.url, seller_native_id=excluded.seller_native_id,
+              title=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.title ELSE listing.title END,
+              url=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.url ELSE listing.url END,
+              seller_native_id=CASE WHEN excluded.last_seen >= listing.last_seen THEN excluded.seller_native_id ELSE listing.seller_native_id END,
               unit_id=COALESCE(excluded.unit_id, listing.unit_id),
               resolution_method=CASE WHEN excluded.unit_id IS NULL THEN listing.resolution_method ELSE excluded.resolution_method END,
               last_seen=CASE WHEN excluded.last_seen > listing.last_seen THEN excluded.last_seen ELSE listing.last_seen END,
@@ -1403,7 +1427,15 @@ def import_observations(db: sqlite3.Connection, rows: Iterable[dict[str, Any]], 
                     row["currency"], row["evidence_ref"], poll_reason,
                     str(row["native_created"]) if row.get("native_created") is not None else None,
                     str(row["native_updated"]) if row.get("native_updated") is not None else None))
-        if not existing or (existing["unit_id"] is None and unit_id is not None):
+        if demote:
+            db.execute("""UPDATE listing SET unit_id=NULL, resolution_method='unresolved'
+                WHERE source=? AND native_id=?""", (row["source"], row["native_id"]))
+            db.execute("""INSERT INTO resolution_record
+                (source, native_id, unit_id, method, rule_version, resolved_at, reason)
+                VALUES (?, ?, NULL, 'unresolved', ?, ?, ?)""",
+                (row["source"], row["native_id"], "deterministic-v1", observed_at,
+                 f"newest title no longer supports {existing['unit_id']}"))
+        elif not existing or (existing["unit_id"] is None and unit_id is not None):
             db.execute("""INSERT INTO resolution_record
                 (source, native_id, unit_id, method, rule_version, resolved_at)
                 VALUES (?, ?, ?, ?, ?, ?)""",
