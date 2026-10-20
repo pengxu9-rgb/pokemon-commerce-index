@@ -557,7 +557,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
         return dict(result,task='official_search_evidence_needed',status='blocked',
                     required_evidence=['official_search_interface_or_help_evidence'],
                     next_question='Which official search page or filter should we inspect? Our catalog cannot confirm another website’s current controls.')
-    if re.search(r'psa.*(?:アイテム|入力|submission|submit)|grading.*submission',text):
+    if re.search(r'psa.*(?:アイテム|入力|submission|submit)|\bgrading\b.*submission',text):
         return dict(result,task='grading_policy_evidence_needed',status='blocked',
                     required_evidence=['official_grader_submission_search_instructions','exact_printing_coordinates'],
                     next_question='Confirm the printed release and number, then check the grader’s own submission instructions; catalog matching cannot validate its form selections.')
@@ -604,7 +604,7 @@ def execute(db: sqlite3.Connection, question: str, *, limit: int = 50,
                     required_evidence=['physical_TCG_vs_custom_or_other_product_scope','owned_inventory_if_omissions_requested'],
                     next_question='Should we first list official physical Pokémon TCG cards? Custom and other product lines need their own sources; share your inventory to check omissions.')
     edition=bool(re.search(r'first[ -]edition|\b1st\b|unlimited|初版',language_text))
-    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)\b|graded|grading|鑑定|评级',language_text))
+    graded=bool(re.search(r'\b(?:psa|bgs|cgc|ars|pgc)(?:\s*\d{1,2}(?:\.\d)?)?\b|\b(?:graded|grading)\b|鑑定|评级',language_text))
     if graded or (edition and len(artists)!=1):
         return dict(result, task='copy_evidence_needed', status='blocked',
                     required_evidence=['exact_base_printing','edition_or_grading_copy_evidence'],

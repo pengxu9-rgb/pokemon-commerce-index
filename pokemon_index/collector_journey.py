@@ -127,6 +127,7 @@ def replay(db,request,*,revision=None):
     recommendation_mode=False;feedback={};shown_ids=set();recommendation_shown=set()
     recommendation_pool_cache={'revision':revision};recommendation_baseline_cache={}
     active_comparison=None;focus_id=None;resolved_illustrator=None;ownership_required=False
+    grading_copy_evidence_needed=False
     def reset_context():
         nonlocal active_comparison,focus_id
         active_comparison=None;focus_id=None;shown_ids.clear();recommendation_shown.clear()
@@ -211,7 +212,7 @@ def replay(db,request,*,revision=None):
         if facts and facts['warnings']:blocks.append('source_image_metadata_resolution')
         return sorted(set(blocks))
     def view():
-        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,resolved_illustrator,ownership_required,offset,limit],ensure_ascii=False,sort_keys=True)
+        key=json.dumps([question,filters,owned,preferences,feedback,active_comparison,focus_id,recommendation_mode,pending_clarifications,resolved_illustrator,ownership_required,grading_copy_evidence_needed,offset,limit],ensure_ascii=False,sort_keys=True)
         if key in cache:return cache[key]
         recommendation=None
         if active_comparison is not None:
@@ -266,6 +267,12 @@ def replay(db,request,*,revision=None):
                 scope['next_question']='Share your owned-card list first. Results can exclude only those supplied records; they cannot establish what you own globally.'
             elif cards and active_comparison is None and focus_id is None:
                 scope['next_question']='These candidates are not in your supplied inventory records. Choose a shown record or refine the scope; possession and a complete collection are not verified.'
+        if grading_copy_evidence_needed:
+            scope['status']='blocked'
+            scope['scope']='Internal base-printing catalog records only; no grading or physical-copy status is verified.'
+            scope['next_question']='This catalog cannot verify PSA or other graded copies. These are base-printing records only; exact printing and grading-copy evidence are required before selection.'
+            scope['required_evidence']=list(dict.fromkeys(scope.get('required_evidence',[])+['exact_base_printing','edition_or_grading_copy_evidence']))
+            scope['unfulfilled_constraints']=sorted(set(scope['unfulfilled_constraints']+['grading_copy_evidence']))
         blockers=[]
         if pending_clarifications:
             blockers.append('unresolved_collection_preference')
@@ -342,6 +349,7 @@ def replay(db,request,*,revision=None):
         if kind=='ask':
             question=_text(turn['question'],'question');filters={};offset=0;clear('collection_goal_changed');unparsed=None
             reset_context();feedback={};pending_clarifications=[];resolved_illustrator=None;ownership_required=False
+            grading_copy_evidence_needed=False
             baseline_query=collector_recommendation.positive_query(db,question) if collector_recommendation.is_goal(question) else question
             baseline=collector_discovery.execute(db,baseline_query,limit=1)
             if baseline['task']=='two_card_comparison':
@@ -380,6 +388,12 @@ def replay(db,request,*,revision=None):
                 if len(previous['cards'])==1 and not previous['selection_blockers']:
                     select(previous['cards'][0]['card_id'],previous);unparsed=None
                 else:unparsed='Which exact shown card do you mean? A yes reply cannot select multiple or evidence-blocked candidates.'
+            elif recommendation_mode and re.search(r'\b(?:psa|bgs|cgc|ars|pgc)(?:\s*\d{1,2}(?:\.\d)?)?\b|\b(?:graded|grading)\b|鑑定|评级',
+                                                    collector_discovery._norm(text)):
+                # A copy-evidence question is not a new character preference.
+                # Retain base-printing exploration, but never select it as a graded copy.
+                grading_copy_evidence_needed=True;unparsed=None
+                clear('grading_copy_evidence_needed');offset=0;reset_context()
             elif recommendation_mode:
                 taste=collector_recommendation.parse_taste(db,text)
                 clarification=collector_recommendation.taste_clarification(db,text)
