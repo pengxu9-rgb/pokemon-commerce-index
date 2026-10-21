@@ -22,6 +22,12 @@ CARD = "ja:SV2A:173/165:holo"
 BASE = "https://bns.partner.example.com"
 SECRET = "offline-private-bns-secret"
 TOKEN = "offline-private-access-token"
+GRADE_OPTION_CONFLICTS = ({"PSA": "9 Mint"}, {"grade": "9 Mint"}, {"grade": "PSA:9"},
+    {"grade": "PSA-9"}, {"grade": "PSA (9)"}, {"PSA": "Mint9"}, {"PSA grade": "9(Mint)"},
+    {"鑑定評価": "9.5 NM-MT"}, {"PSA": "9.0 Mint"}, {"grade": "ＰＳＡ:９"},
+    {"grade": "PSA_9"}, {"grade": "PSA/9"}, {"condition": "PSA grade 9"},
+    {"PSA grade9": "holder"}, {"condition": "PSA grading9"}, {"PSA grading": "9 Mint"},
+    {"grade PSA": "9 Mint"}, {"PSA cert": "PSA 9"})
 
 
 class Producer:
@@ -215,7 +221,8 @@ class URLPreviewTests(unittest.TestCase):
                 self.fixture["resolve"] = original
 
     def test_unicode_collector_conflicts_in_resolve_and_quote_names_are_rejected(self):
-        wrong_numbers = ("１７４／１６５", "174／165", "１７４/１６５", "17４/1６5")
+        wrong_numbers = ("１７４／１６５", "174／165", "１７４/１６５", "17４/1６5",
+                         "174 / 165", "174 /165", "174/ 165", "１７４　／ １６５")
         for stage in ("resolve", "quote"):
             for number in wrong_numbers:
                 with self.subTest(stage=stage, number=number):
@@ -228,14 +235,35 @@ class URLPreviewTests(unittest.TestCase):
                     self.assertEqual(len(self.wire), 2 if stage == "resolve" else 3)
                     self.fixture = original
 
+    def test_explicit_grade_punctuation_and_decimal_scores_in_provider_names(self):
+        for grade in ("PSA:9", "PSA-9", "PSA=9", "PSA (9)", "ＰＳＡ：９", "PSA_9", "PSA/9",
+                      "PSA:9.0", "PSA:10.0", "ＰＳＡ：１０", "PSA (10)", "PSA grade 9",
+                      "PSA grading9", "PSA grade 10.0", "ＰＳＡ grade９"):
+            for stage in ("resolve", "quote"):
+                with self.subTest(grade=grade, stage=stage):
+                    original = copy.deepcopy(self.fixture); self.wire.clear()
+                    item = (self.fixture["resolve"]["product"] if stage == "resolve"
+                            else self.fixture["quote"]["items"][0])
+                    item["name"] = f"Pikachu 173/165 {grade}"
+                    if "9" in grade or "９" in grade:
+                        with self.assertRaises(BNSRefusal) as raised: self.quote()
+                        self.assertEqual(raised.exception.code, "product_mismatch")
+                        self.assertEqual(len(self.wire), 2 if stage == "resolve" else 3)
+                    else:
+                        self.assertEqual(self.quote()["status"], "quote_ready_for_review")
+                        self.assertEqual(len(self.wire), 3)
+                    self.fixture = original
+
     def test_unicode_retained_source_and_catalog_numbers_are_normalized_independently(self):
         cases = [("Pikachu １７３／１６５ PSA 10", "catalog-context"),
                  ("Pikachu 173／165 PSA 10", "catalog-context"),
                  ("Pikachu PSA 10", "ja:SV2A:１７３／１６５:holo"),
                  ("Pikachu PSA 10", "ja:SV2A:173／165:holo"),
-                 ("Pikachu １７３／１６５ PSA 10", CARD)]
+                 ("Pikachu １７３／１６５ PSA 10", CARD),
+                 ("Pikachu １７３　／ １６５ PSA 10", "catalog-context"),
+                 ("Pikachu PSA 10", "ja:SV2A:173 / 165:holo")]
         for title, card_id in cases:
-            for number in ("173/165", "１７３／１６５", "174/165", "１７４／１６５"):
+            for number in ("173/165", "１７３／１６５", "173 / 165", "174/165", "１７４／１６５", "174 / 165"):
                 for stage in ("resolve", "quote"):
                     with self.subTest(title=title, card_id=card_id, number=number, stage=stage):
                         original = copy.deepcopy(self.fixture); self.wire.clear()
@@ -258,7 +286,7 @@ class URLPreviewTests(unittest.TestCase):
         conflicts = ({"grade": "PSA 9"}, {"card": "Pikachu 174/165"}, {"PSA 9": "holder"},
                      {"174/165": "card"}, {"PSA": "9"}, {"PSA grade": "9"}, {"grade": "9"},
                      {"ＰＳＡ": "９"}, {"grade": "ＰＳＡ ９"}, {"collector": "１７４/１６５"},
-                     {"１７４/１６５": "card"}, {"9": "PSA"})
+                     {"１７４/１６５": "card"}, {"9": "PSA"}, {"card": "１７４ / １６５"}) + GRADE_OPTION_CONFLICTS
         for options in conflicts:
             with self.subTest(options=options):
                 self.wire.clear()
@@ -269,7 +297,7 @@ class URLPreviewTests(unittest.TestCase):
                 self.assertEqual(len(self.wire), 2)
 
     def test_explicit_variant_identity_is_checked_only_after_owner_selects_a_choice(self):
-        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}):
+        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}) + GRADE_OPTION_CONFLICTS:
             for choose_conflict in (True, False):
                 with self.subTest(options=options, choose_conflict=choose_conflict):
                     self.fixture["resolve"]["variants"] = [self.fixture["resolve"]["variants"][0]]
@@ -297,7 +325,16 @@ class URLPreviewTests(unittest.TestCase):
         cases = ({}, {"size": "9", "color": "red"}, {"grade": "PSA 10"}, {"PSA": "10"},
                  {"PSA grade": "１０"}, {"grade": "10"}, {"PSA 10": "PSA 10"},
                  {"grade": "PSA 10", "holder": "PSA 10"}, {"card": "Pikachu １７３/１６５"},
-                 {"１７３/１６５": "card"}, {"１０": "ＰＳＡ"})
+                 {"１７３/１６５": "card"}, {"１０": "ＰＳＡ"}, {"card": "173 / 165"},
+                 {"PSA": "10 Mint"}, {"grade": "Mint10"}, {"PSA": "10.0 Mint"},
+                 {"grade": "ＰＳＡ:１０"}, {"PSA (10)": "PSA (10)"}, {"size": "9 Mint"},
+                 {"grade": "PSA-10"}, {"grade": "PSA_10"}, {"grade": "PSA/10"},
+                 {"grade": "10.0"}, {"size": "9 Mint", "color": "style9", "style": "9"},
+                 {"PSA cert": "12345678"}, {"PSA holder": "version9"}, {"PSA size": "9"},
+                 {"PSA grading fee": "9"}, {"price for PSA": "9"}, {"PSA storage box": "9"},
+                 {"PSA certificate": "9"}, {"PSA cert no": "12345678"},
+                 {"condition": "PSA grade 10"}, {"PSA grade10": "holder"},
+                 {"grade PSA": "10 Mint"}, {"PSA grading": "10.0 Mint"})
         for options in cases:
             with self.subTest(options=options):
                 self.wire.clear()
@@ -323,7 +360,7 @@ class URLPreviewTests(unittest.TestCase):
 
     def test_parent_rejects_rehashed_conflicting_variant_ipc_with_or_without_retained_variant(self):
         original = self.quote(); self.wire.clear()
-        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}):
+        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}) + GRADE_OPTION_CONFLICTS:
             for explicit in (False, True):
                 with self.subTest(options=options, explicit=explicit):
                     quote = copy.deepcopy(original); quote["buyship"]["variant_options"] = options

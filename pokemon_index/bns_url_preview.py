@@ -98,15 +98,26 @@ def _research(card_id, offer, destination):
         _fail("quote_expired")
 
 
+def _identity_text(value):
+    value = unicodedata.normalize("NFKC", value)
+    return re.sub(r"(?<=\d)\s*/\s*(?=\d)", "/", value)
+
+
+def _grade_number(value):
+    whole, _, fraction = value.partition(".")
+    fraction = fraction.rstrip("0")
+    return str(int(whole)) + ("." + fraction if fraction else "")
+
+
 def _identity(name, offer, card_id):
     """Explicit contradictions reject; absence of one never verifies a card."""
     from . import core
-    from .marketplace_quality import contradicts_grade
+    from .marketplace_quality import NUMERIC_GRADE, contradicts_grade
     if not _text(name, 2000):
         _fail()
-    name = unicodedata.normalize("NFKC", name)
-    source_title = unicodedata.normalize("NFKC", offer["title"])
-    card_id = unicodedata.normalize("NFKC", card_id)
+    name = _identity_text(name)
+    source_title = _identity_text(offer["title"])
+    card_id = _identity_text(card_id)
     numbers = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(name)}
     expected = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(source_title)}
     if re.fullmatch(r"(?:ja|en):[^:]+:[^:]+:[^:]+", card_id):
@@ -114,29 +125,40 @@ def _identity(name, offer, card_id):
     grade = offer["grade"]
     if numbers and expected and numbers != expected:
         _fail("product_mismatch")
-    if grade["company"] and grade["value"] and contradicts_grade(name, grade["company"], grade["value"]):
+    # Conventional grader punctuation and equivalent decimal scores carry the
+    # same explicit evidence as PSA 9; keep this normalization local to previews.
+    grade_text = re.sub(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)[\s:_-]*"
+                        r"(?:grading|grade|鑑定評価|鑑定)\s*[:=_/\-(]?\s*(?=\d)",
+                        r"\1 ", name, flags=re.I)
+    grade_text = re.sub(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)\s*[:=_/\-(]\s*(?=\d)",
+                        r"\1 ", grade_text, flags=re.I)
+    grade_text = NUMERIC_GRADE.sub(lambda match: f"{match[1]} {_grade_number(match[2])}", grade_text)
+    if grade["company"] and grade["value"] and contradicts_grade(grade_text, grade["company"], _grade_number(grade["value"])):
         _fail("product_mismatch")
 
 
 def _variant_identity(options, offer, card_id):
     """Check selected option evidence without turning ordinary choices into identity."""
-    from . import core
     for key, value in options.items():
-        key, value = (unicodedata.normalize("NFKC", text) for text in (key, value))
+        key, value = (_identity_text(text) for text in (key, value))
         # Check each part independently so repeated compatible evidence does not
         # look like multiple conflicting grades to the shared grade checker.
         _identity(key, offer, card_id)
         _identity(value, offer, card_id)
-        for label, number in ((key, value), (value, key)):
-            if not re.fullmatch(r"\d+(?:\.\d+)?", number.strip()):
-                continue
-            graders = {match.group().upper() for match in core.GRADER_RE.finditer(label)}
+        for label, description in ((key, value), (value, key)):
+            grade_label = r"(?:grading|grade|鑑定評価|鑑定)"
+            company_label = r"(PSA|BGS|CGC|ARS|PGC)"
+            context = re.fullmatch(rf"\s*(?:{company_label}(?:[\s:_-]*{grade_label})?"
+                                   rf"|{grade_label}[\s:_-]*{company_label})\s*", label, re.I)
+            graders = {company.upper() for company in context.groups() if company} if context else set()
             if not graders and re.fullmatch(r"\s*(?:grade|grading|鑑定|鑑定評価)\s*", label, re.I):
                 graders = {offer["grade"]["company"]} - {None}
-            # A pair such as PSA:9 or PSA grade:9 is explicit grade evidence,
-            # while size:9 alone says nothing about the card's retained grade.
+            # Grade-labelled descriptions such as PSA:9 Mint or grade:Mint9
+            # are explicit evidence. Numeric fractions remain card evidence,
+            # and unrelated size:9 Mint says nothing about the retained grade.
             for company in graders:
-                _identity(f"{company} {number.strip()}", offer, card_id)
+                for number in re.findall(r"(?<![\d./])(\d+(?:\.\d+)?)(?![\d./])", description):
+                    _identity(f"{company} {_grade_number(number)}", offer, card_id)
 
 
 def _no_secrets(value, secrets):
