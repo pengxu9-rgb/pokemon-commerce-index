@@ -27,7 +27,15 @@ GRADE_OPTION_CONFLICTS = ({"PSA": "9 Mint"}, {"grade": "9 Mint"}, {"grade": "PSA
     {"鑑定評価": "9.5 NM-MT"}, {"PSA": "9.0 Mint"}, {"grade": "ＰＳＡ:９"},
     {"grade": "PSA_9"}, {"grade": "PSA/9"}, {"condition": "PSA grade 9"},
     {"PSA grade9": "holder"}, {"condition": "PSA grading9"}, {"PSA grading": "9 Mint"},
-    {"grade PSA": "9 Mint"}, {"PSA cert": "PSA 9"})
+    {"grade PSA": "9 Mint"}, {"PSA cert": "PSA 9"}, {"grade": "9 Mint cert12345678"},
+    {"PSA": "cert 12345678 Mint9"}, {"grade": "PSA 9 cert 12345678"},
+    {"grade": "PSA 10 cert12345678 grade9"}, {"PSA grade": "10 cert12345678 PSA9"},
+    {"PSA": "cert12345678 174 / 165"}, {"grade": "174/165 cert12345678 PSA10"})
+CERT_OPTION_METADATA = ({"grade": "PSA 10 cert 12345678"}, {"PSA": "cert 12345678"},
+    {"PSA grade": "10 Mint cert12345678"}, {"grade": "PSA 10, certificate 12345678"},
+    {"PSA": "certificate no. 12345678"}, {"grade": "10 Mint, cert number:12345678"},
+    {"PSA grade": "10 Mint certificate ID:12345678"}, {"PSA": "cert12345678"},
+    {"grade": "cert9 PSA10"}, {"PSA": "cert-12345678"}, {"PSA": "cert １２３４５６７８"})
 
 
 class Producer:
@@ -357,6 +365,37 @@ class URLPreviewTests(unittest.TestCase):
                 with self.assertRaises(BNSRefusal) as raised: self.quote()
                 self.assertEqual(raised.exception.code, "quote_binding_invalid")
                 self.assertEqual(len(self.wire), 3)
+
+    def test_certificate_annotations_are_neutral_in_sole_explicit_and_parent_ipc_previews(self):
+        original_variant = copy.deepcopy(self.fixture["resolve"]["variants"][0])
+        for options in CERT_OPTION_METADATA:
+            with self.subTest(options=options):
+                variant = copy.deepcopy(original_variant); variant["options"] = options
+                self.fixture["resolve"]["variants"] = [variant]
+                self.fixture["quote"]["items"][0]["variant_options"] = options
+                self.wire.clear()
+                quote = self.quote()
+                self.assertEqual(len(self.wire), 3)
+                previews = [quote]
+                for retained_variant in (None, variant):
+                    runner = lambda *args, **kwargs: SimpleNamespace(returncode=0,
+                        stdout=json.dumps({"schema": preview.RESULT_SCHEMA, "quote": quote}), stderr=SECRET)
+                    previews.append(self.forwarder(runner=runner).preview_before(CARD, self.offer, {"country": "HK"},
+                        deadline=time.monotonic() + 18, variant=retained_variant))
+                first, _ = self.multiple_variants()
+                loop = self.loop(); selected = self.select(loop); self.wire.clear()
+                self.assertEqual(self.handoff(loop, selected)["status"], "variant_selection_required")
+                self.assertEqual(len(self.wire), 2); self.wire.clear()
+                result = self.handoff(loop, selected, variant_key=first["variant_key"])
+                self.assertEqual(result["status"], "quote_ready_for_review")
+                self.assertEqual(len(self.wire), 3); previews.append(result["quote"])
+                for accepted in previews:
+                    self.assertEqual(accepted["buyship"]["variant_options"], options)
+                    self.assertFalse(accepted["purchasable"]); self.assertFalse(accepted["order_created"])
+                    self.assertIsNone(accepted["purchase_action"])
+                    self.assertEqual(accepted["evidence"]["identity_status"], "unverified_candidate")
+                    self.assertFalse(accepted["evidence"]["certificate_verified"])
+                    self.assertFalse(accepted["evidence"]["authenticity_verified"])
 
     def test_parent_rejects_rehashed_conflicting_variant_ipc_with_or_without_retained_variant(self):
         original = self.quote(); self.wire.clear()

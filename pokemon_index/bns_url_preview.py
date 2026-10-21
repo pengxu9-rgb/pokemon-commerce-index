@@ -156,8 +156,12 @@ def _variant_identity(options, offer, card_id):
             # Grade-labelled descriptions such as PSA:9 Mint or grade:Mint9
             # are explicit evidence. Numeric fractions remain card evidence,
             # and unrelated size:9 Mint says nothing about the retained grade.
+            # A labelled certificate serial is metadata, not another grade.
+            # Original per-part identity checks above still see every byte.
+            grade_description = re.sub(r"(?<![A-Za-z])cert(?:ificate)?(?:\s*(?:no\.?|number|id))?"
+                                       r"\s*[:#-]?\s*\d{1,32}(?![\d./])", " ", description, flags=re.I)
             for company in graders:
-                for number in re.findall(r"(?<![\d./])(\d+(?:\.\d+)?)(?![\d./])", description):
+                for number in re.findall(r"(?<![\d./])(\d+(?:\.\d+)?)(?![\d./])", grade_description):
                     _identity(f"{company} {_grade_number(number)}", offer, card_id)
 
 
