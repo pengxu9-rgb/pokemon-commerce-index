@@ -1,0 +1,734 @@
+From 79fc06783b226e839ff5534567d8a748dfafaeaf Mon Sep 17 00:00:00 2001
+From: pengxu9-rgb <peng@chydan.com>
+Date: Thu, 22 Oct 2026 00:47:09 +0900
+Subject: [PATCH] Add URL quote previews and safe BNS refusal controls to agent
+ chat
+
+---
+ cloud/BNS-URL-PREVIEW.txt                     |  46 ++++++
+ cloud/commerce-sidecar.cjs                    |  14 +-
+ .../creator/pokemon/live/CommerceChat.tsx     |   4 +-
+ .../pokemon/live/CommercePanel.module.css     |   2 +
+ .../creator/pokemon/live/CommercePanel.tsx    |  76 ++++++++--
+ creator/src/lib/pokemon/bnsPreview.cjs        | 137 ++++++++++++++++++
+ creator/src/lib/pokemon/bnsVariantChoice.cjs  |  21 +++
+ creator/src/lib/pokemon/commerceChat.cjs      |   2 +
+ creator/src/lib/pokemon/commerceContract.cjs  |  41 +++++-
+ creator/tests/bns-url-preview.test.cjs        | 111 ++++++++++++++
+ creator/tests/pokemon-commerce-loop.test.cjs  |   2 +-
+ .../tests/private-commerce-staging.test.cjs   |  25 ++++
+ 12 files changed, 458 insertions(+), 23 deletions(-)
+ create mode 100644 cloud/BNS-URL-PREVIEW.txt
+ create mode 100644 creator/src/lib/pokemon/bnsPreview.cjs
+ create mode 100644 creator/src/lib/pokemon/bnsVariantChoice.cjs
+ create mode 100644 creator/tests/bns-url-preview.test.cjs
+
+diff --git a/cloud/BNS-URL-PREVIEW.txt b/cloud/BNS-URL-PREVIEW.txt
+new file mode 100644
+index 0000000..289bc8c
+--- /dev/null
++++ b/cloud/BNS-URL-PREVIEW.txt
+@@ -0,0 +1,46 @@
++BNS URL quote preview — offline integration companion
++
++The live offer chat keeps the selected marketplace URL and seller grade labels.
++A URL preview resolves that server-held URL through BNS and requests at most one
++single-item/quantity-one quote. It does not establish a catalog priceable unit,
++PSA verification, certificate authentication or the physical card's identity.
++
++No provider access is enabled by this change. Existing BNS/PSA flags remain off.
++No order, checkout or payment operation exists in the commerce route allowlist.
++No runtime/release pins or deployment configuration are changed.
++
++When BNS access is independently provisioned and testing is authorized, the
++managed private staging sidecar has a second explicit configuration opt-in:
++  POKEMON_COMMERCE_BNS_ENABLED=true
++  POKEMON_COMMERCE_BNS_URL_PREVIEW=true
++The three existing BNS_PARTNER_BASE_URL, BNS_PARTNER_CLIENT_ID and
++BNS_PARTNER_CLIENT_SECRET values must come from approved server-side secrets.
++Do not place credentials in this document, the browser, source or PR evidence.
++The sidecar then passes --allow-live-buyship --buyship-url-preview.
++POKEMON_COMMERCE_QUOTE_DB must be absent in this mode. The legacy indexed path
++remains BNS_ENABLED=true plus QUOTE_DB and passes --quote-db without URL preview.
++Fixture mode cannot be mixed with either provider mode or credentials.
++
++The UI displays normalized refusal codes/reasons, static messages, safe currency
++and field hints. It never displays provider-authored error text or secret-bearing
++metadata, and it never retries automatically. Multiple variants require a fresh,
++explicit choice of an in-stock variant before a new handoff request. The request
++contains only variant_key in addition to selection_id, forwarder and destination.
++The backend owns URL/reference/price binding and re-resolves before quoting.
++
++Choices are invalidated when the offer, research, forwarder, destination or
++returned variant options/price/stock change. Unsupported and sold-out variants
++remain visible and cannot be selected. The informational product URL can still
++be copied after a refusal; this is not evidence that BNS accepts that product.
++
++URL previews show the source item ask, BNS-resolved item price, delivered provider
++total and expiry separately. Same-currency differences receive a warning; unlike
++currencies are not compared. Grade, identity and authenticity remain unverified.
++Legacy indexed previews keep their existing presentation and validation path.
++
++Offline validation:
++  node --test creator/tests/bns-url-preview.test.cjs creator/tests/pokemon-commerce-loop.test.cjs creator/tests/private-commerce-staging.test.cjs
++  ./creator/node_modules/.bin/tsc --noEmit -p creator/tsconfig.json
++
++No live marketplace/BNS/PSA calls, deployment, orders or payments are needed for
++these tests. The sidecar tests inject process/HTTP doubles without network access.
+diff --git a/cloud/commerce-sidecar.cjs b/cloud/commerce-sidecar.cjs
+index d15b8f5..e40c74c 100644
+--- a/cloud/commerce-sidecar.cjs
++++ b/cloud/commerce-sidecar.cjs
+@@ -9,6 +9,7 @@ function configuration(env = process.env) {
+   if (env.POKEMON_COMMERCE_MANAGED_SIDECAR !== "true") return null;
+   if (!cloudTestScope(env)) throw Error("private_commerce_scope_required");
+   const fixture = env.POKEMON_COMMERCE_FIXTURE === "true";
++  const urlPreview = env.POKEMON_COMMERCE_BNS_URL_PREVIEW === "true";
+   let browse = [];
+   if (env.POKEMON_COMMERCE_EBAY_BROWSE_URLS !== undefined) {
+     try { browse = JSON.parse(env.POKEMON_COMMERCE_EBAY_BROWSE_URLS); } catch { throw Error("invalid_ebay_browse_configuration"); }
+@@ -19,7 +20,7 @@ function configuration(env = process.env) {
+       catch { return true; }
+     })) throw Error("invalid_ebay_browse_configuration");
+   }
+-  if (fixture && (env.POKEMON_COMMERCE_BNS_ENABLED === "true" ||
++  if (fixture && (env.POKEMON_COMMERCE_BNS_ENABLED === "true" || urlPreview ||
+     browse.length > 0 ||
+     env.POKEMON_COMMERCE_PSA_ENABLED === "true" ||
+     env.POKEMON_COMMERCE_BROWSER_RENDERER === "1" ||
+@@ -38,10 +39,17 @@ function configuration(env = process.env) {
+     if (!env.PSA_API_TOKEN) throw Error("psa_access_not_configured");
+     args.push("--allow-live-psa");
+   }
++  if (urlPreview && env.POKEMON_COMMERCE_BNS_ENABLED !== "true") throw Error("bns_url_preview_requires_access");
+   if (env.POKEMON_COMMERCE_BNS_ENABLED === "true") {
+-    if (!["BNS_PARTNER_BASE_URL", "BNS_PARTNER_CLIENT_ID", "BNS_PARTNER_CLIENT_SECRET", "POKEMON_COMMERCE_QUOTE_DB"].every(k => env[k]))
++    if (!["BNS_PARTNER_BASE_URL", "BNS_PARTNER_CLIENT_ID", "BNS_PARTNER_CLIENT_SECRET"].every(k => env[k]))
+       throw Error("bns_access_not_configured");
+-    args.push("--allow-live-buyship", "--quote-db", env.POKEMON_COMMERCE_QUOTE_DB);
++    if (urlPreview) {
++      if (Object.hasOwn(env, "POKEMON_COMMERCE_QUOTE_DB")) throw Error("bns_url_preview_cannot_mix_with_quote_db");
++      args.push("--allow-live-buyship", "--buyship-url-preview");
++    } else {
++      if (!env.POKEMON_COMMERCE_QUOTE_DB) throw Error("bns_access_not_configured");
++      args.push("--allow-live-buyship", "--quote-db", env.POKEMON_COMMERCE_QUOTE_DB);
++    }
+   }
+   return { args, mode: fixture ? "synthetic_fixture" : "on_demand_research",
+     env: { POKEMON_COMMERCE_URL: "http://127.0.0.1:8766", POKEMON_COMMERCE_TOKEN: token } };
+diff --git a/creator/src/components/creator/pokemon/live/CommerceChat.tsx b/creator/src/components/creator/pokemon/live/CommerceChat.tsx
+index 583fa82..109b273 100644
+--- a/creator/src/components/creator/pokemon/live/CommerceChat.tsx
++++ b/creator/src/components/creator/pokemon/live/CommerceChat.tsx
+@@ -50,7 +50,7 @@ export default function CommerceChat({ command, onBusyChange }: {
+       setStatus(selectedOffer ? "I’ll compare the PSA record with the server-held seller grade claim. The physical slab still needs inspection." : "I can look up the PSA record. Choose a marketplace offer to compare its seller grade claim.");
+       return;
+     }
+-    if (command.kind === "select" || command.kind === "handoff") {
++    if (command.kind === "select" || command.kind === "handoff" || command.kind === "variant") {
+       if (!card || !request) { setStatus("Choose an exact catalog card and research its offers first. Then choose an offer number and ask for a quote."); return; }
+       setPanelCommand(command); return;
+     }
+@@ -87,7 +87,7 @@ export default function CommerceChat({ command, onBusyChange }: {
+       {card && request && <CommercePanel key={request.id} cardId={card.card_id} cardName={card.name}
+         initialQuery={request.query} initialUrls={request.urls} autoStart inChat chatCommand={panelCommand}
+         onBusyChange={setPanelBusy} onSelectedOffer={setSelectedOffer} />}
+-      <p className={s.note}>Use the controls or ask “choose offer 1”, “quote to Hong Kong”, or “PSA cert 12345678”. Live listing steps stay in this tab and must be refreshed after reopening. No order or payment is created.</p>
++      <p className={s.note}>Use the controls or ask “choose offer 1”, “quote to Hong Kong”, “choose variant 2”, or “PSA cert 12345678”. Live listing steps stay in this tab and must be refreshed after reopening. No order or payment is created.</p>
+     </section>
+   </div>;
+ }
+diff --git a/creator/src/components/creator/pokemon/live/CommercePanel.module.css b/creator/src/components/creator/pokemon/live/CommercePanel.module.css
+index d3c505a..d210f1c 100644
+--- a/creator/src/components/creator/pokemon/live/CommercePanel.module.css
++++ b/creator/src/components/creator/pokemon/live/CommercePanel.module.css
+@@ -1,3 +1,5 @@
+ .panel{margin:24px 0;padding:24px;border:1px solid #cec3ed;border-radius:20px;background:linear-gradient(145deg,#faf8ff,#fff);color:#252031;overflow-wrap:anywhere}.heading h2{font-size:24px;line-height:1.2;margin:12px 0}.step{font-size:12px;font-weight:700;color:#5d389e;letter-spacing:3px}.panel p{line-height:1.55}.panel form,.panel label,.handoff{display:grid;gap:8px}.panel form{gap:16px;margin:20px 0}.panel label{font-size:14px;font-weight:600}.panel small{font-size:12px;font-weight:400;color:#655c74;line-height:1.5}.panel input:not([type=checkbox]),.panel textarea,.panel select{width:100%;min-width:0;border:1px solid #c9c2d4;border-radius:9px;background:white;padding:10px;color:#252031;font:inherit}.panel textarea{resize:vertical}.panel fieldset{border:0;padding:0;display:flex;flex-wrap:wrap;gap:12px}.panel legend{font-size:14px;font-weight:600;margin-bottom:8px}.panel .check{display:flex;align-items:center;gap:6px}.panel button{border:0;border-radius:10px;padding:11px 16px;background:#563299;color:#fff;font:inherit;font-weight:600;cursor:pointer;min-height:44px}.panel button:disabled{opacity:.5;cursor:default}.panel a{color:#563299;font-weight:600;text-decoration:underline}.coverage{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.coverage div{display:grid;gap:5px;border:1px solid #ddd5e8;border-radius:10px;padding:12px;background:#fff}.coverage span{font-size:13px}.note{font-size:13px;color:#655c74}.resultsHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.resultsHead h3{margin:12px 0}.resultsHead label{flex:1;min-width:140px}.offers{display:grid;gap:14px;margin-top:16px}.offer,.chosen{padding:18px;border:1px solid #ddd5e8;border-radius:14px;background:white}.chosen{border:2px solid #6d4cb1}.offer h4,.chosen h4{font-size:18px;line-height:1.4;margin:12px 0}.offer p,.chosen p{margin:7px 0;font-size:14px}.price{font-size:23px;font-weight:700}.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:15px}.error{padding:14px;background:#fff0ed;border:1px solid #e9a79a;border-radius:10px;color:#7a291b}.demo{padding:14px;background:#fff5d6;border:1px solid #e2c875;border-radius:10px}.handoff{margin-top:22px;padding-top:12px;border-top:1px solid #d0c5e0;gap:14px}.receipt{padding:16px;border-radius:12px;background:#eef7f0;border:1px solid #a5c7ae}.receipt label{margin:12px 0}.receipt p:last-child{font-size:13px}@media(max-width:500px){.panel{padding:16px}.heading h2{font-size:21px}.actions{align-items:stretch;flex-direction:column}.actions button{width:100%}.handoff .resultsHead{flex-direction:column;align-items:stretch}.handoff .resultsHead label{width:100%}}
+ 
+ .certificate{margin:18px 0;padding:16px;border:1px solid #d6cce6;border-radius:12px;background:#fff}.certificate h3{font-size:18px}.panel dl{margin:12px 0}.panel dl div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid #ddd}.panel dt{text-transform:capitalize}.panel dd{margin:0;font-weight:600}.chatPanel{margin:12px 0;padding:16px}.chatPanel .heading h2{font-size:21px}.chatHint{padding:12px;border:1px solid #d6cce6;border-radius:12px;background:#f7f3fc}.cardChoices{display:grid;gap:8px;margin:12px 0}.cardChoices button{text-align:left!important;border-radius:12px!important}.cardChoices small{display:block;font-size:12px;font-weight:400}.context{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px;background:#f2ebfa;border-radius:12px}.context p{flex:1}.chatTranscript{margin:18px 0}.chatTranscript>section{margin:12px 0}.chatTranscript>section>strong{color:#563299}.chatTranscript form{display:grid;gap:8px}.chatTranscript input{padding:10px;border:1px solid #ccc;border-radius:9px;width:100%;font:inherit}
++
++.providerResult{padding:12px 0}.panel .variants{display:grid;gap:12px;margin:14px 0}.variants span{display:grid;gap:4px}.warning{padding:12px;border:1px solid #d7b24c;border-radius:10px;background:#fff5d6}
+diff --git a/creator/src/components/creator/pokemon/live/CommercePanel.tsx b/creator/src/components/creator/pokemon/live/CommercePanel.tsx
+index 262a7e0..fab3ae0 100644
+--- a/creator/src/components/creator/pokemon/live/CommercePanel.tsx
++++ b/creator/src/components/creator/pokemon/live/CommercePanel.tsx
+@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
+ import { pokemonApi as api } from "../../pokemonClient";
+ import s from "./CommercePanel.module.css";
+ import PsaCertificate from "./PsaCertificate";
++const { variantScope, chooseVariant, variantKeyFor } = require("@/lib/pokemon/bnsVariantChoice.cjs");
+ type Offer = { offer_id: string; source: string; native_id: string; title: string; url: string;
+   price_minor: number | null; currency: string | null; availability: string; observed_at: string; fresh_until: string | null;
+   grade: { company: string | null; value: string | null; certificate_verified: false }; identity_status: string; scope: string };
+@@ -11,9 +12,14 @@ type Research = { schema: string; card_id: string; mode: string; checked_at: str
+   platforms: { source: string; status: string; message: string }[]; offers: Offer[]; forwarders: Forwarder[] };
+ type Selection = { selection_id: string; expires_at: string; offer: Offer; mode: string };
+ type QuoteMoney = { currency: string; subunit_amount: number };
++type Variant = { variant_key: string; options: Record<string, string>; availability: "in_stock" | "out_of_stock" | "unknown"; price: QuoteMoney };
++type ProviderResult = { schema: "pokemon.bns-refusal.v1"; status: string; code: string; reason_codes: string[]; retryable: boolean; message: string;
++  details: { variants?: Variant[]; supported_currencies?: string[]; field_errors?: { field: string; message: string }[] } };
+ type Handoff = { status: string; mode: string; product_url: string; forwarder: { id: string; label: string };
+-  message: string; quote: { status: string; buyship: { quote_id: string; quoted_at: string; expires_at: string;
+-    grand_total: QuoteMoney; components: Record<string, QuoteMoney> } } | null };
++  message: string; provider_result?: ProviderResult; quote: { evidence?: { mode: string }; listing?: { ask: QuoteMoney | null };
++    status: string; buyship: { quote_id: string; quoted_at: string; expires_at: string;
++    grand_total: QuoteMoney; components: Record<string, QuoteMoney>; resolve_price?: QuoteMoney;
++    resolve_price_differs_from_observation?: boolean; variant_options?: Record<string, string> } } | null };
+ const price = (o: Offer) => {
+   if (o.price_minor === null || !o.currency) return "Price unavailable";
+   try { const format = new Intl.NumberFormat(undefined, { style: "currency", currency: o.currency });
+@@ -40,10 +46,12 @@ export default function CommercePanel({ cardId, cardName, initialQuery, initialU
+   const [query, setQuery] = useState(initialQuery || (cardName.replace(" · synthetic example", "") + " " + (cardId.split(":")[2] || "")).trim()),
+     [urls, setUrls] = useState(initialUrls.join("\n")), [platforms, setPlatforms] = useState(["mercari", "ebay", "snkrdunk"]),
+     [research, setResearch] = useState<Research | null>(null), [selected, setSelected] = useState<Selection | null>(null),
+-    [handoff, setHandoff] = useState<Handoff | null>(null), [forwarder, setForwarder] = useState(""),
++    [handoff, setHandoff] = useState<Handoff | null>(null), [variantChoice, setVariantChoice] = useState<{ scope: string; variant_key: string; displayed: string } | null>(null), [forwarder, setForwarder] = useState(""),
+     [destination, setDestination] = useState("HK"), [region, setRegion] = useState(""), [grade, setGrade] = useState(""),
+     [pending, setPending] = useState(""), [error, setError] = useState(""), [copied, setCopied] = useState(false),
+     [clock, setClock] = useState(Date.now()), [chatHint, setChatHint] = useState(""), [psaPending, setPsaPending] = useState(false);
++  const scope = variantScope(selected?.selection_id || "", forwarder, destination, region);
++  const variantKey: string = variantKeyFor(handoff?.provider_result, variantChoice, scope) || "";
+   const flight = useRef<AbortController | null>(null), generation = useRef(0);
+   const handoffPanel = useRef<HTMLDivElement | null>(null), handledCommand = useRef<string | null>(null),
+     initialResearch = useRef({ autoStart, cardId, query, platforms, initialUrls });
+@@ -58,7 +66,7 @@ export default function CommercePanel({ cardId, cardName, initialQuery, initialU
+     Math.max(0, Math.min(2147483647, Date.parse(handoff.quote.buyship.expires_at) - Date.now() + 1))); return () => clearTimeout(timer); }, [handoff]);
+   async function run(kind: string, payload: unknown) {
+     flight.current?.abort(); const c = new AbortController(), mine = ++generation.current; flight.current = c;
+-    setPending(kind); setError(""); setHandoff(null); setCopied(false);
++    setPending(kind); setError(""); setHandoff(null); setVariantChoice(null); setCopied(false);
+     try {
+       const value = await api<Research | Selection | Handoff>("commerce/" + kind, payload, c.signal);
+       if (mine !== generation.current || c.signal.aborted) return;
+@@ -92,15 +100,29 @@ export default function CommercePanel({ cardId, cardName, initialQuery, initialU
+       setChatHint(""); setSelected(null);
+       void run("select", { card_id: cardId, offer_id: offer.offer_id, expected_observed_at: offer.observed_at,
+         expected_price_minor: offer.price_minor, currency: offer.currency });
++    } else if (chatCommand.kind === "variant") {
++      const choice = chooseVariant(handoff?.provider_result, chatCommand.index ?? -1, scope);
++      if (!choice || !selected) {
++        setChatHint("Choose an in-stock variant number from the latest provider choices."); return;
++      }
++      setVariantChoice(choice);
++      setChatHint("Variant selected. Prepare the handoff again to recheck this variant and request a quote.");
+     } else if (chatCommand.kind === "handoff") {
+       if (!selected) { setChatHint("Choose an exact offer first, then I can recheck its URL and prepare the forwarder quote or handoff."); return; }
+       const country = chatCommand.country || destination, state = chatCommand.state || region;
++      const destinationChanged = country !== destination || country === "US" && state !== region;
++      if (destinationChanged) { setHandoff(null); setVariantChoice(null); }
+       setDestination(country); if (chatCommand.state) setRegion(chatCommand.state);
+       if (country === "US" && !/^[A-Z]{2}$/.test(state)) { setChatHint("Add a two-letter US state in the destination field, then prepare the handoff."); return; }
++      if (!destinationChanged && handoff?.provider_result?.details.variants?.length && !variantKey) {
++        setChatHint("Choose an in-stock provider variant before requesting another quote."); return;
++      }
+       setChatHint(""); void run("handoff", { selection_id: selected.selection_id, forwarder,
+-        destination: { country, ...(country === "US" ? { state } : {}) } });
++        destination: { country, ...(country === "US" ? { state } : {}) },
++        ...(!destinationChanged && variantKey ? { variant_key: variantKey } : {}) });
+     }
+-  }, [cardId, chatCommand, destination, forwarder, grade, pending, region, research?.offers, selected]);
++  }, [cardId, chatCommand, destination, forwarder, grade, handoff, pending, region, research?.offers, scope, selected, variantKey]);
++  const variants = handoff?.provider_result?.details.variants || [];
+   const expired = selected && Date.parse(selected.expires_at) <= clock;
+   const visible = research?.offers.filter((o) => !grade || o.grade.company?.toUpperCase() === "PSA" && o.grade.value === grade) || [];
+   return <section className={s.panel + (inChat ? " " + s.chatPanel : "")} aria-label="Listing research and forwarder handoff">
+@@ -143,24 +165,52 @@ export default function CommercePanel({ cardId, cardName, initialQuery, initialU
+           offerId={selected.offer.offer_id} initialCertificate={chatCommand?.kind === "psa" ? chatCommand.certificate_number : ""}
+           autoStart={chatCommand?.kind === "psa"} onBusyChange={setPsaPending} />
+         <label>Selected product URL<input readOnly value={selected.offer.url} /></label>
+-        <div className={s.resultsHead}><label>Buying path<select disabled={!!pending} value={forwarder} onChange={(e) => { setForwarder(e.target.value); setHandoff(null); }}>
++        <div className={s.resultsHead}><label>Buying path<select disabled={!!pending} value={forwarder} onChange={(e) => { setForwarder(e.target.value); setHandoff(null); setVariantChoice(null); }}>
+           {research.forwarders.map((p) => <option key={p.id} value={p.id} disabled={!p.quote_available && !p.manual_handoff_available}>{p.label}{p.quote_available ? " · quote available" : " · URL handoff"}</option>)}</select></label>
+-          <label>Destination country<select disabled={!!pending} value={destination} onChange={(e) => { setDestination(e.target.value); setHandoff(null); }}>{[["HK", "Hong Kong"], ["US", "United States"], ["SG", "Singapore"], ["KR", "South Korea"], ["JP", "Japan"], ["GB", "United Kingdom"]].map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select></label></div>
++          <label>Destination country<select disabled={!!pending} value={destination} onChange={(e) => { setDestination(e.target.value); setHandoff(null); setVariantChoice(null); }}>{[["HK", "Hong Kong"], ["US", "United States"], ["SG", "Singapore"], ["KR", "South Korea"], ["JP", "Japan"], ["GB", "United Kingdom"]].map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select></label></div>
+         {destination === "US" && <label>US state<input disabled={!!pending} value={region} maxLength={2} pattern="[A-Z]{2}"
+-          placeholder="CA" onChange={(e) => { setRegion(e.target.value.toUpperCase()); setHandoff(null); }} /></label>}
++          placeholder="CA" onChange={(e) => { setRegion(e.target.value.toUpperCase()); setHandoff(null); setVariantChoice(null); }} /></label>}
+         {expired ? <p role="status">Selection expired. Choose the listing again to recheck its price.</p> : <small>Selection valid until {time(selected.expires_at)}. We recheck the listing before preparing the handoff.</small>}
+-        <button disabled={!!pending || !forwarder || !!expired || destination === "US" && !/^[A-Z]{2}$/.test(region)} onClick={() => void run("handoff", { selection_id: selected.selection_id, forwarder, destination: { country: destination, ...(destination === "US" ? { state: region } : {}) } })}>
++        <button disabled={!!pending || !forwarder || !!expired || variants.length > 0 && !variantKey || destination === "US" && !/^[A-Z]{2}$/.test(region)} onClick={() => void run("handoff", { selection_id: selected.selection_id, forwarder, destination: { country: destination, ...(destination === "US" ? { state: region } : {}) }, ...(variantKey ? { variant_key: variantKey } : {}) })}>
+           {pending === "handoff" ? "Rechecking price and buying path…" : "Recheck and prepare handoff"}</button>
+-        {handoff && <div className={s.receipt} role="status"><h4>{handoff.forwarder.label} · {readable(handoff.status)}</h4><p>{handoff.message}</p>
+-          <label>Exact URL to paste into your forwarder<input readOnly value={handoff.product_url} /></label>
++        {handoff && <div className={s.receipt} role="status"><h4>{handoff.forwarder.label} · {handoff.provider_result ?
++          handoff.provider_result.status === "variant_selection_required" ? "Choose a variant" : handoff.provider_result.status === "refused" ? "Quote refused" : "Quote unavailable" : readable(handoff.status)}</h4>{!handoff.provider_result && <p>{handoff.message}</p>}
++          {handoff.provider_result && <div className={s.providerResult}>
++            <p><strong>{handoff.provider_result.message}</strong></p>
++            <small>Reason: {readable(handoff.provider_result.code)}{handoff.provider_result.reason_codes.length ? " · " + handoff.provider_result.reason_codes.map(readable).join(", ") : ""}</small>
++            {handoff.provider_result.retryable && <p>You can try again explicitly. No automatic retry will run.</p>}
++            {!!handoff.provider_result.details.supported_currencies?.length && <p>Supported account currencies: {handoff.provider_result.details.supported_currencies.join(", ")}. Ask the account operator to adjust the quote currency.</p>}
++            {!!handoff.provider_result.details.field_errors?.length && <ul>{handoff.provider_result.details.field_errors.map((field, i) => <li key={field.field + i}>{field.field}: {field.message}</li>)}</ul>}
++            {!!variants.length && <fieldset disabled={!!pending || !!expired} className={s.variants}><legend>Choose the exact provider variant</legend>
++              {variants.map((variant, index) => <label className={s.check} key={variant.variant_key}>
++                <input type="radio" name="provider-variant" checked={variantKey === variant.variant_key} disabled={variant.availability !== "in_stock"}
++                  onChange={() => setVariantChoice(chooseVariant(handoff.provider_result, index, scope))} />
++                <span>Variant {index + 1} · {Object.entries(variant.options).map(([name, value]) => name + ": " + value).join(" · ") || "Default variant"}
++                  <small>{price({ price_minor: variant.price.subunit_amount, currency: variant.price.currency } as Offer)} · {readable(variant.availability)}</small></span>
++              </label>)}
++              <small>Choosing a variant does not request a quote. Prepare the handoff again to recheck current price and availability.</small>
++            </fieldset>}
++          </div>}
++          <label>{handoff.provider_result ? "Selected product URL · informational only" : "Exact URL to paste into your forwarder"}<input readOnly value={handoff.product_url} /></label>
+           <button onClick={() => { void navigator.clipboard.writeText(handoff.product_url).then(() => setCopied(true)).catch(() => setCopied(false)); }}>{copied ? "Copied" : "Copy product URL"}</button>
+           {handoff.quote && (Date.parse(handoff.quote.buyship.expires_at) > clock ? <div>
++            {handoff.quote.evidence?.mode === "url_quote_preview" && <>
++              <p><strong>URL quote preview.</strong> BNS resolved this selected URL. Card identity, seller grade claims, PSA certificate and physical authenticity remain unverified.</p>
++              <p>Marketplace item ask: {handoff.quote.listing?.ask ? price({ price_minor: handoff.quote.listing.ask.subunit_amount, currency: handoff.quote.listing.ask.currency } as Offer) : "unavailable"} ·
++                BNS-resolved item price: {handoff.quote.buyship.resolve_price ? price({ price_minor: handoff.quote.buyship.resolve_price.subunit_amount, currency: handoff.quote.buyship.resolve_price.currency } as Offer) : "unavailable"}.
++                {handoff.quote.listing?.ask && handoff.quote.buyship.resolve_price && handoff.quote.listing.ask.currency !== handoff.quote.buyship.resolve_price.currency ? " Different currencies are not directly comparable." : " Delivered total is shown below."}</p>
++            </>}
++            {handoff.quote.buyship.resolve_price_differs_from_observation && <p className={s.warning}>
++              The BNS-resolved item price differs from the marketplace observation. Observed: {handoff.quote.listing?.ask ? price({ price_minor: handoff.quote.listing.ask.subunit_amount, currency: handoff.quote.listing.ask.currency } as Offer) : "unavailable"};
++              BNS resolved: {handoff.quote.buyship.resolve_price ? price({ price_minor: handoff.quote.buyship.resolve_price.subunit_amount, currency: handoff.quote.buyship.resolve_price.currency } as Offer) : "unavailable"}. Review the difference before continuing.
++            </p>}
++            {!!Object.keys(handoff.quote.buyship.variant_options || {}).length && <p>Quoted variant: {Object.entries(handoff.quote.buyship.variant_options || {}).map(([name, value]) => name + ": " + value).join(" · ")}</p>}
+             <h4>Provider quote · {price({ price_minor: handoff.quote.buyship.grand_total.subunit_amount, currency: handoff.quote.buyship.grand_total.currency } as Offer)}</h4>
+             <p>Quote {handoff.quote.buyship.quote_id} · Expires {time(handoff.quote.buyship.expires_at)}</p>
+             <dl>{Object.entries(handoff.quote.buyship.components).map(([name, amount]) => <div key={name}><dt>{readable(name)}</dt><dd>{price({ price_minor: amount.subunit_amount, currency: amount.currency } as Offer)}</dd></div>)}</dl>
+             <p>Review all shipping fees, destination details and provider terms before buying.</p>
+           </div> : <p>Provider quote expired. Prepare a new handoff to request current costs.</p>)}
+-          <p>No order was placed. Complete destination details, shipping options and payment confirmation with your chosen provider.</p></div>}
++          <p>{handoff.provider_result ? "No order was placed. This response does not establish product eligibility or provider acceptance." : "No order was placed. Review the preview and provider terms before any later purchase."}</p></div>}
+       </div>}
+     </>}
+   </section>;
+diff --git a/creator/src/lib/pokemon/bnsPreview.cjs b/creator/src/lib/pokemon/bnsPreview.cjs
+new file mode 100644
+index 0000000..5cde4ff
+--- /dev/null
++++ b/creator/src/lib/pokemon/bnsPreview.cjs
+@@ -0,0 +1,137 @@
++"use strict";
++// Closed public copy of the backend BNS refusal contract. Provider-authored
++// text, secret-bearing details and arbitrary variant labels fail validation.
++const fail = () => { throw Error("invalid_commerce_response"); };
++const object = v => !!v && typeof v === "object" && !Array.isArray(v);
++const exact = (v, fields) => object(v) && Object.keys(v).length === fields.length && Object.keys(v).every(k => fields.includes(k));
++const MESSAGES = {
++  "invalid_request": "Buy & Ship could not accept the quote request. Check the highlighted fields.",
++  "unsupported_grant_type": "Buy & Ship authentication configuration needs attention.",
++  "invalid_client": "Buy & Ship client access was rejected. Check the configured credentials.",
++  "server_error": "Buy & Ship could not issue an access token. Try again later.",
++  "not_found": "Buy & Ship no longer recognizes this product reference. Resolve the product again.",
++  "quote_expired": "The Buy & Ship quote has expired. Request a new preview.",
++  "currency_unsupported": "Buy & Ship does not support the requested currency for this account.",
++  "destination_unsupported": "Buy & Ship does not support this destination.",
++  "variant_unavailable": "The selected Buy & Ship variant is unavailable. Review the current variants.",
++  "product_not_eligible": "Buy & Ship cannot ship this product under the current restrictions.",
++  "quote_limit_exceeded": "The item value exceeds the Buy & Ship quote limit.",
++  "product_not_quotable": "Buy & Ship could not read enough product information to provide a quote.",
++  "merchant_unreachable": "Buy & Ship could not reach the merchant. You can try a new preview later.",
++  "variant_selection_required": "Choose a Buy & Ship variant before requesting a quote preview.",
++  "variant_changed": "The Buy & Ship variants changed. Review them and choose again.",
++  "product_mismatch": "Buy & Ship product evidence conflicts with the selected listing. No quote preview was accepted.",
++  "quote_binding_invalid": "Buy & Ship returned a quote that did not match the selected product and destination.",
++  "invalid_destination": "Choose Hong Kong or a supported US destination with a state code.",
++  "provider_unconfigured": "Buy & Ship quote preview is not configured.",
++  "provider_busy": "A Buy & Ship preview is already running. Wait before trying again.",
++  "provider_timeout": "The Buy & Ship preview reached its time limit. You can try again later.",
++  "provider_unavailable": "Buy & Ship quote preview is unavailable. You can try again later.",
++  "invalid_provider_response": "Buy & Ship returned a response that could not be safely verified.",
++  "bns_unavailable": "Buy & Ship quote preview is unavailable. You can try again later.",
++  "bns_disabled": "Buy & Ship quote preview is disabled.",
++  "bns_not_configured": "Buy & Ship quote preview is not configured.",
++  "bns_access_rejected": "Buy & Ship access was rejected. Check the configured client access.",
++  "bns_rate_limited": "Buy & Ship is limiting requests. Try a new preview later.",
++  "bns_http_rejected": "Buy & Ship could not complete this preview request.",
++  "bns_response_invalid": "Buy & Ship returned a response that could not be safely verified.",
++  "bns_request_deadline": "The Buy & Ship preview reached its time limit. You can try again later.",
++  "bns_request_budget_or_route": "The Buy & Ship preview exceeded its permitted request scope.",
++  "approved_bns_endpoint_required": "An approved Buy & Ship endpoint is required.",
++  "live_not_authorized": "Buy & Ship live quote preview is not authorized.",
++  "single_quote_only": "Buy & Ship preview supports one item with quantity one."
++};
++const _REFUSED = [
++  "currency_unsupported",
++  "destination_unsupported",
++  "invalid_destination",
++  "invalid_request",
++  "not_found",
++  "product_mismatch",
++  "product_not_eligible",
++  "product_not_quotable",
++  "quote_limit_exceeded",
++  "variant_unavailable"
++];
++const _SELECTION = [
++  "variant_changed",
++  "variant_selection_required"
++];
++const _RETRYABLE = [
++  "bns_rate_limited",
++  "bns_request_deadline",
++  "bns_unavailable",
++  "merchant_unreachable",
++  "provider_busy",
++  "provider_timeout",
++  "provider_unavailable",
++  "server_error"
++];
++const _REASONS = {
++  "product_not_eligible": [
++    "CATEGORY_PROHIBITED",
++    "DESTINATION_PROHIBITED",
++    "MERCHANT_NOT_SUPPORTED",
++    "PREORDER_NOT_SUPPORTED",
++    "SELLER_BLACKLISTED",
++    "UNABLE_TO_ASSESS"
++  ],
++  "currency_unsupported": [
++    "CURRENCY_UNSUPPORTED"
++  ],
++  "destination_unsupported": [
++    "DESTINATION_UNSUPPORTED"
++  ],
++  "variant_unavailable": [
++    "OUT_OF_STOCK",
++    "VARIANT_NOT_FOUND"
++  ],
++  "quote_limit_exceeded": [
++    "VALUE_EXCEEDS_CEILING"
++  ]
++};
++const _FIELDS = {
++  "url": "Use a supported product URL.",
++  "items": "Use one item with quantity one.",
++  "items[0].reference_id": "Resolve the selected product again.",
++  "items[0].variant_key": "Choose a current product variant.",
++  "items[0].quantity": "Use quantity one.",
++  "destination": "Choose a supported destination.",
++  "destination.country": "Choose Hong Kong or the United States.",
++  "destination.state": "Choose a two-letter US state code.",
++  "currency": "Choose a supported account currency.",
++  "client_id": "Check the configured client credentials.",
++  "client_secret": "Check the configured client credentials.",
++  "grant_type": "Use client credentials authentication."
++};
++const label = (value, max, key = false) => typeof value === "string" && value.length > 0 && value.length <= max && value === value.trim() &&
++  (key ? /^[\p{L}\p{N}._:-]+$/u : /^[\p{L}\p{N} ._:/()+%&,-]+$/u).test(value);
++const money = value => exact(value, ["currency", "subunit_amount"]) && typeof value.currency === "string" && /^[A-Z]{3}$/.test(value.currency) &&
++  Number.isSafeInteger(value.subunit_amount) && value.subunit_amount >= 0 && value.subunit_amount <= 10 ** 12;
++function validateVariants(variants) {
++  if (!Array.isArray(variants) || !variants.length || variants.length > 25 || new Set(variants.map(v => v?.variant_key)).size !== variants.length ||
++    variants.some(v => !exact(v, ["variant_key", "options", "availability", "price"]) || !label(v.variant_key, 128, true) ||
++      !object(v.options) || Object.keys(v.options).length > 8 || Object.entries(v.options).some(([k, value]) => !label(k, 40) || !label(value, 80)) ||
++      !["in_stock", "out_of_stock", "unknown"].includes(v.availability) || !money(v.price))) fail();
++  return variants;
++}
++function validateProviderResult(value) {
++  if (!exact(value, ["schema", "status", "code", "reason_codes", "retryable", "message", "details"]) ||
++    value.schema !== "pokemon.bns-refusal.v1" || typeof value.code !== "string" || !Object.hasOwn(MESSAGES, value.code) || value.message !== MESSAGES[value.code] ||
++    value.status !== (_SELECTION.includes(value.code) ? "variant_selection_required" : _REFUSED.includes(value.code) ? "refused" : "unavailable") ||
++    value.retryable !== _RETRYABLE.includes(value.code) || !Array.isArray(value.reason_codes) || value.reason_codes.length > 6 ||
++    new Set(value.reason_codes).size !== value.reason_codes.length || value.reason_codes.some(v => !(_REASONS[value.code] || []).includes(v)) || !object(value.details)) fail();
++  const d = value.details;
++  if (!Object.keys(d).length) return value;
++  if (["variant_unavailable", "variant_selection_required", "variant_changed"].includes(value.code) && exact(d, ["variants"])) validateVariants(d.variants);
++  else if (value.code === "currency_unsupported" && exact(d, ["supported_currencies"])) {
++    if (!Array.isArray(d.supported_currencies) || !d.supported_currencies.length || d.supported_currencies.length > 20 ||
++      new Set(d.supported_currencies).size !== d.supported_currencies.length || d.supported_currencies.some(c => typeof c !== "string" || !/^[A-Z]{3}$/.test(c))) fail();
++  } else if (value.code === "invalid_request" && exact(d, ["field_errors"])) {
++    if (!Array.isArray(d.field_errors) || !d.field_errors.length || d.field_errors.length > 12 ||
++      new Set(d.field_errors.map(e => e?.field)).size !== d.field_errors.length || d.field_errors.some(e =>
++        !exact(e, ["field", "message"]) || typeof e.field !== "string" || !Object.hasOwn(_FIELDS, e.field) || e.message !== _FIELDS[e.field])) fail();
++  } else fail();
++  return value;
++}
++module.exports = { validateProviderResult, validateVariants, money, MESSAGES };
+diff --git a/creator/src/lib/pokemon/bnsVariantChoice.cjs b/creator/src/lib/pokemon/bnsVariantChoice.cjs
+new file mode 100644
+index 0000000..2b735d9
+--- /dev/null
++++ b/creator/src/lib/pokemon/bnsVariantChoice.cjs
+@@ -0,0 +1,21 @@
++"use strict";
++const { validateProviderResult } = require("./bnsPreview.cjs");
++// A choice belongs to one owner-held selection, buying path, destination and
++// exact displayed variant list. It never carries provider reference IDs/prices
++// into a request, and it never initiates a request.
++const variantScope = (selection, forwarder, country, state = "") => JSON.stringify([selection, forwarder, country, country === "US" ? state : ""]);
++function variants(result) {
++  if (!result) return [];
++  validateProviderResult(result);
++  return result.details.variants || [];
++}
++function chooseVariant(result, index, scope) {
++  const list = variants(result), chosen = list[index];
++  return chosen?.availability === "in_stock" ? { scope, variant_key: chosen.variant_key, displayed: JSON.stringify(list) } : null;
++}
++function variantKeyFor(result, choice, scope) {
++  if (!choice || choice.scope !== scope) return undefined;
++  const list = variants(result);
++  return choice.displayed === JSON.stringify(list) && list.some(v => v.variant_key === choice.variant_key && v.availability === "in_stock") ? choice.variant_key : undefined;
++}
++module.exports = { variantScope, chooseVariant, variantKeyFor };
+diff --git a/creator/src/lib/pokemon/commerceChat.cjs b/creator/src/lib/pokemon/commerceChat.cjs
+index 59dadbf..0e9a4aa 100644
+--- a/creator/src/lib/pokemon/commerceChat.cjs
++++ b/creator/src/lib/pokemon/commerceChat.cjs
+@@ -6,6 +6,8 @@ function commerceIntent(value) {
+   const text = value.trim();
+   const cert = text.match(/\b(?:PSA\s*(?:cert(?:ificate)?\s*(?:number|no\.?|#)?|lookup|check)|cert(?:ificate)?\s*(?:number|no\.?|#)?)\s*[:#-]?\s*(\d{1,20})\b/i);
+   if (cert) return { kind: "psa", certificate_number: cert[1] };
++  const variant = text.match(/^(?:choose|select|pick)\s+variant\s*#?(\d{1,2})[.!]?$/i);
++  if (variant) return { kind: "variant", index: Number(variant[1]) - 1 };
+   const select = text.match(/^(?:choose|select|pick)(?:\s+(?:offer|listing|option))?\s*#?(\d{1,2})[.!]?$/i);
+   if (select) return { kind: "select", index: Number(select[1]) - 1 };
+   const urls = text.match(SUPPORTED) || [];
+diff --git a/creator/src/lib/pokemon/commerceContract.cjs b/creator/src/lib/pokemon/commerceContract.cjs
+index 858cef3..82df118 100644
+--- a/creator/src/lib/pokemon/commerceContract.cjs
++++ b/creator/src/lib/pokemon/commerceContract.cjs
+@@ -1,7 +1,9 @@
+ "use strict";
++const { validateProviderResult, validateVariants, money } = require("./bnsPreview.cjs");
+ const fail = (code = "invalid_commerce_response") => { throw Object.assign(new Error(code), { code }); };
+ const text = (v, max = 2000) => typeof v === "string" && v.trim().length > 0 && v.length <= max;
+ const https = (v) => { try { const u = new URL(v); return text(v, 4096) && u.protocol === "https:" && !u.username && !u.password; } catch { return false; } };
++const quoteMoney = (m) => !!m && typeof m === "object" && !Array.isArray(m) && Object.keys(m).length === 2 && Object.hasOwn(m, "currency") && Object.hasOwn(m, "subunit_amount") && typeof m.currency === "string" && /^[A-Z]{3}$/.test(m.currency) && Number.isSafeInteger(m.subunit_amount) && m.subunit_amount >= 0;
+ const timestamp = (v) => typeof v === "string" && Number.isFinite(Date.parse(v));
+ function validateResearchPlatform(p) {
+   if (!p || !text(p.source, 100) || !text(p.status, 100) || typeof p.message !== "string" || p.message.length > 2000 ||
+@@ -45,25 +47,55 @@ function validateCommerceResponse(operation, value) {
+     if (!text(value.status, 100) || !https(value.product_url) || !value.forwarder || !text(value.forwarder.label, 160) ||
+       value.order_created !== false || value.purchasable !== false || value.purchase_action !== null ||
+       typeof value.message !== "string") fail();
++    if (value.provider_result !== undefined) {
++      validateProviderResult(value.provider_result);
++      if (value.quote !== null || value.forwarder.id !== "buyship" || value.status !==
++        (value.provider_result.status === "variant_selection_required" ? "variant_selection_required" : "manual_handoff_required")) fail();
++    }
+     // A quote is informational here; this frontend has no order/payment route.
+     if (value.quote !== null) {
+       const q = value.quote, b = q?.buyship;
+       if (q?.status !== "quote_ready_for_review" || !b || !text(b.quote_id, 300) ||
+         !timestamp(b.expires_at) || !timestamp(b.quoted_at) || !b.components || typeof b.components !== "object" ||
+         !b.grand_total || !Number.isSafeInteger(b.grand_total.subunit_amount) || b.grand_total.subunit_amount < 0 ||
+-        !/^[A-Z]{3}$/.test(b.grand_total.currency || "") || Object.keys(b.components).length > 32 ||
++        typeof b.grand_total.currency !== "string" || !/^[A-Z]{3}$/.test(b.grand_total.currency) || Object.keys(b.components).length > 32 ||
+         !Object.keys(b.components).length || Object.values(b.components).some((m) => !m || m.currency !== b.grand_total.currency ||
+           !Number.isSafeInteger(m.subunit_amount) || m.subunit_amount < 0) ||
+         Object.values(b.components).reduce((total, m) => total + BigInt(m.subunit_amount), 0n) !== BigInt(b.grand_total.subunit_amount)) fail();
++      if (q.evidence?.mode === "url_quote_preview" || q.evidence?.schema === "pokemon.bns-url-preview-evidence.v1" || q.listing?.grade || b.resolved_availability !== undefined) validateUrlQuote(q, value.product_url);
+     }
+   } else fail();
+   return value;
+ }
++function validateUrlQuote(q, productUrl) {
++  const e = q.evidence, listing = q.listing, b = q.buyship;
++  const fields = ["schema", "mode", "identity_status", "certificate_verified", "authenticity_verified", "selected_offer_sha256",
++    "resolve_response_sha256", "quote_response_sha256", "binding_sha256", "binding_scope"];
++  if (!e || Object.keys(e).length !== fields.length || Object.keys(e).some(k => !fields.includes(k)) ||
++    e.schema !== "pokemon.bns-url-preview-evidence.v1" || e.mode !== "url_quote_preview" || e.identity_status !== "unverified_candidate" ||
++    e.certificate_verified !== false || e.authenticity_verified !== false ||
++    ["selected_offer_sha256", "resolve_response_sha256", "quote_response_sha256", "binding_sha256"].some(k => typeof e[k] !== "string" || !/^[a-f0-9]{64}$/.test(e[k])) ||
++    e.binding_scope !== "selected marketplace URL and BNS reference/variant only; catalog identity and seller grade remain unverified" ||
++    q.purchasable !== false || q.purchase_action !== null || q.order_created !== false || Object.hasOwn(q, "unit_id") || !text(q.card_id, 256) ||
++    !listing || listing.url !== productUrl || !text(listing.source, 100) || !text(listing.native_id, 300) || !text(listing.title) ||
++    !timestamp(listing.observed_at) || listing.identity_status !== "unverified_candidate" ||
++    !(listing.ask === null || quoteMoney(listing.ask)) || !listing.grade || listing.grade.certificate_verified !== false ||
++    !(listing.grade.company === null || text(listing.grade.company, 80)) || !(listing.grade.value === null || text(listing.grade.value, 80)) ||
++    b.canonical_url !== productUrl || !text(b.reference_id, 300) || typeof b.merchant_domain !== "string" || !/^[A-Za-z0-9.-]{1,253}$/.test(b.merchant_domain) ||
++    b.resolved_availability !== "in_stock" || !money(b.resolve_price) || !quoteMoney(b.unit_price) || b.unit_price.currency !== b.grand_total.currency ||
++    b.currency !== b.grand_total.currency || !b.destination || !["HK", "US"].includes(b.destination.country) ||
++    b.destination.country === "US" && (typeof b.destination.state !== "string" || !/^[A-Z]{2}$/.test(b.destination.state)) ||
++    ["items", "local_shipping", "international_shipping", "duties", "bns_service_fee"].some(k => !Object.hasOwn(b.components, k)) || Object.keys(b.components).length !== 5 ||
++    b.components.items.currency !== b.unit_price.currency || b.components.items.subunit_amount !== b.unit_price.subunit_amount ||
++    typeof b.resolve_price_differs_from_observation !== "boolean" ||
++    b.resolve_price_differs_from_observation !== !!(listing.ask && listing.ask.currency === b.resolve_price.currency && listing.ask.subunit_amount !== b.resolve_price.subunit_amount)) fail();
++  validateVariants([{ variant_key: b.variant_key, options: b.variant_options, availability: b.resolved_availability, price: b.resolve_price }]);
++}
+ function validateCommerceRequest(operation, p) {
+   if (!p || typeof p !== "object" || Array.isArray(p)) fail("invalid_commerce_request");
+   const fields = { research: ["card_id", "query", "platforms", "product_urls"],
+     select: ["card_id", "offer_id", "expected_observed_at", "expected_price_minor", "currency"],
+-    handoff: ["selection_id", "forwarder", "destination"], psa: ["certificate_number", "offer_id"] }[operation];
++    handoff: ["selection_id", "forwarder", "destination", "variant_key"], psa: ["certificate_number", "offer_id"] }[operation];
+   if (!fields || Object.keys(p).some((key) => !fields.includes(key))) fail("invalid_commerce_request");
+   if (operation === "research") {
+     if (!text(p.card_id, 240) || !text(p.query, 240) ||
+@@ -78,7 +110,8 @@ function validateCommerceRequest(operation, p) {
+       (p.offer_id !== undefined && !text(p.offer_id, 300))) fail("invalid_commerce_request");
+   } else if (operation === "handoff") {
+     if (!text(p.selection_id, 300) || !text(p.forwarder, 100) ||
+-      !p.destination || !/^[A-Z]{2}$/.test(p.destination.country || "")) fail("invalid_commerce_request");
++      !p.destination || !/^[A-Z]{2}$/.test(p.destination.country || "") ||
++      p.variant_key !== undefined && (!text(p.variant_key, 300) || p.variant_key !== p.variant_key.trim() || /[\x00-\x1f\x7f]/.test(p.variant_key))) fail("invalid_commerce_request");
+   } else fail("invalid_commerce_request");
+   return p;
+ }
+@@ -122,7 +155,7 @@ function validateCommerceMode(mode, env = process.env) {
+   const localFixture = syntheticEnabled(env);
+   const requested = env.POKEMON_COMMERCE_FIXTURE === "true";
+   const privateFixture = requested && env.POKEMON_COMMERCE_MANAGED_SIDECAR === "true" && cloudTestScope(env) &&
+-    env.POKEMON_COMMERCE_BNS_ENABLED !== "true" && env.POKEMON_COMMERCE_PSA_ENABLED !== "true";
++    env.POKEMON_COMMERCE_BNS_ENABLED !== "true" && env.POKEMON_COMMERCE_BNS_URL_PREVIEW !== "true" && env.POKEMON_COMMERCE_PSA_ENABLED !== "true";
+   if (requested && !localFixture && !privateFixture) fail("commerce_not_configured");
+   if ((localFixture || privateFixture) !== (mode === "synthetic_fixture")) fail("commerce_mode_mismatch");
+   return mode;
+diff --git a/creator/tests/bns-url-preview.test.cjs b/creator/tests/bns-url-preview.test.cjs
+new file mode 100644
+index 0000000..17a1db0
+--- /dev/null
++++ b/creator/tests/bns-url-preview.test.cjs
+@@ -0,0 +1,111 @@
++"use strict";
++const test = require("node:test");
++const assert = require("node:assert/strict");
++const { validateCommerceRequest, validateCommerceResponse } = require("../src/lib/pokemon/commerceContract.cjs");
++const { validateProviderResult, MESSAGES } = require("../src/lib/pokemon/bnsPreview.cjs");
++const { variantScope, chooseVariant, variantKeyFor } = require("../src/lib/pokemon/bnsVariantChoice.cjs");
++const { commerceIntent } = require("../src/lib/pokemon/commerceChat.cjs");
++const money = (subunit_amount = 2000, currency = "JPY") => ({ currency, subunit_amount });
++const variants = () => [
++  { variant_key: "sku-1", options: { condition: "PSA 10 seller claim" }, availability: "in_stock", price: money() },
++  { variant_key: "sku-2", options: { condition: "Ungraded" }, availability: "out_of_stock", price: money(1000) },
++];
++const refusal = (code = "variant_selection_required", details = { variants: variants() }) => ({ schema: "pokemon.bns-refusal.v1",
++  status: ["variant_selection_required", "variant_changed"].includes(code) ? "variant_selection_required" :
++    ["variant_unavailable", "currency_unsupported", "invalid_request", "product_not_eligible"].includes(code) ? "refused" : "unavailable",
++  code, reason_codes: [], retryable: code === "merchant_unreachable", message: MESSAGES[code], details });
++const productUrl = "https://jp.mercari.com/item/m12345678901";
++const handoff = () => ({ schema: "pokemon.agent-commerce.v1", mode: "on_demand_research", status: "variant_selection_required",
++  product_url: productUrl, forwarder: { id: "buyship", label: "Buy & Ship" }, message: "Review exact provider variants",
++  quote: null, purchasable: false, purchase_action: null, order_created: false, provider_result: refusal() });
++const preview = () => {
++  const h = handoff(); delete h.provider_result; h.status = "quote_ready_for_review";
++  h.quote = { status: "quote_ready_for_review", purchasable: false, purchase_action: null, order_created: false,
++    card_id: "ja:SV2A:173/165:holo", listing: { source: "mercari", native_id: "m12345678901", url: productUrl,
++      title: "Pikachu 173/165", observed_at: "2026-10-22T01:00:00Z", ask: money(),
++      grade: { company: "PSA", value: "10", certificate_verified: false }, identity_status: "unverified_candidate" },
++    buyship: { reference_id: "server-held-reference", variant_key: "sku-1", canonical_url: productUrl,
++      merchant_domain: "jp.mercari.com", resolve_price: money(2100), resolve_price_differs_from_observation: true,
++      quote_id: "provider-quote", quoted_at: "2026-10-22T01:00:01Z", expires_at: "2026-10-22T01:15:01Z",
++      destination: { country: "HK" }, currency: "HKD", unit_price: money(12000, "HKD"),
++      components: { items: money(12000, "HKD"), bns_service_fee: money(1000, "HKD"), local_shipping: money(0, "HKD"), international_shipping: money(0, "HKD"), duties: money(0, "HKD") }, grand_total: money(13000, "HKD"),
++      variant_options: { condition: "PSA 10 seller claim" }, resolved_availability: "in_stock" },
++    evidence: { schema: "pokemon.bns-url-preview-evidence.v1", mode: "url_quote_preview", identity_status: "unverified_candidate",
++      certificate_verified: false, authenticity_verified: false, selected_offer_sha256: "1".repeat(64), resolve_response_sha256: "2".repeat(64),
++      quote_response_sha256: "3".repeat(64), binding_sha256: "4".repeat(64),
++      binding_scope: "selected marketplace URL and BNS reference/variant only; catalog identity and seller grade remain unverified" } };
++  return h;
++};
++test("URL preview accepts an unindexed listing while preserving provider amount and unverified identity", () => {
++  const h = preview(); assert.equal(Object.hasOwn(h.quote, "unit_id"), false);
++  assert.doesNotThrow(() => validateCommerceResponse("handoff", h));
++  h.quote.listing.ask = null; h.quote.buyship.resolve_price_differs_from_observation = false;
++  assert.doesNotThrow(() => validateCommerceResponse("handoff", h));
++  h.quote.listing.ask = money(500, "USD");
++  assert.doesNotThrow(() => validateCommerceResponse("handoff", h));
++});
++test("URL preview rejects another URL, invented verification, unsafe variants and disguised evidence mode", () => {
++  for (const mutate of [q => { q.listing.url += "?other=1"; }, q => { q.buyship.canonical_url = "https://evil.invalid/item"; },
++    q => { q.evidence.certificate_verified = true; }, q => { q.evidence.authenticity_verified = true; },
++    q => { q.listing.grade.certificate_verified = true; }, q => { q.listing.identity_status = "verified"; },
++    q => { q.evidence.mode = "indexed"; }, q => { q.evidence.binding_scope = "verified card identity"; },
++    q => { q.unit_id = "invented-unit"; }, q => { q.purchasable = true; },
++    q => { q.buyship.resolve_price_differs_from_observation = false; }, q => { q.buyship.resolved_availability = "out_of_stock"; },
++    q => { q.buyship.variant_options = { condition: "<script>secret</script>" }; }, q => { q.evidence.secret = "token"; },
++    q => { q.buyship.currency = "JPY"; }, q => { q.buyship.destination = { country: "SG" }; }, q => { delete q.buyship.components.duties; }]) {
++    const h = preview(); mutate(h.quote); assert.throws(() => validateCommerceResponse("handoff", h), /invalid_commerce_response/);
++  }
++});
++test("handoff requests carry only the selected server choice, never browser references or prices", () => {
++  const request = { selection_id: "owner-selection", forwarder: "buyship", destination: { country: "HK" }, variant_key: "sku-1" };
++  assert.doesNotThrow(() => validateCommerceRequest("handoff", request));
++  for (const extra of [{ url: productUrl }, { reference_id: "invented" }, { price: money() }, { quantity: 2 }, { owner: "other" }])
++    assert.throws(() => validateCommerceRequest("handoff", { ...request, ...extra }));
++  for (const variant_key of ["", " ", "secret\nkey", "x".repeat(301), 123])
++    assert.throws(() => validateCommerceRequest("handoff", { ...request, variant_key }));
++});
++test("detailed refusals accept only closed fields, static messages and normalized bounded choices", () => {
++  assert.doesNotThrow(() => validateCommerceResponse("handoff", handoff()));
++  const v = refusal("variant_unavailable"); v.reason_codes = ["OUT_OF_STOCK"];
++  assert.doesNotThrow(() => validateProviderResult(v));
++  const currency = refusal("currency_unsupported", { supported_currencies: ["HKD", "USD"] }); currency.reason_codes = ["CURRENCY_UNSUPPORTED"];
++  assert.doesNotThrow(() => validateProviderResult(currency));
++  const invalid = refusal("invalid_request", { field_errors: [{ field: "destination.state", message: "Choose a two-letter US state code." }] });
++  assert.doesNotThrow(() => validateProviderResult(invalid));
++  const retry = refusal("merchant_unreachable", {}); assert.equal(validateProviderResult(retry).retryable, true);
++  for (const mutate of [r => { r.message = "secret from provider"; }, r => { r.details.secret = "token"; },
++    r => { r.code = "undocumented_code"; }, r => { r.retryable = true; }, r => { r.status = "refused"; },
++    r => { r.reason_codes = ["TOKEN=secret"]; }, r => { r.details.variants.push(r.details.variants[0]); },
++    r => { r.details.variants[0].url = "https://evil.invalid"; }, r => { r.details.variants[0].options.foo = "url?token=secret"; },
++    r => { r.details.variants[0].price.subunit_amount = -1; }, r => { r.details.variants[0].availability = "available"; }]) {
++    const r = refusal(); mutate(r); assert.throws(() => validateProviderResult(r), /invalid_commerce_response/);
++  }
++  for (const mutate of [r => { r.code = [r.code]; }, r => { r.details.variants[0].price.currency = ["JPY"]; }]) {
++    const r = refusal(); mutate(r); assert.throws(() => validateProviderResult(r));
++  }
++  const badField = structuredClone(invalid); badField.details.field_errors[0].field = ["destination.state"];
++  assert.throws(() => validateProviderResult(badField));
++  invalid.details.field_errors[0].message = "client-secret";
++  assert.throws(() => validateProviderResult(invalid));
++  const wrongStatus = handoff(); wrongStatus.status = "manual_handoff_required";
++  assert.throws(() => validateCommerceResponse("handoff", wrongStatus));
++  const h = handoff(); h.quote = preview().quote;
++  assert.throws(() => validateCommerceResponse("handoff", h));
++});
++test("variant choices require an explicit in-stock choice and expire across context or displayed-value changes", () => {
++  const r = refusal(), scope = variantScope("selection-a", "buyship", "US", "CA");
++  assert.equal(variantKeyFor(r, null, scope), undefined);
++  assert.equal(chooseVariant(r, 1, scope), null);
++  assert.equal(chooseVariant(r, 99, scope), null);
++  const choice = chooseVariant(r, 0, scope);
++  assert.equal(variantKeyFor(r, choice, scope), "sku-1");
++  for (const other of [variantScope("selection-b", "buyship", "US", "CA"), variantScope("selection-a", "other", "US", "CA"),
++    variantScope("selection-a", "buyship", "US", "NY"), variantScope("selection-a", "buyship", "HK")])
++    assert.equal(variantKeyFor(r, choice, other), undefined);
++  for (const mutate of [v => { v.price.subunit_amount++; }, v => { v.options.condition = "PSA 9 seller claim"; }, v => { v.availability = "out_of_stock"; }]) {
++    const changed = structuredClone(r); mutate(changed.details.variants[0]);
++    assert.equal(variantKeyFor(changed, choice, scope), undefined);
++  }
++  assert.deepEqual(commerceIntent("choose variant 2"), { kind: "variant", index: 1 });
++  assert.deepEqual(commerceIntent("choose offer 2"), { kind: "select", index: 1 });
++});
+diff --git a/creator/tests/pokemon-commerce-loop.test.cjs b/creator/tests/pokemon-commerce-loop.test.cjs
+index 754a03f..5f7fb94 100644
+--- a/creator/tests/pokemon-commerce-loop.test.cjs
++++ b/creator/tests/pokemon-commerce-loop.test.cjs
+@@ -162,7 +162,7 @@ test("private commerce fixtures retain the normal chat UI and require the exact
+   assert.throws(() => validateCommerceMode("on_demand_research", env));
+   for (const change of [{ K_SERVICE: "production" }, { POKEMON_CREATOR_STATE_EXPIRES_AT: observed },
+     { POKEMON_COMMERCE_MANAGED_SIDECAR: "false" }, { POKEMON_COMMERCE_BNS_ENABLED: "true" },
+-    { POKEMON_COMMERCE_PSA_ENABLED: "true" }]) {
++    { POKEMON_COMMERCE_PSA_ENABLED: "true" }, { POKEMON_COMMERCE_BNS_URL_PREVIEW: "true" }]) {
+     assert.throws(() => validateCommerceMode("synthetic_fixture", { ...env, ...change }));
+     assert.throws(() => validateCommerceMode("on_demand_research", { ...env, ...change }));
+   }
+diff --git a/creator/tests/private-commerce-staging.test.cjs b/creator/tests/private-commerce-staging.test.cjs
+index 65b7d98..fb45b5e 100644
+--- a/creator/tests/private-commerce-staging.test.cjs
++++ b/creator/tests/private-commerce-staging.test.cjs
+@@ -96,3 +96,28 @@ test("sidecar health requires its configured mode without opening a process or n
+     }
+   }
+ });
++
++
++test("URL quote preview is a second explicit opt-in and never opens the indexed quote database", () => {
++  const credentials = { BNS_PARTNER_BASE_URL: "https://bns.example.invalid", BNS_PARTNER_CLIENT_ID: "offline-id", BNS_PARTNER_CLIENT_SECRET: "offline-secret" };
++  const base = { ...env(), ...credentials };
++  assert.equal(configuration(base).args.includes("--allow-live-buyship"), false);
++  assert.equal(configuration(base).args.includes("--buyship-url-preview"), false);
++  assert.throws(() => configuration({ ...base, POKEMON_COMMERCE_BNS_URL_PREVIEW: "true" }), /bns_url_preview_requires_access/);
++  const enabled = { ...base, POKEMON_COMMERCE_BNS_ENABLED: "true", POKEMON_COMMERCE_BNS_URL_PREVIEW: "true" };
++  assert.deepEqual(configuration(enabled).args.slice(-2), ["--allow-live-buyship", "--buyship-url-preview"]);
++  assert.equal(configuration(enabled).args.includes("--quote-db"), false);
++  assert.equal(configuration(enabled).args.includes("--allow-live-psa"), false);
++  for (const value of ["", "/offline/indexed.sqlite"])
++    assert.throws(() => configuration({ ...enabled, POKEMON_COMMERCE_QUOTE_DB: value }), /cannot_mix_with_quote_db/);
++  for (const key of Object.keys(credentials)) {
++    const missing = { ...enabled }; delete missing[key];
++    assert.throws(() => configuration(missing), /bns_access_not_configured/);
++  }
++  assert.throws(() => configuration({ ...enabled, POKEMON_COMMERCE_FIXTURE: "true" }), /commerce_fixture_cannot_mix/);
++  assert.throws(() => configuration({ ...base, POKEMON_COMMERCE_FIXTURE: "true", POKEMON_COMMERCE_BNS_URL_PREVIEW: "true" }), /commerce_fixture_cannot_mix/);
++  assert.throws(() => configuration({ ...base, POKEMON_COMMERCE_BNS_ENABLED: "true" }), /bns_access_not_configured/);
++  const legacy = configuration({ ...base, POKEMON_COMMERCE_BNS_ENABLED: "true", POKEMON_COMMERCE_QUOTE_DB: "/offline/indexed.sqlite" });
++  assert.deepEqual(legacy.args.slice(-3), ["--allow-live-buyship", "--quote-db", "/offline/indexed.sqlite"]);
++  assert.equal(legacy.args.includes("--buyship-url-preview"), false);
++});
+-- 
+2.50.1 (Apple Git-155)
+

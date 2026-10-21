@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: '22'
       - name: Exercise source, selection, freshness and loopback contracts offline
-        run: python -m unittest tests.test_marketplace_sources tests.test_marketplace_crawl tests.test_marketplace_browser tests.test_commerce_loop tests.test_commerce_service tests.test_psa_cert tests.test_commerce_psa tests.test_provider_smoke tests.test_provider_smoke_psa tests.test_bounded_buyship -q
+        run: python -m unittest tests.test_marketplace_sources tests.test_marketplace_crawl tests.test_marketplace_browser tests.test_commerce_loop tests.test_commerce_service tests.test_psa_cert tests.test_commerce_psa tests.test_provider_smoke tests.test_provider_smoke_psa tests.test_bounded_buyship tests.test_bns_errors tests.test_bns_url_preview -q
       - name: Validate browser resource and DNS restrictions without opening a browser
         run: node --test integrations/browser/renderPublicPage.test.cjs

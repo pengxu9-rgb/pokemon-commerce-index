@@ -159,14 +159,17 @@ def main():
                         help="exact operator-selected public eBay category URL; current robots policy is always checked")
     parser.add_argument("--quote-db", help="existing approved operator DB, never the packaged catalog")
     parser.add_argument("--allow-live-buyship", action="store_true", help="enable configured BNS resolve/quote only; no order")
+    parser.add_argument("--buyship-url-preview", action="store_true", help="explicit selected-URL preview instead of the indexed quote gate")
     parser.add_argument("--allow-live-psa", action="store_true", help="enable configured read-only PSA certificate lookup")
     args = parser.parse_args()
     fixture = args.fixture or os.environ.get("POKEMON_COMMERCE_FIXTURE") == "true"
     browser_renderer = args.browser_renderer or os.environ.get("POKEMON_COMMERCE_BROWSER_RENDERER") == "1"
-    if fixture and (args.allow_live_crawl or args.allow_live_buyship or args.allow_live_psa or args.quote_db or browser_renderer):
+    if fixture and (args.allow_live_crawl or args.allow_live_buyship or args.allow_live_psa or args.quote_db or browser_renderer or args.buyship_url_preview):
         parser.error("fixture mode cannot mix with live research or a quote database")
     if browser_renderer and not args.allow_live_crawl:
         parser.error("the public-page browser renderer requires --allow-live-crawl")
+    if args.buyship_url_preview and (not args.allow_live_buyship or args.quote_db is not None):
+        parser.error("URL preview requires explicit live Buy&Ship intent and cannot use a quote database")
     token = os.environ.get("POKEMON_COMMERCE_TOKEN") or os.environ.get("POKEMON_COMMERCE_SERVICE_TOKEN")
     if not token:
         parser.error("set the server-only POKEMON_COMMERCE_TOKEN environment variable")
@@ -187,13 +190,17 @@ def main():
             snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
             ebay_browse_urls=args.ebay_browse_url)
     if args.allow_live_buyship:
-        if not args.quote_db:
+        if not args.quote_db and not args.buyship_url_preview:
             parser.error("live BNS preview requires --quote-db with approved existing indexed evidence")
         from .bounded_buyship import BoundedBuyShipForwarder
         values = [os.environ.get(key) for key in ("BNS_PARTNER_BASE_URL", "BNS_PARTNER_CLIENT_ID", "BNS_PARTNER_CLIENT_SECRET")]
         if not all(values):
             parser.error("configure server-owned BNS_PARTNER_BASE_URL, BNS_PARTNER_CLIENT_ID and BNS_PARTNER_CLIENT_SECRET")
-        forwarders["buyship"] = BoundedBuyShipForwarder(args.quote_db, *values, live_authorized=True)
+        if args.buyship_url_preview:
+            from .bns_url_preview import URLBuyShipForwarder
+            forwarders["buyship"] = URLBuyShipForwarder(*values, live_authorized=True)
+        else:
+            forwarders["buyship"] = BoundedBuyShipForwarder(args.quote_db, *values, live_authorized=True)
     elif args.quote_db:
         parser.error("--quote-db is only used with --allow-live-buyship")
     from .psa_cert import PSACertClient

@@ -12,6 +12,7 @@ import ssl
 import time
 from urllib.parse import urlsplit
 
+from .bns_errors import BNSRefusal, refusal, sanitize_provider_error
 from .marketplace_crawl import _PinnedHTTPS
 from .psa_cert import _response
 
@@ -57,9 +58,12 @@ def _bns_https(request, *, timeout, max_bytes):
     try:
         connection.request("POST", p.path, body=request.data, headers=dict(request.header_items()))
         response = connection.getresponse()
-        if response.status != 200:
+        if response.status != 200 and response.status not in {400, 401, 403, 404, 409, 422, 424, 429, 500, 502, 503, 504}:
+            # Never consume redirect bodies or follow their locations.
             return {"status": response.status, "body": b""}
         if response.getheader("Content-Type", "").split(";")[0].strip().lower() not in {"application/json", "text/json"}:
+            if response.status != 200:
+                return {"status": response.status, "body": b""}
             raise ProbeError("bns_response_invalid")
         return {"status": response.status, "body": response.read(max_bytes + 1)}
     finally:
@@ -113,8 +117,20 @@ class OneShotBNSSender:
         reply = self.transport(request, timeout=min(5, remaining), max_bytes=65536)
         status = reply.get("status") if isinstance(reply, dict) else None
         if status != 200:
-            raise ProbeError("bns_access_rejected" if status in {401, 403} else
-                             "bns_rate_limited" if status == 429 else "bns_http_rejected")
+            if self.monotonic() >= self.deadline:
+                raise ProbeError("bns_request_deadline")
+            fallback = ("bns_access_rejected" if status in {401, 403} else
+                        "bns_rate_limited" if status == 429 else "bns_http_rejected")
+            body = reply.get("body") if isinstance(reply, dict) else None
+            if body in (None, b"", ""):
+                raise BNSRefusal(refusal(fallback))
+            try:
+                # Reuse the existing byte/depth/duplicate-key/finite-number
+                # parser while preserving the original HTTP status separately.
+                _, payload = _response({"status": 200, "body": body}, 65536)
+            except Exception:
+                raise BNSRefusal(refusal("bns_response_invalid")) from None
+            raise BNSRefusal(sanitize_provider_error(status, payload, stage=("oauth", "resolve", "quote")[index]))
         try:
             _, payload = _response(reply, 65536)
             if index == 0:
