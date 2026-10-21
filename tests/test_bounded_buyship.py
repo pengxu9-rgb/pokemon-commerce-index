@@ -252,7 +252,10 @@ class BoundedBuyShipTests(unittest.TestCase):
         result = self.handoff(loop, selected)
         self.assertIsNone(result["quote"]); self.assertEqual(len(self.workers), 1)
         kwargs = self.workers[0][1]
-        self.assertGreater(kwargs["timeout"], 0); self.assertLessEqual(kwargs["timeout"], 7.0)
+        self.assertGreater(kwargs["timeout"], 0)
+        # Monotonic clock origins differ across platforms; subtracting float
+        # timestamps can produce 7.000000000000007 for this exact fake delay.
+        self.assertAlmostEqual(kwargs["timeout"], 7.0, places=6)
         self.assertAlmostEqual(json.loads(kwargs["input"])["deadline"], initial + 22.0)
         self.assertEqual(self.wire, [])
 
