@@ -16,6 +16,7 @@ import re
 import subprocess
 import sys
 import time
+import unicodedata
 from urllib.parse import urlsplit
 
 from .bns_errors import BNSRefusal, normalize_variants, refusal, validate_refusal
@@ -103,8 +104,11 @@ def _identity(name, offer, card_id):
     from .marketplace_quality import contradicts_grade
     if not _text(name, 2000):
         _fail()
+    name = unicodedata.normalize("NFKC", name)
+    source_title = unicodedata.normalize("NFKC", offer["title"])
+    card_id = unicodedata.normalize("NFKC", card_id)
     numbers = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(name)}
-    expected = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(offer["title"])}
+    expected = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(source_title)}
     if re.fullmatch(r"(?:ja|en):[^:]+:[^:]+:[^:]+", card_id):
         expected.add(core.normalize_collector_number(card_id.split(":")[2]))
     grade = offer["grade"]
@@ -112,6 +116,27 @@ def _identity(name, offer, card_id):
         _fail("product_mismatch")
     if grade["company"] and grade["value"] and contradicts_grade(name, grade["company"], grade["value"]):
         _fail("product_mismatch")
+
+
+def _variant_identity(options, offer, card_id):
+    """Check selected option evidence without turning ordinary choices into identity."""
+    from . import core
+    for key, value in options.items():
+        key, value = (unicodedata.normalize("NFKC", text) for text in (key, value))
+        # Check each part independently so repeated compatible evidence does not
+        # look like multiple conflicting grades to the shared grade checker.
+        _identity(key, offer, card_id)
+        _identity(value, offer, card_id)
+        for label, number in ((key, value), (value, key)):
+            if not re.fullmatch(r"\d+(?:\.\d+)?", number.strip()):
+                continue
+            graders = {match.group().upper() for match in core.GRADER_RE.finditer(label)}
+            if not graders and re.fullmatch(r"\s*(?:grade|grading|鑑定|鑑定評価)\s*", label, re.I):
+                graders = {offer["grade"]["company"]} - {None}
+            # A pair such as PSA:9 or PSA grade:9 is explicit grade evidence,
+            # while size:9 alone says nothing about the card's retained grade.
+            for company in graders:
+                _identity(f"{company} {number.strip()}", offer, card_id)
 
 
 def _no_secrets(value, secrets):
@@ -155,6 +180,7 @@ def validate_quote(quote, card_id, offer, destination, variant=None):
         _fail("quote_binding_invalid")
     current_variant = normalize_variants([{"variant_key": b["variant_key"], "options": b["variant_options"],
         "availability": b["resolved_availability"], "price": b["resolve_price"]}])[0]
+    _variant_identity(current_variant["options"], offer, card_id)
     if variant is not None and normalize_variants([variant])[0] != current_variant:
         _fail("quote_binding_invalid")
     _money(b["resolve_price"])
@@ -218,6 +244,7 @@ def _preview(payload, *, env=None, transport=None):
             selected = matches[0]
         if selected["availability"] != "in_stock":
             _fail("variant_unavailable", details={"variants": variants})
+        _variant_identity(selected["options"], offer, card_id)
         merchant = resolved.get("merchant")
         if not isinstance(merchant, dict) or not isinstance(merchant.get("domain"), str) or not re.fullmatch(r"[A-Za-z0-9.-]{1,253}", merchant["domain"]):
             _fail()

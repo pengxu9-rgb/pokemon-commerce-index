@@ -214,6 +214,133 @@ class URLPreviewTests(unittest.TestCase):
                 self.assertEqual(raised.exception.code, "product_mismatch"); self.assertEqual(len(self.wire), 2)
                 self.fixture["resolve"] = original
 
+    def test_unicode_collector_conflicts_in_resolve_and_quote_names_are_rejected(self):
+        wrong_numbers = ("１７４／１６５", "174／165", "１７４/１６５", "17４/1６5")
+        for stage in ("resolve", "quote"):
+            for number in wrong_numbers:
+                with self.subTest(stage=stage, number=number):
+                    original = copy.deepcopy(self.fixture); self.wire.clear()
+                    item = (self.fixture["resolve"]["product"] if stage == "resolve"
+                            else self.fixture["quote"]["items"][0])
+                    item["name"] = f"Pikachu {number} PSA 10"
+                    with self.assertRaises(BNSRefusal) as raised: self.quote()
+                    self.assertEqual(raised.exception.code, "product_mismatch")
+                    self.assertEqual(len(self.wire), 2 if stage == "resolve" else 3)
+                    self.fixture = original
+
+    def test_unicode_retained_source_and_catalog_numbers_are_normalized_independently(self):
+        cases = [("Pikachu １７３／１６５ PSA 10", "catalog-context"),
+                 ("Pikachu 173／165 PSA 10", "catalog-context"),
+                 ("Pikachu PSA 10", "ja:SV2A:１７３／１６５:holo"),
+                 ("Pikachu PSA 10", "ja:SV2A:173／165:holo"),
+                 ("Pikachu １７３／１６５ PSA 10", CARD)]
+        for title, card_id in cases:
+            for number in ("173/165", "１７３／１６５", "174/165", "１７４／１６５"):
+                for stage in ("resolve", "quote"):
+                    with self.subTest(title=title, card_id=card_id, number=number, stage=stage):
+                        original = copy.deepcopy(self.fixture); self.wire.clear()
+                        item = (self.fixture["resolve"]["product"] if stage == "resolve"
+                                else self.fixture["quote"]["items"][0])
+                        item["name"] = f"Pikachu {number} PSA 10"
+                        offer = self.offer | {"title": title}
+                        if "174" in number or "１７４" in number:
+                            with self.assertRaises(BNSRefusal) as raised: self.quote(offer=offer, card_id=card_id)
+                            self.assertEqual(raised.exception.code, "product_mismatch")
+                            self.assertEqual(len(self.wire), 2 if stage == "resolve" else 3)
+                        else:
+                            quote = self.quote(offer=offer, card_id=card_id)
+                            self.assertEqual(quote["status"], "quote_ready_for_review")
+                            self.assertEqual(len(self.wire), 3)
+                            self.assertEqual(quote["listing"]["title"], title)
+                        self.fixture = original
+
+    def test_sole_variant_identity_conflicts_in_option_keys_values_and_split_grades_stop_before_quote(self):
+        conflicts = ({"grade": "PSA 9"}, {"card": "Pikachu 174/165"}, {"PSA 9": "holder"},
+                     {"174/165": "card"}, {"PSA": "9"}, {"PSA grade": "9"}, {"grade": "9"},
+                     {"ＰＳＡ": "９"}, {"grade": "ＰＳＡ ９"}, {"collector": "１７４/１６５"},
+                     {"１７４/１６５": "card"}, {"9": "PSA"})
+        for options in conflicts:
+            with self.subTest(options=options):
+                self.wire.clear()
+                self.fixture["resolve"]["variants"][0]["options"] = options
+                self.fixture["quote"]["items"][0]["variant_options"] = options
+                with self.assertRaises(BNSRefusal) as raised: self.quote()
+                self.assertEqual(raised.exception.code, "product_mismatch")
+                self.assertEqual(len(self.wire), 2)
+
+    def test_explicit_variant_identity_is_checked_only_after_owner_selects_a_choice(self):
+        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}):
+            for choose_conflict in (True, False):
+                with self.subTest(options=options, choose_conflict=choose_conflict):
+                    self.fixture["resolve"]["variants"] = [self.fixture["resolve"]["variants"][0]]
+                    conflicting, compatible = self.multiple_variants()
+                    conflicting["options"] = options
+                    chosen = conflicting if choose_conflict else compatible
+                    self.fixture["quote"]["items"][0].update(variant_key=chosen["variant_key"],
+                                                              variant_options=chosen["options"])
+                    loop = self.loop(); selected = self.select(loop); self.wire.clear()
+                    choices = self.handoff(loop, selected)
+                    self.assertEqual(choices["status"], "variant_selection_required")
+                    self.assertEqual(len(self.wire), 2)
+                    self.assertEqual(len(choices["provider_result"]["details"]["variants"]), 2)
+                    self.wire.clear()
+                    result = self.handoff(loop, selected, variant_key=chosen["variant_key"])
+                    if choose_conflict:
+                        self.assertEqual(result["quote_status"], "product_mismatch")
+                        self.assertIsNone(result["quote"]); self.assertEqual(len(self.wire), 2)
+                    else:
+                        self.assertEqual(result["status"], "quote_ready_for_review")
+                        self.assertEqual(result["quote"]["buyship"]["variant_options"], compatible["options"])
+                        self.assertEqual(len(self.wire), 3)
+
+    def test_compatible_or_absent_variant_identity_preserves_unverified_preview(self):
+        cases = ({}, {"size": "9", "color": "red"}, {"grade": "PSA 10"}, {"PSA": "10"},
+                 {"PSA grade": "１０"}, {"grade": "10"}, {"PSA 10": "PSA 10"},
+                 {"grade": "PSA 10", "holder": "PSA 10"}, {"card": "Pikachu １７３/１６５"},
+                 {"１７３/１６５": "card"}, {"１０": "ＰＳＡ"})
+        for options in cases:
+            with self.subTest(options=options):
+                self.wire.clear()
+                self.fixture["resolve"]["variants"][0]["options"] = options
+                self.fixture["quote"]["items"][0]["variant_options"] = options
+                quote = self.quote()
+                self.assertEqual(quote["buyship"]["variant_options"], options)
+                self.assertEqual(len(self.wire), 3)
+                self.assertFalse(quote["purchasable"]); self.assertFalse(quote["order_created"])
+                self.assertIsNone(quote["purchase_action"])
+                self.assertEqual(quote["listing"]["identity_status"], "unverified_candidate")
+                self.assertFalse(quote["evidence"]["certificate_verified"])
+                self.assertFalse(quote["evidence"]["authenticity_verified"])
+
+    def test_quote_option_tampering_cannot_override_compatible_resolve_variant(self):
+        for options in ({"grade": "PSA 9"}, {"card": "１７４／１６５"}, {"PSA": "9"}):
+            with self.subTest(options=options):
+                self.wire.clear()
+                self.fixture["quote"]["items"][0]["variant_options"] = options
+                with self.assertRaises(BNSRefusal) as raised: self.quote()
+                self.assertEqual(raised.exception.code, "quote_binding_invalid")
+                self.assertEqual(len(self.wire), 3)
+
+    def test_parent_rejects_rehashed_conflicting_variant_ipc_with_or_without_retained_variant(self):
+        original = self.quote(); self.wire.clear()
+        for options in ({"grade": "PSA 9"}, {"PSA": "９"}, {"card": "１７４/１６５"}):
+            for explicit in (False, True):
+                with self.subTest(options=options, explicit=explicit):
+                    quote = copy.deepcopy(original); quote["buyship"]["variant_options"] = options
+                    quote["evidence"]["binding_sha256"] = preview._binding(quote)
+                    variant = copy.deepcopy(self.fixture["resolve"]["variants"][0])
+                    variant["options"] = options
+                    calls = []
+                    def forged_runner(*args, **kwargs):
+                        calls.append(kwargs)
+                        return SimpleNamespace(returncode=0, stdout=json.dumps({"schema": preview.RESULT_SCHEMA, "quote": quote}), stderr=SECRET)
+                    with self.assertRaises(BNSRefusal) as raised:
+                        self.forwarder(runner=forged_runner).preview_before(CARD, self.offer, {"country": "HK"},
+                            deadline=time.monotonic() + 18, variant=variant if explicit else None)
+                    self.assertEqual(raised.exception.code, "product_mismatch")
+                    self.assertEqual(len(calls), 1)
+                    self.assertEqual(self.wire, [])
+
     def test_sold_out_resolve_variant_never_quotes(self):
         self.fixture["resolve"]["variants"][0]["availability"] = "out_of_stock"
         with self.assertRaises(BNSRefusal) as raised: self.quote()
