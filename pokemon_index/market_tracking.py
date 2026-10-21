@@ -44,7 +44,7 @@ def _quality(core, title, unit, card, metadata=None):
         raise ValueError("malformed seller certificate-number claim")
     if company == "RAW":
         condition_text = unicodedata.normalize("NFKC", condition or "")
-        if (claims or core.GRADER_RE.search(title) or core.SLAB_EVIDENCE_RE.search(title)
+        if (contradicts_grade(title, company, grade)
                 or certificate is not None or contradicts_grade(condition_text, company, grade)):
             raise ValueError("current seller evidence does not support the raw unit")
         label = "raw; condition not assessed"
@@ -247,6 +247,12 @@ def _report(db, core, card_id, now, history_days, sources):
                 if offer is None:
                     raise ValueError("not a fresh, on-sale, display-permitted exact-unit offer")
                 core._reject_held_unit(db, offer["unit_id"])
+                effective = [r for r in resolutions if core.parse_time(r["resolved_at"]) <= instant]
+                if not effective:
+                    raise ValueError("current unit lacks an effective resolution")
+                latest = max(core.parse_time(r["resolved_at"]) for r in effective)
+                if {r["unit_id"] for r in effective if core.parse_time(r["resolved_at"]) == latest} != {offer["unit_id"]}:
+                    raise ValueError("current unit conflicts with latest effective resolution")
                 unit = units[offer["unit_id"]]
                 metadata, quality_evidence = _observation_quality(db, source, native_id, offer["last_seen"])
                 quality = _quality(core, offer["title"], unit, card, metadata)

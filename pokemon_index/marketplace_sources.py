@@ -157,7 +157,7 @@ def _quality(item: dict[str, Any], title: str, evidence: str,
     unsafe = bool(core.GRADE_UNSAFE_RE.search(normalized))
     if company and (unsafe or (title_grades and title_grades != {(company, grade)})):
         raise ValueError("structured grade contradicts title grade claim")
-    if raw_claim and (title_grades or core.GRADER_RE.search(normalized) or core.SLAB_EVIDENCE_RE.search(normalized)):
+    if raw_claim and contradicts_grade(normalized, "RAW", "raw"):
         raise ValueError("structured raw claim contradicts slab title")
     basis = "structured_seller_claim" if company else "no_grade_claim"
     if company is None and title_grades and not unsafe:
@@ -165,6 +165,8 @@ def _quality(item: dict[str, Any], title: str, evidence: str,
         basis = "seller_title_claim"
     needs_review = unsafe or bool(company and not (
         title_grades == {(company, grade)} and core.SLAB_EVIDENCE_RE.search(normalized)))
+    if company is None and contradicts_grade(normalized, "RAW", "raw"):
+        needs_review = True
     if certificate and not company:
         needs_review = True
     if seller_condition:
@@ -284,6 +286,8 @@ def _ebay_item(item: Any, source_id: str, stamp: str, fixture: bool) -> dict[str
     price = item.get("price")
     if not isinstance(price, dict) or price.get("currency") != "USD":
         raise ValueError("eBay US captured prices require USD")
+    if any(key.startswith("convertedFrom") for key in price):
+        raise ValueError("converted eBay prices cannot establish a native listing ask")
     value = price.get("value")
     if isinstance(value, bool) or not isinstance(value, (str, int)) or not re.fullmatch(r"\d+(?:\.\d+)?", str(value)) or len(str(value)) > 64:
         raise ValueError("eBay price must be exact decimal text or an integer")

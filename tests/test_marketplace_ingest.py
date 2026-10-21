@@ -129,6 +129,186 @@ class MarketplaceIngestTests(unittest.TestCase):
         self.assertEqual(report["platforms"][0]["groups"], [])
         self.assertIn("raw unit", report["excluded"][0]["reason"])
 
+    def test_unreadable_slab_or_grader_titles_never_start_as_raw_asks(self):
+        from pokemon_index.market_tracking import build_report
+        for index, cue in enumerate(("slab", "graded", "PSA unknown", "PSA"), 1):
+            with self.subTest(cue=cue):
+                capture = self.capture()
+                item = capture["payload"]["listings"][0]
+                item.update(listing_id=f"m{index}", url=f"https://mercari.invalid/item/m{index}",
+                            title=f"Synthetic FIX 001/100 {cue}")
+                ingest.import_capture(self.db, capture, now=NOW)
+                listing = self.db.execute("SELECT unit_id FROM listing WHERE native_id=?",
+                                          (item["listing_id"],)).fetchone()
+                self.assertIsNone(listing["unit_id"])
+        self.assertEqual(core.offers(self.db, CARD, now=NOW), [])
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        self.assertEqual(report["platforms"][0]["groups"], [])
+        self.assertFalse(any(event["unit_id"] for event in report["platforms"][0]["listing_events"]))
+
+    def test_unreadable_title_demotes_human_raw_binding_and_leaves_prior_history(self):
+        from pokemon_index.market_tracking import build_report
+        for index, cue in enumerate(("slab", "graded", "PSA unknown", "PSA"), 1):
+            with self.subTest(cue=cue):
+                capture = self.capture()
+                native = f"m{index}"
+                item = capture["payload"]["listings"][0]
+                item.update(listing_id=native, url=f"https://mercari.invalid/item/{native}")
+                ingest.import_capture(self.db, capture, now=NOW)
+                unit = self.db.execute("SELECT unit_id FROM listing WHERE native_id=?", (native,)).fetchone()[0]
+                with patch.object(core, "utcnow", return_value="2026-10-20T00:01:00Z"):
+                    core.override_resolution(self.db, SOURCE, native, unit, "synthetic reviewer", "synthetic review")
+                newer = copy.deepcopy(capture)
+                newer["observed_at"] = "2026-10-20T00:04:00Z"
+                newer["payload"]["listings"][0]["title"] += f" {cue}"
+                ingest.import_capture(self.db, newer, now=NOW)
+                self.assertIsNone(self.db.execute("SELECT unit_id FROM listing WHERE native_id=?", (native,)).fetchone()[0])
+                self.assertNotIn(native, {offer["native_id"] for offer in core.offers(self.db, CARD, now=NOW)})
+                report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+                self.assertEqual(report["platforms"][0]["groups"], [])
+                events = [event for event in report["platforms"][0]["listing_events"] if event["native_id"] == native]
+                self.assertEqual(len(events), 2)
+                self.assertEqual(events[0]["unit_id"], unit)
+                self.assertIsNone(events[1]["unit_id"])
+                # Even a later stale manual RAW assignment cannot make the
+                # new unreadable slab title acceptable to the report.
+                with patch.object(core, "utcnow", return_value="2026-10-20T00:04:30Z"):
+                    core.override_resolution(self.db, SOURCE, native, unit, "synthetic reviewer", "synthetic review")
+                report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+                self.assertEqual(report["platforms"][0]["groups"], [])
+                newest = [event for event in report["platforms"][0]["listing_events"]
+                          if event["native_id"] == native][-1]
+                self.assertIsNone(newest["unit_id"])
+
+    def test_older_observation_cannot_restore_newest_pending_grade_binding(self):
+        from pokemon_index.market_tracking import build_report
+        capture = self.capture()
+        capture["payload"]["listings"][0].update(
+            title="Synthetic FIX 001/100 PSA10 鑑定品", grade_company="PSA", grade_value="10")
+        ingest.import_capture(self.db, capture, now=NOW)
+        unit = self.db.execute("SELECT unit_id FROM listing").fetchone()[0]
+        pending = copy.deepcopy(capture)
+        pending["observed_at"] = "2026-10-20T00:04:00Z"
+        pending["payload"]["listings"][0]["title"] = "Synthetic FIX 001/100"
+        ingest.import_capture(self.db, pending, now=NOW)
+        self.assertIsNone(self.db.execute("SELECT unit_id FROM listing").fetchone()[0])
+        older = copy.deepcopy(capture)
+        older["observed_at"] = "2026-10-20T00:02:00Z"
+        receipt = ingest.import_capture(self.db, older, now=NOW)
+        self.assertEqual(receipt["imported"], 1)
+        listing = self.db.execute("SELECT unit_id,last_seen FROM listing").fetchone()
+        self.assertIsNone(listing["unit_id"])
+        self.assertEqual(core.parse_time(listing["last_seen"]), core.parse_time(pending["observed_at"]))
+        self.assertEqual(core.offers(self.db, CARD, now=NOW), [])
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        self.assertEqual(report["platforms"][0]["groups"], [])
+        events = report["platforms"][0]["listing_events"]
+        self.assertEqual(len(events), 3)
+        self.assertEqual(events[0]["unit_id"], unit)
+        self.assertIsNone(events[-1]["unit_id"])
+        before = self.counts()
+        replay = ingest.import_capture(self.db, older, now=NOW)
+        self.assertTrue(replay["capture_replayed"])
+        self.assertEqual(self.counts(), before)
+        self.assertIsNone(self.db.execute("SELECT unit_id FROM listing").fetchone()[0])
+
+    def test_changed_grade_is_retained_unresolved_and_review_survives_exact_replay(self):
+        from pokemon_index.market_tracking import build_report
+        capture = self.capture()
+        capture["payload"]["listings"][0].update(
+            title="Synthetic FIX 001/100 PSA10 鑑定品", grade_company="PSA", grade_value="10")
+        ingest.import_capture(self.db, capture, now=NOW)
+        old_unit = self.db.execute("SELECT unit_id FROM listing").fetchone()[0]
+        newer = copy.deepcopy(capture)
+        newer["observed_at"] = "2026-10-20T00:04:00Z"
+        newer["payload"]["listings"][0].update(title="Synthetic FIX 001/100 PSA9 鑑定品", grade_value="9")
+        unrelated = copy.deepcopy(self.capture()["payload"]["listings"][0])
+        unrelated.update(listing_id="m200", url="https://mercari.invalid/item/m200")
+        newer["payload"]["listings"].append(unrelated)
+        receipt = ingest.import_capture(self.db, newer, now=NOW)
+        self.assertEqual(receipt["imported"], 2)
+        self.assertEqual(self.counts(), dict(listing=2, observation=3, ingest_receipt=3,
+            marketplace_capture=2, marketplace_observation_quality=3))
+        self.assertIsNone(self.db.execute("SELECT unit_id FROM listing WHERE native_id='m100'").fetchone()[0])
+        quality = json.loads(self.db.execute("SELECT quality_json FROM marketplace_observation_quality "
+            "WHERE native_id='m100' ORDER BY observed_at DESC LIMIT 1").fetchone()[0])
+        self.assertEqual((quality["grade_company"], quality["grade_value"]), ("PSA", "9"))
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        current = {offer["native_id"] for group in report["platforms"][0]["groups"] for offer in group["offers"]}
+        self.assertEqual(current, {"m200"})
+        events = [event for event in report["platforms"][0]["listing_events"] if event["native_id"] == "m100"]
+        self.assertEqual(events[0]["unit_id"], old_unit)
+        self.assertIsNone(events[-1]["unit_id"])
+        new_unit = core._unit(self.db, CARD, "PSA", "9", "graded")
+        self.db.commit()
+        with patch.object(core, "utcnow", return_value="2026-10-20T00:04:30Z"):
+            core.override_resolution(self.db, SOURCE, "m100", new_unit, "synthetic reviewer", "synthetic new grade review")
+        before = self.counts()
+        replay = ingest.import_capture(self.db, newer, now=NOW)
+        self.assertTrue(replay["capture_replayed"])
+        self.assertEqual(replay["duplicates"], 2)
+        self.assertEqual(self.counts(), before)
+        self.assertEqual(self.db.execute("SELECT unit_id FROM listing WHERE native_id='m100'").fetchone()[0], new_unit)
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        groups = [group for group in report["platforms"][0]["groups"]
+                  if any(offer["native_id"] == "m100" for offer in group["offers"])]
+        self.assertEqual([group["unit_id"] for group in groups], [new_unit])
+
+    def test_older_changed_grade_cannot_change_current_unit_or_inherit_its_grade(self):
+        from pokemon_index.market_tracking import build_report
+        current = self.capture(observed_at="2026-10-20T00:04:00Z")
+        current["payload"]["listings"][0].update(
+            title="Synthetic FIX 001/100 PSA10 鑑定品", grade_company="PSA", grade_value="10")
+        ingest.import_capture(self.db, current, now=NOW)
+        unit = self.db.execute("SELECT unit_id FROM listing").fetchone()[0]
+        older = copy.deepcopy(current)
+        older["observed_at"] = "2026-10-20T00:02:00Z"
+        older["payload"]["listings"][0].update(title="Synthetic FIX 001/100 PSA9 鑑定品", grade_value="9")
+        receipt = ingest.import_capture(self.db, older, now=NOW)
+        self.assertEqual(receipt["imported"], 1)
+        listing = self.db.execute("SELECT unit_id,last_seen FROM listing").fetchone()
+        self.assertEqual(listing["unit_id"], unit)
+        self.assertEqual(core.parse_time(listing["last_seen"]), core.parse_time(current["observed_at"]))
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        self.assertEqual([group["unit_id"] for group in report["platforms"][0]["groups"]], [unit])
+        events = report["platforms"][0]["listing_events"]
+        self.assertEqual(len(events), 2)
+        self.assertNotEqual(events[0]["unit_id"], unit)
+        self.assertEqual(events[-1]["unit_id"], unit)
+
+    def test_changed_unit_hold_survives_later_polls_until_explicit_human_review(self):
+        from pokemon_index.market_tracking import build_report
+        capture = self.capture()
+        def observe(at, grade):
+            result = copy.deepcopy(capture)
+            result["observed_at"] = at
+            result["payload"]["listings"][0].update(
+                title=f"Synthetic FIX 001/100 PSA{grade} 鑑定品", grade_company="PSA", grade_value=grade)
+            return result
+        ingest.import_capture(self.db, observe("2026-10-20T00:00:00Z", "10"), now=NOW)
+        # A second poll of the changed grade, or a return to the original
+        # grade, cannot act as the explicit review required by this hold.
+        for at, grade in (("2026-10-20T00:01:00Z", "9"),
+                          ("2026-10-20T00:02:00Z", "9"),
+                          ("2026-10-20T00:03:00Z", "10"),
+                          ("2026-10-20T00:03:30Z", "9")):
+            with self.subTest(at=at, grade=grade):
+                ingest.import_capture(self.db, observe(at, grade), now=NOW)
+                self.assertIsNone(self.db.execute("SELECT unit_id FROM listing").fetchone()[0])
+                self.assertEqual(core.offers(self.db, CARD, now=NOW), [])
+                report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+                self.assertEqual(report["platforms"][0]["groups"], [])
+                self.assertIsNone(report["platforms"][0]["listing_events"][-1]["unit_id"])
+        unit = core._unit(self.db, CARD, "PSA", "9", "graded")
+        self.db.commit()
+        with patch.object(core, "utcnow", return_value="2026-10-20T00:04:00Z"):
+            core.override_resolution(self.db, SOURCE, "m100", unit, "synthetic reviewer", "reviewed changed unit")
+        ingest.import_capture(self.db, observe("2026-10-20T00:04:30Z", "9"), now=NOW)
+        self.assertEqual(self.db.execute("SELECT unit_id FROM listing").fetchone()[0], unit)
+        report = build_report(self.path, CARD, now=NOW, sources=[SOURCE])
+        self.assertEqual([group["unit_id"] for group in report["platforms"][0]["groups"]], [unit])
+        self.assertEqual(self.counts()["observation"], 6)
+
     def test_exact_replay_preserves_review_of_structured_grade(self):
         from pokemon_index.market_tracking import build_report
         capture = self.capture()

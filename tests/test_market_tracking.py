@@ -80,6 +80,19 @@ class TrackingReportTests(unittest.TestCase):
         self.assertIs(offer["quality"]["physical_condition_assessed"], False)
         self.assertEqual(offer["quality_evidence_ref"], offer["evidence_ref"])
 
+    def test_current_binding_cannot_override_newer_unresolved_resolution(self):
+        with closing(core.connect(self.path)) as db:
+            listing = db.execute("SELECT source,last_seen FROM listing WHERE native_id='psa10-a'").fetchone()
+            db.execute("""INSERT INTO resolution_record
+                (source,native_id,unit_id,method,rule_version,resolved_at,reason)
+                VALUES (?,'psa10-a',NULL,'unresolved','synthetic-review-hold',?,'review required')""",
+                       (listing["source"], listing["last_seen"]))
+            db.commit()
+        report = self.report()
+        self.assertNotIn("psa10-a", self.current_ids(report))
+        self.assertTrue(any(row["native_id"] == "psa10-a" and "latest effective resolution" in row["reason"]
+                            for row in report["excluded"]))
+
     def test_structured_grade_never_overrides_unsafe_or_conflicting_title(self):
         self.add_quality("psa10-a", {"grade_company": "PSA", "grade_value": "10"})
         for title in ("ピカチュウ SV2a 173/165 PSA9 鑑定品", "ピカチュウ SV2a 173/165 PSA10狙える",

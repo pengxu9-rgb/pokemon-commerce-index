@@ -181,6 +181,31 @@ class MarketplaceSourceTests(unittest.TestCase):
         self.assertIsNone(row["marketplace_quality"]["grade_company"])
         self.assertEqual(row["title"], item["title"])
 
+    def test_unreadable_slab_titles_require_review_without_inventing_a_grade(self):
+        for name in ("mercari", "snkrdunk"):
+            for cue in ("slab", "graded", "graded slab", "PSA unknown"):
+                with self.subTest(source=name, cue=cue):
+                    payload = capture(name)
+                    item = payload["payload"]["listings"][0]
+                    item.pop("grade_company")
+                    item["title"] += " " + cue
+                    row = sources.normalize_capture(payload)["observations"][0]
+                    self.assertEqual(row["resolution_gate"], "photo_required")
+                    self.assertIsNone(row["marketplace_quality"]["grade_company"])
+                    self.assertIsNone(row["marketplace_quality"]["grade_value"])
+                    self.assertEqual(row["title"], item["title"])
+
+    def test_structured_raw_claim_cannot_contradict_unreadable_slab_title(self):
+        for name in ("mercari", "snkrdunk"):
+            for cue in ("slab", "graded", "graded slab", "PSA unknown"):
+                with self.subTest(source=name, cue=cue):
+                    payload = capture(name)
+                    item = payload["payload"]["listings"][0]
+                    self.assertEqual(item["grade_company"], "RAW")
+                    item["title"] += " " + cue
+                    with self.assertRaisesRegex(ValueError, "raw claim"):
+                        sources.normalize_capture(payload)
+
     def test_malformed_native_descriptors_fail_validation_and_paid_rows_are_separate(self):
         payload = capture("ebay"); payload["payload"]["itemSummaries"][0]["localizedAspects"] = None
         with self.assertRaises(ValueError):
@@ -253,6 +278,25 @@ class MarketplaceSourceTests(unittest.TestCase):
                 sources.normalize_capture(payload)
         payload = capture("ebay"); payload["payload"]["itemSummaries"][0]["price"]["value"] = "90071992547409.93"
         self.assertEqual(sources.normalize_capture(payload)["observations"][0]["price_minor"], 9007199254740993)
+
+    def test_ebay_converted_prices_cannot_become_native_search_or_detail_asks(self):
+        conversions = (
+            {"convertedFromCurrency": "GBP"},
+            {"convertedFromValue": "25.00"},
+            {"convertedFromCurrency": "GBP", "convertedFromValue": "25.00"},
+            {"convertedFromCurrency": "USD", "convertedFromValue": "29.95"},
+        )
+        for kind in ("search", "detail"):
+            for conversion in conversions:
+                with self.subTest(kind=kind, conversion=conversion):
+                    payload = capture("ebay")
+                    item = payload["payload"]["itemSummaries"][0]
+                    item["price"].update(conversion)
+                    if kind == "detail":
+                        payload.update(payload_schema="ebay.browse.item.v1", payload=item,
+                                       request={"kind": "detail", "native_ids": [item["itemId"]]})
+                    with self.assertRaises(ValueError):
+                        sources.normalize_capture(payload)
 
 
 if __name__ == "__main__":

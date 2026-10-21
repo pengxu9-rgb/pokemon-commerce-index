@@ -79,6 +79,53 @@ def _check_isolation(db, fixture):
             raise ValueError("synthetic captures require a database isolated from real inventory")
 
 
+def _ingest_observation(db, row, source, instant):
+    """Keep immutable source receipts separate from current binding decisions.
+
+    Older evidence may extend history but cannot change the latest binding.
+    A newly changed unit is retained on review hold instead of rolling back
+    the very evidence that invalidated the previous current ask.
+    """
+    key = (source, row["native_id"])
+    at = core.parse_time(row["observed_at"]).isoformat()
+    exists = db.execute("SELECT 1 FROM observation WHERE source=? AND native_id=? AND observed_at=?",
+                        (*key, at)).fetchone()
+    prior = db.execute("SELECT unit_id,resolution_method,last_seen FROM listing WHERE source=? AND native_id=?",
+                       key).fetchone()
+    older = bool(not exists and prior and core.parse_time(at) < core.parse_time(prior["last_seen"]))
+    candidate = core.resolve(db, row)[0] if not exists and prior and prior["unit_id"] and not older else None
+    changed = bool(candidate and candidate != prior["unit_id"])
+    latest_resolution = db.execute("""SELECT unit_id,rule_version FROM resolution_record
+        WHERE source=? AND native_id=? ORDER BY resolved_at DESC,id DESC LIMIT 1""", key).fetchone()
+    unit_change_hold = bool(prior and prior["unit_id"] is None and latest_resolution
+                           and latest_resolution["unit_id"] is None
+                           and latest_resolution["rule_version"] == "marketplace-unit-change-v1")
+    last_resolution = db.execute("SELECT COALESCE(MAX(id),0) FROM resolution_record WHERE source=? AND native_id=?",
+                                 key).fetchone()[0]
+    if older or changed:
+        # The frozen importer otherwise reattaches older units or rejects a
+        # changed unit. All temporary state remains inside our owned transaction.
+        db.execute("UPDATE listing SET unit_id=NULL,resolution_method='unresolved' WHERE source=? AND native_id=?", key)
+    counts = worker._ingest(db, [row], source, instant)
+    if older:
+        db.execute("UPDATE listing SET unit_id=?,resolution_method=? WHERE source=? AND native_id=?",
+                   (prior["unit_id"], prior["resolution_method"], *key))
+        db.execute("DELETE FROM resolution_record WHERE source=? AND native_id=? AND id>?", (*key, last_resolution))
+    elif not exists and (changed or unit_change_hold or row.get("resolution_gate") == "photo_required"):
+        listing = db.execute("SELECT unit_id FROM listing WHERE source=? AND native_id=?", key).fetchone()
+        if listing["unit_id"] or changed or unit_change_hold:
+            db.execute("UPDATE listing SET unit_id=NULL,resolution_method='unresolved' WHERE source=? AND native_id=?", key)
+            db.execute("DELETE FROM resolution_record WHERE source=? AND native_id=? AND id>?", (*key, last_resolution))
+            db.execute("""INSERT INTO resolution_record
+                (source,native_id,unit_id,method,rule_version,resolved_at,reason)
+                VALUES (?,?,NULL,'unresolved',?,?,?)""",
+                       (*key, "marketplace-unit-change-v1" if changed or unit_change_hold else "marketplace-quality-v1",
+                        at, "changed priceable unit requires human review" if changed or unit_change_hold
+                        else "new source observation requires identity/grade review"))
+            counts["unresolved"] = counts["imported"]
+    return counts
+
+
 def import_capture(db, capture: dict, *, now: str | None = None) -> dict:
     """Commit observations, immutable receipts, claim evidence and coverage together."""
     from .marketplace_sources import normalize_capture
@@ -104,24 +151,11 @@ def import_capture(db, capture: dict, *, now: str | None = None) -> dict:
         if observed > instant or observed < instant - timedelta(days=policy["retention_days"]):
             raise ValueError("capture outside permitted time window")
         _check_isolation(db, fixture)
-        review_rows = [row for row in batch["observations"]
-                       if row.get("resolution_gate") == "photo_required" and not db.execute(
-                           "SELECT 1 FROM observation WHERE source=? AND native_id=? AND observed_at=?",
-                           (source, row["native_id"], core.parse_time(row["observed_at"]).isoformat())).fetchone()]
-        counts = worker._ingest(db, batch["observations"], source, instant)
-        for row in review_rows:
-            listing = db.execute("SELECT unit_id,last_seen FROM listing WHERE source=? AND native_id=?",
-                                 (source, row["native_id"])).fetchone()
-            if listing["unit_id"] and core.parse_time(listing["last_seen"]) == core.parse_time(row["observed_at"]):
-                # New evidence supersedes an older human binding; exact replay
-                # must preserve review performed after the original import.
-                db.execute("UPDATE listing SET unit_id=NULL,resolution_method='unresolved' WHERE source=? AND native_id=?",
-                           (source, row["native_id"]))
-                db.execute("""INSERT INTO resolution_record
-                    (source,native_id,unit_id,method,rule_version,resolved_at,reason)
-                    VALUES (?,?,NULL,'unresolved','marketplace-quality-v1',?,?)""",
-                           (source, row["native_id"], core.parse_time(row["observed_at"]).isoformat(),
-                            "new source observation requires identity/grade review"))
+        counts = {"imported": 0, "unresolved": 0, "duplicates": 0}
+        for row in batch["observations"]:
+            result = _ingest_observation(db, row, source, instant)
+            for field in counts:
+                counts[field] += result[field]
         for row in batch["observations"]:
             quality = row["marketplace_quality"]
             if quality.get("certificate_verified") is not False or quality.get("authenticity_verified") is not False:
