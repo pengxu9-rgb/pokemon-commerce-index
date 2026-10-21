@@ -13,6 +13,7 @@ MERCARI = "https://jp.mercari.com/item/m97669071757"
 SNKR = "https://snkrdunk.com/apparels/128089"
 SNKR_USED = SNKR + "/used/30335981"
 EBAY = "https://www.ebay.com/itm/123456789012"
+EBAY_BROWSE = "https://www.ebay.com/b/Pikachu-173-165-Sv-Scarlet-Violet-151/2536/bn_7124578235"
 STAMP = datetime(2026, 10, 21, 1, 0, tzinfo=timezone.utc)
 ROBOTS = "User-agent: *\nAllow: /\n"
 
@@ -151,6 +152,122 @@ class PublicMarketplaceCrawlTests(unittest.TestCase):
         result = Crawler(fetch, renderer=rendered).search("mercari", "Charizard")
         self.assertEqual(result["message"], "robots_disallowed")
         self.assertEqual(rendered.calls, [])
+
+    def test_renderer_known_failure_survives_without_exposing_unknown_exception(self):
+        search = "https://jp.mercari.com/search?keyword=Charizard"
+        def known(url):
+            raise CrawlBlocked("browser_renderer_navigation_timeout")
+        def unknown(url):
+            raise RuntimeError("secret-private-internal-path")
+        for renderer, code in ((known, "browser_renderer_navigation_timeout"), (unknown, "public_renderer_failed")):
+            crawler, _ = self.crawler({search: "<div id='app'></div>"}, renderer=renderer)
+            result = crawler.search("mercari", "Charizard")
+            self.assertEqual(result["message"], code)
+            self.assertNotIn("secret", json.dumps(result))
+
+    def test_renderer_only_valid_closed_diagnostics_survive_search(self):
+        from tests.test_marketplace_browser import diagnostics
+        search = "https://jp.mercari.com/search?keyword=Charizard"
+        for dto, code in ((diagnostics(), "browser_renderer_navigation_timeout"),
+                          (diagnostics(headers="private-token"), "browser_renderer_invalid_response")):
+            def renderer(url):
+                error = CrawlBlocked("browser_renderer_navigation_timeout")
+                error.diagnostics = dto
+                raise error
+            crawler, _ = self.crawler({search: "<div id='app'></div>"}, renderer=renderer)
+            result = crawler.search("mercari", "Charizard")
+            self.assertEqual(result["message"], code)
+            if code == "browser_renderer_navigation_timeout":
+                self.assertEqual(result["diagnostics"], dto)
+            else:
+                self.assertNotIn("diagnostics", result)
+            self.assertNotIn("private-token", json.dumps(result))
+
+    def test_mercari_primary_preload_discovers_only_hint_then_fresh_detail_without_browser(self):
+        search = "https://jp.mercari.com/search?keyword=Pikachu+173%2F165"
+        preload = ':HL["https://static.mercdn.net/thumb/item/webp/m97669071757_1.jpg?123","image",{"fetchPriority":"high"}]\n'
+        script = "<script>self.__next_f.push(" + json.dumps([1, preload]) + ")</script>"
+        def renderer(url):
+            raise AssertionError("primary hint must avoid browser")
+        crawler, fetch = self.crawler({search: script, MERCARI: product_html(title="Pikachu 173/165", price="2500")}, renderer=renderer)
+        result = crawler.search("mercari", "Pikachu 173/165")
+        self.assertEqual(result["message"], "public_primary_image_preload")
+        self.assertEqual([(r["url"], r["price_minor"]) for r in result["listings"]], [(MERCARI, 2500)])
+        self.assertEqual(fetch.calls, ["https://jp.mercari.com/robots.txt", search, MERCARI])
+
+    def test_mercari_preload_wrong_name_or_number_never_returns_listing_or_retries_browser(self):
+        search = "https://jp.mercari.com/search?keyword=Pikachu+173%2F165"
+        preload = ':HL["https://static.mercdn.net/thumb/item/webp/m97669071757_1.jpg?123","image",{"fetchPriority":"high"}]\n'
+        script = "<script>self.__next_f.push(" + json.dumps([1, preload]) + ")</script>"
+        def renderer(url):
+            raise AssertionError("PDP mismatch is not authority to retry browser")
+        for title in ("Charizard 173/165", "Pikachu 025/165"):
+            crawler, fetch = self.crawler({search: script, MERCARI: product_html(title=title)}, renderer=renderer)
+            result = crawler.search("mercari", "Pikachu 173/165")
+            self.assertEqual(result["listings"], [])
+            self.assertEqual(len(fetch.calls), 3)
+
+    def test_mercari_primary_preload_cannot_bypass_item_robots_rule(self):
+        search = "https://jp.mercari.com/search?keyword=Pikachu+173%2F165"
+        preload = ':HL["https://static.mercdn.net/thumb/item/webp/m97669071757_1.jpg?123","image",{"fetchPriority":"high"}]\n'
+        script = "<script>self.__next_f.push(" + json.dumps([1, preload]) + ")</script>"
+        fetch = FixtureFetch({search: script}, robots="User-agent: *\nDisallow: /item/*\n")
+        result = Crawler(fetch).search("mercari", "Pikachu 173/165")
+        self.assertEqual(result["listings"], [])
+        self.assertEqual(result["errors"][0]["message"], "robots_disallowed")
+        self.assertEqual(fetch.calls, ["https://jp.mercari.com/robots.txt", search])
+
+    def test_ebay_configured_browse_avoids_search_and_requires_fresh_detail_money(self):
+        html = f"<title>Pikachu public category</title><a href='{EBAY}?itmmeta=track&amp;hash=item123&amp;itmprp=enc%3A1'>Pikachu 173/165 PSA 10 $1</a>"
+        fetch = FixtureFetch({EBAY_BROWSE: html, EBAY: product_html(title="Pikachu 173/165 PSA 10", price="95.50", currency="USD")},
+                             robots="User-agent: *\nDisallow: /sch/\nDisallow: /b/*?*_nkw\nDisallow: /itm/*?var=\n")
+        result = Crawler(fetch, authorized_sources=["ebay_us"], ebay_browse_urls=[EBAY_BROWSE]).search("ebay_us", "Pikachu 173/165 PSA 10")
+        self.assertEqual(result["message"], "query_bound_public_browse_research")
+        self.assertEqual([(r["url"], r["price_minor"], r["currency"]) for r in result["listings"]], [(EBAY, 9550, "USD")])
+        self.assertEqual(fetch.calls, ["https://www.ebay.com/robots.txt", EBAY_BROWSE, EBAY])
+        self.assertFalse(result["listings"][0]["certificate_verified"])
+
+    def test_ebay_browse_filters_name_number_variant_and_caps_three_detail_requests(self):
+        urls = [f"https://www.ebay.com/itm/{123456789012+i}" for i in range(8)]
+        links = f"<a href='{urls[0]}'>Charizard 173/165</a><a href='{urls[1]}'>Pikachu 025/165</a><a href='{urls[2]}?var=99'>Pikachu 173/165</a>"
+        links += "".join(f"<a href='{url}?itmmeta=x'><img alt='Pikachu 173/165 PSA 10'></a>" for url in urls[3:])
+        pages = {EBAY_BROWSE: links}
+        pages.update({url: product_html(title="Pikachu 173/165", currency="USD", price="10") for url in urls})
+        crawler, fetch = self.crawler(pages, authorized_sources=["ebay_us"], ebay_browse_urls=[EBAY_BROWSE])
+        result = crawler.search("ebay_us", "Pikachu 173/165", limit=5)
+        self.assertEqual([r["url"] for r in result["listings"]], urls[3:6])
+        self.assertEqual(fetch.calls[2:], urls[3:6])
+        self.assertEqual(len(fetch.calls), 5)
+
+    def test_ebay_browse_anchor_does_not_authorize_wrong_detail_identity(self):
+        crawler, fetch = self.crawler({EBAY_BROWSE: f"<a href='{EBAY}'>Pikachu 173/165</a>",
+                                       EBAY: product_html(title="Charizard 173/165", currency="USD")},
+                                      authorized_sources=["ebay_us"], ebay_browse_urls=[EBAY_BROWSE])
+        result = crawler.search("ebay_us", "Pikachu 173/165")
+        self.assertEqual(result["listings"], [])
+        self.assertEqual(result["message"], "public_browse_has_no_matching_listing_links")
+        self.assertEqual(len(fetch.calls), 3)
+
+    def test_ebay_browse_and_detail_each_obey_wildcard_robots_without_fallback(self):
+        pages = {EBAY_BROWSE: f"<a href='{EBAY}'>Pikachu 173/165</a>", EBAY: product_html()}
+        for rule, expected in (("/b/*bn_7124578235$", ["https://www.ebay.com/robots.txt"]),
+                               ("/itm/*", ["https://www.ebay.com/robots.txt", EBAY_BROWSE])):
+            fetch = FixtureFetch(pages, robots="User-agent: *\nDisallow: " + rule + "\n")
+            result = Crawler(fetch, authorized_sources=["ebay_us"], ebay_browse_urls=[EBAY_BROWSE]).search("ebay_us", "Pikachu 173/165")
+            self.assertEqual(result["listings"], [])
+            self.assertEqual(fetch.calls, expected)
+            self.assertNotIn("/sch/", json.dumps(fetch.calls))
+
+    def test_ebay_browse_403_is_terminal_and_requires_card_context_before_any_fetch(self):
+        pages = {EBAY_BROWSE: {"status": 403, "body": "<title>ErrorPage | eBay</title>"}}
+        crawler, fetch = self.crawler(pages, authorized_sources=["ebay_us"], ebay_browse_urls=[EBAY_BROWSE])
+        result = crawler.search("ebay_us", "Pikachu 173/165")
+        self.assertEqual(result["message"], "http_403")
+        self.assertEqual(fetch.calls, ["https://www.ebay.com/robots.txt", EBAY_BROWSE])
+        for query in ("Pikachu", "173/165 PSA 10"):
+            fetch.calls.clear()
+            self.assertEqual(crawler.search("ebay_us", query)["message"], "query_mapping_required")
+            self.assertEqual(fetch.calls, [])
 
     def test_snkr_unmapped_name_only_discovery_is_explicit(self):
         crawler, fetch = self.crawler()

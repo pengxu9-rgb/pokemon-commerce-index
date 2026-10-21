@@ -4,6 +4,7 @@
 // hidden endpoint calls, or CAPTCHA solving are performed by this transport.
 const dns = require('node:dns/promises');
 const net = require('node:net');
+const { performance } = require('node:perf_hooks');
 const RESOURCE_HOSTS = new Set(['jp.mercari.com', 'api.mercari.jp',
   'web-jp-assets-v2.mercdn.net', 'web-jp-assets.mercdn.net', 'static.mercdn.net', 'static.jp.mercari.com']);
 
@@ -46,28 +47,169 @@ function isPublicAddress(address) {
   return net.isIPv6(address) && /^[23][0-9a-f]{3}:/i.test(address) && !/^2001:db8:/i.test(address);
 }
 
-async function buildHostRules(lookup = dns.lookup) {
-  const hosts = new Set();
-  const rules = [];
-  for (const host of RESOURCE_HOSTS) {
-    let addresses;
-    try { addresses = await lookup(host, { all: true }); } catch { continue; }
-    if (!addresses.length || addresses.some(a => !isPublicAddress(a.address))) continue;
-    // Pin Chrome's lookup to the checked IPv4 address; unknown hosts cannot use
-    // Chrome's independent resolver to bypass the public-address check.
-    const chosen = addresses.find(a => net.isIPv4(a.address));
-    if (!chosen) continue;
-    hosts.add(host);
-    rules.push(`MAP ${host} ${chosen.address}`);
-  }
-  if (!hosts.has('jp.mercari.com')) throw Error('public_source_dns_unavailable');
-  rules.push('MAP * ~NOTFOUND');
-  return { hosts, rules: rules.join(', ') };
+function bounded(promise, milliseconds, code) {
+  let timer;
+  return Promise.race([promise, new Promise((_, reject) => {
+    timer = setTimeout(() => reject(Error(code)), milliseconds);
+  })]).finally(() => clearTimeout(timer));
+}
+
+async function buildHostRules(lookup = dns.lookup, timeoutMs = 2000) {
+  // A slow optional asset host must not serially consume the render deadline.
+  // Every host still needs a checked public address before Chrome may use it.
+  const resolved = await Promise.all([...RESOURCE_HOSTS].map(async host => {
+    try {
+      const addresses = await bounded(Promise.resolve().then(() => lookup(host, { all: true })),
+        timeoutMs, 'browser_renderer_dns_unavailable');
+      if (!Array.isArray(addresses) || !addresses.length ||
+          addresses.some(a => !a || !isPublicAddress(a.address))) return null;
+      const chosen = addresses.find(a => net.isIPv4(a.address));
+      return chosen ? [host, chosen.address] : null;
+    } catch { return null; }
+  }));
+  const entries = resolved.filter(Boolean);
+  const hosts = new Set(entries.map(([host]) => host));
+  if (!hosts.has('jp.mercari.com')) throw Error('browser_renderer_dns_unavailable');
+  return { hosts, rules: entries.map(([host, address]) => `MAP ${host} ${address}`)
+    .concat('MAP * ~NOTFOUND').join(', ') };
 }
 
 function launchOptions(env = process.env) {
   return { ...(env.POKEMON_PUBLIC_BROWSER_BUNDLED === '1' ? {} : { channel: 'chrome' }),
     headless: true, chromiumSandbox: true };
+}
+
+const ERROR_CODES = new Set([
+  'browser_renderer_dns_unavailable', 'browser_renderer_navigation_timeout',
+  'browser_renderer_navigation_failed', 'browser_renderer_source_unavailable',
+  'browser_renderer_challenge', 'browser_renderer_no_listing_links',
+  'browser_renderer_request_budget_exhausted', 'browser_renderer_deadline_exhausted',
+  'browser_renderer_response_too_large', 'browser_renderer_failed',
+]);
+
+async function renderPublicPage(value, maxBytes, {
+  chromium, lookup = dns.lookup, now = () => performance.now(),
+  deadlineMs = 20000, dnsTimeoutMs = 2000, maxRequests = 64,
+} = {}) {
+  const started = now();
+  const diagnostics = { schema: 'pokemon.public-browser-diagnostics.v1', stage: 'validation',
+    elapsed_ms: 0, requests: 0, allowed_requests: 0, blocked_requests: 0,
+    failed_requests: 0, responses: 0, pinned_hosts: 0, listing_links: 0,
+    search_status: null, search_api_status: null, blocked_api_requests: 0 };
+  let browser, timer, stopped = false, failure, rejectStop;
+  const stopPromise = new Promise((_, reject) => { rejectStop = reject; });
+  const stop = code => {
+    if (stopped) return;
+    stopped = true;
+    failure = Error(code);
+    rejectStop(failure);
+    if (browser) browser.close().catch(() => {});
+  };
+  const remaining = ceiling => {
+    if (stopped) throw failure;
+    const budget = Math.floor(deadlineMs - (now() - started));
+    if (budget <= 0) throw Error('browser_renderer_deadline_exhausted');
+    return Math.max(1, Math.min(ceiling, budget));
+  };
+  const work = async () => {
+    const target = targetUrl(value);
+    if (!Number.isInteger(maxBytes) || maxBytes < 1024 || maxBytes > 1_000_000) throw Error('invalid_bound');
+    diagnostics.stage = 'dns';
+    const pinned = await buildHostRules(lookup, Math.min(dnsTimeoutMs, remaining(dnsTimeoutMs)));
+    diagnostics.pinned_hosts = pinned.hosts.size;
+    diagnostics.stage = 'launch';
+    browser = await chromium.launch({ ...launchOptions(), timeout: remaining(5000),
+      args: [`--host-resolver-rules=${pinned.rules}`] });
+    // A launch finishing after the whole-operation timer still owns a process.
+    // Close it before the abandoned work promise can proceed to a context.
+    if (stopped) {
+      try { await bounded(browser.close(), 500, 'close_timeout'); } catch {}
+      throw failure;
+    }
+    remaining(1);
+    const context = await browser.newContext({ serviceWorkers: 'block', acceptDownloads: false });
+    await context.route('**/*', route => {
+      const request = route.request();
+      if (stopped) return route.abort();
+      diagnostics.requests++;
+      // Include denied requests in a second cap so a page cannot create an
+      // unlimited stream of blocked media or analytics requests either.
+      if (diagnostics.requests > maxRequests * 2) {
+        stop('browser_renderer_request_budget_exhausted');
+        return route.abort();
+      }
+      if (!resourceAllowed(request, pinned.hosts) ||
+          (request.isNavigationRequest?.() && request.url() !== target)) {
+        diagnostics.blocked_requests++;
+        try { if (new URL(request.url()).hostname === 'api.mercari.jp') diagnostics.blocked_api_requests++; } catch {}
+        return route.abort();
+      }
+      if (diagnostics.allowed_requests >= maxRequests) {
+        stop('browser_renderer_request_budget_exhausted');
+        return route.abort();
+      }
+      diagnostics.allowed_requests++;
+      return route.continue();
+    });
+    const page = await context.newPage();
+    page.on('requestfailed', () => { if (!stopped) diagnostics.failed_requests++; });
+    page.on('response', response => {
+      if (stopped) return;
+      diagnostics.responses++;
+      try {
+        const u = new URL(response.url());
+        if (u.hostname === 'api.mercari.jp' && u.pathname === '/v2/entities:search') {
+          diagnostics.search_api_status = response.status();
+        }
+      } catch {}
+    });
+    diagnostics.stage = 'navigation';
+    let response;
+    try {
+      response = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: remaining(12000) });
+    } catch (error) {
+      if (stopped) throw failure;
+      throw Error(error && error.name === 'TimeoutError'
+        ? 'browser_renderer_navigation_timeout' : 'browser_renderer_navigation_failed');
+    }
+    diagnostics.search_status = response ? response.status() : null;
+    if (!response || response.status() !== 200 || page.url() !== target) throw Error('browser_renderer_source_unavailable');
+    diagnostics.stage = 'hydration';
+    // Only public page rendering; do not click login, purchase or challenge UI.
+    try { await page.locator('a[href*="/item/m"]').first().waitFor({ timeout: remaining(5000) }); } catch (error) {
+      if (stopped) throw failure;
+      if (!error || error.name !== 'TimeoutError') throw Error('browser_renderer_failed');
+    }
+    remaining(1);
+    diagnostics.stage = 'inspection';
+    const text = await page.locator('body').innerText({ timeout: remaining(1000) });
+    if (/verify you are human|unusual traffic|access denied|captcha|ロボットではない/i.test(text)) throw Error('browser_renderer_challenge');
+    const links = await page.locator('a[href]').evaluateAll(nodes => [...new Set(nodes.map(n => n.href)
+      .filter(u => /^https:\/\/jp\.mercari\.com\/item\/m[0-9]+$/.test(u)))].slice(0, 25));
+    diagnostics.listing_links = links.length;
+    if (!links.length) throw Error('browser_renderer_no_listing_links');
+    // Only discovery coordinates leave the child. Page text, headers, cookies,
+    // search request bodies, and arbitrary exception messages are never emitted.
+    const body = '<html><body>' + links.map(u => `<a href="${u}">Listing</a>`).join('') + '</body></html>';
+    if (Buffer.byteLength(body, 'utf8') > maxBytes) throw Error('browser_renderer_response_too_large');
+    remaining(1);
+    diagnostics.stage = 'complete';
+    return { status: 200, body, url: target, headers: { 'content-type': 'text/html' } };
+  };
+  timer = setTimeout(() => stop('browser_renderer_deadline_exhausted'), deadlineMs);
+  let result;
+  try { result = await Promise.race([work(), stopPromise]); }
+  catch (error) {
+    result = { error: { code: ERROR_CODES.has(error && error.message) ? error.message : 'browser_renderer_failed' } };
+  } finally {
+    stopped = true;
+    clearTimeout(timer);
+    if (browser) {
+      try { await bounded(browser.close(), 500, 'close_timeout'); } catch {}
+    }
+    diagnostics.elapsed_ms = Math.max(0, Math.min(22000, Math.ceil(now() - started)));
+  }
+  return { ...result, diagnostics };
 }
 
 async function main() {
@@ -84,33 +226,13 @@ async function main() {
     } finally { await browser.close(); }
     return;
   }
-  const target = targetUrl(process.argv[2]);
-  const maxBytes = Number(process.argv[3]);
-  if (!Number.isInteger(maxBytes) || maxBytes < 1024 || maxBytes > 1_000_000) throw Error('invalid_bound');
-  const pinned = await buildHostRules();
-  const browser = await chromium.launch({ ...launchOptions(),
-    args: [`--host-resolver-rules=${pinned.rules}`] });
-  try {
-    const context = await browser.newContext({ serviceWorkers: 'block', acceptDownloads: false });
-    await context.route('**/*', route => resourceAllowed(route.request(), pinned.hosts) ? route.continue() : route.abort());
-    const page = await context.newPage();
-    const response = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 12000 });
-    if (!response || response.status() !== 200 || page.url() !== target) throw Error('source_unavailable');
-    // Only public page rendering; do not click login, purchase or challenge UI.
-    try { await page.locator('a[href*="/item/m"]').first().waitFor({ timeout: 7000 }); } catch {}
-    const text = await page.locator('body').innerText({ timeout: 1000 });
-    if (/verify you are human|unusual traffic|access denied|captcha|ロボットではない/i.test(text)) throw Error('source_challenge');
-    const links = await page.locator('a[href]').evaluateAll(nodes => [...new Set(nodes.map(n => n.href)
-      .filter(u => /^https:\/\/jp\.mercari\.com\/item\/m[0-9]+$/.test(u)))].slice(0, 25));
-    // The consumer needs discovery coordinates only; omit page scripts/media and
-    // all unrelated content from the rendered transport response.
-    const body = '<html><body>' + links.map(u => `<a href="${u}">Listing</a>`).join('') + '</body></html>';
-    if (Buffer.byteLength(body, 'utf8') > maxBytes) throw Error('response_too_large');
-    process.stdout.write(JSON.stringify({ status: 200, body, url: target, headers: { 'content-type': 'text/html' } }));
-  } finally {
-    await browser.close();
-  }
+  const result = await renderPublicPage(process.argv[2], Number(process.argv[3]), { chromium });
+  process.stdout.write(JSON.stringify(result));
+  if (result.error) process.exitCode = 1;
 }
 
-module.exports = { targetUrl, resourceAllowed, isPublicAddress, buildHostRules, launchOptions };
-if (require.main === module) main().catch(() => { process.exitCode = 1; });
+module.exports = { targetUrl, resourceAllowed, isPublicAddress, buildHostRules, launchOptions, renderPublicPage };
+if (require.main === module) main().catch(() => {
+  process.stdout.write(JSON.stringify({ error: { code: 'browser_renderer_failed' } }));
+  process.exitCode = 1;
+});
