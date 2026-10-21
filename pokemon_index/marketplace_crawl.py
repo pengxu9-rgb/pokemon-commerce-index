@@ -100,13 +100,30 @@ class _Page(HTMLParser):
         self.inline_scripts: list[str] = []
         self.title = ""
         self.visible_text: list[str] = []
+        self.primary_stock_text: list[str] = []
+        self._elements: list[dict] = []
         self.login = False
         self.meta: dict[str, list[str]] = {}
         self.canonicals: list[str] = []
         self.feed(body)
+        for element in self._elements:
+            if element["stock"] and not element["hidden"]:
+                self.primary_stock_text.append(" ".join(element["text"]))
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        # Stock controls/headings are evidence only when visible and outside
+        # navigation/recommendations. Script data and hidden component copies
+        # must not override the current listing's displayed state.
+        hidden = (tag in {"script", "style", "template", "noscript", "nav", "aside", "footer"}
+                  or "hidden" in attrs or str(attrs.get("aria-hidden", "")).lower() == "true"
+                  or bool(re.search(r"(?:display\s*:\s*none|visibility\s*:\s*hidden)", str(attrs.get("style", "")), re.I))
+                  or bool(re.search(r"(?:^|[\s_-])(?:related|recommend\w*|similar|carousel)(?:$|[\s_-])",
+                                    " ".join(str(attrs.get(k, "")) for k in ("id", "class", "aria-label")), re.I)))
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}:
+            self._elements.append({"tag": tag, "hidden": hidden or bool(self._elements and self._elements[-1]["hidden"]),
+                                   "stock": tag in {"h1", "h2", "h3", "h4", "h5", "h6", "button"}
+                                   or str(attrs.get("role", "")).lower() in {"button", "status", "alert"}, "text": []})
         if tag == "script":
             self._in_script, self._inline = True, []
         if tag == "a" and isinstance(attrs.get("href"), str):
@@ -124,6 +141,13 @@ class _Page(HTMLParser):
             self.canonicals.append(attrs["href"])
 
     def handle_endtag(self, tag):
+        for index in range(len(self._elements) - 1, -1, -1):
+            if self._elements[index]["tag"] == tag:
+                for element in self._elements[index:]:
+                    if element["stock"] and not element["hidden"]:
+                        self.primary_stock_text.append(" ".join(element["text"]))
+                del self._elements[index:]
+                break
         if tag == "script" and self._in_script:
             self.inline_scripts.append("".join(self._inline))
             self._in_script = False
@@ -134,6 +158,10 @@ class _Page(HTMLParser):
             self._title = False
 
     def handle_data(self, data):
+        if not self._elements or not self._elements[-1]["hidden"]:
+            for element in self._elements:
+                if element["stock"] and not element["hidden"]:
+                    element["text"].append(data)
         if not self._in_script:
             self.visible_text.append(data)
         if self._in_script:
@@ -311,6 +339,17 @@ def _money(offer):
         return int(minor), currency
     except (InvalidOperation, ValueError):
         return None, None
+
+
+def _primary_sold_out(page):
+    # Match explicit unavailable/ended listing statuses, rather than seller prose or
+    # recommendation snippets containing the words "sold out".
+    return any(re.fullmatch(
+        r"(?:(?:(?:this\s+)?(?:item|listing|product)\s+(?:(?:is|has)\s+)?)|(?:この)?商品は)?"
+        r"(?:currently\s+)?(?:sold(?:\s*out)?|out\s*of\s*stock|unavailable|ended|"
+        r"no\s+longer\s+available|not\s+(?:available|for\s+sale)|"
+        r"売り切れ(?:ました|済み)?|在庫(?:切れ|なし)|販売終了|售罄|已售出)[\s.!。！]*",
+        unicodedata.normalize("NFKC", text).strip(), re.I) for text in page.primary_stock_text)
 
 
 class _PinnedHTTPS(http.client.HTTPSConnection):
@@ -501,20 +540,27 @@ class Crawler:
                 reasons.append("product_url_mismatch")
         valid = [o for o in offers if isinstance(o, dict) and _typed(o, "Offer")]
         rsc_item = _snkr_used_item(page, url) if snkr_used else None
+        rsc_money = []
+        if rsc_item:
+            amount, displayed = rsc_item.get("price"), rsc_item.get("commaPrice")
+            # Only the path-bound used item and its exact yen display establish
+            # listing money. A related product's catalog floor is another scope.
+            if type(amount) is int and amount > 0 and displayed == "¥" + format(amount, ","):
+                rsc_money = [{"price": amount, "priceCurrency": "JPY"}]
         currency_basis = "explicit_price_currency"
-        if not products:
-            # Paired explicit OpenGraph money is useful research even with unknown stock.
-            meta_price = _meta_one(page, "product:price:amount")
-            meta_currency = _meta_one(page, "product:price:currency")
-            if meta_price is not None or meta_currency is not None:
-                valid = [{"@type": "Offer", "price": meta_price, "priceCurrency": meta_currency}]
-            elif rsc_item:
-                amount = rsc_item.get("price")
-                displayed = rsc_item.get("commaPrice")
-                # Exact Japanese-site yen display plus the same item ID is the currency evidence.
-                if type(amount) is int and amount > 0 and displayed == "¥" + format(amount, ","):
-                    valid = [{"@type": "Offer", "price": amount, "priceCurrency": "JPY"}]
-                    currency_basis = "japanese_site_yen_display"
+        meta_amounts = set(page.meta.get("product:price:amount", []))
+        meta_currencies = set(page.meta.get("product:price:currency", []))
+        # All these fields describe the current page's primary product. Do not
+        # silently prefer one complete money claim over contradictory metadata.
+        # Prices nested under related products/catalog floors are not included.
+        if len(meta_currencies) > 1:
+            reasons.append("price_evidence_conflict")
+        meta_currency = next(iter(meta_currencies)) if len(meta_currencies) == 1 else None
+        meta_money = [{"price": amount, "priceCurrency": meta_currency} for amount in (meta_amounts or [None])]
+        meta_money = meta_money if meta_amounts or meta_currencies else []
+        if not products and not meta_money and rsc_money:
+            valid = [{"@type": "Offer", **rsc_money[0]}]
+            currency_basis = "japanese_site_yen_display"
         if len(valid) > 1:
             reasons.append("individual_offer_ambiguous")
         for offer in valid:
@@ -536,13 +582,25 @@ class Crawler:
         if (re.search(r"auction|\bbid(?:s|ding)?\b", json.dumps(product), re.I)
                 or re.search(auction_cues, visible, re.I)):
             reasons.append("auction_not_fixed_price")
-        amounts = {_money(o) for o in valid}
+        price_evidence = valid + meta_money + rsc_money
+        for offer in valid:
+            if isinstance(offer.get("priceSpecification"), dict):
+                price_evidence.append(offer["priceSpecification"])
+        amounts = {_money(o) for o in price_evidence}
+        if len(amounts) > 1:
+            reasons.append("price_evidence_conflict")
         price, currency = next(iter(amounts)) if len(amounts) == 1 and not reasons else (None, None)
         states = {str(o.get("availability", "")).rstrip("/").rsplit("/", 1)[-1] for o in valid}
         availability = {"InStock": "in_stock", "OutOfStock": "out_of_stock", "SoldOut": "out_of_stock"}.get(
             next(iter(states)) if len(states) == 1 else "", "unknown")
         if reasons:
             availability = "unknown"
+        # A primary, visible sold-out control/heading rules out stock even when
+        # a stale JSON-LD Offer still says InStock. It must not reach a provider.
+        if _primary_sold_out(page):
+            if "InStock" in states:
+                reasons.append("availability_evidence_conflict")
+            availability = "out_of_stock"
         status = {"in_stock": "on_sale", "out_of_stock": "sold_out"}.get(availability, "unknown")
         if status == "unknown":
             reasons.append("availability_unknown")

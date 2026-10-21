@@ -372,6 +372,116 @@ class IndexedBuyShipTests(unittest.TestCase):
         self.assertIsNone(result["quote"])
         self.assertEqual(self.calls, [])
 
+    def test_new_indexed_price_between_selection_binding_and_gate_stops_dispatch(self):
+        from pokemon_index import buyship_partner, core
+        original = buyship_partner.preview_quote
+
+        def newer_snapshot(db, **kwargs):
+            # The writer is a different connection from the adapter and gate.
+            self.clock.advance(1)
+            core.import_observations(self.db, [copy.deepcopy(self.producer.row) | {
+                "language": "ja", "price_minor": 13000, "observed_at": self.clock(),
+                "evidence_ref": "synthetic:test:new-price"}])
+            self.db.commit()
+            return original(db, **kwargs)
+
+        with patch.object(buyship_partner, "preview_quote", side_effect=newer_snapshot), \
+                patch.object(core, "utcnow", side_effect=self.clock):
+            result = self.run_loop()
+        self.assertEqual(result["status"], "manual_handoff_required")
+        self.assertEqual(result["quote_status"], "eligible_indexed_quote_unavailable")
+        self.assertEqual(result["offer"]["price_minor"], 12000)
+        self.assertIsNone(result["quote"])
+        self.assertEqual(self.calls, [])
+
+    def test_returned_quote_must_bind_selected_ask_and_full_indexed_snapshot(self):
+        from pokemon_index import buyship_partner
+        original = buyship_partner.preview_quote
+        for change in ("ask", "snapshot"):
+            with self.subTest(change=change):
+                self.calls.clear()
+
+                def changed_preview(db, **kwargs):
+                    quote = original(db, **kwargs)
+                    if change == "ask":
+                        quote["listing"]["ask"]["subunit_amount"] = 13000
+                    else:
+                        quote["evidence"]["listing_snapshot_sha256"] = "0" * 64
+                    # A self-consistent preview binding alone does not prove
+                    # that its observation was the user's selected observation.
+                    quote["evidence"]["binding_sha256"] = buyship_partner._preview_digest(quote)
+                    return quote
+
+                with patch.object(buyship_partner, "preview_quote", side_effect=changed_preview):
+                    result = self.run_loop()
+                self.assertEqual(result["status"], "manual_handoff_required")
+                self.assertIsNone(result["quote"])
+                self.assertIn("resolve", self.calls)
+                self.assertIn("quotes", self.calls)
+
+    def test_quality_change_after_resolve_stops_quote_dispatch(self):
+        from pokemon_index import marketplace_ingest
+        marketplace_ingest.initialize(self.db)
+        sender = self.client.sender
+
+        def changed(request):
+            result = sender(request)
+            if request.full_url.endswith("/resolve"):
+                quality = {"grade_company": "PSA", "grade_value": "10",
+                    "grade_evidence": "structured_seller_claim", "seller_condition": "case cracked",
+                    "evidence_ref": "synthetic:test:binding", "certificate_verified": False,
+                    "authenticity_verified": False}
+                self.db.execute("INSERT INTO marketplace_observation_quality VALUES (?,?,?,?,?)",
+                    ("mercari", "m1001", self.clock(), json.dumps(quality), "synthetic:test:binding"))
+                self.db.commit()
+            return result
+
+        self.client.sender = changed
+        result = self.run_loop()
+        self.assertEqual(self.calls, ["token", "resolve"])
+        self.assertEqual(result["status"], "manual_handoff_required")
+        self.assertIsNone(result["quote"])
+
+    def test_quote_expiring_during_post_provider_quality_check_is_suppressed(self):
+        from pokemon_index import core
+        sender = self.client.sender
+        quality_binding = BoundBuyShipForwarder._quality_binding
+
+        def expiring(request):
+            status, body = sender(request)
+            if request.full_url.endswith("/quotes"):
+                body["expires_at"] = (self.clock.instant + timedelta(seconds=1)).isoformat()
+            return status, body
+
+        def slow_quality(*args):
+            result = quality_binding(*args)
+            if self.calls and self.calls[-1] == "quotes":
+                self.clock.advance(2)
+            return result
+
+        self.client.sender = expiring
+        with patch.object(core, "utcnow", side_effect=self.clock), \
+                patch.object(BoundBuyShipForwarder, "_quality_binding", side_effect=slow_quality):
+            result = self.run_loop()
+        self.assertEqual(self.calls, ["token", "resolve", "quotes"])
+        self.assertEqual(result["status"], "manual_handoff_required")
+        self.assertEqual(result["quote_status"], "eligible_indexed_quote_unavailable")
+        self.assertEqual(result["checked_at"], self.clock())
+        self.assertIsNone(result["quote"])
+
+    def test_bound_client_keeps_transport_marker_and_live_authorization(self):
+        from pokemon_index import buyship_partner
+        result = self.run_loop()
+        self.assertEqual(result["quote"]["evidence"]["mode"], "injected_test_transport")
+        self.calls.clear()
+        self.client.sender = buyship_partner._json_request
+        self.client.live_authorized = False
+        with patch("socket.socket.connect", side_effect=AssertionError("no network")):
+            result = self.run_loop()
+        self.assertEqual(result["status"], "manual_handoff_required")
+        self.assertIsNone(result["quote"])
+        self.assertEqual(self.calls, [])
+
     def test_quality_mutation_during_provider_call_suppresses_quote(self):
         from pokemon_index import marketplace_ingest
         marketplace_ingest.initialize(self.db)

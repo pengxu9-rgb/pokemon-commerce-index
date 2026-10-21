@@ -189,11 +189,11 @@ class BoundBuyShipForwarder:
         return hashlib.sha256(json.dumps(metadata, sort_keys=True, allow_nan=False,
             separators=(",", ":")).encode()).hexdigest()
 
-    def preview(self, card_id, offer, destination):
+    def _indexed_binding(self, card_id, offer, destination):
+        """Read the selected unit and its additive quality from one fresh snapshot."""
         from . import buyship_partner, core
-        if _quote_block_reason(offer):
-            raise ValueError("current research does not establish an available, priced exact listing")
         with closing(core.connect(str(self.database), readonly=True)) as db:
+            db.execute("BEGIN")
             row = db.execute("""SELECT l.*,u.card_id,u.grade_company,u.grade_value,u.condition_bucket
                 FROM listing l JOIN priceable_unit u ON l.unit_id=u.unit_id
                 WHERE l.source=? AND l.native_id=? AND u.card_id=?""",
@@ -202,14 +202,63 @@ class BoundBuyShipForwarder:
                     ("url", "url"), ("title", "title"), ("current_price_minor", "price_minor"),
                     ("currency", "currency"))):
                 raise ValueError("researched candidate lacks a matching indexed offer")
-            quality_binding = self._quality_binding(db, card_id, offer, row)
-            quote = buyship_partner.preview_quote(db, card_id=card_id, unit_id=row["unit_id"],
-                source=row["source"], native_id=row["native_id"], destination=destination, client=self.client)
-        # The frozen quote snapshot does not include the additive marketplace
-        # quality table. Reopen it after the provider calls as a separate guard.
-        with closing(core.connect(str(self.database), readonly=True)) as validation:
-            if self._quality_binding(validation, card_id, offer, row) != quality_binding:
-                raise ValueError("observation quality changed during provider quote")
+            quality = self._quality_binding(db, card_id, offer, row)
+            _, snapshot = buyship_partner._offer_snapshot(db, card_id=card_id, unit_id=row["unit_id"],
+                source=row["source"], native_id=row["native_id"], country=destination["country"], now=core.utcnow())
+            return row["unit_id"], buyship_partner._digest(snapshot), quality
+
+    def preview(self, card_id, offer, destination):
+        from . import buyship_partner, core
+        if _quote_block_reason(offer):
+            raise ValueError("current research does not establish an available, priced exact listing")
+        expected = self._indexed_binding(card_id, offer, destination)
+
+        def guard():
+            if self._indexed_binding(card_id, offer, destination) != expected:
+                raise ValueError("selected indexed offer or observation quality changed during quote")
+
+        # The frozen quote gate reads an independent snapshot. Recheck the
+        # selected research before each provider dispatch without holding a DB
+        # read lock across network calls. Preserve its supported-client checks.
+        client = self.client
+        if isinstance(client, buyship_partner.FixturePartnerClient):
+            base = buyship_partner.FixturePartnerClient
+        elif isinstance(client, buyship_partner.PartnerClient):
+            base = buyship_partner.PartnerClient
+        else:
+            raise ValueError("unsupported Buy&Ship client")
+
+        class SelectionBoundClient(base):
+            def __init__(self):
+                # Requests and authentication stay on the original client, so
+                # its explicit live authorization is never bypassed.
+                self.sender = getattr(client, "sender", None)
+                self.live_authorized = getattr(client, "live_authorized", False)
+
+            def resolve(self, url):
+                guard()
+                return client.resolve(url)
+
+            def quote(self, reference_id, variant_key, destination, currency=None):
+                guard()
+                return client.quote(reference_id, variant_key, destination, currency)
+
+        with closing(core.connect(str(self.database), readonly=True)) as db:
+            quote = buyship_partner.preview_quote(db, card_id=card_id, unit_id=expected[0],
+                source=offer["source"], native_id=offer["native_id"], destination=destination,
+                client=SelectionBoundClient())
+        # Always bind the returned gate snapshot to the selected research too:
+        # a transient change between its read and our dispatch guard must not
+        # return a quote for a different observation or asking price.
+        buyship_partner._require_preview_binding(quote)
+        listing = quote.get("listing", {})
+        if (quote.get("card_id") != card_id or quote.get("unit_id") != expected[0]
+                or quote.get("evidence", {}).get("listing_snapshot_sha256") != expected[1]
+                or any(listing.get(key) != offer[field] for key, field in (
+                    ("source", "source"), ("native_id", "native_id"), ("url", "url"), ("title", "title")))
+                or listing.get("ask") != {"currency": offer["currency"], "subunit_amount": offer["price_minor"]}):
+            raise ValueError("provider quote differs from selected research")
+        guard()
         return quote
 
 
@@ -462,6 +511,15 @@ class CommerceLoop:
                 with self._lock:
                     self._selections.pop(key, None)
                 raise CommerceError("offer_expired", "The refreshed listing evidence expired while preparing the handoff. Research and select again.", 409)
+            if result["quote"] is not None:
+                try:
+                    expires_at = _time(result["quote"]["buyship"]["expires_at"])
+                    if expires_at <= completed:
+                        raise ValueError("provider quote expired before handoff completed")
+                except (KeyError, TypeError, ValueError):
+                    result.update(status="manual_handoff_required", quote=None,
+                        quote_status="eligible_indexed_quote_unavailable",
+                        message="The refreshed URL is ready for manual handoff. A current provider quote is unavailable.")
             result["checked_at"] = completed_at
             if self.mode == "synthetic_fixture":
                 result["message"] = "Synthetic demonstration only. This example URL cannot be purchased or sent to a real forwarder."

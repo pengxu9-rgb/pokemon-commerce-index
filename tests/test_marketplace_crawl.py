@@ -333,6 +333,132 @@ class PublicMarketplaceCrawlTests(unittest.TestCase):
             row = crawler.detail(MERCARI)
             self.assertEqual(row["status"], status)
 
+    def test_primary_visible_sold_out_overrides_stale_instock_metadata(self):
+        for cue in ("<h1>売り切れました</h1><button disabled>Sold out</button>",
+                    "<h1>This item is sold out.</h1>", "<button><span>Out of stock</span></button>",
+                    "<h1>This listing has ended</h1>", "<button disabled>Currently unavailable</button>",
+                    "<div role='status'>Sold out</div>", "<h2>Sold out</h2>",
+                    "<div role='alert'>This product is no longer available.</div>",
+                    "<main><h1>売り切れました"):
+            with self.subTest(cue=cue):
+                crawler, _ = self.crawler({MERCARI: product_html(price="100") + cue})
+                row = crawler.detail(MERCARI)
+                self.assertEqual((row["availability"], row["status"]), ("out_of_stock", "sold_out"))
+                self.assertIn("availability_evidence_conflict", row["exclusion_reasons"])
+
+    def test_hidden_recommended_and_prose_sold_out_text_is_not_primary_stock(self):
+        for cue in ("<div hidden><button disabled>Sold out</button></div>",
+                    "<div aria-hidden='true'><h1>売り切れました</h1></div>",
+                    "<div style='display: none'><button>Sold out</button></div>",
+                    "<aside><button disabled>Sold out</button></aside>",
+                    "<section class='related-products'><button>Sold out</button></section>",
+                    "<section class='related-products'><h2>Sold out</h2><div role='status'>Sold out</div></section>",
+                    "<div hidden><div role='alert'>This listing has ended</div></div>",
+                    "<p>Other listings may be sold out.</p>",
+                    "<script>const status='Sold out';</script>"):
+            with self.subTest(cue=cue):
+                crawler, _ = self.crawler({MERCARI: product_html(price="100") + cue})
+                row = crawler.detail(MERCARI)
+                self.assertEqual((row["price_minor"], row["availability"], row["status"]), (100, "in_stock", "on_sale"))
+
+    def test_same_listing_jsonld_and_og_money_must_agree_in_amount_and_currency(self):
+        for metadata in (("200", "JPY"), ("100", "USD"), ("1", "USD")):
+            with self.subTest(metadata=metadata):
+                html = (product_html(price="100")
+                        + f"<meta property='product:price:amount' content='{metadata[0]}'>"
+                        + f"<meta property='product:price:currency' content='{metadata[1]}'>")
+                crawler, _ = self.crawler({MERCARI: html})
+                row = crawler.detail(MERCARI)
+                self.assertEqual((row["price_minor"], row["currency"], row["price_status"]), (None, None, "unknown"))
+                self.assertIn("price_evidence_conflict", row["exclusion_reasons"])
+                self.assertNotEqual(row["status"], "on_sale")
+
+    def test_equivalent_money_metadata_preserves_listing_ask_and_stock(self):
+        html = (product_html(price="100", offers={"@type": "Offer", "price": "100", "priceCurrency": "JPY",
+                    "availability": "https://schema.org/InStock",
+                    "priceSpecification": {"price": "100.0", "priceCurrency": "JPY"}})
+                + "<meta property='product:price:amount' content='100.00'>"
+                + "<meta property='product:price:amount' content='100'>"
+                + "<meta property='product:price:currency' content='JPY'>")
+        crawler, _ = self.crawler({MERCARI: html})
+        row = crawler.detail(MERCARI)
+        self.assertEqual((row["price_minor"], row["currency"], row["status"]), (100, "JPY", "on_sale"))
+
+    def test_duplicate_and_nested_same_listing_money_conflicts_fail_closed(self):
+        html = (product_html(price="100")
+                + "<meta property='product:price:amount' content='100'>"
+                + "<meta property='product:price:amount' content='200'>"
+                + "<meta property='product:price:currency' content='JPY'>")
+        nested = product_html(offers={"@type": "Offer", "price": "100", "priceCurrency": "JPY",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {"price": "200", "priceCurrency": "JPY"}})
+        for body in (html, nested):
+            crawler, _ = self.crawler({MERCARI: body})
+            row = crawler.detail(MERCARI)
+            self.assertIsNone(row["price_minor"])
+            self.assertIn("price_evidence_conflict", row["exclusion_reasons"])
+
+    def test_bound_snkr_money_agrees_with_primary_metadata_not_unrelated_floor(self):
+        for amount, expected in (("34900", 34900), ("34901", None)):
+            html = (snkr_flight_html(related_price=1)
+                    + f"<meta property='product:price:amount' content='{amount}'>"
+                    + "<meta property='product:price:currency' content='JPY'>")
+            crawler, _ = self.crawler({SNKR_USED: html})
+            row = crawler.detail(SNKR_USED)
+            self.assertEqual(row["price_minor"], expected)
+            self.assertEqual(row["status"], "unknown")
+            if expected is None:
+                self.assertIn("price_evidence_conflict", row["exclusion_reasons"])
+
+    def test_contradictory_refresh_never_reaches_quote_provider(self):
+        from pokemon_index.commerce_loop import CommerceError, CommerceLoop
+        class NoQuote:
+            def __init__(self):
+                self.calls = 0
+
+            def preview(self, *_args):
+                self.calls += 1
+                raise AssertionError("contradictory current page must not reach provider")
+        contradictions = ("<h1>売り切れました</h1><button disabled>Sold out</button>",
+            "<h1>This listing has ended</h1>", "<button disabled>Currently unavailable</button>",
+            "<div role='status'>Sold out</div>", "<h2>Sold out</h2>",
+            "<meta property='product:price:amount' content='200'><meta property='product:price:currency' content='JPY'>",
+            "<meta property='product:price:amount' content='100'><meta property='product:price:currency' content='USD'>")
+        for cue in contradictions:
+            with self.subTest(cue=cue):
+                crawler, fetch = self.crawler({MERCARI: product_html(price="100")})
+                provider = NoQuote()
+                loop = CommerceLoop(crawler, now=lambda: STAMP.isoformat(), forwarders={"buyship": provider})
+                offer = loop.research("owner", {"card_id": "research:unverified", "query": "Charizard",
+                    "platforms": ["mercari"], "product_urls": [MERCARI]})["offers"][0]
+                selected = loop.select("owner", {"card_id": "research:unverified", "offer_id": offer["offer_id"],
+                    "expected_observed_at": offer["observed_at"], "expected_price_minor": offer["price_minor"],
+                    "currency": offer["currency"]})
+                fetch.pages[MERCARI] = product_html(price="100") + cue
+                with self.assertRaises(CommerceError) as raised:
+                    loop.handoff("owner", {"selection_id": selected["selection_id"], "forwarder": "buyship",
+                        "destination": {"country": "HK"}})
+                self.assertEqual(raised.exception.code, "offer_changed")
+                self.assertEqual(provider.calls, 0)
+                # Starting research on an already contradictory page is safe,
+                # too: sold-out cannot be selected; unknown money is manual only.
+                offer = loop.research("owner", {"card_id": "research:unverified", "query": "Charizard",
+                    "platforms": ["mercari"], "product_urls": [MERCARI]})["offers"][0]
+                choose = {"card_id": "research:unverified", "offer_id": offer["offer_id"],
+                    "expected_observed_at": offer["observed_at"], "expected_price_minor": offer["price_minor"],
+                    "currency": offer["currency"]}
+                if offer["availability"] == "sold_out":
+                    with self.assertRaises(CommerceError) as raised:
+                        loop.select("owner", choose)
+                    self.assertEqual(raised.exception.code, "offer_unavailable")
+                else:
+                    selected = loop.select("owner", choose)
+                    result = loop.handoff("owner", {"selection_id": selected["selection_id"], "forwarder": "buyship",
+                        "destination": {"country": "HK"}})
+                    self.assertEqual(result["status"], "manual_handoff_required")
+                    self.assertIsNone(result["quote"])
+                self.assertEqual(provider.calls, 0)
+
     def test_variant_multiple_offers_and_identity_mismatch_fail_closed(self):
         fixtures = [product_html(hasVariant=[{"name": "Other edition"}]),
                     product_html(url="https://jp.mercari.com/item/m99999999999"),
