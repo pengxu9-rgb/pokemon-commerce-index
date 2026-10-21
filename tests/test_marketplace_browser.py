@@ -1,6 +1,7 @@
 import json
 import subprocess
 import unittest
+from unittest.mock import patch
 from types import SimpleNamespace
 
 from pokemon_index.marketplace_browser import BrowserHTMLFetch
@@ -31,6 +32,20 @@ class BrowserTransportTests(unittest.TestCase):
         self.assertEqual(result['status'], 200)
         self.assertEqual(calls[0][0][-2], URL)
         self.assertNotIn('shell', calls[0][1])
+
+    def test_browser_subprocess_never_inherits_provider_or_sidecar_credentials(self):
+        calls = []
+        def runner(args, **kwargs):
+            calls.append(kwargs)
+            return SimpleNamespace(returncode=0, stdout=json.dumps({'status': 200, 'url': URL, 'body': '<html>public</html>'}))
+        with patch.dict('os.environ', {'PSA_API_TOKEN': 'private-psa', 'BNS_PARTNER_CLIENT_SECRET': 'private-bns',
+                                      'POKEMON_COMMERCE_TOKEN': 'private-sidecar', 'NODE_PATH': '/opt/browser/node_modules',
+                                      'POKEMON_PUBLIC_BROWSER_BUNDLED': '1'}):
+            BrowserHTMLFetch(enabled=True, runner=runner)(URL)
+        self.assertEqual(calls[0]['env']['POKEMON_PUBLIC_BROWSER_BUNDLED'], '1')
+        self.assertEqual(calls[0]['env']['NODE_PATH'], '/opt/browser/node_modules')
+        for key in ('PSA_API_TOKEN', 'BNS_PARTNER_CLIENT_SECRET', 'POKEMON_COMMERCE_TOKEN'):
+            self.assertNotIn(key, calls[0]['env'])
 
     def test_failures_redirects_bad_json_and_timeout_fail_closed(self):
         cases = [SimpleNamespace(returncode=1, stdout=''),

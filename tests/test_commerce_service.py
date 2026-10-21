@@ -83,6 +83,19 @@ class CommerceHTTPTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             create_server(self.loop, token="short", port=0)
 
+    def test_psa_route_is_authenticated_read_only_and_explicitly_disabled(self):
+        status, _, result = self.call("/commerce/psa", {"certificate_number": "12345678"})
+        self.assertEqual(status, 200)
+        self.assertEqual(result["verification"]["status"], "unavailable")
+        self.assertEqual(result["verification"]["reason"], "live_disabled")
+        self.assertFalse(result["verification"]["certificate_verified"])
+        self.assertFalse(result["verification"]["physical_authenticity_verified"])
+        self.assertFalse(result["order_created"])
+        self.assertEqual(self.call("/commerce/psa", {"certificate_number": "12345678"},
+                                   headers={"Authorization": "Bearer wrong"})[0], 401)
+        for path in ("/commerce/order", "/commerce/payment", "/commerce/checkout"):
+            self.assertEqual(self.call(path, {})[0], 404)
+
 
 if __name__ == "__main__":
     unittest.main()

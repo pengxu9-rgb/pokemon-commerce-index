@@ -268,13 +268,17 @@ class CommerceLoop:
     A restart discards selections. No user-provided URL is accepted by handoff;
     it re-fetches the URL retained from the selected server-owned research result.
     """
-    def __init__(self, crawler, *, forwarders=None, now=utcnow,
+    def __init__(self, crawler, *, forwarders=None, psa_client=None, now=utcnow,
                  freshness_seconds=300, selection_seconds=600):
         if not 1 <= freshness_seconds <= 3600 or not 1 <= selection_seconds <= 3600:
             raise ValueError("invalid commerce state bounds")
         self.crawler, self.now = crawler, now
         self.mode = "synthetic_fixture" if getattr(crawler, "mode", None) == "synthetic_fixture" else "on_demand_research"
         self.forwarders = dict(forwarders or {})
+        if psa_client is None:
+            from .psa_cert import PSACertClient
+            psa_client = PSACertClient()
+        self.psa_client = psa_client
         if set(self.forwarders) - {"buyship", "other"}:
             raise ValueError("unsupported forwarder registry key")
         self.freshness_seconds, self.selection_seconds = freshness_seconds, selection_seconds
@@ -445,6 +449,45 @@ class CommerceLoop:
             self._selections[key] = {"owner": owner, "card_id": record["card_id"], "offer": copy.deepcopy(offer),
                 "fingerprint": _fingerprint(offer), "expires": expires, "busy": False}
         return self._base() | {"selection_id": key, "expires_at": expires.isoformat(), "offer": copy.deepcopy(offer)}
+
+    def psa(self, owner, request):
+        """Look up one certificate; seller claims never become authentication.
+
+        Optional comparisons use only this owner's retained fresh offer. A
+        browser cannot provide its own expected grade or identity assertions.
+        """
+        owner = self._owner(owner)
+        _request(request, ("certificate_number",), ("offer_id",))
+        certificate = _text(request["certificate_number"], "PSA certificate number", 32)
+        expected, retained = None, None
+        if "offer_id" in request:
+            key = _text(request["offer_id"], "offer ID")
+            with self._lock:
+                self._purge(_time(self.now()))
+                record = self._offers.get(key)
+                if not record or record["owner"] != owner:
+                    raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
+                offer = record["offer"]
+                claim = offer.get("certificate_number_claim")
+                if claim and claim != certificate:
+                    raise CommerceError("certificate_claim_changed", "The entered certificate differs from this listing's claim.", 409)
+                grade = offer["grade"]
+                if grade["company"] == "PSA" and grade["value"]:
+                    expected = {"grade": grade["value"]}
+                retained = copy.deepcopy(record)
+        verification = self.psa_client.lookup(certificate, expected=expected)
+        if retained is not None:
+            # Provider latency must not make an expired or replaced offer look
+            # like a current contextual comparison. Do not hold our state lock
+            # across network I/O; validate the same owner/evidence afterward.
+            with self._lock:
+                self._purge(_time(self.now()))
+                current = self._offers.get(key)
+                if not current or current["owner"] != owner:
+                    raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
+                if current != retained:
+                    raise CommerceError("offer_changed", "The listing evidence changed during PSA lookup. Research it again.", 409)
+        return self._base() | {"verification": verification}
 
     def handoff(self, owner, request):
         owner = self._owner(owner)

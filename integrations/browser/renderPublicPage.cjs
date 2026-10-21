@@ -65,13 +65,30 @@ async function buildHostRules(lookup = dns.lookup) {
   return { hosts, rules: rules.join(', ') };
 }
 
+function launchOptions(env = process.env) {
+  return { ...(env.POKEMON_PUBLIC_BROWSER_BUNDLED === '1' ? {} : { channel: 'chrome' }),
+    headless: true, chromiumSandbox: true };
+}
+
 async function main() {
   const { chromium } = require('playwright');
+  if (process.argv[2] === '--probe') {
+    const browser = await chromium.launch(launchOptions());
+    try {
+      const context = await browser.newContext({ serviceWorkers: 'block', acceptDownloads: false });
+      await context.route('**/*', route => route.abort());
+      const page = await context.newPage();
+      await page.setContent('<p>offline-runtime-check</p>');
+      if (await page.locator('p').innerText() !== 'offline-runtime-check') throw Error('runtime_probe_failed');
+      process.stdout.write(JSON.stringify({ ok: true, sandbox_enabled: true, version: browser.version() }));
+    } finally { await browser.close(); }
+    return;
+  }
   const target = targetUrl(process.argv[2]);
   const maxBytes = Number(process.argv[3]);
   if (!Number.isInteger(maxBytes) || maxBytes < 1024 || maxBytes > 1_000_000) throw Error('invalid_bound');
   const pinned = await buildHostRules();
-  const browser = await chromium.launch({ channel: 'chrome', headless: true, chromiumSandbox: true,
+  const browser = await chromium.launch({ ...launchOptions(),
     args: [`--host-resolver-rules=${pinned.rules}`] });
   try {
     const context = await browser.newContext({ serviceWorkers: 'block', acceptDownloads: false });
@@ -95,5 +112,5 @@ async function main() {
   }
 }
 
-module.exports = { targetUrl, resourceAllowed, isPublicAddress, buildHostRules };
+module.exports = { targetUrl, resourceAllowed, isPublicAddress, buildHostRules, launchOptions };
 if (require.main === module) main().catch(() => { process.exitCode = 1; });

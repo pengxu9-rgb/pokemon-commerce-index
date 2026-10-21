@@ -103,7 +103,8 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
             try:
                 owner = self._owner()
                 routes = {"/commerce/research": loop.research,
-                          "/commerce/select": loop.select, "/commerce/handoff": loop.handoff}
+                          "/commerce/select": loop.select, "/commerce/handoff": loop.handoff,
+                          "/commerce/psa": loop.psa}
                 if self.path not in routes:
                     raise CommerceError("not_found", "Unknown commerce route.", 404)
                 lengths = self.headers.get_all("Content-Length") or []
@@ -156,10 +157,11 @@ def main():
     parser.add_argument("--snkr-sitemap-url", action="append", default=[])
     parser.add_argument("--quote-db", help="existing approved operator DB, never the packaged catalog")
     parser.add_argument("--allow-live-buyship", action="store_true", help="enable configured BNS resolve/quote only; no order")
+    parser.add_argument("--allow-live-psa", action="store_true", help="enable configured read-only PSA certificate lookup")
     args = parser.parse_args()
     fixture = args.fixture or os.environ.get("POKEMON_COMMERCE_FIXTURE") == "true"
     browser_renderer = args.browser_renderer or os.environ.get("POKEMON_COMMERCE_BROWSER_RENDERER") == "1"
-    if fixture and (args.allow_live_crawl or args.allow_live_buyship or args.quote_db or browser_renderer):
+    if fixture and (args.allow_live_crawl or args.allow_live_buyship or args.allow_live_psa or args.quote_db or browser_renderer):
         parser.error("fixture mode cannot mix with live research or a quote database")
     if browser_renderer and not args.allow_live_crawl:
         parser.error("the public-page browser renderer requires --allow-live-crawl")
@@ -175,6 +177,8 @@ def main():
         if browser_renderer:
             from .marketplace_browser import BrowserHTMLFetch
             renderer = BrowserHTMLFetch(enabled=True)
+            if os.environ.get("POKEMON_COMMERCE_BROWSER_PROBE") == "1":
+                print(json.dumps({"event": "commerce_browser_runtime", **renderer.probe()}), flush=True)
         crawler = Crawler(allow_network=args.allow_live_crawl,
             renderer=renderer,
             authorized_sources=args.source or ("mercari", "snkrdunk"),
@@ -189,7 +193,9 @@ def main():
         forwarders["buyship"] = BoundBuyShipForwarder(args.quote_db, PartnerClient(*values, live_authorized=True))
     elif args.quote_db:
         parser.error("--quote-db is only used with --allow-live-buyship")
-    loop = CommerceLoop(crawler, forwarders=forwarders)
+    from .psa_cert import PSACertClient
+    psa_client = PSACertClient(token=os.environ.get("PSA_API_TOKEN"), allow_live=args.allow_live_psa)
+    loop = CommerceLoop(crawler, forwarders=forwarders, psa_client=psa_client)
     with create_server(loop, token=token, host=args.host, port=args.port) as server:
         print(json.dumps({"event": "commerce_sidecar_ready", "mode": loop.mode, "port": server.server_port}), flush=True)
         try:
