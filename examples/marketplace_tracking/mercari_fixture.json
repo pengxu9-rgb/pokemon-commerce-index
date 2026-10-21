@@ -1,0 +1,14 @@
+{
+  "schema": "pokemon.marketplace-capture.v1",
+  "source": "mercari_fixture",
+  "observed_at": "2026-10-20T12:00:00Z",
+  "request": {"kind": "export", "page": 1, "target_card_ids": ["ja:SV2A:173/165:standard"]},
+  "payload_schema": "pokemon.mercari-authorized-export.v1",
+  "payload": {
+    "page_complete": true,
+    "listings": [
+      {"record_type": "listing", "sale_type": "fixed_price", "listing_id": "m1001", "title": "ピカチュウ SV2a 173/165", "language": "ja", "url": "https://mercari.example.invalid/item/m1001", "status": "on_sale", "price": {"amount_minor": 3800, "currency": "JPY"}, "seller_id": "synthetic-seller-1", "seller_condition": "seller says near mint", "grade_company": "RAW"},
+      {"record_type": "listing", "sale_type": "fixed_price", "listing_id": "m1002", "title": "ピカチュウ SV2a 173/165 PSA10 鑑定品", "language": "ja", "url": "https://mercari.example.invalid/item/m1002", "status": "on_sale", "price": {"amount_minor": 12000, "currency": "JPY"}, "seller_id": "synthetic-seller-2", "seller_condition": "seller says graded", "grade_company": "PSA", "grade_value": "10", "certificate_number_claim": "SYNTHETIC-0001"}
+    ]
+  }
+}
