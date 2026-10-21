@@ -27,10 +27,13 @@ The frozen BNS transport follows redirects, can refresh/retry after 401, and
 uses a 20-second timeout per request. The normal token/resolve/quote sequence
 uses three HTTP requests; 401 refresh at both endpoints can raise this to seven.
 That transport is unsuitable for a first strictly bounded probe and may exceed
-the frontend's 25-second handoff budget. The new operator harness uses a separate
-one-shot sender. **It does not change or enable the deployed chat transport.**
-Before enabling BNS in chat, integrate the bounded transport and verify the
-full browser timing path on a separate reviewed private revision.
+the frontend's 25-second handoff budget. The operator harness and current chat
+service now share a separate one-shot sender. Chat uses a fresh disposable
+worker per handoff, capped at 18 seconds and the remaining 22-second absolute
+handoff deadline. See [bounded chat integration](BOUNDED_BNS_CHAT.md).
+**This source change does not update or enable the deployed private revision.**
+The saved deployment still uses the earlier service. A later reviewed private
+revision and full browser validation are required before enabling it there.
 
 ## Prepared commands
 

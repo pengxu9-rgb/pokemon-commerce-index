@@ -10,26 +10,22 @@ import argparse
 from contextlib import ExitStack
 from datetime import datetime, timedelta, timezone
 import hashlib
-import ipaddress
 import json
 import os
 from pathlib import Path
 import re
-import ssl
 import subprocess
 import sys
-import time
-from urllib.parse import urlsplit
 
 from .commerce_loop import BoundBuyShipForwarder, _quote_block_reason
-from .marketplace_crawl import _PinnedHTTPS, canonical_product_url
+from .marketplace_crawl import canonical_product_url
 from .psa_cert import CERT_PATTERN, PSACertClient, _https_get, _response, compare_record
+from .bns_transport import BNS_PATHS, OneShotBNSSender, ProbeError, _base_url, _bns_https
 
 SCHEMA = "pokemon.provider-smoke.v1"
 PLAN_SCHEMA = "pokemon.provider-smoke-plan.v1"
 PSA_FIELDS = {"subject", "card_number", "year", "brand", "grade"}
 AUTH_FLAGS = ("certificate_verified", "authenticity_verified", "physical_authenticity_verified")
-BNS_PATHS = ("/v1/oauth/token", "/v1/products/resolve", "/v1/quotes")
 
 
 def utcnow():
@@ -159,93 +155,6 @@ def bns_preflight(database, card_id, offer, destination, *, now=utcnow):
     except Exception:
         return _failure(report, "eligible_indexed_offer_required")
 
-
-class ProbeError(ValueError):
-    def __init__(self, code):
-        self.code = code
-        super().__init__(code)
-
-
-def _base_url(value):
-    if not isinstance(value, str) or len(value) > 2048:
-        raise ProbeError("approved_bns_endpoint_required")
-    p = urlsplit(value)
-    if (p.scheme != "https" or not p.hostname or p.username or p.password or p.query or p.fragment or p.path not in {"", "/"}
-            or p.port not in (None, 443) or p.hostname in {"localhost", "metadata.google.internal"}
-            or any(p.hostname.endswith(suffix) for suffix in (".local", ".internal", ".invalid"))):
-        raise ProbeError("approved_bns_endpoint_required")
-    try:
-        address = ipaddress.ip_address(p.hostname)
-    except ValueError:
-        address = None
-    if address is not None and not address.is_global:
-        raise ProbeError("approved_bns_endpoint_required")
-    return value.rstrip("/")
-
-
-def _bns_https(request, *, timeout, max_bytes):
-    """Pinned public DNS, verified TLS, direct POST; redirects are never followed."""
-    p = urlsplit(request.full_url)
-    connection = _PinnedHTTPS(p.hostname, port=p.port or 443, timeout=timeout, context=ssl.create_default_context())
-    try:
-        connection.request("POST", p.path, body=request.data, headers=dict(request.header_items()))
-        response = connection.getresponse()
-        if response.status != 200:
-            return {"status": response.status, "body": b""}
-        if response.getheader("Content-Type", "").split(";")[0].strip().lower() not in {"application/json", "text/json"}:
-            raise ProbeError("bns_response_invalid")
-        return {"status": response.status, "body": response.read(max_bytes + 1)}
-    finally:
-        connection.close()
-
-
-class OneShotBNSSender:
-    """One OAuth, one resolve, one quantity-one quote; no auth retry or redirects.
-
-    The CLI additionally kills its worker at 25 seconds, covering DNS, slow
-    headers/body and database waits that per-socket timeouts alone cannot bound.
-    """
-    def __init__(self, base_url, *, authorized=False, transport=None, monotonic=time.monotonic):
-        self.base_url = _base_url(base_url)
-        self.authorized = authorized is True
-        self.transport, self.monotonic = transport or _bns_https, monotonic
-        self.started = monotonic()
-        self.requests = []
-
-    def __call__(self, request):
-        if not self.authorized:
-            raise ProbeError("live_not_authorized")
-        elapsed = self.monotonic() - self.started
-        if elapsed < 0 or elapsed >= 18:
-            raise ProbeError("bns_request_deadline")
-        index = len(self.requests)
-        if (index >= len(BNS_PATHS) or request.full_url != self.base_url + BNS_PATHS[index]
-                or request.get_method() != "POST" or not isinstance(request.data, bytes)
-                or len(request.data) > 16384):
-            raise ProbeError("bns_request_budget_or_route")
-        if index == 2:
-            _, payload = _response({"status": 200, "body": request.data}, 16384)
-            if (not isinstance(payload.get("items"), list) or len(payload["items"]) != 1
-                    or type(payload["items"][0].get("quantity")) is not int
-                    or payload["items"][0]["quantity"] != 1 or not _destination(payload.get("destination"))):
-                raise ProbeError("single_quote_only")
-        self.requests.append(BNS_PATHS[index])
-        reply = self.transport(request, timeout=min(5, 18 - elapsed), max_bytes=65536)
-        status = reply.get("status") if isinstance(reply, dict) else None
-        if status != 200:
-            raise ProbeError("bns_access_rejected" if status in {401, 403} else
-                             "bns_rate_limited" if status == 429 else "bns_http_rejected")
-        try:
-            _, payload = _response(reply, 65536)
-            if index == 0:
-                token = payload.get("access_token")
-                if not isinstance(token, str) or not 1 <= len(token) <= 8192 or any(not 33 <= ord(c) <= 126 for c in token):
-                    raise ValueError("invalid token")
-        except Exception:
-            raise ProbeError("bns_response_invalid") from None
-        if self.monotonic() - self.started >= 18:
-            raise ProbeError("bns_request_deadline")
-        return 200, payload
 
 
 def bns_smoke(database, card_id, offer, destination, *, client, authorized=False, now=utcnow):

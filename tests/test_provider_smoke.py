@@ -15,7 +15,7 @@ import unittest
 from unittest.mock import patch
 from urllib.request import Request
 
-from pokemon_index import core, provider_smoke as smoke
+from pokemon_index import bns_transport, core, provider_smoke as smoke
 from pokemon_index.buyship_partner import PartnerClient
 from pokemon_index.commerce_loop import CommerceLoop
 
@@ -160,7 +160,7 @@ class ProviderSmokeTests(unittest.TestCase):
     def test_http_transport_never_follows_redirect_or_reads_its_body(self):
         response = SimpleNamespace(status=302, read=lambda *a: self.fail("redirect body must not be read"))
         connection = SimpleNamespace(request=unittest.mock.Mock(), getresponse=lambda: response, close=unittest.mock.Mock())
-        with patch.object(smoke, "_PinnedHTTPS", return_value=connection) as factory:
+        with patch.object(bns_transport, "_PinnedHTTPS", return_value=connection) as factory:
             result = smoke._bns_https(Request(BASE + smoke.BNS_PATHS[0], data=b"grant_type=client_credentials", method="POST"), timeout=5, max_bytes=65536)
         self.assertEqual(result, {"status": 302, "body": b""})
         self.assertEqual(factory.call_count, 1)
