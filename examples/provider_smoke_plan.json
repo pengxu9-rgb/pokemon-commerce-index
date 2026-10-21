@@ -1,0 +1,20 @@
+{
+  "schema": "pokemon.provider-smoke-plan.v1",
+  "psa": {
+    "certificate_number": null,
+    "expected": {
+      "subject": null,
+      "card_number": null,
+      "year": null,
+      "brand": null,
+      "grade": null
+    }
+  },
+  "bns": {
+    "card_id": null,
+    "offer": null,
+    "destination": {"country": "HK"},
+    "approved_base_url": null,
+    "contract_confirmation_reference": null
+  }
+}

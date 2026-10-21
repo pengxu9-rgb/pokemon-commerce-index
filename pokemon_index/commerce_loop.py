@@ -15,11 +15,13 @@ from pathlib import Path
 import re
 import secrets
 import threading
+import time
 from urllib.parse import urlsplit
 
 SCHEMA = "pokemon.agent-commerce.v1"
 SOURCES = ("mercari", "ebay_us", "snkrdunk")
 MAX_OFFERS = 2000
+HANDOFF_SECONDS = 22
 RESEARCH_MESSAGES = {
     "network_disabled": "Live research is disabled in this sidecar.",
     "source_access_not_authorized": "This marketplace is not enabled in the server's research configuration.",
@@ -189,10 +191,15 @@ class BoundBuyShipForwarder:
         return hashlib.sha256(json.dumps(metadata, sort_keys=True, allow_nan=False,
             separators=(",", ":")).encode()).hexdigest()
 
-    def _indexed_binding(self, card_id, offer, destination):
+    def _indexed_binding(self, card_id, offer, destination, *, deadline=None):
         """Read the selected unit and its additive quality from one fresh snapshot."""
         from . import buyship_partner, core
-        with closing(core.connect(str(self.database), readonly=True)) as db:
+        remaining = 5.0 if deadline is None else deadline - time.monotonic()
+        if remaining <= 0:
+            raise ValueError("indexed validation deadline expired")
+        with closing(core.connect(str(self.database), readonly=True, timeout=min(remaining, 0.1) if deadline is not None else remaining)) as db:
+            if deadline is not None:
+                db.set_progress_handler(lambda: time.monotonic() >= deadline, 1000)
             db.execute("BEGIN")
             row = db.execute("""SELECT l.*,u.card_id,u.grade_company,u.grade_value,u.condition_bucket
                 FROM listing l JOIN priceable_unit u ON l.unit_id=u.unit_id
@@ -205,7 +212,10 @@ class BoundBuyShipForwarder:
             quality = self._quality_binding(db, card_id, offer, row)
             _, snapshot = buyship_partner._offer_snapshot(db, card_id=card_id, unit_id=row["unit_id"],
                 source=row["source"], native_id=row["native_id"], country=destination["country"], now=core.utcnow())
-            return row["unit_id"], buyship_partner._digest(snapshot), quality
+            result = row["unit_id"], buyship_partner._digest(snapshot), quality
+            if deadline is not None and time.monotonic() >= deadline:
+                raise ValueError("indexed validation deadline expired")
+            return result
 
     def preview(self, card_id, offer, destination):
         from . import buyship_partner, core
@@ -269,10 +279,11 @@ class CommerceLoop:
     it re-fetches the URL retained from the selected server-owned research result.
     """
     def __init__(self, crawler, *, forwarders=None, psa_client=None, now=utcnow,
-                 freshness_seconds=300, selection_seconds=600):
+                 freshness_seconds=300, selection_seconds=600, monotonic=time.monotonic):
         if not 1 <= freshness_seconds <= 3600 or not 1 <= selection_seconds <= 3600:
             raise ValueError("invalid commerce state bounds")
         self.crawler, self.now = crawler, now
+        self.monotonic = monotonic
         self.mode = "synthetic_fixture" if getattr(crawler, "mode", None) == "synthetic_fixture" else "on_demand_research"
         self.forwarders = dict(forwarders or {})
         if psa_client is None:
@@ -490,6 +501,9 @@ class CommerceLoop:
         return self._base() | {"verification": verification}
 
     def handoff(self, owner, request):
+        # Reserve time for the proxy's 25s deadline. A slow marketplace refresh
+        # consumes this budget too; it cannot start a late BNS worker afterward.
+        deadline = self.monotonic() + HANDOFF_SECONDS
         owner = self._owner(owner)
         _request(request, ("selection_id", "forwarder", "destination"))
         forwarder = request["forwarder"]
@@ -536,7 +550,10 @@ class CommerceLoop:
                              "The URL is ready for manual handoff. A priced, exact listing is not established, so no provider quote was requested."))
             elif provider is not None:
                 try:
-                    quote = provider.preview(record["card_id"], refreshed, dict(destination))
+                    if callable(getattr(provider, "preview_before", None)):
+                        quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline)
+                    else:
+                        quote = provider.preview(record["card_id"], refreshed, dict(destination))
                     if not isinstance(quote, dict) or quote.get("status") != "quote_ready_for_review" or quote.get("purchasable") is not False or quote.get("order_created") is not False or quote.get("purchase_action") is not None:
                         raise ValueError("provider did not return a non-purchasable quote preview")
                     result.update(status="quote_ready_for_review", quote=quote, quote_status="ready",

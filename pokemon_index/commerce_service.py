@@ -13,7 +13,7 @@ import json
 import os
 import socket
 
-from .commerce_loop import BoundBuyShipForwarder, CommerceError, CommerceLoop, FixtureCrawler, SCHEMA
+from .commerce_loop import CommerceError, CommerceLoop, FixtureCrawler, SCHEMA
 
 
 def _json(raw):
@@ -186,11 +186,11 @@ def main():
     if args.allow_live_buyship:
         if not args.quote_db:
             parser.error("live BNS preview requires --quote-db with approved existing indexed evidence")
-        from .buyship_partner import PartnerClient
+        from .bounded_buyship import BoundedBuyShipForwarder
         values = [os.environ.get(key) for key in ("BNS_PARTNER_BASE_URL", "BNS_PARTNER_CLIENT_ID", "BNS_PARTNER_CLIENT_SECRET")]
         if not all(values):
             parser.error("configure server-owned BNS_PARTNER_BASE_URL, BNS_PARTNER_CLIENT_ID and BNS_PARTNER_CLIENT_SECRET")
-        forwarders["buyship"] = BoundBuyShipForwarder(args.quote_db, PartnerClient(*values, live_authorized=True))
+        forwarders["buyship"] = BoundedBuyShipForwarder(args.quote_db, *values, live_authorized=True)
     elif args.quote_db:
         parser.error("--quote-db is only used with --allow-live-buyship")
     from .psa_cert import PSACertClient

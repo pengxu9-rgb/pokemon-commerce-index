@@ -39,6 +39,12 @@ receipt. Code changes remain reviewable separately from the staging deployment.
 
 ## Provider access and bounded follow-up
 
+See [the current first-live audit and bounded test runbook](FIRST_LIVE_PROVIDER_TESTS.md)
+before enabling either provider. The source now includes the
+[bounded BNS chat transport](BOUNDED_BNS_CHAT.md); the saved private deployment
+still runs the earlier revision. A reviewed private revision, credentials and
+an eligible operator database are required before enabling that path.
+
 At the user's instruction, BNS and PSA access are not ready. Deploy with
 `POKEMON_COMMERCE_BNS_ENABLED=false` and
 `POKEMON_COMMERCE_PSA_ENABLED=false`. Missing provider access must be visible,
