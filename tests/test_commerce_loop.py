@@ -192,6 +192,39 @@ class CommerceLoopTests(unittest.TestCase):
         self.assertNotIn("secret-token", json.dumps(report))
         self.assertEqual(report["offers"], [])
 
+    def test_safe_source_categories_reach_chat_without_raw_error_details(self):
+        for code, expected in [("browser_renderer_navigation_timeout", "loading the search page"),
+                               ("http_403", "HTTP 403"),
+                               ("public_primary_image_preload", "product page was checked separately")]:
+            with self.subTest(code=code), patch.object(self.producer, "search", return_value={
+                    "status": "blocked", "message": code, "listings": []}):
+                platform = self.research()["platforms"][0]
+                self.assertEqual(platform["reason_code"], code)
+                self.assertIn(expected, platform["message"])
+        with patch.object(self.producer, "search", return_value={"status": "blocked",
+                "message": "public_renderer_failed:secret-token", "listings": [],
+                "diagnostics": {"headers": {"authorization": "secret-token"}}}):
+            platform = self.research()["platforms"][0]
+            self.assertNotIn("reason_code", platform)
+            self.assertNotIn("diagnostics", platform)
+            self.assertNotIn("secret-token", json.dumps(platform))
+
+    def test_fixed_renderer_diagnostics_are_preserved_without_arbitrary_fields(self):
+        diagnostic = {"schema": "pokemon.public-browser-diagnostics.v1", "stage": "navigation",
+            "elapsed_ms": 1234, "requests": 3, "allowed_requests": 2, "blocked_requests": 1,
+            "failed_requests": 1, "responses": 1, "pinned_hosts": 4, "listing_links": 0,
+            "blocked_api_requests": 0, "search_status": 403, "search_api_status": None}
+        with patch.object(self.producer, "search", return_value={"status": "blocked", "listings": [],
+                "message": "browser_renderer_source_unavailable", "diagnostics": diagnostic}):
+            platform = self.research()["platforms"][0]
+            self.assertEqual(platform["diagnostics"], diagnostic)
+        diagnostic["raw_error"] = "do-not-echo"
+        with patch.object(self.producer, "search", return_value={"status": "blocked", "listings": [],
+                "message": "browser_renderer_source_unavailable", "diagnostics": diagnostic}):
+            platform = self.research()["platforms"][0]
+            self.assertNotIn("diagnostics", platform)
+            self.assertNotIn("do-not-echo", json.dumps(platform))
+
     def test_fixture_mode_is_explicit_and_cannot_mix_live_urls(self):
         self.loop = CommerceLoop(FixtureCrawler(now=self.clock), now=self.clock)
         result = self.research(platforms=["mercari", "ebay", "snkrdunk"])

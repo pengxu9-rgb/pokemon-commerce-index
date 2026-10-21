@@ -20,10 +20,12 @@ import time
 from typing import Any, Callable
 import unicodedata
 from urllib.parse import parse_qs, urlencode, urljoin, urlsplit, urlunsplit
-from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 
 from . import core, marketplace_sources
+from .ebay_discovery import browse_urls as validate_ebay_browse_urls, listing_anchor as ebay_listing_anchor
+from .mercari_discovery import preload_product_urls
+from .public_robots import RobotsPolicy
 
 USER_AGENT = "PokemonPublicResearch/1.0"
 HOSTS = {"mercari": {"jp.mercari.com"}, "ebay_us": {"www.ebay.com", "ebay.com"},
@@ -61,6 +63,8 @@ def _url(value: str, *, source: str | None = None, purpose: str = "detail",
             valid = p.path == "/robots.txt" and not query
         elif purpose == "sitemap":
             valid = value in (configured or set()) and not query and bool(re.fullmatch(r"/[A-Za-z0-9_./-]+\.xml", p.path))
+        elif purpose == "browse":
+            valid = detected == "ebay_us" and value in (configured or set()) and value in validate_ebay_browse_urls([value])
         elif purpose == "search":
             valid = ((detected == "mercari" and p.path == "/search" and set(query) == {"keyword"}) or
                      (detected == "ebay_us" and p.path == "/sch/i.html" and set(query) == {"_nkw"}) or
@@ -91,6 +95,8 @@ class _Page(HTMLParser):
     def __init__(self, body: str):
         super().__init__(convert_charrefs=True)
         self.links: list[str] = []
+        self.anchors: list[tuple[str, str]] = []
+        self._anchors: list[dict] = []
         self.scripts: list[str] = []
         self._json = False
         self._script: list[str] = []
@@ -128,6 +134,9 @@ class _Page(HTMLParser):
             self._in_script, self._inline = True, []
         if tag == "a" and isinstance(attrs.get("href"), str):
             self.links.append(attrs["href"])
+            self._anchors.append({"href": attrs["href"], "text": [str(attrs.get("aria-label", "")), str(attrs.get("title", ""))]})
+        if tag == "img" and attrs.get("alt") and self._anchors:
+            self._anchors[-1]["text"].append(attrs["alt"])
         if tag == "script" and attrs.get("type", "").lower().split(";")[0] == "application/ld+json":
             self._json, self._script = True, []
         if tag == "title":
@@ -141,6 +150,9 @@ class _Page(HTMLParser):
             self.canonicals.append(attrs["href"])
 
     def handle_endtag(self, tag):
+        if tag == "a" and self._anchors:
+            anchor = self._anchors.pop()
+            self.anchors.append((anchor["href"], " ".join(anchor["text"])))
         for index in range(len(self._elements) - 1, -1, -1):
             if self._elements[index]["tag"] == tag:
                 for element in self._elements[index:]:
@@ -158,6 +170,8 @@ class _Page(HTMLParser):
             self._title = False
 
     def handle_data(self, data):
+        for anchor in self._anchors:
+            anchor["text"].append(data)
         if not self._elements or not self._elements[-1]["hidden"]:
             for element in self._elements:
                 if element["stock"] and not element["hidden"]:
@@ -369,21 +383,23 @@ class _PinnedHTTPS(http.client.HTTPSConnection):
 
 class PublicHTMLFetch:
     """No cookies, auth, automatic redirects, private APIs or browser challenge bypass."""
-    def __init__(self, *, enabled=False, timeout=8, max_bytes=750_000, sitemap_urls=()):
+    def __init__(self, *, enabled=False, timeout=8, max_bytes=750_000, sitemap_urls=(), browse_urls=()):
         if type(enabled) is not bool:
             raise ValueError("network opt-in must be an explicit boolean")
         self.enabled = enabled
         self.timeout = min(10, max(0.1, float(timeout)))
         self.max_bytes = min(1_000_000, max(1024, int(max_bytes)))
         self.sitemaps = set(sitemap_urls)
+        self.browse_urls = set(validate_ebay_browse_urls(browse_urls))
 
     def __call__(self, url):
         if not self.enabled:
             raise CrawlBlocked("network_disabled")
         p = urlsplit(url)
-        purpose = ("robots" if p.path == "/robots.txt" else "search" if p.path in ("/search", "/sch/i.html")
+        purpose = ("robots" if p.path == "/robots.txt" else "browse" if url in self.browse_urls
+                   else "search" if p.path in ("/search", "/sch/i.html")
                    else "sitemap" if url in self.sitemaps else "detail")
-        _url(url, purpose=purpose, configured=self.sitemaps)
+        _url(url, purpose=purpose, configured=self.sitemaps | self.browse_urls)
         connection = _PinnedHTTPS(p.hostname, timeout=self.timeout, context=ssl.create_default_context())
         try:
             connection.request("GET", p.path + ("?" + p.query if p.query else ""),
@@ -402,14 +418,15 @@ class PublicHTMLFetch:
 class Crawler:
     def __init__(self, fetch: Callable | None = None, *, renderer: Callable | None = None, allow_network=False,
                  authorized_sources=("mercari", "snkrdunk"), snkr_seed_urls=(),
-                 snkr_sitemap_urls=(), now=None, max_pages=8, max_bytes=750_000,
+                 snkr_sitemap_urls=(), ebay_browse_urls=(), now=None, max_pages=8, max_bytes=750_000,
                  timeout=8, max_seconds=30):
         self.authorized_sources = {_source(s) for s in authorized_sources}
         self.max_pages = min(12, max(2, int(max_pages)))
         self.max_bytes = min(1_000_000, max(1024, int(max_bytes)))
         self.max_seconds = min(60, max(0.1, float(max_seconds)))
+        self.ebay_browse_urls = validate_ebay_browse_urls(ebay_browse_urls)
         self.fetch = fetch or PublicHTMLFetch(enabled=allow_network, timeout=timeout, max_bytes=self.max_bytes,
-                                             sitemap_urls=snkr_sitemap_urls)
+                                             sitemap_urls=snkr_sitemap_urls, browse_urls=self.ebay_browse_urls)
         self.renderer = renderer
         self.now = now or (lambda: datetime.now(timezone.utc))
         if len(snkr_seed_urls) > 5 or len(snkr_sitemap_urls) > 5:
@@ -418,6 +435,7 @@ class Crawler:
         self.sitemaps = set(snkr_sitemap_urls)
         for url in self.sitemaps:
             _url(url, source="snkrdunk", purpose="sitemap", configured=self.sitemaps)
+        self.discovery_urls = self.sitemaps | set(self.ebay_browse_urls)
         self._reset()
 
     def _reset(self):
@@ -425,7 +443,7 @@ class Crawler:
         self._html_cache = {}
 
     def _request(self, url, source, purpose, *, fetcher=None):
-        url, _ = _url(url, source=source, purpose=purpose, configured=self.sitemaps)
+        url, _ = _url(url, source=source, purpose=purpose, configured=self.discovery_urls)
         if self._pages >= self.max_pages or time.monotonic() - self._started > self.max_seconds:
             raise CrawlBlocked("crawl_budget_exhausted")
         self._pages += 1
@@ -435,7 +453,7 @@ class Crawler:
         if not isinstance(response, dict) or type(response.get("status")) is not int:
             raise CrawlBlocked("invalid_fetch_response")
         final_url = response.get("url", url)
-        checked_final, _ = _url(final_url, source=source, purpose=purpose, configured=self.sitemaps)
+        checked_final, _ = _url(final_url, source=source, purpose=purpose, configured=self.discovery_urls)
         if checked_final != url:
             # A fetch implementation must not invisibly follow redirects.
             raise CrawlBlocked("unvalidated_redirect")
@@ -458,21 +476,20 @@ class Crawler:
             status, body, _ = self._request(origin + "/robots.txt", source, "robots")
             if status != 200:
                 raise CrawlBlocked("robots_unavailable")
-            robot = RobotFileParser()
-            robot.parse(body.splitlines())
+            robot = RobotsPolicy(body)
             self._robots[origin] = robot
         robot = self._robots[origin]
         if not robot.can_fetch(USER_AGENT, url):
             raise CrawlBlocked("robots_disallowed")
         # Do not silently exceed a publisher's requested pacing.
-        if robot.crawl_delay(USER_AGENT) or robot.request_rate(USER_AGENT):
+        if robot.requires_pacing(USER_AGENT):
             raise CrawlBlocked("robots_pacing_requires_scheduled_crawl")
 
     def _page(self, url, source, purpose="detail", *, fetcher=None):
         if source not in self.authorized_sources:
             raise CrawlBlocked("source_access_not_authorized")
         for hop in range(3):
-            url, _ = _url(url, source=source, purpose=purpose, configured=self.sitemaps)
+            url, _ = _url(url, source=source, purpose=purpose, configured=self.discovery_urls)
             self._allowed(url, source)
             status, body, headers = self._request(url, source, purpose, fetcher=fetcher)
             if status in (301, 302, 303, 307, 308):
@@ -652,6 +669,7 @@ class Crawler:
                   "candidates": [], "listings": [], "errors": [], "product_summaries": []}
         query_context = _query_context(query)
         seed_fallback = False
+        mercari_preload = False
         try:
             if source not in self.authorized_sources:
                 raise CrawlBlocked("source_access_not_authorized")
@@ -706,6 +724,34 @@ class Crawler:
                     result["message"] = "public_search_query_discovery"
                 # Public search commonly returns catalog cards before used listings.
                 links.sort(key=lambda url: 0 if "/used/" in url else 1)
+            elif source == "ebay_us" and self.ebay_browse_urls:
+                # Exact publisher-facing browse pages are selected by an operator,
+                # never synthesized from a query or used to bypass a denied /sch.
+                # Read only collector/name-grounded item anchors, at most three.
+                grounded = (len(query_context["numbers"]) == 1 or
+                            (query_context["sets"] and len(query_context["bare_numbers"]) == 1))
+                if not grounded or _seed_name_grounded(query, ""):
+                    raise CrawlBlocked("query_mapping_required")
+                for browse in self.ebay_browse_urls:
+                    base, body = self._page(browse, source, "browse")
+                    page = _Page(body)
+                    if page.login:
+                        raise CrawlBlocked("login_required")
+                    for href, title in page.anchors[:2000]:
+                        if not _query_matches(query_context, title) or not _seed_name_grounded(query, title):
+                            continue
+                        try:
+                            link = ebay_listing_anchor(urljoin(base, href))
+                            link, _ = _url(link, source=source)
+                        except (ValueError, TypeError):
+                            continue
+                        if link not in links:
+                            links.append(link)
+                        if len(links) >= 3:
+                            break
+                    if len(links) >= 3:
+                        break
+                result["message"] = "query_bound_public_browse_research"
             else:
                 base = ("https://jp.mercari.com/search?" + urlencode({"keyword": query.strip()}) if source == "mercari"
                         else "https://www.ebay.com/sch/i.html?" + urlencode({"_nkw": query.strip()}))
@@ -720,6 +766,14 @@ class Crawler:
                         valid_links.append(_url(link, source=source)[0])
                     except (ValueError, TypeError):
                         pass
+                grounded = (len(query_context["numbers"]) == 1 or
+                            (query_context["sets"] and len(query_context["bare_numbers"]) == 1))
+                if source == "mercari" and not valid_links and grounded:
+                    hints = preload_product_urls(page.inline_scripts)
+                    if hints:
+                        links = valid_links = list(hints)
+                        mercari_preload = True
+                        result["message"] = "public_primary_image_preload"
                 if source == "mercari" and not valid_links and self.renderer is not None:
                     try:
                         base, rendered = self._page(base, source, "search", fetcher=self.renderer)
@@ -729,7 +783,25 @@ class Crawler:
                         links = [urljoin(base, link) for link in page.links]
                         result["message"] = "public_html_research_rendered"
                     except Exception as exc:
-                        raise CrawlBlocked("public_renderer_failed:" + str(exc)[:100]) from exc
+                        known = {"browser_renderer_disabled", "browser_renderer_unavailable", "browser_renderer_timeout",
+                                 "browser_renderer_invalid_response", "browser_renderer_dns_unavailable",
+                                 "browser_renderer_navigation_timeout", "browser_renderer_navigation_failed",
+                                 "browser_renderer_source_unavailable", "browser_renderer_challenge",
+                                 "browser_renderer_no_listing_links", "browser_renderer_request_budget_exhausted",
+                                 "browser_renderer_deadline_exhausted", "browser_renderer_response_too_large",
+                                 "browser_renderer_failed"}
+                        code = str(exc) if isinstance(exc, CrawlBlocked) and str(exc) in known else "public_renderer_failed"
+                        if code in known:
+                            # The optional browser transport owns a closed numeric
+                            # vocabulary. Never return arbitrary exception details.
+                            from .marketplace_browser import _diagnostics
+                            try:
+                                diagnostic = _diagnostics(getattr(exc, "diagnostics", None))
+                            except CrawlBlocked:
+                                diagnostic, code = None, "browser_renderer_invalid_response"
+                            if diagnostic is not None:
+                                result["diagnostics"] = dict(diagnostic)
+                        raise CrawlBlocked(code) from exc
             seen = set()
             queue = links[:2000]
             while queue and len(seen) < 20:
@@ -746,6 +818,10 @@ class Crawler:
                     if not _query_matches(query_context, row["title"]):
                         continue
                     if source == "snkrdunk" and seed_fallback and not _seed_name_grounded(query, row["title"]):
+                        continue
+                    if source == "ebay_us" and self.ebay_browse_urls and not _seed_name_grounded(query, row["title"]):
+                        continue
+                    if source == "mercari" and mercari_preload and not _seed_name_grounded(query, row["title"]):
                         continue
                     if source == "snkrdunk" and row["scope"] == "product_summary":
                         page = _Page(self._html_cache[url][1])
@@ -771,7 +847,9 @@ class Crawler:
                 result["status"], result["message"] = "partial", "some_public_pages_unavailable"
             elif not result["candidates"]:
                 result["status"], result["message"] = "blocked", (
-                    "query_mapping_required" if source == "snkrdunk" else "public_search_has_no_listing_links")
+                    "query_mapping_required" if source == "snkrdunk" else
+                    "public_browse_has_no_matching_listing_links" if source == "ebay_us" and self.ebay_browse_urls
+                    else "public_search_has_no_listing_links")
         except (CrawlBlocked, OSError, TimeoutError) as exc:
             result["status"], result["message"] = "blocked", str(exc)[:160]
         return result

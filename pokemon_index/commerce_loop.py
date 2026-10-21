@@ -35,6 +35,26 @@ RESEARCH_MESSAGES = {
     "public_page_challenge": "The public page presented an access challenge; research could not continue.",
     "crawl_budget_exhausted": "The bounded research budget ended before this marketplace could be refreshed.",
     "some_public_pages_unavailable": "Some discovered product pages could not be refreshed; the visible results are partial.",
+    "public_primary_image_preload": "A public search image hint led to this listing; its product page was checked separately. Identity and stock remain unverified.",
+    "query_bound_public_browse_research": "Configured public browse pages supplied candidates; their product pages were checked separately. This is not an exhaustive search.",
+    "public_browse_has_no_matching_listing_links": "The configured public browse pages exposed no matching listing links. This does not establish that no listings exist.",
+    "http_403": "The marketplace refused this public page request (HTTP 403). No access challenge was bypassed.",
+    "http_429": "The marketplace rate-limited this public page request. Research stopped without retrying.",
+    "response_too_large": "The public page exceeded the bounded response size and was not used as listing evidence.",
+    "public_renderer_failed": "Public browser discovery failed. Paste a supported product URL to check its public page directly.",
+    "browser_renderer_dns_unavailable": "Public browser discovery could not establish a safe source DNS address.",
+    "browser_renderer_navigation_timeout": "Public browser discovery timed out while loading the search page.",
+    "browser_renderer_navigation_failed": "Public browser discovery could not load the search page.",
+    "browser_renderer_source_unavailable": "The public search page refused browser discovery or redirected outside the checked route.",
+    "browser_renderer_challenge": "The public search page presented an access challenge. Browser discovery stopped.",
+    "browser_renderer_no_listing_links": "The rendered public search page exposed no listing links. This does not establish that no listings exist.",
+    "browser_renderer_request_budget_exhausted": "Public browser discovery reached its request limit and stopped.",
+    "browser_renderer_deadline_exhausted": "Public browser discovery reached its whole-operation deadline and stopped.",
+    "browser_renderer_timeout": "Public browser discovery reached its process timeout and stopped.",
+    "browser_renderer_unavailable": "The configured public browser discovery runtime is unavailable.",
+    "browser_renderer_invalid_response": "Public browser discovery returned unsupported evidence and was rejected.",
+    "browser_renderer_failed": "Public browser discovery failed. No listing evidence was accepted from it.",
+    "browser_renderer_response_too_large": "Public browser discovery exceeded its bounded response size and stopped.",
 }
 
 
@@ -420,11 +440,24 @@ class CommerceLoop:
                 status = str(response.get("status", "researched"))
                 if status not in {"researched", "ok", "success", "synthetic_fixture", "blocked", "unavailable", "no_results", "partial"}:
                     status = "researched" if offers else "unavailable"
+                reason = response.get("message")
+                reason = reason if isinstance(reason, str) and reason in RESEARCH_MESSAGES else None
                 message = ("Synthetic examples; no real marketplace was contacted." if self.mode == "synthetic_fixture"
-                           else RESEARCH_MESSAGES.get(response.get("message"),
+                           else RESEARCH_MESSAGES.get(reason,
                                "Current page evidence was researched; card identity and seller claims remain unverified." if offers
                                else "No current listing evidence is available from this research route."))
-                result["platforms"].append({"source": source, "status": status, "message": message})
+                platform = {"source": source, "status": status, "message": message}
+                if reason is not None:
+                    platform["reason_code"] = reason
+                if response.get("diagnostics") is not None:
+                    # Never echo arbitrary producer diagnostics, URLs, raw
+                    # errors, headers or credentials to the browser.
+                    from .marketplace_browser import _diagnostics
+                    try:
+                        platform["diagnostics"] = copy.deepcopy(_diagnostics(response["diagnostics"]))
+                    except ValueError:
+                        pass
+                result["platforms"].append(platform)
             except CommerceError as exc:
                 if exc.status == 503:
                     raise

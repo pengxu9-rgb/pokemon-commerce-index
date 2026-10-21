@@ -155,6 +155,8 @@ def main():
     parser.add_argument("--source", action="append", choices=["mercari", "ebay_us", "snkrdunk"], help="explicitly authorized research sources")
     parser.add_argument("--snkr-seed-url", action="append", default=[])
     parser.add_argument("--snkr-sitemap-url", action="append", default=[])
+    parser.add_argument("--ebay-browse-url", action="append", default=[],
+                        help="exact operator-selected public eBay category URL; current robots policy is always checked")
     parser.add_argument("--quote-db", help="existing approved operator DB, never the packaged catalog")
     parser.add_argument("--allow-live-buyship", action="store_true", help="enable configured BNS resolve/quote only; no order")
     parser.add_argument("--allow-live-psa", action="store_true", help="enable configured read-only PSA certificate lookup")
@@ -182,7 +184,8 @@ def main():
         crawler = Crawler(allow_network=args.allow_live_crawl,
             renderer=renderer,
             authorized_sources=args.source or ("mercari", "snkrdunk"),
-            snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url)
+            snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
+            ebay_browse_urls=args.ebay_browse_url)
     if args.allow_live_buyship:
         if not args.quote_db:
             parser.error("live BNS preview requires --quote-db with approved existing indexed evidence")
