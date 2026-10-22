@@ -538,7 +538,7 @@ class CommerceLoop:
         # consumes this budget too; it cannot start a late BNS worker afterward.
         deadline = self.monotonic() + HANDOFF_SECONDS
         owner = self._owner(owner)
-        _request(request, ("selection_id", "forwarder", "destination"))
+        _request(request, ("selection_id", "forwarder", "destination"), ("variant_key",))
         forwarder = request["forwarder"]
         if not isinstance(forwarder, str) or forwarder not in {"buyship", "other"}:
             raise CommerceError("invalid_request", "Unsupported forwarder.")
@@ -548,6 +548,9 @@ class CommerceLoop:
                 or ("state" in destination and (not isinstance(destination["state"], str) or not re.fullmatch(r"[A-Za-z0-9 -]{1,32}", destination["state"])))):
             raise CommerceError("invalid_request", "Destination accepts a country code and optional state only.")
         key = _text(request["selection_id"], "selection ID")
+        provider = self.forwarders.get(forwarder)
+        url_preview = getattr(provider, "url_preview", False) is True
+        variant = None
         with self._lock:
             self._purge(_time(self.now()))
             record = self._selections.get(key)
@@ -555,6 +558,19 @@ class CommerceLoop:
                 raise CommerceError("selection_expired", "Select a freshly researched listing before handoff.", 409)
             if record["busy"]:
                 raise CommerceError("selection_busy", "This selection is already being refreshed.", 409)
+            if "variant_key" in request:
+                variant_key = _text(request["variant_key"], "variant key", 300)
+                choices = record.get("variant_choices")
+                if (not url_preview or not choices or choices["expires"] <= _time(self.now())
+                        or choices["destination"] != destination or choices["forwarder"] != forwarder):
+                    raise CommerceError("variant_selection_required", "Request current variants for this selection and destination first.", 409)
+                matches = [v for v in choices["variants"] if v["variant_key"] == variant_key and v["availability"] == "in_stock"]
+                if len(matches) != 1:
+                    raise CommerceError("variant_unavailable", "Choose an available variant from this selection's latest options.", 409)
+                variant = copy.deepcopy(matches[0])
+            # Choice data is single-attempt context, never a reusable quote or
+            # a browser-supplied reference/price. A fresh resolve rechecks it.
+            record.pop("variant_choices", None)
             record["busy"] = True
         try:
             try:
@@ -574,8 +590,7 @@ class CommerceLoop:
                 "forwarder": {"id": forwarder, "label": "Buy & Ship" if forwarder == "buyship" else "Other forwarder"},
                 "destination": dict(destination), "quote": None, "quote_status": "provider_unconfigured",
                 "message": "Copy this product URL into your forwarder. A live shipping quote is unavailable."}
-            provider = self.forwarders.get(forwarder)
-            blocked_quote = _quote_block_reason(refreshed)
+            blocked_quote = None if url_preview else _quote_block_reason(refreshed)
             if blocked_quote:
                 result.update(quote_status=blocked_quote,
                     message=("The URL is ready for manual handoff. Current stock is unconfirmed, so no provider quote was requested."
@@ -583,7 +598,9 @@ class CommerceLoop:
                              "The URL is ready for manual handoff. A priced, exact listing is not established, so no provider quote was requested."))
             elif provider is not None:
                 try:
-                    if callable(getattr(provider, "preview_before", None)):
+                    if url_preview:
+                        quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline, variant=variant)
+                    elif callable(getattr(provider, "preview_before", None)):
                         quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline)
                     else:
                         quote = provider.preview(record["card_id"], refreshed, dict(destination))
@@ -591,9 +608,16 @@ class CommerceLoop:
                         raise ValueError("provider did not return a non-purchasable quote preview")
                     result.update(status="quote_ready_for_review", quote=quote, quote_status="ready",
                                   message="Review the provider's current landed quote. No order was created.")
-                except Exception:
-                    result.update(quote_status="eligible_indexed_quote_unavailable",
-                        message="The refreshed URL is ready for manual handoff. An eligible indexed provider quote is unavailable.")
+                except Exception as exc:
+                    from .bns_errors import BNSRefusal, validate_refusal
+                    if isinstance(exc, BNSRefusal):
+                        details = validate_refusal(exc.result)
+                        result.update(status=("variant_selection_required" if details["status"] == "variant_selection_required"
+                                              else "manual_handoff_required"), provider_result=details,
+                                      quote_status=details["code"], message=details["message"])
+                    else:
+                        result.update(quote_status="eligible_indexed_quote_unavailable",
+                            message="The refreshed URL is ready for manual handoff. An eligible indexed provider quote is unavailable.")
             completed_at = self.now()
             completed = _time(completed_at)
             if record["expires"] <= completed:
@@ -613,6 +637,11 @@ class CommerceLoop:
                     result.update(status="manual_handoff_required", quote=None,
                         quote_status="eligible_indexed_quote_unavailable",
                         message="The refreshed URL is ready for manual handoff. A current provider quote is unavailable.")
+            variants = result.get("provider_result", {}).get("details", {}).get("variants")
+            if url_preview and variants:
+                with self._lock:
+                    record["variant_choices"] = {"variants": copy.deepcopy(variants), "destination": dict(destination),
+                        "forwarder": forwarder, "expires": min(record["expires"], completed + timedelta(seconds=300))}
             result["checked_at"] = completed_at
             if self.mode == "synthetic_fixture":
                 result["message"] = "Synthetic demonstration only. This example URL cannot be purchased or sent to a real forwarder."

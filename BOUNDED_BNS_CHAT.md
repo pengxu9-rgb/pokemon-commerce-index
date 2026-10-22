@@ -1,5 +1,9 @@
 # Bounded Buy & Ship quotes in agent chat
 
+This document describes the preserved indexed-offer path. A separately opted-in
+selected-URL preview and detailed refusal/variant contract are described in
+[BNS_URL_PREVIEW.md](BNS_URL_PREVIEW.md). Both paths remain disabled by default.
+
 The authenticated sidecar's existing `--allow-live-buyship` configuration now
 installs `BoundedBuyShipForwarder`. The flag stays off by default. This change
 does not enable BNS, change credentials, mount a database or deploy a revision.

@@ -32,6 +32,18 @@ Unknown stock can produce a clearly labelled **manual URL handoff**. A provider 
 
 The optional `--allow-live-buyship --quote-db <existing operator DB>` path uses the existing indexed approval and BNS resolve/quote adapter, with server-owned `BNS_PARTNER_BASE_URL`, `BNS_PARTNER_CLIENT_ID` and `BNS_PARTNER_CLIENT_SECRET`. Candidate research alone cannot satisfy indexed approval. This integration was tested with injected providers; no live BNS or PSA call was made. There is no order/payment endpoint. Without a configured provider, the UI prepares the exact URL for manual entry into Buy & Ship or another forwarder and shows no shipping total.
 
+The separate explicit `--allow-live-buyship --buyship-url-preview` option can
+preview the selected public listing without an indexed database. It refreshes
+the owner-bound URL, lets BNS resolve stock/variants, and preserves unverified
+catalog identity and seller-grade labels. Multiple variants require a subsequent
+explicit `variant_key` chosen from the same selection/destination's retained
+options. Handoff never accepts a client reference, URL, price or grade. Safe
+`provider_result` refusals provide documented reasons and bounded variant,
+currency or field hints without provider-authored error text. No retries,
+approval/import, orders or payments are added. Both live flags remain off;
+see [BNS_URL_PREVIEW.md](BNS_URL_PREVIEW.md) for the offline tests and frontend
+companion patch.
+
 For an entirely offline walkthrough, use `--fixture` instead of live flags. Fixtures use reserved `.invalid` URLs. Fixture and live modes cannot be mixed and are visibly distinguished by the frontend.
 
 ## Frontend integration

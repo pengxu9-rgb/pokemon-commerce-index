@@ -1,0 +1,692 @@
+{
+  "description": "offline injected backend wire responses; not live provider evidence",
+  "ready": {
+    "schema": "pokemon.agent-commerce.v1",
+    "mode": "on_demand_research",
+    "checked_at": "2026-10-21T15:44:46.926139+00:00",
+    "purchasable": false,
+    "purchase_action": null,
+    "order_created": false,
+    "status": "quote_ready_for_review",
+    "selection_id": "iFCaflVJCvF2sgyzCggyRDVzAu0bJaVWxpQ0_BaSKcs",
+    "product_url": "https://jp.mercari.com/item/m1001",
+    "offer": {
+      "source": "mercari",
+      "native_id": "m1001",
+      "url": "https://jp.mercari.com/item/m1001",
+      "title": "Pikachu 173/165 PSA 10",
+      "price_minor": 12000,
+      "currency": "JPY",
+      "availability": "unknown",
+      "observed_at": "2026-10-21T15:44:46+00:00",
+      "listing_status": "unknown",
+      "fresh_until": "2026-10-21T15:49:46+00:00",
+      "grade": {
+        "company": "PSA",
+        "value": "10",
+        "certificate_verified": false
+      },
+      "identity_status": "unverified_candidate",
+      "scope": "listing",
+      "authenticity_verified": false,
+      "seller_condition": null,
+      "certificate_number_claim": null,
+      "evidence_ref": "offline:public-pdp",
+      "synthetic": false
+    },
+    "forwarder": {
+      "id": "buyship",
+      "label": "Buy & Ship"
+    },
+    "destination": {
+      "country": "HK"
+    },
+    "quote": {
+      "status": "quote_ready_for_review",
+      "purchasable": false,
+      "purchase_action": null,
+      "order_created": false,
+      "card_id": "ja:SV2A:173/165:holo",
+      "listing": {
+        "source": "mercari",
+        "native_id": "m1001",
+        "url": "https://jp.mercari.com/item/m1001",
+        "title": "Pikachu 173/165 PSA 10",
+        "observed_at": "2026-10-21T15:44:46+00:00",
+        "grade": {
+          "company": "PSA",
+          "value": "10",
+          "certificate_verified": false
+        },
+        "identity_status": "unverified_candidate",
+        "ask": {
+          "currency": "JPY",
+          "subunit_amount": 12000
+        }
+      },
+      "buyship": {
+        "reference_id": "fixture-reference-1",
+        "variant_key": "fixture-variant-1",
+        "canonical_url": "https://jp.mercari.com/item/m1001",
+        "merchant_domain": "jp.mercari.com",
+        "resolve_price": {
+          "currency": "JPY",
+          "subunit_amount": 12000
+        },
+        "resolve_price_differs_from_observation": false,
+        "quote_id": "fixture-quote-1",
+        "expires_at": "2026-10-21T15:59:46+00:00",
+        "quoted_at": "2026-10-21T15:44:46.925383+00:00",
+        "destination": {
+          "country": "HK"
+        },
+        "currency": "HKD",
+        "unit_price": {
+          "currency": "HKD",
+          "subunit_amount": 21000
+        },
+        "components": {
+          "items": {
+            "currency": "HKD",
+            "subunit_amount": 21000
+          },
+          "local_shipping": {
+            "currency": "HKD",
+            "subunit_amount": 0
+          },
+          "international_shipping": {
+            "currency": "HKD",
+            "subunit_amount": 1800
+          },
+          "duties": {
+            "currency": "HKD",
+            "subunit_amount": 0
+          },
+          "bns_service_fee": {
+            "currency": "HKD",
+            "subunit_amount": 1260
+          }
+        },
+        "grand_total": {
+          "currency": "HKD",
+          "subunit_amount": 24060
+        },
+        "variant_options": {},
+        "resolved_availability": "in_stock"
+      },
+      "evidence": {
+        "schema": "pokemon.bns-url-preview-evidence.v1",
+        "mode": "url_quote_preview",
+        "identity_status": "unverified_candidate",
+        "certificate_verified": false,
+        "authenticity_verified": false,
+        "selected_offer_sha256": "7fbca56fe550900e707764d77a352307870eb74d8440411cb7be6397ee541ff7",
+        "resolve_response_sha256": "83c90efdb77d67aab78da2ab863f0856f8a35e32b0c6cabbcdd4ea8ba7859b54",
+        "quote_response_sha256": "624ddcf472a8a2a585dd4390805d93ea7f7fcf3e402b07e1729c88effb5f25e5",
+        "binding_scope": "selected marketplace URL and BNS reference/variant only; catalog identity and seller grade remain unverified",
+        "binding_sha256": "ddc6e674bf82fc29ae215faa206e33d88b034cc2bb21a8bffb4c1410cf3fe4b4"
+      }
+    },
+    "quote_status": "ready",
+    "message": "Review the provider's current landed quote. No order was created."
+  },
+  "choices": {
+    "schema": "pokemon.agent-commerce.v1",
+    "mode": "on_demand_research",
+    "checked_at": "2026-10-21T15:44:46.927010+00:00",
+    "purchasable": false,
+    "purchase_action": null,
+    "order_created": false,
+    "status": "variant_selection_required",
+    "selection_id": "JAjpjHcY_5uj_4KhISy7ftouOLhHnPyxwgyb1o9FUcI",
+    "product_url": "https://jp.mercari.com/item/m1001",
+    "offer": {
+      "source": "mercari",
+      "native_id": "m1001",
+      "url": "https://jp.mercari.com/item/m1001",
+      "title": "Pikachu 173/165 PSA 10",
+      "price_minor": 12000,
+      "currency": "JPY",
+      "availability": "unknown",
+      "observed_at": "2026-10-21T15:44:46+00:00",
+      "listing_status": "unknown",
+      "fresh_until": "2026-10-21T15:49:46+00:00",
+      "grade": {
+        "company": "PSA",
+        "value": "10",
+        "certificate_verified": false
+      },
+      "identity_status": "unverified_candidate",
+      "scope": "listing",
+      "authenticity_verified": false,
+      "seller_condition": null,
+      "certificate_number_claim": null,
+      "evidence_ref": "offline:public-pdp",
+      "synthetic": false
+    },
+    "forwarder": {
+      "id": "buyship",
+      "label": "Buy & Ship"
+    },
+    "destination": {
+      "country": "HK"
+    },
+    "quote": null,
+    "quote_status": "variant_selection_required",
+    "message": "Choose a Buy & Ship variant before requesting a quote preview.",
+    "provider_result": {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "variant_selection_required",
+      "code": "variant_selection_required",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Choose a Buy & Ship variant before requesting a quote preview.",
+      "details": {
+        "variants": [
+          {
+            "variant_key": "fixture-variant-1",
+            "options": {},
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          },
+          {
+            "variant_key": "another-variant",
+            "options": {
+              "size": "L"
+            },
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          }
+        ]
+      }
+    }
+  },
+  "refused": {
+    "schema": "pokemon.agent-commerce.v1",
+    "mode": "on_demand_research",
+    "checked_at": "2026-10-21T15:44:46.927576+00:00",
+    "purchasable": false,
+    "purchase_action": null,
+    "order_created": false,
+    "status": "manual_handoff_required",
+    "selection_id": "pwhvQXRtcM0A-tKMUltCnn8jQAsh2V3ykIyttCASAuA",
+    "product_url": "https://jp.mercari.com/item/m1001",
+    "offer": {
+      "source": "mercari",
+      "native_id": "m1001",
+      "url": "https://jp.mercari.com/item/m1001",
+      "title": "Pikachu 173/165 PSA 10",
+      "price_minor": 12000,
+      "currency": "JPY",
+      "availability": "unknown",
+      "observed_at": "2026-10-21T15:44:46+00:00",
+      "listing_status": "unknown",
+      "fresh_until": "2026-10-21T15:49:46+00:00",
+      "grade": {
+        "company": "PSA",
+        "value": "10",
+        "certificate_verified": false
+      },
+      "identity_status": "unverified_candidate",
+      "scope": "listing",
+      "authenticity_verified": false,
+      "seller_condition": null,
+      "certificate_number_claim": null,
+      "evidence_ref": "offline:public-pdp",
+      "synthetic": false
+    },
+    "forwarder": {
+      "id": "buyship",
+      "label": "Buy & Ship"
+    },
+    "destination": {
+      "country": "HK"
+    },
+    "quote": null,
+    "quote_status": "product_not_eligible",
+    "message": "Buy & Ship cannot ship this product under the current restrictions.",
+    "provider_result": {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "product_not_eligible",
+      "reason_codes": [
+        "MERCHANT_NOT_SUPPORTED"
+      ],
+      "retryable": false,
+      "message": "Buy & Ship cannot ship this product under the current restrictions.",
+      "details": {}
+    }
+  },
+  "refusals": [
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "invalid_request",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship could not accept the quote request. Check the highlighted fields.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "unsupported_grant_type",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship authentication configuration needs attention.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "invalid_client",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship client access was rejected. Check the configured credentials.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "server_error",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "Buy & Ship could not issue an access token. Try again later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "not_found",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship no longer recognizes this product reference. Resolve the product again.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "quote_expired",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "The Buy & Ship quote has expired. Request a new preview.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "currency_unsupported",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship does not support the requested currency for this account.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "destination_unsupported",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship does not support this destination.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "variant_unavailable",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "The selected Buy & Ship variant is unavailable. Review the current variants.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "product_not_eligible",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship cannot ship this product under the current restrictions.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "quote_limit_exceeded",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "The item value exceeds the Buy & Ship quote limit.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "product_not_quotable",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship could not read enough product information to provide a quote.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "merchant_unreachable",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "Buy & Ship could not reach the merchant. You can try a new preview later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "variant_selection_required",
+      "code": "variant_selection_required",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Choose a Buy & Ship variant before requesting a quote preview.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "variant_selection_required",
+      "code": "variant_changed",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "The Buy & Ship variants changed. Review them and choose again.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "product_mismatch",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship product evidence conflicts with the selected listing. No quote preview was accepted.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "quote_binding_invalid",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship returned a quote that did not match the selected product and destination.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "invalid_destination",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Choose Hong Kong or a supported US destination with a state code.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "provider_unconfigured",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship quote preview is not configured.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "provider_busy",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "A Buy & Ship preview is already running. Wait before trying again.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "provider_timeout",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "The Buy & Ship preview reached its time limit. You can try again later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "provider_unavailable",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "Buy & Ship quote preview is unavailable. You can try again later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "invalid_provider_response",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship returned a response that could not be safely verified.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_unavailable",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "Buy & Ship quote preview is unavailable. You can try again later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_disabled",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship quote preview is disabled.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_not_configured",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship quote preview is not configured.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_access_rejected",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship access was rejected. Check the configured client access.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_rate_limited",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "Buy & Ship is limiting requests. Try a new preview later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_http_rejected",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship could not complete this preview request.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_response_invalid",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship returned a response that could not be safely verified.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_request_deadline",
+      "reason_codes": [],
+      "retryable": true,
+      "message": "The Buy & Ship preview reached its time limit. You can try again later.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "bns_request_budget_or_route",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "The Buy & Ship preview exceeded its permitted request scope.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "approved_bns_endpoint_required",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "An approved Buy & Ship endpoint is required.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "live_not_authorized",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship live quote preview is not authorized.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "unavailable",
+      "code": "single_quote_only",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship preview supports one item with quantity one.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "product_not_eligible",
+      "reason_codes": [
+        "MERCHANT_NOT_SUPPORTED"
+      ],
+      "retryable": false,
+      "message": "Buy & Ship cannot ship this product under the current restrictions.",
+      "details": {}
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "currency_unsupported",
+      "reason_codes": [
+        "CURRENCY_UNSUPPORTED"
+      ],
+      "retryable": false,
+      "message": "Buy & Ship does not support the requested currency for this account.",
+      "details": {
+        "supported_currencies": [
+          "HKD",
+          "USD"
+        ]
+      }
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "invalid_request",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Buy & Ship could not accept the quote request. Check the highlighted fields.",
+      "details": {
+        "field_errors": [
+          {
+            "field": "destination.state",
+            "message": "Choose a two-letter US state code."
+          }
+        ]
+      }
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "variant_selection_required",
+      "code": "variant_selection_required",
+      "reason_codes": [],
+      "retryable": false,
+      "message": "Choose a Buy & Ship variant before requesting a quote preview.",
+      "details": {
+        "variants": [
+          {
+            "variant_key": "fixture-variant-1",
+            "options": {},
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          },
+          {
+            "variant_key": "another-variant",
+            "options": {
+              "size": "L"
+            },
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "schema": "pokemon.bns-refusal.v1",
+      "status": "refused",
+      "code": "variant_unavailable",
+      "reason_codes": [
+        "OUT_OF_STOCK"
+      ],
+      "retryable": false,
+      "message": "The selected Buy & Ship variant is unavailable. Review the current variants.",
+      "details": {
+        "variants": [
+          {
+            "variant_key": "fixture-variant-1",
+            "options": {},
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          },
+          {
+            "variant_key": "another-variant",
+            "options": {
+              "size": "L"
+            },
+            "availability": "in_stock",
+            "price": {
+              "currency": "JPY",
+              "subunit_amount": 12000
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
