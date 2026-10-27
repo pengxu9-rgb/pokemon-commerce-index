@@ -78,7 +78,9 @@ class CommerceLoopTests(unittest.TestCase):
         offer = report["offers"][0]
         self.assertEqual(report["schema"], SCHEMA)
         self.assertEqual(report["mode"], "on_demand_research")
-        self.assertEqual(offer["grade"], {"company": "PSA", "value": "10", "certificate_verified": False})
+        self.assertEqual(offer["grade"], {"company": "PSA", "value": "10", "certificate_verified": False,
+            "kind": "slab", "evidence": "structured_seller_claim", "review_required": False,
+            "review_reasons": [], "special_label": None})
         self.assertEqual(offer["identity_status"], "unverified_candidate")
         selected = self.choose(offer)
         self.assertEqual(len(self.producer.calls), 1)
@@ -362,6 +364,34 @@ class IndexedBuyShipTests(unittest.TestCase):
         self.assertEqual(result["status"], "manual_handoff_required")
         self.assertEqual(result["quote_status"], "eligible_indexed_quote_unavailable")
         self.assertEqual(self.calls, [])
+
+    def test_known_researched_and_indexed_seller_id_contradiction_blocks_provider(self):
+        self.db.execute("UPDATE listing SET seller_native_id='indexed-seller-a'")
+        self.db.execute("UPDATE observation SET seller_native_id='indexed-seller-a'")
+        self.db.commit()
+        self.producer.row["seller_native_id"] = "researched-seller-b"
+        result = self.run_loop()
+        self.assertEqual(result["status"], "manual_handoff_required")
+        self.assertEqual(result["quote_status"], "eligible_indexed_quote_unavailable")
+        self.assertIsNone(result["quote"])
+        self.assertEqual(self.calls, [])
+
+    def test_matching_or_unknown_seller_identity_does_not_invent_verification(self):
+        for claimed, indexed in (("seller-a", "seller-a"), (None, "seller-a"), ("seller-a", None)):
+            with self.subTest(claimed=claimed, indexed=indexed):
+                self.calls.clear()
+                self.db.execute("UPDATE listing SET seller_native_id=?", (indexed,))
+                self.db.execute("UPDATE observation SET seller_native_id=?", (indexed,))
+                self.db.commit()
+                self.producer.row["seller_native_id"] = claimed
+                result = self.run_loop()
+                self.assertEqual(result["status"], "quote_ready_for_review")
+                self.assertIn(self.calls, (["token", "resolve", "quotes"], ["resolve", "quotes"]))
+                self.assertNotIn("seller_verified", result)
+                self.assertNotIn("seller", result["quote"])
+                if claimed is None:
+                    self.assertIsNone(result["offer"]["seller"])
+                self.assertFalse(result["quote"]["purchasable"])
 
     def test_unconfirmed_current_research_never_reaches_configured_quote_provider(self):
         changes = ({"availability": "unknown", "status": "unknown"},

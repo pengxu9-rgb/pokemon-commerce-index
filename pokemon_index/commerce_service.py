@@ -149,8 +149,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8766)
-    parser.add_argument("--fixture", action="store_true", help="synthetic .invalid examples; no network or database")
+    parser.add_argument("--fixture", action="store_true", help="synthetic .invalid examples; no marketplace or provider calls")
+    parser.add_argument("--catalog-db", help="existing operator-supplied read-only catalog for listing identity checks")
     parser.add_argument("--allow-live-crawl", action="store_true", help="opt in to bounded public-page research")
+    parser.add_argument("--allow-live-ebay-browse", action="store_true", help="opt in to an approved bounded official eBay Browse session; separate from crawling")
+    parser.add_argument("--ebay-read-until", help="absolute UTC end for an explicitly approved eBay Browse session")
+    parser.add_argument("--ebay-request-budget", type=int, help="finite eBay HTTP request budget, including token requests")
     parser.add_argument("--browser-renderer", action="store_true", help="allow the configured public-page browser renderer after normal HTML discovery")
     parser.add_argument("--source", action="append", choices=["mercari", "ebay_us", "snkrdunk"], help="explicitly authorized research sources")
     parser.add_argument("--snkr-seed-url", action="append", default=[])
@@ -163,6 +167,10 @@ def main():
     parser.add_argument("--allow-live-psa", action="store_true", help="enable configured read-only PSA certificate lookup")
     args = parser.parse_args()
     fixture = args.fixture or os.environ.get("POKEMON_COMMERCE_FIXTURE") == "true"
+    if not args.allow_live_ebay_browse and (args.ebay_read_until is not None or args.ebay_request_budget is not None):
+        parser.error("eBay session bounds require --allow-live-ebay-browse")
+    if args.allow_live_ebay_browse and fixture:
+        parser.error("official eBay Browse cannot mix with fixture mode")
     browser_renderer = args.browser_renderer or os.environ.get("POKEMON_COMMERCE_BROWSER_RENDERER") == "1"
     if fixture and (args.allow_live_crawl or args.allow_live_buyship or args.allow_live_psa or args.quote_db or browser_renderer or args.buyship_url_preview):
         parser.error("fixture mode cannot mix with live research or a quote database")
@@ -173,6 +181,12 @@ def main():
     token = os.environ.get("POKEMON_COMMERCE_TOKEN") or os.environ.get("POKEMON_COMMERCE_SERVICE_TOKEN")
     if not token:
         parser.error("set the server-only POKEMON_COMMERCE_TOKEN environment variable")
+    catalog_lookup = None
+    if args.catalog_db is not None:
+        if not args.catalog_db:
+            parser.error("catalog database path cannot be empty")
+        from .listing_evidence import CatalogIdentityLookup
+        catalog_lookup = CatalogIdentityLookup(args.catalog_db)
     forwarders = {}
     if fixture:
         crawler = FixtureCrawler()
@@ -189,6 +203,13 @@ def main():
             authorized_sources=args.source or ("mercari", "snkrdunk"),
             snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
             ebay_browse_urls=args.ebay_browse_url)
+    if args.allow_live_ebay_browse:
+        from .ebay_official import configure_official_ebay
+        try:
+            crawler = configure_official_ebay(crawler, os.environ, allow_network=True,
+                read_until=args.ebay_read_until, request_budget=args.ebay_request_budget)
+        except ValueError:
+            parser.error("official eBay Browse requires approved server-owned credentials, display rights and finite session bounds")
     if args.allow_live_buyship:
         if not args.quote_db and not args.buyship_url_preview:
             parser.error("live BNS preview requires --quote-db with approved existing indexed evidence")
@@ -205,7 +226,7 @@ def main():
         parser.error("--quote-db is only used with --allow-live-buyship")
     from .psa_cert import PSACertClient
     psa_client = PSACertClient(token=os.environ.get("PSA_API_TOKEN"), allow_live=args.allow_live_psa)
-    loop = CommerceLoop(crawler, forwarders=forwarders, psa_client=psa_client)
+    loop = CommerceLoop(crawler, forwarders=forwarders, psa_client=psa_client, catalog_lookup=catalog_lookup)
     with create_server(loop, token=token, host=args.host, port=args.port) as server:
         print(json.dumps({"event": "commerce_sidecar_ready", "mode": loop.mode, "port": server.server_port}), flush=True)
         try:

@@ -23,9 +23,12 @@ from urllib.parse import parse_qs, urlencode, urljoin, urlsplit, urlunsplit
 import xml.etree.ElementTree as ET
 
 from . import core, marketplace_sources
+from .marketplace_quality import grade_details
 from .ebay_discovery import browse_urls as validate_ebay_browse_urls, listing_anchor as ebay_listing_anchor
 from .mercari_discovery import preload_product_urls
 from .public_robots import RobotsPolicy
+from .seller_evidence import extracted_seller, seller_identity
+from .listing_evidence import extracted_listing_evidence
 
 USER_AGENT = "PokemonPublicResearch/1.0"
 HOSTS = {"mercari": {"jp.mercari.com"}, "ebay_us": {"www.ebay.com", "ebay.com"},
@@ -336,6 +339,43 @@ def _snkr_used_item(page, url):
     return next(iter(matches.values())) if len(matches) == 1 else None
 
 
+def _snkr_used_quality(item, title, evidence):
+    """Extract claims only from this path-bound item, never platform assurances."""
+    condition = item.get("displayWearCount")
+    condition = condition.strip() if isinstance(condition, str) and len(condition) <= 512 else None
+    code = item.get("wearCount")
+    code = code if isinstance(code, str) and len(code) <= 160 else ""
+    coded = re.fullmatch(r"tradingCardSingleCondition(PSA|BGS|CGC|ARS|PGC)(10|[1-9](?:\.5)?)", code, re.I)
+    displayed = list(core.GRADE_RE.finditer(unicodedata.normalize("NFKC", condition or "")))
+    explicit = (coded.group(1).upper(), coded.group(2)) if coded else (
+        (displayed[0].group(1).upper(), displayed[0].group(2)) if len(displayed) == 1 else None)
+    raw_claim = bool(not explicit and condition and re.fullmatch(r"raw|ungraded|未鑑定|鑑定前", condition, re.I))
+    fields = {"seller_condition": condition}
+    if explicit:
+        fields.update(grade_company=explicit[0], grade_value=explicit[1])
+    elif raw_claim:
+        fields.update(grade_company="RAW", grade_value="raw")
+    try:
+        quality, review = marketplace_sources._quality(fields, title, evidence)
+    except ValueError:
+        quality = {"seller_condition": condition, "grade_company": explicit[0] if explicit else None,
+                   "grade_value": explicit[1] if explicit else None,
+                   "grade_evidence": "ambiguous_seller_title_claim", "evidence_ref": evidence,
+                   "certificate_verified": False, "authenticity_verified": False,
+                   "physical_inspection_performed": False}
+        review = True
+    # An explicit used-item condition is independently attributable seller
+    # evidence even when the shared catalog/product title contains no grade.
+    basis = "snkr_used_condition" if explicit or raw_claim else quality["grade_evidence"]
+    detail = grade_details(quality["grade_company"], quality["grade_value"], title=title,
+                           condition=condition, evidence=basis, raw_claim=raw_claim,
+                           source_review=review and not (explicit or raw_claim))
+    quality.update(grade_kind=detail["kind"], grade_evidence=detail["evidence"],
+                   grade_review_required=detail["review_required"],
+                   grade_review_reasons=detail["review_reasons"])
+    return quality, detail["review_required"]
+
+
 def _money(offer):
     amount, currency = offer.get("price"), offer.get("priceCurrency")
     if not currency and isinstance(offer.get("priceSpecification"), dict):
@@ -524,7 +564,12 @@ class Crawler:
                 objects.extend(_walk(json.loads(script)))
             except (ValueError, RecursionError):
                 continue
-        products = [p for p in objects if _typed(p, "Product")]
+        # A Product explicitly nested under an Offer is its subject, not a
+        # second page-wide primary product. It is read only after that Offer's
+        # exact URL is bound below; unrelated Product nodes remain ambiguous.
+        offer_subjects = {id(node["itemOffered"]) for node in objects
+                          if _typed(node, "Offer") and isinstance(node.get("itemOffered"), dict)}
+        products = [p for p in objects if _typed(p, "Product") and id(p) not in offer_subjects]
         groups = [p for p in objects if _typed(p, "ProductGroup")]
         product = products[0] if len(products) == 1 else groups[0] if not products and len(groups) == 1 else {}
         title = unicodedata.normalize("NFKC", str(product.get("name") or _meta_one(page, "og:title") or page.title)).strip()[:2000]
@@ -618,6 +663,10 @@ class Crawler:
             if "InStock" in states:
                 reasons.append("availability_evidence_conflict")
             availability = "out_of_stock"
+        # Exact used-item sold/transaction state overrides stale generic Product
+        # metadata. Status9 is awaiting arrival at SNKRDUNK, not an active ask.
+        if rsc_item and (rsc_item.get("isDisplaySold") is True or rsc_item.get("status") == 9):
+            availability = "out_of_stock"
         status = {"in_stock": "on_sale", "out_of_stock": "sold_out"}.get(availability, "unknown")
         if status == "unknown":
             reasons.append("availability_unknown")
@@ -626,9 +675,28 @@ class Crawler:
         stamp = self.now()
         stamp = stamp.isoformat() if isinstance(stamp, datetime) else str(stamp)
         evidence = "public-html:sha256:" + hashlib.sha256(body.encode()).hexdigest()
+        # Only the exact path-bound used item or this one unambiguous Offer can
+        # identify a seller. Product ratings, related items and page-wide seller
+        # graphs cannot become this listing's reputation evidence.
+        seller = None
+        seller_conflict = False
+        if scope == "listing" and not any(reason in reasons for reason in (
+                "product_identity_ambiguous", "product_url_mismatch", "offer_url_mismatch",
+                "individual_offer_ambiguous")):
+            seller_candidates = []
+            for value in ([rsc_item.get("seller")] if rsc_item else []) + (
+                    [valid[0].get("seller")] if len(valid) == 1 else []):
+                captured = extracted_seller(value, source, evidence, stamp)
+                if captured is not None:
+                    seller_candidates.append(captured)
+            if len({json.dumps(seller_identity(value), sort_keys=True) for value in seller_candidates}) > 1:
+                seller_conflict = True
+                reasons.append("seller_identity_conflict")
+            elif seller_candidates:
+                seller = seller_candidates[0]
         try:
-            quality, needs_review = marketplace_sources._quality(
-                {"seller_condition": rsc_item.get("displayWearCount")} if rsc_item else {}, title, evidence)
+            quality, needs_review = (_snkr_used_quality(rsc_item, title, evidence) if rsc_item
+                                     else marketplace_sources._quality({}, title, evidence))
         except ValueError:
             quality = {"seller_condition": None, "grade_company": None, "grade_value": None,
                        "grade_evidence": "ambiguous_seller_title_claim", "evidence_ref": evidence,
@@ -637,7 +705,17 @@ class Crawler:
             needs_review = True
         certificate = re.search(r"(?:cert(?:ificate)?(?:\s*(?:no\.?|number|#))?|鑑定番号)\s*[:#：]?\s*([0-9]{6,12})(?![0-9])", title, re.I)
         quality["certificate_number_claim"] = certificate.group(1) if certificate else None
+        needs_review = needs_review or seller_conflict
+        size = rsc_item.get("size") if rsc_item else None
+        count_label = size.get("localizedName") if isinstance(size, dict) else None
+        listing_quantity = (int(count_label[:-1]) if isinstance(count_label, str)
+                            and re.fullmatch(r"[1-9][0-9]?枚", count_label) else None)
         native = urlsplit(url).path.rstrip("/").rsplit("/", 1)[-1]
+        listing_identity, listing_photos = None, []
+        if scope == "listing" and not any(reason in reasons for reason in (
+                "product_identity_ambiguous", "product_url_mismatch", "offer_url_mismatch", "individual_offer_ambiguous")):
+            listing_identity, listing_photos = extracted_listing_evidence(source, native, url, stamp, evidence,
+                item=rsc_item, offer=valid[0] if len(valid) == 1 else None)
         return {"source": source, "native_id": native, "url": url, "title": title,
                 "price_minor": price, "currency": currency, "status": status,
                 "availability": availability, "observed_at": stamp, "scope": scope,
@@ -648,6 +726,9 @@ class Crawler:
                 "price_status": "known" if price is not None else "unknown",
                 "currency_basis": currency_basis if currency else None,
                 "source_status_text": rsc_item.get("statusText") if rsc_item else None,
+                "listing_quantity": listing_quantity,
+                "seller": seller,
+                "listing_identity": listing_identity, "listing_photos": listing_photos,
                 "evidence_ref": evidence, "marketplace_quality": quality,
                 "quality_review_required": needs_review, "exclusion_reasons": sorted(set(reasons)),
                 "purchase_action": None, "sold_sales_available": False}
