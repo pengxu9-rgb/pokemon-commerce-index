@@ -18,11 +18,22 @@ import threading
 import time
 from urllib.parse import urlsplit
 
+from .seller_evidence import seller_for_listing, seller_identity
+from .listing_evidence import FIELDS as IDENTITY_FIELDS, identity_evidence, normalized, research_coverage, semantic_binding, validate_photos
+
 SCHEMA = "pokemon.agent-commerce.v1"
 SOURCES = ("mercari", "ebay_us", "snkrdunk")
 MAX_OFFERS = 2000
 HANDOFF_SECONDS = 22
 RESEARCH_MESSAGES = {
+    "explicit_listing_url_required": "Paste an approved exact SNKRDUNK used-listing URL to research it. General marketplace search is disabled in this test.",
+    "public_listing_url_not_authorized": "This exact listing URL is outside this test's approved research scope.",
+    "public_listing_source_not_authorized": "This test can research only its approved SNKRDUNK used listings.",
+    "public_listing_redirect_not_allowed": "This approved listing redirected, so research stopped without following it.",
+    "public_read_window_expired": "This private public-page research window has ended.",
+    "public_read_clock_invalid": "The research clock could not be safely checked. This test's public-page access has stopped.",
+    "public_request_budget_exhausted": "This process has used its public-page request allowance. No further page was requested.",
+    "read_only_scope": "This test supports public-page research only. Selection, certificate lookup and handoff are disabled.",
     "network_disabled": "Live research is disabled in this sidecar.",
     "source_access_not_authorized": "This marketplace is not enabled in the server's research configuration.",
     "public_discovery_seed_required": "SNKRDUNK discovery needs configured public seed pages or an allowed sitemap; a product URL can be researched directly.",
@@ -134,9 +145,37 @@ def _source_url(value, fixture=False):
 
 def _fingerprint(offer):
     fields = ("source", "native_id", "url", "title", "price_minor", "currency",
-              "availability", "listing_status", "grade", "scope", "seller_condition", "certificate_number_claim")
-    return hashlib.sha256(json.dumps({key: offer.get(key) for key in fields},
+              "availability", "listing_status", "grade", "scope", "seller_condition", "source_status_text", "certificate_number_claim", "listing_quantity")
+    value = {key: offer.get(key) for key in fields}
+    # A changing capture timestamp is not a different seller. A changed or newly
+    # reported seller identity does require a new explicit listing selection.
+    value["seller"] = seller_identity(offer.get("seller"))
+    value["listing_evidence"] = semantic_binding(offer)
+    return hashlib.sha256(json.dumps(value,
         ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+
+
+def _deduplicate_offers(offers):
+    """One canonical platform listing may arrive twice, not become two offers.
+
+    Current marketplace IDs are platform-global. Contradictory identity/price
+    observations fail the source rather than choosing a convenient low price.
+    Distinct listing IDs/URLs are retained even when their seller is identical.
+    """
+    by_listing, native_urls, url_natives = {}, {}, {}
+    for offer in offers:
+        native, url = offer["native_id"], offer["url"]
+        if (native in native_urls and native_urls[native] != url
+                or url in url_natives and url_natives[url] != native):
+            raise ValueError("conflicting canonical listing identity")
+        native_urls[native], url_natives[url] = url, native
+        key = native, url
+        previous = by_listing.get(key)
+        if previous is not None and _fingerprint(previous) != _fingerprint(offer):
+            raise ValueError("contradictory duplicate producer listing")
+        if previous is None or _time(offer["observed_at"]) > _time(previous["observed_at"]):
+            by_listing[key] = offer
+    return list(by_listing.values())
 
 
 def _quote_block_reason(offer):
@@ -144,6 +183,8 @@ def _quote_block_reason(offer):
         return "exact_listing_not_established"
     if offer.get("availability") != "available" or offer.get("listing_status") != "on_sale":
         return "stock_not_confirmed"
+    if offer.get("grade", {}).get("review_required"):
+        return "grade_review_required"
     if (type(offer.get("price_minor")) is not int or not 0 <= offer["price_minor"] < 2**63
             or not isinstance(offer.get("currency"), str) or not re.fullmatch(r"[A-Z]{3}", offer["currency"])):
         return "native_price_unavailable"
@@ -166,8 +207,8 @@ class FixtureCrawler:
                             if slab else {"mercari": 3800, "snkrdunk": 4200, "ebay_us": 2995}[source]),
             "currency": "USD" if source == "ebay_us" else "JPY",
             "availability": "in_stock", "status": "on_sale", "observed_at": self.now(),
-            "scope": "listing", "grade_company": "PSA" if slab else None,
-            "grade_value": "10" if slab else None, "identity_status": "unresolved",
+            "scope": "listing", "grade_company": "PSA" if slab else "RAW",
+            "grade_value": "10" if slab else "raw", "identity_status": "unresolved",
             "certificate_number_claim": None, "marketplace_quality": {},
             "evidence_ref": f"synthetic-fixture:{source}:{native}"}
 
@@ -229,6 +270,13 @@ class BoundBuyShipForwarder:
                     ("url", "url"), ("title", "title"), ("current_price_minor", "price_minor"),
                     ("currency", "currency"))):
                 raise ValueError("researched candidate lacks a matching indexed offer")
+            claimed_seller = (offer.get("seller") or {}).get("id")
+            indexed_seller = row["seller_native_id"]
+            if claimed_seller is not None and indexed_seller is not None and claimed_seller != indexed_seller:
+                raise ValueError("refreshed seller identity differs from indexed listing")
+            # Missing identity on either side remains unknown. This rejects a
+            # known contradiction; it does not verify a seller or expand the
+            # frozen provider quote contract with an unsupported seller claim.
             quality = self._quality_binding(db, card_id, offer, row)
             _, snapshot = buyship_partner._offer_snapshot(db, card_id=card_id, unit_id=row["unit_id"],
                 source=row["source"], native_id=row["native_id"], country=destination["country"], now=core.utcnow())
@@ -299,10 +347,13 @@ class CommerceLoop:
     it re-fetches the URL retained from the selected server-owned research result.
     """
     def __init__(self, crawler, *, forwarders=None, psa_client=None, now=utcnow,
-                 freshness_seconds=300, selection_seconds=600, monotonic=time.monotonic):
+                 freshness_seconds=300, selection_seconds=600, monotonic=time.monotonic, catalog_lookup=None):
         if not 1 <= freshness_seconds <= 3600 or not 1 <= selection_seconds <= 3600:
             raise ValueError("invalid commerce state bounds")
         self.crawler, self.now = crawler, now
+        if catalog_lookup is not None and not callable(catalog_lookup):
+            raise ValueError("catalog lookup must be a server-owned dependency")
+        self.catalog_lookup = catalog_lookup
         self.monotonic = monotonic
         self.mode = "synthetic_fixture" if getattr(crawler, "mode", None) == "synthetic_fixture" else "on_demand_research"
         self.forwarders = dict(forwarders or {})
@@ -344,7 +395,24 @@ class CommerceLoop:
                  "manual_handoff_available": True}
                 for key, label in (("buyship", "Buy & Ship"), ("other", "Other forwarder"))]
 
-    def _offer(self, raw, source, instant):
+    def _target(self, card_id):
+        if self.catalog_lookup is None:
+            return None
+        try:
+            target = self.catalog_lookup(card_id)
+            if (not isinstance(target, dict) or set(target) != {"card_id", *IDENTITY_FIELDS, "evidence_ref"}
+                    or target["card_id"] != card_id or not isinstance(target["evidence_ref"], str)
+                    or not target["evidence_ref"] or len(target["evidence_ref"]) > 2048
+                    or target["evidence_ref"].strip() != target["evidence_ref"] or re.search(r"[\x00-\x1f\x7f]", target["evidence_ref"])
+                    or any(value is not None and normalized(field, value) != value for field, value in target.items() if field in IDENTITY_FIELDS)):
+                return None
+            return copy.deepcopy(target)
+        except Exception:
+            # A missing, held, malformed or unavailable catalog never becomes
+            # a target reconstructed from the request/query or a listing title.
+            return None
+
+    def _offer(self, raw, source, instant, target=None):
         if not isinstance(raw, dict) or _source(raw.get("source")) != source:
             raise ValueError("producer source mismatch")
         observed = _time(raw.get("observed_at"))
@@ -370,6 +438,7 @@ class CommerceLoop:
         if scope not in {"listing", "product_summary"}:
             raise ValueError("unsupported research scope")
         company, grade = raw.get("grade_company"), raw.get("grade_value")
+        raw_claim = company == "RAW"
         if company == "RAW":
             company, grade = None, None
         if company not in {None, "PSA", "BGS", "CGC", "ARS", "PGC"}:
@@ -380,24 +449,85 @@ class CommerceLoop:
         metadata = raw.get("marketplace_quality") or {}
         if not isinstance(metadata, dict):
             raise ValueError("invalid seller quality evidence")
+        quantity = raw.get("listing_quantity")
+        if quantity is not None and (type(quantity) is not int or not 1 <= quantity <= 99):
+            raise ValueError("invalid listing quantity evidence")
+        from .marketplace_quality import grade_details
+        details = grade_details(company, grade, title=raw.get("title", ""),
+            condition=metadata.get("seller_condition"), evidence=metadata.get("grade_evidence"),
+            raw_claim=raw_claim or metadata.get("grade_kind") == "raw" or metadata.get("grade_evidence") == "structured_raw_claim",
+            source_review=bool(raw.get("quality_review_required") or metadata.get("grade_review_required")))
         result = {"source": source, "native_id": _text(raw.get("native_id"), "listing ID", 128),
             "url": _url(raw.get("url"), source, self.mode == "synthetic_fixture"),
             "title": _text(raw.get("title"), "listing title", 2000), "price_minor": price,
             "currency": currency, "availability": availability, "observed_at": observed.isoformat(),
             "listing_status": listing_status,
             "fresh_until": (observed + timedelta(seconds=self.freshness_seconds)).isoformat(),
-            "grade": {"company": company, "value": grade, "certificate_verified": False},
+            "grade": details,
             "identity_status": "unverified_candidate", "scope": scope,
             "authenticity_verified": False,
             "seller_condition": metadata.get("seller_condition"),
+            "source_status_text": raw.get("source_status_text"),
+            "listing_quantity": quantity,
             "certificate_number_claim": raw.get("certificate_number_claim") or metadata.get("certificate_number_claim"),
             "evidence_ref": raw.get("evidence_ref"), "synthetic": self.mode == "synthetic_fixture"}
-        for field in ("seller_condition", "certificate_number_claim", "evidence_ref"):
+        for field in ("seller_condition", "source_status_text", "certificate_number_claim", "evidence_ref"):
             if result[field] is not None:
-                result[field] = _text(result[field], field, 2048)
+                result[field] = _text(result[field], field, 64 if field == "certificate_number_claim" else 2048)
+        result["certificate"] = {"number_claim": result["certificate_number_claim"],
+            "status": "not_checked" if result["certificate_number_claim"] else "number_missing",
+            "physical_authenticity": "not_verified"}
+        result["seller"] = seller_for_listing(raw, source, observed.isoformat())
+        result["identity_evidence"] = identity_evidence(raw, source, result["url"], observed.isoformat(), target)
+        if _time(result["identity_evidence"]["observed_at"]) < instant - timedelta(seconds=self.freshness_seconds):
+            raise ValueError("producer returned stale identity evidence")
+        result["card_id"] = target["card_id"] if target else None
+        result["listing_photos"] = validate_photos(raw.get("listing_photos"), source, result["url"], observed.isoformat(),
+            synthetic=self.mode == "synthetic_fixture") if scope == "listing" else []
+        if raw.get("purchase_link") is not None:
+            if self.mode == "synthetic_fixture":
+                raise ValueError("synthetic fixtures cannot carry affiliate links")
+            from .ebay_official import validate_purchase_link
+            result["purchase_link"] = validate_purchase_link(raw["purchase_link"], source=source,
+                native_id=result["native_id"], canonical_url=result["url"])
+        if result["identity_evidence"]["status"] == "conflict":
+            result["identity_status"] = "identity_conflict"
+        elif result["identity_evidence"]["status"] == "exact_match":
+            result["identity_status"] = "exact_match"
         return result
 
+    def _url_quote_offer(self, card_id, offer):
+        """Project comparison proof into the unchanged URL-only quote contract.
+
+        A URL quote does not corroborate catalog identity. The actual retained
+        offer and outer fingerprint retain the exact-card proof and photos.
+        """
+        proof = offer.get("identity_evidence") or {}
+        if proof.get("status") == "conflict" or offer.get("identity_status") == "identity_conflict":
+            raise ValueError("conflicting listing identity cannot reach quote provider")
+        projected = copy.deepcopy(offer)
+        if offer.get("identity_status") == "exact_match":
+            target = self._target(card_id)
+            if (not target or offer.get("card_id") != card_id or proof.get("target_card_id") != card_id
+                    or proof.get("status") != "exact_match" or proof.get("basis") != "exact_listing_structured"
+                    or proof.get("listing_url") != offer.get("url") or not proof.get("evidence_ref")
+                    or proof.get("authenticity_verified") is not False or proof.get("missing_fields") != []
+                    or proof.get("conflicting_fields") != [] or set(proof.get("matched_fields", [])) != set(IDENTITY_FIELDS)
+                    or len(proof["matched_fields"]) != len(IDENTITY_FIELDS)
+                    or proof.get("target") != {key: target[key] for key in (*IDENTITY_FIELDS, "evidence_ref")}
+                    or any(target[field] is None or proof.get("claims", {}).get(field) != target[field] for field in IDENTITY_FIELDS)
+                    or not _time(self.now()) - timedelta(seconds=self.freshness_seconds) <= _time(proof.get("observed_at")) <= _time(offer.get("observed_at")) <= _time(self.now())
+                    or _time(offer.get("fresh_until")) <= _time(self.now())):
+                raise ValueError("current server-backed comparison proof required")
+            projected["identity_status"] = "unverified_candidate"
+        elif proof.get("status") == "exact_match":
+            raise ValueError("contradictory public identity status")
+        for field in ("identity_evidence", "listing_photos", "card_id"):
+            projected.pop(field, None)
+        return projected
+
     def research(self, owner, request):
+        from .marketplace_crawl import CrawlBlocked
         owner = self._owner(owner)
         _request(request, ("card_id", "query"), ("platforms", "product_urls"))
         card_id = _text(request["card_id"], "card context")
@@ -412,10 +542,19 @@ class CommerceLoop:
         if (not isinstance(urls, list) or len(urls) > 8 or any(not isinstance(url, str) for url in urls)
                 or len(set(urls)) != len(urls)):
             raise CommerceError("invalid_request", "Use at most eight distinct product URLs.")
+        restricted_urls = getattr(self.crawler, "public_listing_urls", None)
+        if restricted_urls is not None and any(url not in restricted_urls for url in urls):
+            # The normal URL contract canonicalizes harmless variants. This
+            # smaller capability must see and authorize the original literal.
+            raise CommerceError("public_listing_url_not_authorized",
+                                RESEARCH_MESSAGES["public_listing_url_not_authorized"], 403)
         validated = [_source_url(url, self.mode == "synthetic_fixture") for url in urls]
         if any(source not in sources for source, _ in validated):
             raise CommerceError("invalid_request", "Product URLs must belong to the chosen marketplaces.")
         result = self._base() | {"card_id": card_id, "platforms": [], "offers": [], "forwarders": self.capabilities()}
+        from .marketplace_connections import marketplace_connections
+        result["marketplace_connections"] = marketplace_connections(self.crawler)
+        target = self._target(card_id)
         for source in sources:
             try:
                 chosen = [url for src, url in validated if src == source]
@@ -425,9 +564,8 @@ class CommerceLoop:
                 if not isinstance(response, dict) or not isinstance(response.get("listings", []), list) or len(response.get("listings", [])) > 20:
                     raise ValueError("invalid or oversized producer response")
                 instant = _time(self.now())
-                offers = [self._offer(raw, source, instant) for raw in response.get("listings", [])]
-                if len({(offer["native_id"], offer["url"]) for offer in offers}) != len(offers):
-                    raise ValueError("duplicate producer listing")
+                offers = _deduplicate_offers([self._offer(raw, source, instant, target)
+                    for raw in response.get("listings", [])])
                 with self._lock:
                     self._purge(instant)
                     if len(self._offers) + len(offers) > MAX_OFFERS:
@@ -462,9 +600,21 @@ class CommerceLoop:
                 if exc.status == 503:
                     raise
                 result["platforms"].append({"source": source, "status": "unavailable", "message": "The research route returned unsupported listing evidence."})
+            except CrawlBlocked as exc:
+                reason = str(exc)
+                restricted_reason = reason in {"public_listing_url_not_authorized", "public_listing_redirect_not_allowed",
+                                              "public_read_window_expired", "public_read_clock_invalid",
+                                              "public_request_budget_exhausted", "read_only_scope"}
+                platform = {"source": source, "status": "unavailable", "message": (
+                    RESEARCH_MESSAGES[reason] if restricted_reason
+                    else "This marketplace could not be refreshed. Retry research later.")}
+                if restricted_reason:
+                    platform["reason_code"] = reason
+                result["platforms"].append(platform)
             except Exception:
                 result["platforms"].append({"source": source, "status": "unavailable", "message": "This marketplace could not be refreshed. Retry research later."})
         result["checked_at"] = self.now()
+        result["coverage"] = research_coverage(result["offers"], search_used=any(not any(src == source for src, _ in validated) for source in sources))
         return result
 
     def select(self, owner, request):
@@ -484,6 +634,10 @@ class CommerceLoop:
                 raise CommerceError("offer_changed", "The selected listing differs from the displayed evidence. Research again.", 409)
             if offer["availability"] == "sold_out":
                 raise CommerceError("offer_unavailable", "This listing is not available.", 409)
+            if offer.get("identity_evidence", {}).get("status") == "conflict":
+                raise CommerceError("identity_conflict", "The listing's identity claims conflict. Review another listing.", 409)
+            if offer["grade"]["review_required"]:
+                raise CommerceError("grade_review_required", "Review the listing's grading evidence before selecting it.", 409)
             if sum(row["owner"] == owner for row in self._selections.values()) >= 20:
                 raise CommerceError("selection_capacity", "Too many active selections. Wait for an earlier selection to expire.", 429)
             if len(self._selections) >= MAX_OFFERS:
@@ -575,14 +729,15 @@ class CommerceLoop:
         try:
             try:
                 raw = self._produce(lambda: self.crawler.detail(record["offer"]["url"]))
-                refreshed = self._offer(raw, record["offer"]["source"], _time(self.now()))
+                refreshed = self._offer(raw, record["offer"]["source"], _time(self.now()), self._target(record["card_id"]))
             except Exception as exc:
                 raise CommerceError("refresh_unavailable", "The selected product page could not be refreshed. No handoff was prepared.", 503) from exc
             with self._lock:
                 if record["expires"] <= _time(self.now()):
                     self._selections.pop(key, None)
                     raise CommerceError("selection_expired", "This selection expired during refresh. Select again.", 409)
-                if refreshed["availability"] == "sold_out" or _fingerprint(refreshed) != record["fingerprint"]:
+                if (refreshed["availability"] == "sold_out" or refreshed.get("identity_evidence", {}).get("status") == "conflict"
+                        or _fingerprint(refreshed) != record["fingerprint"]):
                     self._selections.pop(key, None)
                     raise CommerceError("offer_changed", "The product URL, price, availability or seller evidence changed. Research and select again.", 409)
             result = self._base() | {"status": "manual_handoff_required", "selection_id": key,
@@ -599,7 +754,8 @@ class CommerceLoop:
             elif provider is not None:
                 try:
                     if url_preview:
-                        quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline, variant=variant)
+                        quote_offer = self._url_quote_offer(record["card_id"], refreshed)
+                        quote = provider.preview_before(record["card_id"], quote_offer, dict(destination), deadline=deadline, variant=variant)
                     elif callable(getattr(provider, "preview_before", None)):
                         quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline)
                     else:

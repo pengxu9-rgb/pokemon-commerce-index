@@ -19,3 +19,5 @@ jobs:
         run: python -m unittest tests.test_marketplace_sources tests.test_marketplace_crawl tests.test_marketplace_browser tests.test_commerce_loop tests.test_commerce_service tests.test_psa_cert tests.test_commerce_psa tests.test_provider_smoke tests.test_provider_smoke_psa tests.test_bounded_buyship tests.test_bns_errors tests.test_bns_url_preview -q
       - name: Validate browser resource and DNS restrictions without opening a browser
         run: node --test integrations/browser/renderPublicPage.test.cjs
+      - name: Exercise official eBay gates, prices, seller and identity evidence offline
+        run: python -m unittest tests.test_ebay_official tests.test_ebay_price_pilot tests.test_ebay_commerce_integration tests.test_ebay_service_configuration tests.test_marketplace_connections tests.test_listing_evidence tests.test_grade_evidence tests.test_seller_evidence -q

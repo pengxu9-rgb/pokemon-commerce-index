@@ -34,6 +34,9 @@ BINDING_SCOPE = "selected marketplace URL and BNS reference/variant only; catalo
 WORKER_SECONDS = 18
 MAX_BYTES = 65536
 MAX_MONEY = 2**53 - 1
+LISTING_FIELDS = ("source", "native_id", "url", "title", "observed_at", "grade", "identity_status",
+                  "seller_condition", "source_status_text", "listing_status", "evidence_ref", "certificate_number_claim",
+                  "certificate", "listing_quantity")
 
 
 def _fail(code="invalid_provider_response", **kwargs):
@@ -86,12 +89,38 @@ def _research(card_id, offer, destination):
             or offer.get("listing_status") not in {"on_sale", "unknown"}):
         _fail("variant_unavailable")
     grade = offer.get("grade")
-    if (not isinstance(grade, dict) or set(grade) != {"company", "value", "certificate_verified"}
+    legacy_grade = {"company", "value", "certificate_verified"}
+    evidence_grade = legacy_grade | {"kind", "evidence", "review_required", "review_reasons", "special_label"}
+    if (not isinstance(grade, dict) or set(grade) not in (legacy_grade, evidence_grade)
             or grade["certificate_verified"] is not False
             or grade["company"] not in {None, "PSA", "BGS", "CGC", "ARS", "PGC"}
             or grade["value"] is not None and (grade["company"] is None or not isinstance(grade["value"], str)
                 or not re.fullmatch(r"(?:10|[0-9])(?:\.5)?", grade["value"]) or float(grade["value"]) > 10)):
         _fail()
+    if set(grade) == evidence_grade:
+        from .marketplace_quality import GRADE_EVIDENCE, REVIEW_REASONS
+        if (not isinstance(grade["kind"], str) or grade["kind"] not in {"slab", "raw", "unknown"}
+                or not isinstance(grade["evidence"], str) or grade["evidence"] not in GRADE_EVIDENCE
+                or type(grade["review_required"]) is not bool
+                or not isinstance(grade["review_reasons"], list)
+                or any(not isinstance(reason, str) or reason not in REVIEW_REASONS for reason in grade["review_reasons"])
+                or len(set(grade["review_reasons"])) != len(grade["review_reasons"])
+                or grade["special_label"] not in (None, "black_label", "pristine")
+                or (grade["kind"] == "slab") != bool(grade["company"] and grade["value"])
+                or grade["kind"] == "raw" and (grade["company"] is not None or grade["value"] is not None)):
+            _fail()
+        if (grade["review_required"] or grade["review_reasons"]
+                or grade["kind"] == "unknown" or grade["special_label"] is not None):
+            _fail("product_mismatch")
+    if "certificate" in offer:
+        certificate = offer["certificate"]
+        if (not isinstance(certificate, dict)
+                or set(certificate) != {"number_claim", "status", "physical_authenticity"}
+                or certificate["physical_authenticity"] != "not_verified"
+                or certificate["number_claim"] is not None and not _text(certificate["number_claim"], 64)
+                or certificate["number_claim"] != offer.get("certificate_number_claim")
+                or certificate["status"] != ("not_checked" if certificate["number_claim"] else "number_missing")):
+            _fail()
     _ask(offer)
     instant, observed, expires = _time(utcnow()), _time(offer.get("observed_at")), _time(offer.get("fresh_until"))
     if not instant - timedelta(seconds=300) <= observed <= instant < expires <= observed + timedelta(seconds=300):
@@ -190,7 +219,7 @@ def validate_quote(quote, card_id, offer, destination, variant=None):
             or quote["purchasable"] is not False or quote["order_created"] is not False
             or quote["purchase_action"] is not None or quote["card_id"] != card_id):
         _fail("quote_binding_invalid")
-    expected_listing = {key: offer[key] for key in ("source", "native_id", "url", "title", "observed_at", "grade", "identity_status")}
+    expected_listing = {key: offer[key] for key in LISTING_FIELDS if key in offer}
     expected_listing["ask"] = _ask(offer)
     if quote["listing"] != expected_listing:
         _fail("quote_binding_invalid")
@@ -296,7 +325,7 @@ def _preview(payload, *, env=None, transport=None):
         if unit != item_total or not isinstance(totals, dict):
             _fail("quote_binding_invalid")
         components = {k: _money(totals.get(k), currency) for k in QUOTE_COMPONENTS}
-        listing = {k: copy.deepcopy(offer[k]) for k in ("source", "native_id", "url", "title", "observed_at", "grade", "identity_status")}
+        listing = {k: copy.deepcopy(offer[k]) for k in LISTING_FIELDS if k in offer}
         listing["ask"] = _ask(offer)
         quote = {"status": "quote_ready_for_review", "purchasable": False, "purchase_action": None, "order_created": False,
             "card_id": card_id, "listing": listing, "buyship": {"reference_id": resolved["reference_id"],

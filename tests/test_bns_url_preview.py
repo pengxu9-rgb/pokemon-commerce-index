@@ -144,6 +144,70 @@ class URLPreviewTests(unittest.TestCase):
         self.assertNotIn(SECRET, json.dumps(result)); self.assertNotIn(TOKEN, json.dumps(result))
         self.assertFalse(any("database" in kwargs["input"] for _, kwargs in self.workers))
 
+    def test_enriched_grade_review_and_forged_verification_stop_before_provider(self):
+        cases = ({"review_required": True, "review_reasons": ["conflicting_grade_claims"]},
+                 {"certificate_verified": True}, {"kind": "unknown", "company": None, "value": None},
+                 {"special_label": "black_label"}, {"review_reasons": ["not_a_supported_reason"]})
+        for fields in cases:
+            with self.subTest(fields=fields):
+                offer = copy.deepcopy(self.offer)
+                offer["grade"].update(fields)
+                with self.assertRaises(BNSRefusal):
+                    self.quote(offer=offer)
+                self.assertEqual(self.wire, [])
+
+    def test_legacy_grade_preview_remains_compatible_without_authentication(self):
+        offer = copy.deepcopy(self.offer)
+        offer["grade"] = {key: offer["grade"][key] for key in ("company", "value", "certificate_verified")}
+        quote = self.quote(offer=offer)
+        self.assertFalse(quote["listing"]["grade"]["certificate_verified"])
+
+    def test_quote_retains_and_binds_complete_selected_grade_and_certificate_evidence(self):
+        offer = copy.deepcopy(self.offer)
+        offer.update(seller_condition="PSA10", source_status_text="Listed", listing_quantity=1,
+                     certificate_number_claim="seller-claim-123", certificate={"number_claim":"seller-claim-123",
+                     "status":"not_checked", "physical_authenticity":"not_verified"})
+        quote = self.quote(offer=offer)
+        for field in preview.LISTING_FIELDS:
+            self.assertEqual(quote["listing"][field], offer[field])
+        quote["listing"]["certificate"]["physical_authenticity"] = "verified"
+        with self.assertRaises(BNSRefusal) as error:
+            preview.validate_quote(quote, CARD, offer, {"country":"HK"})
+        self.assertEqual(error.exception.code, "quote_binding_invalid")
+
+    def test_forged_physical_certificate_verification_stops_before_provider(self):
+        offer = copy.deepcopy(self.offer)
+        offer["certificate"]["physical_authenticity"] = "verified"
+        with self.assertRaises(BNSRefusal):
+            self.quote(offer=offer)
+        self.assertEqual(self.wire, [])
+
+    @unittest.skipUnless(os.environ.get("POT_FRONTEND_CONTRACT_ROOT"), "explicit frontend checkout required for cross-DTO regression")
+    def test_real_frontend_semantic_binding_accepts_backend_quote_and_rejects_dropped_listing_status(self):
+        offer = copy.deepcopy(self.offer)
+        # This boundary consumes a retained public offer, which research assigns
+        # an ID before frontend validation; _offer alone has not retained it yet.
+        offer["offer_id"] = "offline-cross-dto-offer"
+        offer.update(availability="available", listing_status="on_sale", seller_condition="PSA10",
+                     source_status_text="Listed", listing_quantity=1)
+        quote = self.quote(offer=offer)
+        script = """
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {handoffMatches}=require(path.join(process.argv[1],'creator/src/lib/pokemon/bnsChatState.cjs'));
+const p=JSON.parse(fs.readFileSync(0,'utf8'));
+const result={schema:'pokemon.agent-commerce.v1',mode:'on_demand_research',status:'quote_ready_for_review',
+quote:p.quote,product_url:p.offer.url,forwarder:{id:'buyship',label:'Buy & Ship'},
+purchasable:false,purchase_action:null,order_created:false,message:'Offline fixture quote only.'};
+const now=Date.parse(p.quote.buyship.quoted_at),expires=new Date(now+600000).toISOString();
+assert.equal(handoffMatches(result,p.offer,p.card,'buyship',{country:'HK'},undefined,expires,now),true);
+delete result.quote.listing.listing_status;
+assert.equal(handoffMatches(result,p.offer,p.card,'buyship',{country:'HK'},undefined,expires,now),false);
+"""
+        completed = subprocess.run(["node","-e",script,os.environ["POT_FRONTEND_CONTRACT_ROOT"]],
+            input=json.dumps({"offer":offer,"quote":quote,"card":CARD}), text=True,
+            capture_output=True, timeout=10, check=False)
+        self.assertEqual(completed.returncode,0,completed.stderr)
+
     def test_resolve_price_change_is_explicit_and_source_ask_is_preserved(self):
         self.fixture["resolve"]["variants"][0]["price"]["subunit_amount"] = 13000
         quote = self.quote()

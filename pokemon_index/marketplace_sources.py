@@ -159,7 +159,7 @@ def _quality(item: dict[str, Any], title: str, evidence: str,
         raise ValueError("structured grade contradicts title grade claim")
     if raw_claim and contradicts_grade(normalized, "RAW", "raw"):
         raise ValueError("structured raw claim contradicts slab title")
-    basis = "structured_seller_claim" if company else "no_grade_claim"
+    basis = "structured_raw_claim" if raw_claim else "structured_seller_claim" if company else "no_grade_claim"
     if company is None and title_grades and not unsafe:
         company, grade = next(iter(title_grades))
         basis = "seller_title_claim"
