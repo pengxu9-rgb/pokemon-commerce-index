@@ -21,3 +21,5 @@ jobs:
         run: node --test integrations/browser/renderPublicPage.test.cjs
       - name: Exercise official eBay gates, prices, seller and identity evidence offline
         run: python -m unittest tests.test_ebay_official tests.test_ebay_price_pilot tests.test_ebay_commerce_integration tests.test_ebay_service_configuration tests.test_marketplace_connections tests.test_listing_evidence tests.test_grade_evidence tests.test_seller_evidence -q
+      - name: Audit saved card, image and seller-photo coverage without providers
+        run: python -m unittest tests.test_image_coverage tests.test_cohort_coverage tests.test_offer_coverage -q
