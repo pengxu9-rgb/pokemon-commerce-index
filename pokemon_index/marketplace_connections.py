@@ -8,6 +8,11 @@ from the presence of an outbound product URL. Fanatics has no configured feed.
 def marketplace_connections(crawler):
     configured = getattr(crawler, "official_ebay_configured", False) is True
     enabled = configured and getattr(crawler, "official_ebay_enabled", False) is True
+    from .approved_sources import ApprovedSources
+    if type(crawler) is ApprovedSources:
+        from .source_readiness import source_readiness
+        configured = crawler.api is not None
+        enabled = source_readiness(crawler)[0]["listing_read_enabled"]
     status = "enabled" if enabled else "configured_offline" if configured else "not_configured"
     return [
         {"source": "ebay_us", "status": status, "message": (

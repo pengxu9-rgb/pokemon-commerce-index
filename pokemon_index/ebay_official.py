@@ -16,6 +16,7 @@ import time
 from urllib.parse import parse_qsl, urlencode, urlsplit
 
 from .ebay_browse import MARKETPLACE, SCOPE
+from .dispatch_budget import DispatchBudget, DispatchDenied
 from .marketplace_sources import _ebay_item
 
 HOST = "api.ebay.com"
@@ -147,7 +148,10 @@ class BrowseClient:
     def __init__(self, client_id, client_secret, *, allow_network=False,
                  production_approved=False, display_approved=False, read_until=None,
                  request_budget=None, affiliate_campaign_id=None, affiliate_approved=False,
-                 affiliate_reference_id=None, transport=None, now=None):
+                 affiliate_reference_id=None, transport=None, now=None, dispatch_budget=None):
+        if dispatch_budget is not None and not isinstance(dispatch_budget, DispatchBudget): raise OfficialEbayError("invalid_dispatch_budget")
+        self.dispatch_budget = dispatch_budget
+        self.source_authorized = None
         self.enabled = allow_network is True
         self._now = now or (lambda: datetime.now(timezone.utc))
         self._transport = transport or _https_json
@@ -202,13 +206,22 @@ class BrowseClient:
                           self._monotonic_until - time.monotonic())
         try:
             self._check()
+            if self.dispatch_budget:
+                self.dispatch_budget.consume()
+                timeout = min(timeout, self.dispatch_budget.check())
             result = self._transport(method, path, headers=headers, body=body, timeout=timeout,
                                      before_dispatch=self._dispatch_timeout)
         except OfficialEbayError:
             raise
+        except DispatchDenied:
+            raise OfficialEbayError("shared_dispatch_denied") from None
         except Exception:
             raise OfficialEbayError("ebay_official_transport_failed") from None
         self._check()
+        try:
+            if self.dispatch_budget: self.dispatch_budget.check()
+        except DispatchDenied:
+            raise OfficialEbayError("shared_dispatch_denied") from None
         try:
             if not isinstance(result, dict) or len(json.dumps(result, allow_nan=False).encode()) > MAX_BYTES:
                 raise ValueError()
@@ -217,9 +230,16 @@ class BrowseClient:
         return result
 
     def _dispatch_timeout(self):
+        if self.source_authorized is not None:
+            self.source_authorized()
         instant = self._check()
-        return min((self._deadline - instant).total_seconds(),
-                   self._monotonic_until - time.monotonic())
+        remaining = min((self._deadline - instant).total_seconds(),
+                        self._monotonic_until - time.monotonic())
+        try:
+            if self.dispatch_budget: remaining = min(remaining, self.dispatch_budget.check())
+        except DispatchDenied:
+            raise OfficialEbayError("shared_dispatch_denied") from None
+        return remaining
 
     def _headers(self):
         with self._lock:
@@ -261,6 +281,17 @@ class BrowseClient:
             row["grade_company"] = row["marketplace_quality"]["grade_company"]
             row["grade_value"] = row["marketplace_quality"]["grade_value"]
             row["scope"] = "listing"
+            # Admit only explicit item aspects. Titles never supply printing truth.
+            from .listing_evidence import extracted_listing_evidence
+            names = {"Language": "language", "Set Code": "set_code", "Card Number": "collector_number",
+                     "Finish": "finish", "Edition": "edition"}
+            properties = [{"name": names[a["name"]], "value": a.get("value")}
+                          for a in value.get("localizedAspects", []) if isinstance(a, dict) and a.get("name") in names]
+            images = [value.get("image"), *(value.get("additionalImages") or [])]
+            image_urls = [image.get("imageUrl") for image in images if isinstance(image, dict)]
+            identity, photos = extracted_listing_evidence("ebay_us", row["native_id"], row["url"], stamp, row["evidence_ref"],
+                offer={"url": row["url"], "itemOffered": {"url": row["url"], "additionalProperty": properties}, "image": image_urls})
+            row["listing_identity"], row["listing_photos"] = identity, photos
             # EPN absence/failure never changes the canonical listing identity.
             if self._campaign and item.get("itemAffiliateWebUrl"):
                 try:
@@ -343,7 +374,7 @@ class EbayOfficialCrawler:
 
 
 def configure_official_ebay(fallback, env, *, allow_network=False, read_until=None,
-                            request_budget=None, transport=None, now=None):
+                            request_budget=None, transport=None, now=None, dispatch_budget=None):
     """Default-off wiring. Merely having credentials never authorizes a request."""
     if allow_network is not True:
         return fallback
@@ -352,5 +383,5 @@ def configure_official_ebay(fallback, env, *, allow_network=False, read_until=No
         display_approved=env.get("EBAY_DISPLAY_APPROVED") == "true", read_until=read_until,
         request_budget=request_budget, affiliate_campaign_id=env.get("EBAY_EPN_CAMPAIGN_ID"),
         affiliate_approved=env.get("EBAY_EPN_APPROVED") == "true",
-        affiliate_reference_id=env.get("EBAY_EPN_REFERENCE_ID"), transport=transport, now=now)
+        affiliate_reference_id=env.get("EBAY_EPN_REFERENCE_ID"), transport=transport, now=now, dispatch_budget=dispatch_budget)
     return EbayOfficialCrawler(fallback, client)

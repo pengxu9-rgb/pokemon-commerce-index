@@ -133,7 +133,9 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
                 self._owner()
                 if self.path != "/commerce/health":
                     raise CommerceError("not_found", "Unknown commerce route.", 404)
-                self._send(200, {"schema": SCHEMA, "ok": True, "mode": loop.mode})
+                from .source_readiness import source_readiness
+                self._send(200, {"schema": SCHEMA, "ok": True, "mode": loop.mode,
+                                 "source_readiness": source_readiness(loop.crawler)})
             except CommerceError as exc:
                 self._send(exc.status, {"schema": SCHEMA, "error": exc.code, "message": exc.message})
 
@@ -143,6 +145,70 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
         address_family = socket.AF_INET6 if ":" in host else socket.AF_INET
 
     return Server((host, port), Handler)
+
+
+def _approved_sources(args, env):
+    """Explicitly compose bounded adapters; None preserves the legacy service path."""
+    if not args.approved_source_routing:
+        if getattr(args, 'allow_live_crawl', False) or getattr(args, 'allow_live_ebay_browse', False):
+            raise ValueError('live marketplace access requires approved routing')
+        if (args.source_route or args.source_listing_url or args.source_request_budget is not None or args.source_window_seconds is not None
+                or any(getattr(args, key, []) for key in ("source_access_approval", "source_photo_display", "source_partner_handoff"))):
+            raise ValueError('routing bounds require explicit routing opt-in')
+        return None
+    if (args.fixture or args.browser_renderer or env.get('POKEMON_COMMERCE_FIXTURE') == 'true'
+            or env.get('POKEMON_COMMERCE_BROWSER_RENDERER') == '1'):
+        raise ValueError('approved routing cannot mix with fixture or browser renderer')
+    if not args.source_route or not args.source or args.source_request_budget is None or args.source_window_seconds is None:
+        raise ValueError('routing requires sources, routes and finite shared bounds')
+    import re
+    def approvals(name):
+        result = {}
+        for value in getattr(args, name, []):
+            source, sep, reference = value.partition('=')
+            if not sep or source not in args.source or source in result or not re.fullmatch(r'[A-Za-z0-9._:-]{3,128}', reference):
+                raise ValueError('invalid separate source use approval')
+            result[source] = reference
+        return result
+    access = approvals('source_access_approval')
+    photos = approvals('source_photo_display')
+    handoff = approvals('source_partner_handoff')
+    if set(access) != set(args.source):
+        raise ValueError('each source needs an explicit source access approval')
+    policies = {}
+    for spec in args.source_route:
+        parts = spec.split('=')
+        if len(parts) != 2 or parts[0] not in args.source or parts[0] in policies or parts[1] not in {'api_only', 'crawl_only', 'api_preferred'}:
+            raise ValueError('invalid source route')
+        source, mode = parts
+        if mode in {'api_only', 'api_preferred'} and source == 'ebay_us' and not args.allow_live_ebay_browse:
+            raise ValueError('eBay API route requires its existing opt-in')
+        if mode == 'api_only' and source != 'ebay_us':
+            raise ValueError('unsupported API source')
+        if (mode == 'crawl_only' or (mode == 'api_preferred' and source != 'ebay_us')) and not args.allow_live_crawl:
+            raise ValueError('crawl route requires its existing opt-in')
+        policies[source] = {'mode': mode, 'api_approved': bool(args.allow_live_ebay_browse and source == 'ebay_us'),
+                            'crawl_approved': bool(args.allow_live_crawl), 'access_approval': access[source],
+                            'photo_display_approved': source in photos, 'partner_handoff_allowed': source in handoff}
+    from .dispatch_budget import DispatchBudget
+    from .marketplace_crawl import Crawler
+    from .approved_sources import ApprovedSources
+    budget = DispatchBudget(max_requests=args.source_request_budget, seconds=args.source_window_seconds)
+    crawler = None
+    if args.allow_live_crawl:
+        crawler = Crawler(allow_network=True, authorized_sources=args.source,
+            snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
+            ebay_browse_urls=args.ebay_browse_url, dispatch_budget=budget)
+    api = None
+    if args.allow_live_ebay_browse:
+        from .ebay_official import configure_official_ebay
+        fallback = crawler or Crawler(authorized_sources=(), dispatch_budget=budget)
+        api = configure_official_ebay(fallback, env, allow_network=True,
+            read_until=args.ebay_read_until, request_budget=args.ebay_request_budget, dispatch_budget=budget).client
+    if set(policies) != set(args.source):
+        raise ValueError('each authorized source requires exactly one route')
+    return ApprovedSources(policies=policies, crawler=crawler, ebay_client=api, budget=budget, enabled=True,
+                           public_listing_urls=args.source_listing_url)
 
 
 def main():
@@ -155,6 +221,14 @@ def main():
     parser.add_argument("--allow-live-ebay-browse", action="store_true", help="opt in to an approved bounded official eBay Browse session; separate from crawling")
     parser.add_argument("--ebay-read-until", help="absolute UTC end for an explicitly approved eBay Browse session")
     parser.add_argument("--ebay-request-budget", type=int, help="finite eBay HTTP request budget, including token requests")
+    parser.add_argument("--approved-source-routing", action="store_true", help="explicitly opt in to bounded approved source routing")
+    parser.add_argument("--source-route", action="append", default=[], help="explicit source=api_only, source=crawl_only or source=api_preferred")
+    parser.add_argument("--source-listing-url", action="append", default=[], help="exact canonical URL allowlist for direct listing onboarding")
+    parser.add_argument("--source-request-budget", type=int, help="shared finite HTTP request budget")
+    parser.add_argument("--source-window-seconds", type=int, help="finite shared read window")
+    parser.add_argument("--source-access-approval", action="append", default=[], help="source=operator-record-reference; records source-use authorization, grants nothing")
+    parser.add_argument("--source-photo-display", action="append", default=[], help="source=separate-photo-display-approval; absent strips seller photo URLs")
+    parser.add_argument("--source-partner-handoff", action="append", default=[], help="source=separate-BNS-handoff-approval; absent prevents provider calls")
     parser.add_argument("--browser-renderer", action="store_true", help="allow the configured public-page browser renderer after normal HTML discovery")
     parser.add_argument("--source", action="append", choices=["mercari", "ebay_us", "snkrdunk"], help="explicitly authorized research sources")
     parser.add_argument("--snkr-seed-url", action="append", default=[])
@@ -188,7 +262,13 @@ def main():
         from .listing_evidence import CatalogIdentityLookup
         catalog_lookup = CatalogIdentityLookup(args.catalog_db)
     forwarders = {}
-    if fixture:
+    try:
+        routed = _approved_sources(args, os.environ)
+    except ValueError:
+        parser.error("live marketplace access requires explicit approved routing, source permissions, adapters and finite bounds")
+    if routed is not None:
+        crawler = routed
+    elif fixture:
         crawler = FixtureCrawler()
     else:
         from .marketplace_crawl import Crawler
@@ -200,10 +280,10 @@ def main():
                 print(json.dumps({"event": "commerce_browser_runtime", **renderer.probe()}), flush=True)
         crawler = Crawler(allow_network=args.allow_live_crawl,
             renderer=renderer,
-            authorized_sources=args.source or ("mercari", "snkrdunk"),
+            authorized_sources=args.source or (),
             snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
             ebay_browse_urls=args.ebay_browse_url)
-    if args.allow_live_ebay_browse:
+    if args.allow_live_ebay_browse and routed is None:
         from .ebay_official import configure_official_ebay
         try:
             crawler = configure_official_ebay(crawler, os.environ, allow_network=True,
