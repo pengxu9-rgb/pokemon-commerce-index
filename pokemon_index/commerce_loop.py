@@ -147,6 +147,9 @@ def _fingerprint(offer):
     fields = ("source", "native_id", "url", "title", "price_minor", "currency",
               "availability", "listing_status", "grade", "scope", "seller_condition", "source_status_text", "certificate_number_claim", "listing_quantity")
     value = {key: offer.get(key) for key in fields}
+    provenance = offer.get("source_provenance")
+    if provenance is not None:
+        value["source_route"] = {key: provenance.get(key) for key in ("source", "method")}
     # A changing capture timestamp is not a different seller. A changed or newly
     # reported seller identity does require a new explicit listing selection.
     value["seller"] = seller_identity(offer.get("seller"))
@@ -378,8 +381,24 @@ class CommerceLoop:
             self._producer_lock.release()
 
     def _base(self):
-        return {"schema": SCHEMA, "mode": self.mode, "checked_at": self.now(),
-                "purchasable": False, "purchase_action": None, "order_created": False}
+        result = {"schema": SCHEMA, "mode": self.mode, "checked_at": self.now(),
+                  "purchasable": False, "purchase_action": None, "order_created": False}
+        from .approved_sources import ApprovedSources
+        if type(self.crawler) is ApprovedSources:
+            from .source_readiness import source_readiness
+            result["source_readiness"] = source_readiness(self.crawler)
+        return result
+
+    def _source_allowed(self, source, *, handoff=False):
+        from .approved_sources import ApprovedSources
+        if type(self.crawler) is ApprovedSources:
+            try:
+                self.crawler._guard()
+                self.crawler._method(source)
+                if handoff:
+                    self.crawler.authorize_handoff(source)
+            except ValueError as exc:
+                raise CommerceError("source_access_unavailable", "This source is no longer approved for this action. Research again after access is restored.", 409) from exc
 
     def _owner(self, owner):
         return _text(owner, "authenticated owner", 128)
@@ -471,6 +490,14 @@ class CommerceLoop:
             "listing_quantity": quantity,
             "certificate_number_claim": raw.get("certificate_number_claim") or metadata.get("certificate_number_claim"),
             "evidence_ref": raw.get("evidence_ref"), "synthetic": self.mode == "synthetic_fixture"}
+        from .approved_sources import ApprovedSources
+        if type(self.crawler) is ApprovedSources:
+            provenance = raw.get("source_provenance")
+            if (not isinstance(provenance, dict) or set(provenance) != {"source", "method", "observed_at"}
+                    or provenance["source"] != source or provenance["method"] not in {"api", "crawl"}
+                    or _time(provenance["observed_at"]) != observed):
+                raise ValueError("invalid approved source provenance")
+            result["source_provenance"] = copy.deepcopy(provenance)
         for field in ("seller_condition", "source_status_text", "certificate_number_claim", "evidence_ref"):
             if result[field] is not None:
                 result[field] = _text(result[field], field, 64 if field == "certificate_number_claim" else 2048)
@@ -557,9 +584,10 @@ class CommerceLoop:
         target = self._target(card_id)
         for source in sources:
             try:
+                from .approved_sources import ApprovedSources
                 chosen = [url for src, url in validated if src == source]
                 response = self._produce(lambda: (
-                    {"status": "researched", "listings": [self.crawler.detail(url) for url in chosen]}
+                    {"status": "researched", "listings": [(self.crawler.onboard_url(url) if type(self.crawler) is ApprovedSources else self.crawler.detail(url)) for url in chosen]}
                     if chosen else self.crawler.search(source, query, limit=3)))
                 if not isinstance(response, dict) or not isinstance(response.get("listings", []), list) or len(response.get("listings", [])) > 20:
                     raise ValueError("invalid or oversized producer response")
@@ -613,6 +641,10 @@ class CommerceLoop:
                 result["platforms"].append(platform)
             except Exception:
                 result["platforms"].append({"source": source, "status": "unavailable", "message": "This marketplace could not be refreshed. Retry research later."})
+        from .approved_sources import ApprovedSources
+        if type(self.crawler) is ApprovedSources:
+            from .source_readiness import source_readiness
+            result["source_readiness"] = source_readiness(self.crawler)
         result["checked_at"] = self.now()
         result["coverage"] = research_coverage(result["offers"], search_used=any(not any(src == source for src, _ in validated) for source in sources))
         return result
@@ -629,6 +661,7 @@ class CommerceLoop:
             if not record or record["owner"] != owner:
                 raise CommerceError("offer_unavailable", "Research this listing again before selecting it.", 409)
             offer = record["offer"]
+            self._source_allowed(offer["source"])
             if record["card_id"] != request["card_id"] or any(request[key] != offer[field] for key, field in (
                     ("expected_observed_at", "observed_at"), ("expected_price_minor", "price_minor"), ("currency", "currency"))):
                 raise CommerceError("offer_changed", "The selected listing differs from the displayed evidence. Research again.", 409)
@@ -753,6 +786,7 @@ class CommerceLoop:
                              "The URL is ready for manual handoff. A priced, exact listing is not established, so no provider quote was requested."))
             elif provider is not None:
                 try:
+                    self._source_allowed(refreshed["source"], handoff=True)
                     if url_preview:
                         quote_offer = self._url_quote_offer(record["card_id"], refreshed)
                         quote = provider.preview_before(record["card_id"], quote_offer, dict(destination), deadline=deadline, variant=variant)
@@ -760,10 +794,13 @@ class CommerceLoop:
                         quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline)
                     else:
                         quote = provider.preview(record["card_id"], refreshed, dict(destination))
+                    self._source_allowed(refreshed["source"], handoff=True)
                     if not isinstance(quote, dict) or quote.get("status") != "quote_ready_for_review" or quote.get("purchasable") is not False or quote.get("order_created") is not False or quote.get("purchase_action") is not None:
                         raise ValueError("provider did not return a non-purchasable quote preview")
                     result.update(status="quote_ready_for_review", quote=quote, quote_status="ready",
                                   message="Review the provider's current landed quote. No order was created.")
+                except CommerceError:
+                    raise
                 except Exception as exc:
                     from .bns_errors import BNSRefusal, validate_refusal
                     if isinstance(exc, BNSRefusal):
@@ -774,6 +811,8 @@ class CommerceLoop:
                     else:
                         result.update(quote_status="eligible_indexed_quote_unavailable",
                             message="The refreshed URL is ready for manual handoff. An eligible indexed provider quote is unavailable.")
+            if provider is not None and not blocked_quote:
+                self._source_allowed(refreshed["source"], handoff=True)
             completed_at = self.now()
             completed = _time(completed_at)
             if record["expires"] <= completed:

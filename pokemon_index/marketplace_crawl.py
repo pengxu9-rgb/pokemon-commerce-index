@@ -427,6 +427,8 @@ class PublicHTMLFetch:
         if type(enabled) is not bool:
             raise ValueError("network opt-in must be an explicit boolean")
         self.enabled = enabled
+        self.dispatch_budget = None
+        self.source_authorized = None
         self.timeout = min(10, max(0.1, float(timeout)))
         self.max_bytes = min(1_000_000, max(1024, int(max_bytes)))
         self.sitemaps = set(sitemap_urls)
@@ -440,8 +442,24 @@ class PublicHTMLFetch:
                    else "search" if p.path in ("/search", "/sch/i.html")
                    else "sitemap" if url in self.sitemaps else "detail")
         _url(url, purpose=purpose, configured=self.sitemaps | self.browse_urls)
-        connection = _PinnedHTTPS(p.hostname, timeout=self.timeout, context=ssl.create_default_context())
+        from .dispatch_budget import DispatchDenied
         try:
+            timeout = min(self.timeout, self.dispatch_budget.check()) if self.dispatch_budget else self.timeout
+        except DispatchDenied:
+            raise CrawlBlocked("shared_dispatch_denied") from None
+        connection = _PinnedHTTPS(p.hostname, timeout=timeout, context=ssl.create_default_context())
+        try:
+            # Resolve and establish TLS first; recheck authorization before sending
+            # the HTTP request. Socket operations remain bounded, not preemptible.
+            if self.dispatch_budget:
+                connection.connect()
+                try:
+                    remaining = self.dispatch_budget.check()
+                except DispatchDenied:
+                    raise CrawlBlocked("shared_dispatch_denied") from None
+                connection.sock.settimeout(min(self.timeout, remaining))
+            if self.source_authorized is not None:
+                self.source_authorized(url)
             connection.request("GET", p.path + ("?" + p.query if p.query else ""),
                                headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xml,text/plain",
                                         "Accept-Encoding": "identity"})
@@ -459,7 +477,11 @@ class Crawler:
     def __init__(self, fetch: Callable | None = None, *, renderer: Callable | None = None, allow_network=False,
                  authorized_sources=("mercari", "snkrdunk"), snkr_seed_urls=(),
                  snkr_sitemap_urls=(), ebay_browse_urls=(), now=None, max_pages=8, max_bytes=750_000,
-                 timeout=8, max_seconds=30):
+                 timeout=8, max_seconds=30, dispatch_budget=None):
+        from .dispatch_budget import DispatchBudget
+        if dispatch_budget is not None and not isinstance(dispatch_budget, DispatchBudget): raise ValueError("invalid dispatch budget")
+        if dispatch_budget is not None and renderer is not None: raise ValueError("renderer cannot share dispatch budget")
+        self.dispatch_budget = dispatch_budget
         self.authorized_sources = {_source(s) for s in authorized_sources}
         self.max_pages = min(12, max(2, int(max_pages)))
         self.max_bytes = min(1_000_000, max(1024, int(max_bytes)))
@@ -467,6 +489,10 @@ class Crawler:
         self.ebay_browse_urls = validate_ebay_browse_urls(ebay_browse_urls)
         self.fetch = fetch or PublicHTMLFetch(enabled=allow_network, timeout=timeout, max_bytes=self.max_bytes,
                                              sitemap_urls=snkr_sitemap_urls, browse_urls=self.ebay_browse_urls)
+        if type(self.fetch) is PublicHTMLFetch:
+            if self.fetch.dispatch_budget is not None and self.fetch.dispatch_budget is not dispatch_budget:
+                raise ValueError("fetch budget mismatch")
+            self.fetch.dispatch_budget = dispatch_budget
         self.renderer = renderer
         self.now = now or (lambda: datetime.now(timezone.utc))
         if len(snkr_seed_urls) > 5 or len(snkr_sitemap_urls) > 5:
@@ -487,7 +513,16 @@ class Crawler:
         if self._pages >= self.max_pages or time.monotonic() - self._started > self.max_seconds:
             raise CrawlBlocked("crawl_budget_exhausted")
         self._pages += 1
+        from .dispatch_budget import DispatchDenied
+        try:
+            if self.dispatch_budget: self.dispatch_budget.consume()
+        except DispatchDenied:
+            raise CrawlBlocked("shared_dispatch_denied") from None
         response = (fetcher or self.fetch)(url)
+        try:
+            if self.dispatch_budget: self.dispatch_budget.check()
+        except DispatchDenied:
+            raise CrawlBlocked("shared_dispatch_denied") from None
         if time.monotonic() - self._started > self.max_seconds:
             raise CrawlBlocked("crawl_budget_exhausted")
         if not isinstance(response, dict) or type(response.get("status")) is not int:

@@ -80,7 +80,10 @@ def _research(card_id, offer, destination):
     if not _text(card_id, 256) or not isinstance(offer, dict):
         _fail()
     source, native, url = canonical_product_url(offer.get("url"))
-    if (source != offer.get("source") or native != offer.get("native_id") or url != offer.get("url")
+    # Browse IDs identify the same zero-variation listing as its canonical URL.
+    # Never collapse a nonzero variation ID into the parent product URL.
+    allowed_native = {native, f"v1|{native}|0"} if source == "ebay_us" else {native}
+    if (source != offer.get("source") or offer.get("native_id") not in allowed_native or url != offer.get("url")
             or offer.get("scope") != "listing" or source == "snkrdunk" and "/used/" not in url
             or offer.get("synthetic") is not False or offer.get("identity_status") != "unverified_candidate"
             or offer.get("authenticity_verified") is not False or not _text(offer.get("title"), 2000)):
