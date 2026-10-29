@@ -38,7 +38,7 @@ NAME_ASSERTIONS = (("language", "ja"), ("set", "JUNGLE"), ("finish", "normal"), 
 
 
 def _printing_journey(label, *, options=None, stage="selected_options", name=None, raw=False,
-                      expected="product_mismatch", source_claims=None):
+                      expected="product_mismatch", source_claims=None, grader_company=None):
     """Actual HTTP/source/worker journey with denied/audited external sockets."""
     with Pilot() as pilot:
         card = CARD
@@ -55,6 +55,14 @@ def _printing_journey(label, *, options=None, stage="selected_options", name=Non
                         aspect["value"] = claims[fields[aspect["name"]]]
             for item in (pilot.fixture["resolve"]["product"], pilot.fixture["quote"]["items"][0]):
                 item["name"] = pilot.rows[0]["title"]
+        if grader_company:
+            for row in pilot.rows:
+                row["title"] = row["title"].replace("PSA 10", grader_company + " 10")
+                for aspect in row["localizedAspects"]:
+                    if aspect["name"] == "Professional Grader":
+                        aspect["value"] = grader_company
+            for item in (pilot.fixture["resolve"]["product"], pilot.fixture["quote"]["items"][0]):
+                item["name"] = item["name"].replace("PSA 10", grader_company + " 10")
         if raw:
             for row in pilot.rows:
                 row["title"] = row["title"].replace(" PSA 10", "")
@@ -97,6 +105,7 @@ def _printing_journey(label, *, options=None, stage="selected_options", name=Non
         assert not pilot.external_attempts
         return {"case": label, "stage": stage, "expected": expected, "raw": raw,
                 "source_claims": source_claims,
+                "source_grader": grader_company,
                 "expected_provider_paths": paths, "research": research, "selection": selection, "choices": choices,
                 "handoff": handoff, "provider_paths": list(pilot.provider_paths), "external_attempts": list(pilot.external_attempts)}
 
@@ -131,6 +140,25 @@ def printing_report():
         _printing_journey("raw_ready_does_not_hide_actual_psa10", raw=True, stage="quote_name", name="Charizard 4/102 PSA ready; PSA 10"),
         _printing_journey("normal_unlimited_first_edition_yes_conflict", source_claims={"finish": "normal", "edition": "unlimited"}, options={"First Edition": "Yes"}),
         _printing_journey("normal_unlimited_foil_yes_conflict", source_claims={"finish": "normal", "edition": "unlimited"}, options={"Foil": "Yes"})))
+    rows.extend((
+        _printing_journey("r3_same_grader_false_option", options={"PSA graded": "False"}),
+        _printing_journey("r3_same_grader_zero_option", options={"PSA graded": "0"}),
+        _printing_journey("r3_resolve_same_grader_no_name", stage="resolve_name", name="Charizard 4/102 PSA graded: No"),
+        _printing_journey("r3_quote_same_grader_no_name", stage="quote_name", name="Charizard 4/102 PSA graded: No"),
+        _printing_journey("r3_same_grader_no_option_control", options={"PSA graded": "No"}),
+        _printing_journey("r3_raw_true_grader_conflict", raw=True, options={"PSA graded": "True"}),
+        _printing_journey("r3_wrapped_negative_foil", options={"Foil": "(False)."}),
+        _printing_journey("r3_signed_boolean_name_with_typed_negative", stage="resolve_name", name="Charizard 4/102 Foil: Yes; not PSA graded"),
+        _printing_journey("r3_typed_same_grader_by_refusal", stage="quote_name", name="Charizard 4/102 not graded by PSA")))
+    for label, value, raw in (("Graded", "False", False), ("Certified", "0", False), ("Slab", "No", False),
+                              ("Raw", "True", False), ("Ungraded", "Yes", False), ("Graded", "True", True),
+                              ("Certified", "Yes", True), ("Slabbed", "1", True), ("Raw", "False", True), ("Ungraded", "No", True)):
+        rows.append(_printing_journey(f"signed_form_{label.lower()}_{value.lower()}_{'raw' if raw else 'slab'}", raw=raw, options={label: value}))
+    for stage in ("resolve_name", "quote_name"):
+        rows.append(_printing_journey(stage + "_generic_graded_false", stage=stage, name="Charizard 4/102 graded: False"))
+        rows.append(_printing_journey(stage + "_raw_false", raw=True, stage=stage, name="Charizard 4/102 Raw: False"))
+    rows.append(_printing_journey("signed_raw_contradictory_conjunction", raw=True, options={"PSA graded": "false", "Graded": "true"}))
+    rows.append(_printing_journey("signed_slab_contradictory_conjunction", options={"PSA graded": "false", "Raw": "false"}))
     return {"evidence_mode": "synthetic_offline", "cases": rows, "external_network_calls": 0}
 
 
@@ -150,14 +178,28 @@ def printing_controls_report():
         _printing_journey("raw_not_psa_graded_positive", raw=True, stage="resolve_name", name="English BASE Charizard 4/102 holo 1st edition - not PSA graded", expected="quote_ready_for_review"),
         _printing_journey("normal_unlimited_negative_booleans_positive", source_claims={"finish": "normal", "edition": "unlimited"}, options={"First Edition": "No", "Foil": "No"}, expected="quote_ready_for_review"),
         _printing_journey("normal_unlimited_negative_phrases_positive", source_claims={"finish": "normal", "edition": "unlimited"}, options={"Edition": "not first edition", "Finish": "No Foil"}, expected="quote_ready_for_review")]
+    rows.extend((
+        _printing_journey("r3_same_grader_true_positive", options={"PSA graded": "True"}, expected="quote_ready_for_review"),
+        _printing_journey("r3_other_grader_false_compatible", grader_company="BGS", options={"PSA graded": "False"}, expected="quote_ready_for_review"),
+        _printing_journey("r3_raw_false_grader_compatible", raw=True, options={"PSA graded": "False"}, expected="quote_ready_for_review"),
+        _printing_journey("r3_typed_other_grader_positive", stage="resolve_name", name="Charizard 4/102 not graded by BGS; PSA 10", expected="quote_ready_for_review"),
+        _printing_journey("r3_unknown_property_positive", options={"First Edition": "no data", "Foil": "no preference"}, expected="quote_ready_for_review"),
+        _printing_journey("signed_slab_form_compatible", options={"Graded": "True", "Slab": "Yes", "Certified": "1", "Raw": "False", "Ungraded": "0"}, expected="quote_ready_for_review"),
+        _printing_journey("signed_raw_form_compatible", raw=True, options={"Graded": "False", "Slabbed": "No", "Certified": "0", "Raw": "True", "Ungraded": "1"}, expected="quote_ready_for_review")))
+    rows.append(_printing_journey("signed_bgs_compatible_conjunction", grader_company="BGS", options={"PSA graded": "false", "Graded": "true", "Raw": "false"}, expected="quote_ready_for_review"))
+    for stage in ("resolve_name", "quote_name"):
+        rows.append(_printing_journey(stage + "_other_grader_false_compatible", grader_company="BGS", stage=stage,
+                    name="Charizard 4/102 PSA graded: False", expected="quote_ready_for_review"))
+        rows.append(_printing_journey(stage + "_raw_company_false_compatible", raw=True, stage=stage,
+                    name="Charizard 4/102 PSA graded: (False).", expected="quote_ready_for_review"))
     return {"evidence_mode": "synthetic_offline", "cases": rows, "external_network_calls": 0}
 
 
 class PrintingHTTPJourneyTests(unittest.TestCase):
     def test_exact_http_journey_rejects_original_and_fresh_review_cases(self):
         report = printing_report()
-        self.assertEqual(len(report["cases"]), 49)
-        self.assertEqual(sum(row["stage"] == "quote_name" for row in report["cases"]), 9)
+        self.assertEqual(len(report["cases"]), 74)
+        self.assertEqual(sum(row["stage"] == "quote_name" for row in report["cases"]), 13)
 
     def test_native_raw_compatible_negative_and_readiness_wording_still_quotes(self):
         self.assertEqual(len(compatible_raw_report()["cases"]), 6)
@@ -167,7 +209,7 @@ class PrintingHTTPJourneyTests(unittest.TestCase):
         self.assertIsNotNone(row["handoff"]["quote"])
 
     def test_second_review_positive_controls_still_quote(self):
-        self.assertEqual(len(printing_controls_report()["cases"]), 4)
+        self.assertEqual(len(printing_controls_report()["cases"]), 16)
 
 
 class PrintingIdentityTests(unittest.TestCase):
@@ -357,6 +399,86 @@ class PrintingIdentityTests(unittest.TestCase):
             with self.assertRaises(BNSRefusal):
                 preview._identity("not graded by BGS/PSA", offer, fixtures.CARD)
         preview._identity("not graded by BGS/PSA", raw, fixtures.CARD)
+
+    def test_signed_grading_predicates_use_shared_boolean_truth_table(self):
+        companies = ("PSA", "BGS", "CGC", "ARS", "PGC")
+        labels = [(label, kind, None) for label, kind in (("Graded", "slab"), ("Slabbed", "slab"),
+                  ("Slab", "slab"), ("Certified", "slab"), ("Raw", "raw"), ("Ungraded", "raw"))]
+        labels += [(company + " " + form, "slab", company) for company, form in product(companies, ("graded", "slabbed", "slab", "certified"))]
+        labels += [("graded by " + company, "slab", company) for company in companies]
+        terms = (("yes", True), ("true", True), ("1", True), ("no", False), ("false", False), ("0", False))
+        for (label, target, company), retained, (token, positive), wrapped, punctuation, suffix in product(
+                labels, (*companies, "raw", "unknown"), terms, (False, True), ("", "."), ("", " - holder")):
+            offer = copy.deepcopy(self.fx.offer)
+            source_kind = "slab" if retained in companies else retained
+            if source_kind == "slab":
+                offer["grade"].update(kind="slab", company=retained, value="10")
+                offer["title"] = "Pikachu 173/165 " + retained + " 10"
+            else:
+                offer["grade"] = {"company": None, "value": None, "certificate_verified": False}
+                if source_kind == "raw":
+                    offer["grade"]["kind"] = "raw"
+                offer["title"] = "Pikachu 173/165"
+            value = ("(" + token + ")" if wrapped else token) + punctuation + suffix
+            expected = source_kind == target and (company is None or retained == company)
+            rejects = source_kind != "unknown" and expected != positive
+            for check in (lambda: preview._identity(f"Pikachu 173/165 {label}: {value}", offer, fixtures.CARD),
+                          lambda: preview._variant_identity({label: value}, offer, fixtures.CARD),
+                          lambda: preview._variant_identity({value: label}, offer, fixtures.CARD)):
+                with self.subTest(label=label, retained=retained, value=value):
+                    if rejects:
+                        with self.assertRaises(BNSRefusal) as raised:
+                            check()
+                        self.assertEqual(raised.exception.code, "product_mismatch")
+                    else:
+                        check()
+
+    def test_unknown_grading_values_do_not_assert_the_label_or_hide_suffixes(self):
+        for company, label, value in product(("PSA", "BGS", "raw"),
+                ("Graded", "Certified", "Slab", "Raw", "Ungraded", "PSA graded", "BGS slab", "certified by CGC"),
+                ("unknown", "not sure", "no data", "(no preference)", "Falsehood")):
+            offer = copy.deepcopy(self.fx.offer)
+            if company == "raw":
+                offer["grade"].update(kind="raw", company=None, value=None)
+            else:
+                offer["grade"].update(company=company)
+            preview._identity(f"Pikachu 173/165 {label}: {value}", offer, fixtures.CARD)
+            preview._variant_identity({label: value}, offer, fixtures.CARD)
+        for company, text in (("BGS", "PSA graded: False; BGS 9"), ("raw", "PSA graded: False; PSA 10"),
+                              ("PSA", "PSA graded: unknown; BGS 10"), ("PSA", "Raw: False; Japanese"),
+                              ("PSA", "Graded: unknown; Edition: Unlimited")):
+            offer = copy.deepcopy(self.fx.offer)
+            offer["grade"].update(kind="raw" if company == "raw" else "slab",
+                                  company=None if company == "raw" else company,
+                                  value=None if company == "raw" else "10")
+            with self.subTest(text=text), self.assertRaises(BNSRefusal):
+                preview._identity("Pikachu 173/165 " + text, offer, fixtures.CARD)
+        preview._identity("Pikachu 173/165 PSA 10 Graded: not sure", self.fx.offer, fixtures.CARD)
+
+    def test_signed_grading_preserves_numeric_grade_context_and_negative_predicates(self):
+        for options in ({"Grade": "1"}, {"PSA": "1"}, {"PSA grade": "1"}):
+            self.options(options)
+            with self.assertRaises(BNSRefusal) as raised:
+                self.fx.quote()
+            self.assertEqual(raised.exception.code, "product_mismatch")
+        self.options({"PSA graded": "1"})
+        self.assert_unverified(self.fx.quote())
+        for name in ("not PSA graded: Yes", "not graded: True", "PSA not graded: 1", "Ungraded: True"):
+            with self.subTest(name=name), self.assertRaises(BNSRefusal):
+                preview._identity(name, self.fx.offer, fixtures.CARD)
+        for name in ("not PSA graded: False", "not graded: No", "PSA not graded: 0", "Raw: False"):
+            preview._identity(name, self.fx.offer, fixtures.CARD)
+
+    def test_signed_grade_conjunctions_keep_each_independent_assertion(self):
+        raw = copy.deepcopy(self.fx.offer)
+        raw["grade"].update(kind="raw", company=None, value=None)
+        with self.assertRaises(BNSRefusal):
+            preview._variant_identity({"PSA graded": "false", "Graded": "true"}, raw, fixtures.CARD)
+        bgs = copy.deepcopy(self.fx.offer)
+        bgs["grade"].update(company="BGS")
+        preview._variant_identity({"PSA graded": "false", "Graded": "true", "Raw": "false"}, bgs, fixtures.CARD)
+        with self.assertRaises(BNSRefusal):
+            preview._variant_identity({"PSA graded": "false", "Raw": "false"}, self.fx.offer, fixtures.CARD)
 
     def test_labelled_prose_consumes_bounded_value_and_checks_suffix_independently(self):
         for stage in ("resolve", "quote"):

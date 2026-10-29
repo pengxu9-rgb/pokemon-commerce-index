@@ -96,6 +96,13 @@ prose suffixes; those suffixes are checked independently. Company-specific
 negations such as `not PSA graded` and `not graded by PSA` are compared with the
 retained grader before their own text spans are masked. They contradict a PSA
 slab claim, while remaining compatible with a raw claim or another named grader.
+The same signed-scalar parser handles grading/form properties in names and
+options: `PSA graded=False` excludes PSA grading, `Graded=False` excludes slab
+form, and `Raw=False` excludes raw form. A negative company property remains
+compatible with another grader or a raw listing. Unknown property values add no
+grader/form evidence; separate suffix assertions remain visible. These are
+compatibility checks on unverified claims, never certificate or authenticity
+verification. Numeric `Grade=1` remains distinct from boolean `PSA graded=1`.
 Per-source handoff authority is checked immediately before worker launch and
 again for every outcome, including variant refusals, before anything is returned
 or retained. Each worker HTTP request checks its own deadline. A parent revocation

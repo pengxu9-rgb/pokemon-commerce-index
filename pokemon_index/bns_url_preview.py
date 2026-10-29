@@ -229,6 +229,11 @@ _NEGATED_GRADER = re.compile(
     rf"|(?:not|non|no|without)[\s_-]+(?:{_GRADE_FORM})[\s_-]+(?:by|with|from)[\s_-]+(?P<after>{_GRADER_LIST})"
     rf"|(?P<subject>{_GRADER_LIST})\s*[:,-]?\s+(?:is[\s_-]+)?(?:not|non|no)[\s_-]+(?:{_GRADE_FORM})\b)", re.I)
 _UNGRADED = re.compile(r"\b(?:not|non|no)[\s_-]+(?:graded|slabbed|certified)\b", re.I)
+_GRADING_FORMS = r"graded|slabbed|slab|certified|raw|ungraded"
+_GRADING_COMPANY_FORM = rf"(?:{_GRADERS})[ _-]*(?:(?:not|non|no)[ _-]+)?(?:graded|slabbed|slab|certified)"
+_GRADING_LABEL = re.compile(
+    rf"(?<![\w])((?:(?:not|non|no|without)[ _-]+)?(?:{_GRADING_COMPANY_FORM}"
+    rf"|(?:graded|slabbed|slab|certified)[ _-]*by[ _-]*(?:{_GRADERS})|{_GRADING_FORMS}))\s*[:=]\s*", re.I)
 
 
 def _grader_negations(text):
@@ -245,17 +250,78 @@ def _value_prefix(description):
     return opening, value, unknown
 
 
-def _property_boolean(label, description):
-    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
-    if key not in {"firstedition", "1stedition", "foil", "holo", "holographic", "holofoil"}:
-        return None, 0
+def _boolean_token(description):
+    """One signed scalar shared by printing and grading property assertions."""
     opening, value, unknown = _value_prefix(description)
     boolean = None if unknown else re.match(r"(yes|true|1|no|false|0)(?![\w]|[.,/]\d)", value, re.I)
     if boolean is None:
         return None, 0
+    return boolean[1].casefold() in {"yes", "true", "1"}, opening + boolean.end()
+
+
+def _property_boolean(label, description):
+    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
+    if key not in {"firstedition", "1stedition", "foil", "holo", "holographic", "holofoil"}:
+        return None, 0
+    positive, end = _boolean_token(description)
+    if positive is None:
+        return None, 0
     field = "edition" if key in {"firstedition", "1stedition"} else "finish"
     values = frozenset({"first_edition"}) if field == "edition" else _FOIL_FINISHES
-    return (field, values, boolean[1].casefold() in {"yes", "true", "1"}), opening + boolean.end()
+    return (field, values, positive), end
+
+
+def _grading_predicate(label):
+    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
+    inverted = False
+    for prefix in ("without", "not", "non", "no"):
+        if key.startswith(prefix):
+            key, inverted = key[len(prefix):], True
+            break
+    if key in {"raw", "ungraded"}:
+        return "raw", None, inverted
+    if key in {"graded", "slabbed", "slab", "certified"}:
+        return "slab", None, inverted
+    for company in ("PSA", "BGS", "CGC", "ARS", "PGC"):
+        if any(key in {company.casefold() + form, form + "by" + company.casefold()}
+               for form in ("graded", "slabbed", "slab", "certified")):
+            return "slab", company, inverted
+        if any(key == company.casefold() + negative + form
+               for negative in ("not", "non", "no") for form in ("graded", "slabbed", "slab", "certified")):
+            return "slab", company, not inverted
+    return None
+
+
+def _grading_assertion(label, description):
+    predicate = _grading_predicate(label)
+    positive, end = _boolean_token(description)
+    if predicate is None or positive is None:
+        return None, 0
+    kind, company, inverted = predicate
+    return (kind, company, positive != inverted), end
+
+
+def _check_grading_assertion(assertion, offer):
+    kind, company, positive = assertion
+    grade = offer["grade"]
+    retained = grade.get("kind") or ("slab" if grade["company"] and grade["value"] else "unknown")
+    if retained == "unknown":
+        return  # A provider assertion cannot supply missing retained evidence.
+    matches = retained == kind and (company is None or grade["company"] == company)
+    if matches != positive:
+        _fail("product_mismatch")
+
+
+def _grading_identity(name, offer):
+    text, spans = _identity_text(name), []
+    for match in _GRADING_LABEL.finditer(text):
+        assertion, end = _grading_assertion(match[1], text[match.end():])
+        if assertion is not None:
+            _check_grading_assertion(assertion, offer)
+        # Unknown values contribute no positive grader/form evidence either.
+        # Mask only the contextual property, preserving every suffix assertion.
+        spans.append((match.start(), match.end() + end))
+    return _mask_claims(text, spans)
 
 
 def _printing_assertion(label, description):
@@ -350,7 +416,8 @@ def _identity(name, offer, card_id, *, printing=True):
     from .marketplace_quality import NUMERIC_GRADE, contradicts_grade
     if not _text(name, 2000):
         _fail()
-    grade_name = _printing_identity(name, offer) if printing else _identity_text(name)
+    grade_name = _grading_identity(name, offer)
+    grade_name = _printing_identity(grade_name, offer) if printing else grade_name
     name = _identity_text(name)
     source_title = _identity_text(offer["title"])
     card_id = _identity_text(card_id)
@@ -396,6 +463,18 @@ def _variant_identity(options, offer, card_id):
     """Check selected option evidence without turning ordinary choices into identity."""
     for key, value in options.items():
         key, value = (_identity_text(text) for text in (key, value))
+        grading = (key, value) if _grading_predicate(key) is not None else None
+        if (grading is None and _grading_predicate(value) is not None
+                and (_boolean_token(key)[0] is not None or _value_prefix(key)[2])):
+            grading = value, key
+        if grading is not None:
+            assertion, end = _grading_assertion(*grading)
+            if assertion is not None:
+                _check_grading_assertion(assertion, offer)
+            # A boolean (including 0/1) is not a numeric grade. A bare label
+            # with an unknown value is not an affirmative slab/grader claim.
+            _identity("x " + grading[1][end:], offer, card_id)
+            continue
         # Check each part independently so repeated compatible evidence does not
         # look like multiple conflicting grades to the shared grade checker.
         joined_negation = next((text for text in (f"{key} {value}", f"{value} {key}")
