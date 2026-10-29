@@ -4,6 +4,7 @@ import copy
 from datetime import timedelta
 import json
 import socket
+import threading
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -102,6 +103,221 @@ class SourceFixTests(unittest.TestCase):
 
     def research_all(self, pilot):
         return pilot.post("research", {"card_id": CARD, "query": TITLE, "platforms": ["ebay_us", "mercari"]})
+
+    def readiness_race(self, pilot, action, change, *, after_refresh=False, after_worker=False):
+        """Block actual native API readiness, then change current authority."""
+        held, entered, done, refreshed = (threading.Event() for _ in range(4))
+        errors, holder, threads = [], [], []
+        native_lock = pilot.api._lock
+        original_now, original_connect, original_worker = pilot.loop.now, pilot.on_connect, pilot.after_worker
+        class WitnessLock:
+            def __enter__(self):
+                if held.is_set() and threading.get_ident() != holder[0]:
+                    entered.set()
+                native_lock.acquire()
+                return self
+            def __exit__(self, *args): native_lock.release()
+        pilot.api._lock = WitnessLock()
+        def arm():
+            if threads:
+                return
+            def locker():
+                try:
+                    with native_lock:
+                        holder.append(threading.get_ident())
+                        held.set()
+                        if not entered.wait(3):
+                            raise AssertionError("final readiness did not wait on native API lock")
+                        change(pilot.sources)
+                except BaseException as exc:
+                    errors.append(repr(exc))
+                finally:
+                    done.set()
+            thread = threading.Thread(target=locker, daemon=True)
+            threads.append(thread)
+            thread.start()
+            self.assertTrue(held.wait(2))
+        if after_refresh:
+            pilot.on_connect = lambda: refreshed.set()
+            def at_time():
+                if refreshed.is_set():
+                    arm()
+                return original_now()
+            pilot.loop.now = at_time
+        elif after_worker:
+            pilot.after_worker = arm
+        else:
+            arm()
+        try:
+            response = action()
+            self.assertTrue(done.wait(3))
+            self.assertTrue(entered.is_set())
+            self.assertEqual(errors, [])
+            return response
+        finally:
+            for thread in threads:
+                thread.join(4)
+                self.assertFalse(thread.is_alive())
+            pilot.api._lock = native_lock
+            pilot.loop.now, pilot.on_connect, pilot.after_worker = original_now, original_connect, original_worker
+
+    def assert_reusable_photos_absent(self, pilot):
+        for state in (pilot.loop._offers, pilot.loop._selections):
+            self.assertTrue(all(not row["offer"]["listing_photos"] for row in state.values()))
+
+    def test_photo_downgrade_between_research_select_and_manual_handoff(self):
+        with Pilot() as pilot:
+            pilot.loop.forwarders.clear()
+            _, research = pilot.research()
+            pilot.sources.policies["ebay_us"]["photo_display_approved"] = False
+            status, selected = pilot.select(research["offers"][0])
+            self.assertEqual(status, 200)
+            self.assertNotIn("i.ebayimg.com", json.dumps(selected))
+            self.assertEqual(selected["source_readiness"][0]["photo_display"], "not_approved")
+            self.assert_reusable_photos_absent(pilot)
+            status, manual = pilot.handoff(selected, forwarder="other")
+            self.assertEqual(status, 200)
+            self.assertEqual(manual["status"], "manual_handoff_required")
+            self.assertNotIn("i.ebayimg.com", json.dumps(manual))
+            self.assert_reusable_photos_absent(pilot)
+            self.assertEqual(pilot.provider_paths, [])
+        with Pilot() as pilot:
+            pilot.loop.forwarders.clear()
+            _, research = pilot.research()
+            _, selected = pilot.select(research["offers"][0])
+            pilot.sources.policies["ebay_us"]["photo_display_approved"] = False
+            status, manual = pilot.handoff(selected, forwarder="other")
+            self.assertEqual(status, 200)
+            self.assertNotIn("i.ebayimg.com", json.dumps(manual))
+            self.assert_reusable_photos_absent(pilot)
+            self.assertEqual(pilot.provider_paths, [])
+
+    def test_select_native_readiness_wait_rechecks_source_photos_and_admission(self):
+        changes = {"revoke": lambda route: route.revoke("ebay_us"),
+                   "photos": lambda route: route.policies["ebay_us"].update(photo_display_approved=False),
+                   "access": lambda route: route.policies["ebay_us"].update(access_approval=""),
+                   "budget": lambda route: setattr(route.budget, "remaining", 0),
+                   "window": lambda route: setattr(route.budget, "deadline", 0)}
+        for name, change in changes.items():
+            with self.subTest(change=name), Pilot() as pilot:
+                _, research = pilot.research()
+                paths = list(pilot.marketplace_paths)
+                status, body = self.readiness_race(pilot, lambda: pilot.select(research["offers"][0]), change)
+                if name in {"revoke", "access"}:
+                    self.assertEqual(status, 409)
+                    self.assertEqual(body["error"], "source_access_unavailable")
+                    self.assertEqual(pilot.loop._offers, {})
+                    self.assertEqual(pilot.loop._selections, {})
+                else:
+                    self.assertEqual(status, 200)
+                    self.assertEqual(len(pilot.loop._offers), 2)
+                    self.assertEqual(len(pilot.loop._selections), 1)
+                    if name == "photos":
+                        self.assertNotIn("i.ebayimg.com", json.dumps(body))
+                        self.assertEqual(body["source_readiness"][0]["photo_display"], "not_approved")
+                        self.assert_reusable_photos_absent(pilot)
+                    else:
+                        self.assertEqual(body["source_readiness"][0]["blocker"], "source_window_closed")
+                        self.assertTrue(body["offer"]["listing_photos"])
+                self.assertEqual(pilot.marketplace_paths, paths)
+                self.assertEqual(pilot.provider_paths, [])
+
+    def test_manual_handoff_native_readiness_wait_rechecks_source_and_photos(self):
+        for name, change in (("revoke", lambda route: route.revoke("ebay_us")),
+                             ("photos", lambda route: route.policies["ebay_us"].update(photo_display_approved=False))):
+            with self.subTest(change=name), Pilot() as pilot:
+                pilot.loop.forwarders.clear()
+                _, research = pilot.research()
+                _, selected = pilot.select(research["offers"][0])
+                status, body = self.readiness_race(pilot, lambda: pilot.handoff(selected, forwarder="other"),
+                                                   change, after_refresh=True)
+                if name == "revoke":
+                    self.assertEqual(status, 409)
+                    self.assertEqual(body["error"], "source_access_unavailable")
+                    self.assertNotIn("product_url", body)
+                    self.assertEqual(pilot.loop._offers, {})
+                    self.assertEqual(pilot.loop._selections, {})
+                else:
+                    self.assertEqual(status, 200)
+                    self.assertEqual(body["status"], "manual_handoff_required")
+                    self.assertNotIn("i.ebayimg.com", json.dumps(body))
+                    self.assertEqual(body["source_readiness"][0]["photo_display"], "not_approved")
+                    self.assert_reusable_photos_absent(pilot)
+                self.assertEqual(pilot.provider_paths, [])
+
+    def test_bns_success_and_refusal_share_final_publication_projection(self):
+        for single_variant in (False, True):
+            for name, change in (("revoke", lambda route: route.revoke("ebay_us")),
+                                 ("photos", lambda route: route.policies["ebay_us"].update(photo_display_approved=False)),
+                                 ("partner", lambda route: route.policies["ebay_us"].update(partner_handoff_allowed=False))):
+                with self.subTest(single_variant=single_variant, change=name), Pilot() as pilot:
+                    if single_variant:
+                        pilot.fixture["resolve"]["variants"] = pilot.fixture["resolve"]["variants"][:1]
+                    _, research = pilot.research()
+                    _, selected = pilot.select(research["offers"][0])
+                    status, body = self.readiness_race(pilot, lambda: pilot.handoff(selected), change, after_worker=True)
+                    if name in {"revoke", "partner"}:
+                        self.assertEqual(status, 409)
+                        self.assertEqual(body["error"], "source_access_unavailable")
+                        self.assertNotIn("quote", body)
+                        self.assertNotIn("provider_result", body)
+                        if name == "revoke":
+                            self.assertEqual(pilot.loop._offers, {})
+                            self.assertEqual(pilot.loop._selections, {})
+                        else:
+                            self.assertNotIn("variant_choices", pilot.loop._selections[selected["selection_id"]])
+                    else:
+                        self.assertEqual(status, 200)
+                        self.assertEqual(body["status"], "quote_ready_for_review" if single_variant else "variant_selection_required")
+                        self.assertNotIn("i.ebayimg.com", json.dumps(body))
+                        self.assert_reusable_photos_absent(pilot)
+                    self.assertTrue(pilot.provider_paths)  # existing in-memory BNS fixture only
+                    self.assertFalse(any("orders" in path or "payments" in path for path in pilot.provider_paths))
+
+    def test_contextual_certificate_publication_projects_retained_source(self):
+        for name, change in (("revoke", lambda route: route.revoke("ebay_us")),
+                             ("photos", lambda route: route.policies["ebay_us"].update(photo_display_approved=False))):
+            with self.subTest(change=name), Pilot() as pilot:
+                _, research = pilot.research()
+                pilot.loop.psa_client = SimpleNamespace(lookup=lambda *args, **kwargs: {
+                    "status": "unavailable", "certificate_verified": False, "authenticity_verified": False})
+                status, body = self.readiness_race(pilot, lambda: pilot.post("psa", {
+                    "certificate_number": "12345678", "offer_id": research["offers"][0]["offer_id"]}), change)
+                if name == "revoke":
+                    self.assertEqual(status, 409)
+                    self.assertEqual(body["error"], "source_access_unavailable")
+                    self.assertNotIn("verification", body)
+                    self.assertEqual(pilot.loop._offers, {})
+                else:
+                    self.assertEqual(status, 200)
+                    self.assert_reusable_photos_absent(pilot)
+                self.assertEqual(pilot.provider_paths, [])
+
+    def test_photo_projection_cannot_rebind_unrelated_selection_drift(self):
+        with Pilot() as pilot:
+            pilot.loop.forwarders.clear()
+            _, research = pilot.research()
+            _, selected = pilot.select(research["offers"][0])
+            pilot.loop._selections[selected["selection_id"]]["offer"]["price_minor"] += 1
+            pilot.sources.policies["ebay_us"]["photo_display_approved"] = False
+            status, body = pilot.handoff(selected, forwarder="other")
+            self.assertEqual(status, 409)
+            self.assertEqual(body["error"], "offer_changed")
+            self.assert_reusable_photos_absent(pilot)
+            self.assertEqual(pilot.provider_paths, [])
+
+    def test_revoked_refresh_failure_prunes_old_reusable_records(self):
+        with Pilot() as pilot:
+            pilot.loop.forwarders.clear()
+            _, research = pilot.research()
+            _, selected = pilot.select(research["offers"][0])
+            pilot.on_connect = lambda: pilot.sources.revoke("ebay_us")
+            status, body = pilot.handoff(selected, forwarder="other")
+            self.assertEqual(status, 503)
+            self.assertEqual(body["error"], "refresh_unavailable")
+            self.assertEqual(pilot.loop._offers, {})
+            self.assertEqual(pilot.loop._selections, {})
+            self.assertEqual(pilot.provider_paths, [])
 
     def test_revoked_earlier_source_is_absent_from_final_http_body_and_store(self):
         with Pilot() as pilot, later_source(pilot, lambda route: route.revoke("ebay_us")) as seen:

@@ -88,7 +88,8 @@ class LiveOfferPilotTests(unittest.TestCase):
                 status, blocked = pilot.handoff(selected)
                 self.assertEqual(status, 409); self.assertEqual(blocked["error"], "source_access_unavailable")
                 self.assertNotIn("provider_result", blocked); self.assertNotIn("quote", blocked)
-                self.assertNotIn("variant_choices", pilot.loop._selections[selected["selection_id"]])
+                self.assertNotIn(selected["selection_id"], pilot.loop._selections)
+                self.assertEqual(pilot.loop._offers, {})
 
     def test_revoked_source_cannot_reuse_retained_selection(self):
         with Pilot() as pilot:

@@ -1,12 +1,24 @@
 # Adversary source fixes (29 October 2026)
 
-The research response now projects every accumulated offer against current
-source authority after all selected marketplaces finish. Revoked, disabled or
+Every research, selection, manual handoff, BNS outcome and contextual certificate
+response uses one final publication projection after readiness and provider
+work finishes. It projects every accumulated offer against current source
+authority. Revoked, disabled or
 otherwise unauthorized rows are removed from the response and retained offers
 and selections. A photo display downgrade strips photos from every retained
 row and the final response. Source readiness, connection readiness and coverage
 describe the same resulting response. Readiness checks run before the final
-authority projection, which does not wait on transport locks.
+authority projection, which does not wait on transport locks. Revocation of a
+required selection or handoff source rejects the response after pruning its
+reusable records; a photo-only downgrade strips attachments. A still-matching
+selection fingerprint follows only that photo projection, preserving all other
+drift checks. Unrelated evidence drift cannot be accepted by this adjustment.
+
+The publication boundary commits a detached response snapshot under the state
+and source-authority locks. The HTTP layer serializes that snapshot. A later
+revocation governs subsequent publications and actions; it cannot recall bytes
+from an already committed response. Private capture/drift audit snapshots are
+not reusable selection records and retain their existing behavior.
 
 This publication check is independent of read admission: completing a read
 window or request allowance preserves already captured evidence within its
@@ -30,12 +42,15 @@ dispatch limits and revocation still apply.
 
 `tests/test_adversary_source_fixes.py` reproduces the prior adversary's
 multi-source revocation timing, native eBay raw condition payload and canonical
-host alias captures. It uses fake HTTPS and a loopback HTTP server while denying
-external socket and DNS operations. All quote-provider dispatch lists remain
-empty in these source regressions.
+host alias captures. It also reproduces native API-lock waits during selection,
+manual handoff and BNS success/refusal publication, plus photo policy changes
+between research, selection and handoff. It uses fake HTTPS and a loopback HTTP
+server while denying external socket and DNS operations. Source-only and manual
+regressions make no quote-provider dispatches; the BNS cases use the existing
+in-memory fixture and have no order or payment operation.
 
 Focused validation:
 
 ```sh
-python3 -m unittest tests.test_adversary_source_fixes tests.test_live_offer_pilot tests.test_marketplace_sources tests.test_commerce_loop tests.test_ebay_official tests.test_ebay_commerce_integration
+python3 -m unittest tests.test_adversary_source_fixes tests.test_live_offer_pilot tests.test_marketplace_sources tests.test_commerce_loop tests.test_commerce_psa tests.test_ebay_official tests.test_ebay_commerce_integration
 ```

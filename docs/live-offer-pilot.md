@@ -83,6 +83,14 @@ BNS resolve/quote names or the chosen variant options refuse the preview before
 quote review. Raw and slab claims must also remain compatible. Missing dimensions
 remain unknown; matching provider text never authenticates the printing, grade or
 physical card. These private claims are not added to the public quote contract.
+Common labelled fields and option aliases are checked together with their values.
+Negative property booleans such as `First Edition=No` exclude the retained claim;
+they do not invent an Unlimited edition or a different finish. Labelled canonical
+values remain meaningful when followed by grade text. A collector numerator alone
+does not supply a missing denominator. Grader readiness and scoped `not graded`
+wording do not claim a slab, while separate explicit slab/grade evidence still
+refuses a raw listing. This is bounded assertion parsing, not general language
+understanding; absent and unsupported claims remain unverified.
 Per-source handoff authority is checked immediately before worker launch and
 again for every outcome, including variant refusals, before anything is returned
 or retained. Each worker HTTP request checks its own deadline. A parent revocation
@@ -108,5 +116,7 @@ transaction completion. Focused regressions:
 `python3 -B -m unittest tests.test_live_offer_pilot -q`.
 Printing and raw/slab contradiction regressions:
 `python3 -B -m unittest tests.test_bns_printing_identity -q`. The module's
-`--report` mode emits the four adversarial HTTP journeys for frontend validation;
-it uses the same fake HTTPS/BNS responses and audited external-network denial.
+`--report` mode emits the original and fresh-review negative HTTP journeys for
+frontend validation; `compatible_raw_report()` supplies native raw-card positive
+controls. Each row declares its checked stage and expected provider-path count.
+Both use fake HTTPS/BNS responses and audited external-network denial.

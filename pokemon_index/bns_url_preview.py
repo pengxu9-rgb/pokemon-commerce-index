@@ -159,36 +159,128 @@ def _printing_text(value):
 
 
 def _printing_identity(name, offer):
-    from .listing_evidence import _title_conflicts, normalized
+    from .listing_evidence import _title_conflicts
     claims = _printing_claims(offer)
-    text = _printing_text(name)
+    text = _identity_text(name)
+    # '1st edition - not graded' negates grading, not the preceding edition.
+    # Grade compatibility is checked separately against the complete name.
+    text = re.sub(r"\b(?:not|non|no)[\s_-]+(?:(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+)?(?:graded|slabbed|certified)\b",
+                  lambda match: " " * len(match[0]), text, flags=re.I)
+    # Consume only a recognized labelled assertion's own span. Its suffix still
+    # receives ordinary contradiction checks (e.g. Language:en Japanese).
+    spans = []
+    for match in _PRINTING_LABEL.finditer(text):
+        assertion, end = _printing_assertion(match[1], text[match.end():])
+        if assertion is not None:
+            _check_printing_assertion(assertion, claims)
+            spans.append((match.start(), match.end() + end))
+    for start, end in reversed(spans):
+        text = text[:start] + " " * (end - start) + text[end:]
+    text = _printing_text(text)
     if any(claims[field] is not None for field in _title_conflicts(text, claims)):
         _fail("product_mismatch")
-    # Codes in prose require an explicit label: free-standing EN, normal or
-    # standard may be ordinary words and cannot supply an absent dimension.
-    labels = {"language": r"language|lang", "set_code": r"set(?:\s+code)?|expansion",
-              "collector_number": r"(?:collector|card)\s+(?:number|no\.?)",
-              "finish": r"finish", "edition": r"edition"}
-    for field, label in labels.items():
-        for candidate in (_identity_text(name), text):
-            for match in re.finditer(rf"(?<![\w])(?:{label})\s*[:=]\s*([^,;|\n]+)", candidate, re.I):
-                actual = normalized(field, match[1].strip())
-                if claims[field] is not None and actual is not None and actual != claims[field]:
-                    _fail("product_mismatch")
+
+
+_PRINTING_LABEL = re.compile(
+    r"(?<![\w])((?:card[ _-]*)?language(?:[ _-]*code)?|lang|set(?:[ _-]*(?:code|name))?"
+    r"|expansion(?:[ _-]*(?:code|name))?|(?:collector|card)[ _-]*(?:number|no\.?)|number"
+    r"|(?:card[ _-]*)?finish|foil|holo(?:graphic|foil)?|(?:first|1st)[ _-]*edition|edition"
+    r"|言語|語言|语言|セット|カード番号|仕上げ|エディション)\s*[:=]\s*", re.I)
+_PRINTING_KEYS = {
+    "language": {"language", "lang", "cardlanguage", "languagecode", "cardlanguagecode", "言語", "語言", "语言"},
+    "set_code": {"set", "setcode", "setname", "expansion", "expansioncode", "expansionname", "セット"},
+    "collector_number": {"collectornumber", "collectorno", "cardnumber", "cardno", "number", "カード番号"},
+    "finish": {"finish", "cardfinish", "foil", "holo", "holographic", "holofoil", "仕上げ"},
+    "edition": {"edition", "firstedition", "1stedition", "エディション"}}
+_FOIL_FINISHES = frozenset({"holo", "reverse", "reverse_masterball", "reverse_pokeball", "cosmos_holo", "alternate_holo"})
+_PRINTING_VALUES = {
+    "language": {"en": ("en", "english", "英語"), "ja": ("ja", "jp", "japanese", "日本語"),
+        "fr": ("fr", "french", "français", "francais"), "de": ("de", "german", "deutsch"),
+        "ko": ("ko", "korean", "韓国語"), "es": ("es", "spanish", "español", "espanol"),
+        "it": ("it", "italian"), "pt": ("pt", "portuguese"),
+        "zh-Hans": ("zh-hans", "simplified chinese"), "zh-Hant": ("zh-hant", "traditional chinese")},
+    "finish": {"normal": ("normal", "non holo", "non holographic", "non holofoil", "non foil", "nonfoil", "ノンホロ"),
+        "holo": ("holo", "holographic", "holofoil", "ホロ"), "reverse": ("reverse", "reverse holo", "holo reverse", "ミラー"),
+        "reverse_masterball": ("reverse masterball", "masterball mirror", "マスターボールミラー"),
+        "reverse_pokeball": ("reverse pokeball", "pokeball mirror", "モンスターボールミラー"),
+        "cosmos_holo": ("cosmos holo",), "alternate_holo": ("alternate holo",)},
+    "edition": {"first_edition": ("first edition", "1st edition", "初版"), "unlimited": ("unlimited", "unlimited edition"),
+        "shadowless": ("shadowless",), "standard": ("standard",), "not_applicable": ("not applicable", "n/a")}}
+
+
+def _printing_assertion(label, description):
+    """Return a signed, bounded claim plus consumed length; never fill a gap."""
+    from .listing_evidence import normalized
+    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
+    field = next((field for field, keys in _PRINTING_KEYS.items() if key in keys), None)
+    if field is None:
+        return None, 0
+    text = _identity_text(description)
+    if re.match(r"\s*(?:unknown|unspecified|not[\s_-]+(?:sure|reported|provided)|no[\s_-]+preference)(?![\w])", text, re.I):
+        return None, 0
+    boolean = re.match(r"\s*(yes|true|1|no|false|0)(?![\w])", text, re.I)
+    if boolean and key in {"firstedition", "1stedition", "foil", "holo", "holographic", "holofoil"}:
+        tail = text[boolean.end():].strip()
+        # 'No preference' and 'not sure' are not negative property assertions.
+        if not tail or re.match(r"[,;|()]|(?:PSA|BGS|CGC|ARS|PGC)(?=[\s\d:_-])", tail, re.I):
+            values = frozenset({"first_edition"}) if field == "edition" else _FOIL_FINISHES
+            return (field, values, boolean[1].casefold() in {"yes", "true", "1"}), boolean.end()
+    negative = re.match(r"\s*(?:not|non|no|without|excluding|except)[\s_-]+", text, re.I)
+    if field == "edition" and re.match(r"\s*not[\s_-]+applicable(?![\w])", text, re.I):
+        negative = None  # This is the supported edition value, not a negation.
+    start = negative.end() if negative else 0
+    remaining = text[start:]
+    if field == "set_code":
+        match = re.match(r"\s*([A-Za-z0-9][A-Za-z0-9._-]{0,39})(?![\w.-])", remaining)
+        actual = normalized(field, match[1]) if match else None
+    elif field == "collector_number":
+        match = re.match(r"\s*([A-Za-z]?[0-9]{1,4}[A-Za-z]?(?:\s*/\s*[A-Za-z]?[0-9]{1,4}[A-Za-z]?)?)(?![\w/])", remaining)
+        actual = normalized(field, re.sub(r"\s+", "", match[1])) if match else None
+    else:
+        aliases = [(alias, canonical) for canonical, names in _PRINTING_VALUES[field].items() for alias in names]
+        # Longer compounds win before their own 'holo'/'reverse' substring.
+        match, actual = None, None
+        for alias, canonical in sorted(aliases, key=lambda row: len(row[0]), reverse=True):
+            pattern = r"[\s_-]+".join(re.escape(part) for part in re.split(r"[ _-]+", alias))
+            match = re.match(r"\s*(?:" + pattern + r")(?![\w-])", remaining, re.I)
+            if match:
+                actual = canonical
+                break
+        if not match and field == "finish":
+            match = re.match(r"\s*foil(?![\w-])", remaining, re.I)
+            if match:
+                return (field, _FOIL_FINISHES, not bool(negative)), start + match.end()
+    if not match or actual is None:
+        return None, 0
+    values = _FOIL_FINISHES if negative and field == "finish" and actual == "holo" else frozenset({actual})
+    return (field, values, not bool(negative)), start + match.end()
+
+
+def _check_printing_assertion(assertion, claims):
+    field, values, positive = assertion
+    expected = claims[field]
+    if expected is None:
+        return
+    if field == "collector_number":
+        # A reported numerator alone neither supplies nor contradicts a missing
+        # denominator. Two explicit denominators must still agree.
+        agrees = any(expected == value or "/" not in value and expected.split("/")[0] == value
+                     or "/" not in expected and value.split("/")[0] == expected for value in values)
+    else:
+        agrees = expected in values
+    if agrees != positive:
+        _fail("product_mismatch")
 
 
 def _printing_option(label, description, offer):
-    from .listing_evidence import normalized
-    labels = {"language": {"language", "lang", "言語", "語言", "语言"},
-              "set_code": {"set", "set code", "expansion", "セット"},
-              "collector_number": {"collector number", "card number", "number", "カード番号"},
-              "finish": {"finish", "foil", "仕上げ"}, "edition": {"edition", "エディション"}}
-    label, original = _printing_text(label).casefold().strip(), _identity_text(description).strip()
-    for field, names in labels.items():
-        expected = _printing_claims(offer)[field]
-        actual = (normalized(field, original) or normalized(field, _printing_text(original))) if label in names else None
-        if expected is not None and actual is not None and actual != expected:
-            _fail("product_mismatch")
+    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
+    if not any(key in keys for keys in _PRINTING_KEYS.values()):
+        return False
+    assertion, end = _printing_assertion(label, description)
+    if assertion is not None:
+        _check_printing_assertion(assertion, _printing_claims(offer))
+    _printing_identity(description[end:], offer)
+    return True
 
 
 def _identity_text(value):
@@ -202,13 +294,14 @@ def _grade_number(value):
     return str(int(whole)) + ("." + fraction if fraction else "")
 
 
-def _identity(name, offer, card_id):
+def _identity(name, offer, card_id, *, printing=True):
     """Explicit contradictions reject; absence of one never verifies a card."""
     from . import core
     from .marketplace_quality import NUMERIC_GRADE, contradicts_grade
     if not _text(name, 2000):
         _fail()
-    _printing_identity(name, offer)
+    if printing:
+        _printing_identity(name, offer)
     name = _identity_text(name)
     source_title = _identity_text(offer["title"])
     card_id = _identity_text(card_id)
@@ -223,9 +316,18 @@ def _identity(name, offer, card_id):
         _fail("product_mismatch")
     # Conventional grader punctuation and equivalent decimal scores carry the
     # same explicit evidence as PSA 9; keep this normalization local to previews.
+    # These bounded phrases do not assert an actual grade. Remove only their
+    # own spans so 'PSA ready; PSA 10' still contains explicit slab evidence.
+    grade_text = re.sub(r"(?<![A-Za-z])(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+ready\b"
+                        r"|\b(?:not|non|no)[\s_-]+(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+(?:graded|slabbed|certified)\b",
+                        " ", name, flags=re.I)
+    ungraded = re.compile(r"\b(?:not|non)[\s_-]+(?:graded|slabbed)\b", re.I)
+    if grade["company"] and grade["value"] and ungraded.search(grade_text):
+        _fail("product_mismatch")
+    grade_text = ungraded.sub(" ", grade_text)
     grade_text = re.sub(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)[\s:_-]*"
                         r"(?:grading|grade|鑑定評価|鑑定)\s*[:=_/\-(]?\s*(?=\d)",
-                        r"\1 ", name, flags=re.I)
+                        r"\1 ", grade_text, flags=re.I)
     grade_text = re.sub(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)\s*[:=_/\-(]\s*(?=\d)",
                         r"\1 ", grade_text, flags=re.I)
     grade_text = NUMERIC_GRADE.sub(lambda match: f"{match[1]} {_grade_number(match[2])}", grade_text)
@@ -235,7 +337,7 @@ def _identity(name, offer, card_id):
         from .claim_text import negated_cue
         raw_labels = list(re.finditer(r"\b(?:raw|ungraded)\b|未鑑定|鑑定前", grade_text, re.I))
         if (core.GRADER_RE.search(grade_text) or core.SLAB_EVIDENCE_RE.search(grade_text)
-                or re.search(r"\b(?:graded|slab)\b", grade_text, re.I)
+                or re.search(r"\b(?:graded|slab|slabbed)\b", grade_text, re.I)
                 or any(negated_cue(grade_text, *match.span()) for match in raw_labels)):
             _fail("product_mismatch")
 
@@ -246,10 +348,17 @@ def _variant_identity(options, offer, card_id):
         key, value = (_identity_text(text) for text in (key, value))
         # Check each part independently so repeated compatible evidence does not
         # look like multiple conflicting grades to the shared grade checker.
-        _identity(key, offer, card_id)
-        _identity(value, offer, card_id)
+        _identity(key, offer, card_id, printing=False)
+        _identity(value, offer, card_id, printing=False)
+        # Interpret a key/value assertion together before any bare token check:
+        # First Edition=No is not a positive First Edition title claim.
+        contextual = _printing_option(key, value, offer)
+        if not contextual:
+            contextual = _printing_option(value, key, offer)
+        if not contextual:
+            _printing_identity(key, offer)
+            _printing_identity(value, offer)
         for label, description in ((key, value), (value, key)):
-            _printing_option(label, description, offer)
             grade_label = r"(?:grading|grade|鑑定評価|鑑定)"
             company_label = r"(PSA|BGS|CGC|ARS|PGC)"
             context = re.fullmatch(rf"\s*(?:{company_label}(?:[\s:_-]*{grade_label})?"
