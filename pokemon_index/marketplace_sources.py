@@ -244,10 +244,19 @@ def _ebay_claims(item: dict[str, Any]) -> dict[str, Any]:
             if not isinstance(value, dict):
                 raise ValueError("invalid eBay condition descriptor value")
             aspects.append((descriptor.get("name"), value.get("content")))
+    card_condition = None
     labels = {"professional grader": "grade_company", "grade": "grade_value",
               "certification number": "certificate_number_claim", "certification #": "certificate_number_claim"}
     for name, value in aspects:
-        if not isinstance(name, str) or name.casefold() not in labels:
+        if not isinstance(name, str):
+            continue
+        if name.casefold() == "card condition":
+            value = _text(value, "eBay card condition", 512)
+            if card_condition is not None and card_condition != value:
+                raise ValueError("conflicting eBay card condition aspects")
+            card_condition = value
+            continue
+        if name.casefold() not in labels:
             continue
         field = labels[name.casefold()]
         value = _text(value, "eBay seller aspect", 128)
@@ -259,6 +268,21 @@ def _ebay_claims(item: dict[str, Any]) -> dict[str, Any]:
         if fields[field] is not None and fields[field] != value:
             raise ValueError("conflicting eBay seller grade aspects")
         fields[field] = value
+    # eBay condition IDs are category-specific. The supported CCG individual
+    # card category uses 4000 for Ungraded; it is not a universal raw-card ID.
+    if str(item.get("categoryId")) == "183454":
+        condition = _text(item.get("condition"), "eBay condition", 512, nullable=True)
+        raw_label = condition is not None and condition.casefold() in {"raw", "ungraded"}
+        condition_id = str(item["conditionId"]) if item.get("conditionId") is not None else None
+        if condition_id == "4000" or raw_label:
+            if ((condition is not None and not raw_label) or condition_id not in {None, "4000"}
+                    or any(fields[key] is not None for key in ("grade_company", "grade_value", "certificate_number_claim"))
+                    or card_condition is not None and contradicts_grade(card_condition, "RAW", "raw")):
+                raise ValueError("eBay raw condition contradicts graded seller claims")
+            fields["grade_company"], fields["grade_value"] = "RAW", "raw"
+            # Retain the actual condition descriptor, rather than collapsing
+            # Near Mint and damaged raw copies to the generic form label.
+            fields["seller_condition"] = card_condition or condition
     return fields
 
 

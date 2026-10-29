@@ -128,6 +128,67 @@ def _research(card_id, offer, destination):
     instant, observed, expires = _time(utcnow()), _time(offer.get("observed_at")), _time(offer.get("fresh_until"))
     if not instant - timedelta(seconds=300) <= observed <= instant < expires <= observed + timedelta(seconds=300):
         _fail("quote_expired")
+    _printing_claims(offer)
+
+
+def _printing_claims(offer):
+    """Private retained listing claims; agreement never authenticates a card."""
+    from .listing_evidence import FIELDS, normalized
+    evidence = offer.get("source_printing_evidence")
+    if evidence is None:
+        return dict.fromkeys(FIELDS)
+    if (not isinstance(evidence, dict)
+            or set(evidence) != {"claims", "listing_url", "evidence_ref", "observed_at", "basis"}
+            or evidence["basis"] != "exact_listing_structured" or evidence["listing_url"] != offer["url"]
+            or not _text(evidence["evidence_ref"], 2048) or not isinstance(evidence["claims"], dict)
+            or set(evidence["claims"]) != set(FIELDS)
+            or any(value is not None and normalized(field, value) != value
+                   for field, value in evidence["claims"].items())):
+        _fail("quote_binding_invalid")
+    observed = _time(evidence["observed_at"])
+    if not _time(offer["observed_at"]) - timedelta(seconds=300) <= observed <= _time(offer["observed_at"]):
+        _fail("quote_binding_invalid")
+    return evidence["claims"]
+
+
+def _printing_text(value):
+    # Canonical option spellings and ordinary punctuation carry the same claim.
+    # Token boundaries prevent e.g. "Englishman" from becoming a language claim;
+    # compound finishes consume their span before a plain holo is considered.
+    return re.sub(r"(?<=\w)[_‐‑–—-](?=\w)", " ", _identity_text(value))
+
+
+def _printing_identity(name, offer):
+    from .listing_evidence import _title_conflicts, normalized
+    claims = _printing_claims(offer)
+    text = _printing_text(name)
+    if any(claims[field] is not None for field in _title_conflicts(text, claims)):
+        _fail("product_mismatch")
+    # Codes in prose require an explicit label: free-standing EN, normal or
+    # standard may be ordinary words and cannot supply an absent dimension.
+    labels = {"language": r"language|lang", "set_code": r"set(?:\s+code)?|expansion",
+              "collector_number": r"(?:collector|card)\s+(?:number|no\.?)",
+              "finish": r"finish", "edition": r"edition"}
+    for field, label in labels.items():
+        for candidate in (_identity_text(name), text):
+            for match in re.finditer(rf"(?<![\w])(?:{label})\s*[:=]\s*([^,;|\n]+)", candidate, re.I):
+                actual = normalized(field, match[1].strip())
+                if claims[field] is not None and actual is not None and actual != claims[field]:
+                    _fail("product_mismatch")
+
+
+def _printing_option(label, description, offer):
+    from .listing_evidence import normalized
+    labels = {"language": {"language", "lang", "言語", "語言", "语言"},
+              "set_code": {"set", "set code", "expansion", "セット"},
+              "collector_number": {"collector number", "card number", "number", "カード番号"},
+              "finish": {"finish", "foil", "仕上げ"}, "edition": {"edition", "エディション"}}
+    label, original = _printing_text(label).casefold().strip(), _identity_text(description).strip()
+    for field, names in labels.items():
+        expected = _printing_claims(offer)[field]
+        actual = (normalized(field, original) or normalized(field, _printing_text(original))) if label in names else None
+        if expected is not None and actual is not None and actual != expected:
+            _fail("product_mismatch")
 
 
 def _identity_text(value):
@@ -147,6 +208,7 @@ def _identity(name, offer, card_id):
     from .marketplace_quality import NUMERIC_GRADE, contradicts_grade
     if not _text(name, 2000):
         _fail()
+    _printing_identity(name, offer)
     name = _identity_text(name)
     source_title = _identity_text(offer["title"])
     card_id = _identity_text(card_id)
@@ -154,6 +216,8 @@ def _identity(name, offer, card_id):
     expected = {core.normalize_collector_number(v) for v in core.NUMBER_RE.findall(source_title)}
     if re.fullmatch(r"(?:ja|en):[^:]+:[^:]+:[^:]+", card_id):
         expected.add(core.normalize_collector_number(card_id.split(":")[2]))
+    if _printing_claims(offer)["collector_number"] is not None:
+        expected = {core.normalize_collector_number(_printing_claims(offer)["collector_number"])}
     grade = offer["grade"]
     if numbers and expected and numbers != expected:
         _fail("product_mismatch")
@@ -167,6 +231,13 @@ def _identity(name, offer, card_id):
     grade_text = NUMERIC_GRADE.sub(lambda match: f"{match[1]} {_grade_number(match[2])}", grade_text)
     if grade["company"] and grade["value"] and contradicts_grade(grade_text, grade["company"], _grade_number(grade["value"])):
         _fail("product_mismatch")
+    if grade.get("kind") == "raw":
+        from .claim_text import negated_cue
+        raw_labels = list(re.finditer(r"\b(?:raw|ungraded)\b|未鑑定|鑑定前", grade_text, re.I))
+        if (core.GRADER_RE.search(grade_text) or core.SLAB_EVIDENCE_RE.search(grade_text)
+                or re.search(r"\b(?:graded|slab)\b", grade_text, re.I)
+                or any(negated_cue(grade_text, *match.span()) for match in raw_labels)):
+            _fail("product_mismatch")
 
 
 def _variant_identity(options, offer, card_id):
@@ -178,6 +249,7 @@ def _variant_identity(options, offer, card_id):
         _identity(key, offer, card_id)
         _identity(value, offer, card_id)
         for label, description in ((key, value), (value, key)):
+            _printing_option(label, description, offer)
             grade_label = r"(?:grading|grade|鑑定評価|鑑定)"
             company_label = r"(PSA|BGS|CGC|ARS|PGC)"
             context = re.fullmatch(rf"\s*(?:{company_label}(?:[\s:_-]*{grade_label})?"
@@ -192,6 +264,10 @@ def _variant_identity(options, offer, card_id):
             # Original per-part identity checks above still see every byte.
             grade_description = re.sub(r"(?<![A-Za-z])cert(?:ificate)?(?:\s*(?:no\.?|number|id))?"
                                        r"\s*[:#-]?\s*\d{1,32}(?![\d./])", " ", description, flags=re.I)
+            if (offer["grade"].get("kind") == "raw"
+                    and re.fullmatch(r"\s*(?:grade|grading|鑑定|鑑定評価)\s*", label, re.I)
+                    and re.search(r"(?<![\d./])\d+(?:\.\d+)?(?![\d./])", grade_description)):
+                _fail("product_mismatch")
             for company in graders:
                 for number in re.findall(r"(?<![\d./])(\d+(?:\.\d+)?)(?![\d./])", grade_description):
                     _identity(f"{company} {_grade_number(number)}", offer, card_id)

@@ -549,6 +549,9 @@ class CommerceLoop:
             projected["identity_status"] = "unverified_candidate"
         elif proof.get("status") == "exact_match":
             raise ValueError("contradictory public identity status")
+        if proof.get("basis") == "exact_listing_structured":
+            projected["source_printing_evidence"] = copy.deepcopy({key: proof.get(key) for key in
+                ("claims", "listing_url", "evidence_ref", "observed_at", "basis")})
         for field in ("identity_evidence", "listing_photos", "card_id"):
             projected.pop(field, None)
         return projected
@@ -644,7 +647,55 @@ class CommerceLoop:
         from .approved_sources import ApprovedSources
         if type(self.crawler) is ApprovedSources:
             from .source_readiness import source_readiness
+            # Later sources can take long enough for an earlier source's
+            # authority to change. Revalidate the complete captured result at
+            # publication, independently of its now-consumed read allowance.
+            # Keep state and response under the same projection; revoked rows
+            # must not remain retained as selectable offers.
+            # Readiness may inspect an API lock. Read it before taking the
+            # revocation lock so concurrent token dispatch cannot invert locks.
+            from .source_readiness import MESSAGES
             result["source_readiness"] = source_readiness(self.crawler)
+            result["marketplace_connections"] = marketplace_connections(self.crawler)
+            result["checked_at"] = self.now()
+            with self._lock, self.crawler._revocation_lock:
+                for state in (self._offers, self._selections):
+                    for key, record in list(state.items()):
+                        try:
+                            record["offer"] = self.crawler.project_retained(record["offer"])
+                        except ValueError:
+                            del state[key]
+                result["offers"] = [copy.deepcopy(self._offers[offer["offer_id"]]["offer"])
+                    for offer in result["offers"] if offer["offer_id"] in self._offers]
+                # Readiness itself may have waited behind another dispatch.
+                # Apply any authority change from that wait to this same final
+                # snapshot without acquiring transport locks or consuming reads.
+                for readiness in result["source_readiness"]:
+                    source = readiness["source"]
+                    policy = self.crawler.policies.get(source)
+                    revoked = source in self.crawler._revoked
+                    readiness["photo_display"] = "authorized_only" if (policy and policy.get("access_approval")
+                        and policy.get("photo_display_approved") and not revoked) else "not_approved"
+                    if policy is None:
+                        readiness.update(status="not_configured", method="none", listing_read_enabled=False,
+                            blocker="source_access_required", message=MESSAGES["source_access_required"])
+                    else:
+                        try:
+                            self.crawler._guard_adapters()
+                            self.crawler._method(source)
+                        except ValueError:
+                            blocker = "source_revoked" if revoked else "source_disabled" if policy.get("mode") == "disabled" else "source_adapter_unavailable"
+                            readiness.update(status="configured_offline", listing_read_enabled=False,
+                                blocker=blocker, message=MESSAGES[blocker])
+                    if source == "ebay_us" and not readiness["listing_read_enabled"] and self.crawler.api is not None:
+                        result["marketplace_connections"][0].update(status="configured_offline",
+                            message="Official eBay Browse is configured but disabled.")
+                for platform in result["platforms"]:
+                    readiness = next(row for row in result["source_readiness"] if row["source"] == platform["source"])
+                    if readiness["blocker"] in {"source_revoked", "source_disabled", "source_adapter_unavailable"}:
+                        platform.update(status="unavailable", message=readiness["message"])
+                result["coverage"] = research_coverage(result["offers"], search_used=any(not any(src == source for src, _ in validated) for source in sources))
+                return result
         result["checked_at"] = self.now()
         result["coverage"] = research_coverage(result["offers"], search_used=any(not any(src == source for src, _ in validated) for source in sources))
         return result

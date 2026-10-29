@@ -7,7 +7,7 @@ from copy import deepcopy
 import json
 from datetime import datetime
 from functools import wraps
-from threading import RLock, Lock
+from threading import RLock
 from .dispatch_budget import DispatchBudget,DispatchDenied
 from .ebay_official import BrowseClient,_https_json
 from .marketplace_crawl import Crawler,PublicHTMLFetch,canonical_product_url
@@ -43,18 +43,20 @@ class ApprovedSources:
    if url!=canonical or source not in self.policies: raise SourceWiringError('invalid server URL allowlist')
   self.public_listing_urls=frozenset(public_listing_urls)
   self._lock=_ADAPTER_LOCK
-  self._revocation_lock=Lock(); self._revoked=set()
+  self._revocation_lock=RLock(); self._revoked=set()
   self._crawl_authorizer=self._authorize_crawl_dispatch
   self._api_authorizer=lambda:self._authorize_dispatch('ebay_us','api')
   if self.crawler is not None: self.crawler.fetch.source_authorized=self._crawl_authorizer
   if self.api is not None: self.api.source_authorized=self._api_authorizer
   self._guard()
   self.listings={}; self.observations={}; self.snapshots={}; self.native_urls={}
- def _guard(self):
+ def _guard_adapters(self):
   if self.crawler is not None and (type(self.crawler) is not Crawler or type(self.crawler.fetch) is not PublicHTMLFetch or not self.crawler.fetch.enabled or self.crawler.renderer is not None or self.crawler.dispatch_budget is not self.budget or self.crawler.fetch.dispatch_budget is not self.budget or self.crawler.fetch.source_authorized is not self._crawl_authorizer):
    raise SourceWiringError('crawler guards changed')
   if self.api is not None and (type(self.api) is not BrowseClient or not self.api.enabled or self.api._transport is not _https_json or self.api.dispatch_budget is not self.budget or self.api.source_authorized is not self._api_authorizer):
    raise SourceWiringError('API guards changed')
+ def _guard(self):
+  self._guard_adapters()
   self.budget.check()
  def revoke(self, source):
   """Server-only revocation; independent of the in-flight adapter lock."""
@@ -67,7 +69,7 @@ class ApprovedSources:
   self.budget.check()
  def _authorize_crawl_dispatch(self, url):
   from urllib.parse import urlsplit
-  source={'jp.mercari.com':'mercari','snkrdunk.com':'snkrdunk','www.ebay.com':'ebay_us','ebay.com':'ebay_us'}.get(urlsplit(url).hostname)
+  source={'jp.mercari.com':'mercari','snkrdunk.com':'snkrdunk','www.snkrdunk.com':'snkrdunk','www.ebay.com':'ebay_us','ebay.com':'ebay_us'}.get(urlsplit(url).hostname)
   self._authorize_dispatch(source,'crawl')
  def authorize_handoff(self, source):
   self._guard(); self._method(source)
@@ -78,6 +80,18 @@ class ApprovedSources:
   if self.policies[source]['photo_display_approved'] is not True:
    result['listing_photos']=[]
   return result
+ def project_retained(self,item):
+  """Recheck current publication rights without admitting another read.
+
+  Exhausting a read allowance does not revoke captured evidence. Source
+  revocation, access/mode changes and photo permission changes still apply.
+  """
+  with self._revocation_lock:
+   self._guard_adapters()
+   source=item.get('source');method=self._method(source)
+   if (item.get('source_provenance') or {}).get('method')!=method:
+    raise SourceWiringError('source mode changed; research again')
+   return self._project(item,source)
  def _observation(self,item):
   try:
    value=datetime.fromisoformat(item['observed_at'].replace('Z','+00:00'))

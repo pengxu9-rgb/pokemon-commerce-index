@@ -77,6 +77,12 @@ publishing the returned evidence. Existing transports retain bounded timeouts;
 the common deadline cannot preempt in-flight DNS/TLS/socket work.
 
 The existing BNS worker is one bounded authorized token/resolve/quote operation.
+Its private selected-offer binding retains available structured listing language,
+set code, collector number, finish and edition claims. Explicit contradictions in
+BNS resolve/quote names or the chosen variant options refuse the preview before
+quote review. Raw and slab claims must also remain compatible. Missing dimensions
+remain unknown; matching provider text never authenticates the printing, grade or
+physical card. These private claims are not added to the public quote contract.
 Per-source handoff authority is checked immediately before worker launch and
 again for every outcome, including variant refusals, before anything is returned
 or retained. Each worker HTTP request checks its own deadline. A parent revocation
@@ -100,3 +106,7 @@ responses, permissions, prices, photos and the trusted catalog are synthetic.
 It does not prove source rights, live stock, BNS support, real authentication or
 transaction completion. Focused regressions:
 `python3 -B -m unittest tests.test_live_offer_pilot -q`.
+Printing and raw/slab contradiction regressions:
+`python3 -B -m unittest tests.test_bns_printing_identity -q`. The module's
+`--report` mode emits the four adversarial HTTP journeys for frontend validation;
+it uses the same fake HTTPS/BNS responses and audited external-network denial.
