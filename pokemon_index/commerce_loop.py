@@ -381,12 +381,156 @@ class CommerceLoop:
             self._producer_lock.release()
 
     def _base(self):
-        result = {"schema": SCHEMA, "mode": self.mode, "checked_at": self.now(),
+        return {"schema": SCHEMA, "mode": self.mode, "checked_at": self.now(),
                   "purchasable": False, "purchase_action": None, "order_created": False}
+
+    def _project_state_locked(self):
+        """Project reusable state while both state and source authority are held."""
+        for state in (self._offers, self._selections):
+            for key, record in list(state.items()):
+                original = record["offer"]
+                try:
+                    projected = self.crawler.project_retained(original)
+                except ValueError:
+                    del state[key]
+                    continue
+                record["offer"] = projected
+                # Photo authorization changes are not seller evidence changes.
+                # Update only a still-matching selection baseline; never bless
+                # unrelated evidence drift by recomputing a stale fingerprint.
+                if state is self._selections:
+                    if record["fingerprint"] == _fingerprint(original):
+                        record["fingerprint"] = _fingerprint(projected)
+                    if not self.crawler.policies[projected["source"]]["partner_handoff_allowed"]:
+                        record.pop("variant_choices", None)
+
+    def _publish(self, result, *, offer=None, selection=None, contextual_offer=None,
+                 partner_handoff=False, search_used=None):
+        """Commit one detached response snapshot after all readiness/provider waits.
+
+        Read admission may end without revoking captured evidence. Source and
+        photo authority still apply to every response and reusable record.
+        Revocation after this snapshot cannot recall an already issued response.
+        """
         from .approved_sources import ApprovedSources
         if type(self.crawler) is ApprovedSources:
-            from .source_readiness import source_readiness
+            from .bns_errors import refusal
+            from .source_readiness import MESSAGES, source_readiness
+            # API readiness can wait on a native API lock. Never acquire it
+            # while holding source authority, which dispatch also needs.
             result["source_readiness"] = source_readiness(self.crawler)
+            if "marketplace_connections" in result:
+                from .marketplace_connections import marketplace_connections
+                result["marketplace_connections"] = marketplace_connections(self.crawler)
+            # Re-sample admission after the API wait. Admission checks can
+            # take a budget lock or call a clock, so finish them before the
+            # final authority lock and response/state projection.
+            for readiness in result["source_readiness"]:
+                if readiness["blocker"] not in {None, "source_adapter_unavailable", "source_window_closed"}:
+                    continue
+                blocker = None
+                try:
+                    self.crawler.budget.check()
+                    if self.crawler.budget.remaining <= 0:
+                        raise ValueError()
+                except ValueError:
+                    blocker = "source_window_closed"
+                else:
+                    if readiness["listing_read_enabled"] and readiness["method"] == "api":
+                        try:
+                            api = self.crawler.api
+                            now = api._check()
+                            needed = 3 if api._token is None else 2
+                            if (api._remaining < needed or self.crawler.budget.remaining < needed
+                                    or api._token is not None and (api._token_until is None or now >= api._token_until)):
+                                raise ValueError()
+                        except (ValueError, AttributeError, TypeError):
+                            blocker = "source_adapter_unavailable"
+                if blocker:
+                    readiness.update(status="configured_offline", listing_read_enabled=False,
+                                     blocker=blocker, message=MESSAGES[blocker])
+            with self._lock, self.crawler._revocation_lock:
+                result["checked_at"] = self.now()
+                instant = _time(result["checked_at"])
+                self._purge(instant)
+                self._project_state_locked()
+                # Apply current authority after every potentially blocking
+                # check, without a transport lock, dispatch or counter change.
+                for readiness in result["source_readiness"]:
+                    source = readiness["source"]
+                    policy = self.crawler.policies.get(source)
+                    revoked = source in self.crawler._revoked
+                    mode = policy.get("mode") if policy else None
+                    method = ("api" if source == "ebay_us" and mode in {"api_only", "api_preferred"}
+                              else "crawl" if mode in {"crawl_only", "api_preferred"} else "none")
+                    blocker = "source_access_required" if policy is None else readiness["blocker"]
+                    if policy is not None:
+                        try:
+                            self.crawler._guard_adapters()
+                            method = self.crawler._method(source)
+                        except ValueError:
+                            blocker = "source_revoked" if revoked else "source_disabled" if mode == "disabled" else "source_adapter_unavailable"
+                    enabled = blocker is None
+                    readiness.update(status="enabled" if enabled else "configured_offline" if policy else "not_configured",
+                        method=method, listing_read_enabled=enabled, blocker=blocker,
+                        photo_display="authorized_only" if (policy and policy.get("access_approval")
+                            and policy.get("photo_display_approved") and not revoked) else "not_approved",
+                        message="Live listing reads are enabled for this approved, bounded session." if enabled else MESSAGES[blocker])
+                    if source == "ebay_us" and "marketplace_connections" in result:
+                        if not enabled and self.crawler.api is not None:
+                            result["marketplace_connections"][0].update(status="configured_offline",
+                                message="Official eBay Browse is configured but disabled.")
+                if offer is not None:
+                    try:
+                        projected = self.crawler.project_retained(offer)
+                        if partner_handoff and not self.crawler.policies[offer["source"]]["partner_handoff_allowed"]:
+                            raise ValueError("partner handoff not approved")
+                    except ValueError as exc:
+                        raise CommerceError("source_access_unavailable", "This source is no longer approved for this action. Research again after access is restored.", 409) from exc
+                    if selection is not None:
+                        key, owner = selection
+                        record = self._selections.get(key)
+                        if not record or record["owner"] != owner:
+                            raise CommerceError("selection_expired", "Select a freshly researched listing before handoff.", 409)
+                    if contextual_offer is not None:
+                        key, owner = contextual_offer
+                        record = self._offers.get(key)
+                        if not record or record["owner"] != owner:
+                            raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
+                    if _time(projected["fresh_until"]) <= instant:
+                        if selection is not None:
+                            self._selections.pop(selection[0], None)
+                        raise CommerceError("offer_expired", "Research and select a fresh listing before continuing.", 409)
+                    if "offer" in result:
+                        result["offer"] = projected
+                if result.get("quote") is not None:
+                    try:
+                        quote_expires = _time(result["quote"]["buyship"]["expires_at"])
+                    except (KeyError, TypeError, ValueError):
+                        result.update(status="manual_handoff_required", quote=None,
+                            quote_status="eligible_indexed_quote_unavailable",
+                            message="The refreshed URL is ready for manual handoff. A current provider quote is unavailable.")
+                    else:
+                        # Provider validity must use the same final instant as
+                        # offer/selection freshness, after every readiness wait.
+                        if quote_expires <= instant:
+                            expired = refusal("quote_expired")
+                            result.update(status="manual_handoff_required", quote=None,
+                                quote_status=expired["code"], provider_result=expired,
+                                message=expired["message"])
+                if "offers" in result:
+                    result["offers"] = [copy.deepcopy(self._offers[row["offer_id"]]["offer"])
+                        for row in result["offers"] if row["offer_id"] in self._offers]
+                for platform in result.get("platforms", []):
+                    readiness = next(row for row in result["source_readiness"] if row["source"] == platform["source"])
+                    if readiness["blocker"] in {"source_revoked", "source_disabled", "source_adapter_unavailable", "source_access_required"}:
+                        platform.update(status="unavailable", message=readiness["message"])
+                if search_used is not None:
+                    result["coverage"] = research_coverage(result["offers"], search_used=search_used)
+                return copy.deepcopy(result)
+        if search_used is not None:
+            result["checked_at"] = self.now()
+            result["coverage"] = research_coverage(result["offers"], search_used=search_used)
         return result
 
     def _source_allowed(self, source, *, handoff=False):
@@ -398,7 +542,15 @@ class CommerceLoop:
                 if handoff:
                     self.crawler.authorize_handoff(source)
             except ValueError as exc:
+                with self._lock, self.crawler._revocation_lock:
+                    self._project_state_locked()
                 raise CommerceError("source_access_unavailable", "This source is no longer approved for this action. Research again after access is restored.", 409) from exc
+
+    def _scrub_retained(self):
+        from .approved_sources import ApprovedSources
+        if type(self.crawler) is ApprovedSources:
+            with self._lock, self.crawler._revocation_lock:
+                self._project_state_locked()
 
     def _owner(self, owner):
         return _text(owner, "authenticated owner", 128)
@@ -549,6 +701,9 @@ class CommerceLoop:
             projected["identity_status"] = "unverified_candidate"
         elif proof.get("status") == "exact_match":
             raise ValueError("contradictory public identity status")
+        if proof.get("basis") == "exact_listing_structured":
+            projected["source_printing_evidence"] = copy.deepcopy({key: proof.get(key) for key in
+                ("claims", "listing_url", "evidence_ref", "observed_at", "basis")})
         for field in ("identity_evidence", "listing_photos", "card_id"):
             projected.pop(field, None)
         return projected
@@ -641,13 +796,8 @@ class CommerceLoop:
                 result["platforms"].append(platform)
             except Exception:
                 result["platforms"].append({"source": source, "status": "unavailable", "message": "This marketplace could not be refreshed. Retry research later."})
-        from .approved_sources import ApprovedSources
-        if type(self.crawler) is ApprovedSources:
-            from .source_readiness import source_readiness
-            result["source_readiness"] = source_readiness(self.crawler)
-        result["checked_at"] = self.now()
-        result["coverage"] = research_coverage(result["offers"], search_used=any(not any(src == source for src, _ in validated) for source in sources))
-        return result
+        return self._publish(result, search_used=any(
+            not any(src == source for src, _ in validated) for source in sources))
 
     def select(self, owner, request):
         owner = self._owner(owner)
@@ -679,7 +829,8 @@ class CommerceLoop:
             expires = instant + timedelta(seconds=self.selection_seconds)
             self._selections[key] = {"owner": owner, "card_id": record["card_id"], "offer": copy.deepcopy(offer),
                 "fingerprint": _fingerprint(offer), "expires": expires, "busy": False}
-        return self._base() | {"selection_id": key, "expires_at": expires.isoformat(), "offer": copy.deepcopy(offer)}
+        result = self._base() | {"selection_id": key, "expires_at": expires.isoformat(), "offer": copy.deepcopy(offer)}
+        return self._publish(result, offer=offer, selection=(key, owner))
 
     def psa(self, owner, request):
         """Look up one certificate; seller claims never become authentication.
@@ -718,7 +869,9 @@ class CommerceLoop:
                     raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
                 if current != retained:
                     raise CommerceError("offer_changed", "The listing evidence changed during PSA lookup. Research it again.", 409)
-        return self._base() | {"verification": verification}
+        result = self._base() | {"verification": verification}
+        return self._publish(result, offer=retained["offer"] if retained else None,
+                             contextual_offer=(key, owner) if retained else None)
 
     def handoff(self, owner, request):
         # Reserve time for the proxy's 25s deadline. A slow marketplace refresh
@@ -743,6 +896,14 @@ class CommerceLoop:
             record = self._selections.get(key)
             if not record or record["owner"] != owner:
                 raise CommerceError("selection_expired", "Select a freshly researched listing before handoff.", 409)
+            self._source_allowed(record["offer"]["source"])
+            from .approved_sources import ApprovedSources
+            if type(self.crawler) is ApprovedSources:
+                with self.crawler._revocation_lock:
+                    self._project_state_locked()
+                record = self._selections.get(key)
+                if record is None:
+                    raise CommerceError("source_access_unavailable", "This source is no longer approved for this action. Research again after access is restored.", 409)
             if record["busy"]:
                 raise CommerceError("selection_busy", "This selection is already being refreshed.", 409)
             if "variant_key" in request:
@@ -840,7 +1001,11 @@ class CommerceLoop:
             result["checked_at"] = completed_at
             if self.mode == "synthetic_fixture":
                 result["message"] = "Synthetic demonstration only. This example URL cannot be purchased or sent to a real forwarder."
-            return result
+            return self._publish(result, offer=refreshed, selection=(key, owner),
+                                 partner_handoff=provider is not None and not blocked_quote)
         finally:
             with self._lock:
                 record["busy"] = False
+            # A revoked refresh may have failed before producing a response.
+            # Its old reusable binding still needs the same current projection.
+            self._scrub_retained()

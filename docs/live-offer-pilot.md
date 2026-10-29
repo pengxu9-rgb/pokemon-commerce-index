@@ -77,6 +77,32 @@ publishing the returned evidence. Existing transports retain bounded timeouts;
 the common deadline cannot preempt in-flight DNS/TLS/socket work.
 
 The existing BNS worker is one bounded authorized token/resolve/quote operation.
+Its private selected-offer binding retains available structured listing language,
+set code, collector number, finish and edition claims. Explicit contradictions in
+BNS resolve/quote names or the chosen variant options refuse the preview before
+quote review. Raw and slab claims must also remain compatible. Missing dimensions
+remain unknown; matching provider text never authenticates the printing, grade or
+physical card. These private claims are not added to the public quote contract.
+Common labelled fields and option aliases are checked together with their values.
+Negative property booleans such as `First Edition=No` exclude the retained claim;
+they do not invent an Unlimited edition or a different finish. Labelled canonical
+values remain meaningful when followed by grade text. A collector numerator alone
+does not supply a missing denominator. Grader readiness and scoped `not graded`
+wording do not claim a slab, while separate explicit slab/grade evidence still
+refuses a raw listing. This is bounded assertion parsing, not general language
+understanding; absent and unsupported claims remain unverified.
+Property booleans keep their polarity across ordinary wrappers, punctuation and
+prose suffixes; those suffixes are checked independently. Company-specific
+negations such as `not PSA graded` and `not graded by PSA` are compared with the
+retained grader before their own text spans are masked. They contradict a PSA
+slab claim, while remaining compatible with a raw claim or another named grader.
+The same signed-scalar parser handles grading/form properties in names and
+options: `PSA graded=False` excludes PSA grading, `Graded=False` excludes slab
+form, and `Raw=False` excludes raw form. A negative company property remains
+compatible with another grader or a raw listing. Unknown property values add no
+grader/form evidence; separate suffix assertions remain visible. These are
+compatibility checks on unverified claims, never certificate or authenticity
+verification. Numeric `Grade=1` remains distinct from boolean `PSA graded=1`.
 Per-source handoff authority is checked immediately before worker launch and
 again for every outcome, including variant refusals, before anything is returned
 or retained. Each worker HTTP request checks its own deadline. A parent revocation
@@ -100,3 +126,11 @@ responses, permissions, prices, photos and the trusted catalog are synthetic.
 It does not prove source rights, live stock, BNS support, real authentication or
 transaction completion. Focused regressions:
 `python3 -B -m unittest tests.test_live_offer_pilot -q`.
+Printing and raw/slab contradiction regressions:
+`python3 -B -m unittest tests.test_bns_printing_identity -q`. The module's
+`--report` mode emits the original and fresh-review negative HTTP journeys for
+frontend validation; `compatible_raw_report()` supplies native raw-card positive
+controls and `printing_controls_report()` supplies the second review's partial
+collector and known normal/Unlimited controls. Each row declares its checked
+stage and expected provider-path count.
+Both use fake HTTPS/BNS responses and audited external-network denial.
