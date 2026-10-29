@@ -20,6 +20,14 @@ revocation governs subsequent publications and actions; it cannot recall bytes
 from an already committed response. Private capture/drift audit snapshots are
 not reusable selection records and retain their existing behavior.
 
+Quote validity is checked again at that final publication instant, after all
+API and budget readiness waits. A quote that expires during a wait becomes
+`manual_handoff_required` with `quote: null` and the existing `quote_expired`
+refusal code/message. Source, offer and selection expiry checks still precede
+this fallback. A regression exercises a real three-second native API-lock wait
+within the five-second HTTP timeout, with valid-before/expired-after timestamps;
+controls retain valid quotes and reject expired source/offer/selection context.
+
 This publication check is independent of read admission: completing a read
 window or request allowance preserves already captured evidence within its
 original freshness bound. Readiness still reports that further reads are

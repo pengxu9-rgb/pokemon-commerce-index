@@ -414,6 +414,7 @@ class CommerceLoop:
         """
         from .approved_sources import ApprovedSources
         if type(self.crawler) is ApprovedSources:
+            from .bns_errors import refusal
             from .source_readiness import MESSAGES, source_readiness
             # API readiness can wait on a native API lock. Never acquire it
             # while holding source authority, which dispatch also needs.
@@ -502,6 +503,21 @@ class CommerceLoop:
                         raise CommerceError("offer_expired", "Research and select a fresh listing before continuing.", 409)
                     if "offer" in result:
                         result["offer"] = projected
+                if result.get("quote") is not None:
+                    try:
+                        quote_expires = _time(result["quote"]["buyship"]["expires_at"])
+                    except (KeyError, TypeError, ValueError):
+                        result.update(status="manual_handoff_required", quote=None,
+                            quote_status="eligible_indexed_quote_unavailable",
+                            message="The refreshed URL is ready for manual handoff. A current provider quote is unavailable.")
+                    else:
+                        # Provider validity must use the same final instant as
+                        # offer/selection freshness, after every readiness wait.
+                        if quote_expires <= instant:
+                            expired = refusal("quote_expired")
+                            result.update(status="manual_handoff_required", quote=None,
+                                quote_status=expired["code"], provider_result=expired,
+                                message=expired["message"])
                 if "offers" in result:
                     result["offers"] = [copy.deepcopy(self._offers[row["offer_id"]]["offer"])
                         for row in result["offers"] if row["offer_id"] in self._offers]

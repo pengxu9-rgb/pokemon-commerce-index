@@ -164,21 +164,35 @@ def _printing_identity(name, offer):
     text = _identity_text(name)
     # '1st edition - not graded' negates grading, not the preceding edition.
     # Grade compatibility is checked separately against the complete name.
-    text = re.sub(r"\b(?:not|non|no)[\s_-]+(?:(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+)?(?:graded|slabbed|certified)\b",
-                  lambda match: " " * len(match[0]), text, flags=re.I)
+    text = _NEGATED_GRADER.sub(lambda match: " " * len(match[0]), text)
+    text = _UNGRADED.sub(lambda match: " " * len(match[0]), text)
     # Consume only a recognized labelled assertion's own span. Its suffix still
     # receives ordinary contradiction checks (e.g. Language:en Japanese).
-    spans = []
+    spans, booleans = [], []
     for match in _PRINTING_LABEL.finditer(text):
         assertion, end = _printing_assertion(match[1], text[match.end():])
         if assertion is not None:
             _check_printing_assertion(assertion, claims)
             spans.append((match.start(), match.end() + end))
-    for start, end in reversed(spans):
-        text = text[:start] + " " * (end - start) + text[end:]
+            if _property_boolean(match[1], text[match.end():])[0] is not None:
+                booleans.append((match.start(), match.end() + end))
+        else:
+            # An unknown property value does not make its label an affirmative
+            # title claim (First Edition: unknown, Holographic: no preference).
+            spans.append((match.start(), match.end()))
+    text = _mask_claims(text, spans)
     text = _printing_text(text)
     if any(claims[field] is not None for field in _title_conflicts(text, claims)):
         _fail("product_mismatch")
+    return _mask_claims(_identity_text(name), booleans)
+
+
+def _mask_claims(text, spans):
+    for start, end in reversed(spans):
+        # A neutral word boundary preserves attribution: masking a field must
+        # not move its 'not sure' value next to the previous collector/grade.
+        text = text[:start] + "x" + " " * (end - start - 1) + text[end:]
+    return text
 
 
 _PRINTING_LABEL = re.compile(
@@ -207,6 +221,42 @@ _PRINTING_VALUES = {
     "edition": {"first_edition": ("first edition", "1st edition", "初版"), "unlimited": ("unlimited", "unlimited edition"),
         "shadowless": ("shadowless",), "standard": ("standard",), "not_applicable": ("not applicable", "n/a")}}
 
+_GRADERS = r"PSA|BGS|CGC|ARS|PGC"
+_GRADER_LIST = rf"(?:{_GRADERS})(?![\w])(?:\s*(?:/|,|\band\b|\bor\b|&)\s*(?:{_GRADERS})(?![\w]))*"
+_GRADE_FORM = r"graded|slabbed|certified|grading|slabbing|certification"
+_NEGATED_GRADER = re.compile(
+    rf"(?<![\w])(?:(?:not|non|no|without)[\s_-]+(?P<before>{_GRADER_LIST})[\s_-]+(?:{_GRADE_FORM})\b"
+    rf"|(?:not|non|no|without)[\s_-]+(?:{_GRADE_FORM})[\s_-]+(?:by|with|from)[\s_-]+(?P<after>{_GRADER_LIST})"
+    rf"|(?P<subject>{_GRADER_LIST})\s*[:,-]?\s+(?:is[\s_-]+)?(?:not|non|no)[\s_-]+(?:{_GRADE_FORM})\b)", re.I)
+_UNGRADED = re.compile(r"\b(?:not|non|no)[\s_-]+(?:graded|slabbed|certified)\b", re.I)
+
+
+def _grader_negations(text):
+    """Typed company exclusions, retained before their spans are masked."""
+    return [(company.upper(), match.span()) for match in _NEGATED_GRADER.finditer(text)
+            for company in re.findall(rf"\b(?:{_GRADERS})\b", next(value for value in match.groups() if value), re.I)]
+
+
+def _value_prefix(description):
+    text = _identity_text(description)
+    opening = re.match(r'''[\s("'\[{]*''', text).end()
+    value = text[opening:]
+    unknown = bool(re.match(r"(?:unknown|unspecified|not[\s_-]+(?:sure|reported|provided)|no[\s_-]+(?:preference|information|data|idea))(?![\w])", value, re.I))
+    return opening, value, unknown
+
+
+def _property_boolean(label, description):
+    key = re.sub(r"[\W_]+", "", _identity_text(label).casefold())
+    if key not in {"firstedition", "1stedition", "foil", "holo", "holographic", "holofoil"}:
+        return None, 0
+    opening, value, unknown = _value_prefix(description)
+    boolean = None if unknown else re.match(r"(yes|true|1|no|false|0)(?![\w]|[.,/]\d)", value, re.I)
+    if boolean is None:
+        return None, 0
+    field = "edition" if key in {"firstedition", "1stedition"} else "finish"
+    values = frozenset({"first_edition"}) if field == "edition" else _FOIL_FINISHES
+    return (field, values, boolean[1].casefold() in {"yes", "true", "1"}), opening + boolean.end()
+
 
 def _printing_assertion(label, description):
     """Return a signed, bounded claim plus consumed length; never fill a gap."""
@@ -216,15 +266,15 @@ def _printing_assertion(label, description):
     if field is None:
         return None, 0
     text = _identity_text(description)
-    if re.match(r"\s*(?:unknown|unspecified|not[\s_-]+(?:sure|reported|provided)|no[\s_-]+preference)(?![\w])", text, re.I):
+    # A property boolean is a signed token, independent of the prose following
+    # it. Common wrappers and terminal punctuation do not erase the assertion.
+    # Its remaining suffix is still checked by the caller.
+    _, _, unknown = _value_prefix(text)
+    if unknown:
         return None, 0
-    boolean = re.match(r"\s*(yes|true|1|no|false|0)(?![\w])", text, re.I)
-    if boolean and key in {"firstedition", "1stedition", "foil", "holo", "holographic", "holofoil"}:
-        tail = text[boolean.end():].strip()
-        # 'No preference' and 'not sure' are not negative property assertions.
-        if not tail or re.match(r"[,;|()]|(?:PSA|BGS|CGC|ARS|PGC)(?=[\s\d:_-])", tail, re.I):
-            values = frozenset({"first_edition"}) if field == "edition" else _FOIL_FINISHES
-            return (field, values, boolean[1].casefold() in {"yes", "true", "1"}), boolean.end()
+    boolean, end = _property_boolean(label, text)
+    if boolean is not None:
+        return boolean, end
     negative = re.match(r"\s*(?:not|non|no|without|excluding|except)[\s_-]+", text, re.I)
     if field == "edition" and re.match(r"\s*not[\s_-]+applicable(?![\w])", text, re.I):
         negative = None  # This is the supported edition value, not a negation.
@@ -300,8 +350,7 @@ def _identity(name, offer, card_id, *, printing=True):
     from .marketplace_quality import NUMERIC_GRADE, contradicts_grade
     if not _text(name, 2000):
         _fail()
-    if printing:
-        _printing_identity(name, offer)
+    grade_name = _printing_identity(name, offer) if printing else _identity_text(name)
     name = _identity_text(name)
     source_title = _identity_text(offer["title"])
     card_id = _identity_text(card_id)
@@ -318,13 +367,14 @@ def _identity(name, offer, card_id, *, printing=True):
     # same explicit evidence as PSA 9; keep this normalization local to previews.
     # These bounded phrases do not assert an actual grade. Remove only their
     # own spans so 'PSA ready; PSA 10' still contains explicit slab evidence.
-    grade_text = re.sub(r"(?<![A-Za-z])(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+ready\b"
-                        r"|\b(?:not|non|no)[\s_-]+(?:PSA|BGS|CGC|ARS|PGC)[\s_-]+(?:graded|slabbed|certified)\b",
-                        " ", name, flags=re.I)
-    ungraded = re.compile(r"\b(?:not|non)[\s_-]+(?:graded|slabbed)\b", re.I)
-    if grade["company"] and grade["value"] and ungraded.search(grade_text):
+    negations = _grader_negations(grade_name)
+    if grade["company"] and grade["value"] and any(company == grade["company"] for company, _ in negations):
         _fail("product_mismatch")
-    grade_text = ungraded.sub(" ", grade_text)
+    grade_text = _NEGATED_GRADER.sub(lambda match: " " * len(match[0]), grade_name)
+    grade_text = re.sub(rf"(?<![A-Za-z])(?:{_GRADERS})[\s_-]+ready\b", " ", grade_text, flags=re.I)
+    if grade["company"] and grade["value"] and _UNGRADED.search(grade_text):
+        _fail("product_mismatch")
+    grade_text = _UNGRADED.sub(" ", grade_text)
     grade_text = re.sub(r"(?<![A-Za-z])(PSA|BGS|CGC|ARS|PGC)[\s:_-]*"
                         r"(?:grading|grade|鑑定評価|鑑定)\s*[:=_/\-(]?\s*(?=\d)",
                         r"\1 ", grade_text, flags=re.I)
@@ -348,8 +398,17 @@ def _variant_identity(options, offer, card_id):
         key, value = (_identity_text(text) for text in (key, value))
         # Check each part independently so repeated compatible evidence does not
         # look like multiple conflicting grades to the shared grade checker.
-        _identity(key, offer, card_id, printing=False)
-        _identity(value, offer, card_id, printing=False)
+        joined_negation = next((text for text in (f"{key} {value}", f"{value} {key}")
+                                if _NEGATED_GRADER.match(text)), None)
+        if joined_negation is not None:
+            # A grader key with a negative value is one company-specific claim,
+            # not a bare positive grader plus a global ungraded assertion.
+            _identity(joined_negation, offer, card_id, printing=False)
+        else:
+            _, value_end = _property_boolean(key, value)
+            _, key_end = _property_boolean(value, key)
+            _identity("x " + key[key_end:] if key_end else key, offer, card_id, printing=False)
+            _identity("x " + value[value_end:] if value_end else value, offer, card_id, printing=False)
         # Interpret a key/value assertion together before any bare token check:
         # First Edition=No is not a positive First Edition title claim.
         contextual = _printing_option(key, value, offer)

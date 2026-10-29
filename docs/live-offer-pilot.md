@@ -91,6 +91,11 @@ does not supply a missing denominator. Grader readiness and scoped `not graded`
 wording do not claim a slab, while separate explicit slab/grade evidence still
 refuses a raw listing. This is bounded assertion parsing, not general language
 understanding; absent and unsupported claims remain unverified.
+Property booleans keep their polarity across ordinary wrappers, punctuation and
+prose suffixes; those suffixes are checked independently. Company-specific
+negations such as `not PSA graded` and `not graded by PSA` are compared with the
+retained grader before their own text spans are masked. They contradict a PSA
+slab claim, while remaining compatible with a raw claim or another named grader.
 Per-source handoff authority is checked immediately before worker launch and
 again for every outcome, including variant refusals, before anything is returned
 or retained. Each worker HTTP request checks its own deadline. A parent revocation
@@ -118,5 +123,7 @@ Printing and raw/slab contradiction regressions:
 `python3 -B -m unittest tests.test_bns_printing_identity -q`. The module's
 `--report` mode emits the original and fresh-review negative HTTP journeys for
 frontend validation; `compatible_raw_report()` supplies native raw-card positive
-controls. Each row declares its checked stage and expected provider-path count.
+controls and `printing_controls_report()` supplies the second review's partial
+collector and known normal/Unlimited controls. Each row declares its checked
+stage and expected provider-path count.
 Both use fake HTTPS/BNS responses and audited external-network denial.

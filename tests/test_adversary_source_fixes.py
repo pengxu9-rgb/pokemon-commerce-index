@@ -1,10 +1,11 @@
 """ADV-2/3/5 regressions: local HTTP, fake HTTPS, external sockets/DNS denied."""
 from contextlib import ExitStack, contextmanager
 import copy
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 import json
 import socket
 import threading
+import time
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -92,6 +93,36 @@ def raw_card_report():
         return {"research": research, "selection": selection}
 
 
+def expired_quote_report():
+    """Real HTTP quote expires during a three-second native API readiness wait."""
+    with deny_external_network() as external_attempts, Pilot() as pilot:
+        pilot.fixture["resolve"]["variants"] = pilot.fixture["resolve"]["variants"][:1]
+        quote_expires = pilot.instant + timedelta(seconds=2)
+        pilot.fixture["quote"]["expires_at"] = quote_expires.isoformat()
+        research_status, research = pilot.research()
+        selection_status, selection = pilot.select(research["offers"][0])
+        assert research_status == selection_status == 200
+        timing = {}
+        def delay(route):
+            timing["before_publish"] = pilot.instant.isoformat()
+            assert pilot.instant < quote_expires
+            began = time.monotonic()
+            time.sleep(3)
+            pilot.instant = datetime.now(timezone.utc).replace(microsecond=0)
+            timing["native_wait_elapsed"] = time.monotonic() - began
+        began = time.monotonic()
+        status, handoff = SourceFixTests().readiness_race(
+            pilot, lambda: pilot.handoff(selection), delay, after_worker=True)
+        request_elapsed = time.monotonic() - began
+        assert status == 200 and 3 <= request_elapsed < 5
+        assert not any("orders" in path or "payments" in path for path in pilot.provider_paths)
+        return {"research": research, "selection": selection, "handoff": handoff,
+                "quote_expires_at": quote_expires.isoformat(), **timing,
+                "final_checked_at": handoff["checked_at"],
+                "public_response_at": datetime.now(timezone.utc).isoformat(),
+                "request_elapsed": request_elapsed, "external_attempts": list(external_attempts)}
+
+
 class SourceFixTests(unittest.TestCase):
     def setUp(self):
         self.network = ExitStack()
@@ -164,6 +195,72 @@ class SourceFixTests(unittest.TestCase):
     def assert_reusable_photos_absent(self, pilot):
         for state in (pilot.loop._offers, pilot.loop._selections):
             self.assertTrue(all(not row["offer"]["listing_photos"] for row in state.values()))
+
+    def test_quote_expiring_during_real_native_readiness_wait_is_not_published_ready(self):
+        from pokemon_index.bns_errors import validate_refusal
+        report = expired_quote_report()
+        body = report["handoff"]
+        self.assertEqual(body["status"], "manual_handoff_required")
+        self.assertEqual(body["quote_status"], "quote_expired")
+        self.assertIsNone(body["quote"])
+        self.assertEqual(validate_refusal(body["provider_result"])["code"], "quote_expired")
+        self.assertLess(report["before_publish"], report["quote_expires_at"])
+        self.assertGreaterEqual(report["final_checked_at"], report["quote_expires_at"])
+        self.assertGreaterEqual(report["native_wait_elapsed"], 3)
+        self.assertEqual(report["external_attempts"], [])
+        self.assertFalse(body["purchasable"])
+        self.assertFalse(body["order_created"])
+        self.assertIsNone(body["purchase_action"])
+
+    def test_quote_validity_controls_at_final_publication(self):
+        for control in ("no_delay", "still_valid", "exact_expiry", "already_expired", "source_revoked",
+                        "selection_expired", "offer_expired"):
+            with self.subTest(control=control), Pilot() as pilot:
+                pilot.fixture["resolve"]["variants"] = pilot.fixture["resolve"]["variants"][:1]
+                quote_expires = pilot.instant + timedelta(seconds=30)
+                pilot.fixture["quote"]["expires_at"] = quote_expires.isoformat()
+                _, research = pilot.research()
+                _, selection = pilot.select(research["offers"][0])
+                if control == "no_delay":
+                    status, body = pilot.handoff(selection)
+                elif control == "already_expired":
+                    pilot.after_worker = lambda: setattr(pilot, "instant", quote_expires + timedelta(seconds=1))
+                    status, body = pilot.handoff(selection)
+                else:
+                    def change(route):
+                        if control == "source_revoked":
+                            route.revoke("ebay_us")
+                            pilot.instant = quote_expires + timedelta(seconds=1)
+                        elif control == "exact_expiry":
+                            pilot.instant = quote_expires
+                        elif control == "selection_expired":
+                            pilot.instant += timedelta(seconds=601)
+                        elif control == "offer_expired":
+                            pilot.instant += timedelta(seconds=301)
+                        else:
+                            pilot.instant += timedelta(seconds=1)
+                    status, body = self.readiness_race(pilot, lambda: pilot.handoff(selection), change, after_worker=True)
+                if control in {"source_revoked", "selection_expired", "offer_expired"}:
+                    self.assertEqual(status, 409)
+                    self.assertEqual(body["error"], "source_access_unavailable" if control == "source_revoked" else control)
+                    self.assertNotIn("quote", body)
+                    self.assertEqual(pilot.loop._offers, {})
+                    self.assertEqual(pilot.loop._selections, {})
+                else:
+                    self.assertEqual(status, 200)
+                    if control in {"no_delay", "still_valid"}:
+                        self.assertEqual(body["status"], "quote_ready_for_review")
+                        self.assertEqual(body["quote_status"], "ready")
+                        self.assertGreater(body["quote"]["buyship"]["expires_at"], body["checked_at"])
+                    else:
+                        self.assertEqual(body["status"], "manual_handoff_required")
+                        self.assertIsNone(body["quote"])
+                        if control == "exact_expiry":
+                            self.assertEqual(body["quote_status"], "quote_expired")
+                        else:
+                            self.assertEqual(body["quote_status"], "eligible_indexed_quote_unavailable")
+                self.assertEqual(len(pilot.provider_paths), 3)
+                self.assertFalse(any("orders" in path or "payments" in path for path in pilot.provider_paths))
 
     def test_photo_downgrade_between_research_select_and_manual_handoff(self):
         with Pilot() as pilot:
