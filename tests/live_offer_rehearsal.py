@@ -50,6 +50,7 @@ class Pilot:
                      ("Edition", "first_edition")]]})
         self.provider_paths, self.marketplace_paths, self.external_attempts = [], [], []
         self.on_connect = lambda: None
+        self.after_search_response = lambda: None
         self.after_worker = lambda: None
         self.fixture = json.loads((Path(__file__).parents[1] / "examples/buyship_partner_preview.json").read_text())
         resolved, quoted = self.fixture["resolve"], self.fixture["quote"]
@@ -89,7 +90,14 @@ class Pilot:
                 outer.marketplace_paths.append(path); self.method, self.path = method, path
             def getresponse(self):
                 if self.method == "POST": return Reply({"access_token": "synthetic-browse-token", "expires_in": 3600})
-                if "/search?" in self.path: return Reply({"itemSummaries": copy.deepcopy(outer.rows), "total": len(outer.rows)})
+                if "/search?" in self.path:
+                    # Real Browse discovery returns summaries, not getItem's
+                    # grader/printing aspects or detailed stock evidence.
+                    summaries = [{key: copy.deepcopy(value) for key, value in row.items()
+                                  if key not in {"localizedAspects", "estimatedAvailabilities", "additionalImages"}}
+                                 for row in outer.rows]
+                    outer.after_search_response()
+                    return Reply({"itemSummaries": summaries, "total": len(summaries)})
                 native = parse_qs(urlsplit(self.path).query)["legacy_item_id"][0]
                 return Reply(copy.deepcopy(next(row for row in outer.rows if native in row["itemId"])))
             def close(self): pass

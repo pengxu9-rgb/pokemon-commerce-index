@@ -138,6 +138,25 @@ class ApprovedSources:
    # variation IDs to parent URL and assert copy identity.
    if method=='api' and not __import__('re').fullmatch(r'v1\|[0-9]{8,20}\|0',native): raise SourceWiringError('ambiguous item variation')
    if native in ids or url in pending or url in self.listings and self.listings[url]!=(source,native,method): raise SourceWiringError('ambiguous listing identity')
+   if method=='api':
+    # Browse search is discovery only. Its summaries can omit stock, grader,
+    # printing aspects and photo evidence. Never retain a summary as the
+    # selection baseline, then mistake those detail fields for later drift.
+    # The same guarded client accounts for each detail request, including
+    # admission, deadline and source revocation immediately before dispatch.
+    url_source,legacy,canonical=canonical_product_url(url)
+    if url_source!=source or canonical!=url or native!=f'v1|{legacy}|0':
+     raise SourceWiringError('discovery URL differs from native listing')
+    self._authorize_dispatch(source,method)
+    discovered_at=self._observation(item)
+    detail=adapter.detail(url)
+    self._authorize_dispatch(source,method)
+    if (not isinstance(detail,dict) or detail.get('source')!=source
+        or detail.get('native_id')!=native or detail.get('url')!=url
+        or detail.get('scope')!='listing' or detail.get('variant_status')=='unresolved'
+        or self._observation(detail)<discovered_at):
+     raise SourceWiringError('discovery detail identity changed or unavailable')
+    item=detail
    observed=self._observation(item); key=(source,native)
    if key in self.native_urls and self.native_urls[key]!=url: raise SourceWiringError('listing identity changed')
    snapshot=self._validate_observation(url,observed,self._snapshot(item,method))

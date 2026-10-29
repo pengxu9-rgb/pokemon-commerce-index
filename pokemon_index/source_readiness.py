@@ -41,7 +41,9 @@ def source_readiness(crawler):
                         if method == "api":
                             with crawler.api._lock:
                                 instant = crawler.api._check()
-                                needed = 2 if crawler.api._token is None else 1
+                                # Discovery alone cannot publish an offer: allow
+                                # at least one exact detail after search/token.
+                                needed = 3 if crawler.api._token is None else 2
                                 if (crawler.api._remaining < needed or crawler.budget.remaining < needed
                                         or crawler.api._token is not None and
                                         (crawler.api._token_until is None or instant >= crawler.api._token_until)):

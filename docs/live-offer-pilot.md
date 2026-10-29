@@ -62,6 +62,14 @@ seller, grading/identity or availability changes prevent use of the old selectio
 Nonzero eBay variations never collapse into a parent listing; only `v1|id|0`
 may bind the matching canonical numeric eBay URL for BNS preview.
 
+Browse search summaries are discovery hints only. Before publishing API offers,
+the router retrieves exact details for each bounded hit through the same guarded
+client, preserves source/native-ID/URL identity and uses only that detail response
+as the selection baseline. Token, search and each detail consume request budgets.
+Unavailable details, exhausted budgets or revocation publish no summary or partial
+binding; API failure never triggers crawling. The rehearsal deliberately omits
+grader, printing aspects and detailed stock from its search responses.
+
 `ApprovedSources.revoke(source)` is a server-only operation independent of the
 adapter lock. Marketplace HTTP clients recheck source authority after connection
 setup and immediately before sending each HTTP request, and recheck before

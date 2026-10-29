@@ -101,6 +101,8 @@ class LiveOfferPilotTests(unittest.TestCase):
         with Pilot() as pilot:
             before = len(pilot.marketplace_paths)
             self.assertEqual(source_readiness(pilot.sources)[0]["status"], "enabled")
+            pilot.budget.remaining = 2  # token/search cannot afford a detail
+            self.assertEqual(source_readiness(pilot.sources)[0]["status"], "configured_offline")
             pilot.budget.remaining = 0
             row = source_readiness(pilot.sources)[0]
             self.assertEqual(row["blocker"], "source_window_closed")
@@ -137,6 +139,79 @@ class LiveOfferPilotTests(unittest.TestCase):
             _, result = pilot.research()
             self.assertEqual(result["offers"], [])
             self.assertEqual(len(pilot.marketplace_paths), 1)
+            self.assertEqual(pilot.provider_paths, [])
+
+    def test_api_discovery_hydrates_each_exact_hit_before_offer_selection(self):
+        with Pilot() as pilot:
+            _, report = pilot.research()
+            paths = pilot.marketplace_paths
+            self.assertEqual(len(paths), 4)  # token, search and two exact details
+            self.assertIn("legacy_item_id=123456789012", paths[2])
+            self.assertIn("legacy_item_id=123456789013", paths[3])
+            self.assertEqual({o["native_id"] for o in report["offers"]},
+                             {"v1|123456789012|0", "v1|123456789013|0"})
+            for offer in report["offers"]:
+                self.assertEqual(offer["availability"], "available")
+                self.assertEqual(offer["grade"]["value"], "10")
+                self.assertEqual(offer["identity_status"], "exact_match")
+            _, selected = pilot.select(report["offers"][0])
+            _, variants = pilot.handoff(selected)
+            self.assertEqual(variants["status"], "variant_selection_required")
+            # A fresh detail having grader/stock/aspects is not false drift.
+            self.assertEqual(pilot.marketplace_paths[4], paths[2])
+
+    def test_detail_budget_failure_publishes_no_summary_or_partial_binding(self):
+        for budget in (2, 3):
+            with self.subTest(budget=budget), Pilot() as pilot:
+                pilot.budget.remaining = budget
+                _, report = pilot.research()
+                self.assertEqual(report["offers"], [])
+                self.assertEqual(len(pilot.marketplace_paths), budget)
+                self.assertEqual(pilot.sources.listings, {})
+                self.assertEqual(pilot.sources.snapshots, {})
+                self.assertEqual(pilot.provider_paths, [])
+
+    def test_revocation_after_search_prevents_detail_and_summary_publication(self):
+        with Pilot() as pilot:
+            pilot.after_search_response = lambda: pilot.sources.revoke("ebay_us")
+            _, report = pilot.research()
+            self.assertEqual(report["offers"], [])
+            self.assertEqual(len(pilot.marketplace_paths), 2)  # token and search
+            self.assertEqual(pilot.sources.listings, {})
+            self.assertEqual(pilot.provider_paths, [])
+            self.assertEqual(report["source_readiness"][0]["blocker"], "source_revoked")
+
+    def test_revocation_after_detail_connect_sends_no_next_http_or_partial_rows(self):
+        for sent in (2, 3):
+            with self.subTest(already_sent=sent), Pilot() as pilot:
+                def revoke_at_detail_connect():
+                    if len(pilot.marketplace_paths) == sent:
+                        pilot.sources.revoke("ebay_us")
+                pilot.on_connect = revoke_at_detail_connect
+                _, report = pilot.research()
+                self.assertEqual(report["offers"], [])
+                self.assertEqual(len(pilot.marketplace_paths), sent)
+                self.assertEqual(pilot.sources.listings, {})
+                self.assertEqual(pilot.provider_paths, [])
+
+    def test_current_detail_price_replaces_stale_summary_without_reselection_loop(self):
+        with Pilot() as pilot:
+            pilot.after_search_response = lambda: pilot.rows[0]["price"].update(value="125.00")
+            _, report = pilot.research()
+            self.assertEqual(report["offers"][0]["price_minor"], 12500)
+            _, selected = pilot.select(report["offers"][0])
+            _, variants = pilot.handoff(selected)
+            self.assertEqual(variants["status"], "variant_selection_required")
+
+    def test_hydrated_detail_cannot_replace_discovered_native_listing(self):
+        with Pilot() as pilot:
+            with patch.object(pilot.api, "detail", return_value={
+                    "source": "ebay_us", "native_id": "v1|123456789099|0",
+                    "url": "https://www.ebay.com/itm/123456789099", "scope": "listing"}):
+                _, report = pilot.research()
+            self.assertEqual(report["offers"], [])
+            self.assertEqual(pilot.sources.listings, {})
+            self.assertEqual(len(pilot.marketplace_paths), 2)
             self.assertEqual(pilot.provider_paths, [])
 
 
