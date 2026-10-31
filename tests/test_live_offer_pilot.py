@@ -139,7 +139,7 @@ class LiveOfferPilotTests(unittest.TestCase):
             pilot.budget.remaining = 1
             _, result = pilot.research()
             self.assertEqual(result["offers"], [])
-            self.assertEqual(len(pilot.marketplace_paths), 1)
+            self.assertEqual(len(pilot.marketplace_paths), 0)  # Whole API operation is refused before token dispatch.
             self.assertEqual(pilot.provider_paths, [])
 
     def test_api_discovery_hydrates_each_exact_hit_before_offer_selection(self):
@@ -167,7 +167,7 @@ class LiveOfferPilotTests(unittest.TestCase):
                 pilot.budget.remaining = budget
                 _, report = pilot.research()
                 self.assertEqual(report["offers"], [])
-                self.assertEqual(len(pilot.marketplace_paths), budget)
+                self.assertEqual(len(pilot.marketplace_paths), 0 if budget < 3 else budget)
                 self.assertEqual(pilot.sources.listings, {})
                 self.assertEqual(pilot.sources.snapshots, {})
                 self.assertEqual(pilot.provider_paths, [])

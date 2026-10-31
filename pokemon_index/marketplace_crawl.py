@@ -28,7 +28,7 @@ from .ebay_discovery import browse_urls as validate_ebay_browse_urls, listing_an
 from .mercari_discovery import preload_product_urls
 from .public_robots import RobotsPolicy
 from .seller_evidence import extracted_seller, seller_identity
-from .listing_evidence import extracted_listing_evidence
+from .listing_evidence import extracted_listing_evidence, platform_product_reference
 
 USER_AGENT = "PokemonPublicResearch/1.0"
 HOSTS = {"mercari": {"jp.mercari.com"}, "ebay_us": {"www.ebay.com", "ebay.com"},
@@ -746,11 +746,12 @@ class Crawler:
         listing_quantity = (int(count_label[:-1]) if isinstance(count_label, str)
                             and re.fullmatch(r"[1-9][0-9]?枚", count_label) else None)
         native = urlsplit(url).path.rstrip("/").rsplit("/", 1)[-1]
-        listing_identity, listing_photos = None, []
+        listing_identity, listing_photos, product_reference = None, [], None
         if scope == "listing" and not any(reason in reasons for reason in (
                 "product_identity_ambiguous", "product_url_mismatch", "offer_url_mismatch", "individual_offer_ambiguous")):
             listing_identity, listing_photos = extracted_listing_evidence(source, native, url, stamp, evidence,
                 item=rsc_item, offer=valid[0] if len(valid) == 1 else None)
+            product_reference = platform_product_reference(rsc_item, source, native, url, stamp, evidence)
         return {"source": source, "native_id": native, "url": url, "title": title,
                 "price_minor": price, "currency": currency, "status": status,
                 "availability": availability, "observed_at": stamp, "scope": scope,
@@ -764,6 +765,7 @@ class Crawler:
                 "listing_quantity": listing_quantity,
                 "seller": seller,
                 "listing_identity": listing_identity, "listing_photos": listing_photos,
+                "platform_product_reference": product_reference,
                 "evidence_ref": evidence, "marketplace_quality": quality,
                 "quality_review_required": needs_review, "exclusion_reasons": sorted(set(reasons)),
                 "purchase_action": None, "sold_sales_available": False}

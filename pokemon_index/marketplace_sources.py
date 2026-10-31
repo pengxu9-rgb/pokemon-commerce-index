@@ -286,7 +286,8 @@ def _ebay_claims(item: dict[str, Any]) -> dict[str, Any]:
     return fields
 
 
-def _ebay_item(item: Any, source_id: str, stamp: str, fixture: bool) -> dict[str, Any]:
+def _ebay_item(item: Any, source_id: str, stamp: str, fixture: bool, *,
+               allow_unavailable: bool = False) -> dict[str, Any]:
     if not isinstance(item, dict):
         raise ValueError("eBay captured item must be an object")
     options = item.get("buyingOptions")
@@ -294,18 +295,33 @@ def _ebay_item(item: Any, source_id: str, stamp: str, fixture: bool) -> dict[str
         raise ValueError("only fixed-price eBay listings are supported; auctions are excluded")
     if item.get("itemGroupType") or "priceRange" in item:
         raise ValueError("eBay product/variation summaries are not exact listing rows")
+    if type(allow_unavailable) is not bool:
+        raise ValueError("unavailable observation mode must be explicit")
+    unavailable = False
     if "estimatedAvailabilities" in item:
         availability = item["estimatedAvailabilities"]
         if not isinstance(availability, list) or not 1 <= len(availability) <= 10:
             raise ValueError("unsupported eBay availability evidence")
+        states = set()
         for estimate in availability:
             if not isinstance(estimate, dict) or estimate.get("estimatedAvailabilityStatus") not in {
-                    "IN_STOCK", "LIMITED_STOCK"}:
+                    "IN_STOCK", "LIMITED_STOCK", "OUT_OF_STOCK"}:
                 raise ValueError("unavailable or unknown eBay stock cannot become a fresh ask")
+            state = estimate["estimatedAvailabilityStatus"]
+            states.add(state)
             if "estimatedAvailableQuantity" in estimate and (
                     type(estimate["estimatedAvailableQuantity"]) is not int
-                    or estimate["estimatedAvailableQuantity"] <= 0):
+                    or estimate["estimatedAvailableQuantity"] < 0
+                    or state == "OUT_OF_STOCK" and estimate["estimatedAvailableQuantity"] != 0
+                    or state != "OUT_OF_STOCK" and estimate["estimatedAvailableQuantity"] == 0):
                 raise ValueError("unavailable or unknown eBay quantity cannot become a fresh ask")
+        if "OUT_OF_STOCK" in states:
+            # Only exact-detail callers can retain this explicit negative
+            # observation. A search miss/error or zero with a positive status
+            # is never evidence of a sale. Conflicting locations stay refused.
+            if not allow_unavailable or states != {"OUT_OF_STOCK"}:
+                raise ValueError("unavailable eBay stock cannot become a fresh ask")
+            unavailable = True
     _text(item.get("title"), "eBay title", 2000)
     price = item.get("price")
     if not isinstance(price, dict) or price.get("currency") != "USD":
@@ -345,6 +361,12 @@ def _ebay_item(item: Any, source_id: str, stamp: str, fixture: bool) -> dict[str
     quality["fixture"] = fixture
     row.update(source=source_id, url=url, price_minor=cents, evidence_ref=evidence,
                marketplace_quality=quality)
+    if unavailable:
+        # Existing UI contracts support Unavailable independently from Sold.
+        # Retain the source status and original capture digest; the displayed
+        # amount is an observed price, never a currently purchasable ask.
+        row.update(availability="unavailable", status="unknown",
+                   source_status_text="eBay reports OUT_OF_STOCK; availability only, not proof of a completed sale.")
     language = _language(item.get("language"))
     if language:
         row["language"] = language

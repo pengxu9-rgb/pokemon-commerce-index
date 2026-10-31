@@ -33,6 +33,11 @@ _MESSAGES = {
     "access_unconfigured": "PSA API access is not configured on this server.",
     "lookup_busy": "Another PSA lookup is running. Retry shortly.",
     "lookup_rate_limited": "The server's bounded PSA lookup allowance has been reached. Retry later.",
+    "shared_store_unconfigured": "Account-wide PSA quota storage is not configured.",
+    "shared_store_unavailable": "Account-wide PSA quota storage is unavailable. No local fallback is used.",
+    "quota_window_closed": "The configured PSA account quota period is closed.",
+    "quota_exhausted": "The configured PSA account lookup allowance has been reached.",
+    "purchase_quota_reserved": "Remaining PSA queries are reserved for approved purchase-stage checks.",
     "provider_unauthorized": "PSA API access was rejected. An operator must check the server token.",
     "provider_rate_limited": "PSA temporarily limited certificate lookups. Retry later.",
     "provider_timeout": "The PSA certificate lookup timed out.",
@@ -208,7 +213,7 @@ class PSACertClient:
     """
     def __init__(self, *, token=None, allow_live=False, transport=None, now=utcnow,
                  timeout=8, max_bytes=65_536, cache_seconds=300, max_cache_entries=256,
-                 max_requests=10, request_window_seconds=60):
+                 max_requests=10, request_window_seconds=60, coordinator=None):
         if (token is not None and (not isinstance(token, str) or not 1 <= len(token) <= 8192
                 or any(ord(char) < 33 or ord(char) > 126 for char in token))):
             raise ValueError("invalid PSA API token configuration")
@@ -220,6 +225,7 @@ class PSACertClient:
                 or type(request_window_seconds) is not int or not 1 <= request_window_seconds <= 3600):
             raise ValueError("invalid PSA lookup bounds")
         self._token, self.allow_live = token, allow_live
+        self.coordinator, self._real_transport = coordinator, transport is None
         self._transport, self.now = transport or _https_get, now
         self.timeout, self.max_bytes = timeout, max_bytes
         self.cache_seconds, self.max_cache_entries = cache_seconds, max_cache_entries
@@ -228,7 +234,7 @@ class PSACertClient:
         self._lock = threading.Lock()
 
     def configured(self):
-        return self.allow_live and self._token is not None
+        return self.allow_live and self._token is not None and (self.coordinator is not None or not self._real_transport)
 
     def _base(self, cert, instant):
         return {"schema": SCHEMA, "provider": "psa", "status": "unavailable",
@@ -313,7 +319,67 @@ class PSACertClient:
             # request objects and reflected server text must never escape.
             return self._failure(base, "provider_unavailable")
 
-    def lookup(self, certificate_number, *, expected=None):
+    def _shared_instant(self, floor):
+        current = _instant(self.now())
+        if floor > current+timedelta(seconds=1):
+            raise ValueError('shared PSA clock rollback')
+        # Preserve a fresh final sample; a carried admission time alone must
+        # never revive a result that expired while its fields were validated.
+        return max(current, floor)
+
+    def _shared_lookup(self, cert, instant, priority):
+        base = self._base(cert, instant)
+        floor = instant
+        cutoff = instant-timedelta(seconds=self.request_window_seconds)
+        while self._requests and self._requests[0]<=cutoff:self._requests.popleft()
+        if self._requests and self._requests[-1]>instant:return self._failure(base,'provider_unavailable'), floor
+        admission = self.coordinator.acquire(cert, now=self.now, purpose=priority,
+            dispatch_allowed=len(self._requests)<self.max_requests)
+        if admission['status'] == 'cached':
+            result = copy.deepcopy(admission['value'])
+            try:
+                floor = _instant(admission['observed_at'])
+                cache_now = self._shared_instant(floor)
+                if (set(result) != set(base) or result['schema'] != SCHEMA or result['provider'] != 'psa'
+                        or result['status'] != 'found' or result['certificate_number'] != cert
+                        or result['record_found'] is not True or result['reason'] is not None
+                        or any(result[k] is not False for k in ('certificate_verified','authenticity_verified','physical_authenticity_verified'))
+                        or result['comparison'] != base['comparison']
+                        or not _instant(result['checked_at']) <= cache_now < _instant(result['expires_at'])
+                        or set(result['record']) != {'certificate_number', *_RECORD_FIELDS}
+                        or result['record']['certificate_number'] != cert):
+                    raise ValueError('invalid shared PSA record')
+                # Revalidate stored provider fields and the credential reflection
+                # guard. Cached comparisons and caller-supplied expectations are
+                # never shared between listings or users.
+                payload = {'PSACert': {'CertNumber': cert, **{v:result['record'][k] for k,v in _RECORD_FIELDS.items()}}}
+                outcome, reason, record = self._record(payload, cert)
+                if outcome != 'found' or reason or record != result['record'] or self._token in json.dumps(result):
+                    raise ValueError('invalid shared PSA record')
+                result['cached'] = True
+                return result, floor
+            except Exception:
+                return self._failure(base, 'shared_store_unavailable'), floor
+        if admission['status'] != 'admitted':
+            reason = admission['status'] if admission['status'] in _MESSAGES else 'shared_store_unavailable'
+            return self._failure(base, reason), floor
+        if not self.coordinator.can_dispatch(admission, now=self.now):
+            return self._failure(base, 'shared_store_unavailable'), floor
+        floor = _instant(admission['observed_at'])
+        result = self._lookup(cert, instant)
+        if result['status'] == 'found':
+            ceiling = min(_instant(result['expires_at']), self.coordinator.end)
+            if self.coordinator.cache_seconds:
+                ceiling = min(ceiling, instant+timedelta(seconds=self.coordinator.cache_seconds))
+            result['expires_at'] = ceiling.isoformat()
+        # A crash, timeout or failed response never refunds a possibly sent call.
+        receipt = self.coordinator.finish(admission, result if result['status'] == 'found' else None, now=self.now, receipt=True)
+        if not receipt:
+            return self._failure(base, 'shared_store_unavailable'), floor
+        floor = _instant(receipt['observed_at'])
+        return result, floor
+
+    def lookup(self, certificate_number, *, expected=None, priority='shortlist'):
         instant = _instant(self.now())
         valid = isinstance(certificate_number, str) and CERT_PATTERN.fullmatch(certificate_number)
         base = self._base(certificate_number if valid else None, instant)
@@ -327,11 +393,17 @@ class PSACertClient:
             return self._failure(base, "live_disabled")
         if not self._token:
             return self._failure(base, "access_unconfigured")
+        if self._real_transport and self.coordinator is None:
+            return self._failure(base, "shared_store_unconfigured")
+        if priority not in {'shortlist', 'purchase'}:
+            return self._failure(base, "invalid_expectation", "invalid")
         if not self._lock.acquire(timeout=0.05):
             return self._failure(base, "lookup_busy")
         try:
-            cached = self._cache.get(certificate_number)
-            if cached and _instant(cached["checked_at"]) <= instant < _instant(cached["expires_at"]):
+            cached = self._cache.get(certificate_number) if self.coordinator is None else None
+            if self.coordinator is not None:
+                result, shared_floor = self._shared_lookup(certificate_number, instant, priority)
+            elif cached and _instant(cached["checked_at"]) <= instant < _instant(cached["expires_at"]):
                 result = copy.deepcopy(cached) | {"cached": True}
                 self._cache.move_to_end(certificate_number)
             else:
@@ -342,7 +414,11 @@ class PSACertClient:
                     while len(self._cache) > self.max_cache_entries:
                         self._cache.popitem(last=False)
             if result["record_found"]:
-                if not _instant(result["checked_at"]) <= _instant(self.now()) < _instant(result["expires_at"]):
+                try:
+                    current = self._shared_instant(shared_floor) if self.coordinator is not None else _instant(self.now())
+                except ValueError:
+                    return self._failure(self._base(certificate_number, _instant(self.now())), "provider_unavailable")
+                if not _instant(result["checked_at"]) <= current < _instant(result["expires_at"]):
                     self._cache.pop(certificate_number, None)
                     return self._failure(self._base(certificate_number, _instant(self.now())), "provider_unavailable")
                 result["comparison"] = compare_record(result["record"], expected)

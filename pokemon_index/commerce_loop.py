@@ -19,7 +19,7 @@ import time
 from urllib.parse import urlsplit
 
 from .seller_evidence import seller_for_listing, seller_identity
-from .listing_evidence import FIELDS as IDENTITY_FIELDS, identity_evidence, normalized, research_coverage, semantic_binding, validate_photos
+from .listing_evidence import FIELDS as IDENTITY_FIELDS, identity_evidence, normalized, research_coverage, semantic_binding, validate_photos, validate_platform_product_reference
 
 SCHEMA = "pokemon.agent-commerce.v1"
 SOURCES = ("mercari", "ebay_us", "snkrdunk")
@@ -350,7 +350,7 @@ class CommerceLoop:
     it re-fetches the URL retained from the selected server-owned research result.
     """
     def __init__(self, crawler, *, forwarders=None, psa_client=None, now=utcnow,
-                 freshness_seconds=300, selection_seconds=600, monotonic=time.monotonic, catalog_lookup=None):
+                 freshness_seconds=300, selection_seconds=600, monotonic=time.monotonic, catalog_lookup=None, certificate_reader=None):
         if not 1 <= freshness_seconds <= 3600 or not 1 <= selection_seconds <= 3600:
             raise ValueError("invalid commerce state bounds")
         self.crawler, self.now = crawler, now
@@ -364,6 +364,10 @@ class CommerceLoop:
             from .psa_cert import PSACertClient
             psa_client = PSACertClient()
         self.psa_client = psa_client
+        if certificate_reader is None:
+            from .certificate_evidence import CertificateReader
+            certificate_reader = CertificateReader(now=now)
+        self.certificate_reader = certificate_reader
         if set(self.forwarders) - {"buyship", "other"}:
             raise ValueError("unsupported forwarder registry key")
         self.freshness_seconds, self.selection_seconds = freshness_seconds, selection_seconds
@@ -405,7 +409,7 @@ class CommerceLoop:
                         record.pop("variant_choices", None)
 
     def _publish(self, result, *, offer=None, selection=None, contextual_offer=None,
-                 partner_handoff=False, search_used=None):
+                 partner_handoff=False, search_used=None, selection_binding=None):
         """Commit one detached response snapshot after all readiness/provider waits.
 
         Read admission may end without revoking captured evidence. Source and
@@ -527,11 +531,50 @@ class CommerceLoop:
                         platform.update(status="unavailable", message=readiness["message"])
                 if search_used is not None:
                     result["coverage"] = research_coverage(result["offers"], search_used=search_used)
+                if selection_binding is not None:
+                    self._require_handoff_selection(*selection, selection_binding, instant, project_authority=True)
                 return copy.deepcopy(result)
         if search_used is not None:
             result["checked_at"] = self.now()
             result["coverage"] = research_coverage(result["offers"], search_used=search_used)
+        if selection_binding is not None:
+            with self._lock:
+                self._require_handoff_selection(*selection, selection_binding, _time(self.now()))
+                return copy.deepcopy(result)
         return result
+
+    def _require_handoff_selection(self, key, owner, binding, instant, *, project_authority=False):
+        """Require the same retained selection while the state lock is held.
+
+        Refresh/provider waits run without that lock. Neither a replacement
+        record nor changed retained proof may lend its opaque research handle
+        to the response being prepared by an earlier request.
+        """
+        current = self._selections.get(key)
+        if current is not binding["record"] or current.get("owner") != owner:
+            raise CommerceError("selection_expired", "Select a freshly researched listing before handoff.", 409)
+        try:
+            expected_fingerprint = binding["fingerprint"]
+            if project_authority:
+                # _publish already projected current state under source
+                # authority. Apply that same photo-removal-only projection to
+                # the frozen original proof, never to a mutated baseline.
+                expected_fingerprint = _fingerprint(self.crawler.project_retained(binding["offer"]))
+            unchanged = (current["card_id"] == binding["card_id"]
+                and current["expires"] == binding["expires"]
+                and current["fingerprint"] == expected_fingerprint
+                and current["offer"]["offer_id"] == binding["offer"]["offer_id"]
+                and current["offer"]["observed_at"] == binding["offer"]["observed_at"]
+                and current["offer"]["fresh_until"] == binding["offer"]["fresh_until"]
+                and _fingerprint(current["offer"]) == expected_fingerprint)
+        except (KeyError, TypeError, ValueError):
+            unchanged = False
+        if not unchanged:
+            self._selections.pop(key, None)
+            raise CommerceError("offer_changed", "The retained listing evidence changed. Research and select again.", 409)
+        if current["expires"] <= instant:
+            self._selections.pop(key, None)
+            raise CommerceError("selection_expired", "This selection expired during refresh. Select again.", 409)
 
     def _source_allowed(self, source, *, handoff=False):
         from .approved_sources import ApprovedSources
@@ -598,7 +641,7 @@ class CommerceLoop:
             raise ValueError("priced candidate needs a currency")
         availability = {"in_stock": "available", "out_of_stock": "sold_out"}.get(
             raw.get("availability"), raw.get("availability", "unknown"))
-        if availability not in {"available", "sold_out", "unknown"}:
+        if availability not in {"available", "sold_out", "unavailable", "unknown"}:
             raise ValueError("invalid availability evidence")
         listing_status = raw.get("status", "unknown")
         if listing_status not in {"on_sale", "sold_out", "gone", "trading", "unknown"}:
@@ -657,6 +700,10 @@ class CommerceLoop:
             "status": "not_checked" if result["certificate_number_claim"] else "number_missing",
             "physical_authenticity": "not_verified"}
         result["seller"] = seller_for_listing(raw, source, observed.isoformat())
+        if raw.get("platform_product_reference") is not None:
+            if scope != "listing":
+                raise ValueError("platform product reference requires a bound listing")
+            result["platform_product_reference"] = validate_platform_product_reference(raw["platform_product_reference"], source, result["native_id"], result["url"], observed.isoformat())
         result["identity_evidence"] = identity_evidence(raw, source, result["url"], observed.isoformat(), target)
         if _time(result["identity_evidence"]["observed_at"]) < instant - timedelta(seconds=self.freshness_seconds):
             raise ValueError("producer returned stale identity evidence")
@@ -704,7 +751,7 @@ class CommerceLoop:
         if proof.get("basis") == "exact_listing_structured":
             projected["source_printing_evidence"] = copy.deepcopy({key: proof.get(key) for key in
                 ("claims", "listing_url", "evidence_ref", "observed_at", "basis")})
-        for field in ("identity_evidence", "listing_photos", "card_id"):
+        for field in ("identity_evidence", "listing_photos", "card_id", "platform_product_reference"):
             projected.pop(field, None)
         return projected
 
@@ -738,6 +785,16 @@ class CommerceLoop:
         result["marketplace_connections"] = marketplace_connections(self.crawler)
         target = self._target(card_id)
         for source in sources:
+            channel_started, channel_method = self.monotonic(), None
+            from .approved_sources import ApprovedSources
+            if type(self.crawler) is ApprovedSources:
+                from .source_readiness import source_readiness
+                ready = next(r for r in source_readiness(self.crawler) if r["source"] == source)
+                if not ready["listing_read_enabled"]:
+                    result["platforms"].append({"source": source, "status": "unavailable", "method": "none", "duration_ms": 0,
+                                              "reason_code": ready["blocker"], "message": ready["message"]})
+                    continue
+                channel_method = ready["method"]
             try:
                 from .approved_sources import ApprovedSources
                 chosen = [url for src, url in validated if src == source]
@@ -796,6 +853,9 @@ class CommerceLoop:
                 result["platforms"].append(platform)
             except Exception:
                 result["platforms"].append({"source": source, "status": "unavailable", "message": "This marketplace could not be refreshed. Retry research later."})
+            if channel_method is not None:
+                result["platforms"][-1].update(method=channel_method,
+                    duration_ms=min(60000, max(0, int((self.monotonic()-channel_started)*1000))))
         return self._publish(result, search_used=any(
             not any(src == source for src, _ in validated) for source in sources))
 
@@ -815,7 +875,7 @@ class CommerceLoop:
             if record["card_id"] != request["card_id"] or any(request[key] != offer[field] for key, field in (
                     ("expected_observed_at", "observed_at"), ("expected_price_minor", "price_minor"), ("currency", "currency"))):
                 raise CommerceError("offer_changed", "The selected listing differs from the displayed evidence. Research again.", 409)
-            if offer["availability"] == "sold_out":
+            if offer["availability"] in {"sold_out", "unavailable"}:
                 raise CommerceError("offer_unavailable", "This listing is not available.", 409)
             if offer.get("identity_evidence", {}).get("status") == "conflict":
                 raise CommerceError("identity_conflict", "The listing's identity claims conflict. Review another listing.", 409)
@@ -832,6 +892,40 @@ class CommerceLoop:
         result = self._base() | {"selection_id": key, "expires_at": expires.isoformat(), "offer": copy.deepcopy(offer)}
         return self._publish(result, offer=offer, selection=(key, owner))
 
+    def read_certificate(self, owner, request):
+        owner = self._owner(owner)
+        _request(request, ('card_id','offer_id','expected_observed_at','expected_price_minor','currency'))
+        key = _text(request['offer_id'], 'offer ID')
+        with self._lock:
+            self._purge(_time(self.now()))
+            held = self._offers.get(key)
+            if not held or held['owner'] != owner or held['card_id'] != request['card_id']:
+                raise CommerceError('offer_unavailable', 'Research this listing again before reading its certificate.', 409)
+            retained = copy.deepcopy(held); offer = retained['offer']
+            if (offer['observed_at'] != request['expected_observed_at'] or offer['price_minor'] != request['expected_price_minor']
+                    or offer['currency'] != request['currency']):
+                raise CommerceError('offer_changed', 'The listing observation changed. Research it again.', 409)
+        def authorize(url):
+            from .approved_sources import ApprovedSources
+            current = self.crawler.project_retained(offer) if type(self.crawler) is ApprovedSources else offer
+            if not any(p['url'] == url for p in current.get('listing_photos', [])):
+                raise ValueError('photo display is not approved')
+        evidence = self.certificate_reader.read(offer, authorize=authorize)
+        with self._lock:
+            self._purge(_time(self.now()))
+            if self._offers.get(key) != retained:
+                raise CommerceError('offer_changed', 'The listing expired or changed during image reading.', 409)
+        result = self._publish(self._base() | {'offer':offer,'evidence':evidence},offer=offer,contextual_offer=(key,owner))
+        # ApprovedSources publishes a detached snapshot. Redact that snapshot,
+        # not the pre-publication object, against its final photo authority.
+        evidence = result['evidence']
+        allowed={p['url'] for p in result['offer'].get('listing_photos',[])}
+        evidence['candidates']=[c for c in evidence['candidates'] if c['photo_url'] is None or c['photo_url'] in allowed]
+        numbers={c['number'] for c in evidence['candidates']}
+        if evidence['status'] in {'candidate_found','number_conflict'}:
+            evidence['status']='number_conflict' if len(numbers)>1 else 'candidate_found' if numbers else 'number_not_read'
+        return result
+
     def psa(self, owner, request):
         """Look up one certificate; seller claims never become authentication.
 
@@ -841,11 +935,14 @@ class CommerceLoop:
         owner = self._owner(owner)
         _request(request, ("certificate_number",), ("offer_id",))
         certificate = _text(request["certificate_number"], "PSA certificate number", 32)
-        expected, retained = None, None
+        expected, retained, purchase_selection = None, None, None
         if "offer_id" in request:
             key = _text(request["offer_id"], "offer ID")
             with self._lock:
                 self._purge(_time(self.now()))
+                # A revoked source must not lend retained selection authority
+                # to a quota-consuming certificate lookup.
+                self._scrub_retained()
                 record = self._offers.get(key)
                 if not record or record["owner"] != owner:
                     raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
@@ -857,7 +954,21 @@ class CommerceLoop:
                 if grade["company"] == "PSA" and grade["value"]:
                     expected = {"grade": grade["value"]}
                 retained = copy.deepcopy(record)
-        verification = self.psa_client.lookup(certificate, expected=expected)
+                from .psa_cert import PSACertClient
+                # An offer-only selection is not authority over arbitrary PSA
+                # numbers. OCR/manual candidates remain unconfirmed and cannot
+                # unlock the reserve without a retained listing number claim.
+                if (type(self.psa_client) is PSACertClient and grade['company'] == 'PSA'
+                        and grade['value'] and claim == certificate):
+                    for selection_key, selected in self._selections.items():
+                        if (selected['owner'] == owner and not selected.get('busy')
+                                and selected['offer']['offer_id'] == key
+                                and selected['fingerprint'] == _fingerprint(offer)
+                                and selected['expires'] > _time(self.now())):
+                            purchase_selection = (selection_key, copy.deepcopy(selected))
+                            break
+        verification = (self.psa_client.lookup(certificate, expected=expected, priority='purchase') if purchase_selection
+                        else self.psa_client.lookup(certificate, expected=expected))
         if retained is not None:
             # Provider latency must not make an expired or replaced offer look
             # like a current contextual comparison. Do not hold our state lock
@@ -869,6 +980,8 @@ class CommerceLoop:
                     raise CommerceError("offer_unavailable", "Research this listing again before comparing its PSA claim.", 409)
                 if current != retained:
                     raise CommerceError("offer_changed", "The listing evidence changed during PSA lookup. Research it again.", 409)
+                if purchase_selection and self._selections.get(purchase_selection[0]) != purchase_selection[1]:
+                    raise CommerceError('selection_expired', 'The selected purchase context expired during lookup.', 409)
         result = self._base() | {"verification": verification}
         return self._publish(result, offer=retained["offer"] if retained else None,
                              contextual_offer=(key, owner) if retained else None)
@@ -918,22 +1031,27 @@ class CommerceLoop:
                 variant = copy.deepcopy(matches[0])
             # Choice data is single-attempt context, never a reusable quote or
             # a browser-supplied reference/price. A fresh resolve rechecks it.
+            binding = {"record": record, "card_id": record["card_id"], "offer": copy.deepcopy(record["offer"]),
+                       "fingerprint": record["fingerprint"], "expires": record["expires"]}
+            self._require_handoff_selection(key, owner, binding, _time(self.now()))
             record.pop("variant_choices", None)
             record["busy"] = True
         try:
             try:
-                raw = self._produce(lambda: self.crawler.detail(record["offer"]["url"]))
-                refreshed = self._offer(raw, record["offer"]["source"], _time(self.now()), self._target(record["card_id"]))
+                raw = self._produce(lambda: self.crawler.detail(binding["offer"]["url"]))
+                refreshed = self._offer(raw, binding["offer"]["source"], _time(self.now()), self._target(binding["card_id"]))
             except Exception as exc:
                 raise CommerceError("refresh_unavailable", "The selected product page could not be refreshed. No handoff was prepared.", 503) from exc
             with self._lock:
-                if record["expires"] <= _time(self.now()):
-                    self._selections.pop(key, None)
-                    raise CommerceError("selection_expired", "This selection expired during refresh. Select again.", 409)
-                if (refreshed["availability"] == "sold_out" or refreshed.get("identity_evidence", {}).get("status") == "conflict"
-                        or _fingerprint(refreshed) != record["fingerprint"]):
+                self._require_handoff_selection(key, owner, binding, _time(self.now()))
+                if (refreshed["availability"] in {"sold_out", "unavailable"} or refreshed.get("identity_evidence", {}).get("status") == "conflict"
+                        or _fingerprint(refreshed) != binding["fingerprint"]):
                     self._selections.pop(key, None)
                     raise CommerceError("offer_changed", "The product URL, price, availability or seller evidence changed. Research and select again.", 409)
+                # _offer discards producer handles. Preserve only the opaque
+                # handle issued by research, after the same owner/selection
+                # and unchanged semantic listing proof have been established.
+                refreshed["offer_id"] = binding["offer"]["offer_id"]
             result = self._base() | {"status": "manual_handoff_required", "selection_id": key,
                 "product_url": refreshed["url"], "offer": refreshed,
                 "forwarder": {"id": forwarder, "label": "Buy & Ship" if forwarder == "buyship" else "Other forwarder"},
@@ -949,17 +1067,17 @@ class CommerceLoop:
                 try:
                     self._source_allowed(refreshed["source"], handoff=True)
                     if url_preview:
-                        quote_offer = self._url_quote_offer(record["card_id"], refreshed)
-                        quote = provider.preview_before(record["card_id"], quote_offer, dict(destination), deadline=deadline, variant=variant)
+                        quote_offer = self._url_quote_offer(binding["card_id"], refreshed)
+                        quote = provider.preview_before(binding["card_id"], quote_offer, dict(destination), deadline=deadline, variant=variant)
                     elif callable(getattr(provider, "preview_before", None)):
-                        quote = provider.preview_before(record["card_id"], refreshed, dict(destination), deadline=deadline)
+                        quote = provider.preview_before(binding["card_id"], refreshed, dict(destination), deadline=deadline)
                     else:
-                        quote = provider.preview(record["card_id"], refreshed, dict(destination))
+                        quote = provider.preview(binding["card_id"], refreshed, dict(destination))
                     self._source_allowed(refreshed["source"], handoff=True)
                     if not isinstance(quote, dict) or quote.get("status") != "quote_ready_for_review" or quote.get("purchasable") is not False or quote.get("order_created") is not False or quote.get("purchase_action") is not None:
                         raise ValueError("provider did not return a non-purchasable quote preview")
                     result.update(status="quote_ready_for_review", quote=quote, quote_status="ready",
-                                  message="Review the provider's current landed quote. No order was created.")
+                                  message="Review the provider-reported quote; delivery coverage is unconfirmed. No order was created.")
                 except CommerceError:
                     raise
                 except Exception as exc:
@@ -996,13 +1114,14 @@ class CommerceLoop:
             variants = result.get("provider_result", {}).get("details", {}).get("variants")
             if url_preview and variants:
                 with self._lock:
+                    self._require_handoff_selection(key, owner, binding, completed)
                     record["variant_choices"] = {"variants": copy.deepcopy(variants), "destination": dict(destination),
                         "forwarder": forwarder, "expires": min(record["expires"], completed + timedelta(seconds=300))}
             result["checked_at"] = completed_at
             if self.mode == "synthetic_fixture":
                 result["message"] = "Synthetic demonstration only. This example URL cannot be purchased or sent to a real forwarder."
             return self._publish(result, offer=refreshed, selection=(key, owner),
-                                 partner_handoff=provider is not None and not blocked_quote)
+                                 partner_handoff=provider is not None and not blocked_quote, selection_binding=binding)
         finally:
             with self._lock:
                 record["busy"] = False

@@ -110,8 +110,10 @@ def photo_url(value, source, *, synthetic=False):
         paths = {"mercari": ("static.mercdn.net", r"/item/detail/orig/photos/[A-Za-z0-9_./-]+"),
                  "ebay_us": ("i.ebayimg.com", r"/images/g/[A-Za-z0-9_~./!-]+"),
                  "snkrdunk": ("images.snkrdunk.com", r"/[A-Za-z0-9_./-]+")}
+        snkr_attachment = (source == "snkrdunk" and u.hostname == "cdn.snkrdunk.com"
+                           and bool(re.fullmatch(r"/apparel_used_listings/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/[0-9]+\.(?:jpg|jpeg|png|webp)", u.path, re.I)))
         allowed = (u.hostname == "images.example.invalid" and bool(re.fullmatch(r"/listings/[A-Za-z0-9_/-]+\.(?:jpg|jpeg|png|webp)", u.path, re.I))) if synthetic else (
-            source in paths and u.hostname == paths[source][0] and bool(re.fullmatch(paths[source][1], u.path)))
+            snkr_attachment or source in paths and u.hostname == paths[source][0] and bool(re.fullmatch(paths[source][1], u.path)))
         return value if allowed else None
     except (ValueError, TypeError):
         return None
@@ -145,6 +147,10 @@ def extracted_listing_evidence(source, native_id, listing_url, observed_at, evid
         if isinstance(item.get("attributes"), dict):
             entries.extend((key, value) for key, value in item["attributes"].items() if key in FIELDS)
         photos.extend(item.get("images", []) if isinstance(item.get("images"), list) else [])
+        # SNKRDUNK's path-bound apparelUsedItem exposes its actual attachments
+        # here. Never take apparel.primaryMedia, catalog art, or page og:image.
+        if source == "snkrdunk" and isinstance(item.get("imageUrls"), list):
+            photos.extend(item["imageUrls"][:40])
     if isinstance(offer, dict) and offer.get("url") == listing_url:
         offered = offer.get("itemOffered")
         if isinstance(offered, dict) and offered.get("url") == listing_url:
@@ -178,6 +184,71 @@ def extracted_listing_evidence(source, native_id, listing_url, observed_at, evid
                     "conflicting_fields": sorted(conflicts), "evidence_ref": evidence_ref,
                     "observed_at": observed_at, "basis": "exact_listing_structured"}
     return identity, safe_photos
+
+
+def platform_product_reference(item, source, native_id, listing_url, observed_at, evidence_ref):
+    """Record the exact SNKR product's reported coordinate, never copy identity.
+
+    Product titles are useful for separating discovery candidates, but cannot
+    fill language/finish/edition or promote a listing to an exact catalog match.
+    """
+    if source != "snkrdunk" or not isinstance(item, dict):
+        return None
+    match = re.fullmatch(r"/apparels/([0-9]+)/used/([0-9]+)", urlsplit(listing_url).path)
+    product = item.get("apparel")
+    if (not match or str(item.get("id")) != native_id or native_id != match[2]
+            or not isinstance(product, dict) or type(product.get("id")) is not int
+            or str(product["id"]) != match[1] or not isinstance(product.get("apparelInfo"), dict)
+            or product["apparelInfo"].get("isTradingCard") is not True):
+        return None
+    coordinates, conflict = set(), False
+    pattern = r"\[((?:SV|SM|XY|S)[0-9]{1,3}[A-Za-z]?)\s+([0-9]{1,4}/[0-9]{1,4})\]"
+    for key in ("name", "localizedName"):
+        title = product.get(key)
+        if not _text(title, 2000):
+            continue
+        title = unicodedata.normalize("NFKC", title)
+        for found in re.finditer(pattern, title, re.I):
+            coordinates.add((normalized("set_code", found[1]), normalized("collector_number", found[2])))
+            conflict = conflict or negated_cue(title, *found.span())
+    conflict = conflict or len(coordinates) > 1
+    code = number = None
+    if len(coordinates) == 1 and not conflict:
+        code, number = next(iter(coordinates))
+        sku = product.get("productNumber")
+        sku_match = re.fullmatch(r"pkmn-tcg-((?:SV|SM|XY|S)[0-9]{1,3}[A-Za-z]?)-([0-9]{1,4})", sku, re.I) if isinstance(sku, str) else None
+        if sku_match and (normalized("set_code", sku_match[1]) != code or normalized("collector_number", sku_match[2]) != number.split("/")[0]):
+            conflict = True
+            code = number = None
+    result = {"schema": "pokemon.platform-product-reference.v1", "source": source,
+              "source_product_id": match[1], "listing_url": listing_url, "observed_at": observed_at,
+              "evidence_ref": evidence_ref, "basis": "path_bound_product_fields",
+              "status": "conflict" if conflict else "reported" if code else "unavailable",
+              "set_code": code, "collector_number": number,
+              "catalog_match_verified": False, "physical_copy_verified": False}
+    return validate_platform_product_reference(result, source, native_id, listing_url, observed_at)
+
+
+def validate_platform_product_reference(value, source, native_id, listing_url, observed_at):
+    if value is None:
+        return None
+    keys = {"schema", "source", "source_product_id", "listing_url", "observed_at", "evidence_ref", "basis",
+            "status", "set_code", "collector_number", "catalog_match_verified", "physical_copy_verified"}
+    match = re.fullmatch(r"https://snkrdunk.com/apparels/([0-9]+)/used/([0-9]+)", listing_url)
+    if (not isinstance(value, dict) or set(value) != keys or not match or source != "snkrdunk"
+            or match[2] != native_id or value["source"] != source or value["source_product_id"] != match[1]
+            or value["listing_url"] != listing_url or value["schema"] != "pokemon.platform-product-reference.v1"
+            or value["basis"] != "path_bound_product_fields" or not _text(value["evidence_ref"])
+            or _stamp(value["observed_at"]) > _stamp(observed_at)
+            or value["catalog_match_verified"] is not False or value["physical_copy_verified"] is not False
+            or value["status"] not in {"reported", "conflict", "unavailable"}):
+        raise ValueError("invalid platform product reference")
+    for field in ("set_code", "collector_number"):
+        v = value[field]
+        if (value["status"] == "reported" and (v is None or normalized(field, v) != v)
+                or value["status"] != "reported" and v is not None):
+            raise ValueError("invalid platform product coordinate")
+    return copy.deepcopy(value)
 
 
 def _finish_mentions(title):
@@ -286,7 +357,9 @@ def semantic_binding(offer):
     target = value.get("target")
     identity["target"] = {field: target.get(field) for field in FIELDS} if target else None
     photos = sorted((p["url"], p["role"], p["listing_url"]) for p in offer.get("listing_photos", []))
-    return {"identity": identity, "photos": photos}
+    reference = offer.get("platform_product_reference")
+    reference = {key: reference[key] for key in ("source", "source_product_id", "listing_url", "status", "set_code", "collector_number", "basis")} if reference else None
+    return {"identity": identity, "photos": photos, "platform_product_reference": reference}
 
 
 def research_coverage(offers, *, search_used):
