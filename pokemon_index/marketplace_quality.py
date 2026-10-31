@@ -15,6 +15,35 @@ GRADE_EVIDENCE = {"snkr_used_condition", "structured_seller_claim", "structured_
 REVIEW_REASONS = {"grade_not_reported", "ambiguous_grade_claim", "conflicting_grade_claims",
                   "source_review_required", "special_grade_label_requires_review"}
 
+# Unsupported grading companies still contradict a different claimed grader.
+# Recognizing their names here does not add a provider or admit their grades.
+OTHER_GRADER = re.compile(
+    r"(?<![A-Za-z])(TAG|SGC)\s*(?:\d+(?:\.\d+)?|graded|grading|slab)(?![A-Za-z0-9.])", re.I)
+QUALIFIED_GRADE = re.compile(
+    r"(?<![A-Za-z])(?:PSA|BGS|CGC|ARS|PGC)\s*(?:10|[1-9](?:\.5)?)\s*"
+    r"(?:\(\s*(OC|ST|PD|OF|MK|MC)\s*\)|(OC|ST|PD|OF|MK|MC)(?![A-Za-z]))", re.I)
+
+
+def special_grade_label(title, condition):
+    """Preserve qualified/special claims instead of flattening to a number."""
+    combined = title + " " + condition
+    labels = set()
+    for name, pattern in (("black_label", r"black\s*label|ブラックラベル"),
+                          ("gold_label", r"gold\s*label|ゴールドラベル"),
+                          ("pristine", r"\bpristine\b"),
+                          ("perfect", r"\bperfect\s*10\b"),
+                          ("authentic_altered", r"\bauthentic\s+altered\b")):
+        if re.search(pattern, combined, re.I):
+            labels.add(name)
+    for match in QUALIFIED_GRADE.finditer(combined):
+        labels.add("qualifier_" + (match.group(1) or match.group(2)).lower())
+    # A structured seller condition may omit the grader name but still qualify
+    # its numeric score. Do not scan arbitrary unbound two-letter title tokens.
+    match = re.fullmatch(r"\s*(?:10|[1-9](?:\.5)?)\s*\(?\s*(OC|ST|PD|OF|MK|MC)\s*\)?\s*", condition, re.I)
+    if match:
+        labels.add("qualifier_" + match.group(1).lower())
+    return " + ".join(sorted(labels)) or None
+
 
 def grade_details(company, value, *, title="", condition=None, evidence=None,
                   raw_claim=False, source_review=False):
@@ -29,8 +58,7 @@ def grade_details(company, value, *, title="", condition=None, evidence=None,
         reasons.add("grade_not_reported")
     if source_review:
         reasons.add("source_review_required")
-    special = ("black_label" if re.search(r"black\s*label|ブラックラベル", title + " " + condition, re.I)
-               else "pristine" if re.search(r"\bpristine\b", title + " " + condition, re.I) else None)
+    special = special_grade_label(title, condition)
     if special:
         reasons.add("special_grade_label_requires_review")
     for text in (title, condition):
@@ -59,6 +87,7 @@ def contradicts_grade(text: str, company: str, grade: str) -> bool:
            for match in pattern.finditer(text)):
         return True
     named = {match.group().upper() for match in core.GRADER_RE.finditer(text)}
+    named.update(match.group(1).upper() for match in OTHER_GRADER.finditer(text))
     numeric = [(match.group(1).upper(), match.group(2)) for match in NUMERIC_GRADE.finditer(text)]
     if company == "RAW":
         return bool(named or numeric or core.SLAB_EVIDENCE_RE.search(text)

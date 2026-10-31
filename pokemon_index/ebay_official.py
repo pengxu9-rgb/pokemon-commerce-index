@@ -267,7 +267,7 @@ class BrowseClient:
                 headers["X-EBAY-C-ENDUSERCTX"] = context
             return headers
 
-    def _normalize(self, item, stamp):
+    def _normalize(self, item, stamp, *, allow_unavailable=False):
         try:
             if not isinstance(item, dict) or not REST_ID.fullmatch(item.get("itemId", "")):
                 raise ValueError()
@@ -276,8 +276,10 @@ class BrowseClient:
                 raise ValueError()
             value = copy.deepcopy(item)
             value["itemWebUrl"] = f"https://www.ebay.com/itm/{legacy}"
-            row = _ebay_item(value, "ebay_us", stamp, False)
-            row["availability"] = "available" if value.get("estimatedAvailabilities") else "unknown"
+            row = _ebay_item(value, "ebay_us", stamp, False,
+                             allow_unavailable=allow_unavailable)
+            if row.get("availability") != "unavailable":
+                row["availability"] = "available" if value.get("estimatedAvailabilities") else "unknown"
             row["grade_company"] = row["marketplace_quality"]["grade_company"]
             row["grade_value"] = row["marketplace_quality"]["grade_value"]
             row["scope"] = "listing"
@@ -333,7 +335,7 @@ class BrowseClient:
         _, legacy = _item_url(url, canonical=True)
         payload = self._request("GET", "/buy/browse/v1/item/get_item_by_legacy_id?" +
                                 urlencode({"legacy_item_id": legacy}), headers=self._headers())
-        row = self._normalize(payload, self._check().isoformat())
+        row = self._normalize(payload, self._check().isoformat(), allow_unavailable=True)
         if _legacy(row["native_id"]) != legacy:
             raise OfficialEbayError("ebay_official_item_mismatch")
         return row

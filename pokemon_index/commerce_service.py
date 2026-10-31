@@ -50,8 +50,10 @@ def _json(raw):
     return value
 
 
-def create_server(loop, *, token, host="127.0.0.1", port=8766):
+def create_server(loop, *, token, host="127.0.0.1", port=8766, research_only=False):
     """Create a private loopback server. No listener is opened by importing it."""
+    if type(research_only) is not bool:
+        raise ValueError("research-only mode requires an explicit boolean")
     if host != "localhost":
         try:
             valid = ipaddress.ip_address(host).is_loopback
@@ -102,7 +104,10 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
         def do_POST(self):
             try:
                 owner = self._owner()
+                if research_only and self.path not in {"/commerce/research", "/commerce/read-certificate"}:
+                    raise CommerceError("read_only_scope", "Only seller research is enabled.", 403)
                 routes = {"/commerce/research": loop.research,
+                          "/commerce/read-certificate": loop.read_certificate,
                           "/commerce/select": loop.select, "/commerce/handoff": loop.handoff,
                           "/commerce/psa": loop.psa}
                 if self.path not in routes:
@@ -120,7 +125,10 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
                     payload = _json(raw)
                 except (ValueError, UnicodeError, RecursionError) as exc:
                     raise CommerceError("invalid_request", "A bounded unambiguous JSON object is required.") from exc
-                self._send(200, routes[self.path](owner, payload))
+                result = routes[self.path](owner, payload)
+                if research_only:
+                    result = {**result, "forwarders": []}
+                self._send(200, result)
             except CommerceError as exc:
                 self._send(exc.status, {"schema": SCHEMA, "error": exc.code, "message": exc.message})
             except (TimeoutError, ConnectionError):
@@ -145,6 +153,17 @@ def create_server(loop, *, token, host="127.0.0.1", port=8766):
         address_family = socket.AF_INET6 if ":" in host else socket.AF_INET
 
     return Server((host, port), Handler)
+
+
+def _crawl_bounds(args):
+    timeout = getattr(args, 'crawl_timeout_seconds', 8)
+    maximum = getattr(args, 'crawl_max_seconds', 30)
+    if (type(timeout) not in (int, float) or not 1 <= timeout <= 8
+            or type(maximum) not in (int, float) or not 1 <= maximum <= 30):
+        raise ValueError('invalid bounded crawler timing configuration')
+    # These are socket-operation and between-request bounds. DNS and in-flight
+    # operations are not preemptible; do not advertise an absolute query SLA.
+    return {'timeout': timeout, 'max_seconds': maximum}
 
 
 def _approved_sources(args, env):
@@ -198,7 +217,7 @@ def _approved_sources(args, env):
     if args.allow_live_crawl:
         crawler = Crawler(allow_network=True, authorized_sources=args.source,
             snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
-            ebay_browse_urls=args.ebay_browse_url, dispatch_budget=budget)
+            ebay_browse_urls=args.ebay_browse_url, dispatch_budget=budget, **_crawl_bounds(args))
     api = None
     if args.allow_live_ebay_browse:
         from .ebay_official import configure_official_ebay
@@ -218,6 +237,7 @@ def main():
     parser.add_argument("--fixture", action="store_true", help="synthetic .invalid examples; no marketplace or provider calls")
     parser.add_argument("--catalog-db", help="existing operator-supplied read-only catalog for listing identity checks")
     parser.add_argument("--allow-live-crawl", action="store_true", help="opt in to bounded public-page research")
+    parser.add_argument("--research-only", action="store_true", help="deny selection, handoff and certificate operations")
     parser.add_argument("--allow-live-ebay-browse", action="store_true", help="opt in to an approved bounded official eBay Browse session; separate from crawling")
     parser.add_argument("--ebay-read-until", help="absolute UTC end for an explicitly approved eBay Browse session")
     parser.add_argument("--ebay-request-budget", type=int, help="finite eBay HTTP request budget, including token requests")
@@ -233,13 +253,21 @@ def main():
     parser.add_argument("--source", action="append", choices=["mercari", "ebay_us", "snkrdunk"], help="explicitly authorized research sources")
     parser.add_argument("--snkr-seed-url", action="append", default=[])
     parser.add_argument("--snkr-sitemap-url", action="append", default=[])
+    parser.add_argument("--crawl-timeout-seconds", type=float, default=8)
+    parser.add_argument("--crawl-max-seconds", type=float, default=30)
     parser.add_argument("--ebay-browse-url", action="append", default=[],
                         help="exact operator-selected public eBay category URL; current robots policy is always checked")
     parser.add_argument("--quote-db", help="existing approved operator DB, never the packaged catalog")
     parser.add_argument("--allow-live-buyship", action="store_true", help="enable configured BNS resolve/quote only; no order")
     parser.add_argument("--buyship-url-preview", action="store_true", help="explicit selected-URL preview instead of the indexed quote gate")
     parser.add_argument("--allow-live-psa", action="store_true", help="enable configured read-only PSA certificate lookup")
+    parser.add_argument("--allow-certificate-ocr", action="store_true", help="read at most two retained listing photos; never calls PSA")
     args = parser.parse_args()
+    if args.allow_certificate_ocr and (args.fixture or not args.approved_source_routing or not args.allow_live_crawl):
+        parser.error('certificate OCR requires approved public research routing')
+    if args.research_only and (args.fixture or args.allow_live_buyship or args.allow_live_psa
+                              or args.quote_db or args.buyship_url_preview):
+        parser.error("research-only mode cannot mix with fixtures or provider operations")
     fixture = args.fixture or os.environ.get("POKEMON_COMMERCE_FIXTURE") == "true"
     if not args.allow_live_ebay_browse and (args.ebay_read_until is not None or args.ebay_request_budget is not None):
         parser.error("eBay session bounds require --allow-live-ebay-browse")
@@ -282,7 +310,7 @@ def main():
             renderer=renderer,
             authorized_sources=args.source or (),
             snkr_seed_urls=args.snkr_seed_url, snkr_sitemap_urls=args.snkr_sitemap_url,
-            ebay_browse_urls=args.ebay_browse_url)
+            ebay_browse_urls=args.ebay_browse_url, **_crawl_bounds(args))
     if args.allow_live_ebay_browse and routed is None:
         from .ebay_official import configure_official_ebay
         try:
@@ -305,9 +333,13 @@ def main():
     elif args.quote_db:
         parser.error("--quote-db is only used with --allow-live-buyship")
     from .psa_cert import PSACertClient
-    psa_client = PSACertClient(token=os.environ.get("PSA_API_TOKEN"), allow_live=args.allow_live_psa)
-    loop = CommerceLoop(crawler, forwarders=forwarders, psa_client=psa_client, catalog_lookup=catalog_lookup)
-    with create_server(loop, token=token, host=args.host, port=args.port) as server:
+    from .psa_gcs import configure as configure_shared_psa
+    coordinator = configure_shared_psa(os.environ, enabled=args.allow_live_psa)
+    psa_client = PSACertClient(token=os.environ.get("PSA_API_TOKEN"), allow_live=args.allow_live_psa, coordinator=coordinator)
+    from .certificate_evidence import CertificateReader
+    reader = CertificateReader(enabled=args.allow_certificate_ocr, budget=routed.budget if routed else None)
+    loop = CommerceLoop(crawler, forwarders=forwarders, psa_client=psa_client, catalog_lookup=catalog_lookup, certificate_reader=reader)
+    with create_server(loop, token=token, host=args.host, port=args.port, research_only=args.research_only) as server:
         print(json.dumps({"event": "commerce_sidecar_ready", "mode": loop.mode, "port": server.server_port}), flush=True)
         try:
             server.serve_forever()

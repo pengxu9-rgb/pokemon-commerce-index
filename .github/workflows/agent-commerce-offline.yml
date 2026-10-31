@@ -27,3 +27,5 @@ jobs:
         run: python -B -m unittest tests.test_bns_printing_identity tests.test_adversary_source_fixes -q
       - name: Audit saved card, image and seller-photo coverage without providers
         run: python -m unittest tests.test_image_coverage tests.test_cohort_coverage tests.test_offer_coverage -q
+      - name: Verify certificate OCR, shared PSA quota and adversarial regressions offline
+        run: python -B -m unittest tests.test_psa_strategy tests.test_certificate_journey tests.test_review_regressions -q
